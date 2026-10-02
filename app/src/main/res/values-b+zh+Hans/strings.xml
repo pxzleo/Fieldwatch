@@ -808,16 +808,16 @@
     <string name="label_alertvoicewhat_both" formatted="false">"类别 + 特征"</string>
     <string name="label_signaturelistsort_name" formatted="false">"名称 A–Z"</string>
     <string name="label_signaturelistsort_class" formatted="false">"类别 A–Z"</string>
-    <string name="label_huntcue_very_close" formatted="false">"非常近"</string>
-    <string name="label_huntcue_closer" formatted="false">"更近"</string>
-    <string name="label_huntcue_further" formatted="false">"更远"</string>
+    <string name="label_huntcue_very_close" formatted="false">"信号很强"</string>
+    <string name="label_huntcue_closer" formatted="false">"信号变强"</string>
+    <string name="label_huntcue_further" formatted="false">"信号变弱"</string>
     <string name="label_huntcue_same" formatted="false">"基本相同"</string>
     <string name="label_huntcue_waiting" formatted="false">"监听中…"</string>
     <string name="label_huntcue_quiet" formatted="false">"无广播"</string>
     <string name="label_huntcue_gone" formatted="false">"已消失"</string>
-    <string name="hint_hunt_very_close" formatted="false">"此处信号极强。查看周围，通常在手中、口袋或同一个包内。这不是米数。"</string>
-    <string name="hint_hunt_closer" formatted="false">"比几秒前更强。继续朝该方向走。"</string>
-    <string name="hint_hunt_further" formatted="false">"比几秒前更弱。转向或后退。"</string>
+    <string name="hint_hunt_very_close" formatted="false">"接收信号很强，不能据此确认距离。"</string>
+    <string name="hint_hunt_closer" formatted="false">"最近样本持续增强，用位置比较确认下一步。"</string>
+    <string name="hint_hunt_further" formatted="false">"最近样本持续减弱，与之前的位置比较。"</string>
     <string name="hint_hunt_same" formatted="false">"尚无明显变化。放慢速度，保持手机稳定。"</string>
     <string name="hint_hunt_waiting" formatted="false">"需要几秒数据包才能比较。"</string>
     <string name="hint_hunt_quiet" formatted="false">"几秒内没有数据包。设备可能静默或位于墙后。"</string>

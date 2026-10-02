@@ -808,16 +808,16 @@
     <string name="label_alertvoicewhat_both" formatted="false">"Class + signature"</string>
     <string name="label_signaturelistsort_name" formatted="false">"Name A–Z"</string>
     <string name="label_signaturelistsort_class" formatted="false">"Class A–Z"</string>
-    <string name="label_huntcue_very_close" formatted="false">"Very Close"</string>
-    <string name="label_huntcue_closer" formatted="false">"Closer"</string>
-    <string name="label_huntcue_further" formatted="false">"Further"</string>
+    <string name="label_huntcue_very_close" formatted="false">"Strong signal"</string>
+    <string name="label_huntcue_closer" formatted="false">"Signal stronger"</string>
+    <string name="label_huntcue_further" formatted="false">"Signal weaker"</string>
     <string name="label_huntcue_same" formatted="false">"About the same"</string>
     <string name="label_huntcue_waiting" formatted="false">"Listening…"</string>
     <string name="label_huntcue_quiet" formatted="false">"Quiet"</string>
     <string name="label_huntcue_gone" formatted="false">"Gone"</string>
-    <string name="hint_hunt_very_close" formatted="false">"Screaming loud here. Look around — usually in-hand, pocket, or the same bag. Not meters."</string>
-    <string name="hint_hunt_closer" formatted="false">"Louder than a few seconds ago. Keep walking that way."</string>
-    <string name="hint_hunt_further" formatted="false">"Quieter than a few seconds ago. Turn or back up."</string>
+    <string name="hint_hunt_very_close" formatted="false">"Strong received signal; distance is unconfirmed."</string>
+    <string name="hint_hunt_closer" formatted="false">"Signal strengthened across recent samples. Compare positions to continue."</string>
+    <string name="hint_hunt_further" formatted="false">"Signal weakened across recent samples. Compare with your previous position."</string>
     <string name="hint_hunt_same" formatted="false">"No clear change yet. Slow down; hold the phone still."</string>
     <string name="hint_hunt_waiting" formatted="false">"Need a few seconds of packets to compare."</string>
     <string name="hint_hunt_quiet" formatted="false">"No packet for a few seconds. Silent, or behind a wall."</string>

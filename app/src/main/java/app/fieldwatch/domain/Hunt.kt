@@ -12,16 +12,16 @@ enum class HuntCue {
     WAITING,
     QUIET,
     GONE,
+    UNSTABLE,
 }
 
 object Hunt {
+    fun accepts(targetKey: String?, observation: Observation): Boolean = targetKey == null ||
+        (observation.kind == RadioKind.BLE && targetKey == "BLE:${MacUtil.normalize(observation.mac)}")
     const val RECENT_MS = 2_000L
     const val EARLIER_FROM_MS = 8_000L
     const val EARLIER_TO_MS = 3_500L
-    const val STEP_DB = 3.0
-    const val QUIET_MS = 8_000L
-    /** Same floor as DeviceExplain “very strong.” Pocket / in-hand / same bag, not meters. */
-    const val VERY_CLOSE_DBM = -45.0
+    const val QUIET_MS = RECENT_MS
     /** Geiger tick: last-heard RSSI mapped to interval. Loud end is faster than Very Close. */
     const val TICK_LOUD_DBM = -40
     const val TICK_QUIET_DBM = -90
@@ -38,41 +38,67 @@ object Hunt {
         if (lastSeen == null) return HuntCue.WAITING
         if (now - lastSeen > QUIET_MS) return HuntCue.QUIET
         val usable = samples.filter { Rssi.measured(it.rssi) }
-        val recent = usable.filter { it.at >= now - RECENT_MS }
-        val loud = if (recent.isNotEmpty()) {
-            recent.map { it.rssi }.average()
-        } else {
-            usable.lastOrNull { now - it.at <= QUIET_MS }?.rssi?.toDouble()
-        }
-        if (loud != null && loud >= VERY_CLOSE_DBM) return HuntCue.VERY_CLOSE
-        val earlier = usable.filter { it.at in (now - EARLIER_FROM_MS)..(now - EARLIER_TO_MS) }
-        if (recent.size < 2 || earlier.size < 2) return HuntCue.WAITING
-        val delta = recent.map { it.rssi }.average() - earlier.map { it.rssi }.average()
+        val window = recentWindowMs(usable)
+        val recent = usable.filter { it.at in (now - window)..now }
+        val earlier = usable.filter { it.at in (now - window - maxOf(6_000L, window + 1_500))..(now - window - 1_500) }
+        if (!enough(recent) || !enough(earlier)) return HuntCue.WAITING
+        val noise = maxOf(spread(recent), spread(earlier))
+        if (noise > 5.0) return HuntCue.UNSTABLE
+        val delta = median(recent)!! - median(earlier)!!
+        val threshold = maxOf(4.0, noise * 2)
+        // Require both halves of the current window to support the same trend.
+        val halves = recent.partition { it.at < now - window / 2 }
+        val changes = listOf(halves.first, halves.second).mapNotNull { median(it)?.minus(median(earlier)!!) }
         return when {
-            delta >= STEP_DB -> HuntCue.CLOSER
-            delta <= -STEP_DB -> HuntCue.FURTHER
+            changes.size < 2 -> HuntCue.WAITING
+            delta >= threshold && changes.all { it >= threshold } -> HuntCue.CLOSER
+            delta <= -threshold && changes.all { it <= -threshold } -> HuntCue.FURTHER
             else -> HuntCue.SAME
         }
     }
 
+    /** Sparse advertisers need a longer comparison window, not invented intermediate packets. */
+    fun recentWindowMs(samples: List<RssiSample>): Long {
+        val gaps = samples.takeLast(12).zipWithNext { a, b -> b.at - a.at }.filter { it > 0 }.sorted()
+        return if (gaps.isEmpty()) RECENT_MS else (gaps[gaps.size / 2] * 2 + 500).coerceIn(RECENT_MS, 6_000L)
+    }
+
+    fun median(samples: List<RssiSample>): Double? {
+        val values = samples.filter { Rssi.measured(it.rssi) }.map { it.rssi.toDouble() }.sorted()
+        if (values.isEmpty()) return null
+        return (values[(values.size - 1) / 2] + values[values.size / 2]) / 2
+    }
+
+    /** Robust median absolute deviation; one anomalous packet cannot set the scale. */
+    fun spread(samples: List<RssiSample>): Double {
+        val center = median(samples) ?: return 0.0
+        val values = samples.filter { Rssi.measured(it.rssi) }.map { kotlin.math.abs(it.rssi - center) }.sorted()
+        return if (values.isEmpty()) 0.0 else (values[(values.size - 1) / 2] + values[values.size / 2]) / 2
+    }
+
+    fun enough(samples: List<RssiSample>): Boolean = samples.size >= 2 &&
+        samples.maxOf { it.at } - samples.minOf { it.at } >= 700L
+
     fun label(cue: HuntCue): String = when (cue) {
-        HuntCue.VERY_CLOSE -> "Very Close"
+        HuntCue.VERY_CLOSE -> "Strong signal"
         HuntCue.CLOSER -> "Closer"
         HuntCue.FURTHER -> "Further"
         HuntCue.SAME -> "About the same"
         HuntCue.WAITING -> "Listening…"
         HuntCue.QUIET -> "Quiet"
         HuntCue.GONE -> "Gone"
+        HuntCue.UNSTABLE -> "Signal unstable"
     }
 
     fun hint(cue: HuntCue): String = when (cue) {
-        HuntCue.VERY_CLOSE -> "Screaming loud here. Look around — usually in-hand, pocket, or the same bag. Not meters."
+        HuntCue.VERY_CLOSE -> "Strong received signal; distance is unconfirmed."
         HuntCue.CLOSER -> "Louder than a few seconds ago. Keep walking that way."
         HuntCue.FURTHER -> "Quieter than a few seconds ago. Turn or back up."
         HuntCue.SAME -> "No clear change yet. Slow down; hold the phone still."
         HuntCue.WAITING -> "Need a few seconds of packets to compare."
         HuntCue.QUIET -> "No packet for a few seconds. Silent, or behind a wall."
         HuntCue.GONE -> "Left the live set. Randomized BLE often vanishes mid-hunt."
+        HuntCue.UNSTABLE -> "Hold the phone the same way and sample again."
     }
 
     /**
@@ -80,8 +106,9 @@ object Hunt {
      * Quiet / Gone (and no live RSSI) do not tick. Waiting still ticks if a packet is on the screen.
      */
     fun tickIntervalMs(rssi: Int?, cue: HuntCue): Long? {
-        if (cue == HuntCue.QUIET || cue == HuntCue.GONE) return null
+        if (cue == HuntCue.QUIET || cue == HuntCue.GONE || cue == HuntCue.UNSTABLE) return null
         val r = rssi ?: return null
+        if (!Rssi.measured(r)) return null
         val span = (TICK_LOUD_DBM - TICK_QUIET_DBM).toDouble()
         val t = ((r - TICK_QUIET_DBM) / span).coerceIn(0.0, 1.0)
         return (TICK_SLOW_MS + (TICK_FAST_MS - TICK_SLOW_MS) * t).toLong()

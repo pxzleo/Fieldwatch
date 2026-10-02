@@ -24,6 +24,7 @@ class BleRadio(
     private val context: Context,
     private val onObservation: (Observation) -> Unit,
     private val onError: (String) -> Unit,
+    private val onSignal: (String, Int, Long) -> Unit,
 ) {
     private val manager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     private var scanner: BluetoothLeScanner? = null
@@ -37,6 +38,7 @@ class BleRadio(
     @Volatile private var demoted = false
     @Volatile private var restMs = 2_500L
     @Volatile private var hint = ""
+    @Volatile private var targetMac: String? = null
 
     // Empty filter matches every advertisement but is not an "unfiltered" list,
     // which Samsung refuses while the screen is off.
@@ -78,7 +80,8 @@ class BleRadio(
     }
 
     @SuppressLint("MissingPermission")
-    fun start(intensity: ScanIntensity) {
+    fun start(intensity: ScanIntensity, targetMac: String? = null) {
+        this.targetMac = targetMac
         val now = System.currentTimeMillis()
         if (now < nextRetryAt.get()) return
         val adapter = manager.adapter
@@ -111,7 +114,8 @@ class BleRadio(
     @SuppressLint("MissingPermission")
     private fun startWith(target: BluetoothLeScanner, settings: ScanSettings) {
         val ok = runCatching {
-            target.startScan(matchAll, settings, callback)
+            val filters = targetMac?.let { listOf(ScanFilter.Builder().setDeviceAddress(it).build()) } ?: matchAll
+            target.startScan(filters, settings, callback)
         }
         if (ok.isSuccess) {
             startedAt.set(System.currentTimeMillis())
@@ -119,6 +123,7 @@ class BleRadio(
             running.set(true)
             lastError = null
             hint = ""
+            Log.i("FieldwatchBle", "BLE scan started (targeted=${targetMac != null}, mode=${settings.scanMode})")
         } else {
             running.set(false)
             failStreak = (failStreak + 1).coerceAtMost(5)
@@ -154,13 +159,16 @@ class BleRadio(
 
     fun restartBackoffMs(): Long = restMs
 
-    fun needsRestart(): Boolean {
+    fun needsRestart(hunting: Boolean = false): Boolean {
         val now = System.currentTimeMillis()
         if (now < nextRetryAt.get()) return false
         if (!running.get()) {
             restMs = if (demoted) 6_000L else 2_500L
             return true
         }
+        // A selected advertiser can legitimately stay silent. Do not infer a stalled
+        // scanner from that, or create periodic stop/start gaps during a foreground Hunt.
+        if (hunting) return false
         val runFor = now - startedAt.get()
         val heardAt = lastCallbackAt.get()
         val quietFor = if (heardAt == 0L) runFor else now - heardAt
@@ -170,7 +178,7 @@ class BleRadio(
             lastIntensity == ScanIntensity.BALANCED -> 180_000L
             else -> 20 * 60_000L
         }
-        if (runFor >= maxRun) {
+        if (!hunting && runFor >= maxRun) {
             // Recycle before Samsung suspends a long LOW_LATENCY session.
             restMs = if (lastIntensity == ScanIntensity.PERFORMANCE) 2_500L else 1_200L
             hint = "BLE cycling"
@@ -191,7 +199,7 @@ class BleRadio(
 
     private fun settingsFor(intensity: ScanIntensity): ScanSettings {
         val mode = when {
-            demoted && intensity == ScanIntensity.PERFORMANCE -> ScanSettings.SCAN_MODE_BALANCED
+            demoted && intensity == ScanIntensity.PERFORMANCE && targetMac == null -> ScanSettings.SCAN_MODE_BALANCED
             else -> scanMode(intensity)
         }
         return ScanSettings.Builder()
@@ -217,6 +225,10 @@ class BleRadio(
 
     private fun emit(result: ScanResult) {
         try {
+            val mac = result.device?.address.orEmpty()
+            if (targetMac != null && !mac.equals(targetMac, ignoreCase = true)) return
+            onSignal(mac, result.rssi, System.currentTimeMillis() -
+                ((android.os.SystemClock.elapsedRealtimeNanos() - result.timestampNanos) / 1_000_000L).coerceAtLeast(0L))
             onObservation(toObservation(result))
         } catch (t: Throwable) {
             Log.e("FieldwatchBle", "scan result failed", t)

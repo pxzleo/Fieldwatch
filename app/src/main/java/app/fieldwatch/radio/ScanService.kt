@@ -19,6 +19,7 @@ import app.fieldwatch.FieldwatchApp
 import app.fieldwatch.domain.Observation
 import app.fieldwatch.domain.RadioKind
 import app.fieldwatch.domain.ScanIntensity
+import app.fieldwatch.domain.Hunt
 import app.fieldwatch.domain.detectionPolicy
 import android.os.SystemClock
 import android.util.Log
@@ -38,6 +39,7 @@ class ScanService : LifecycleService() {
     private var pump: Job? = null
     private var bleStartJob: Job? = null
     private var lastIntensity: ScanIntensity? = null
+    private var scanTargetKey: String? = null
     private var lastNotifAt = 0L
     private val inbound = Channel<Observation>(512, BufferOverflow.DROP_OLDEST)
     private val publishGate = Any()
@@ -56,6 +58,7 @@ class ScanService : LifecycleService() {
         )
         ble = BleRadio(
             this,
+            onSignal = app.huntSession::observeSignal,
             onObservation = { offer(it) },
             onError = { msg ->
                 app.devices.setRadioHold(ble = true)
@@ -70,7 +73,9 @@ class ScanService : LifecycleService() {
         loop = lifecycleScope.launch(Dispatchers.Default) {
             while (isActive) {
                 val settings = app.config.settings
-                if (lastIntensity != settings.intensity) restartRadios()
+                val intensity = bleIntensity()
+                val huntKey = app.huntSession.state.value.key
+                if (lastIntensity != intensity || scanTargetKey != huntKey) restartRadios()
                 val unthrottled = settings.wifiFastScan && !WifiRadio.osScanThrottled(this@ScanService)
                 val wifiMin = if (unthrottled) {
                     WifiRadio.FAST_INTERVAL_MS
@@ -79,17 +84,17 @@ class ScanService : LifecycleService() {
                     ScanIntensity.BALANCED -> 40_000L
                     ScanIntensity.SAVER -> 55_000L
                 }
-                wifi.requestScan(wifiMin, unthrottled = unthrottled)
-                if (!bleStartPending() && ble.needsRestart()) {
+                if (huntKey == null) wifi.requestScan(wifiMin, unthrottled = unthrottled)
+                if (!bleStartPending() && ble.needsRestart(app.huntSession.state.value.key != null)) {
                     app.devices.setRadioHold(ble = true)
                     if (ble.isRunning()) {
                         ble.stop()
                         delay(ble.restartBackoffMs())
                     }
-                    ble.start(settings.intensity)
+                    ble.start(intensity, huntKey?.substringAfter("BLE:"))
                 }
                 app.devices.setRadioHold(
-                    wifi = wifi.waitingOnOs(),
+                    wifi = huntKey != null || wifi.waitingOnOs(),
                     ble = ble.holding(),
                 )
                 val fastBlocked = settings.wifiFastScan && !unthrottled
@@ -108,11 +113,12 @@ class ScanService : LifecycleService() {
     }
 
     private fun restartRadios() {
-        val intensity = (application as FieldwatchApp).config.settings.intensity
+        val intensity = bleIntensity()
+        scanTargetKey = (application as FieldwatchApp).huntSession.state.value.key
         lastIntensity = intensity
-        wifi.start()
+        if (scanTargetKey == null) wifi.start() else wifi.stop()
         if (ble.isRunning()) {
-            ble.start(intensity)
+            ble.start(intensity, scanTargetKey?.substringAfter("BLE:"))
             return
         }
         if (bleStartJob?.isActive == true) return
@@ -120,8 +126,13 @@ class ScanService : LifecycleService() {
         // OEM stacks at launch when Bluetooth and Location are both on.
         bleStartJob = lifecycleScope.launch(Dispatchers.Default) {
             delay(BLE_START_STAGGER_MS)
-            ble.start((application as FieldwatchApp).config.settings.intensity)
+            ble.start(bleIntensity(), (application as FieldwatchApp).huntSession.state.value.key?.substringAfter("BLE:"))
         }
+    }
+
+    private fun bleIntensity(): ScanIntensity {
+        val app = application as FieldwatchApp
+        return if (app.huntSession.state.value.key != null) ScanIntensity.PERFORMANCE else app.config.settings.intensity
     }
 
     private fun bleStartPending(): Boolean =
@@ -129,6 +140,7 @@ class ScanService : LifecycleService() {
 
     private fun offer(observation: Observation) {
         if (observation.mac.isBlank()) return
+        if (!Hunt.accepts((application as FieldwatchApp).huntSession.state.value.key, observation)) return
         inbound.trySend(observation)
     }
 
@@ -144,12 +156,14 @@ class ScanService : LifecycleService() {
             }
             try {
                 val app = application as FieldwatchApp
+                val observations = batch.filter { Hunt.accepts(app.huntSession.state.value.key, it) }
+                if (observations.isEmpty()) continue
                 if (app.config.settings.tagLocation) app.refreshFix()
                 val fix = if (app.config.settings.tagLocation) app.lastFix else null
                 val tagged = if (fix == null) {
-                    batch
+                    observations
                 } else {
-                    batch.map { it.copy(latitude = fix.first, longitude = fix.second) }
+                    observations.map { it.copy(latitude = fix.first, longitude = fix.second) }
                 }
                 val fleets = app.config.fleets
                 val settings = app.config.settings
@@ -212,7 +226,7 @@ class ScanService : LifecycleService() {
                 app.onFreshWifiBatch()
             }
             val live = app.devices.devices.value
-            if (settings.alertsEnabled && app.config.watchlist.isNotEmpty()) {
+            if (app.huntSession.state.value.key == null && settings.alertsEnabled && app.config.watchlist.isNotEmpty()) {
                 app.alerter.checkLive(
                     live,
                     fleets,

@@ -206,10 +206,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         hint
     }.flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
-    private val huntKey = MutableStateFlow<String?>(null)
-    private val huntStartedAt = MutableStateFlow(0L)
-    private val huntPeakRssi = MutableStateFlow(-127)
-    private val huntSamples = MutableStateFlow<List<RssiSample>>(emptyList())
+    private var huntCaptureJob: kotlinx.coroutines.Job? = null
     private val _outlineOpenClasses = MutableStateFlow<Set<String>>(emptySet())
     val outlineOpenClasses: StateFlow<Set<String>> = _outlineOpenClasses
     private val _outlineOpenSigs = MutableStateFlow<Set<String>>(emptySet())
@@ -378,28 +375,20 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         FieldwatchUi(settings = app.config.settings),
     )
 
-    val hunt: StateFlow<HuntUi> = combine(
-        combine(huntKey, huntStartedAt, huntPeakRssi, huntSamples) { key, started, peak, samples ->
-            arrayOf(key, started, peak, samples)
-        },
-        app.devices.devices,
-        clock,
-    ) { bits, devices, now ->
-        val key = bits[0] as String?
-        val started = bits[1] as Long
-        val peak = bits[2] as Int
-        @Suppress("UNCHECKED_CAST")
-        val samples = bits[3] as List<RssiSample>
-        if (key == null) return@combine HuntUi()
-        val device = devices.firstOrNull { it.key == key }
+    val hunt: StateFlow<HuntUi> = combine(app.huntSession.state, app.devices.devices, clock) { session, devices, tick ->
+        val now = maxOf(tick, System.currentTimeMillis())
+        val key = session.key ?: return@combine HuntUi()
+        val device = devices.firstOrNull { it.key == key } ?: heldSelected.value?.takeIf { it.key == key }
+        val lastSeen = session.samples.lastOrNull()?.at ?: 0L
+        val window = Hunt.recentWindowMs(session.samples)
+        val recent = session.samples.filter { it.at in (now - Hunt.RECENT_MS)..now }
         HuntUi(
-            active = true,
-            device = device,
+            active = true, device = device,
             title = device?.listTitle(translate = UiText::explanation) ?: UiText.text(R.string.ui_hunt),
-            cue = Hunt.cue(samples, now, device?.lastSeen, device == null && started > 0L),
-            peakRssi = peak,
-            samples = samples,
-            lastSeen = device?.lastSeen ?: 0L,
+            cue = Hunt.cue(session.samples, now, lastSeen.takeIf { it > 0 }, false),
+            samples = session.samples, lastSeen = lastSeen,
+            signal = Hunt.median(recent), noise = Hunt.spread(recent), count = recent.size,
+            session = session, now = now, windowMs = window,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), HuntUi())
 
@@ -429,18 +418,6 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 runCatching { app.logs.readRadios() }
                     .onSuccess { radios -> familyLog.value = FamilyLogSnap(radios, loaded = true) }
                     .onFailure { familyLog.value = familyLog.value.copy(loaded = true) }
-            }
-        }
-        viewModelScope.launch {
-            combine(app.devices.devices, huntKey) { devices, key ->
-                key to devices.firstOrNull { it.key == key }
-            }.collect { (key, device) ->
-                if (key == null || device == null) return@collect
-                val last = huntSamples.value.lastOrNull()
-                if (last != null && device.lastSeen <= last.at) return@collect
-                val sample = RssiSample(device.lastSeen, device.rssi)
-                huntSamples.update { (it + sample).takeLast(120) }
-                if (device.rssi > huntPeakRssi.value) huntPeakRssi.value = device.rssi
             }
         }
         viewModelScope.launch {
@@ -518,24 +495,34 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun startHunt(device: Sighting) {
-        val now = System.currentTimeMillis()
-        huntKey.value = device.key
-        huntStartedAt.value = now
-        huntPeakRssi.value = device.rssi
-        huntSamples.value = listOf(RssiSample(now, device.rssi))
+        huntCaptureJob?.cancel()
+        app.huntSession.start(device.key, System.currentTimeMillis())
     }
 
     fun resetHunt() {
-        val key = huntKey.value ?: return
-        val live = app.devices.devices.value.firstOrNull { it.key == key } ?: return
-        startHunt(live)
+        val key = app.huntSession.state.value.key ?: return
+        huntCaptureJob?.cancel()
+        app.huntSession.start(key, System.currentTimeMillis())
     }
 
+    fun captureHuntPoint() {
+        if (!app.huntSession.beginPoint(System.currentTimeMillis())) return
+        huntCaptureJob = viewModelScope.launch {
+            delay(app.huntSession.state.value.captureDurationMs)
+            app.huntSession.finishPoint(System.currentTimeMillis())
+        }
+    }
+
+    fun keepHuntB() { app.huntSession.keepB() }
+
     fun stopHunt() {
-        huntKey.value = null
-        huntSamples.value = emptyList()
-        huntPeakRssi.value = -127
-        huntStartedAt.value = 0L
+        huntCaptureJob?.cancel()
+        app.huntSession.stop()
+    }
+
+    override fun onCleared() {
+        stopHunt()
+        super.onCleared()
     }
 
     fun huntTick(beepOn: Boolean, vibrateOn: Boolean) {
@@ -2362,7 +2349,12 @@ data class HuntUi(
     val device: Sighting? = null,
     val title: String = "",
     val cue: HuntCue = HuntCue.WAITING,
-    val peakRssi: Int = -127,
     val samples: List<RssiSample> = emptyList(),
     val lastSeen: Long = 0L,
+    val signal: Double? = null,
+    val noise: Double = 0.0,
+    val count: Int = 0,
+    val session: app.fieldwatch.data.HuntSessionState = app.fieldwatch.data.HuntSessionState(),
+    val now: Long = 0L,
+    val windowMs: Long = Hunt.RECENT_MS,
 )

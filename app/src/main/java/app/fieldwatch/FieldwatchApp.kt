@@ -34,6 +34,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
 class FieldwatchApp : Application() {
+    val huntSession = app.fieldwatch.data.HuntSession()
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     lateinit var config: ConfigStore
         private set

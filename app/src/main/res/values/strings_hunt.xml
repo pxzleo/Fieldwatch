@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hunt_unstable">Signal unstable</string>
+    <string name="hunt_hold_phone">Keep the same grip. Pause and sample again.</string>
+    <string name="hunt_restart">Restart</string>
+    <string name="hunt_test_feedback">Test sound &amp; vibration</string>
+    <string name="hunt_test_sent">Test pulse sent</string>
+    <string name="hunt_relative_only">Selected target only · no GPS needed</string>
+    <string name="hunt_smoothed_signal">SMOOTHED · dBm</string>
+    <string name="hunt_sample_quality">Last 2s: %1$d samples · variation %2$d dB · heard %3$s s ago</string>
+    <string name="hunt_no_recent_packet">No target packet received in the last 2 seconds.</string>
+    <string name="hunt_no_signal">No target signal received</string>
+    <string name="hunt_indoor_compare">Compare positions</string>
+    <string name="hunt_indoor_instruction">Stand at A, sample, then move a few steps to B. Keep the same phone grip. A and B are your own landmarks.</string>
+    <string name="hunt_compare_instruction">Sample A, then B to compare.</string>
+    <string name="hunt_compare_insufficient">Too few or unstable samples. Try again.</string>
+    <string name="hunt_b_stronger">B is stronger. Continue searching around B.</string>
+    <string name="hunt_a_stronger">A is stronger. Return toward A.</string>
+    <string name="hunt_compare_same">No clear difference. Try another position.</string>
+    <string name="hunt_capture_hold">Hold still for %1$s seconds.</string>
+    <string name="hunt_capturing">Sampling…</string>
+    <string name="hunt_capture_a">Sample position A</string>
+    <string name="hunt_capture_b">Sample / resample position B</string>
+    <string name="hunt_position">Position %1$s</string>
+    <string name="hunt_not_sampled">Not sampled</string>
+    <string name="hunt_sample_saved">Sample saved</string>
+    <string name="hunt_sample_retry">Sample again</string>
+    <string name="hunt_keep_b">Use B as the new starting position</string>
+</resources>

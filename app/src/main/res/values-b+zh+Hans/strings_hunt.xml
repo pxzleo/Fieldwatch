@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hunt_unstable">信号不稳定</string>
+    <string name="hunt_hold_phone">保持相同握持方式，停留后重新采样。</string>
+    <string name="hunt_restart">重新开始</string>
+    <string name="hunt_test_feedback">测试声音与振动</string>
+    <string name="hunt_test_sent">已发送测试声振</string>
+    <string name="hunt_relative_only">只监听当前目标 · 无需 GPS</string>
+    <string name="hunt_smoothed_signal">平滑信号 · dBm</string>
+    <string name="hunt_sample_quality">近 2 秒 %1$d 个样本 · 波动 %2$d dB · %3$s 秒前收到</string>
+    <string name="hunt_no_recent_packet">近 2 秒未收到目标广播。</string>
+    <string name="hunt_no_signal">未收到目标信号</string>
+    <string name="hunt_indoor_compare">比较位置</string>
+    <string name="hunt_indoor_instruction">在 A 点停留采样，再走几步到 B 点；保持相同握持方式。A/B 可代表门口、桌边等位置。</string>
+    <string name="hunt_compare_instruction">先采样 A，再采样 B 进行比较。</string>
+    <string name="hunt_compare_insufficient">样本不足或波动过大，请重新采样。</string>
+    <string name="hunt_b_stronger">B 点信号更强，继续在 B 附近缩小范围。</string>
+    <string name="hunt_a_stronger">A 点信号更强，往 A 方向返回。</string>
+    <string name="hunt_compare_same">差异不明确，换一个位置继续比较。</string>
+    <string name="hunt_capture_hold">保持静止 %1$s 秒。</string>
+    <string name="hunt_capturing">正在采样…</string>
+    <string name="hunt_capture_a">采样位置 A</string>
+    <string name="hunt_capture_b">采样／重采位置 B</string>
+    <string name="hunt_position">位置 %1$s</string>
+    <string name="hunt_not_sampled">尚未采样</string>
+    <string name="hunt_sample_saved">采样已保存</string>
+    <string name="hunt_sample_retry">请重新采样</string>
+    <string name="hunt_keep_b">以 B 为新的起点</string>
+</resources>

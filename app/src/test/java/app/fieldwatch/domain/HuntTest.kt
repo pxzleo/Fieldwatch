@@ -8,14 +8,16 @@ class HuntTest {
     private val now = 100_000L
 
     @Test
-    fun veryCloseBeatsCloserWhenScreamingLoud() {
+    fun strongSignalDoesNotOverrideApproachTrend() {
         val samples = listOf(
             RssiSample(now - 6_000, -70),
             RssiSample(now - 5_000, -68),
-            RssiSample(now - 1_200, -38),
+            RssiSample(now - 4_000, -69),
+            RssiSample(now - 1_800, -38),
             RssiSample(now - 400, -36),
+            RssiSample(now - 100, -37),
         )
-        assertEquals(HuntCue.VERY_CLOSE, Hunt.cue(samples, now, now - 400, missing = false))
+        assertEquals(HuntCue.CLOSER, Hunt.cue(samples, now, now - 400, missing = false))
     }
 
     @Test
@@ -23,8 +25,10 @@ class HuntTest {
         val samples = listOf(
             RssiSample(now - 6_000, -72),
             RssiSample(now - 5_000, -70),
-            RssiSample(now - 1_200, -60),
+            RssiSample(now - 4_000, -71),
+            RssiSample(now - 1_800, -60),
             RssiSample(now - 400, -58),
+            RssiSample(now - 100, -59),
         )
         assertEquals(HuntCue.CLOSER, Hunt.cue(samples, now, now - 400, missing = false))
     }

@@ -53,8 +53,9 @@ fun HuntCue.uiLabel(): String = UiText.text(when (this) {
     HuntCue.FURTHER -> R.string.label_huntcue_further
     HuntCue.SAME -> R.string.label_huntcue_same
     HuntCue.WAITING -> R.string.label_huntcue_waiting
-    HuntCue.QUIET -> R.string.label_huntcue_quiet
+    HuntCue.QUIET -> R.string.hunt_no_signal
     HuntCue.GONE -> R.string.label_huntcue_gone
+    HuntCue.UNSTABLE -> R.string.hunt_unstable
 })
 
 fun ClassSlice.uiLabel(): String = kind?.uiLabel() ?: UiText.text(R.string.ui_unmatched)
@@ -65,8 +66,9 @@ fun HuntCue.uiHint(): String = UiText.text(when (this) {
     HuntCue.FURTHER -> R.string.hint_hunt_further
     HuntCue.SAME -> R.string.hint_hunt_same
     HuntCue.WAITING -> R.string.hint_hunt_waiting
-    HuntCue.QUIET -> R.string.hint_hunt_quiet
+    HuntCue.QUIET -> R.string.hunt_no_recent_packet
     HuntCue.GONE -> R.string.hint_hunt_gone
+    HuntCue.UNSTABLE -> R.string.hunt_hold_phone
 })
 
 fun LogExportKind.uiLabel(): String = when (this) {
