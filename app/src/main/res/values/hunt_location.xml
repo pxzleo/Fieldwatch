@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hunt_map_short">Map · %1$d</string>
+    <string name="hunt_map_details">Device capabilities and method</string>
+    <string name="hunt_map_title">Location map</string>
+    <string name="hunt_open_map">Location map · %1$d measurement points</string>
+    <string name="hunt_map_legend">North up · dots: receiver · ring: strongest · cross: estimated target · shading: candidate area · scale: 20 m</string>
+    <string name="hunt_map_offline">Basemap unavailable: relative plot shown; estimation continues</string>
+    <string name="hunt_map_attribution">Map © OpenStreetMap contributors</string>
+    <string name="hunt_map_point">Sample: %1$s dBm · %2$d packets · GPS ±%3$s m · starting heading %4$s</string>
+    <string name="hunt_map_recenter">Recenter</string>
+    <string name="hunt_map_private">Privacy mode hides location map and coordinates</string>
+    <string name="hunt_position_estimate">Possible location: %1$s\nSearch extent about %2$d m (model estimate)</string>
+    <string name="hunt_gps_permission">Allow precise location</string>
+    <string name="hunt_gps_waiting">Waiting for fresh GPS; indoor signal comparison remains available</string>
+    <string name="hunt_gps_denied">Precise location not granted; using signal comparison</string>
+    <string name="hunt_gps_disabled">GPS disabled; using signal comparison</string>
+    <string name="hunt_gps_poor">Location stale or inaccurate; no new location samples</string>
+    <string name="hunt_gps_ready">GPS sampling: moving between locations updates the estimate automatically</string>
+    <string name="hunt_gps_error">GPS service unavailable; using signal comparison</string>
+    <string name="hunt_location_more">Sample at more distinct locations; each needs at least two packets</string>
+    <string name="hunt_location_wider">Measurement baseline too short; move farther to sample</string>
+    <string name="hunt_location_sideways">Measurement points nearly collinear; move sideways to sample</string>
+    <string name="hunt_location_contrast">Insufficient signal contrast; sample from another position</string>
+    <string name="hunt_location_inconsistent">Signal inconsistent with a stationary target: possible obstruction, movement or power changes</string>
+    <string name="hunt_location_edge">Candidate area remains open; sample from another direction</string>
+    <string name="hunt_location_estimated">Possible location estimated; new measurements update it automatically</string>
+    <string name="hunt_location_method">Method: passive multi-point RSSI estimation, fitting unknown reference power and attenuation. Repeated reception at one location is grouped.</string>
+    <string name="hunt_target_connectable">Target advertises connectable: %1$s; this does not establish ranging support</string>
+    <string name="hunt_phone_ranging">Phone hardware declares: BLE CS %1$s, UWB %2$s; target ranging unverified, continuing passive estimation</string>
+    <string name="hunt_cap_yes">supported</string>
+    <string name="hunt_cap_no">not advertised</string>
+    <string name="hunt_cap_unknown">unknown</string>
+    <string name="hunt_location_limits">Estimation assumes roughly stable target position and power; floor is unknown. Silence is not distance; matching names or changing addresses are not merged. Samples cover the latest five minutes and clear on exit or reset.</string>
+</resources>

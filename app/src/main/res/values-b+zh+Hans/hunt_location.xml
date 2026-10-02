@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hunt_map_short">地图 · %1$d</string>
+    <string name="hunt_map_details">设备能力与定位说明</string>
+    <string name="hunt_map_title">定位地图</string>
+    <string name="hunt_open_map">定位地图 · %1$d 个测量点</string>
+    <string name="hunt_map_legend">北向上 · 实心点：接收位置 · 圆环：最强点 · 十字：估计目标 · 阴影：候选范围 · 标尺：20 米</string>
+    <string name="hunt_map_offline">底图不可用：显示相对位置图，定位计算仍可继续</string>
+    <string name="hunt_map_attribution">底图 © OpenStreetMap contributors</string>
+    <string name="hunt_map_point">采样：%1$s dBm · %2$d 个信号 · GPS ±%3$s 米 · 开始朝向 %4$s</string>
+    <string name="hunt_map_recenter">重新居中</string>
+    <string name="hunt_map_private">隐私模式已隐藏位置地图与坐标</string>
+    <string name="hunt_position_estimate">可能位置：%1$s\n搜索范围约 %2$d 米（模型估计）</string>
+    <string name="hunt_gps_permission">允许精确定位</string>
+    <string name="hunt_gps_waiting">等待新鲜 GPS 位置；室内信号比较仍可使用</string>
+    <string name="hunt_gps_denied">未允许精确定位，当前使用信号比较</string>
+    <string name="hunt_gps_disabled">GPS 已关闭，当前使用信号比较</string>
+    <string name="hunt_gps_poor">位置过期或误差较大，暂不加入新测量点</string>
+    <string name="hunt_gps_ready">GPS 多点采样中：移动到不同位置会自动计算</string>
+    <string name="hunt_gps_error">手机 GPS 服务不可用，当前使用信号比较</string>
+    <string name="hunt_location_more">请在更多不同位置采样；每点至少收到两次信号</string>
+    <string name="hunt_location_wider">测量范围太小，请移动更远后补测</string>
+    <string name="hunt_location_sideways">测量点接近直线，请向侧面移动补测</string>
+    <string name="hunt_location_contrast">信号变化不足，请换一个位置补测</string>
+    <string name="hunt_location_inconsistent">信号与固定目标模型不一致：可能有遮挡、目标移动或功率变化</string>
+    <string name="hunt_location_edge">候选范围未闭合，请从其他方向补测</string>
+    <string name="hunt_location_estimated">已计算可能位置，新增测量会自动更新</string>
+    <string name="hunt_location_method">当前方式：被动 RSSI 多点估计；拟合未知参考功率和环境衰减。原地重复接收合并为同一测量点。</string>
+    <string name="hunt_target_connectable">目标广播可连接：%1$s；可连接不代表支持真实测距</string>
+    <string name="hunt_phone_ranging">手机硬件声明：蓝牙 CS %1$s，UWB %2$s；目标测距能力未验证，继续被动估计</string>
+    <string name="hunt_cap_yes">支持</string>
+    <string name="hunt_cap_no">未声明支持</string>
+    <string name="hunt_cap_unknown">未知</string>
+    <string name="hunt_location_limits">估计假定目标在采样期间位置和功率基本稳定；不能确定楼层。无信号不当作远距离；同名或变化的地址不自动合并。采样保留最近五分钟，退出或重置寻踪即清空。</string>
+</resources>

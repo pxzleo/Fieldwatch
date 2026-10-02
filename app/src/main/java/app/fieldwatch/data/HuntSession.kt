@@ -7,6 +7,10 @@ import app.fieldwatch.domain.Observation
 import app.fieldwatch.domain.RadioKind
 import app.fieldwatch.domain.Rssi
 import app.fieldwatch.domain.RssiSample
+import app.fieldwatch.domain.HuntFix
+import app.fieldwatch.domain.HuntGeoPoint
+import app.fieldwatch.domain.HuntLocatedSignal
+import app.fieldwatch.domain.HuntLocator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -17,6 +21,8 @@ data class HuntSessionState(
     val pointA: HuntPoint? = null, val pointB: HuntPoint? = null, val captureStartedAt: Long = 0,
     val captureDurationMs: Long = 4_000,
     val heading: HuntHeading? = null, val captureHeading: HuntHeading? = null,
+    val fixes: List<HuntFix> = emptyList(), val geoPoints: List<HuntGeoPoint> = emptyList(),
+    val locationState: HuntGpsState = HuntGpsState.WAITING,
 ) {
     val difference: Double? get() {
         val a = pointA ?: return null
@@ -26,6 +32,7 @@ data class HuntSessionState(
     }
     val comparisonThreshold: Double get() = maxOf(4.0, (pointA?.noise ?: 0.0) + (pointB?.noise ?: 0.0))
 }
+enum class HuntGpsState { WAITING, DENIED, DISABLED, POOR, READY, ERROR }
 
 /** A single selected advertiser, fed before list batching. No identity inference across MACs. */
 class HuntSession {
@@ -33,6 +40,12 @@ class HuntSession {
     val state = mutable.asStateFlow()
     @Synchronized fun start(key: String, now: Long) { mutable.value = HuntSessionState(key, now) }
     @Synchronized fun stop() { mutable.value = HuntSessionState() }
+    @Synchronized fun updateLocation(fix: HuntFix?, status: HuntGpsState) {
+        val current = mutable.value
+        if (current.key == null) return
+        mutable.value = current.copy(locationState = status,
+            fixes = if (fix == null || !fix.usable()) current.fixes else (current.fixes + fix).distinct().takeLast(60))
+    }
     @Synchronized fun updateHeading(heading: HuntHeading?) {
         val current = mutable.value
         if (current.key != null) mutable.value = current.copy(heading = heading)
@@ -48,7 +61,11 @@ class HuntSession {
         // Sorting also handles delayed/batched callbacks; ignore exact duplicate observations.
         val samples = (current.samples + sample).distinct().sortedBy { it.at }
             .filter { it.at >= maxOf(observedAt, current.samples.lastOrNull()?.at ?: 0) - 45_000 }.takeLast(600)
-        mutable.value = current.copy(samples = samples)
+        val fix = current.fixes.minByOrNull { kotlin.math.abs(it.at - observedAt) }
+            ?.takeIf { kotlin.math.abs(it.at - observedAt) <= 3_000 }
+        val geoPoints = if (fix == null) current.geoPoints else HuntLocator.append(current.geoPoints,
+            HuntLocatedSignal(fix.copy(at = observedAt), rssi, current.heading?.takeIf { it.fresh(observedAt) }))
+        mutable.value = current.copy(samples = samples, geoPoints = geoPoints)
     }
     @Synchronized fun beginPoint(now: Long): Boolean {
         val current = mutable.value

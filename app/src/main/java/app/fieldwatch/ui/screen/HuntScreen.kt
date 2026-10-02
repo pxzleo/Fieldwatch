@@ -48,6 +48,19 @@ import java.util.Locale
 import kotlin.math.roundToInt
 import kotlin.math.cos
 import kotlin.math.sin
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import app.fieldwatch.data.HuntGpsState
+import app.fieldwatch.domain.HuntLocator
+import app.fieldwatch.domain.HuntPosition
+import app.fieldwatch.domain.HuntPositionStatus
+import app.fieldwatch.radio.huntGps
+import app.fieldwatch.ui.component.HuntMap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.ensureActive
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,6 +70,62 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
     BackHandler(onBack = onBack)
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val context = LocalContext.current
+    var gpsPermissionRevision by remember { mutableIntStateOf(0) }
+    var mapOpen by remember { mutableStateOf(false) }
+    var mapDetails by remember { mutableStateOf(false) }
+    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { gpsPermissionRevision++ }
+    val ui by vm.ui.collectAsStateWithLifecycle()
+    val points = HuntLocator.recent(hunt.session.geoPoints, hunt.now)
+    val estimation by produceState(0L to HuntPosition(HuntPositionStatus.MORE_POINTS),
+        hunt.session.startedAt, hunt.now / 3_000L, points.size) {
+        value = hunt.session.startedAt to withContext(Dispatchers.Default) { HuntLocator.estimate(points) { ensureActive() } }
+    }
+    val position = estimation.second.takeIf { estimation.first == hunt.session.startedAt }
+        ?: HuntPosition(HuntPositionStatus.MORE_POINTS)
+    val currentFix = hunt.session.fixes.lastOrNull()?.takeIf { hunt.now - it.at in 0..3_000L }
+    val gpsState = if (hunt.session.locationState == HuntGpsState.READY && currentFix == null)
+        HuntGpsState.WAITING else hunt.session.locationState
+    LaunchedEffect(hunt.active, lifecycle, context, gpsPermissionRevision) {
+        if (!hunt.active) return@LaunchedEffect
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            try { huntGps(context).collect { vm.updateHuntLocation(it) } }
+            finally { vm.updateHuntLocation(app.fieldwatch.radio.HuntGpsUpdate(null, HuntGpsState.WAITING)) }
+        }
+    }
+    if (mapOpen) Dialog(onDismissRequest = { mapOpen = false }, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        Scaffold(topBar = { TopAppBar(title = { Text(UiText.text(R.string.hunt_map_title)) },
+            navigationIcon = { IconButton(onClick = { mapOpen = false }) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, UiText.text(R.string.ui_back)) } }) }) { mapPadding ->
+            Column(Modifier.padding(mapPadding).fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(UiText.text(gpsState.label()), style = MaterialTheme.typography.bodyMedium)
+                if (gpsState == HuntGpsState.DENIED) Button(onClick = {
+                    permission.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                }) { Text(UiText.text(R.string.hunt_gps_permission)) }
+                Text(UiText.text(position.status.label()), style = MaterialTheme.typography.titleMedium)
+                if (!demoMode) HuntMap(points, currentFix, position, ui.settings.onlineLookup,
+                    heading = hunt.session.heading?.takeIf { it.fresh(hunt.now) })
+                else Text(UiText.text(R.string.hunt_map_private))
+                position.center?.takeUnless { demoMode }?.let {
+                    Text(UiText.text(R.string.hunt_position_estimate, "%.5f, %.5f".format(Locale.US, it.lat, it.lon),
+                        position.radius.roundToInt()), style = MaterialTheme.typography.bodyMedium)
+                }
+                TextButton(onClick = { mapDetails = !mapDetails }) { Text(UiText.text(R.string.hunt_map_details)) }
+                if (mapDetails) {
+                    Text(UiText.text(R.string.hunt_location_method), style = MaterialTheme.typography.bodySmall)
+                    Text(UiText.text(R.string.hunt_target_connectable, UiText.text(when (hunt.device?.facts?.connectable) {
+                        true -> R.string.hunt_cap_yes; false -> R.string.hunt_cap_no; else -> R.string.hunt_cap_unknown
+                    })), style = MaterialTheme.typography.bodySmall)
+                    Text(UiText.text(R.string.hunt_phone_ranging,
+                        UiText.text(if (context.packageManager.hasSystemFeature("android.hardware.bluetooth_le.channel_sounding"))
+                            R.string.hunt_cap_yes else R.string.hunt_cap_no),
+                        UiText.text(if (context.packageManager.hasSystemFeature("android.hardware.uwb"))
+                            R.string.hunt_cap_yes else R.string.hunt_cap_no)), style = MaterialTheme.typography.bodySmall)
+                    Text(UiText.text(R.string.hunt_location_limits), style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+    }
     LaunchedEffect(hunt.active, lifecycle, context) {
         if (!hunt.active) return@LaunchedEffect
         lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
@@ -101,7 +170,10 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
     Scaffold(topBar = {
         TopAppBar(title = { Text(UiText.text(R.string.ui_hunt), fontWeight = FontWeight.Bold) },
             navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, UiText.text(R.string.ui_back)) } },
-            actions = { TextButton(onClick = vm::resetHunt) { Text(UiText.text(R.string.hunt_restart)) } })
+            actions = {
+                TextButton(onClick = { mapOpen = true }) { Text(UiText.text(R.string.hunt_map_short, points.size)) }
+                TextButton(onClick = vm::resetHunt) { Text(UiText.text(R.string.hunt_restart)) }
+            })
     }, bottomBar = {
         Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 8.dp)) {
             HorizontalDivider()
@@ -175,6 +247,24 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             Spacer(Modifier.height(6.dp))
         }
     }
+}
+
+private fun HuntGpsState.label(): Int = when (this) {
+    HuntGpsState.WAITING -> R.string.hunt_gps_waiting
+    HuntGpsState.DENIED -> R.string.hunt_gps_denied
+    HuntGpsState.DISABLED -> R.string.hunt_gps_disabled
+    HuntGpsState.POOR -> R.string.hunt_gps_poor
+    HuntGpsState.READY -> R.string.hunt_gps_ready
+    HuntGpsState.ERROR -> R.string.hunt_gps_error
+}
+private fun HuntPositionStatus.label(): Int = when (this) {
+    HuntPositionStatus.MORE_POINTS -> R.string.hunt_location_more
+    HuntPositionStatus.WIDER_BASELINE -> R.string.hunt_location_wider
+    HuntPositionStatus.SIDEWAYS -> R.string.hunt_location_sideways
+    HuntPositionStatus.WEAK_CONTRAST -> R.string.hunt_location_contrast
+    HuntPositionStatus.INCONSISTENT -> R.string.hunt_location_inconsistent
+    HuntPositionStatus.EDGE -> R.string.hunt_location_edge
+    HuntPositionStatus.ESTIMATED -> R.string.hunt_location_estimated
 }
 
 @Composable
