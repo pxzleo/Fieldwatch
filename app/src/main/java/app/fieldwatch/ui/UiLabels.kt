@@ -4,6 +4,51 @@ import app.fieldwatch.R
 import app.fieldwatch.UiText
 import app.fieldwatch.domain.*
 
+fun ListSort.uiLabel(strength: StrengthSort, windowSec: Int): String = UiText.text(when (this) {
+    ListSort.STRENGTH -> if (strength == StrengthSort.INSTANT) R.string.ui_strongest_signal else R.string.ui_strongest_avg_values
+    ListSort.NEWEST -> R.string.ui_newest_heard
+    ListSort.NEWEST_ALERT -> R.string.ui_newest_alert
+    ListSort.FIRST_SEEN -> R.string.ui_newest_arrival
+    ListSort.ARRIVAL -> R.string.ui_new_at_bottom
+    ListSort.NAME -> R.string.ui_name_a_z
+    ListSort.SIGNATURES -> R.string.ui_signatures_first
+    ListSort.WEAKEST -> if (strength == StrengthSort.AVERAGE) R.string.sort_weakest_average else R.string.sort_weakest
+    ListSort.WIFI_FIRST -> R.string.sort_wifi_first
+    ListSort.BLE_FIRST -> R.string.sort_ble_first
+    ListSort.SIGNAL_TYPE -> R.string.sort_signal_type
+    ListSort.DEVICE_TYPE -> R.string.sort_device_type
+}, *if ((this == ListSort.STRENGTH || this == ListSort.WEAKEST) && strength == StrengthSort.AVERAGE) arrayOf(windowSec.coerceIn(10, 180).toString()) else emptyArray())
+
+fun SignalType.uiLabel(): String = UiText.text(when (this) {
+    SignalType.WIFI_24 -> R.string.signal_wifi_24
+    SignalType.WIFI_5 -> R.string.signal_wifi_5
+    SignalType.WIFI_6 -> R.string.signal_wifi_6
+    SignalType.WIFI_OTHER -> R.string.signal_wifi_other
+    SignalType.BLE_CONNECTABLE -> R.string.signal_ble_connectable
+    SignalType.BLE_BROADCAST -> R.string.signal_ble_broadcast
+    SignalType.BLE_UNKNOWN -> R.string.signal_ble_unknown
+})
+
+fun DevicePurpose.uiLabel(): String = UiText.text(when (this) {
+    DevicePurpose.PHONE -> R.string.purpose_phone
+    DevicePurpose.COMPUTER -> R.string.purpose_computer
+    DevicePurpose.HEADPHONES -> R.string.purpose_headphones
+    DevicePurpose.SPEAKER -> R.string.purpose_speaker
+    DevicePurpose.WEARABLE -> R.string.purpose_wearable
+    DevicePurpose.SENSOR -> R.string.purpose_sensor
+    DevicePurpose.FINDER -> R.string.purpose_finder
+    DevicePurpose.BEACON -> R.string.purpose_beacon
+    DevicePurpose.ROUTER -> R.string.purpose_router
+    DevicePurpose.VEHICLE -> R.string.purpose_vehicle
+    DevicePurpose.INPUT -> R.string.purpose_input
+    DevicePurpose.HOME -> R.string.purpose_home
+    DevicePurpose.CAMERA -> R.string.purpose_camera
+    DevicePurpose.DRONE -> R.string.purpose_drone
+    DevicePurpose.HEALTH -> R.string.purpose_health
+    DevicePurpose.OTHER -> R.string.purpose_other
+    DevicePurpose.UNKNOWN -> R.string.purpose_unknown
+})
+
 fun ViewMode.uiLabel(): String = UiText.text(when (this) {
     ViewMode.RADAR -> R.string.label_viewmode_radar
     ViewMode.LIST -> R.string.label_viewmode_list

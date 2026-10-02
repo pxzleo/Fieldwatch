@@ -134,6 +134,7 @@ fun LivePane(
     var renameSit by remember { mutableStateOf(false) }
     var renameDraft by remember { mutableStateOf("") }
     Column(Modifier.fillMaxSize()) {
+        app.fieldwatch.ui.component.LiveSortBar(state.settings, vm::setLiveSort)
         if (state.displayPaused) {
             Text(
                 UiText.text(R.string.ui_display_paused_radios_still_scanning_and_logging_filters_still_ap),
@@ -1179,6 +1180,7 @@ fun DeviceRow(
                     }
                     app.fieldwatch.ui.component.RangingBadge(device)
                     app.fieldwatch.ui.component.AppleDeviceLabel(device)
+                    app.fieldwatch.ui.component.SignalTypeLabel(device, names)
                 }
                 Column(
                     horizontalAlignment = Alignment.End,
@@ -1484,6 +1486,7 @@ private fun TimelineView(
                         RadioKindSubtitle(device.kind, sub)
                     }
                     app.fieldwatch.ui.component.AppleDeviceLabel(device)
+                    app.fieldwatch.ui.component.SignalTypeLabel(device, device.fleetIds.map { vm.fleetName(it) })
                     if (showSeenTimes) {
                         Text(
                             seenTimesLabel(device, now),

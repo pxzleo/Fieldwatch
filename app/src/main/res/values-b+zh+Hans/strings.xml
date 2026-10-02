@@ -1431,4 +1431,35 @@
     <string name="apple_airpods_gen4" formatted="false">"AirPods（第 4 代）"</string>
     <string name="apple_airpods_pro2" formatted="false">"AirPods Pro（第 2 代）"</string>
     <string name="apple_airpods_anc" formatted="false">"AirPods 4（主动降噪款）"</string>
+    <string name="sort_weakest" formatted="false">"信号弱 → 强"</string>
+    <string name="sort_wifi_first" formatted="false">"Wi-Fi 优先"</string>
+    <string name="sort_ble_first" formatted="false">"蓝牙优先"</string>
+    <string name="sort_signal_type" formatted="false">"按无线细分类"</string>
+    <string name="sort_device_type" formatted="false">"按设备用途（推测）"</string>
+    <string name="signal_wifi_24" formatted="false">"Wi-Fi 2.4 GHz"</string>
+    <string name="signal_wifi_5" formatted="false">"Wi-Fi 5 GHz"</string>
+    <string name="signal_wifi_6" formatted="false">"Wi-Fi 6 GHz"</string>
+    <string name="signal_wifi_other" formatted="false">"Wi-Fi · 频段未确定"</string>
+    <string name="signal_ble_connectable" formatted="false">"蓝牙 BLE · 可连接"</string>
+    <string name="signal_ble_broadcast" formatted="false">"蓝牙 BLE · 仅广播"</string>
+    <string name="signal_ble_unknown" formatted="false">"蓝牙 BLE · 连接属性未知"</string>
+    <string name="purpose_phone" formatted="false">"手机／平板"</string>
+    <string name="purpose_computer" formatted="false">"电脑／平板"</string>
+    <string name="purpose_headphones" formatted="false">"耳机／音频配件"</string>
+    <string name="purpose_speaker" formatted="false">"音箱"</string>
+    <string name="purpose_wearable" formatted="false">"手表／穿戴设备"</string>
+    <string name="purpose_sensor" formatted="false">"传感器"</string>
+    <string name="purpose_finder" formatted="false">"查找网络设备"</string>
+    <string name="purpose_beacon" formatted="false">"信标"</string>
+    <string name="purpose_router" formatted="false">"路由器／热点／接入点"</string>
+    <string name="purpose_vehicle" formatted="false">"车辆设备"</string>
+    <string name="purpose_input" formatted="false">"输入设备／遥控器"</string>
+    <string name="purpose_home" formatted="false">"家居／门禁设备"</string>
+    <string name="purpose_camera" formatted="false">"摄像设备"</string>
+    <string name="purpose_drone" formatted="false">"无人机"</string>
+    <string name="purpose_health" formatted="false">"健康设备"</string>
+    <string name="purpose_other" formatted="false">"其他设备"</string>
+    <string name="purpose_unknown" formatted="false">"用途未确定"</string>
+    <string name="sort_within_groups" formatted="false">"组内排序"</string>
+    <string name="sort_weakest_average">"信号弱 → 强 · %1$s 秒平均"</string>
 </resources>

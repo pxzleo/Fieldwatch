@@ -202,7 +202,7 @@ enum class SignatureListSort {
 enum class StrengthSort { INSTANT, AVERAGE }
 
 @Serializable
-enum class ListSort { STRENGTH, NEWEST, NEWEST_ALERT, FIRST_SEEN, ARRIVAL, NAME, SIGNATURES }
+enum class ListSort { STRENGTH, NEWEST, NEWEST_ALERT, FIRST_SEEN, ARRIVAL, NAME, SIGNATURES, WEAKEST, WIFI_FIRST, BLE_FIRST, SIGNAL_TYPE, DEVICE_TYPE }
 
 /** What the Live list title or subtitle shows. NONE is subtitle-only. */
 @Serializable

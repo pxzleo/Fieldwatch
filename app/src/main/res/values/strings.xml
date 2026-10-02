@@ -1431,4 +1431,35 @@
     <string name="apple_airpods_gen4" formatted="false">"AirPods (4th generation)"</string>
     <string name="apple_airpods_pro2" formatted="false">"AirPods Pro (2nd generation)"</string>
     <string name="apple_airpods_anc" formatted="false">"AirPods 4 (ANC)"</string>
+    <string name="sort_weakest" formatted="false">"Weakest first"</string>
+    <string name="sort_wifi_first" formatted="false">"Wi-Fi first"</string>
+    <string name="sort_ble_first" formatted="false">"Bluetooth first"</string>
+    <string name="sort_signal_type" formatted="false">"By signal subtype"</string>
+    <string name="sort_device_type" formatted="false">"By inferred device purpose"</string>
+    <string name="signal_wifi_24" formatted="false">"Wi-Fi 2.4 GHz"</string>
+    <string name="signal_wifi_5" formatted="false">"Wi-Fi 5 GHz"</string>
+    <string name="signal_wifi_6" formatted="false">"Wi-Fi 6 GHz"</string>
+    <string name="signal_wifi_other" formatted="false">"Wi-Fi · band undetermined"</string>
+    <string name="signal_ble_connectable" formatted="false">"BLE · connectable"</string>
+    <string name="signal_ble_broadcast" formatted="false">"BLE · broadcast only"</string>
+    <string name="signal_ble_unknown" formatted="false">"BLE · connectability unknown"</string>
+    <string name="purpose_phone" formatted="false">"Phone / tablet"</string>
+    <string name="purpose_computer" formatted="false">"Computer / tablet"</string>
+    <string name="purpose_headphones" formatted="false">"Headphones / audio accessory"</string>
+    <string name="purpose_speaker" formatted="false">"Speaker"</string>
+    <string name="purpose_wearable" formatted="false">"Watch / wearable"</string>
+    <string name="purpose_sensor" formatted="false">"Sensor"</string>
+    <string name="purpose_finder" formatted="false">"Finding-network device"</string>
+    <string name="purpose_beacon" formatted="false">"Beacon"</string>
+    <string name="purpose_router" formatted="false">"Router / hotspot / AP"</string>
+    <string name="purpose_vehicle" formatted="false">"Vehicle radio"</string>
+    <string name="purpose_input" formatted="false">"Input / remote control"</string>
+    <string name="purpose_home" formatted="false">"Home / access-control device"</string>
+    <string name="purpose_camera" formatted="false">"Camera"</string>
+    <string name="purpose_drone" formatted="false">"Drone"</string>
+    <string name="purpose_health" formatted="false">"Health device"</string>
+    <string name="purpose_other" formatted="false">"Other device"</string>
+    <string name="purpose_unknown" formatted="false">"Purpose undetermined"</string>
+    <string name="sort_within_groups" formatted="false">"Sort within groups"</string>
+    <string name="sort_weakest_average">"Weakest first · %1$s s average"</string>
 </resources>

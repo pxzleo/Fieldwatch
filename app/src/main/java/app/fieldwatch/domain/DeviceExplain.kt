@@ -11,6 +11,7 @@ object DeviceExplain {
         val headline: String,
         val because: String,
         val confidence: Confidence,
+        val bucket: String? = null,
     )
 
     enum class Confidence { HIGH, MEDIUM, LOW }
@@ -65,6 +66,7 @@ object DeviceExplain {
             because = support.joinToString(" ") +
                 translate(" This is what the device is advertising, not a visual ID."),
             confidence = confidence,
+            bucket = if (best.bucket == "apple-unknown") null else best.bucket,
         )
     }
 
@@ -393,7 +395,7 @@ object DeviceExplain {
                         8,
                     )
                 "apple device" in n ->
-                    Hint("phone", "Apple device (type unconfirmed)", translate("Matched signature %1\$s.").format(raw), 7)
+                    Hint("apple-unknown", "Apple device (type unconfirmed)", translate("Matched signature %1\$s.").format(raw), 7)
                 "apple audio" in n ->
                     Hint("audio-personal", "AirPods, Beats, or AirPlay", translate("Matched signature %1\$s.").format(raw), 7)
                 "microsoft" in n ->

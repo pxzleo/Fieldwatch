@@ -833,15 +833,7 @@ private fun ViewPicker(
     var openDecay by remember { mutableStateOf(false) }
     var openTitle by remember { mutableStateOf(false) }
     var openSubtitle by remember { mutableStateOf(false) }
-    val sortLabel = when (listSort) {
-        ListSort.STRENGTH -> if (sort == StrengthSort.AVERAGE) UiText.text(R.string.ui_strongest_avg_values, (windowSec).toString()) else UiText.text(R.string.ui_strongest)
-        ListSort.NEWEST -> UiText.text(R.string.ui_newest_heard)
-        ListSort.NEWEST_ALERT -> UiText.text(R.string.ui_newest_alert)
-        ListSort.FIRST_SEEN -> UiText.text(R.string.ui_newest_arrival)
-        ListSort.ARRIVAL -> UiText.text(R.string.ui_new_at_bottom)
-        ListSort.NAME -> UiText.text(R.string.ui_name_a_z)
-        ListSort.SIGNATURES -> UiText.text(R.string.ui_signatures_first)
-    }
+    val sortLabel = listSort.uiLabel(sort, windowSec)
     val decayLabel = if (decaySec <= 0) UiText.text(R.string.ui_off) else UiText.text(R.string.ui_hold_values, (decaySec).toString())
     val scroll = rememberScrollState()
     val panelMax = (maxHeight - 8.dp).coerceAtLeast(140.dp)
@@ -882,7 +874,7 @@ private fun ViewPicker(
                 }
             }
             ExposedDropdownMenuBox(openSort, { openSort = it }, dropdownPad) {
-                FieldwatchDropdownField(UiText.text(R.string.ui_sort), sortLabel, openSort)
+                FieldwatchDropdownField(UiText.text(if (mode == ViewMode.BY_CLASS) R.string.sort_within_groups else R.string.ui_sort), sortLabel, openSort)
                 ExposedDropdownMenu(openSort, { openSort = false }) {
                     DropdownMenuItem(
                         text = { Text(UiText.text(R.string.ui_strongest_signal)) },
@@ -916,6 +908,10 @@ private fun ViewPicker(
                         text = { Text(UiText.text(R.string.ui_signatures_first)) },
                         onClick = { onChangeListSort(ListSort.SIGNATURES); openSort = false },
                     )
+                    listOf(ListSort.WEAKEST, ListSort.WIFI_FIRST, ListSort.BLE_FIRST, ListSort.SIGNAL_TYPE, ListSort.DEVICE_TYPE).forEach { item ->
+                        DropdownMenuItem(text = { Text(item.uiLabel(sort, windowSec)) },
+                            onClick = { onChangeListSort(item); openSort = false })
+                    }
                 }
             }
             ExposedDropdownMenuBox(openDecay, { openDecay = it }, dropdownPad) {

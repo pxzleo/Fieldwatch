@@ -137,7 +137,7 @@ object AdvPayloadDecoder {
                             out += RoleHint("beacon", "an iBeacon", translate("Apple iBeacon payload."), 7)
                         }
                     }
-                    0x05 -> out += RoleHint("phone", translate("Apple device (type unconfirmed)"), translate("Apple AirDrop advertisement."), 5)
+                    0x05 -> out += RoleHint("apple-unknown", translate("Apple device (type unconfirmed)"), translate("Apple AirDrop advertisement."), 5)
                     0x07 -> {
                         val model = appleIdentity?.takeIf { it.weight >= 9 && it.bucket == "audio-personal" }?.label
                         out += RoleHint(
@@ -148,13 +148,13 @@ object AdvPayloadDecoder {
                             8,
                         )
                     }
-                    0x08 -> out += RoleHint("siri", translate("Apple device (type unconfirmed)"), translate("Hey Siri advertisement."), 6)
+                    0x08 -> out += RoleHint("apple-unknown", translate("Apple device (type unconfirmed)"), translate("Hey Siri advertisement."), 6)
                     0x09 -> if (validAirPlayTarget(tlv.data)) out += RoleHint("audio-speaker", translate("an AirPlay target"), translate("AirPlay target advertisement; product model is unconfirmed."), 5)
-                    0x0B -> out += RoleHint("phone", translate("an Apple device doing Handoff"), translate("Handoff advertisement."), 4)
-                    0x0C -> out += RoleHint("phone", translate("an Apple device looking for Instant Hotspot"), translate("Tethering-target advertisement."), 5)
+                    0x0B -> out += RoleHint("apple-unknown", translate("an Apple device doing Handoff"), translate("Handoff advertisement."), 4)
+                    0x0C -> out += RoleHint("apple-unknown", translate("an Apple device looking for Instant Hotspot"), translate("Tethering-target advertisement."), 5)
                     0x0D, 0x0E -> out += RoleHint("hotspot", translate("an iPhone/iPad offering Instant Hotspot"), translate("Tethering-source advertisement."), 6)
-                    0x0F -> out += RoleHint("phone", translate("an Apple device (Nearby Action)"), nearbyActionReason(tlv.data, translate), 4)
-                    0x10 -> out += RoleHint("phone", translate("Apple device (type unconfirmed)"), nearbyInfoReason(tlv.data, translate), 5)
+                    0x0F -> out += RoleHint("apple-unknown", translate("an Apple device (Nearby Action)"), nearbyActionReason(tlv.data, translate), 4)
+                    0x10 -> out += RoleHint("apple-unknown", translate("Apple device (type unconfirmed)"), nearbyInfoReason(tlv.data, translate), 5)
                     0x12 -> out += RoleHint(
                         "tag",
                         translate("a Find My network radio"),

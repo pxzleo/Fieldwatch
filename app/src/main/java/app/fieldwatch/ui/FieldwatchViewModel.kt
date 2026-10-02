@@ -70,6 +70,8 @@ import app.fieldwatch.domain.TakFeedStatus
 import app.fieldwatch.domain.ListLine
 import app.fieldwatch.domain.MacUtil
 import app.fieldwatch.domain.ListSort
+import app.fieldwatch.domain.LiveSort
+import app.fieldwatch.domain.withLiveSort
 import app.fieldwatch.domain.StrengthSort
 import app.fieldwatch.domain.ViewMode
 import app.fieldwatch.domain.WatchTarget
@@ -282,7 +284,10 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         }.sortedWith(
             when (config.settings.listSort) {
                 ListSort.STRENGTH ->
-                    compareByDescending { it.sortRssi(config.settings.strengthSort, windowMs, now) }
+                    LiveSort.strength(config.settings, now)
+                ListSort.WEAKEST -> LiveSort.strength(config.settings, now, weakestFirst = true)
+                ListSort.WIFI_FIRST, ListSort.BLE_FIRST, ListSort.SIGNAL_TYPE, ListSort.DEVICE_TYPE ->
+                    LiveSort.types(labeled, config.settings, now, fleetNames)
                 ListSort.NEWEST ->
                     compareByDescending<Sighting> { it.lastSeen }
                         .thenByDescending { it.sortRssi(config.settings.strengthSort, windowMs, now) }
@@ -590,6 +595,15 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
     fun setListSort(sort: ListSort) {
         viewModelScope.launch {
             app.config.update { it.copy(settings = it.settings.copy(listSort = sort)) }
+        }
+    }
+
+    /** Quick control requests a global list, rather than ordering within an outline. */
+    fun setLiveSort(sort: ListSort, strength: StrengthSort? = null) {
+        viewModelScope.launch {
+            app.config.update { config ->
+                config.copy(settings = config.settings.withLiveSort(sort, strength))
+            }
         }
     }
 
