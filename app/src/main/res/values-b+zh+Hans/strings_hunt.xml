@@ -3,7 +3,6 @@
     <string name="hunt_unstable">信号不稳定</string>
     <string name="hunt_hold_phone">保持相同握持方式，停留后重新采样。</string>
     <string name="hunt_restart">重新开始</string>
-    <string name="hunt_relative_only">只监听当前目标 · 无需 GPS</string>
     <string name="hunt_smoothed_signal">平滑信号 · dBm</string>
     <string name="hunt_sample_quality">近 2 秒 %1$d 个样本 · 波动 %2$d dB · %3$s 秒前收到</string>
     <string name="hunt_no_recent_packet">近 2 秒未收到目标广播。</string>

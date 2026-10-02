@@ -97,8 +97,9 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, UiText.text(R.string.ui_back)) } },
             actions = { TextButton(onClick = vm::resetHunt) { Text(UiText.text(R.string.hunt_restart)) } })
     }, bottomBar = {
-        Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 4.dp)) {
+        Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 8.dp)) {
             HorizontalDivider()
+            Spacer(Modifier.height(8.dp))
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(UiText.text(R.string.ui_beep), Modifier.weight(1f))
                 FieldwatchSwitch(huntBeep, { vm.updateSettings { s -> s.copy(huntBeep = it) } })
@@ -111,7 +112,6 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(hunt.device?.let { MacUtil.redactMacIn(hunt.title, it.mac, demoMode) } ?: hunt.title,
                 style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
-            Text(UiText.text(R.string.hunt_relative_only), style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
             Text(UiText.text(R.string.hunt_phone_heading, headingText(hunt.session.heading?.takeIf { it.fresh(hunt.now) })),
                 style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant, textAlign = TextAlign.Center)
             Box(Modifier.fillMaxWidth().height(124.dp), contentAlignment = Alignment.Center) {
