@@ -13,11 +13,17 @@ object WifiWpsDecoder {
         val model: String?,
         val fields: List<AdvPayloadDecoder.Field>,
         val status: Status,
-    )
+        val primaryDeviceType: String? = null,
+    ) {
+        val chipsetOnly: Boolean get() = manufacturer?.let { it.contains("Realtek", true) || it.contains("Ralink", true) } == true
+        fun identityLabel(): String = listOfNotNull(manufacturer, model?.takeUnless { it.equals(manufacturer, true) }).joinToString(" ")
+    }
 
     /** Identity requires both fields from the same advertised WPS record. */
-    fun identity(records: List<VendorIeRecord>): Decoded? = records.asSequence().mapNotNull { decode(it) }
-        .firstOrNull { !it.manufacturer.isNullOrBlank() && !it.model.isNullOrBlank() }
+    fun identities(records: List<VendorIeRecord>): List<Decoded> = records.mapNotNull { decode(it) }
+        .filter { it.status == Status.COMPLETE && !it.manufacturer.isNullOrBlank() && !it.model.isNullOrBlank() }
+
+    fun identity(records: List<VendorIeRecord>): Decoded? = identities(records).firstOrNull()
 
     fun protocolName(record: VendorIeRecord): String? {
         if (!record.oui.replace(":", "").replace("-", "").equals("0050F2", true)) return null
@@ -34,6 +40,7 @@ object WifiWpsDecoder {
         val fields = ArrayList<AdvPayloadDecoder.Field>()
         var manufacturer: String? = null
         var model: String? = null
+        var primaryDeviceType: String? = null
         val hex = record.dataHex
         if (hex.length % 2 != 0 || hex.any { it.digitToIntOrNull(16) == null }) {
             return Decoded(null, null, listOf(AdvPayloadDecoder.Field(translate("WPS parse status"),
@@ -79,6 +86,7 @@ object WifiWpsDecoder {
                     status = Status.MALFORMED
                     continue
                 }
+                primaryDeviceType = value.toHexUpper()
                 fields += AdvPayloadDecoder.Field(translate("WPS primary device type"),
                     if (value.toHexUpper() == "00060050F2040001") translate("WPS access point") else value.toHexUpper())
             } else if (type == 0x1044) {
@@ -103,7 +111,7 @@ object WifiWpsDecoder {
             }
             fields += AdvPayloadDecoder.Field(translate("WPS parse status"), translate(message))
         }
-        return Decoded(manufacturer, model, fields, status)
+        return Decoded(manufacturer, model, fields, status, primaryDeviceType)
     }
 
     private fun u16(bytes: ByteArray, offset: Int): Int =

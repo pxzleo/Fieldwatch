@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="identity_v92_0">Wi-Fi 接入点（成品品牌未确定）</string>
+    <string name="identity_v92_1">芯片平台：%1$s</string>
+    <string name="identity_v92_2">广播数据解析状态</string>
+    <string name="identity_v92_3">未捕获广播载荷</string>
+    <string name="identity_v92_4">暂不支持解析此广播载荷</string>
+    <string name="identity_v92_5">尚未命中特征库；已解析的身份信息仍可能可用。</string>
+    <string name="identity_v92_6">温湿度传感器</string>
+    <string name="identity_v92_7">体脂秤</string>
+    <string name="identity_v92_8">漏水传感器</string>
+    <string name="identity_v92_9">门锁</string>
+    <string name="identity_v92_10">MiBeacon 产品 ID %1$s 标识 %2$s；加密对象不透露测量数值。</string>
+    <string name="identity_v92_11">MiBeacon 光照原始值</string>
+    <string name="identity_v92_12">MiBeacon 开关原始状态</string>
+    <string name="identity_v92_13">MiBeacon 光线原始状态</string>
+    <string name="identity_v92_14">MiBeacon 检测到水浸</string>
+    <string name="identity_v92_15">MiBeacon 检测到烟雾</string>
+    <string name="identity_v92_16">MiBeacon 门窗状态</string>
+    <string name="identity_v92_17">打开</string>
+    <string name="identity_v92_18">关闭</string>
+    <string name="identity_v92_19">烽火 Wi-Fi</string>
+    <string name="identity_v92_20">WPS 厂商字段标识烽火。厂商与型号字段重复时，不能确认具体零售型号。</string>
+    <string name="identity_v92_21">WPS 主设备类型标识接入点。Realtek 等芯片厂商不能证明成品品牌。</string>
+    <string name="identity_v92_22">LYWSD02MMC 温湿度计</string>
+    <string name="identity_v92_23">CGD1 温湿度计</string>
+    <string name="identity_v92_24">SJWS01LM 漏水传感器</string>
+    <string name="identity_v92_25">米家生态门锁</string>
+    <string name="identity_v92_note_0">LYWSD02MMC 温湿度监测器。MiBeacon 产品头标识型号系列；加密帧不透露测量数值。</string>
+    <string name="identity_v92_note_1">CGD1 温湿度监测器。MiBeacon 产品头标识型号系列；仅支持的明文对象提供测量数值。</string>
+    <string name="identity_v92_note_2">SJWS01LM 漏水传感器。MiBeacon 产品头标识传感器系列；产品身份本身不能证明漏水或报警状态。</string>
+    <string name="identity_v92_note_3">米家生态门锁系列。MiBeacon 产品头区分已知合作品牌型号；不能识别所有者，也不能证明门锁已上锁或已解锁。</string>
+</resources>

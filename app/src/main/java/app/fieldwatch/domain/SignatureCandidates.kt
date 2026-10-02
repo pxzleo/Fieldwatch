@@ -87,6 +87,9 @@ internal fun ruleShortLabel(rule: MatchRule): String = when (rule.kind) {
         else "UUID ${rule.text} ${rule.dataPrefixHex}"
     RuleKind.MANUFACTURER_DATA -> "mfg 0x%04X %s".format(rule.companyId, rule.dataPrefixHex)
     RuleKind.MANUFACTURER_ID -> "mfg 0x%04X".format(rule.companyId)
+    RuleKind.WPS_MANUFACTURER -> "WPS manufacturer ${rule.text}"
+    RuleKind.WPS_DEVICE_TYPE -> "WPS device type ${rule.text}"
+    RuleKind.MIBEACON_PRODUCT_ID -> "MiBeacon product ID ${rule.text}"
     else -> rule.kind.name
 }
 
@@ -518,6 +521,7 @@ object SignatureCandidates {
         firstSeen = firstSeen,
         lastSeen = lastSeen,
         hits = hitCount,
+        facts = facts,
     )
 
     private fun mergeOverlapping(clusters: List<Cluster>): List<Cluster> {
@@ -648,8 +652,8 @@ object SignatureCandidates {
         rssi = rssi,
         rssiMin = rssi,
         rssiMax = rssi,
-        channel = 0,
-        frequencyMhz = 0,
+        channel = channel,
+        frequencyMhz = frequencyMhz,
         vendor = vendor,
         randomized = randomized,
         hiddenSsid = hiddenSsid,
@@ -665,10 +669,10 @@ object SignatureCandidates {
         rssiHistory = emptyList(),
         presence = emptyList(),
         vendorIeOuis = vendorIeOuis,
-        facts = RadioFacts(
-            mfgRecords = manufacturerId?.let { listOf(MfgRecord(it, manufacturerDataHex)) } ?: emptyList(),
-            vendorIes = vendorIeOuis.map { VendorIeRecord(it, -1, "") },
-        ),
+        facts = facts.merge(RadioFacts(
+            mfgRecords = if (facts.mfgRecords.isEmpty()) manufacturerId?.let { listOf(MfgRecord(it, manufacturerDataHex)) }.orEmpty() else emptyList(),
+            vendorIes = if (facts.vendorIes.isEmpty()) vendorIeOuis.map { VendorIeRecord(it, -1, "") } else emptyList(),
+        )),
     )
 
     private fun LogRadio.exampleLabel(): String {

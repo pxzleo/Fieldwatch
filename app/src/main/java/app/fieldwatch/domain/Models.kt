@@ -228,6 +228,9 @@ enum class RuleKind {
     RADIO_KIND,
     HIDDEN_SSID,
     VENDOR_IE_OUI,
+    WPS_MANUFACTURER,
+    WPS_DEVICE_TYPE,
+    MIBEACON_PRODUCT_ID,
 }
 
 @Serializable
@@ -269,7 +272,7 @@ data class Fleet(
 }
 
 fun MatchRule.couldMatchBle(): Boolean = when (kind) {
-    RuleKind.HIDDEN_SSID, RuleKind.VENDOR_IE_OUI -> false
+    RuleKind.HIDDEN_SSID, RuleKind.VENDOR_IE_OUI, RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE -> false
     RuleKind.SERVICE_UUID, RuleKind.SERVICE_DATA, RuleKind.MANUFACTURER_ID, RuleKind.MANUFACTURER_DATA -> true
     RuleKind.RADIO_KIND -> radio != RadioKind.WIFI
     else -> radio != RadioKind.WIFI

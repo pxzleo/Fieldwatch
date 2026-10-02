@@ -1034,6 +1034,10 @@ class ConfigStore(context: Context) {
             fleets = appendCatalogV91(fleets)
             version = CATALOG_V91
         }
+        if (version < CATALOG_V92) {
+            fleets = appendCatalogV92(fleets)
+            version = CATALOG_V92
+        }
         // An older APK can import the V90 pack while retaining the generated custom candidate.
         fleets = repairMercuryCandidates(fleets)
         if (!settings.darkTheme) settings = settings.copy(darkTheme = true)
@@ -1076,14 +1080,14 @@ class ConfigStore(context: Context) {
 
     companion object {
         /** Stock catalog generation. Settings footer and the GitHub pack use this. */
-        const val CATALOG_VERSION = 91
+        const val CATALOG_VERSION = 92
 
         /** Historical stock patches remain in place; V89 families preserve every existing row. */
         internal fun patchBuiltInRules(fleets: List<Fleet>, catalog: Map<String, Fleet>): List<Fleet> {
             val domesticIds = DefaultCatalog.domesticFamilies().mapTo(HashSet()) { it.id }
             return fleets.map { fleet ->
                 val stock = catalog[fleet.id] ?: return@map fleet
-                if (!fleet.builtIn || fleet.id in domesticIds) return@map fleet
+                if (!fleet.builtIn || !fleet.matchAny || fleet.id in domesticIds) return@map fleet
                 val have = fleet.rules.map { ruleKey(it) }.toSet()
                 val missing = stock.rules.filter { ruleKey(it) !in have }
                 val renamed = when {
@@ -1094,6 +1098,20 @@ class ConfigStore(context: Context) {
                 if (missing.isEmpty() && renamed == fleet.name) fleet
                 else fleet.copy(name = renamed, rules = fleet.rules + missing)
             }
+        }
+
+        internal fun appendCatalogV92(fleets: List<Fleet>): List<Fleet> {
+            val stock = DefaultCatalog.fleets().associateBy { it.id }
+            val updated = fleets.map { fleet ->
+                if (!fleet.builtIn || !fleet.matchAny) return@map fleet
+                val additions = stock[fleet.id]?.rules.orEmpty().filter {
+                    it.kind in setOf(RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID)
+                }
+                val keys = fleet.rules.map(::ruleKey).toSet()
+                fleet.copy(rules = fleet.rules + additions.filter { ruleKey(it) !in keys })
+            }
+            val have = updated.map { it.id }.toSet()
+            return updated + DefaultCatalog.discoveryFamiliesV92().filter { it.id !in have }
         }
 
         private fun ruleKey(rule: MatchRule): String =
@@ -1225,7 +1243,8 @@ class ConfigStore(context: Context) {
         private const val CATALOG_V88 = 88
         private const val CATALOG_V89 = 89
         private const val CATALOG_V90 = 90
-        private const val CATALOG_V91 = CATALOG_VERSION
+        private const val CATALOG_V91 = 91
+        private const val CATALOG_V92 = CATALOG_VERSION
         private val GENERIC_GATT_UUIDS = setOf("180A", "180D", "180F")
         private val POLICY_FLEET_IDS = setOf(
             "fleet-flock-cameras",

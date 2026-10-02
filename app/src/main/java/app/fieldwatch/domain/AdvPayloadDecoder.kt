@@ -15,6 +15,20 @@ object AdvPayloadDecoder {
         val weight: Int,
     )
 
+    fun decodeDevice(device: Sighting, translate: (String) -> String = { it }): List<Field> {
+        if (device.kind == RadioKind.WIFI) return device.facts.vendorIes.mapNotNull { WifiWpsDecoder.decode(it, translate) }
+            .flatMap { it.fields }.distinct()
+        val mfg = device.facts.mfgRecords.ifEmpty {
+            device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
+        }
+        val decoded = device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
+            mfg.flatMap { decodeManufacturer(it, translate) }
+        if (decoded.isNotEmpty()) return decoded.distinct()
+        val status = if (device.rawHex.isBlank() && mfg.none { it.dataHex.isNotBlank() } && device.facts.serviceData.none { it.dataHex.isNotBlank() })
+            "No advertisement payload captured" else "Payload parser unsupported"
+        return listOf(Field(translate("Payload decode status"), translate(status)))
+    }
+
     fun decodeManufacturer(record: MfgRecord, translate: (String) -> String = { it }): List<Field> {
         if (record.companyId == 0x038F) return MiBeaconDecoder.decode(record.dataHex, translate).fields
         val bytes = hexToBytes(record.dataHex) ?: return emptyList()
@@ -48,11 +62,13 @@ object AdvPayloadDecoder {
         val mfg = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) } ?: emptyList()
         }
-        val miBeacons = device.facts.serviceData.filter { uuid16(it.uuid) == 0xFE95 }.map { it.dataHex } +
-            mfg.filter { it.companyId == 0x038F }.map { it.dataHex }
-        if (device.kind == RadioKind.BLE && miBeacons.any { MiBeaconDecoder.decode(it).let { decoded -> decoded.validHeader && decoded.productId == 0x055B } }) {
-            out += RoleHint("sensor", translate("an LYWSD03MMC temperature / humidity sensor"),
-                translate("MiBeacon product ID 0x055B identifies LYWSD03MMC; encrypted objects do not expose readings."), 8)
+        MiBeaconDecoder.identities(device).mapNotNull { decoded ->
+            MiBeaconDecoder.product(decoded.productId)?.let { decoded.productId to it }
+        }.distinct().forEach { (pid, product) ->
+            out += RoleHint(if (product.type == "door lock") "lock" else "sensor",
+                "${product.model} · ${translate(product.type)}",
+                translate("MiBeacon product ID %1\$s identifies %2\$s; encrypted objects do not expose readings.")
+                    .format("0x%04X".format(pid), product.model), 8)
         }
         for (rec in mfg) {
             if (rec.companyId != 0x004C) continue

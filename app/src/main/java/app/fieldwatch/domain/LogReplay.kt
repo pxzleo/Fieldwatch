@@ -23,6 +23,7 @@ data class LogRadio(
     val frequencyMhz: Int = 0,
     val latitude: Double? = null,
     val longitude: Double? = null,
+    val facts: RadioFacts = RadioFacts(),
 ) {
     val key: String get() = "${kind.name}:$mac"
     val hasPosition: Boolean get() = latitude != null && longitude != null
@@ -112,11 +113,15 @@ object LogReplay {
         val kind = runCatching { RadioKind.valueOf(str("kind")) }.getOrNull() ?: return
         val mac = MacUtil.normalize(str("mac"))
         if (mac.isBlank()) return
-        val uuids = str("uuids").split(',', '|').map { it.trim() }.filter { it.isNotEmpty() }
-        val ies = str("vendor_ie").split('|').map { it.trim() }.filter { it.isNotEmpty() }
-            .map { MacUtil.normalize(it) }
+        fun stringList(key: String): List<String> {
+            val array = obj.optJSONArray(key) ?: return emptyList()
+            return (0 until array.length()).map { array.optString(it) }.filter { it.isNotBlank() }
+        }
+        val uuids = (str("uuids").split(',', '|').map { it.trim() }.filter { it.isNotEmpty() } + stringList("service_uuids")).distinct()
+        val ies = (str("vendor_ie").split('|').map { it.trim() }.filter { it.isNotEmpty() } + stringList("vendor_ie_ouis"))
+            .map { MacUtil.normalize(it) }.distinct()
         val mfg = when {
-            !obj.has("mfg") || obj.isNull("mfg") -> null
+            !obj.has("mfg") || obj.isNull("mfg") -> if (obj.has("manufacturer_id") && !obj.isNull("manufacturer_id")) obj.optInt("manufacturer_id") else null
             else -> {
                 val n = obj.optInt("mfg", Int.MIN_VALUE)
                 if (n != Int.MIN_VALUE) n else str("mfg").toIntOrNull(16)
@@ -132,7 +137,7 @@ object LogReplay {
                 name = str("name"),
                 vendor = str("vendor").ifBlank { null },
                 manufacturerId = mfg,
-                manufacturerDataHex = str("raw"),
+                manufacturerDataHex = str("manufacturer_data_hex").ifBlank { str("raw") },
                 serviceUuids = uuids,
                 vendorIeOuis = ies,
                 randomized = rand,
@@ -145,6 +150,7 @@ object LogReplay {
                 frequencyMhz = obj.optInt("freq", 0),
                 latitude = obj.optDouble("lat").takeIf { obj.has("lat") && !obj.isNull("lat") },
                 longitude = obj.optDouble("lon").takeIf { obj.has("lon") && !obj.isNull("lon") },
+                facts = RadioSampleJson.readFacts(obj),
             ),
         )
     }
@@ -172,6 +178,7 @@ object LogReplay {
             frequencyMhz = if (row.frequencyMhz != 0) row.frequencyMhz else prev.frequencyMhz,
             latitude = row.latitude ?: prev.latitude,
             longitude = row.longitude ?: prev.longitude,
+            facts = prev.facts.merge(row.facts),
         )
     }
 

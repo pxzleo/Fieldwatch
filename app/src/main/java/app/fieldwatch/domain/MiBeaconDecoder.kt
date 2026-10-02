@@ -14,6 +14,36 @@ object MiBeaconDecoder {
         0x0784 to "XMZNMS04LM", 0x0E39 to "XMZNMS08LM", 0x0576 to "CGD1",
     )
 
+    data class Product(val model: String, val type: String, val fleetId: String)
+
+    fun product(id: Int?): Product? {
+        val model = models[id ?: return null] ?: return null
+        val typeAndFleet = when (id) {
+            0x055B -> "temperature / humidity sensor" to "fleet-lywsd03mmc"
+            0x2832, 0x4C47, 0x55B5, 0x5BEA -> "temperature / humidity sensor" to "fleet-mi-thermometer"
+            0x2542, 0x16E4 -> "temperature / humidity sensor" to "fleet-lywsd02mmc"
+            0x0576 -> "temperature / humidity sensor" to "fleet-cgd1"
+            0x30D9, 0x3BD5, 0x48CF -> "body composition scale" to "fleet-mijia-s400"
+            0x0863 -> "water leak sensor" to "fleet-mi-water-leak"
+            0x098C, 0x0784, 0x0E39 -> "door lock" to "fleet-mi-lock"
+            else -> return null
+        }
+        return Product(model, typeAndFleet.first, typeAndFleet.second)
+    }
+
+    fun productRules(fleetId: String): List<MatchRule> = models.keys.filter { product(it)?.fleetId == fleetId }
+        .map { MatchRule(RuleKind.MIBEACON_PRODUCT_ID, text = "%04X".format(it), radio = RadioKind.BLE) }
+
+    fun identities(device: Sighting): List<Decoded> {
+        if (device.kind != RadioKind.BLE) return emptyList()
+        val manufacturer = device.facts.mfgRecords.ifEmpty {
+            device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
+        }
+        val records = device.facts.serviceData.filter { uuidAliases(it.uuid).any { alias -> alias in uuidAliases("FE95") } }.map { it.dataHex } +
+            manufacturer.filter { it.companyId == 0x038F }.map { it.dataHex }
+        return records.distinct().map { decode(it) }.filter { it.validHeader }
+    }
+
     data class Decoded(val productId: Int?, val validHeader: Boolean, val fields: List<AdvPayloadDecoder.Field>)
 
     fun decode(hex: String, translate: (String) -> String = { it }): Decoded {
@@ -62,7 +92,13 @@ object MiBeaconDecoder {
             val length = u8(bytes, offset + 2)
             offset += 3
             if (bytes.size - offset < length) return error("Truncated MiBeacon object", pid)
-            val expected = when (type) { 0x1004, 0x1006 -> 2; 0x100D -> 4; 0x100A -> 1; else -> null }
+            val expected = when (type) {
+                0x1004, 0x1006 -> 2
+                0x100D -> 4
+                0x1007 -> 3
+                0x100A, 0x1012, 0x1014, 0x1015, 0x1018, 0x1019 -> 1
+                else -> null
+            }
             if (expected != null && length != expected) return error("Malformed MiBeacon object", pid)
             fun temperature(at: Int) = "%.1f °C".format(Locale.US, u16(bytes, at).toShort().toDouble() / 10)
             fun humidity(at: Int) = "%.1f %%".format(Locale.US, u16(bytes, at).toDouble() / 10)
@@ -71,6 +107,17 @@ object MiBeaconDecoder {
                 0x1006 -> field("MiBeacon humidity", humidity(offset))
                 0x100D -> { field("MiBeacon temperature", temperature(offset)); field("MiBeacon humidity", humidity(offset + 2)) }
                 0x100A -> field("MiBeacon battery", "${u8(bytes, offset)} %")
+                // Some products reinterpret 1007 as a light threshold. Keep its published raw unitless value.
+                0x1007 -> field("MiBeacon light raw value", (u16(bytes, offset) or (u8(bytes, offset + 2) shl 16)).toString())
+                0x1012 -> field("MiBeacon on/off raw state", "0x%02X".format(u8(bytes, offset)))
+                0x1018 -> field("MiBeacon light raw state", "0x%02X".format(u8(bytes, offset)))
+                0x1014 -> field("MiBeacon water detected", translate(if (u8(bytes, offset) > 0) "yes" else "no"))
+                0x1015 -> field("MiBeacon smoke detected", translate(if (u8(bytes, offset) > 0) "yes" else "no"))
+                0x1019 -> field("MiBeacon door/window state", when (u8(bytes, offset)) {
+                    0 -> translate("Open")
+                    1 -> translate("Closed")
+                    else -> "0x%02X".format(u8(bytes, offset))
+                })
                 else -> field("MiBeacon unknown object", "0x%04X: ".format(type) + bytes.copyOfRange(offset, offset + length).toHexUpper())
             }
             offset += length

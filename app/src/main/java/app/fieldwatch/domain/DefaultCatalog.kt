@@ -318,7 +318,8 @@ object DefaultCatalog {
         *domesticFamilies().toTypedArray(),
         *discoveryFamiliesV90().toTypedArray(),
         *discoveryFamiliesV91().toTypedArray(),
-    ).sortedBy { it.name.lowercase() }
+        *discoveryFamiliesV92().toTypedArray(),
+    ).map(::withPassiveIdentityRules).sortedBy { it.name.lowercase() }
 
     /** Family fingerprints from advertised names/services; these do not identify an owner or exact model. */
     fun domesticFamilies(): List<Fleet> = listOf(
@@ -450,6 +451,40 @@ object DefaultCatalog {
         Fleet(id = "fleet-qihoo-wifi", name = "360 Wi-Fi", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.ISP, notes = "360WiFi-* default name or IEEE Qihoo prefixes identify a 360 network family. The name alone does not establish an exact router or portable-hotspot model.",
             rules = withWifiOuis(listOf(wifiGlob("360WiFi-*")), ApVendorOuis.QIHOO_V91)),
+    )
+
+    internal fun withPassiveIdentityRules(fleet: Fleet): Fleet {
+        if (!fleet.matchAny) return fleet
+        val manufacturer = when (fleet.id) {
+            "fleet-huawei" -> "Huawei"
+            "fleet-tplink" -> "TP-Link"
+            "fleet-h3c-wifi" -> "H3C"
+            "fleet-xiaomi-wifi" -> "Xiaomi"
+            "fleet-zte-wifi" -> "ZTE"
+            else -> null
+        }
+        val aliases = if (fleet.id == "fleet-huawei") listOf(MatchRule(RuleKind.WPS_MANUFACTURER, text = "huaweitec", radio = RadioKind.WIFI)) else emptyList()
+        val additions = aliases + MiBeaconDecoder.productRules(fleet.id) + manufacturer?.let {
+            listOf(MatchRule(RuleKind.WPS_MANUFACTURER, text = it, radio = RadioKind.WIFI))
+        }.orEmpty()
+        return fleet.copy(rules = (fleet.rules + additions).distinct())
+    }
+
+    fun discoveryFamiliesV92(): List<Fleet> = listOf(
+        Fleet(id = "fleet-fiberhome-wifi", name = "Fiberhome Wi-Fi", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.ISP, notes = "WPS manufacturer identifies Fiberhome. A repeated manufacturer/model field does not establish an exact retail model.",
+            rules = listOf(MatchRule(RuleKind.WPS_MANUFACTURER, text = "Fiberhome", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-wps-access-point", name = "Wi-Fi access point (brand unconfirmed)", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.ISP, notes = "WPS primary device type identifies an access point. A chipset manufacturer such as Realtek does not establish the finished product brand.",
+            rules = listOf(MatchRule(RuleKind.WPS_DEVICE_TYPE, text = "00060050F2040001", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-lywsd02mmc", name = "LYWSD02MMC thermometer", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.HOME, notes = "LYWSD02MMC temperature / humidity monitor. Its MiBeacon product header identifies the model family; encrypted frames do not reveal readings.", rules = MiBeaconDecoder.productRules("fleet-lywsd02mmc")),
+        Fleet(id = "fleet-cgd1", name = "CGD1 thermometer", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.HOME, notes = "CGD1 temperature / humidity monitor. Its MiBeacon product header identifies the model family; measurements are available only in supported plaintext objects.", rules = MiBeaconDecoder.productRules("fleet-cgd1")),
+        Fleet(id = "fleet-mi-water-leak", name = "SJWS01LM water leak sensor", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.HOME, notes = "SJWS01LM water leak sensor. The MiBeacon product header identifies the sensor family; a product identity alone does not prove a leak or an alarm state.", rules = MiBeaconDecoder.productRules("fleet-mi-water-leak")),
+        Fleet(id = "fleet-mi-lock", name = "Mi ecosystem door lock", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.LOCK, notes = "Xiaomi ecosystem door-lock family. MiBeacon product headers distinguish known partner models; they do not identify an owner or prove a locked or unlocked state.", rules = MiBeaconDecoder.productRules("fleet-mi-lock")),
     )
 
     private fun flockCameras() = Fleet(

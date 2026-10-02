@@ -61,6 +61,7 @@ import app.fieldwatch.domain.resolvedLength
 import app.fieldwatch.domain.CandidateReport
 
 import app.fieldwatch.domain.SignatureClass
+import app.fieldwatch.domain.reclassify
 import app.fieldwatch.domain.SignatureEngine
 import app.fieldwatch.domain.SignatureListSort
 import app.fieldwatch.domain.SettingsExchange
@@ -349,9 +350,14 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             val selected = live.selected ?: held?.takeIf { selKey != null && it.key == selKey }?.let { snap ->
                 if (snap.gone) snap else snap.copy(gone = true)
             }
-            live.copy(displayPaused = false, selected = selected, sit = sit)
+            val pool = (live.devices + listOfNotNull(selected)).distinctBy { it.key }
+            val current = reclassify(pool).associateBy { it.key }
+            live.copy(displayPaused = false, selected = selected?.let { current[it.key] }, sit = sit)
         } else {
-            val hold = frozenUi ?: live
+            val stored = frozenUi ?: live
+            val devices = reclassify(stored.devices)
+            val byKey = devices.associateBy { it.key }
+            val hold = stored.copy(devices = devices, filtered = stored.filtered.mapNotNull { byKey[it.key] })
             frozenUi = hold
             val selected = held?.takeIf { selKey == null || it.key == selKey }
                 ?: selKey?.let { key ->
@@ -362,7 +368,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 displayPaused = true,
                 devices = hold.devices,
                 filtered = hold.filtered,
-                selected = selected,
+                selected = selected?.let { byKey[it.key] ?: reclassify((stored.devices + it).distinctBy { d -> d.key }).firstOrNull { d -> d.key == it.key } },
                 sit = sit,
             )
         }
@@ -845,8 +851,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         val second = SitDiff.Side(
             name = otherFile.summary.name,
             ram = false,
-            radios = otherFile.radios.map {
-                SitDiff.fromSitRadio(it.copy(liveDecode = reportDevice(it.toSighting()).liveDecode), fleets, customNames, observerNotes, bookmarkedKeys)
+            radios = reportDevices(otherFile.radios.map { it.toSighting() }).map {
+                SitDiff.fromSighting(it, fleets, customNames, observerNotes, bookmarkedKeys, UiText::report)
             },
             path = otherFile.operatorPath,
         )
@@ -862,7 +868,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
     ): SitDiff.Side {
         val open = sit.open
         if (open != null) {
-            val source = app.sits.debriefSource()
+            val source = app.sits.debriefSource()?.let { it.copy(devices = reclassify(it.devices)) }
             return SitDiff.Side(
                 name = open.name,
                 ram = false,
@@ -879,8 +885,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             return SitDiff.Side(
                 name = selected.name,
                 ram = false,
-                radios = file.radios.map {
-                    SitDiff.fromSitRadio(it.copy(liveDecode = reportDevice(it.toSighting()).liveDecode), fleets, customNames, observerNotes, bookmarkedKeys)
+                radios = reportDevices(file.radios.map { it.toSighting() }).map {
+                    SitDiff.fromSighting(it, fleets, customNames, observerNotes, bookmarkedKeys, UiText::report)
                 },
                 path = file.operatorPath,
             )
@@ -1540,7 +1546,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     private fun buildSitPath(): SitPathPlot.Model {
         val now = System.currentTimeMillis()
-        val source = app.sits.debriefSource(now)
+        val source = app.sits.debriefSource(now)?.let { it.copy(devices = reclassify(it.devices)) }
         val customNames = RadioBookmarks.labels(app.config.watchlist)
         val namedKeys = customNames.keys
         val bookmarkedKeys = RadioBookmarks.alertDeviceKeys(app.config.watchlist)
@@ -1727,8 +1733,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         val settings = app.config.settings
         val fleets = reportFleets()
         val now = System.currentTimeMillis()
-        val source = app.sits.debriefSource(now)
-        val devices = (source?.devices ?: app.devices.devices.value).map(::reportDevice)
+        val source = app.sits.debriefSource(now)?.let { it.copy(devices = reclassify(it.devices)) }
+        val devices = reportDevices(source?.devices ?: app.devices.devices.value)
         val path = source?.operatorPath ?: app.operatorPathCopy()
         val window = source?.let { DebriefWindow(it.startAt, it.endAt, it.name) }
         val places = if (settings.demoMode) {
@@ -1770,8 +1776,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 val settings = app.config.settings
                 val fleets = reportFleets()
                 val now = System.currentTimeMillis()
-                val source = app.sits.debriefSource(now)
-                val devices = (source?.devices ?: app.devices.devices.value).map(::reportDevice)
+                val source = app.sits.debriefSource(now)?.let { it.copy(devices = reclassify(it.devices)) }
+                val devices = reportDevices(source?.devices ?: app.devices.devices.value)
                 val path = source?.operatorPath ?: app.operatorPathCopy()
                 val window = source?.let { DebriefWindow(it.startAt, it.endAt, it.name) }
                 val places = if (settings.demoMode) {
@@ -2322,6 +2328,11 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     private fun reportDevice(device: Sighting): Sighting =
         device.copy(liveDecode = device.liveDecode.map { localizedLiveChip(device, it) })
+
+    private fun reclassify(devices: Collection<Sighting>): List<Sighting> =
+        devices.reclassify(app.config.fleets, signatures, app.config.settings.detectionPolicy())
+
+    private fun reportDevices(devices: Collection<Sighting>): List<Sighting> = reclassify(devices).map(::reportDevice)
 
     fun isWatched(deviceKey: String): Boolean =
         app.config.watchlist.any { it.deviceKey == deviceKey && it.alert }

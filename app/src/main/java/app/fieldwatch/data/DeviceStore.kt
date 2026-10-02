@@ -235,6 +235,8 @@ class DeviceStore(
             mfg.forEach { append(it.companyId); append('='); append(it.dataHex); append(',') }
             append('\u0001')
             sd.forEach { append(it.uuid); append('='); append(it.dataHex); append(',') }
+            append('\u0001')
+            device.facts.vendorIes.forEach { append(it.oui); append(':'); append(it.type); append('='); append(it.dataHex); append(',') }
         }
     }
 

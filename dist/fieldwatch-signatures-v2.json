@@ -3,7 +3,7 @@
     "formatVersion": 1,
     "exportedAt": "",
     "appVersion": "stock",
-    "catalogVersion": 91,
+    "catalogVersion": 92,
     "fleets": [
         {
             "id": "fleet-qihoo-wifi",
@@ -9994,6 +9994,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
+        },
+        {
+            "id": "fleet-cgd1",
+            "name": "CGD1 thermometer",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "0576",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "CGD1 temperature / humidity monitor. Its MiBeacon product header identifies the model family; measurements are available only in supported plaintext objects.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
         },
         {
             "id": "fleet-chevrolet",
@@ -24436,6 +24461,31 @@
             "kind": "PHONE"
         },
         {
+            "id": "fleet-fiberhome-wifi",
+            "name": "Fiberhome Wi-Fi",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "Fiberhome",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "WPS manufacturer identifies Fiberhome. A repeated manufacturer/model field does not establish an exact retail model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "ISP"
+        },
+        {
             "id": "fleet-fieldy",
             "name": "Fieldy",
             "enabled": true,
@@ -26441,14 +26491,6 @@
                 },
                 {
                     "kind": "OUI",
-                    "text": "04:D7:A5",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "WIFI",
-                    "enabled": true
-                },
-                {
-                    "kind": "OUI",
                     "text": "10:B6:5E",
                     "companyId": 0,
                     "dataPrefixHex": "",
@@ -26522,6 +26564,14 @@
                 {
                     "kind": "OUI",
                     "text": "FC:60:9B",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "H3C",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "WIFI",
@@ -44632,6 +44682,22 @@
                     "dataPrefixHex": "",
                     "radio": "WIFI",
                     "enabled": true
+                },
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "huaweitec",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "Huawei",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
                 }
             ],
             "minPeers": 0,
@@ -46526,6 +46592,39 @@
             "kind": "SURVEILLANCE"
         },
         {
+            "id": "fleet-lywsd02mmc",
+            "name": "LYWSD02MMC thermometer",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "2542",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "16E4",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "LYWSD02MMC temperature / humidity monitor. Its MiBeacon product header identifies the model family; encrypted frames do not reveal readings.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
+        },
+        {
             "id": "fleet-lywsd03mmc",
             "name": "LYWSD03MMC thermometer",
             "enabled": true,
@@ -46535,6 +46634,14 @@
                 {
                     "kind": "NAME_GLOB",
                     "text": "LYWSD03MMC",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "055B",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "BLE",
@@ -47302,6 +47409,47 @@
             "kind": "MESH"
         },
         {
+            "id": "fleet-mi-lock",
+            "name": "Mi ecosystem door lock",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "098C",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "0784",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "0E39",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Xiaomi ecosystem door-lock family. MiBeacon product headers distinguish known partner models; they do not identify an owner or prove a locked or unlocked state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "LOCK"
+        },
+        {
             "id": "fleet-mi-light",
             "name": "Mi ecosystem smart light",
             "enabled": true,
@@ -47557,6 +47705,30 @@
                 {
                     "kind": "NAME_GLOB",
                     "text": "Mijia Scale S400 *",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "30D9",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "3BD5",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "48CF",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "BLE",
@@ -48018,6 +48190,38 @@
                 {
                     "kind": "NAME_GLOB",
                     "text": "MJWSD06MMC",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "2832",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "4C47",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "55B5",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "5BEA",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "BLE",
@@ -57871,6 +58075,31 @@
             "kind": "AUDIO"
         },
         {
+            "id": "fleet-mi-water-leak",
+            "name": "SJWS01LM water leak sensor",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MIBEACON_PRODUCT_ID",
+                    "text": "0863",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "SJWS01LM water leak sensor. The MiBeacon product header identifies the sensor family; a product identity alone does not prove a leak or an alarm state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
+        },
+        {
             "id": "fleet-skydio",
             "name": "Skydio",
             "enabled": true,
@@ -61564,6 +61793,14 @@
                     "dataPrefixHex": "",
                     "radio": "WIFI",
                     "enabled": true
+                },
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "TP-Link",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
                 }
             ],
             "minPeers": 0,
@@ -63891,6 +64128,31 @@
             "kind": "ISP"
         },
         {
+            "id": "fleet-wps-access-point",
+            "name": "Wi-Fi access point (brand unconfirmed)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "WPS_DEVICE_TYPE",
+                    "text": "00060050F2040001",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "WPS primary device type identifies an access point. A chipset manufacturer such as Realtek does not establish the finished product brand.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "ISP"
+        },
+        {
             "id": "fleet-winegard",
             "name": "Winegard",
             "enabled": true,
@@ -64624,14 +64886,6 @@
                 },
                 {
                     "kind": "OUI",
-                    "text": "EC:41:18",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "WIFI",
-                    "enabled": true
-                },
-                {
-                    "kind": "OUI",
                     "text": "EC:4D:3E",
                     "companyId": 0,
                     "dataPrefixHex": "",
@@ -64641,6 +64895,14 @@
                 {
                     "kind": "OUI",
                     "text": "F8:83:06",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "Xiaomi",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "WIFI",
@@ -65115,6 +65377,14 @@
                 {
                     "kind": "OUI",
                     "text": "F0:7A:55",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "WPS_MANUFACTURER",
+                    "text": "ZTE",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "WIFI",

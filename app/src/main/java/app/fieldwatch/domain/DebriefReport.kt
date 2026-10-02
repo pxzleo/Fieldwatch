@@ -245,10 +245,7 @@ object DebriefReport {
                             appendLine()
                         }
                     }
-                    val payloadFields = d.facts.serviceData.flatMap { AdvPayloadDecoder.decodeService(it, d, translate) } +
-                        d.facts.mfgRecords.ifEmpty {
-                            d.manufacturerId?.let { listOf(MfgRecord(it, d.manufacturerDataHex)) }.orEmpty()
-                        }.flatMap { AdvPayloadDecoder.decodeManufacturer(it, translate) }
+                    val payloadFields = AdvPayloadDecoder.decodeDevice(d, translate)
                     payloadFields.distinct().forEach { appendLine("    ${it.label}: ${it.value}") }
                 }
             }
@@ -1030,10 +1027,12 @@ object DebriefReport {
         append(d.reportName(customNames, translate)).append("  ").append(d.mac)
         WifiWpsDecoder.identity(d.facts.vendorIes)?.let { wps ->
             if (!d.reportName(customNames, translate).contains(wps.model!!, ignoreCase = true)) {
-                append("  WPS: ").append(wps.manufacturer).append(' ').append(wps.model)
+                append("  WPS: ").append(wps.identityLabel())
             }
         }
         d.vendor?.let { append("  ").append(it) }
+        val fields = AdvPayloadDecoder.decodeDevice(d, translate)
+        if (fields.isNotEmpty()) append("  ").append(fields.joinToString("; ") { "${it.label}: ${it.value}" })
         append("  ").append(d.rssi).append(" dBm")
         if (d.channel != 0) append(translate("  ch ")).append(d.channel)
         if (d.hiddenSsid) append(translate("  hidden"))

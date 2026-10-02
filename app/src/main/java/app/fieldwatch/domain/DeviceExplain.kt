@@ -72,7 +72,10 @@ object DeviceExplain {
      */
     fun listLabel(device: Sighting, signatureNames: List<String> = emptyList(), translate: (String) -> String = { it }): String? {
         if (device.kind == RadioKind.WIFI) {
-            WifiWpsDecoder.identity(device.facts.vendorIes)?.let { return "${it.manufacturer} ${it.model}" }
+            WifiWpsDecoder.identity(device.facts.vendorIes)?.let {
+                return if (it.chipsetOnly) translate("Wi-Fi access point (brand unconfirmed)") + " · " +
+                    translate("Chipset platform: %1\$s").format(it.identityLabel()) else it.identityLabel()
+            }
         }
         val guess = guess(device, signatureNames, translate)
         val generic = guess.headline.contains(translate("Bluetooth LE advertiser"), ignoreCase = true) ||
@@ -781,8 +784,9 @@ object DeviceExplain {
         val specific = signatureNames.any { !isGenericSignatureName(it) }
         val out = ArrayList<Hint>(2)
         device.facts.vendorIes.mapNotNull { WifiWpsDecoder.decode(it) }.forEach { wps ->
-            if (!wps.manufacturer.isNullOrBlank() && !wps.model.isNullOrBlank()) {
-                out += Hint("named", "${wps.manufacturer} ${wps.model}",
+            if (wps.status == WifiWpsDecoder.Status.COMPLETE && !wps.manufacturer.isNullOrBlank() && !wps.model.isNullOrBlank()) {
+                out += Hint("named", if (wps.chipsetOnly) translate("Wi-Fi access point (brand unconfirmed)") + " · " +
+                    translate("Chipset platform: %1\$s").format(wps.identityLabel()) else wps.identityLabel(),
                     translate("WPS advertises manufacturer %1\$s and model %2\$s. These are broadcast fields, not a visual identification.")
                         .format(wps.manufacturer, wps.model), 10)
             }

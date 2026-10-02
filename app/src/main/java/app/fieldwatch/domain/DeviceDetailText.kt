@@ -196,10 +196,11 @@ object DeviceDetailText {
                 },
             )
         }
+        AdvPayloadDecoder.decodeDevice(device, translate).forEach { field -> line(field.label, field.value) }
         if (facts.serviceData.isNotEmpty()) {
             facts.serviceData.forEach { sd ->
                 val named = RadioDb.serviceUuid(sd.uuid)?.let { " (${translate(it)})" } ?: ""
-                AdvPayloadDecoder.decodeService(sd, device, translate).forEach { field -> line(field.label, field.value) }
+
                 line(
                     translate("Service data %1\$s%2\$s").format(uuidShort(sd.uuid), named),
                     sd.dataHex.hexSpaced().ifBlank { translate("(empty)") },
@@ -217,7 +218,7 @@ object DeviceDetailText {
             mfg.forEach { rec ->
                 val company = RadioDb.company(rec.companyId) ?: translate("Not in the Bluetooth company list")
                 line(translate("Bluetooth company 0x%04X").format(rec.companyId), company)
-                AdvPayloadDecoder.decodeManufacturer(rec, translate).forEach { field -> line(field.label, field.value) }
+
                 if (rec.dataHex.isNotBlank()) {
                     line(translate("Raw payload (%1\$s bytes)").format(rec.dataHex.length / 2), rec.dataHex.hexSpaced())
                 }
@@ -245,7 +246,7 @@ object DeviceDetailText {
                         }
                     },
                 )
-                WifiWpsDecoder.decode(ie, translate)?.fields?.forEach { field -> line(field.label, field.value) }
+
             }
         }
 
@@ -257,6 +258,8 @@ object DeviceDetailText {
             line(translate("Last fix"), it)
             out.append(translate("Last fix is the phone’s GPS at hear-time, not a fix on this radio.\n"))
         }
+        if (device.fleetIds.isEmpty()) line(translate("Matched signatures"),
+            translate("No catalog signature matched; parsed identity fields may still be available."))
         if (device.fleetIds.isNotEmpty()) {
             line(translate("Matched signatures"), displaySignatureNames.joinToString("; ").ifBlank {
                 device.fleetIds.joinToString("; ")

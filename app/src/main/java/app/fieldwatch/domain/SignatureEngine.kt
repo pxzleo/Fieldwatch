@@ -39,6 +39,9 @@ class SignatureEngine {
                     hits += plan.id
                 }
             }
+            if ("fleet-wps-access-point" in hits && compiled.plans.any { plan ->
+                    plan.id in hits && plan.rawRules.any { it.kind == RuleKind.WPS_MANUFACTURER && passiveIdentityHits(device, it) }
+                }) hits.remove("fleet-wps-access-point")
             dropProtocolIBeacon(hits, compiled)
             dropDjiWhenOsmoCamera(hits)
             dropAirTagsWhenAppleDevice(hits, device)
@@ -226,7 +229,8 @@ class SignatureEngine {
     }
 
     private fun ruleScope(rule: MatchRule): RadioKind? = when (rule.kind) {
-        RuleKind.VENDOR_IE_OUI, RuleKind.HIDDEN_SSID -> RadioKind.WIFI
+        RuleKind.VENDOR_IE_OUI, RuleKind.HIDDEN_SSID, RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE -> RadioKind.WIFI
+        RuleKind.MIBEACON_PRODUCT_ID -> RadioKind.BLE
         RuleKind.RADIO_KIND -> rule.radio
         RuleKind.SERVICE_UUID, RuleKind.SERVICE_DATA, RuleKind.MANUFACTURER_ID, RuleKind.MANUFACTURER_DATA ->
             rule.radio ?: RadioKind.BLE
@@ -259,6 +263,7 @@ class SignatureEngine {
         }
         RuleKind.RADIO_KIND -> FastRule.Radio(rule.radio)
         RuleKind.HIDDEN_SSID -> FastRule.Hidden
+        RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID -> FastRule.Identity(rule)
         RuleKind.OUI, RuleKind.MAC_PREFIX, RuleKind.VENDOR_IE_OUI -> null
     }
 
@@ -389,6 +394,7 @@ class SignatureEngine {
                 device.hiddenSsid
             RuleKind.VENDOR_IE_OUI ->
                 wifiVendorIeHitsOui(device, rule.text)
+            RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID -> passiveIdentityHits(device, rule)
         }
     }
 
@@ -592,6 +598,10 @@ class SignatureEngine {
                 kind == null || device.kind == kind
         }
 
+        class Identity(val rule: MatchRule) : FastRule() {
+            override fun hits(device: Sighting): Boolean = radioOk(device, rule.radio) && passiveIdentityHits(device, rule)
+        }
+
         object Hidden : FastRule() {
             override fun hits(device: Sighting): Boolean = device.hiddenSsid
         }
@@ -657,4 +667,15 @@ private fun hexOnly(raw: String): String {
             if (ch.isLetterOrDigit()) append(ch.uppercaseChar())
         }
     }
+}
+
+/** Identity rules require parsed protocol records, never a hex substring in raw advertisements. */
+private fun passiveIdentityHits(device: Sighting, rule: MatchRule): Boolean = when (rule.kind) {
+    RuleKind.WPS_MANUFACTURER -> device.kind == RadioKind.WIFI && rule.text.isNotBlank() &&
+        WifiWpsDecoder.identities(device.facts.vendorIes).any { TextMatch.contains(it.manufacturer!!, rule.text) }
+    RuleKind.WPS_DEVICE_TYPE -> device.kind == RadioKind.WIFI && rule.text.isNotBlank() &&
+        WifiWpsDecoder.identities(device.facts.vendorIes).any { it.primaryDeviceType.equals(rule.text, true) }
+    RuleKind.MIBEACON_PRODUCT_ID -> device.kind == RadioKind.BLE &&
+        rule.text.removePrefix("0x").toIntOrNull(16)?.let { pid -> MiBeaconDecoder.identities(device).any { it.productId == pid } } == true
+    else -> false
 }

@@ -423,6 +423,12 @@ fun DeviceDetailScreen(
                 }
             }
 
+            app.fieldwatch.domain.AdvPayloadDecoder.decodeDevice(device, UiText::explanation).forEach { field ->
+                Meta(field.label, field.value)
+            }
+            if (device.fleetIds.isEmpty()) Meta(UiText.text(R.string.ui_matched_signatures),
+                UiText.explanation("No catalog signature matched; parsed identity fields may still be available."))
+
             if (device.serviceUuids.isNotEmpty() || facts.serviceData.isNotEmpty()) {
                 StickyHeight(device.key to "services") {
                     if (device.serviceUuids.isNotEmpty()) {
@@ -436,8 +442,7 @@ fun DeviceDetailScreen(
                         )
                     }
                     facts.serviceData.forEach { sd ->
-                        val decoded = app.fieldwatch.domain.AdvPayloadDecoder.decodeService(sd, device, UiText::explanation)
-                        decoded.forEach { field -> Meta(field.label, field.value) }
+
                         Meta(
                             serviceDataHeading(sd),
                             sd.dataHex.hexSpaced().ifBlank { UiText.text(R.string.placeholder_empty) },
@@ -521,8 +526,7 @@ fun DeviceDetailScreen(
                             if (knownCompany != null) UiText.text(R.string.ui_value_nthis_id_is_assigned_by_the_bluetooth_sig_and_is_carried_in, company)
                             else "$company\n" + UiText.explanation("Company identifier carried in manufacturer-specific data; the current list cannot confirm the assigning organization."),
                         )
-                        val decoded = app.fieldwatch.domain.AdvPayloadDecoder.decodeManufacturer(rec, UiText::explanation)
-                        decoded.forEach { field -> Meta(field.label, field.value) }
+
                         if (rec.dataHex.isNotBlank()) {
                             Meta(UiText.text(R.string.ui_raw_payload_value_bytes, (rec.dataHex.length / 2).toString()), rec.dataHex.hexSpaced(), mono = true)
                         }
@@ -552,9 +556,7 @@ fun DeviceDetailScreen(
                                 }
                             },
                         )
-                        app.fieldwatch.domain.WifiWpsDecoder.decode(ie, UiText::explanation)?.fields?.forEach { field ->
-                            Meta(field.label, field.value)
-                        }
+
                     }
                 }
             }

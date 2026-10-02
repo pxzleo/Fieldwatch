@@ -107,6 +107,16 @@ Fieldwatch source is licensed under the [MIT License](LICENSE). AndroidX, Kotlin
 | 米家温湿度计、S400 体脂秤、开关、灯具、Cariot 支架 | 温湿度计及体脂秤按[官方型号资料](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3/specs/)及[S400 规格](https://www.mi.com/tw/product/xiaomi-body-composition-scale-s400/specs/)识别；开关、灯具、手机支架采用[官方 MIoT 产品实例](https://miot-spec.org/miot-spec-v2/instances?status=all)中的具体型号与类型，不扩展到整个厂商命名空间。 |
 | 中兴、斐讯、360 Wi-Fi，海尔无线模块 | IEEE 登记组织对应品牌无线接口；[360 官方说明书](https://ipc-pr-cdn.jia.360.cn/ipc-pr/LYQV6G.pdf)确认 360WiFi-* 默认名称。地址规则不确认具体设备型号。 |
 
-新增名称、备注与设备说明均同步英语及简体中文。升级追加新系列与地址规则，保留自建条目、已有名称、备注、关闭状态及禁用规则；用户改为“全部规则同时满足”的 H3C／小米条目不追加互斥地址规则。历史观测保留记录时的分类，实时识别和日志重放使用当前规则。
+新增名称、备注与设备说明均同步英语及简体中文。升级追加新系列与地址规则，保留自建条目、已有名称、备注、关闭状态及禁用规则；用户改为“全部规则同时满足”的 H3C／小米条目不追加互斥地址规则。历史观测原始记录保留记录时的分类；从特征库 92 起，界面和生成报告使用当前规则重新识别。
 
 YD…、LEX…、TG、eg_ac_hanging、通用串口模块和匿名广播仍缺少可靠产品对应证据；论坛中的猜测未作为确定品牌规则写入。匿名设备及随机地址数量不等于独立物理设备数量。原始手机日志只保存在被忽略的本地验证目录，不随代码提交。
+
+### 特征库 92：身份信息参与分类，详情与报告统一解析
+
+- 完整 WPS 广播中的厂家和设备类型可以参与特征匹配，覆盖烽火及已核验的华为、小米等厂家名称。截断或格式错误的数据不作为身份依据；Realtek、Ralink 等平台名称不推断零售品牌。重复厂家名称的型号不再拼成重复身份。
+- MiBeacon 的有效产品 ID 同时用于型号说明与分类，覆盖温湿度计、S400 体脂秤、水浸传感器和已知门锁。只使用已核验的产品映射；加密广播可以读取公开头部，但不会生成加密测量值。
+- 设备详情、文本报告和 PDF 报告使用同一解析入口，补齐 WPS 型号编号、设备名、广播序列号、主设备类型和配置状态，以及可解析的米家明文对象。未提供广播数据、加密数据和暂不支持的解析分别说明。
+- “未匹配”明确表示尚未命中特征规则，并不表示没有厂家或型号信息。规则编辑、导入导出及英语／简体中文说明同步支持新增规则。
+- 历史观测的设备列表、路径、对比及生成报告按当前特征规则重新识别；不改写保存的原始记录。JSON 行日志重放恢复完整无线事实及多条广播记录，使旧日志也能使用新增身份规则。
+- 升级保留自建特征、名称、备注和已有规则开关。被改为“全部规则同时满足”的内置条目不自动追加互斥身份条件。
+- 解析依据：[MiBeacon 官方头部与对象定义](https://github.com/MiEcosystem/mijia_ble_common/blob/master/mible_beacon.h)、[xiaomi-ble 型号与明文对象实现](https://github.com/Bluetooth-Devices/xiaomi-ble/blob/main/src/xiaomi_ble/parser.py)、[ESPHome 小米广播解析实现](https://github.com/esphome/esphome/blob/dev/esphome/components/xiaomi_ble/xiaomi_ble.cpp)。WPS 厂家文字为设备自行广播的信息，不能验证设备真伪；通用型号和占位编号不作为精确零售型号结论。
