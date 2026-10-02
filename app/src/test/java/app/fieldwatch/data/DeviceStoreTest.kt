@@ -24,6 +24,22 @@ import org.json.JSONObject
 class DeviceStoreTest {
     private val fleets = DefaultCatalog.fleets()
 
+    @Test fun catalogRefreshReclassifiesStoppedScanWithoutNewObservations() {
+        val store = DeviceStore()
+        store.ingest(ble("00:11:22:33:44:55", "Performance test device"), emptyList(), 30)
+        store.refresh(emptyList(), 30)
+        assertTrue(store.devices.value.single().fleetIds.isEmpty())
+        val fleet = DefaultCatalog.newBlankFleet().copy(
+            rules = listOf(app.fieldwatch.domain.MatchRule(
+                app.fieldwatch.domain.RuleKind.NAME_CONTAINS, text = "Performance test")),
+        )
+        store.refresh(listOf(fleet), 30)
+        assertEquals(setOf(fleet.id), store.devices.value.single().fleetIds)
+        store.refresh(listOf(fleet.copy(rules = fleet.rules.map { it.copy(text = "Different device") })), 30)
+        assertTrue(store.devices.value.single().fleetIds.isEmpty())
+        assertEquals(1, store.devices.value.single().hitCount)
+    }
+
     @Test fun rangingBadgeNeedsRasEvidenceOrAnActualValidReading() {
         val store = DeviceStore()
         val observation = ble("00:11:22:33:44:55", "UWB CS device", facts = RadioFacts(connectable = true))

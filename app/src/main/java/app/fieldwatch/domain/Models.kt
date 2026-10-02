@@ -816,8 +816,15 @@ data class Sighting(
 
     fun averageRssi(windowMs: Long, now: Long = System.currentTimeMillis(), floor: Int = -100): Double {
         val from = now - windowMs
-        val heard = rssiHistory.filter { it.at >= from && Rssi.measured(it.rssi) }
-        if (heard.isNotEmpty()) return heard.map { it.rssi }.average()
+        var sum = 0.0
+        var count = 0
+        for (sample in rssiHistory) {
+            if (sample.at >= from && Rssi.measured(sample.rssi)) {
+                sum += sample.rssi
+                count++
+            }
+        }
+        if (count > 0) return sum / count
         return (if (Rssi.measured(rssi)) rssi else floor).toDouble()
     }
 

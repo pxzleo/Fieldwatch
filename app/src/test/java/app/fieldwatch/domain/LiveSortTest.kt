@@ -16,6 +16,50 @@ class LiveSortTest {
     )
 
     @Test
+    fun averageKeepsWindowBoundaryAndMissingFallback() {
+        val device = radio("a", rssi = 127).copy(rssiHistory = listOf(
+            RssiSample(69_999L, -20), RssiSample(70_000L, -90),
+            RssiSample(90_000L, 127), RssiSample(99_000L, -50),
+        ))
+        assertEquals(-70.0, device.averageRssi(30_000L, 100_000L), 0.0)
+        assertEquals(-100.0, device.averageRssi(30_000L, 200_000L), 0.0)
+        assertEquals(-60.0, device.copy(rssi = -60).averageRssi(30_000L, 200_000L), 0.0)
+    }
+
+    @Test
+    fun comparatorCachesSnapshotsSeparatelyAndNewWindowRecomputes() {
+        val first = radio("same").copy(rssiHistory = listOf(RssiSample(99_000L, -90)))
+        val changed = first.copy(rssiHistory = listOf(RssiSample(99_000L, -30)))
+        val middle = radio("middle", rssi = -50)
+        val settings = AppSettings(strengthSort = StrengthSort.AVERAGE)
+        val comparator = LiveSort.strength(settings, 100_000L)
+        assertEquals(listOf(changed, middle, first), listOf(first, changed, middle).sortedWith(comparator))
+        assertEquals(listOf(middle, first), listOf(first, middle).sortedWith(LiveSort.strength(settings, 200_000L)))
+    }
+
+    @Test
+    fun liveSelectionReusesMatchedRowsAndOnlyClassifiesAbsentHeldSelection() {
+        val live = radio("live").copy(fleetIds = setOf("current"))
+        val held = radio("held")
+        val devices = listOf(live)
+        var calls = 0
+        val classify: (Collection<Sighting>) -> List<Sighting> = { pool ->
+            calls++
+            assertEquals(listOf("live", "held"), pool.map { it.key })
+            assertEquals(true, pool.last().gone)
+            pool.map { if (it.key == "held") it.copy(fleetIds = setOf("cluster")) else it }
+        }
+        assertEquals(null, devices.resolveLiveSelection(null, held, classify))
+        assertEquals(live, devices.resolveLiveSelection("live", live.copy(fleetIds = emptySet()), classify))
+        assertEquals(null, devices.resolveLiveSelection("other", held, classify))
+        assertEquals(0, calls)
+        val selected = devices.resolveLiveSelection("held", held, classify)!!
+        assertEquals(setOf("cluster"), selected.fleetIds)
+        assertEquals(true, selected.gone)
+        assertEquals(1, calls)
+    }
+
+    @Test
     fun strengthDirectionsUseRealValuesAndKeepUnavailableLast() {
         val devices = listOf(radio("missing", rssi = 127), radio("weak", rssi = -90), radio("strong", rssi = -40))
         val settings = AppSettings(strengthSort = StrengthSort.INSTANT)

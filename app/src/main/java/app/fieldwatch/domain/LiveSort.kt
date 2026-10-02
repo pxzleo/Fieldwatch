@@ -58,10 +58,17 @@ object LiveSort {
     /** Missing strength sorts last in either direction, never as +127 dBm. */
     fun strength(settings: AppSettings, now: Long, weakestFirst: Boolean = false): Comparator<Sighting> {
         val windowMs = settings.averageWindowSec.coerceIn(10, 180) * 1000L
+        // A comparator belongs to one snapshot/sort. Compute each history average once.
+        val averages = java.util.IdentityHashMap<Sighting, Double?>()
         fun value(device: Sighting): Double? = when (settings.strengthSort) {
             StrengthSort.INSTANT -> device.rssi.takeIf(Rssi::measured)?.toDouble()
-            StrengthSort.AVERAGE -> if (Rssi.measured(device.rssi) || device.rssiHistory.any { it.at >= now - windowMs && Rssi.measured(it.rssi) })
-                device.averageRssi(windowMs, now) else null
+            StrengthSort.AVERAGE -> {
+                if (!averages.containsKey(device)) {
+                    averages[device] = if (Rssi.measured(device.rssi) || device.rssiHistory.any { it.at >= now - windowMs && Rssi.measured(it.rssi) })
+                        device.averageRssi(windowMs, now) else null
+                }
+                averages[device]
+            }
         }
         return Comparator<Sighting> { a, b ->
             val left = value(a)

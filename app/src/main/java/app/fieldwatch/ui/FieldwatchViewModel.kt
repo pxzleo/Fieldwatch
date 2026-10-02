@@ -62,6 +62,7 @@ import app.fieldwatch.domain.CandidateReport
 
 import app.fieldwatch.domain.SignatureClass
 import app.fieldwatch.domain.reclassify
+import app.fieldwatch.domain.resolveLiveSelection
 import app.fieldwatch.domain.SignatureEngine
 import app.fieldwatch.domain.SignatureListSort
 import app.fieldwatch.domain.SettingsExchange
@@ -349,12 +350,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
     val ui: StateFlow<FieldwatchUi> = combine(liveUi, displayPaused, selectedKey, heldSelected, app.sits.ui) { live, paused, selKey, held, sit ->
         if (!paused) {
             frozenUi = null
-            val selected = live.selected ?: held?.takeIf { selKey != null && it.key == selKey }?.let { snap ->
-                if (snap.gone) snap else snap.copy(gone = true)
-            }
-            val pool = (live.devices + listOfNotNull(selected)).distinctBy { it.key }
-            val current = reclassify(pool).associateBy { it.key }
-            live.copy(displayPaused = false, selected = selected?.let { current[it.key] }, sit = sit)
+            val selected = live.devices.resolveLiveSelection(selKey, held, ::reclassify)
+            live.copy(displayPaused = false, selected = selected, sit = sit)
         } else {
             val stored = frozenUi ?: live
             val devices = reclassify(stored.devices)
@@ -374,7 +371,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 sit = sit,
             )
         }
-    }.stateIn(
+    }.flowOn(Dispatchers.Default).stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000),
         FieldwatchUi(settings = app.config.settings),
@@ -1053,6 +1050,14 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 val next = cfg.fleets.toMutableList()
                 if (existing >= 0) next[existing] = fleet else next += fleet
                 cfg.copy(fleets = next)
+            }
+            withContext(Dispatchers.Default) {
+                app.devices.refresh(
+                    app.config.fleets,
+                    app.config.settings.staleSec,
+                    policy = app.config.settings.detectionPolicy(),
+                    decaySec = app.config.settings.decaySec,
+                )
             }
             draft.value = fleet
         }
