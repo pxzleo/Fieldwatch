@@ -22,7 +22,8 @@ object AdvPayloadDecoder {
         val mfg = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
         }
-        val decoded = device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
+        val identity = appleDeviceHint(device, translate)?.let { listOf(Field(translate("Apple device type"), it.label)) }.orEmpty()
+        val decoded = identity + device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
             mfg.flatMap { decodeManufacturer(it, translate) + MideaAdvertisementDecoder.decodeAddress(it, device.mac, translate) } + decodeMesh(device.rawHex, translate)
         if (decoded.isNotEmpty()) return decoded.distinct()
         val status = if (device.rawHex.isBlank() && mfg.none { it.dataHex.isNotBlank() } && device.facts.serviceData.none { it.dataHex.isNotBlank() })
@@ -96,6 +97,8 @@ object AdvPayloadDecoder {
 
     fun roleHints(device: Sighting, translate: (String) -> String = { it }): List<RoleHint> {
         val out = ArrayList<RoleHint>(4)
+        val appleIdentity = appleDeviceHint(device, translate)
+        appleIdentity?.takeIf { it.weight >= 9 }?.let { out += it }
         val mfg = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) } ?: emptyList()
         }
@@ -134,9 +137,9 @@ object AdvPayloadDecoder {
                             out += RoleHint("beacon", "an iBeacon", translate("Apple iBeacon payload."), 7)
                         }
                     }
-                    0x05 -> out += RoleHint("phone", translate("an iPhone or iPad offering AirDrop"), translate("Apple AirDrop advertisement."), 5)
+                    0x05 -> out += RoleHint("phone", translate("Apple device (type unconfirmed)"), translate("Apple AirDrop advertisement."), 5)
                     0x07 -> {
-                        val model = airPodsModel(tlv.data)
+                        val model = appleIdentity?.takeIf { it.weight >= 9 && it.bucket == "audio-personal" }?.label
                         out += RoleHint(
                             "audio-personal",
                             model ?: translate("AirPods or Beats headphones"),
@@ -145,13 +148,13 @@ object AdvPayloadDecoder {
                             8,
                         )
                     }
-                    0x08 -> out += RoleHint("siri", translate("an Apple device that just heard “Hey Siri”"), translate("Hey Siri advertisement."), 6)
+                    0x08 -> out += RoleHint("siri", translate("Apple device (type unconfirmed)"), translate("Hey Siri advertisement."), 6)
                     0x09 -> if (validAirPlayTarget(tlv.data)) out += RoleHint("audio-speaker", translate("an AirPlay target"), translate("AirPlay target advertisement; product model is unconfirmed."), 5)
                     0x0B -> out += RoleHint("phone", translate("an Apple device doing Handoff"), translate("Handoff advertisement."), 4)
                     0x0C -> out += RoleHint("phone", translate("an Apple device looking for Instant Hotspot"), translate("Tethering-target advertisement."), 5)
                     0x0D, 0x0E -> out += RoleHint("hotspot", translate("an iPhone/iPad offering Instant Hotspot"), translate("Tethering-source advertisement."), 6)
                     0x0F -> out += RoleHint("phone", translate("an Apple device (Nearby Action)"), nearbyActionReason(tlv.data, translate), 4)
-                    0x10 -> out += RoleHint("phone", translate("an iPhone / iPad / Mac (Nearby Info)"), nearbyInfoReason(tlv.data, translate), 5)
+                    0x10 -> out += RoleHint("phone", translate("Apple device (type unconfirmed)"), nearbyInfoReason(tlv.data, translate), 5)
                     0x12 -> out += RoleHint(
                         "tag",
                         translate("a Find My network radio"),
@@ -204,9 +207,58 @@ object AdvPayloadDecoder {
 
     private data class Tlv(val type: Int, val data: ByteArray)
 
+    /** Product/type evidence only; activity or connected-accessory flags are not model IDs. */
+    fun appleDeviceHint(device: Sighting, translate: (String) -> String = { it }): RoleHint? {
+        if (device.kind != RadioKind.BLE) return null
+        val records = device.facts.mfgRecords.ifEmpty {
+            device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) } ?: emptyList()
+        }
+        return records.filter { it.companyId == 0x004C }.flatMap { record ->
+            val bytes = hexToBytes(record.dataHex) ?: return@flatMap emptyList()
+            val tlvs = appleTlvs(bytes)
+            if (tlvs.sumOf { it.data.size + 2 } != bytes.size) return@flatMap emptyList()
+            tlvs.mapNotNull { appleDeviceHint(it, translate) }
+        }.maxByOrNull { it.weight }
+    }
+
+    private fun appleDeviceHint(tlv: Tlv, translate: (String) -> String): RoleHint? {
+        val data = tlv.data
+        val model = if (tlv.type == 0x07 && data.size == 25 && data[0] == 1.toByte()) airPodsModel(data) else null
+        if (model != null) return RoleHint("audio-personal", translate(model),
+            translate("Apple Proximity Pairing: %1\$s.").format(translate(model)), 9)
+        if (tlv.type == 0x08 && data.size == 7) {
+            siriDeviceClass(data)?.let { label ->
+                val bucket = when (label) { "Apple Watch" -> "watch"; "Mac" -> "computer"; "HomePod" -> "audio-speaker"; else -> "phone" }
+                return RoleHint(bucket, label, translate("Hey Siri device class identifies %1\$s; the exact model is unconfirmed.").format(label), 9)
+            }
+        }
+        if (tlv.type == 0x10 && data.size >= 5 && data[0].toInt() and 0x0F == 0x0A) {
+            return RoleHint("watch", "Apple Watch", translate("Nearby Info reports a watch worn and unlocked; the exact model is unconfirmed."), 9)
+        }
+        return when (tlv.type) {
+            0x07 -> RoleHint("audio-personal", translate("Apple audio (model unconfirmed)"), translate("Apple Proximity Pairing (AirPods / Beats)."), 4)
+            0x12 -> RoleHint("tag", translate("Find My device (type unconfirmed)"), translate("Apple Offline Finding — AirTag, Find My accessory, or an Apple device locating itself."), 4)
+            0x09 -> if (validAirPlayTarget(data)) RoleHint("audio-speaker", translate("AirPlay receiver (type unconfirmed)"), translate("AirPlay target advertisement; product model is unconfirmed."), 4) else null
+            0x16 -> if (data.size == 8) RoleHint("other", translate("AWDL device (type unconfirmed)"), translate("Apple device type cannot be determined from this Continuity frame."), 4) else null
+            0x05, 0x08, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10 -> RoleHint("phone", translate("Apple device (type unconfirmed)"), translate("Apple device type cannot be determined from this Continuity frame."), 4)
+            else -> null // iBeacon/HomeKit use Apple's format without proving Apple hardware.
+        }
+    }
+
+    private fun siriDeviceClass(data: ByteArray): String? = if (data.size != 7) null else when (u16be(data, 4)) {
+        0x0002 -> "iPhone"
+        0x0003 -> "iPad"
+        0x0007 -> "HomePod"
+        0x0009 -> "Mac"
+        0x000A -> "Apple Watch"
+        else -> null
+    }
+
     private fun decodeApple(bytes: ByteArray, translate: (String) -> String): List<Field> {
         val tlvs = appleTlvs(bytes)
-        if (tlvs.isEmpty()) return listOf(Field(translate("Apple payload"), translate("%1\$s bytes (unparsed)").format(bytes.size)))
+        if (tlvs.isEmpty() || tlvs.sumOf { it.data.size + 2 } != bytes.size) {
+            return listOf(Field(translate("Apple payload"), translate("%1\$s bytes (unparsed)").format(bytes.size)))
+        }
         val out = ArrayList<Field>(8)
         for (tlv in tlvs) {
             out += Field(translate("Apple Continuity type"), "0x%02X · %s".format(tlv.type, appleTypeName(tlv.type, translate)))
@@ -338,16 +390,15 @@ object AdvPayloadDecoder {
 
     private fun decodeAirPods(data: ByteArray, translate: (String) -> String): List<Field> {
         // prefix 0x01, model u16be, status, batt nibble, charge+case, lid, color, 0x00, enc 16
-        if (data.size < 5) return listOf(Field("AirPods", translate("Proximity Pairing, truncated.")))
-        val start = if (data[0] == 0x01.toByte()) 1 else 0
-        if (data.size < start + 4) return listOf(Field("AirPods", translate("Proximity Pairing.")))
+        if (data.size != 25 || data[0] != 0x01.toByte()) return listOf(Field(translate("Apple audio (model unconfirmed)"), translate("Payload parser unsupported")))
+        val start = 1
         val model = ((data[start].toInt() and 0xFF) shl 8) or (data[start + 1].toInt() and 0xFF)
         val status = data[start + 2].toInt() and 0xFF
         val batt = data[start + 3].toInt() and 0xFF
         val left = batt and 0x0F
         val right = (batt shr 4) and 0x0F
         val out = ArrayList<Field>(6)
-        out += Field(translate("Product"), airPodsModelName(model) ?: translate("Apple audio 0x%04X").format(model))
+        out += Field(translate("Product"), airPodsModelName(model)?.let(translate) ?: translate("Apple audio 0x%04X").format(model))
         out += Field(translate("Pod position"), airPodsStatus(status, translate))
         out += Field(translate("Battery (left / right)"), "${nibblePct(left, translate)} / ${nibblePct(right, translate)}")
         if (data.size > start + 4) {
@@ -380,21 +431,21 @@ object AdvPayloadDecoder {
         0x0F20 -> "AirPods (2nd generation)"
         0x1320 -> "AirPods (3rd generation)"
         0x1920 -> "AirPods (4th generation)"
-        0x1C20 -> "AirPods 4"
         0x0E20 -> "AirPods Pro"
         0x1420 -> "AirPods Pro (2nd generation)"
         0x2420 -> "AirPods Pro 2 (USB-C)"
-        0x1F20 -> "AirPods Max"
-        0x0A20 -> "Beats Solo3"
-        0x0B20 -> "Powerbeats 3"
-        0x0C20 -> "Beats Studio Buds"
-        0x0D20 -> "Beats Fit Pro"
-        0x1020 -> "Powerbeats Pro"
-        0x1120 -> "Beats Studio Buds +"
-        0x1220 -> "Beats Solo Pro"
-        0x1720 -> "Beats Flex"
-        0x1A20 -> "Beats Studio Pro"
-        0x1B20 -> "Beats Fit Pro"
+        0x1F20 -> "AirPods Max (USB-C)"
+        0x0A20 -> "AirPods Max (Lightning)"
+        0x0320 -> "Powerbeats 3"
+        0x0620 -> "Beats Solo3"
+        0x0B20 -> "Powerbeats Pro"
+        0x0C20 -> "Beats Solo Pro"
+        0x0D20 -> "Powerbeats 4"
+        0x1020 -> "Beats Flex"
+        0x1120 -> "Beats Studio Buds"
+        0x1220 -> "Beats Fit Pro"
+        0x1720 -> "Beats Studio Pro"
+        0x1B20 -> "AirPods 4 (ANC)"
         0x0520 -> "BeatsX"
         0x0920 -> "Beats Studio³ Wireless"
         0x1620 -> "Beats Studio Buds +"
@@ -402,7 +453,6 @@ object AdvPayloadDecoder {
         0x2620 -> "Beats Solo Buds"
         0x2D20 -> "AirPods Max 2"
         0x3820 -> "Beats 360"
-        0x038F -> "Beats Studio Buds"
         else -> null
     }
 
@@ -446,16 +496,9 @@ object AdvPayloadDecoder {
     }
 
     private fun decodeHeySiri(data: ByteArray, translate: (String) -> String): List<Field> {
-        if (data.size < 6) return listOf(Field("Hey Siri", translate("Siri was just triggered on a nearby Apple device.")))
+        if (data.size != 7) return listOf(Field("Hey Siri", translate("Siri was just triggered on a nearby Apple device.")))
         val klass = u16be(data, 4)
-        val device = when (klass) {
-            0x0002 -> "iPhone"
-            0x0003 -> "iPad"
-            0x0007 -> "HomePod"
-            0x0009 -> "Mac"
-            0x000A -> "Watch"
-            else -> translate("class 0x%04X").format(klass)
-        }
+        val device = siriDeviceClass(data) ?: translate("class 0x%04X").format(klass)
         return listOf(
             Field("Hey Siri", translate("A %1\$s just heard a Siri trigger. The packet carries a short voice hash, not the words.").format(device)),
         )

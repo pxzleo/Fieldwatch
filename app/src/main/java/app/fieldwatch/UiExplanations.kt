@@ -3,6 +3,21 @@ package app.fieldwatch
 /** Resolves fixed authored explanation tokens; radio and user values pass through. */
 internal object UiExplanations {
     fun text(source: String): String = when (source) {
+        "Apple device type" -> UiText.text(R.string.apple_device_type)
+        "Apple device (type unconfirmed)" -> UiText.text(R.string.apple_type_unknown)
+        "Apple audio (model unconfirmed)" -> UiText.text(R.string.apple_audio_unknown)
+        "Find My device (type unconfirmed)" -> UiText.text(R.string.apple_findmy_unknown)
+        "AirPlay receiver (type unconfirmed)" -> UiText.text(R.string.apple_airplay_unknown)
+        "AWDL device (type unconfirmed)" -> UiText.text(R.string.apple_awdl_unknown)
+        "Hey Siri device class identifies %1\$s; the exact model is unconfirmed." -> UiText.text(R.string.apple_siri_class)
+        "Nearby Info reports a watch worn and unlocked; the exact model is unconfirmed." -> UiText.text(R.string.apple_watch_activity)
+        "Apple device type cannot be determined from this Continuity frame." -> UiText.text(R.string.apple_continuity_unknown)
+        "AirPods (1st generation)" -> UiText.text(R.string.apple_airpods_gen1)
+        "AirPods (2nd generation)" -> UiText.text(R.string.apple_airpods_gen2)
+        "AirPods (3rd generation)" -> UiText.text(R.string.apple_airpods_gen3)
+        "AirPods (4th generation)" -> UiText.text(R.string.apple_airpods_gen4)
+        "AirPods Pro (2nd generation)" -> UiText.text(R.string.apple_airpods_pro2)
+        "AirPods 4 (ANC)" -> UiText.text(R.string.apple_airpods_anc)
         "Wi-Fi access point" -> UiText.text(R.string.ui_wi_fi_access_point)
         "Bluetooth LE advertiser" -> UiText.text(R.string.explain_bluetooth_le_advertiser)
         "It is on the air, but it did not advertise a product class " -> UiText.text(R.string.explain_it_is_on_the_air_but_it_did_not_advertise_a_product_class)

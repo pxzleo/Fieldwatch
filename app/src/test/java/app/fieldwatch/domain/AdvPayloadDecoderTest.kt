@@ -5,6 +5,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AdvPayloadDecoderTest {
+    private fun audioFrame(code: String): String = "071901${code}519811000000" + "00".repeat(16)
     private fun bleSighting(mfgHex: String): Sighting = Sighting(
         key = "BLE:AA:BB:CC:DD:EE:99",
         kind = RadioKind.BLE,
@@ -47,7 +48,7 @@ class AdvPayloadDecoderTest {
     @Test
     fun appleProximityPairingNamesAirPods() {
         // TLV 07, prefix 01, model 0F20 (AirPods 2nd gen), status 51, batt 98, case byte 11.
-        val mfg = "07" + "07" + "010F2051" + "98" + "11" + "00"
+        val mfg = audioFrame("0F20")
         val fields = AdvPayloadDecoder.decodeManufacturer(MfgRecord(0x004C, mfg))
         val byLabel = fields.associate { it.label to it.value }
         assertEquals("AirPods (2nd generation)", byLabel["Product"])
@@ -61,6 +62,75 @@ class AdvPayloadDecoderTest {
         val mfg = "12" + "0A" + "00".repeat(10)
         val fields = AdvPayloadDecoder.decodeManufacturer(MfgRecord(0x004C, mfg))
         assertTrue(fields.any { it.label == "Find My / Offline Finding" })
+    }
+
+    @Test
+    fun appleSiriClassesOverrideGenericSignatureAndReachReports() {
+        for ((code, label) in listOf("0002" to "iPhone", "0003" to "iPad", "0007" to "HomePod", "0009" to "Mac", "000A" to "Apple Watch")) {
+            val device = bleSighting("080700004300${code}CA")
+            assertEquals(label, AdvPayloadDecoder.appleDeviceHint(device)?.label)
+            assertEquals(label, DeviceExplain.listLabel(device, listOf("Apple Device")))
+            assertTrue(DeviceDetailText.build(device, listOf("Apple Device")).contains("Apple device type: $label"))
+        }
+    }
+
+    @Test
+    fun watchActivityDoesNotConfuseConnectedWatchFlagsWithSenderType() {
+        val watch = bleSighting("10051A1C010203")
+        assertEquals("Apple Watch", AdvPayloadDecoder.appleDeviceHint(watch)?.label)
+        assertEquals("Apple Watch", DeviceExplain.listLabel(watch, listOf("Apple Device")))
+        val phoneWithWatch = bleSighting("100517FC010203")
+        assertEquals("Apple device (type unconfirmed)", AdvPayloadDecoder.appleDeviceHint(phoneWithWatch)?.label)
+    }
+
+    @Test
+    fun appleAudioMappingsAndSecondaryManufacturerRecordsAreShared() {
+        for ((code, model) in listOf("0A20" to "AirPods Max (Lightning)", "1F20" to "AirPods Max (USB-C)",
+            "0620" to "Beats Solo3", "0320" to "Powerbeats 3", "0B20" to "Powerbeats Pro",
+            "0C20" to "Beats Solo Pro", "0D20" to "Powerbeats 4", "1020" to "Beats Flex",
+            "1120" to "Beats Studio Buds", "1220" to "Beats Fit Pro", "1720" to "Beats Studio Pro",
+            "1B20" to "AirPods 4 (ANC)")) {
+            val device = bleSighting(audioFrame(code)).copy(manufacturerId = 0x9999, manufacturerDataHex = "00")
+            assertEquals(model, AdvPayloadDecoder.appleDeviceHint(device)?.label)
+            assertEquals(model, DeviceExplain.listLabel(device, listOf("Apple audio")))
+            assertEquals(model, AdvPayloadDecoder.decodeDevice(device).first { it.label == "Product" }.value)
+        }
+    }
+
+    @Test
+    fun unknownAndTruncatedFramesDoNotClaimAnExactAppleDevice() {
+        for (hex in listOf("0806000043000002", "080700004300FFFFCA", "10011A", "0707FF0A2051981100", "0707010A2051981100", audioFrame("FFFF"))) {
+            assertTrue(AdvPayloadDecoder.appleDeviceHint(bleSighting(hex))!!.weight < 9)
+            assertTrue(AdvPayloadDecoder.roleHints(bleSighting(hex)).none { it.weight >= 9 })
+        }
+        val truncatedTail = bleSighting("0807000043000002CA10051A")
+        assertEquals(null, AdvPayloadDecoder.appleDeviceHint(truncatedTail))
+        assertTrue(AdvPayloadDecoder.roleHints(truncatedTail).none { it.weight >= 9 })
+        assertTrue(AdvPayloadDecoder.decodeDevice(truncatedTail).none { it.value.contains("iPhone") })
+        val audioTail = bleSighting(audioFrame("0A20") + "10051A")
+        assertTrue(AdvPayloadDecoder.decodeDevice(audioTail).none { it.label == "Product" })
+        assertTrue(!DeviceDetailText.build(audioTail, listOf("Apple audio")).contains("AirPods Max"))
+    }
+
+    @Test
+    fun findMyAndIBeaconDoNotProveAirTagOrAppleHardware() {
+        val findMy = bleSighting("12020000")
+        assertEquals("Find My device (type unconfirmed)", AdvPayloadDecoder.appleDeviceHint(findMy)?.label)
+        assertTrue(!DeviceExplain.guess(findMy, listOf("Apple AirTags")).headline.contains("AirTag"))
+        val beacon = bleSighting("0215" + "00".repeat(21))
+        assertEquals(null, AdvPayloadDecoder.appleDeviceHint(beacon))
+    }
+
+    @Test
+    fun appleTypeAndModelUseCallerTranslationInDetailsAndReports() {
+        val device = bleSighting(audioFrame("0F20"))
+        val translate: (String) -> String = { when (it) {
+            "Apple device type" -> "苹果设备类型"
+            "AirPods (2nd generation)" -> "AirPods（第 2 代）"
+            else -> it
+        } }
+        assertEquals("AirPods（第 2 代）", AdvPayloadDecoder.appleDeviceHint(device, translate)?.label)
+        assertTrue(DeviceDetailText.build(device, listOf("Apple audio"), translate = translate).contains("苹果设备类型: AirPods（第 2 代）"))
     }
 
     @Test

@@ -1178,6 +1178,7 @@ fun DeviceRow(
                         RadioKindSubtitle(device.kind, sub)
                     }
                     app.fieldwatch.ui.component.RangingBadge(device)
+                    app.fieldwatch.ui.component.AppleDeviceLabel(device)
                 }
                 Column(
                     horizontalAlignment = Alignment.End,
@@ -1482,6 +1483,7 @@ private fun TimelineView(
                         val sub = listSubtitle(device, subtitleLine, names, demoMode, watch)
                         RadioKindSubtitle(device.kind, sub)
                     }
+                    app.fieldwatch.ui.component.AppleDeviceLabel(device)
                     if (showSeenTimes) {
                         Text(
                             seenTimesLabel(device, now),

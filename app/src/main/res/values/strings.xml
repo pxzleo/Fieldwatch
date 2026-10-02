@@ -1416,4 +1416,19 @@
     <string name="catalog_v91_qian_note">QJLF30 name together with public IEEE prefix 24:F1:50 identifies a Guangzhou Qi\'an radio associated with Qingju. Lock versus parking infrastructure is unverified; no vehicle or rider identity is inferred. FEE7 or company 0201 alone is not this fingerprint.</string>
     <string name="discovery_v91_qian">a Qi\'an / Qingju radio of unknown device type</string>
     <string name="discovery_v91_qian_reason">The advertised name and public registered prefix identify the operator family; lock versus parking infrastructure is unverified.</string>
+    <string name="apple_device_type" formatted="false">"Apple device type"</string>
+    <string name="apple_type_unknown" formatted="false">"Apple device (type unconfirmed)"</string>
+    <string name="apple_audio_unknown" formatted="false">"Apple audio (model unconfirmed)"</string>
+    <string name="apple_findmy_unknown" formatted="false">"Find My device (type unconfirmed)"</string>
+    <string name="apple_airplay_unknown" formatted="false">"AirPlay receiver (type unconfirmed)"</string>
+    <string name="apple_awdl_unknown" formatted="false">"AWDL device (type unconfirmed)"</string>
+    <string name="apple_siri_class">"Hey Siri device class identifies %1$s; the exact model is unconfirmed."</string>
+    <string name="apple_watch_activity" formatted="false">"Nearby Info reports a watch worn and unlocked; the exact model is unconfirmed."</string>
+    <string name="apple_continuity_unknown" formatted="false">"Apple device type cannot be determined from this Continuity frame."</string>
+    <string name="apple_airpods_gen1" formatted="false">"AirPods (1st generation)"</string>
+    <string name="apple_airpods_gen2" formatted="false">"AirPods (2nd generation)"</string>
+    <string name="apple_airpods_gen3" formatted="false">"AirPods (3rd generation)"</string>
+    <string name="apple_airpods_gen4" formatted="false">"AirPods (4th generation)"</string>
+    <string name="apple_airpods_pro2" formatted="false">"AirPods Pro (2nd generation)"</string>
+    <string name="apple_airpods_anc" formatted="false">"AirPods 4 (ANC)"</string>
 </resources>

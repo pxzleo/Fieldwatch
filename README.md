@@ -252,3 +252,16 @@ Mesh 解码与规则匹配共用校验入口，设备详情、文本和 PDF 报�
 - 无需逐个主动连接设备，广播线索在原有被动扫描中自动显示；连接发现和有效读数从现有寻踪会话同步回设备记录，严格保留目标／开始时间隔离。记录淘汰、清空或应用重启后不保留主动验证证据，不新增磁盘存储、配对或扫描任务。
 
 验证：519 项单元测试全部通过、APK 构建成功，独立代码审查通过；测试覆盖 RAS 短／完整／服务数据 UUID、自定义 UUID 误匹配、普通可连接设备、低质量／过期／负值读数、后续广播保留标识、CS 与 UWB 验证及错误目标／旧会话拒绝。三星真机覆盖安装 1.1.20，安装包与本地 SHA256 一致，实时列表及类别展开正常，检查到的普通设备未显示测距标识。当前真机没有可用测距阳性目标，绿色标识的真实阳性设备与测距速度仍未验收。
+
+### 苹果设备细分类（1.1.21）
+
+需求：在实时列表、类别展开及设备详情／导出报告中区分有依据的苹果设备类别和耳机型号，英语与简体中文同步。共用现有广播解码，不新增连接、配对或扫描。
+
+- Proximity Pairing 的标准 0x01 前缀、完整 25 字节载荷和产品代码识别 AirPods／Beats 型号；纠正 AirPods Max Lightning／USB-C、Beats Solo／Powerbeats／Flex／Studio／Fit 等旧映射。未知代码保留编号并显示型号未定，未核实的旧代码移除具体型号映射。型号信息优先于泛化的“Apple Device / Apple audio”匹配，用户命名继续保留。
+- 完整的 Hey Siri 七字节帧按设备类别区分 iPhone、iPad、Mac、HomePod、Apple Watch；不据此推断某代手机、电脑或手表。Nearby Info 的活动码 0x0A 识别已佩戴且解锁的 Apple Watch，其他手表连接／自动解锁标志不作为发射设备是手表的证据。
+- 通用 Continuity 显示“苹果设备（类型未定）”。Find My 广播不直接称作 AirTag；AirPlay 接收端不直接称作 HomePod／Apple TV。iBeacon／HomeKit 格式和苹果公司编号不能独立证明是苹果硬件。地址不跨记录合并，也不把地址数量当作物理设备数量。
+- 列表增加独立类型行，使用自定义名称或仅显示广播名时仍可看到细分类；详情与报告使用同一结果及原有电量／佩戴／活动字段。只处理完整制造商记录的明确类别证据；截断 Siri、短 Nearby Info、未知类别与异常配对前缀不会生成具体类型。
+
+依据：[Continuity 原始协议研究与设备类别解码](https://github.com/furiousMAC/continuity)、[CAPod 产品代码实现](https://github.com/d4rken-org/capod/tree/main/app/src/main/java/eu/darken/capod/pods/core/apple/ble/devices)、[Theengs AirPods 解码](https://github.com/theengs/decoder/blob/development/src/devices/APPLEAIRPODS_json.h)。广播字段是设备自报信息，仿冒设备可能使用相同产品代码；不代表硬件真伪认证。
+
+验证：525 项单元测试与 APK 构建通过，独立审查发现的列表型号括号丢失、截断链报告误解码及短配对包冒认型号已修复。覆盖五类 Siri 设备、手表佩戴码与连接标志区分、纠正的十二项型号映射、次要制造商记录、未知代码与类型、损坏／短包、中英文报告。监测文本／PDF 共用解码路径，保存观测可复算。真机无线调试连接在本轮断开，尚未覆盖安装或完成真实界面验收；原始样本与构建日志留在忽略的验证目录。

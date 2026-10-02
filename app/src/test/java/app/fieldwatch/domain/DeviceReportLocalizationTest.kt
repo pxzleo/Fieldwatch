@@ -62,7 +62,7 @@ class DeviceReportLocalizationTest {
             translate = translate, displaySignatureNames = displayNames)
         assertTrue(raw.contains("Matched signatures: Apple Device"))
         assertTrue(localized.contains("Matched signatures: Apple 设备"))
-        assertTrue(localized.contains("Most likely an iPhone, iPad, or Mac"))
+        assertTrue(localized.contains("Most likely Apple device (type unconfirmed)"))
         assertTrue(localized.contains("Matched signature Apple Device."))
         val prompt = DeviceDetailPrompt.build(device, names, AppSettings(), now = 2L,
             translate = translate, displaySignatureNames = displayNames)

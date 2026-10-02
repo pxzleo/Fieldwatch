@@ -73,6 +73,7 @@ object DeviceExplain {
      * know it is an unnamed advertiser — caller may fall back to vendor.
      */
     fun listLabel(device: Sighting, signatureNames: List<String> = emptyList(), translate: (String) -> String = { it }): String? {
+        AdvPayloadDecoder.appleDeviceHint(device, translate)?.takeIf { it.weight >= 9 }?.let { return it.label }
         if (device.kind == RadioKind.WIFI) {
             WifiWpsDecoder.identity(device.facts.vendorIes)?.let {
                 return if (it.chipsetOnly) translate("Wi-Fi access point (brand unconfirmed)") + " · " +
@@ -386,13 +387,13 @@ object DeviceExplain {
                         when {
                             "dult" in n -> "a DULT finder tag"
                             "find hub" in n -> "a Google Find Hub tag"
-                            else -> "an Apple AirTag / Find My tag"
+                            else -> "Find My device (type unconfirmed)"
                         },
                         translate("Matched signature %1\$s.").format(raw),
                         8,
                     )
                 "apple device" in n ->
-                    Hint("phone", "an iPhone, iPad, or Mac", translate("Matched signature %1\$s.").format(raw), 7)
+                    Hint("phone", "Apple device (type unconfirmed)", translate("Matched signature %1\$s.").format(raw), 7)
                 "apple audio" in n ->
                     Hint("audio-personal", "AirPods, Beats, or AirPlay", translate("Matched signature %1\$s.").format(raw), 7)
                 "microsoft" in n ->

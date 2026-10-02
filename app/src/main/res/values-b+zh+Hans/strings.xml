@@ -1416,4 +1416,19 @@
     <string name="catalog_v91_qian_note">QJLF30 名称与公开 IEEE 地址前缀 24:F1:50 同时出现，可识别与青桔相关的广州骑安无线设备。尚未确定是车锁还是停放区设施，不能推断车辆或骑行者身份。仅有 FEE7 或厂商编号 0201 不构成此特征。</string>
     <string name="discovery_v91_qian">骑安／青桔无线设备，具体类型尚未确定</string>
     <string name="discovery_v91_qian_reason">广播名称与公开登记的地址前缀可识别运营商系列，尚未确定是车锁还是停放区设施。</string>
+    <string name="apple_device_type" formatted="false">"苹果设备类型"</string>
+    <string name="apple_type_unknown" formatted="false">"苹果设备（类型未定）"</string>
+    <string name="apple_audio_unknown" formatted="false">"苹果音频设备（型号未定）"</string>
+    <string name="apple_findmy_unknown" formatted="false">"查找网络设备（类型未定）"</string>
+    <string name="apple_airplay_unknown" formatted="false">"AirPlay 接收设备（类型未定）"</string>
+    <string name="apple_awdl_unknown" formatted="false">"AWDL 设备（类型未定）"</string>
+    <string name="apple_siri_class">"Siri 广播的设备类别为 %1$s；具体型号未确定。"</string>
+    <string name="apple_watch_activity" formatted="false">"附近信息广播表明手表已佩戴且解锁；具体型号未确定。"</string>
+    <string name="apple_continuity_unknown" formatted="false">"此连续互通广播不能确定苹果设备的具体类型。"</string>
+    <string name="apple_airpods_gen1" formatted="false">"AirPods（第 1 代）"</string>
+    <string name="apple_airpods_gen2" formatted="false">"AirPods（第 2 代）"</string>
+    <string name="apple_airpods_gen3" formatted="false">"AirPods（第 3 代）"</string>
+    <string name="apple_airpods_gen4" formatted="false">"AirPods（第 4 代）"</string>
+    <string name="apple_airpods_pro2" formatted="false">"AirPods Pro（第 2 代）"</string>
+    <string name="apple_airpods_anc" formatted="false">"AirPods 4（主动降噪款）"</string>
 </resources>
