@@ -84,3 +84,29 @@ Uninstall wipes what is on the phone. If you added signatures, changed Settings,
 Copyright (c) 2026 Off Grid Pete LLC.
 
 Fieldwatch source is licensed under the [MIT License](LICENSE). AndroidX, Kotlin, and related libraries remain Apache-2.0. IEEE and Bluetooth SIG assigned-number tables in `radiodb.bin` are subject to those organizations’ terms. See [NOTICE](NOTICE).
+
+### 特征库 90：外出样本识别修正
+
+- MERCURY 使用 Wi-Fi 名称前缀匹配；升级时将原始生成候选（名称 MERCURY、自动候选备注）收窄到 MERCURY* 名称规则，保留条目 ID、名称、开关及备注。不改其他自建特征。名称候选不再自动合并共享硬件标识作为“任一命中”条件。
+- ROMO-* BLE 单独归为 DJI ROMO 扫地机器人，并抑制通用 DJI 无人机类别；不推断零售型号或工作状态。
+- 增加摩拜车锁：名称 mobike、厂商 04B3 或专用服务 UUID。仅被动识别，不连接或推断锁状态。
+- MiBeacon 增加已核验产品 ID 型号映射，覆盖 S400、MJWSD05MMC、MJWSD06MMC、LYWSD02MMC、部分门锁及传感器；加密测量仍不解码。详情及报告共用解码和英中翻译。
+- 来源：[水星默认无线名称](https://service.mercurycom.com.cn/article-1489.html)、[DJI ROMO](https://www.dji.com/media-center/insights/cleaning-tips-for-pet-owners-robot-vacuum-guide)、[摩拜 BLE 车锁](https://www.nordicsemi.com/Nordic-news/2017/06/Mobike-smart-lock)、[MiBeacon 型号表](https://github.com/Bluetooth-Devices/xiaomi-ble/blob/main/src/xiaomi_ble/devices.py)。
+### 特征库 91：未知设备的第二轮识别
+
+新增 21 个系列，并按 2026-10-02 下载的 [IEEE MA-L 登记表](https://standards-oui.ieee.org/oui/oui.csv) 补充真实日志中出现的 H3C、小米、中兴地址前缀，以及斐讯、奇虎、海尔登记前缀。路由器地址规则仅用于 Wi-Fi；海尔蓝牙地址规则仅用于稳定公开地址。通用芯片地址、FEE7、HID 或串口服务不单独作为产品品牌证据。
+
+| 识别范围 | 依据与识别边界 |
+| --- | --- |
+| BJP010?B??? 停放区信标 | [CN114373293B 专利](https://patents.google.com/patent/CN114373293B/zh)明确列出 BJP0102B001 信标命名示例；归为信标，不归为车辆，不解析位置。 |
+| QJLF30 骑安／青桔相关设备 | 名称和广州骑安的公开 IEEE 前缀 24:F1:50 必须同时匹配；[交通部门资料](https://jtw.sh.gov.cn/cmsres/8d/8d519f60c2744bc3b89917f33b57cbc6/9587fff6168f4efffa79b390c2d0a5c0.pdf)确认广州骑安运营青桔。仅识别运营商系列，车锁与停车设施尚未区分，保留在“其他”类别。 |
+| NIU Link、CFMOTO、IngeekDK、ZeekrVehicle | 根据具体广播名称与[小牛](https://global.niu.com/product/NQiX-Features)、[春风动力](https://www.cfmoto.com/global/media-center/news/news/cfmoto-introduces-unbeatable-sports-performance-with-the-cfmoto-.html)、[银基数字钥匙](https://www.ingeek.com/solution/boutique)、[极氪蓝牙钥匙](https://zeekrlife-resource-web.zeekrlife.com/pages/zeekr/user/enclosure-4.html)资料识别系列；IngeekDK、ZeekrVehicle 为名称推测，不确认车型、车主或钥匙状态。 |
+| ROADBIT | [红点设计奖记录](https://www.red-dot.org/project/roadbit-e-bike-38409)记载 RoadBit 共享电动单车；广播名称只作中等置信度推测，不确认运营商、车型或骑行者。 |
+| 云鲸、COLMO、小佩 | [云鲸配网说明](https://us.narwal.com/blogs/cleaning-guide/how-to-connect-robot-vacuum-to-wifi)、[COLMO 家电资料](https://www.colmo.com.cn/news-list/COLMO-double-wash-station)、[小佩官方设备说明](https://instructions.petkit.com/App%20Manual/CTW3/CT-W3_User%20Manual_EN.pdf)与明确名称共同识别系列；不把小佩 K3 猜成某种具体家电。 |
+| 荣耀手环、OPPO 手表 | [荣耀 Band 6 用户指南](https://www.honor.com/content/dam/honor/sa-en/support/guidebook/wearables/honor-band6/HONOR%20Band%206%20User%20Guide%20%28ARG-B39%2Cen-gb%29.pdf)、[OPPO Watch 4 Pro 规格](https://www.oppo.com/cn/accessories/oppo-watch-4-pro/specs/)对应明确产品名称；不推断人员或健康数据。 |
+| 米家温湿度计、S400 体脂秤、开关、灯具、Cariot 支架 | 温湿度计及体脂秤按[官方型号资料](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3/specs/)及[S400 规格](https://www.mi.com/tw/product/xiaomi-body-composition-scale-s400/specs/)识别；开关、灯具、手机支架采用[官方 MIoT 产品实例](https://miot-spec.org/miot-spec-v2/instances?status=all)中的具体型号与类型，不扩展到整个厂商命名空间。 |
+| 中兴、斐讯、360 Wi-Fi，海尔无线模块 | IEEE 登记组织对应品牌无线接口；[360 官方说明书](https://ipc-pr-cdn.jia.360.cn/ipc-pr/LYQV6G.pdf)确认 360WiFi-* 默认名称。地址规则不确认具体设备型号。 |
+
+新增名称、备注与设备说明均同步英语及简体中文。升级追加新系列与地址规则，保留自建条目、已有名称、备注、关闭状态及禁用规则；用户改为“全部规则同时满足”的 H3C／小米条目不追加互斥地址规则。历史观测保留记录时的分类，实时识别和日志重放使用当前规则。
+
+YD…、LEX…、TG、eg_ac_hanging、通用串口模块和匿名广播仍缺少可靠产品对应证据；论坛中的猜测未作为确定品牌规则写入。匿名设备及随机地址数量不等于独立物理设备数量。原始手机日志只保存在被忽略的本地验证目录，不随代码提交。

@@ -4,6 +4,16 @@ import java.util.Locale
 
 /** Passive MiBeacon v5 headers and plaintext objects; encrypted objects are never interpreted. */
 object MiBeaconDecoder {
+    // Bluetooth-Devices/xiaomi-ble device table, cross-checked against captured product IDs.
+    // Product codes remain readable even when measurement objects are encrypted.
+    private val models = mapOf(
+        0x055B to "LYWSD03MMC", 0x2832 to "MJWSD05MMC", 0x4C47 to "MJWSD05MMC",
+        0x55B5 to "MJWSD06MMC", 0x5BEA to "MJWSD06MMC", 0x2542 to "LYWSD02MMC",
+        0x16E4 to "LYWSD02MMC", 0x30D9 to "S400 · MJTZC01YM", 0x3BD5 to "S400 · MJTZC01YM",
+        0x48CF to "S400 · MJTZC01YM", 0x0863 to "SJWS01LM", 0x098C to "XMZNMST02YD",
+        0x0784 to "XMZNMS04LM", 0x0E39 to "XMZNMS08LM", 0x0576 to "CGD1",
+    )
+
     data class Decoded(val productId: Int?, val validHeader: Boolean, val fields: List<AdvPayloadDecoder.Field>)
 
     fun decode(hex: String, translate: (String) -> String = { it }): Decoded {
@@ -19,7 +29,7 @@ object MiBeaconDecoder {
         val version = control ushr 12
         val pid = u16(bytes, 2)
         field("MiBeacon version", version.toString())
-        field("MiBeacon product ID", "0x%04X".format(pid) + if (pid == 0x055B) " · LYWSD03MMC" else "")
+        field("MiBeacon product ID", "0x%04X".format(pid) + models[pid]?.let { " · $it" }.orEmpty())
         field("MiBeacon frame counter", u8(bytes, 4).toString())
         val encrypted = control and 0x08 != 0
         field("MiBeacon encryption", translate(if (encrypted) "Encrypted — readings unavailable" else "Plaintext"))

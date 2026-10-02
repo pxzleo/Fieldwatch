@@ -529,9 +529,16 @@ object SignatureCandidates {
             var j = i + 1
             while (j < ranked.size) {
                 val other = ranked[j]
+                // Hide a redundant hardware cluster already covered by the name, without copying its rule.
+                if (keep.primary.kind == RuleKind.NAME_GLOB && keep.members.containsAll(other.members)) {
+                    ranked.removeAt(j)
+                    continue
+                }
                 val n = minOf(keep.members.size, other.members.size)
                 val overlap = keep.members.intersect(other.members).size
-                if (n > 0 && overlap * 10 >= n * 6) {
+                // A name family must not acquire shared hardware identifiers as OR rules.
+                val nameFamily = keep.primary.kind == RuleKind.NAME_GLOB || other.primary.kind == RuleKind.NAME_GLOB
+                if (!nameFamily && n > 0 && overlap * 10 >= n * 6) {
                     keep.extra += other.primary
                     keep.members += other.members
                     keep.radios = distinctRadios(keep.radios + other.radios)

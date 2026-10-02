@@ -304,7 +304,7 @@ class SignatureEngine {
 
     /** Osmo cameras share DJI company 0x08AA. Prefer the Osmo Cameras row over DJI. */
     private fun dropDjiWhenOsmoCamera(hits: MutableSet<String>) {
-        if ("fleet-osmo" in hits) hits.remove("fleet-dji")
+        if ("fleet-osmo" in hits || "fleet-dji-romo" in hits) hits.remove("fleet-dji")
     }
 
     /**

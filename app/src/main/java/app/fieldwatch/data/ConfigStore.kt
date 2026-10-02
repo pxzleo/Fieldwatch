@@ -1,5 +1,7 @@
 package app.fieldwatch.data
 
+import app.fieldwatch.domain.RadioKind
+
 import android.content.Context
 import app.fieldwatch.domain.AppSettings
 import app.fieldwatch.domain.DefaultCatalog
@@ -1024,6 +1026,16 @@ class ConfigStore(context: Context) {
             fleets = appendCatalogV89(fleets)
             version = CATALOG_V89
         }
+        if (version < CATALOG_V90) {
+            fleets = appendCatalogV90(fleets)
+            version = CATALOG_V90
+        }
+        if (version < CATALOG_V91) {
+            fleets = appendCatalogV91(fleets)
+            version = CATALOG_V91
+        }
+        // An older APK can import the V90 pack while retaining the generated custom candidate.
+        fleets = repairMercuryCandidates(fleets)
         if (!settings.darkTheme) settings = settings.copy(darkTheme = true)
         if (settings.scanControlsExpanded) settings = settings.copy(scanControlsExpanded = false)
         presets = presets.filterNot { it.isBuiltIn() && it.id in hiddenPresetIds }
@@ -1064,7 +1076,7 @@ class ConfigStore(context: Context) {
 
     companion object {
         /** Stock catalog generation. Settings footer and the GitHub pack use this. */
-        const val CATALOG_VERSION = 89
+        const val CATALOG_VERSION = 91
 
         /** Historical stock patches remain in place; V89 families preserve every existing row. */
         internal fun patchBuiltInRules(fleets: List<Fleet>, catalog: Map<String, Fleet>): List<Fleet> {
@@ -1092,6 +1104,37 @@ class ConfigStore(context: Context) {
         internal fun appendCatalogV89(fleets: List<Fleet>): List<Fleet> {
             val existingIds = fleets.mapTo(HashSet()) { it.id }
             return fleets + DefaultCatalog.domesticFamilies().filter { it.id !in existingIds }
+        }
+        /** Repair the operator-approved generated Mercury candidate once; preserve its id and metadata. */
+        internal fun appendCatalogV90(fleets: List<Fleet>): List<Fleet> {
+            val repaired = repairMercuryCandidates(fleets)
+            val ids = repaired.mapTo(HashSet()) { it.id }
+            val mercuryExists = repaired.any { f -> f.rules.any { it.kind == RuleKind.NAME_GLOB &&
+                it.radio == RadioKind.WIFI && it.text.equals("MERCURY*", true) } }
+            return repaired + DefaultCatalog.discoveryFamiliesV90().filter {
+                it.id !in ids && !(it.id == "fleet-mercury-wifi" && mercuryExists)
+            }
+        }
+
+        /** Append new families and verified address rules without replacing operator metadata. */
+        internal fun appendCatalogV91(fleets: List<Fleet>): List<Fleet> {
+            val stock = DefaultCatalog.domesticFamilies().associateBy { it.id }
+            val repaired = fleets.map { fleet ->
+                if (!fleet.builtIn || !fleet.matchAny || fleet.id !in setOf("fleet-h3c-wifi", "fleet-xiaomi-wifi")) return@map fleet
+                val have = fleet.rules.mapTo(HashSet()) { ruleKey(it) }
+                val missing = stock.getValue(fleet.id).rules.filter { ruleKey(it) !in have }
+                if (missing.isEmpty()) fleet else fleet.copy(rules = fleet.rules + missing)
+            }
+            val ids = repaired.mapTo(HashSet()) { it.id }
+            return repaired + DefaultCatalog.discoveryFamiliesV91().filter { it.id !in ids }
+        }
+
+        internal fun repairMercuryCandidates(fleets: List<Fleet>): List<Fleet> = fleets.map { fleet ->
+                val names = fleet.rules.filter { it.kind == RuleKind.NAME_GLOB &&
+                    it.radio == RadioKind.WIFI && it.text.equals("MERCURY*", true) }
+                if (!fleet.builtIn && fleet.matchAny && fleet.name.equals("MERCURY", true) && names.isNotEmpty() &&
+                    fleet.notes.contains("Shared on-air ID, not a one-radio MAC.")) fleet.copy(rules = names)
+                else fleet
         }
         private const val CATALOG_V2 = 2
         private const val CATALOG_V3 = 3
@@ -1180,7 +1223,9 @@ class ConfigStore(context: Context) {
         private const val CATALOG_V86 = 86
         private const val CATALOG_V87 = 87
         private const val CATALOG_V88 = 88
-        private const val CATALOG_V89 = CATALOG_VERSION
+        private const val CATALOG_V89 = 89
+        private const val CATALOG_V90 = 90
+        private const val CATALOG_V91 = CATALOG_VERSION
         private val GENERIC_GATT_UUIDS = setOf("180A", "180D", "180F")
         private val POLICY_FLEET_IDS = setOf(
             "fleet-flock-cameras",
