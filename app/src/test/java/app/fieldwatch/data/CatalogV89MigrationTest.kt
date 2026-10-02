@@ -6,7 +6,7 @@ import org.junit.Test
 
 class CatalogV89MigrationTest {
     @Test fun upgrade88AddsOnlyMissingDomesticIdsAndIsIdempotent() {
-        assertEquals(92, ConfigStore.CATALOG_VERSION)
+        assertEquals(93, ConfigStore.CATALOG_VERSION)
         val old = DefaultCatalog.fleets().filterNot { it.id in DefaultCatalog.domesticFamilies().map { f -> f.id } }
         val migrated = ConfigStore.appendCatalogV89(old)
         assertEquals(old, migrated.take(old.size))

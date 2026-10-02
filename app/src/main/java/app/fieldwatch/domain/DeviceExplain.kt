@@ -5,6 +5,7 @@ package app.fieldwatch.domain
  * is broadcasting, not a visual identification.
  */
 object DeviceExplain {
+    private val v93ByName by lazy { DefaultCatalog.discoveryFamiliesV93().associateBy { it.name.lowercase() } }
     data class Guess(
         val headline: String,
         val because: String,
@@ -317,6 +318,19 @@ object DeviceExplain {
         return names.mapNotNull { raw ->
             if (isGenericSignatureName(raw)) return@mapNotNull null
             val n = raw.lowercase()
+            val v93 = v93ByName[n]
+            if (v93 != null) {
+                val (bucket, label) = when (v93.id) {
+                    "fleet-generic-hid" -> "hid" to "a HID input device (brand unconfirmed)"
+                    "fleet-generic-remote" -> "remote" to "a possible remote control (brand unconfirmed)"
+                    "fleet-ikf-king-pro" -> "audio-personal" to "possible iKF-King Pro headphones"
+                    "fleet-leapmotor-digital-key" -> "vehicle" to "a possible Leapmotor digital-key radio"
+                    "fleet-ingeek-lex" -> "other" to "an InGeek ecosystem radio (purpose unconfirmed)"
+                    "fleet-apple-awdl" -> "other" to "an AWDL protocol advertiser (product unconfirmed)"
+                    else -> "other" to v93.name
+                }
+                return@mapNotNull Hint(bucket, translate(label), translate(v93.notes), 5)
+            }
             val domestic = when (n) {
                 "qi'an / qingju radio (type unknown)" -> Hint("qian-radio", "a Qi'an / Qingju radio of unknown device type", "The advertised name and public registered prefix identify the operator family; lock versus parking infrastructure is unverified.", 6)
                 "bicycle parking beacon" -> Hint("beacon", "a bicycle parking-area beacon", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)

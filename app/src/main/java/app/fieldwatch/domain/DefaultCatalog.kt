@@ -319,13 +319,14 @@ object DefaultCatalog {
         *discoveryFamiliesV90().toTypedArray(),
         *discoveryFamiliesV91().toTypedArray(),
         *discoveryFamiliesV92().toTypedArray(),
+        *discoveryFamiliesV93().toTypedArray(),
     ).map(::withPassiveIdentityRules).sortedBy { it.name.lowercase() }
 
     /** Family fingerprints from advertised names/services; these do not identify an owner or exact model. */
     fun domesticFamilies(): List<Fleet> = listOf(
         Fleet(id = "fleet-h3c-wifi", name = "H3C Wi-Fi", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.ISP, notes = "H3C Wi-Fi access point or router family. H3C_* SSID or IEEE 04:D7:A5; not an exact model.",
-            rules = withWifiOuis(listOf(wifiGlob("H3C_*"), wifiOui("04:D7:A5")), ApVendorOuis.H3C_V91)),
+            rules = withWifiOuis(listOf(wifiGlob("H3C_*"), wifiOui("04:D7:A5"), wifiOui("14:51:7E")), ApVendorOuis.H3C_V91)),
         Fleet(id = "fleet-xiaomi-wifi", name = "Xiaomi Wi-Fi", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.ISP, notes = "Xiaomi Wi-Fi access point or hotspot family. Xiaomi* SSID or IEEE EC:41:18; WPS may advertise a model separately.",
             rules = withWifiOuis(listOf(wifiGlob("Xiaomi*"), wifiOui("EC:41:18")), ApVendorOuis.XIAOMI_V91)),
@@ -344,7 +345,7 @@ object DefaultCatalog {
             rules = listOf(bleGlob("lumi.switch.acn*"))),
         Fleet(id = "fleet-midea-appliance", name = "Midea appliance", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.HOME, notes = "midea* Wi-Fi or BLE name points to a Midea appliance family. The name alone does not identify appliance type, exact model, or operating state.",
-            rules = listOf(wifiGlob("midea*"), bleGlob("midea*"))),
+            rules = listOf(wifiGlob("midea*"), bleGlob("midea*"), wifiOui("54:92:6A"))),
         Fleet(id = "fleet-luyuan-smart", name = "LuYuan-Smart vehicle", builtIn = true, colorIndex = Hue.VEHICLE,
             kind = SignatureClass.VEHICLE, notes = "LuYuan-Smart BLE name points to a Luyuan electric two-wheeler radio. It does not identify the rider or prove the vehicle is moving.",
             rules = listOf(bleGlob("LuYuan-Smart"))),
@@ -444,7 +445,7 @@ object DefaultCatalog {
             rules = ApVendorOuis.HAIER_V91.map { oui(it) }),
         Fleet(id = "fleet-zte-wifi", name = "ZTE Wi-Fi radio", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.ISP, notes = "ZTE_* SSID or verified IEEE ZTE prefixes identify a ZTE Wi-Fi interface. It may be a gateway, access point or hotspot; no exact model is established.",
-            rules = withWifiOuis(listOf(wifiGlob("ZTE_*")), ApVendorOuis.ZTE_V91)),
+            rules = withWifiOuis(listOf(wifiGlob("ZTE_*"), wifiOui("F0:0C:51")), ApVendorOuis.ZTE_V91)),
         Fleet(id = "fleet-phicomm-wifi", name = "PHICOMM Wi-Fi", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.ISP, notes = "PHICOMM name or IEEE Phicomm prefixes identify a Phicomm Wi-Fi interface. Renamed networks can match by address; an exact router model is not established.",
             rules = withWifiOuis(listOf(wifiGlob("PHICOMM_*"), wifiGlob("@PHICOMM_*")), ApVendorOuis.PHICOMM_V91)),
@@ -485,6 +486,52 @@ object DefaultCatalog {
             kind = SignatureClass.HOME, notes = "SJWS01LM water leak sensor. The MiBeacon product header identifies the sensor family; a product identity alone does not prove a leak or an alarm state.", rules = MiBeaconDecoder.productRules("fleet-mi-water-leak")),
         Fleet(id = "fleet-mi-lock", name = "Mi ecosystem door lock", builtIn = true, colorIndex = Hue.HOME_CAM,
             kind = SignatureClass.LOCK, notes = "Xiaomi ecosystem door-lock family. MiBeacon product headers distinguish known partner models; they do not identify an owner or prove a locked or unlocked state.", rules = MiBeaconDecoder.productRules("fleet-mi-lock")),
+    )
+
+    /** Protocol/name matches are passive claims; OUI rows describe registered interfaces only. */
+    fun discoveryFamiliesV93(): List<Fleet> = listOf(
+        Fleet(id = "fleet-generic-hid", name = "HID input service (brand unconfirmed)", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.OTHER, notes = "BLE service 1812 is the standard human-interface service for keyboards, mice, remotes and similar inputs. It does not identify a brand; Generic Keyring appearance alone is not HID evidence.",
+            rules = listOf(MatchRule(RuleKind.SERVICE_UUID, text = "1812", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-generic-remote", name = "Possible remote control (Mixin name)", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.OTHER, notes = "The exact BLE name Mixin Remote Control suggests a remote control. The name is a broadcast claim; brand and exact product are unconfirmed.",
+            rules = listOf(bleGlob("Mixin Remote Control"))),
+        Fleet(id = "fleet-ikf-king-pro", name = "Possible iKF-King Pro headphones", builtIn = true, colorIndex = Hue.AUDIO,
+            kind = SignatureClass.AUDIO, notes = "The iKF-King Pro BLE pairing-name family matches the manufacturer's headphone documentation. A suffix does not establish a product generation or operating state.",
+            rules = listOf(bleGlob("iKF-King Pro*"))),
+        Fleet(id = "fleet-leapmotor-digital-key", name = "Possible Leapmotor digital key (advertised name)", builtIn = true, colorIndex = Hue.VEHICLE,
+            kind = SignatureClass.VEHICLE, notes = "The exact BLE name Leapmotor_DigitalKey claims a Leapmotor digital key. The name does not establish a vehicle model, owner or unlock state.",
+            rules = listOf(bleGlob("Leapmotor_DigitalKey"))),
+        Fleet(id = "fleet-ingeek-lex", name = "InGeek LEX ecosystem (purpose unconfirmed)", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.OTHER, matchAny = false, notes = "LEX name plus InGeek company identifier 0759 and service 5810BBC0 identifies an InGeek ecosystem radio. InGeek supplies digital-key platforms; this record does not establish the product purpose, car brand or model.",
+            rules = listOf(bleGlob("LEX*"), MatchRule(RuleKind.MANUFACTURER_ID, companyId = 0x0759, radio = RadioKind.BLE),
+                MatchRule(RuleKind.SERVICE_UUID, text = "5810BBC0-B499-11E9-A2A3-2A2AE2DBCCFF", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-apple-awdl", name = "Apple AWDL connection protocol", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.OTHER, notes = "A complete Apple Continuity type 16 message with eight payload bytes advertises AWDL connection data. Its format is undocumented; it does not identify an exact product or expose battery or activity.",
+            rules = listOf(MatchRule(RuleKind.APPLE_CONTINUITY_TYPE, text = "16", radio = RadioKind.BLE))),
+        registeredWifiV93("skyworth", "Skyworth registered Wi-Fi interface (type unknown)",
+            "IEEE address prefixes are registered to Shenzhen Skyworth Digital. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            listOf("0C:2C:7C", "70:3A:8C", "F8:B8:B4", "68:1A:A4", "AC:88:66")),
+        registeredWifiV93("youhua", "YOUHUA registered Wi-Fi interface (type unknown)",
+            "IEEE address prefixes are registered to Shenzhen YOUHUA Technology. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            listOf("10:47:E7", "D0:F7:6E")),
+        registeredWifiV93("tianyi-comheart", "Tianyi Comheart registered Wi-Fi interface (type unknown)",
+            "IEEE address prefixes are registered to Sichuan Tianyi Comheart Telecom. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            listOf("74:69:4A", "EC:F8:EB")),
+        registeredWifiV93("tianyi-terminals", "Tianyi Terminals registered Wi-Fi interface (type unknown)",
+            "IEEE address prefixes are registered to Tianyi Telecom Terminals. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            listOf("98:1E:89", "D0:5B:CB")),
+        registeredWifiV93("china-mobile-interface", "China Mobile registered Wi-Fi interface (type unknown)",
+            "IEEE address prefixes are registered to China Mobile Group Device or China Mobile IOT. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            listOf("E8:3A:4B", "2C:33:41")),
+        registeredWifiV93("gubei-interface", "Gubei / BroadLink registered Wi-Fi interface (type unknown)",
+            "IEEE address prefixes are registered to HangZhou Gubei Electronics Technology (BroadLink). They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            listOf("C8:F7:42", "34:EA:34")),
+    )
+
+    private fun registeredWifiV93(id: String, name: String, notes: String, prefixes: List<String>) = Fleet(
+        id = "fleet-$id", name = name, notes = notes, builtIn = true, colorIndex = Hue.HOME_CAM,
+        kind = SignatureClass.OTHER, rules = prefixes.map(::wifiOui),
     )
 
     private fun flockCameras() = Fleet(

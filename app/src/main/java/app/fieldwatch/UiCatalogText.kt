@@ -609,6 +609,6 @@ internal object UiCatalogText {
         "Keep_CC_* BLE name points to Keep fitness equipment. The suffix does not reveal a workout, user, or operating state." -> UiText.text(R.string.catalog_domestic_26)
         "IEEE 94:EC:13 identifies an EZVIZ device family on Wi-Fi or a public stable BLE address. It does not prove the device is a camera." -> UiText.text(R.string.catalog_domestic_27)
         "Daikin* Wi-Fi name points to a Daikin appliance or controller family. It does not expose an exact model, room temperature, or operating state." -> UiText.text(R.string.catalog_domestic_28)
-        else -> source
+        else -> UiV93Text.text(source)
     }
 }

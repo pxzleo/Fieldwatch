@@ -109,7 +109,7 @@ object AdvPayloadDecoder {
                         )
                     }
                     0x08 -> out += RoleHint("siri", translate("an Apple device that just heard “Hey Siri”"), translate("Hey Siri advertisement."), 6)
-                    0x09 -> out += RoleHint("audio-speaker", translate("an AirPlay speaker or Apple TV"), translate("AirPlay advertisement."), 5)
+                    0x09 -> if (validAirPlayTarget(tlv.data)) out += RoleHint("audio-speaker", translate("an AirPlay target"), translate("AirPlay target advertisement; product model is unconfirmed."), 5)
                     0x0B -> out += RoleHint("phone", translate("an Apple device doing Handoff"), translate("Handoff advertisement."), 4)
                     0x0C -> out += RoleHint("phone", translate("an Apple device looking for Instant Hotspot"), translate("Tethering-target advertisement."), 5)
                     0x0D, 0x0E -> out += RoleHint("hotspot", translate("an iPhone/iPad offering Instant Hotspot"), translate("Tethering-source advertisement."), 6)
@@ -179,7 +179,7 @@ object AdvPayloadDecoder {
                 0x06 -> listOf(Field("HomeKit", translate("%1\$s bytes of HomeKit setup data").format(tlv.data.size)))
                 0x07 -> decodeAirPods(tlv.data, translate)
                 0x08 -> decodeHeySiri(tlv.data, translate)
-                0x09 -> listOf(Field("AirPlay", translate("This device is advertising as an AirPlay source or target.")))
+                0x09 -> decodeAirPlayTarget(tlv.data, translate)
                 0x0A -> listOf(Field("Magic Switch", translate("Apple Watch wrist / unlock related.")))
                 0x0B -> decodeHandoff(tlv.data, translate)
                 0x0C -> decodeHandoffOrTetherTarget(tlv.data, translate)
@@ -187,6 +187,7 @@ object AdvPayloadDecoder {
                 0x0F -> decodeNearbyAction(tlv.data, translate)
                 0x10 -> decodeNearbyInfo(tlv.data, translate)
                 0x12 -> decodeFindMy(tlv.data, translate)
+                0x16 -> decodeAwdl(tlv.data, translate)
                 else -> listOf(Field(translate("Payload"), translate("%1\$s bytes").format(tlv.data.size)))
             }
         }
@@ -206,6 +207,43 @@ object AdvPayloadDecoder {
         return out
     }
 
+    /** Match only a complete manufacturer record, never a prefix or a truncated TLV chain. */
+    fun hasAppleContinuityType(hex: String, type: Int): Boolean {
+        val bytes = hexToBytes(hex) ?: return false
+        val tlvs = appleTlvs(bytes)
+        if (tlvs.sumOf { it.data.size + 2 } != bytes.size) return false
+        return tlvs.any { it.type == type && when (type) {
+            0x09 -> validAirPlayTarget(it.data)
+            0x16 -> it.data.size == 8
+            else -> false
+        } }
+    }
+
+    private fun validAirPlayTarget(data: ByteArray): Boolean = data.isNotEmpty() &&
+        data.size == if ((data[0].toInt() and 0x10) != 0) 8 else 6
+
+    private fun decodeAirPlayTarget(data: ByteArray, translate: (String) -> String): List<Field> {
+        if (!validAirPlayTarget(data)) return listOf(Field(translate("AirPlay target"), translate("Unsupported or malformed AirPlay target length")))
+        val explicitPort = (data[0].toInt() and 0x10) != 0
+        return listOf(
+            Field(translate("AirPlay target"), translate("Advertised network endpoint; not location information.")),
+            Field(translate("AirPlay flags (raw)"), "0x%02X".format(data[0].toInt() and 255)),
+            Field(translate("AirPlay seed (raw)"), "0x%02X".format(data[1].toInt() and 255)),
+            Field(translate("AirPlay advertised IPv4"), data.slice(2..5).joinToString(".") { (it.toInt() and 255).toString() }),
+            Field(translate(if (explicitPort) "AirPlay advertised port" else "AirPlay default port (not advertised)"),
+                if (explicitPort) u16be(data, 6).toString() else "7000"),
+        )
+    }
+
+    private fun decodeAwdl(data: ByteArray, translate: (String) -> String): List<Field> {
+        if (data.size != 8) return listOf(Field(translate("AWDL connection message"), translate("Unsupported or malformed AWDL message length")))
+        return listOf(
+            Field(translate("AWDL connection message"), translate("Undocumented connection data; battery and activity are not decoded.")),
+            Field(translate("AWDL flags (raw)"), "0x%02X".format(data[0].toInt() and 255)),
+            Field(translate("AWDL message (raw)"), data.copyOfRange(1, 8).toHexUpper()),
+        )
+    }
+
     private fun appleTypeName(type: Int, translate: (String) -> String): String = when (type) {
         0x02 -> "iBeacon"
         0x03 -> "AirPrint"
@@ -213,7 +251,7 @@ object AdvPayloadDecoder {
         0x06 -> "HomeKit"
         0x07 -> translate("Proximity Pairing (AirPods / Beats)")
         0x08 -> "Hey Siri"
-        0x09 -> "AirPlay"
+        0x09 -> translate("AirPlay target")
         0x0A -> translate("Magic Switch (Watch)")
         0x0B -> "Handoff"
         0x0C -> translate("Handoff or Instant Hotspot (target)")
@@ -223,7 +261,7 @@ object AdvPayloadDecoder {
         0x10 -> "Nearby Info"
         0x12 -> translate("Find My / Offline Finding")
         0x13 -> translate("Nearby Action (extended)")
-        0x16 -> "Nearby Info"
+        0x16 -> translate("AWDL connection message")
         else -> translate("unlisted")
     }
 

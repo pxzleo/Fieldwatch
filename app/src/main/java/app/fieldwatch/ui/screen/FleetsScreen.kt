@@ -604,7 +604,7 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
         when (rule.kind) {
-            RuleKind.OUI, RuleKind.MAC_PREFIX, RuleKind.NAME_CONTAINS, RuleKind.NAME_GLOB, RuleKind.SERVICE_UUID, RuleKind.VENDOR_IE_OUI, RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID -> {
+            RuleKind.OUI, RuleKind.MAC_PREFIX, RuleKind.NAME_CONTAINS, RuleKind.NAME_GLOB, RuleKind.SERVICE_UUID, RuleKind.VENDOR_IE_OUI, RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> {
                 FieldwatchOutlinedField(
                     rule.text,
                     { onChange(rule.copy(text = it)) },
@@ -675,6 +675,7 @@ private fun ruleKindLabel(kind: RuleKind): String = when (kind) {
     RuleKind.WPS_MANUFACTURER -> UiText.text(R.string.discovery_wps_manufacturer)
     RuleKind.WPS_DEVICE_TYPE -> UiText.text(R.string.discovery_wps_primary_type)
     RuleKind.MIBEACON_PRODUCT_ID -> UiText.text(R.string.discovery_ble_5)
+    RuleKind.APPLE_CONTINUITY_TYPE -> UiText.text(R.string.discovery_v93_apple_type)
 }
 
 private fun compactLine(

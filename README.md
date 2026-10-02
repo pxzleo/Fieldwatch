@@ -120,3 +120,25 @@ YD…、LEX…、TG、eg_ac_hanging、通用串口模块和匿名广播仍缺少
 - 历史观测的设备列表、路径、对比及生成报告按当前特征规则重新识别；不改写保存的原始记录。JSON 行日志重放恢复完整无线事实及多条广播记录，使旧日志也能使用新增身份规则。
 - 升级保留自建特征、名称、备注和已有规则开关。被改为“全部规则同时满足”的内置条目不自动追加互斥身份条件。
 - 解析依据：[MiBeacon 官方头部与对象定义](https://github.com/MiEcosystem/mijia_ble_common/blob/master/mible_beacon.h)、[xiaomi-ble 型号与明文对象实现](https://github.com/Bluetooth-Devices/xiaomi-ble/blob/main/src/xiaomi_ble/parser.py)、[ESPHome 小米广播解析实现](https://github.com/esphome/esphome/blob/dev/esphome/components/xiaomi_ble/xiaomi_ble.cpp)。WPS 厂家文字为设备自行广播的信息，不能验证设备真伪；通用型号和占位编号不作为精确零售型号结论。
+
+### 特征库 93：未知样本分组及可用广播字段
+
+以同一批 604 个类型／地址组合为基线，92 版未匹配 142 条（BLE 96、Wi-Fi 46）。这些是无线地址数量，随机地址可能属于同一台设备。
+
+| 本轮识别范围 | 证据及限制 |
+| --- | --- |
+| 通用 HID 输入设备 | [Bluetooth SIG](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/index-en.html) 将 1812 分配给 HID 服务；可识别服务类别，不确认键盘、遥控器等具体用途。YD 样本的外观值 0240 是通用钥匙圈，不能误称 HID 外观。 |
+| Mixin Remote Control | 广播名称声明遥控用途，仅作名称推测，不把沁恒芯片当成整机品牌。 |
+| iKF King Pro 系列耳机 | [iKF 官方产品](https://ikfaudio.com/products/ikf-king-pro-active-noise-cancelling-bluetooth-wireless-headphones-hi-res-audio)及原厂配对名称支持识别头戴耳机系列，不确认具体代际。 |
+| Leapmotor_DigitalKey | 名称声明零跑数字钥匙用途，[零跑官方配置](https://cn.leapmotor.com/parameter-pk-web.html?carTypeId=24)有蓝牙钥匙功能；尚无该名称的官方绑定文档，因此显示为可能的名称识别，不确认车型或开锁状态。 |
+| 银基 LEX 生态广播 | 同时核对名称、厂商编号和服务标识；[银基方案](https://www.ingeek.com/solution/boutique)支持数字钥匙平台背景，但不把 LEX 猜为雷克萨斯，不确认设备用途。 |
+| Wi-Fi 接口供应商 | 按 [IEEE 登记表](https://standards-oui.ieee.org/oui/oui.csv)补充创维、友华、天邑康和、天翼终端、中移设备／物联网、杭州古北的实测前缀，以及现有 H3C、中兴、美的遗漏前缀。仅用于 Wi-Fi；供应商系列不确认整机品牌、型号或用途。 |
+| Apple AWDL 连接广播 | 依据 [UxPlay 维护者说明](https://github.com/FDH2/UxPlay/wiki/Bluetooth_LE_beacon)，完整 16/8 TLV 是未公开内部格式的 AWDL 连接消息，不能称为 Nearby Info 或推断用户活动。协议识别不等于确认 Apple TV、手机或其他具体设备。 |
+
+详情及文本／PDF 报告共用新增解析：AirPlay 接收端广播的 IPv4、显式 TCP 端口及基础标记；旧格式使用默认 7000 时明确标注默认值，不冒充广播字段。不连接或探测该地址。格式依据为 [原始 AirPlay 研究](https://github.com/furiousMAC/continuity/blob/master/messages/airplay_target.md)及上述 UxPlay 实现说明。
+
+WPS 补充基础协议版本、配网锁定标记、选中注册方、射频频段和广播配网方法位掩码。依据 [hostap 定义](https://android.googlesource.com/platform/external/wpa_supplicant_8/+/refs/heads/main/src/wps/wps_defs.h)，字段均校验长度，未知值保留原始值；协议版本不是固件版本，方法声明不证明当前允许配网。
+
+同批日志重放结果：未匹配由 142 降至 81（BLE 58、Wi-Fi 23），新增命中 61 条，没有原有命中变为未匹配。其中 13 条属于 HID／遥控器／耳机／可能数字钥匙用途分类；另外 48 条仅识别无线接口供应商、银基生态或 AWDL 协议，不能视为已确认具体产品。10 条 AirPlay 记录新增实际广播的 IPv4 和端口；WPS 新增版本 83 条、射频频段 49 条、方法位掩码 38 条、锁定标记 5 条、选中注册方 1 条。29 条 AWDL 记录只展示原始消息，不把原始字节算成已解出的状态。
+
+剩余缺口：RZ-Slave 仅有杰理平台依据；eg_ac_hanging、MiCar、匿名 4669 暂无可靠产品对应；Keep 的 1818 私有广播不能套用功率测量特征布局；海尔广播与公开串口协议不同；BYD、AIMA、美的私有广播以及加密米家测量缺少与样本相符的公开解码依据。本轮不编造电量、车辆状态、空调状态或精确型号。供应商／协议级命中与具体产品识别分开解释。

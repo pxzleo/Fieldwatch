@@ -230,7 +230,7 @@ class SignatureEngine {
 
     private fun ruleScope(rule: MatchRule): RadioKind? = when (rule.kind) {
         RuleKind.VENDOR_IE_OUI, RuleKind.HIDDEN_SSID, RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE -> RadioKind.WIFI
-        RuleKind.MIBEACON_PRODUCT_ID -> RadioKind.BLE
+        RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> RadioKind.BLE
         RuleKind.RADIO_KIND -> rule.radio
         RuleKind.SERVICE_UUID, RuleKind.SERVICE_DATA, RuleKind.MANUFACTURER_ID, RuleKind.MANUFACTURER_DATA ->
             rule.radio ?: RadioKind.BLE
@@ -263,7 +263,7 @@ class SignatureEngine {
         }
         RuleKind.RADIO_KIND -> FastRule.Radio(rule.radio)
         RuleKind.HIDDEN_SSID -> FastRule.Hidden
-        RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID -> FastRule.Identity(rule)
+        RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> FastRule.Identity(rule)
         RuleKind.OUI, RuleKind.MAC_PREFIX, RuleKind.VENDOR_IE_OUI -> null
     }
 
@@ -394,7 +394,7 @@ class SignatureEngine {
                 device.hiddenSsid
             RuleKind.VENDOR_IE_OUI ->
                 wifiVendorIeHitsOui(device, rule.text)
-            RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID -> passiveIdentityHits(device, rule)
+            RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> passiveIdentityHits(device, rule)
         }
     }
 
@@ -677,5 +677,11 @@ private fun passiveIdentityHits(device: Sighting, rule: MatchRule): Boolean = wh
         WifiWpsDecoder.identities(device.facts.vendorIes).any { it.primaryDeviceType.equals(rule.text, true) }
     RuleKind.MIBEACON_PRODUCT_ID -> device.kind == RadioKind.BLE &&
         rule.text.removePrefix("0x").toIntOrNull(16)?.let { pid -> MiBeaconDecoder.identities(device).any { it.productId == pid } } == true
+    RuleKind.APPLE_CONTINUITY_TYPE -> device.kind == RadioKind.BLE &&
+        rule.text.removePrefix("0x").toIntOrNull(16)?.let { type ->
+            device.facts.mfgRecords.ifEmpty {
+                device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
+            }.any { it.companyId == 0x004C && AdvPayloadDecoder.hasAppleContinuityType(it.dataHex, type) }
+        } == true
     else -> false
 }

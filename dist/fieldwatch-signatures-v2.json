@@ -3,7 +3,7 @@
     "formatVersion": 1,
     "exportedAt": "",
     "appVersion": "stock",
-    "catalogVersion": 92,
+    "catalogVersion": 93,
     "fleets": [
         {
             "id": "fleet-qihoo-wifi",
@@ -1019,6 +1019,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "AUDIO"
+        },
+        {
+            "id": "fleet-apple-awdl",
+            "name": "Apple AWDL connection protocol",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "APPLE_CONTINUITY_TYPE",
+                    "text": "16",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "A complete Apple Continuity type 16 message with eight payload bytes advertises AWDL connection data. Its format is undocumented; it does not identify an exact product or expose battery or activity.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-apple-device",
@@ -10052,6 +10077,39 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
+        },
+        {
+            "id": "fleet-china-mobile-interface",
+            "name": "China Mobile registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "E8:3A:4B",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "2C:33:41",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefixes are registered to China Mobile Group Device or China Mobile IOT. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-chipolo",
@@ -26467,6 +26525,39 @@
             "kind": "ISP"
         },
         {
+            "id": "fleet-gubei-interface",
+            "name": "Gubei / BroadLink registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "C8:F7:42",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "34:EA:34",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefixes are registered to HangZhou Gubei Electronics Technology (BroadLink). They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-h3c-wifi",
             "name": "H3C Wi-Fi",
             "enabled": true,
@@ -26484,6 +26575,14 @@
                 {
                     "kind": "OUI",
                     "text": "04:D7:A5",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "14:51:7E",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "WIFI",
@@ -27122,6 +27221,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
+        },
+        {
+            "id": "fleet-generic-hid",
+            "name": "HID input service (brand unconfirmed)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "SERVICE_UUID",
+                    "text": "1812",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "BLE service 1812 is the standard human-interface service for keyboards, mice, remotes and similar inputs. It does not identify a brand; Generic Keyring appearance alone is not HID evidence.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-hikvision",
@@ -45196,6 +45320,47 @@
             "kind": "VEHICLE"
         },
         {
+            "id": "fleet-ingeek-lex",
+            "name": "InGeek LEX ecosystem (purpose unconfirmed)",
+            "enabled": true,
+            "matchAny": false,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "LEX*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MANUFACTURER_ID",
+                    "text": "",
+                    "companyId": 1881,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "SERVICE_UUID",
+                    "text": "5810BBC0-B499-11E9-A2A3-2A2AE2DBCCFF",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "LEX name plus InGeek company identifier 0759 and service 5810BBC0 identifies an InGeek ecosystem radio. InGeek supplies digital-key platforms; this record does not establish the product purpose, car brand or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-inseego",
             "name": "Inseego",
             "enabled": true,
@@ -47683,6 +47848,14 @@
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "54:92:6A",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
                     "enabled": true
                 }
             ],
@@ -51508,6 +51681,81 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
+        },
+        {
+            "id": "fleet-ikf-king-pro",
+            "name": "Possible iKF-King Pro headphones",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 5,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "iKF-King Pro*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "The iKF-King Pro BLE pairing-name family matches the manufacturer's headphone documentation. A suffix does not establish a product generation or operating state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "AUDIO"
+        },
+        {
+            "id": "fleet-leapmotor-digital-key",
+            "name": "Possible Leapmotor digital key (advertised name)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 7,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "Leapmotor_DigitalKey",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "The exact BLE name Leapmotor_DigitalKey claims a Leapmotor digital key. The name does not establish a vehicle model, owner or unlock state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "VEHICLE"
+        },
+        {
+            "id": "fleet-generic-remote",
+            "name": "Possible remote control (Mixin name)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "Mixin Remote Control",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "The exact BLE name Mixin Remote Control suggests a remote control. The name is a broadcast claim; brand and exact product are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-pwnagotchi",
@@ -58149,6 +58397,63 @@
             "kind": "DRONE"
         },
         {
+            "id": "fleet-skyworth",
+            "name": "Skyworth registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "0C:2C:7C",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "70:3A:8C",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "F8:B8:B4",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "68:1A:A4",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "AC:88:66",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefixes are registered to Shenzhen Skyworth Digital. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-snap-spectacles",
             "name": "Snap Spectacles",
             "enabled": true,
@@ -59472,6 +59777,72 @@
                     }
                 ]
             }
+        },
+        {
+            "id": "fleet-tianyi-comheart",
+            "name": "Tianyi Comheart registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "74:69:4A",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "EC:F8:EB",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefixes are registered to Sichuan Tianyi Comheart Telecom. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
+            "id": "fleet-tianyi-terminals",
+            "name": "Tianyi Terminals registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "98:1E:89",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "D0:5B:CB",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefixes are registered to Tianyi Telecom Terminals. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-tile",
@@ -64919,6 +65290,39 @@
             "kind": "ISP"
         },
         {
+            "id": "fleet-youhua",
+            "name": "YOUHUA registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "10:47:E7",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "D0:F7:6E",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefixes are registered to Shenzhen YOUHUA Technology. They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-zeekr-vehicle",
             "name": "ZEEKR vehicle radio",
             "enabled": true,
@@ -64953,6 +65357,14 @@
                 {
                     "kind": "NAME_GLOB",
                     "text": "ZTE_*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "F0:0C:51",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "WIFI",

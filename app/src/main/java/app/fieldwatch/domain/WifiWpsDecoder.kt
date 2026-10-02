@@ -81,6 +81,36 @@ object WifiWpsDecoder {
                 fields += AdvPayloadDecoder.Field(translate(label), text)
                 if (type == 0x1021) manufacturer = text
                 if (type == 0x1023) model = text
+            } else if (type in setOf(0x104A, 0x1057, 0x1041, 0x103C, 0x1008)) {
+                val expected = if (type == 0x1008) 2 else 1
+                if (length != expected) {
+                    status = Status.MALFORMED
+                    continue
+                }
+                val raw = value[0].toInt() and 255
+                val fieldLabel = when (type) {
+                    0x104A -> "WPS attribute version (not firmware)"
+                    0x1057 -> "WPS AP setup locked"
+                    0x1041 -> "WPS selected registrar"
+                    0x103C -> "WPS RF bands"
+                    else -> "WPS configuration methods (advertised mask)"
+                }
+                val shown = when (type) {
+                    0x104A -> "${raw ushr 4}.${raw and 15}"
+                    0x1057, 0x1041 -> when (raw) {
+                        0 -> translate("no")
+                        1 -> translate("yes")
+                        else -> "0x%02X".format(raw)
+                    }
+                    0x103C -> buildList {
+                        if ((raw and 1) != 0) add("2.4 GHz")
+                        if ((raw and 2) != 0) add("5 GHz")
+                        if ((raw and 4) != 0) add("60 GHz")
+                        add("0x%02X".format(raw))
+                    }.joinToString(" / ")
+                    else -> "0x%04X".format(u16(value, 0))
+                }
+                fields += AdvPayloadDecoder.Field(translate(fieldLabel), shown)
             } else if (type == 0x1054) {
                 if (length != 8) {
                     status = Status.MALFORMED

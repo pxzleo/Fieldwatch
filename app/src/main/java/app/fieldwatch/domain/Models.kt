@@ -231,6 +231,7 @@ enum class RuleKind {
     WPS_MANUFACTURER,
     WPS_DEVICE_TYPE,
     MIBEACON_PRODUCT_ID,
+    APPLE_CONTINUITY_TYPE,
 }
 
 @Serializable

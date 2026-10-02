@@ -136,6 +136,6 @@ internal object UiDiscoveryText {
         "Mi Scale impedance" -> UiText.text(R.string.discovery_ble_32)
         "MiBeacon product ID 0x055B identifies LYWSD03MMC; encrypted objects do not expose readings." -> UiText.text(R.string.discovery_ble_33)
         "Company identifier carried in manufacturer-specific data; the current list cannot confirm the assigning organization." -> UiText.text(R.string.discovery_ble_34)
-        else -> source
+        else -> UiV93Text.text(source)
     }
 }

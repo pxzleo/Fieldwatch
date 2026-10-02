@@ -70,6 +70,7 @@ fun SignatureFamilyHint.translated(translate: (String) -> String): SignatureFami
         when {
             label.startsWith("vendor IE ") -> translate("vendor IE %1\$s").format(label.removePrefix("vendor IE "))
             label.startsWith("svc contains ") -> translate("svc contains %1\$s").format(label.removePrefix("svc contains "))
+            label.startsWith("Apple Continuity type ") -> translate("Apple Continuity type %1\$s").format(label.removePrefix("Apple Continuity type "))
             label.startsWith("mfg ") -> translate("mfg").let { it + label.removePrefix("mfg") }
             else -> label
         }
@@ -90,6 +91,7 @@ internal fun ruleShortLabel(rule: MatchRule): String = when (rule.kind) {
     RuleKind.WPS_MANUFACTURER -> "WPS manufacturer ${rule.text}"
     RuleKind.WPS_DEVICE_TYPE -> "WPS device type ${rule.text}"
     RuleKind.MIBEACON_PRODUCT_ID -> "MiBeacon product ID ${rule.text}"
+    RuleKind.APPLE_CONTINUITY_TYPE -> "Apple Continuity type ${rule.text}"
     else -> rule.kind.name
 }
 
