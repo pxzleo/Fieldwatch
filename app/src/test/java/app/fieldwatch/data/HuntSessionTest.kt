@@ -119,4 +119,43 @@ class HuntSessionTest {
         assertTrue(Hunt.accepts(null, other))
         assertTrue(Hunt.accepts(null, wifi))
     }
+
+    @Test fun eachPointRecordsStartHeadingAndKeepsItWhenLivePhoneTurnsOrBaselineChanges() {
+        val session = HuntSession()
+        session.start(key, 10_000)
+        val startA = HuntHeading(359, 10_000, true)
+        session.updateHeading(startA)
+        session.beginPoint(10_000)
+        session.updateHeading(HuntHeading(90, 11_000, true))
+        (0..4).forEach { session.observe(observation(10_000 + it * 800L, -70)) }
+        session.finishPoint(14_000)
+        assertEquals(startA, session.state.value.pointA!!.heading)
+        assertNull(session.state.value.captureHeading)
+        val startB = HuntHeading(2, 15_000, false)
+        session.updateHeading(startB)
+        session.beginPoint(15_000)
+        (0..4).forEach { session.observe(observation(15_000 + it * 800L, -60)) }
+        session.finishPoint(19_000)
+        assertEquals(startB, session.state.value.pointB!!.heading)
+        session.keepB()
+        assertEquals(startB, session.state.value.pointA!!.heading)
+        session.start(key, 20_000)
+        assertNull(session.state.value.heading)
+        assertNull(session.state.value.pointA)
+    }
+
+    @Test fun unavailableOrOldHeadingDoesNotBlockSignalSamplingOrBecomeRecordedDirection() {
+        val session = HuntSession()
+        session.updateHeading(HuntHeading(90, 1_000, true))
+        assertNull(session.state.value.heading)
+        session.start(key, 10_000)
+        session.updateHeading(HuntHeading(90, 7_000, true))
+        session.beginPoint(10_000)
+        (0..4).forEach { session.observe(observation(10_000 + it * 800L)) }
+        session.finishPoint(14_000)
+        assertTrue(session.state.value.pointA!!.sufficient)
+        assertNull(session.state.value.pointA!!.heading)
+        session.updateHeading(null)
+        assertNull(session.state.value.heading)
+    }
 }

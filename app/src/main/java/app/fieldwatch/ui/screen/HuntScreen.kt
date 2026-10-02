@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -30,6 +31,8 @@ import app.fieldwatch.UiText
 import app.fieldwatch.data.HuntPoint
 import app.fieldwatch.domain.Hunt
 import app.fieldwatch.domain.HuntCue
+import app.fieldwatch.domain.HuntHeading
+import app.fieldwatch.radio.huntHeadings
 import app.fieldwatch.domain.MacUtil
 import app.fieldwatch.ui.FieldwatchViewModel
 import app.fieldwatch.ui.component.FieldwatchSwitch
@@ -47,8 +50,17 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
     val hunt by vm.hunt.collectAsStateWithLifecycle()
     BackHandler(onBack = onBack)
     val lifecycle = LocalLifecycleOwner.current.lifecycle
-    var testSent by remember { mutableStateOf(false) }
-    LaunchedEffect(testSent) { if (testSent) { delay(2_000); testSent = false } }
+    val context = LocalContext.current
+    LaunchedEffect(hunt.active, lifecycle, context) {
+        if (!hunt.active) return@LaunchedEffect
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            try {
+                huntHeadings(context).collect { vm.updateHuntHeading(it) }
+            } finally {
+                vm.updateHuntHeading(null)
+            }
+        }
+    }
     LaunchedEffect(hunt.active, huntBeep, huntVibrate, lifecycle) {
         if (!hunt.active || (!huntBeep && !huntVibrate)) return@LaunchedEffect
         lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
@@ -85,7 +97,7 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, UiText.text(R.string.ui_back)) } },
             actions = { TextButton(onClick = vm::resetHunt) { Text(UiText.text(R.string.hunt_restart)) } })
     }, bottomBar = {
-        Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 8.dp)) {
+        Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 4.dp)) {
             HorizontalDivider()
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(UiText.text(R.string.ui_beep), Modifier.weight(1f))
@@ -93,18 +105,17 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
                 Text(UiText.text(R.string.ui_vibrate), Modifier.weight(1f))
                 FieldwatchSwitch(huntVibrate, { vm.updateSettings { s -> s.copy(huntVibrate = it) } })
             }
-            TextButton(onClick = { vm.huntTick(true, true); testSent = true }, modifier = Modifier.fillMaxWidth()) {
-                Text(UiText.text(if (testSent) R.string.hunt_test_sent else R.string.hunt_test_feedback))
-            }
         }
     }) { padding ->
         Column(Modifier.padding(padding).fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(hunt.device?.let { MacUtil.redactMacIn(hunt.title, it.mac, demoMode) } ?: hunt.title,
                 style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
             Text(UiText.text(R.string.hunt_relative_only), style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
-            Box(Modifier.fillMaxWidth().height(148.dp), contentAlignment = Alignment.Center) {
-                Canvas(Modifier.size(136.dp)) {
+            Text(UiText.text(R.string.hunt_phone_heading, headingText(hunt.session.heading?.takeIf { it.fresh(hunt.now) })),
+                style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant, textAlign = TextAlign.Center)
+            Box(Modifier.fillMaxWidth().height(124.dp), contentAlignment = Alignment.Center) {
+                Canvas(Modifier.size(112.dp)) {
                     val stroke = 8.dp.toPx()
                     drawArc(scheme.surfaceVariant, 135f, 270f, false, style = Stroke(stroke, cap = androidx.compose.ui.graphics.StrokeCap.Round))
                     if (hunt.signal != null) drawArc(accent, 135f, 270f * strength, false, style = Stroke(stroke, cap = androidx.compose.ui.graphics.StrokeCap.Round))
@@ -122,7 +133,7 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             Text(UiText.text(R.string.hunt_sample_quality, hunt.count, hunt.noise.roundToInt(),
                 if (hunt.lastSeen > 0) ((hunt.now - hunt.lastSeen) / 1000).coerceAtLeast(0).toString() else "—"),
                 style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant, textAlign = TextAlign.Center)
-            Sparkline(hunt.samples, accent, Modifier.fillMaxWidth().height(42.dp))
+            Sparkline(hunt.samples, accent, Modifier.fillMaxWidth().height(28.dp))
             HorizontalDivider(Modifier.padding(vertical = 4.dp))
             Text(UiText.text(R.string.hunt_indoor_compare), Modifier.fillMaxWidth(), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Text(UiText.text(R.string.hunt_indoor_instruction), Modifier.fillMaxWidth(), style = MaterialTheme.typography.bodySmall, color = scheme.onSurfaceVariant)
@@ -157,7 +168,17 @@ private fun HuntPointValue(label: String, point: HuntPoint?, modifier: Modifier)
     Column(modifier) {
         Text(UiText.text(R.string.hunt_position, label), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(point?.signal?.let { "%.1f dBm".format(Locale.US, it) } ?: "—", style = MaterialTheme.typography.titleLarge, fontFamily = FontFamily.Monospace)
+        if (point != null) Text(UiText.text(R.string.hunt_sample_heading, headingText(point.heading)),
+            style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(UiText.text(when { point == null -> R.string.hunt_not_sampled; point.sufficient -> R.string.hunt_sample_saved; else -> R.string.hunt_sample_retry }),
             style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
+}
+
+private fun headingText(heading: HuntHeading?): String {
+    if (heading == null) return UiText.text(R.string.hunt_heading_unavailable)
+    val directions = intArrayOf(R.string.hunt_north, R.string.hunt_northeast, R.string.hunt_east,
+        R.string.hunt_southeast, R.string.hunt_south, R.string.hunt_southwest, R.string.hunt_west, R.string.hunt_northwest)
+    return UiText.text(R.string.hunt_heading_value, heading.degrees, UiText.text(directions[heading.directionIndex])) +
+        if (heading.reliable) "" else " · " + UiText.text(R.string.hunt_heading_low_accuracy)
 }

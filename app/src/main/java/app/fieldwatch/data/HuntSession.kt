@@ -1,6 +1,7 @@
 package app.fieldwatch.data
 
 import app.fieldwatch.domain.Hunt
+import app.fieldwatch.domain.HuntHeading
 import app.fieldwatch.domain.MacUtil
 import app.fieldwatch.domain.Observation
 import app.fieldwatch.domain.RadioKind
@@ -9,11 +10,13 @@ import app.fieldwatch.domain.RssiSample
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-data class HuntPoint(val signal: Double?, val noise: Double, val count: Int, val sufficient: Boolean)
+data class HuntPoint(val signal: Double?, val noise: Double, val count: Int, val sufficient: Boolean,
+    val heading: HuntHeading? = null)
 data class HuntSessionState(
     val key: String? = null, val startedAt: Long = 0, val samples: List<RssiSample> = emptyList(),
     val pointA: HuntPoint? = null, val pointB: HuntPoint? = null, val captureStartedAt: Long = 0,
     val captureDurationMs: Long = 4_000,
+    val heading: HuntHeading? = null, val captureHeading: HuntHeading? = null,
 ) {
     val difference: Double? get() {
         val a = pointA ?: return null
@@ -30,6 +33,10 @@ class HuntSession {
     val state = mutable.asStateFlow()
     @Synchronized fun start(key: String, now: Long) { mutable.value = HuntSessionState(key, now) }
     @Synchronized fun stop() { mutable.value = HuntSessionState() }
+    @Synchronized fun updateHeading(heading: HuntHeading?) {
+        val current = mutable.value
+        if (current.key != null) mutable.value = current.copy(heading = heading)
+    }
     fun observe(observation: Observation) {
         if (observation.kind == RadioKind.BLE) observeSignal(observation.mac, observation.rssi, observation.at)
     }
@@ -47,6 +54,7 @@ class HuntSession {
         val current = mutable.value
         if (current.key == null || current.captureStartedAt != 0L) return false
         mutable.value = current.copy(captureStartedAt = now, pointB = null,
+            captureHeading = current.heading?.takeIf { it.fresh(now) },
             captureDurationMs = (Hunt.recentWindowMs(current.samples) * 2).coerceIn(4_000L, 12_000L))
         return true
     }
@@ -56,9 +64,11 @@ class HuntSession {
         val samples = current.samples.filter { it.at in current.captureStartedAt..now }
         val point = HuntPoint(Hunt.median(samples), Hunt.spread(samples), samples.size,
             Hunt.enough(samples) && samples.maxOf { it.at } - samples.minOf { it.at } >= 1_500 &&
-                now - samples.maxOf { it.at } <= Hunt.RECENT_MS && Hunt.spread(samples) <= 5)
+                now - samples.maxOf { it.at } <= Hunt.RECENT_MS && Hunt.spread(samples) <= 5,
+            heading = current.captureHeading)
         mutable.value = if (current.pointA == null || !current.pointA.sufficient)
-            current.copy(pointA = point, captureStartedAt = 0) else current.copy(pointB = point, captureStartedAt = 0)
+            current.copy(pointA = point, captureStartedAt = 0, captureHeading = null) else
+            current.copy(pointB = point, captureStartedAt = 0, captureHeading = null)
     }
     @Synchronized fun keepB() {
         val current = mutable.value

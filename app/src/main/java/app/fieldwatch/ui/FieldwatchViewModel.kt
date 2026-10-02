@@ -515,6 +515,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     fun keepHuntB() { app.huntSession.keepB() }
 
+    fun updateHuntHeading(heading: app.fieldwatch.domain.HuntHeading?) { app.huntSession.updateHeading(heading) }
+
     fun stopHunt() {
         huntCaptureJob?.cancel()
         app.huntSession.stop()
