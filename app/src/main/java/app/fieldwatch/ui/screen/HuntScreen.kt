@@ -61,6 +61,12 @@ import app.fieldwatch.ui.component.HuntMap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.ensureActive
+import app.fieldwatch.domain.HuntRangeState
+import app.fieldwatch.domain.HuntRangeStatus
+import app.fieldwatch.domain.HuntUwbConfig
+import app.fieldwatch.domain.UwbConfigException
+import app.fieldwatch.radio.huntRanging
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,6 +76,44 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
     BackHandler(onBack = onBack)
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val epoch = hunt.session.startedAt
+    val target = hunt.session.key?.removePrefix("BLE:")
+    var rangeRevision by remember(epoch) { mutableIntStateOf(0) }
+    var probe by remember(epoch) { mutableStateOf(false) }
+    var uwbConfig by remember(epoch) { mutableStateOf<HuntUwbConfig?>(null) }
+    var configError by remember(epoch) { mutableStateOf<String?>(null) }
+    var importTarget by remember { mutableStateOf<Pair<Long, String>?>(null) }
+    val rangePermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { rangeRevision++ }
+    val importConfig = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        val requested = importTarget
+        importTarget = null
+        if (uri != null && requested != null) scope.launch {
+            try {
+                val config = withContext(Dispatchers.IO) {
+                    val bytes = context.contentResolver.openInputStream(uri)?.use { it.readNBytes(65_537) }
+                        ?: throw java.io.IOException("Cannot open file")
+                    if (bytes.size > 65_536) throw UwbConfigException("File too large")
+                    HuntUwbConfig.parse(bytes.toString(Charsets.UTF_8), requested.second)
+                }
+                if (vm.hunt.value.session.startedAt == requested.first && vm.hunt.value.session.key == "BLE:${requested.second}") {
+                    uwbConfig = config; configError = null; rangeRevision++
+                }
+            } catch (e: UwbConfigException) { configError = e.message }
+            catch (e: java.io.IOException) { configError = e.message }
+            catch (e: SecurityException) { configError = e.message }
+        }
+    }
+    val realDistance = hunt.session.ranging.freshDistance(hunt.now)
+    val rangeLabel = if (hunt.session.ranging.status == HuntRangeStatus.ACTIVE && realDistance == null)
+        R.string.hunt_range_stale else hunt.session.ranging.status.label()
+    LaunchedEffect(hunt.active, epoch, target, rangeRevision, uwbConfig, lifecycle) {
+        if (!hunt.active || target == null) return@LaunchedEffect
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            try { huntRanging(context, target, probe, uwbConfig).collect { vm.updateHuntRanging("BLE:$target", epoch, it) } }
+            finally { vm.updateHuntRanging("BLE:$target", epoch, HuntRangeState(HuntRangeStatus.STOPPED)) }
+        }
+    }
     var gpsPermissionRevision by remember { mutableIntStateOf(0) }
     var mapOpen by remember { mutableStateOf(false) }
     var mapDetails by remember { mutableStateOf(false) }
@@ -112,15 +156,32 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
                 }
                 TextButton(onClick = { mapDetails = !mapDetails }) { Text(UiText.text(R.string.hunt_map_details)) }
                 if (mapDetails) {
+                    Text(UiText.text(R.string.hunt_range_status, UiText.text(rangeLabel)),
+                        style = MaterialTheme.typography.bodyMedium)
+                    hunt.session.ranging.reason?.let { Text(UiText.text(R.string.hunt_range_reason, it)) }
+                    if (android.os.Build.VERSION.SDK_INT >= 36) {
+                        Button(onClick = {
+                            probe = true
+                            rangePermission.launch(arrayOf(android.Manifest.permission.RANGING, android.Manifest.permission.BLUETOOTH_CONNECT))
+                        }) { Text(UiText.text(R.string.hunt_range_connect)) }
+                        TextButton(onClick = {
+                            target?.let { importTarget = epoch to it; importConfig.launch(arrayOf("application/json", "text/plain")) }
+                        }) {
+                            Text(UiText.text(R.string.hunt_uwb_import))
+                        }
+                        if (uwbConfig != null) TextButton(onClick = { uwbConfig = null; rangeRevision++ }) {
+                            Text(UiText.text(R.string.hunt_uwb_clear))
+                        }
+                        configError?.let { Text(UiText.text(R.string.hunt_uwb_error, it), color = MaterialTheme.colorScheme.error) }
+                        Text(UiText.text(R.string.hunt_range_help), style = MaterialTheme.typography.bodySmall)
+                    }
                     Text(UiText.text(R.string.hunt_location_method), style = MaterialTheme.typography.bodySmall)
                     Text(UiText.text(R.string.hunt_target_connectable, UiText.text(when (hunt.device?.facts?.connectable) {
                         true -> R.string.hunt_cap_yes; false -> R.string.hunt_cap_no; else -> R.string.hunt_cap_unknown
                     })), style = MaterialTheme.typography.bodySmall)
                     Text(UiText.text(R.string.hunt_phone_ranging,
-                        UiText.text(if (context.packageManager.hasSystemFeature("android.hardware.bluetooth_le.channel_sounding"))
-                            R.string.hunt_cap_yes else R.string.hunt_cap_no),
-                        UiText.text(if (context.packageManager.hasSystemFeature("android.hardware.uwb"))
-                            R.string.hunt_cap_yes else R.string.hunt_cap_no)), style = MaterialTheme.typography.bodySmall)
+                        UiText.text(availabilityLabel(hunt.session.ranging.csAvailability)),
+                        UiText.text(availabilityLabel(hunt.session.ranging.uwbAvailability))), style = MaterialTheme.typography.bodySmall)
                     Text(UiText.text(R.string.hunt_location_limits), style = MaterialTheme.typography.bodySmall)
                 }
             }
@@ -143,7 +204,9 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             while (true) {
                 val live = vm.hunt.value
                 val freshSignal = live.signal?.takeIf { System.currentTimeMillis() - live.lastSeen <= live.windowMs }
-                val interval = Hunt.tickIntervalMs(freshSignal?.roundToInt(), live.cue)
+                val distance = live.session.ranging.freshDistance(System.currentTimeMillis())
+                val interval = distance?.let { (90 + 1310 * (it / 20).coerceIn(0.0, 1.0)).toLong() }
+                    ?: Hunt.tickIntervalMs(freshSignal?.roundToInt(), live.cue)
                 val now = System.currentTimeMillis()
                 if (interval != null && now - lastTick >= interval) {
                     vm.huntTick(huntBeep, huntVibrate)
@@ -204,21 +267,23 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
                 Canvas(Modifier.size(112.dp)) {
                     val stroke = 8.dp.toPx()
                     drawArc(scheme.surfaceVariant, 135f, 270f, false, style = Stroke(stroke, cap = androidx.compose.ui.graphics.StrokeCap.Round))
-                    if (hunt.signal != null) drawArc(accent, 135f, 270f * strength, false, style = Stroke(stroke, cap = androidx.compose.ui.graphics.StrokeCap.Round))
+                    if (realDistance != null || hunt.signal != null) drawArc(accent, 135f, 270f * (realDistance?.let { (1 - it / 20).coerceIn(0.0, 1.0).toFloat() } ?: strength), false, style = Stroke(stroke, cap = androidx.compose.ui.graphics.StrokeCap.Round))
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(hunt.signal?.roundToInt()?.toString() ?: "—", fontSize = 44.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
-                    Text(UiText.text(R.string.hunt_smoothed_signal), style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
+                    Text(realDistance?.let { "%.2f".format(Locale.US, it) } ?: hunt.signal?.roundToInt()?.toString() ?: "—", fontSize = 44.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
+                    Text(if (realDistance != null) UiText.text(R.string.hunt_real_distance, hunt.session.ranging.technology?.name ?: "") else UiText.text(R.string.hunt_smoothed_signal), style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
                 }
             }
-            AnimatedContent(hunt.cue, label = "huntTrend") { cue ->
+            if (realDistance == null) AnimatedContent(hunt.cue, label = "huntTrend") { cue ->
                 Text(cue.uiLabel(), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, color = accent)
             }
-            Text(if (hunt.lastSeen > 0 && hunt.count == 0) UiText.text(R.string.hunt_no_recent_packet) else hunt.cue.uiHint(),
+            Text(if (realDistance != null) UiText.text(R.string.hunt_range_live) else if (hunt.lastSeen > 0 && hunt.count == 0) UiText.text(R.string.hunt_no_recent_packet) else hunt.cue.uiHint(),
                 style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center, color = scheme.onSurfaceVariant)
             Text(UiText.text(R.string.hunt_sample_quality, hunt.count, hunt.noise.roundToInt(),
                 if (hunt.lastSeen > 0) ((hunt.now - hunt.lastSeen) / 1000).coerceAtLeast(0).toString() else "—"),
                 style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant, textAlign = TextAlign.Center)
+            Text(UiText.text(rangeLabel), style = MaterialTheme.typography.labelSmall,
+                color = scheme.onSurfaceVariant, textAlign = TextAlign.Center)
             Sparkline(hunt.samples, accent, Modifier.fillMaxWidth().height(28.dp))
             HorizontalDivider(Modifier.padding(vertical = 4.dp))
             Text(UiText.text(R.string.hunt_indoor_compare), Modifier.fillMaxWidth(), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
@@ -247,6 +312,29 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             Spacer(Modifier.height(6.dp))
         }
     }
+}
+
+private fun HuntRangeStatus.label(): Int = when (this) {
+    HuntRangeStatus.CHECKING -> R.string.hunt_range_checking
+    HuntRangeStatus.OLD_ANDROID -> R.string.hunt_range_old_android
+    HuntRangeStatus.PERMISSION -> R.string.hunt_range_permission
+    HuntRangeStatus.PHONE_UNAVAILABLE -> R.string.hunt_range_phone_unavailable
+    HuntRangeStatus.PEER_UNVERIFIED -> R.string.hunt_range_peer_unverified
+    HuntRangeStatus.CONNECTING -> R.string.hunt_range_connecting
+    HuntRangeStatus.PAIRING -> R.string.hunt_range_pairing
+    HuntRangeStatus.NO_SERVICE -> R.string.hunt_range_no_service
+    HuntRangeStatus.STARTING -> R.string.hunt_range_starting
+    HuntRangeStatus.ACTIVE -> R.string.hunt_range_active
+    HuntRangeStatus.LOW_QUALITY -> R.string.hunt_range_low_quality
+    HuntRangeStatus.NO_DATA -> R.string.hunt_range_no_data
+    HuntRangeStatus.FAILED -> R.string.hunt_range_failed
+    HuntRangeStatus.STOPPED -> R.string.hunt_range_stopped
+    HuntRangeStatus.CONFIG_INVALID -> R.string.hunt_range_config_invalid
+}
+private fun availabilityLabel(value: Int?): Int = when (value) {
+    3 -> R.string.hunt_cap_yes
+    null -> R.string.hunt_cap_unknown
+    else -> R.string.hunt_cap_no
 }
 
 private fun HuntGpsState.label(): Int = when (this) {

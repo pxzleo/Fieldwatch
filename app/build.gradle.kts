@@ -22,14 +22,14 @@ fun localProp(name: String): String? {
 
 android {
     namespace = "app.fieldwatch"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "app.fieldwatch"
         minSdk = 29
         targetSdk = 35
-        versionCode = 28
-        versionName = "1.1.18"
+        versionCode = 29
+        versionName = "1.1.19"
         vectorDrawables.useSupportLibrary = true
     }
 

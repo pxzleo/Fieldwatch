@@ -27,7 +27,7 @@
     <string name="hunt_location_estimated">已计算可能位置，新增测量会自动更新</string>
     <string name="hunt_location_method">当前方式：被动 RSSI 多点估计；拟合未知参考功率和环境衰减。原地重复接收合并为同一测量点。</string>
     <string name="hunt_target_connectable">目标广播可连接：%1$s；可连接不代表支持真实测距</string>
-    <string name="hunt_phone_ranging">手机硬件声明：蓝牙 CS %1$s，UWB %2$s；目标测距能力未验证，继续被动估计</string>
+    <string name="hunt_phone_ranging">手机测距当前可用：蓝牙 CS %1$s，UWB %2$s</string>
     <string name="hunt_cap_yes">支持</string>
     <string name="hunt_cap_no">未声明支持</string>
     <string name="hunt_cap_unknown">未知</string>

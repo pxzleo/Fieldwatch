@@ -23,6 +23,7 @@ data class HuntSessionState(
     val heading: HuntHeading? = null, val captureHeading: HuntHeading? = null,
     val fixes: List<HuntFix> = emptyList(), val geoPoints: List<HuntGeoPoint> = emptyList(),
     val locationState: HuntGpsState = HuntGpsState.WAITING,
+    val ranging: app.fieldwatch.domain.HuntRangeState = app.fieldwatch.domain.HuntRangeState(),
 ) {
     val difference: Double? get() {
         val a = pointA ?: return null
@@ -40,6 +41,10 @@ class HuntSession {
     val state = mutable.asStateFlow()
     @Synchronized fun start(key: String, now: Long) { mutable.value = HuntSessionState(key, now) }
     @Synchronized fun stop() { mutable.value = HuntSessionState() }
+    @Synchronized fun updateRanging(key: String, startedAt: Long, state: app.fieldwatch.domain.HuntRangeState) {
+        val current = mutable.value
+        if (current.key == key && current.startedAt == startedAt) mutable.value = current.copy(ranging = state)
+    }
     @Synchronized fun updateLocation(fix: HuntFix?, status: HuntGpsState) {
         val current = mutable.value
         if (current.key == null) return

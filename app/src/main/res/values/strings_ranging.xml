@@ -1,0 +1,27 @@
+<resources>
+    <string name="hunt_range_stale">Ranging reading expired; using passive tracking</string>
+    <string name="hunt_range_checking">Checking ranging capabilities</string>
+    <string name="hunt_range_old_android">System ranging unavailable; passive tracking continues</string>
+    <string name="hunt_range_permission">Nearby device ranging permission required</string>
+    <string name="hunt_range_phone_unavailable">Phone ranging unavailable; passive tracking continues</string>
+    <string name="hunt_range_peer_unverified">Peer capability unverified; passive tracking continues</string>
+    <string name="hunt_range_connecting">Connecting and checking peer ranging service</string>
+    <string name="hunt_range_pairing">Complete system pairing</string>
+    <string name="hunt_range_no_service">Peer has no ranging service; passive tracking continues</string>
+    <string name="hunt_range_starting">Starting real ranging; waiting for readings</string>
+    <string name="hunt_range_active">Real ranging active</string>
+    <string name="hunt_range_low_quality">Low ranging quality; using passive tracking</string>
+    <string name="hunt_range_no_data">Ranging timed out without valid readings</string>
+    <string name="hunt_range_failed">Ranging failed; passive tracking continues</string>
+    <string name="hunt_range_stopped">Ranging stopped; passive tracking continues</string>
+    <string name="hunt_range_config_invalid">Incompatible ranging parameters; passive tracking continues</string>
+    <string name="hunt_range_status">Real ranging: %1$s</string>
+    <string name="hunt_range_reason">System reason code: %1$d</string>
+    <string name="hunt_range_connect">Connect and pair for ranging / Retry</string>
+    <string name="hunt_uwb_import">Import peer UWB session configuration</string>
+    <string name="hunt_uwb_clear">Remove UWB session configuration</string>
+    <string name="hunt_uwb_error">UWB configuration error: %1$s</string>
+    <string name="hunt_range_help">CS requires a compatible ranging service and bonding. UWB requires the peer to configure a matching responder session before importing negotiated parameters. Valid readings drive distance and feedback; map and A/B use broadcast signal.</string>
+    <string name="hunt_real_distance">%1$s real distance · meters</string>
+    <string name="hunt_range_live">Sound and vibration speed up as distance decreases</string>
+</resources>

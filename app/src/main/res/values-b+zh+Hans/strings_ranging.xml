@@ -1,0 +1,27 @@
+<resources>
+    <string name="hunt_range_stale">测距读数已过期，使用被动寻踪</string>
+    <string name="hunt_range_checking">正在检查测距能力</string>
+    <string name="hunt_range_old_android">系统不支持真实测距接口，继续被动寻踪</string>
+    <string name="hunt_range_permission">需要附近设备测距权限</string>
+    <string name="hunt_range_phone_unavailable">手机测距当前不可用，继续被动寻踪</string>
+    <string name="hunt_range_peer_unverified">目标测距能力未确认，继续被动寻踪</string>
+    <string name="hunt_range_connecting">正在连接目标并检查测距服务</string>
+    <string name="hunt_range_pairing">请完成系统配对</string>
+    <string name="hunt_range_no_service">目标未提供测距服务，继续被动寻踪</string>
+    <string name="hunt_range_starting">正在启动真实测距，等待读数</string>
+    <string name="hunt_range_active">真实测距已启动</string>
+    <string name="hunt_range_low_quality">测距质量低，使用被动寻踪</string>
+    <string name="hunt_range_no_data">测距超时，没有有效读数</string>
+    <string name="hunt_range_failed">测距失败，继续被动寻踪</string>
+    <string name="hunt_range_stopped">测距已停止，继续被动寻踪</string>
+    <string name="hunt_range_config_invalid">测距参数不兼容，继续被动寻踪</string>
+    <string name="hunt_range_status">真实测距：%1$s</string>
+    <string name="hunt_range_reason">系统原因代码：%1$d</string>
+    <string name="hunt_range_connect">连接并配对测距 / 重试</string>
+    <string name="hunt_uwb_import">导入目标 UWB 会话配置</string>
+    <string name="hunt_uwb_clear">移除 UWB 会话配置</string>
+    <string name="hunt_uwb_error">UWB 配置错误：%1$s</string>
+    <string name="hunt_range_help">CS 需目标支持测距服务并完成绑定；UWB 需目标先配置匹配的响应会话，再导入协商参数。有效读数优先用于距离和声振；地图与 A/B 仍使用广播信号。</string>
+    <string name="hunt_real_distance">%1$s 真实距离 · 米</string>
+    <string name="hunt_range_live">靠近目标时，提示音与震动加快</string>
+</resources>
