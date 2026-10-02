@@ -22,12 +22,43 @@ object AdvPayloadDecoder {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
         }
         val decoded = device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
-            mfg.flatMap { decodeManufacturer(it, translate) }
+            mfg.flatMap { decodeManufacturer(it, translate) } + decodeMesh(device.rawHex, translate)
         if (decoded.isNotEmpty()) return decoded.distinct()
         val status = if (device.rawHex.isBlank() && mfg.none { it.dataHex.isNotBlank() } && device.facts.serviceData.none { it.dataHex.isNotBlank() })
             "No advertisement payload captured" else "Payload parser unsupported"
         return listOf(Field(translate("Payload decode status"), translate(status)))
     }
+
+    /** Validates the entire AD chain before accepting secure network beacons (Mesh 3.10.3). */
+    internal fun meshSecureBeacons(rawHex: String): List<ByteArray> {
+        val bytes = strictHexBytes(rawHex) ?: return emptyList()
+        val beacons = mutableListOf<ByteArray>()
+        var offset = 0
+        while (offset < bytes.size) {
+            val length = bytes[offset].toInt() and 0xFF
+            if (length == 0) return if (bytes.drop(offset).all { it == 0.toByte() }) beacons else emptyList()
+            if (offset + length >= bytes.size) return emptyList()
+            if ((bytes[offset + 1].toInt() and 0xFF) == 0x2B) {
+                val payload = bytes.copyOfRange(offset + 2, offset + length + 1)
+                if (payload.size == 22 && payload[0] == 1.toByte() && (payload[1].toInt() and 0xFF) in 0..3)
+                    beacons += payload
+            }
+            offset += length + 1
+        }
+        return beacons
+    }
+
+    private fun decodeMesh(rawHex: String, translate: (String) -> String): List<Field> =
+        meshSecureBeacons(rawHex).flatMap { payload ->
+            val iv = payload.sliceArray(10..13).fold(0L) { value, byte -> (value shl 8) or (byte.toLong() and 0xFF) }
+            listOf(
+                Field(translate("Bluetooth Mesh secure network beacon"), translate("Protocol only; product and authentication are unverified.")),
+                Field(translate("Mesh flags (raw)"), "%02X".format(payload[1].toInt() and 0xFF)),
+                Field(translate("Mesh Network ID"), payload.sliceArray(2..9).toHexUpper()),
+                Field(translate("Mesh IV Index"), iv.toString()),
+                Field(translate("Mesh authentication (raw, unverified)"), payload.sliceArray(14..21).toHexUpper()),
+            )
+        }
 
     fun decodeManufacturer(record: MfgRecord, translate: (String) -> String = { it }): List<Field> {
         if (record.companyId == 0x038F) return MiBeaconDecoder.decode(record.dataHex, translate).fields

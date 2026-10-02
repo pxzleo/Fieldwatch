@@ -118,6 +118,7 @@ class SignatureEngine {
     private fun compile(fleets: List<Fleet>): Compiled {
         val plans = ArrayList<FleetPlan>(fleets.size)
         val bssidWifi = HashMap<String, MutableList<Int>>(4096)
+        val recoveredOuiWifi = HashMap<String, MutableList<Int>>(4096)
         val bssidBle = HashMap<String, MutableList<Int>>(256)
         val ouiBle = HashMap<String, MutableList<Int>>(256)
         val vendorIe = HashMap<String, MutableList<Int>>(4096)
@@ -129,8 +130,11 @@ class SignatureEngine {
             val other = ArrayList<FastRule>(8)
             active.forEach { rule ->
                 when (rule.kind) {
-                    RuleKind.OUI ->
+                    RuleKind.OUI -> {
                         indexOui(rule.text, rule.radio, idx, bssid = true, vendor = true, bssidWifi, ouiBle, vendorIe, longOui)
+                        val hex = hexOnly(rule.text)
+                        if (rule.radio != RadioKind.BLE && hex.length == 6) addIdx(recoveredOuiWifi, hex, idx)
+                    }
                     RuleKind.MAC_PREFIX ->
                         indexOui(rule.text, rule.radio, idx, bssid = true, vendor = false, bssidWifi, bssidBle, vendorIe, longOui)
                     RuleKind.VENDOR_IE_OUI ->
@@ -160,6 +164,7 @@ class SignatureEngine {
             wifiPlans = wifiPlans.toIntArray(),
             blePlans = blePlans.toIntArray(),
             bssidWifi = freeze(bssidWifi),
+            recoveredOuiWifi = freeze(recoveredOuiWifi),
             bssidBle = freeze(bssidBle),
             ouiBle = freeze(ouiBle),
             vendorIe = freeze(vendorIe),
@@ -230,7 +235,7 @@ class SignatureEngine {
 
     private fun ruleScope(rule: MatchRule): RadioKind? = when (rule.kind) {
         RuleKind.VENDOR_IE_OUI, RuleKind.HIDDEN_SSID, RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE -> RadioKind.WIFI
-        RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> RadioKind.BLE
+        RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE, RuleKind.BLE_MESH_BEACON -> RadioKind.BLE
         RuleKind.RADIO_KIND -> rule.radio
         RuleKind.SERVICE_UUID, RuleKind.SERVICE_DATA, RuleKind.MANUFACTURER_ID, RuleKind.MANUFACTURER_DATA ->
             rule.radio ?: RadioKind.BLE
@@ -263,7 +268,7 @@ class SignatureEngine {
         }
         RuleKind.RADIO_KIND -> FastRule.Radio(rule.radio)
         RuleKind.HIDDEN_SSID -> FastRule.Hidden
-        RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> FastRule.Identity(rule)
+        RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE, RuleKind.BLE_MESH_BEACON -> FastRule.Identity(rule)
         RuleKind.OUI, RuleKind.MAC_PREFIX, RuleKind.VENDOR_IE_OUI -> null
     }
 
@@ -394,7 +399,7 @@ class SignatureEngine {
                 device.hiddenSsid
             RuleKind.VENDOR_IE_OUI ->
                 wifiVendorIeHitsOui(device, rule.text)
-            RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE -> passiveIdentityHits(device, rule)
+            RuleKind.WPS_MANUFACTURER, RuleKind.WPS_DEVICE_TYPE, RuleKind.MIBEACON_PRODUCT_ID, RuleKind.APPLE_CONTINUITY_TYPE, RuleKind.BLE_MESH_BEACON -> passiveIdentityHits(device, rule)
         }
     }
 
@@ -476,6 +481,7 @@ class SignatureEngine {
         val wifiPlans: IntArray,
         val blePlans: IntArray,
         val bssidWifi: Map<String, IntArray>,
+        val recoveredOuiWifi: Map<String, IntArray>,
         val bssidBle: Map<String, IntArray>,
         val ouiBle: Map<String, IntArray>,
         val vendorIe: Map<String, IntArray>,
@@ -493,7 +499,7 @@ class SignatureEngine {
             if (device.kind == RadioKind.BLE && bleOuiAllowed(device)) mark(hits, ouiBle[oui6])
             if (device.kind == RadioKind.WIFI) {
                 MacUtil.wifiOui24Universal(device.mac)?.let { univ ->
-                    mark(hits, bssidMap[univ])
+                    mark(hits, recoveredOuiWifi[univ])
                 }
                 device.vendorIeOuis.forEach { ie ->
                     val hex = hexOnly(ie)
@@ -677,6 +683,8 @@ private fun passiveIdentityHits(device: Sighting, rule: MatchRule): Boolean = wh
         WifiWpsDecoder.identities(device.facts.vendorIes).any { it.primaryDeviceType.equals(rule.text, true) }
     RuleKind.MIBEACON_PRODUCT_ID -> device.kind == RadioKind.BLE &&
         rule.text.removePrefix("0x").toIntOrNull(16)?.let { pid -> MiBeaconDecoder.identities(device).any { it.productId == pid } } == true
+    RuleKind.BLE_MESH_BEACON -> device.kind == RadioKind.BLE && rule.text.trim() == "01" &&
+        AdvPayloadDecoder.meshSecureBeacons(device.rawHex).isNotEmpty()
     RuleKind.APPLE_CONTINUITY_TYPE -> device.kind == RadioKind.BLE &&
         rule.text.removePrefix("0x").toIntOrNull(16)?.let { type ->
             device.facts.mfgRecords.ifEmpty {

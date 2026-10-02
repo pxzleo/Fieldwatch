@@ -320,6 +320,7 @@ object DefaultCatalog {
         *discoveryFamiliesV91().toTypedArray(),
         *discoveryFamiliesV92().toTypedArray(),
         *discoveryFamiliesV93().toTypedArray(),
+        *discoveryFamiliesV94().toTypedArray(),
     ).map(::withPassiveIdentityRules).sortedBy { it.name.lowercase() }
 
     /** Family fingerprints from advertised names/services; these do not identify an owner or exact model. */
@@ -374,7 +375,7 @@ object DefaultCatalog {
         Fleet(id = "fleet-mercury-wifi", name = "MERCURY Wi-Fi", builtIn = true,
             colorIndex = Hue.HOME_CAM, kind = SignatureClass.ISP,
             notes = "MERCURY* Wi-Fi name identifies a Mercury network family. Shared chipset identifiers do not prove the router brand or model.",
-            rules = listOf(wifiGlob("MERCURY*"))),
+            rules = listOf(wifiGlob("MERCURY*"), MatchRule(RuleKind.MAC_PREFIX, text = "4C:77:66", radio = RadioKind.WIFI))),
         Fleet(id = "fleet-dji-romo", name = "DJI ROMO robot vacuum", builtIn = true,
             colorIndex = Hue.HOME_CAM, kind = SignatureClass.HOME,
             notes = "ROMO-* BLE name identifies a DJI ROMO robot vacuum family. It is not an aircraft; the suffix does not identify a retail model or cleaning state.",
@@ -527,6 +528,37 @@ object DefaultCatalog {
         registeredWifiV93("gubei-interface", "Gubei / BroadLink registered Wi-Fi interface (type unknown)",
             "IEEE address prefixes are registered to HangZhou Gubei Electronics Technology (BroadLink). They identify a Wi-Fi interface registration; finished-product brand, model and purpose are unconfirmed.",
             listOf("C8:F7:42", "34:EA:34")),
+    )
+
+    fun discoveryFamiliesV94(): List<Fleet> = listOf(
+        Fleet(id = "fleet-ninebot-ecosystem", name = "Ninebot mobility ecosystem (product unknown)", notes = "Ninebot company identifier 0F1F or ecosystem identifiers 424E / 434E identify a mobility ecosystem radio. Product type and vehicle model are unconfirmed.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(0x0F1F, 0x424E, 0x434E).map { MatchRule(RuleKind.MANUFACTURER_ID, companyId = it, radio = RadioKind.BLE) }),
+        Fleet(id = "fleet-jieli-sdk", name = "Jieli JLAISDK interface (product unknown)", notes = "Company identifier 05D6, JLAISDK payload prefix and AF30 service together identify a Jieli SDK interface. This does not confirm the finished-product brand, type or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = false, rules = listOf(MatchRule(RuleKind.MANUFACTURER_DATA, companyId = 0x05D6, dataPrefixHex = "08004A4C414953444B", radio = RadioKind.BLE), MatchRule(RuleKind.SERVICE_UUID, text = "AF30", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-ble-joy-r", name = "Possible right game-controller component (BLE_Joy_R)", notes = "Exact BLE_Joy_R pairing name matches a documented right game-controller component. The broadcast name does not confirm manufacturer or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(bleGlob("BLE_Joy_R"))),
+        Fleet(id = "fleet-google-fcf1", name = "Google member service FCF1 (purpose unknown)", notes = "FCF1 is a Google-assigned member service UUID. This UUID alone does not identify a finder, Fast Pair product, device type or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.SERVICE_UUID, text = "FCF1", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-bluetooth-mesh-beacon", name = "Bluetooth Mesh secure network beacon (protocol only)", notes = "A complete secure network beacon identifies Bluetooth Mesh protocol traffic. Authentication is not verified; this does not identify a light, product, brand or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.BLE_MESH_BEACON, text = "01", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-cmcc-ap-name", name = "Possible China Mobile named access point", notes = "CMCC-????-5G matches an operator access-point naming example. This self-declared SSID does not verify operator, manufacturer or router model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.ISP, matchAny = true, rules = listOf(wifiGlob("CMCC-????-5G"))),
+        Fleet(id = "fleet-unicom-ap-name", name = "Possible China Unicom named access point", notes = "CU_* or ChinaUnicom-MESH* suggests an operator-named access point. This self-declared SSID does not verify operator, manufacturer or router model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.ISP, matchAny = true, rules = listOf(wifiGlob("CU_*"), wifiGlob("ChinaUnicom-MESH*"))),
+        Fleet(id = "fleet-wifi-direct-name", name = "Possible Wi-Fi Direct named interface", notes = "DIRECT-??* matches the Wi-Fi Direct naming convention. The name alone does not confirm Wi-Fi Direct capability, product, manufacturer or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(wifiGlob("DIRECT-??*"))),
+        Fleet(id = "fleet-nec-interface", name = "NEC registered Wi-Fi interface (type unknown)", notes = "IEEE address prefix is registered to NEC. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.MAC_PREFIX, text = "00:25:5C", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-micronet-interface", name = "Micronet registered Wi-Fi interface (type unknown)", notes = "IEEE address prefix is registered to Micronet. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.MAC_PREFIX, text = "88:6E:DD", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-nuoxin-interface", name = "Nuoxin registered Wi-Fi interface (type unknown)", notes = "IEEE address prefix is registered to Nuoxin. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.MAC_PREFIX, text = "E4:67:1E", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-lingji-interface", name = "Beijing Lingji registered Wi-Fi interface (type unknown)", notes = "IEEE address prefix is registered to Beijing Lingji. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.MAC_PREFIX, text = "3C:CB:01", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-qualcomm-platform-ie", name = "Qualcomm Wi-Fi platform IE (product unknown)", notes = "A Qualcomm vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.VENDOR_IE_OUI, text = "88:12:4E", radio = RadioKind.WIFI), MatchRule(RuleKind.VENDOR_IE_OUI, text = "8C:FD:F0", radio = RadioKind.WIFI))),
+        Fleet(id = "fleet-realtek-platform-ie", name = "Realtek Wi-Fi platform IE (product unknown)", notes = "A Realtek vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model.", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER, matchAny = true, rules = listOf(MatchRule(RuleKind.VENDOR_IE_OUI, text = "00:E0:4C", radio = RadioKind.WIFI))),
     )
 
     private fun registeredWifiV93(id: String, name: String, notes: String, prefixes: List<String>) = Fleet(

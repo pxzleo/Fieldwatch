@@ -961,15 +961,16 @@ class SignatureExchangeTest {
     }
 
     @Test
-    fun ravenWifiDirectSsidHitsRavenOnly() {
+    fun ravenWifiDirectKeepsProductMatchWhileGenericDirectIsProtocolOnly() {
         val engine = SignatureEngine()
         val raven = sighting(RadioKind.WIFI, "00:0A:F5:86:56:DD", "DIRECT-rR-Raven-607")
         val genericDirect = sighting(RadioKind.WIFI, "02:11:22:33:44:55", "DIRECT-xy-LivingRoom")
         val hits = engine.match(listOf(raven, genericDirect), stock)
         assertTrue("Raven SSID", "fleet-raven" in hits.getValue(raven.key))
         assertFalse("Raven is not Unknown", "fleet-unknown" in hits.getValue(raven.key))
-        assertFalse("generic DIRECT- is unmatched", "fleet-unknown" in hits.getValue(genericDirect.key))
-        assertTrue("generic DIRECT- has no stock family", hits.getValue(genericDirect.key).isEmpty())
+        assertTrue("Raven also follows the Wi-Fi Direct naming convention", "fleet-wifi-direct-name" in hits.getValue(raven.key))
+        assertFalse("generic DIRECT- does not identify Raven", "fleet-raven" in hits.getValue(genericDirect.key))
+        assertEquals("generic DIRECT- identifies only the protocol naming family", setOf("fleet-wifi-direct-name"), hits.getValue(genericDirect.key))
     }
 
     @Test

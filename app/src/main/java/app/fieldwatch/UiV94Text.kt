@@ -1,0 +1,41 @@
+package app.fieldwatch
+
+internal object UiV94Text {
+    fun text(source: String): String = when (source) {
+        "Ninebot mobility ecosystem (product unknown)" -> UiText.text(R.string.discovery_v94_0)
+        "Ninebot company identifier 0F1F or ecosystem identifiers 424E / 434E identify a mobility ecosystem radio. Product type and vehicle model are unconfirmed." -> UiText.text(R.string.discovery_v94_1)
+        "Jieli JLAISDK interface (product unknown)" -> UiText.text(R.string.discovery_v94_2)
+        "Company identifier 05D6, JLAISDK payload prefix and AF30 service together identify a Jieli SDK interface. This does not confirm the finished-product brand, type or model." -> UiText.text(R.string.discovery_v94_3)
+        "Possible right game-controller component (BLE_Joy_R)" -> UiText.text(R.string.discovery_v94_4)
+        "Exact BLE_Joy_R pairing name matches a documented right game-controller component. The broadcast name does not confirm manufacturer or model." -> UiText.text(R.string.discovery_v94_5)
+        "Google member service FCF1 (purpose unknown)" -> UiText.text(R.string.discovery_v94_6)
+        "FCF1 is a Google-assigned member service UUID. This UUID alone does not identify a finder, Fast Pair product, device type or model." -> UiText.text(R.string.discovery_v94_7)
+        "Bluetooth Mesh secure network beacon (protocol only)" -> UiText.text(R.string.discovery_v94_8)
+        "A complete secure network beacon identifies Bluetooth Mesh protocol traffic. Authentication is not verified; this does not identify a light, product, brand or model." -> UiText.text(R.string.discovery_v94_9)
+        "Possible China Mobile named access point" -> UiText.text(R.string.discovery_v94_10)
+        "CMCC-????-5G matches an operator access-point naming example. This self-declared SSID does not verify operator, manufacturer or router model." -> UiText.text(R.string.discovery_v94_11)
+        "Possible China Unicom named access point" -> UiText.text(R.string.discovery_v94_12)
+        "CU_* or ChinaUnicom-MESH* suggests an operator-named access point. This self-declared SSID does not verify operator, manufacturer or router model." -> UiText.text(R.string.discovery_v94_13)
+        "Possible Wi-Fi Direct named interface" -> UiText.text(R.string.discovery_v94_14)
+        "DIRECT-??* matches the Wi-Fi Direct naming convention. The name alone does not confirm Wi-Fi Direct capability, product, manufacturer or model." -> UiText.text(R.string.discovery_v94_15)
+        "NEC registered Wi-Fi interface (type unknown)" -> UiText.text(R.string.discovery_v94_16)
+        "IEEE address prefix is registered to NEC. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed." -> UiText.text(R.string.discovery_v94_17)
+        "Micronet registered Wi-Fi interface (type unknown)" -> UiText.text(R.string.discovery_v94_18)
+        "IEEE address prefix is registered to Micronet. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed." -> UiText.text(R.string.discovery_v94_19)
+        "Nuoxin registered Wi-Fi interface (type unknown)" -> UiText.text(R.string.discovery_v94_20)
+        "IEEE address prefix is registered to Nuoxin. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed." -> UiText.text(R.string.discovery_v94_21)
+        "Beijing Lingji registered Wi-Fi interface (type unknown)" -> UiText.text(R.string.discovery_v94_22)
+        "IEEE address prefix is registered to Beijing Lingji. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed." -> UiText.text(R.string.discovery_v94_23)
+        "Qualcomm Wi-Fi platform IE (product unknown)" -> UiText.text(R.string.discovery_v94_24)
+        "A Qualcomm vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model." -> UiText.text(R.string.discovery_v94_25)
+        "Realtek Wi-Fi platform IE (product unknown)" -> UiText.text(R.string.discovery_v94_26)
+        "A Realtek vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model." -> UiText.text(R.string.discovery_v94_27)
+        "Bluetooth Mesh secure network beacon" -> UiText.text(R.string.discovery_v94_28)
+        "Protocol only; product and authentication are unverified." -> UiText.text(R.string.discovery_v94_29)
+        "Mesh flags (raw)" -> UiText.text(R.string.discovery_v94_30)
+        "Mesh Network ID" -> UiText.text(R.string.discovery_v94_31)
+        "Mesh IV Index" -> UiText.text(R.string.discovery_v94_32)
+        "Mesh authentication (raw, unverified)" -> UiText.text(R.string.discovery_v94_33)
+        else -> source
+    }
+}

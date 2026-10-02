@@ -299,6 +299,7 @@ class LogStore(context: Context) {
             device.latitude?.let { String.format(Locale.US, "%.6f", it) }.orEmpty(),
             device.longitude?.let { String.format(Locale.US, "%.6f", it) }.orEmpty(),
             device.vendorIeOuis.take(8).joinToString("|") { MacUtil.normalize(it) },
+            device.rawHex,
         ).joinToString(",") + "\n"
     }
 
@@ -330,7 +331,7 @@ class LogStore(context: Context) {
 
 
         private const val CSV_HEADER =
-            "timestamp,iso,kind,mac,name,rssi,channel,freq,oui,vendor,fleets,mfg,uuids,flags,raw,lat,lon,vendor_ie\n"
+            "timestamp,iso,kind,mac,name,rssi,channel,freq,oui,vendor,fleets,mfg,uuids,flags,raw,lat,lon,vendor_ie,raw_hex\n"
 
         private fun skipCsvHeader(input: java.io.BufferedInputStream) {
             input.mark(512)

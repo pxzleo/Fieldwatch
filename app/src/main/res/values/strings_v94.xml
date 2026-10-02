@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="discovery_v94_mesh_rule">Bluetooth Mesh beacon type (01)</string>
+    <string name="discovery_v94_0">Ninebot mobility ecosystem (product unknown)</string>
+    <string name="discovery_v94_1">Ninebot company identifier 0F1F or ecosystem identifiers 424E / 434E identify a mobility ecosystem radio. Product type and vehicle model are unconfirmed.</string>
+    <string name="discovery_v94_2">Jieli JLAISDK interface (product unknown)</string>
+    <string name="discovery_v94_3">Company identifier 05D6, JLAISDK payload prefix and AF30 service together identify a Jieli SDK interface. This does not confirm the finished-product brand, type or model.</string>
+    <string name="discovery_v94_4">Possible right game-controller component (BLE_Joy_R)</string>
+    <string name="discovery_v94_5">Exact BLE_Joy_R pairing name matches a documented right game-controller component. The broadcast name does not confirm manufacturer or model.</string>
+    <string name="discovery_v94_6">Google member service FCF1 (purpose unknown)</string>
+    <string name="discovery_v94_7">FCF1 is a Google-assigned member service UUID. This UUID alone does not identify a finder, Fast Pair product, device type or model.</string>
+    <string name="discovery_v94_8">Bluetooth Mesh secure network beacon (protocol only)</string>
+    <string name="discovery_v94_9">A complete secure network beacon identifies Bluetooth Mesh protocol traffic. Authentication is not verified; this does not identify a light, product, brand or model.</string>
+    <string name="discovery_v94_10">Possible China Mobile named access point</string>
+    <string name="discovery_v94_11">CMCC-????-5G matches an operator access-point naming example. This self-declared SSID does not verify operator, manufacturer or router model.</string>
+    <string name="discovery_v94_12">Possible China Unicom named access point</string>
+    <string name="discovery_v94_13">CU_* or ChinaUnicom-MESH* suggests an operator-named access point. This self-declared SSID does not verify operator, manufacturer or router model.</string>
+    <string name="discovery_v94_14">Possible Wi-Fi Direct named interface</string>
+    <string name="discovery_v94_15">DIRECT-??* matches the Wi-Fi Direct naming convention. The name alone does not confirm Wi-Fi Direct capability, product, manufacturer or model.</string>
+    <string name="discovery_v94_16">NEC registered Wi-Fi interface (type unknown)</string>
+    <string name="discovery_v94_17">IEEE address prefix is registered to NEC. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.</string>
+    <string name="discovery_v94_18">Micronet registered Wi-Fi interface (type unknown)</string>
+    <string name="discovery_v94_19">IEEE address prefix is registered to Micronet. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.</string>
+    <string name="discovery_v94_20">Nuoxin registered Wi-Fi interface (type unknown)</string>
+    <string name="discovery_v94_21">IEEE address prefix is registered to Nuoxin. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.</string>
+    <string name="discovery_v94_22">Beijing Lingji registered Wi-Fi interface (type unknown)</string>
+    <string name="discovery_v94_23">IEEE address prefix is registered to Beijing Lingji. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.</string>
+    <string name="discovery_v94_24">Qualcomm Wi-Fi platform IE (product unknown)</string>
+    <string name="discovery_v94_25">A Qualcomm vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model.</string>
+    <string name="discovery_v94_26">Realtek Wi-Fi platform IE (product unknown)</string>
+    <string name="discovery_v94_27">A Realtek vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model.</string>
+    <string name="discovery_v94_28">Bluetooth Mesh secure network beacon</string>
+    <string name="discovery_v94_29">Protocol only; product and authentication are unverified.</string>
+    <string name="discovery_v94_30">Mesh flags (raw)</string>
+    <string name="discovery_v94_31">Mesh Network ID</string>
+    <string name="discovery_v94_32">Mesh IV Index</string>
+    <string name="discovery_v94_33">Mesh authentication (raw, unverified)</string>
+</resources>

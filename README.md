@@ -142,3 +142,23 @@ WPS 补充基础协议版本、配网锁定标记、选中注册方、射频频�
 同批日志重放结果：未匹配由 142 降至 81（BLE 58、Wi-Fi 23），新增命中 61 条，没有原有命中变为未匹配。其中 13 条属于 HID／遥控器／耳机／可能数字钥匙用途分类；另外 48 条仅识别无线接口供应商、银基生态或 AWDL 协议，不能视为已确认具体产品。10 条 AirPlay 记录新增实际广播的 IPv4 和端口；WPS 新增版本 83 条、射频频段 49 条、方法位掩码 38 条、锁定标记 5 条、选中注册方 1 条。29 条 AWDL 记录只展示原始消息，不把原始字节算成已解出的状态。
 
 剩余缺口：RZ-Slave 仅有杰理平台依据；eg_ac_hanging、MiCar、匿名 4669 暂无可靠产品对应；Keep 的 1818 私有广播不能套用功率测量特征布局；海尔广播与公开串口协议不同；BYD、AIMA、美的私有广播以及加密米家测量缺少与样本相符的公开解码依据。本轮不编造电量、车辆状态、空调状态或精确型号。供应商／协议级命中与具体产品识别分开解释。
+
+### 特征库 94：实时未匹配样本及 Mesh 信标
+
+2026-10-02 从手机导出的日志中，最近 15 分钟有 226 个类型／地址组合，93 版未匹配 35 条（BLE 24、Wi-Fi 11）。随机地址和同一设备的多个无线接口仍可能重复计数。
+
+| 本轮识别范围 | 证据及限制 |
+| --- | --- |
+| 九号出行生态 | [维护者发现配置](https://raw.githubusercontent.com/BobMcGlobus/ha-ninebot/master/custom_components/ninebot_scooter/manifest.json)支持 424E／434E 自定义标识，SIG 分配的 0F1F 同时支持供应商识别；不根据序列名称猜车型，也不把全部设备称为滑板车。 |
+| 杰理 SDK 协议 | 同时要求厂商编号、JLAISDK 数据标记和 AF30 服务。[杰理官方 SDK 文档](https://doc.zh-jieli.com/Apps/Android/bt_connect/zh-cn/master/development/interface_desc.html)支持标记含义，不能据此确认耳机、音箱或调音台。 |
+| BLE_Joy_R 手柄用途 | [Powerwave 原厂说明书](https://powerwavegaming.com.au/wp-content/uploads/Joypad-Instructions-new-v1a-compressed.pdf)在 KeyLinker 更新流程中明确使用该名称；识别右侧手柄用途，不确认任天堂或具体零售品牌。 |
+| Google FCF1 服务 | [SIG 分配表](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/index-en.html)仅公布服务所属公司；不称为定位器、Fast Pair 或确定的手机型号。 |
+| 蓝牙 Mesh 安全网络信标格式 | 严格解析完整 AD 结构、2B 类型、01 信标类型、22 字节正文及合法标记。[Mesh 标准 §3.10.3](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/MshPRT_v1.1/out/en/index-en.html)支持网络标识、IV 索引及认证原值字段；没有网络密钥，不宣称验证认证值，也不猜灯具或其他具体用途。 |
+| 运营商及 Wi-Fi Direct 命名线索 | CMCC-四字符-5G 参考[移动家庭组网规范](https://oss.komect.com/openhomeres/2611dad71df9147c3ab965f4a740465ac/中国移动智慧家庭智能组网产品技术规范V4.4.1.pdf)，CU_ 前缀参考[网关管理厂家手册](https://wiki.mqrouter.com/docs/ITMS全光网管理-快速入门指南V2.2.pdf)，ChinaUnicom-MESH 为广播自报名称；均不验证运营商、用户合约或终端 OEM。DIRECT-xy 名称参考 [AOSP P2P 定义](https://android.googlesource.com/platform/external/wpa_supplicant_8/+/ea69e84/wpa_supplicant/README-P2P)，只作可能的协议命名识别，不确认 XMSv1 的成品用途。 |
+| Wi-Fi 接口登记与芯片平台 | [IEEE 登记表](https://standards-oui.ieee.org/oui/oui.csv)支持 NEC、Micronet、诺信成、Beijing Lingji 及水星遗漏前缀；新接口规则只匹配原始前缀，不通过清除本地管理位推断供应商。Qualcomm／Realtek 厂商信息元素只支持平台线索，不代表整机品牌。 |
+
+Mesh 解码与规则匹配共用校验入口，设备详情、文本和 PDF 报告使用相同字段。日志重放独立保留完整广播原文，不再用厂商数据正文代替整个 AD 包。严格 MAC 前缀在快速匹配和全部条件匹配中行为一致；原有 OUI 的虚拟 BSSID 规则不变。升级只追加本轮新条目及水星前缀，保留自建规则、禁用规则、删除的旧条件及 AND 配置。
+
+同批最近 15 分钟日志重放：未匹配 35 降至 7（均为 BLE），新增命中 28 条，原有命中无丢失。1 条具有厂商手柄说明书用途依据；4 条是可能的运营商接入点命名，1 条是可能的 Wi-Fi Direct 命名；其余 22 条为供应商、生态或协议级部分识别，仍不能确认精确产品。6 条 Mesh 记录新增网络标识、IV 索引及原始标记／认证字段，认证值未验证。部分记录命中多个供应商／协议线索，命中家族数不等于设备数。
+
+仍没有可靠用途依据的样本包括 MT-K3、eg_ac_hanging、XR、TL_GPSJLXW、BLE_DK 和未知 TI 服务。部分自定义厂商区装的是 MAC 地址或 ASCII 文字，不能把数值直接当 SIG 公司编号；含 EZVIZ 或 bl702l 的文字也不足以确认摄像头。MA-L、MA-M、MA-S 登记表未命中的地址不会猜测供应商。

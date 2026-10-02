@@ -54,6 +54,6 @@ internal object UiV93Text {
         "an InGeek ecosystem radio (purpose unconfirmed)" -> UiText.text(R.string.discovery_v93_48)
         "an AWDL protocol advertiser (product unconfirmed)" -> UiText.text(R.string.discovery_v93_49)
         "Apple Continuity type %1\$s" -> UiText.text(R.string.discovery_v93_50)
-        else -> source
+        else -> UiV94Text.text(source)
     }
 }

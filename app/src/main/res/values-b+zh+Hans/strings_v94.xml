@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="discovery_v94_mesh_rule">Bluetooth Mesh 信标类型（01）</string>
+    <string name="discovery_v94_0">九号出行生态（产品未确认）</string>
+    <string name="discovery_v94_1">九号公司标识 0F1F 或生态标识 424E / 434E 提示出行生态接口。产品类型和车型尚未确认。</string>
+    <string name="discovery_v94_2">杰理 JLAISDK 接口（产品未确认）</string>
+    <string name="discovery_v94_3">公司标识 05D6、JLAISDK 载荷前缀及 AF30 服务同时出现，提示杰理 SDK 接口，不能确认整机品牌、类型或型号。</string>
+    <string name="discovery_v94_4">可能的游戏手柄右侧组件（BLE_Joy_R）</string>
+    <string name="discovery_v94_5">精确配对名称 BLE_Joy_R 与公开文档的游戏手柄右侧组件一致。广播名称不能确认制造商或型号。</string>
+    <string name="discovery_v94_6">Google 成员服务 FCF1（用途未确认）</string>
+    <string name="discovery_v94_7">FCF1 是分配给 Google 的成员服务 UUID。仅此 UUID 不能确认防丢器、Fast Pair 产品、设备类型或型号。</string>
+    <string name="discovery_v94_8">Bluetooth Mesh 安全网络信标（仅协议）</string>
+    <string name="discovery_v94_9">完整安全网络信标提示 Bluetooth Mesh 协议通信。认证尚未验证；不能识别灯具、产品、品牌或型号。</string>
+    <string name="discovery_v94_10">可能的中国移动命名接入点</string>
+    <string name="discovery_v94_11">CMCC-????-5G 符合运营商接入点命名示例。SSID 是自行声明的名称，不能验证运营商、制造商或路由器型号。</string>
+    <string name="discovery_v94_12">可能的中国联通命名接入点</string>
+    <string name="discovery_v94_13">CU_* 或 ChinaUnicom-MESH* 提示运营商命名接入点。SSID 是自行声明的名称，不能验证运营商、制造商或路由器型号。</string>
+    <string name="discovery_v94_14">可能的 Wi-Fi Direct 命名接口</string>
+    <string name="discovery_v94_15">DIRECT-??* 符合 Wi-Fi Direct 命名惯例。仅凭名称不能确认 Wi-Fi Direct 能力、产品、制造商或型号。</string>
+    <string name="discovery_v94_16">NEC 登记的 Wi-Fi 接口（类型未确定）</string>
+    <string name="discovery_v94_17">IEEE 地址前缀登记于NEC。仅匹配原始登记的 Wi-Fi 前缀；整机品牌、类型和型号尚未确认。</string>
+    <string name="discovery_v94_18">Micronet 登记的 Wi-Fi 接口（类型未确定）</string>
+    <string name="discovery_v94_19">IEEE 地址前缀登记于Micronet。仅匹配原始登记的 Wi-Fi 前缀；整机品牌、类型和型号尚未确认。</string>
+    <string name="discovery_v94_20">诺信 登记的 Wi-Fi 接口（类型未确定）</string>
+    <string name="discovery_v94_21">IEEE 地址前缀登记于诺信。仅匹配原始登记的 Wi-Fi 前缀；整机品牌、类型和型号尚未确认。</string>
+    <string name="discovery_v94_22">Beijing Lingji 登记的 Wi-Fi 接口（类型未确定）</string>
+    <string name="discovery_v94_23">IEEE 地址前缀登记于Beijing Lingji。仅匹配原始登记的 Wi-Fi 前缀；整机品牌、类型和型号尚未确认。</string>
+    <string name="discovery_v94_24">高通 Wi-Fi 平台 IE（产品未确认）</string>
+    <string name="discovery_v94_25">高通厂商信息元素提示芯片平台。不能确认整机制造商、品牌、类型或型号。</string>
+    <string name="discovery_v94_26">瑞昱 Wi-Fi 平台 IE（产品未确认）</string>
+    <string name="discovery_v94_27">瑞昱厂商信息元素提示芯片平台。不能确认整机制造商、品牌、类型或型号。</string>
+    <string name="discovery_v94_28">Bluetooth Mesh 安全网络信标</string>
+    <string name="discovery_v94_29">仅识别协议；产品及认证尚未验证。</string>
+    <string name="discovery_v94_30">Mesh 标志（原始值）</string>
+    <string name="discovery_v94_31">Mesh 网络标识</string>
+    <string name="discovery_v94_32">Mesh IV 索引</string>
+    <string name="discovery_v94_33">Mesh 认证（原始值，未验证）</string>
+</resources>

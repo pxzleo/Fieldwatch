@@ -104,6 +104,8 @@ object SitExport {
             vendor = d.vendor,
             manufacturerId = d.manufacturerId,
             manufacturerDataHex = d.manufacturerDataHex,
+            rawHex = d.rawHex,
+            facts = d.facts,
             serviceUuids = d.serviceUuids,
             vendorIeOuis = emptyList(),
             randomized = d.randomized,

@@ -24,6 +24,7 @@ data class LogRadio(
     val latitude: Double? = null,
     val longitude: Double? = null,
     val facts: RadioFacts = RadioFacts(),
+    val rawHex: String = "",
 ) {
     val key: String get() = "${kind.name}:$mac"
     val hasPosition: Boolean get() = latitude != null && longitude != null
@@ -91,6 +92,7 @@ object LogReplay {
                 vendor = col("vendor").trim().ifBlank { null },
                 manufacturerId = mfg,
                 manufacturerDataHex = col("raw").trim(),
+                rawHex = col("raw_hex").trim(),
                 serviceUuids = uuids,
                 vendorIeOuis = ies,
                 randomized = flags.contains("RAND") || MacUtil.isRandomized(mac),
@@ -138,6 +140,7 @@ object LogReplay {
                 vendor = str("vendor").ifBlank { null },
                 manufacturerId = mfg,
                 manufacturerDataHex = str("manufacturer_data_hex").ifBlank { str("raw") },
+                rawHex = str("raw_hex"),
                 serviceUuids = uuids,
                 vendorIeOuis = ies,
                 randomized = rand,
@@ -166,6 +169,7 @@ object LogReplay {
             vendor = row.vendor ?: prev.vendor,
             manufacturerId = row.manufacturerId ?: prev.manufacturerId,
             manufacturerDataHex = row.manufacturerDataHex.ifBlank { prev.manufacturerDataHex },
+            rawHex = row.rawHex.ifBlank { prev.rawHex },
             serviceUuids = (prev.serviceUuids + row.serviceUuids).distinct(),
             vendorIeOuis = (prev.vendorIeOuis + row.vendorIeOuis).distinct(),
             randomized = prev.randomized || row.randomized,
@@ -184,7 +188,7 @@ object LogReplay {
 
     internal val DEFAULT_CSV_HEADER = listOf(
         "timestamp", "iso", "kind", "mac", "name", "rssi", "channel", "freq",
-        "oui", "vendor", "fleets", "mfg", "uuids", "flags", "raw", "lat", "lon", "vendor_ie",
+        "oui", "vendor", "fleets", "mfg", "uuids", "flags", "raw", "lat", "lon", "vendor_ie", "raw_hex",
     )
 
     fun lineKind(line: String, json: Boolean, header: List<String> = DEFAULT_CSV_HEADER): RadioKind? {
@@ -227,6 +231,7 @@ object LogReplay {
         if (mfg != null) obj.put("mfg", mfg) else obj.put("mfg", org.json.JSONObject.NULL)
         obj.put("uuids", col("uuids").replace('|', ','))
             .put("raw", col("raw"))
+            .put("raw_hex", col("raw_hex"))
             .put("vendor_ie", col("vendor_ie"))
             .put("rand", flags.contains("RAND"))
             .put("hidden", flags.contains("HIDDEN"))
@@ -279,6 +284,7 @@ object LogReplay {
             coord("lat"),
             coord("lon"),
             str("vendor_ie"),
+            str("raw_hex"),
         ).joinToString(",")
     }
 }

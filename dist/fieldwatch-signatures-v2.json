@@ -3,7 +3,7 @@
     "formatVersion": 1,
     "exportedAt": "",
     "appVersion": "stock",
-    "catalogVersion": 93,
+    "catalogVersion": 94,
     "fleets": [
         {
             "id": "fleet-qihoo-wifi",
@@ -8495,6 +8495,31 @@
             "kind": "WEARABLE"
         },
         {
+            "id": "fleet-lingji-interface",
+            "name": "Beijing Lingji registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MAC_PREFIX",
+                    "text": "3C:CB:01",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefix is registered to Beijing Lingji. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-belkin",
             "name": "Belkin",
             "enabled": true,
@@ -9046,6 +9071,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "SURVEILLANCE"
+        },
+        {
+            "id": "fleet-bluetooth-mesh-beacon",
+            "name": "Bluetooth Mesh secure network beacon (protocol only)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "BLE_MESH_BEACON",
+                    "text": "01",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "A complete secure network beacon identifies Bluetooth Mesh protocol traffic. Authentication is not verified; this does not identify a light, product, brand or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-bmw",
@@ -25682,6 +25732,31 @@
                     }
                 ]
             }
+        },
+        {
+            "id": "fleet-google-fcf1",
+            "name": "Google member service FCF1 (purpose unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "SERVICE_UUID",
+                    "text": "FCF1",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "FCF1 is a Google-assigned member service UUID. This UUID alone does not identify a finder, Fast Pair product, device type or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-google-wifi",
@@ -45637,6 +45712,39 @@
             "kind": "AUDIO"
         },
         {
+            "id": "fleet-jieli-sdk",
+            "name": "Jieli JLAISDK interface (product unknown)",
+            "enabled": true,
+            "matchAny": false,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MANUFACTURER_DATA",
+                    "text": "",
+                    "companyId": 1494,
+                    "dataPrefixHex": "08004A4C414953444B",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "SERVICE_UUID",
+                    "text": "AF30",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Company identifier 05D6, JLAISDK payload prefix and AF30 service together identify a Jieli SDK interface. This does not confirm the finished-product brand, type or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-keep-cc",
             "name": "Keep_CC fitness equipment",
             "enabled": true,
@@ -47480,6 +47588,14 @@
                     "dataPrefixHex": "",
                     "radio": "WIFI",
                     "enabled": true
+                },
+                {
+                    "kind": "MAC_PREFIX",
+                    "text": "4C:77:66",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
                 }
             ],
             "minPeers": 0,
@@ -47785,6 +47901,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "HOME"
+        },
+        {
+            "id": "fleet-micronet-interface",
+            "name": "Micronet registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MAC_PREFIX",
+                    "text": "88:6E:DD",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefix is registered to Micronet. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-microsoft",
@@ -48663,6 +48804,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "HOME"
+        },
+        {
+            "id": "fleet-nec-interface",
+            "name": "NEC registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MAC_PREFIX",
+                    "text": "00:25:5C",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefix is registered to NEC. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-nespresso",
@@ -49712,6 +49878,47 @@
             "kind": "ISP"
         },
         {
+            "id": "fleet-ninebot-ecosystem",
+            "name": "Ninebot mobility ecosystem (product unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MANUFACTURER_ID",
+                    "text": "",
+                    "companyId": 3871,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MANUFACTURER_ID",
+                    "text": "",
+                    "companyId": 16974,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MANUFACTURER_ID",
+                    "text": "",
+                    "companyId": 17230,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Ninebot company identifier 0F1F or ecosystem identifiers 424E / 434E identify a mobility ecosystem radio. Product type and vehicle model are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-nissan",
             "name": "Nissan",
             "enabled": true,
@@ -50243,6 +50450,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "LOCK"
+        },
+        {
+            "id": "fleet-nuoxin-interface",
+            "name": "Nuoxin registered Wi-Fi interface (type unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "MAC_PREFIX",
+                    "text": "E4:67:1E",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE address prefix is registered to Nuoxin. Only the exact registered Wi-Fi prefix matches; finished-product brand, type and model are unconfirmed.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-omi",
@@ -51683,6 +51915,64 @@
             "kind": "VEHICLE"
         },
         {
+            "id": "fleet-cmcc-ap-name",
+            "name": "Possible China Mobile named access point",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "CMCC-????-5G",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "CMCC-????-5G matches an operator access-point naming example. This self-declared SSID does not verify operator, manufacturer or router model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "ISP"
+        },
+        {
+            "id": "fleet-unicom-ap-name",
+            "name": "Possible China Unicom named access point",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "CU_*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "ChinaUnicom-MESH*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "CU_* or ChinaUnicom-MESH* suggests an operator-named access point. This self-declared SSID does not verify operator, manufacturer or router model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "ISP"
+        },
+        {
             "id": "fleet-ikf-king-pro",
             "name": "Possible iKF-King Pro headphones",
             "enabled": true,
@@ -51758,6 +52048,56 @@
             "kind": "OTHER"
         },
         {
+            "id": "fleet-ble-joy-r",
+            "name": "Possible right game-controller component (BLE_Joy_R)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "BLE_Joy_R",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Exact BLE_Joy_R pairing name matches a documented right game-controller component. The broadcast name does not confirm manufacturer or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
+            "id": "fleet-wifi-direct-name",
+            "name": "Possible Wi-Fi Direct named interface",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "DIRECT-??*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "DIRECT-??* matches the Wi-Fi Direct naming convention. The name alone does not confirm Wi-Fi Direct capability, product, manufacturer or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
             "id": "fleet-pwnagotchi",
             "name": "Pwnagotchi",
             "enabled": true,
@@ -51827,6 +52167,39 @@
             "clusterByOui": false,
             "sequentialMac": false,
             "notes": "QJLF30 name together with public IEEE prefix 24:F1:50 identifies a Guangzhou Qi'an radio associated with Qingju. Lock versus parking infrastructure is unverified; no vehicle or rider identity is inferred. FEE7 or company 0201 alone is not this fingerprint.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
+        },
+        {
+            "id": "fleet-qualcomm-platform-ie",
+            "name": "Qualcomm Wi-Fi platform IE (product unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "VENDOR_IE_OUI",
+                    "text": "88:12:4E",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "VENDOR_IE_OUI",
+                    "text": "8C:FD:F0",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "A Qualcomm vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model.",
             "attentionNote": "",
             "builtIn": true,
             "kind": "OTHER"
@@ -52146,6 +52519,31 @@
             "attentionNote": "Meta / Luxottica BLE — often Ray-Ban Meta smart glasses. The same company IDs show up on Quest headsets and other Meta wearables. Not proof someone is recording. A miss is not a clean bill (paired and quiet, asleep, or a different brand). Look with your eyes.",
             "builtIn": true,
             "kind": "GLASSES"
+        },
+        {
+            "id": "fleet-realtek-platform-ie",
+            "name": "Realtek Wi-Fi platform IE (product unknown)",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "VENDOR_IE_OUI",
+                    "text": "00:E0:4C",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "A Realtek vendor information element suggests a chipset platform. It does not establish the finished-product manufacturer, brand, type or model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "OTHER"
         },
         {
             "id": "fleet-rekor",

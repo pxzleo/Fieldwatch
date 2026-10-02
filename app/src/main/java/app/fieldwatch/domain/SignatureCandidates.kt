@@ -92,6 +92,7 @@ internal fun ruleShortLabel(rule: MatchRule): String = when (rule.kind) {
     RuleKind.WPS_DEVICE_TYPE -> "WPS device type ${rule.text}"
     RuleKind.MIBEACON_PRODUCT_ID -> "MiBeacon product ID ${rule.text}"
     RuleKind.APPLE_CONTINUITY_TYPE -> "Apple Continuity type ${rule.text}"
+    RuleKind.BLE_MESH_BEACON -> "Bluetooth Mesh beacon type ${rule.text}"
     else -> rule.kind.name
 }
 
@@ -523,6 +524,7 @@ object SignatureCandidates {
         firstSeen = firstSeen,
         lastSeen = lastSeen,
         hits = hitCount,
+        rawHex = rawHex,
         facts = facts,
     )
 
@@ -662,7 +664,7 @@ object SignatureCandidates {
         serviceUuids = serviceUuids,
         manufacturerId = manufacturerId,
         manufacturerDataHex = manufacturerDataHex,
-        rawHex = manufacturerDataHex,
+        rawHex = rawHex,
         extras = "",
         firstSeen = firstSeen,
         lastSeen = lastSeen,

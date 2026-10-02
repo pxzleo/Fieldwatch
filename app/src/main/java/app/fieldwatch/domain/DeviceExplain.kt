@@ -5,6 +5,7 @@ package app.fieldwatch.domain
  * is broadcasting, not a visual identification.
  */
 object DeviceExplain {
+    private val v94ByName by lazy { DefaultCatalog.discoveryFamiliesV94().associateBy { it.name.lowercase() } }
     private val v93ByName by lazy { DefaultCatalog.discoveryFamiliesV93().associateBy { it.name.lowercase() } }
     data class Guess(
         val headline: String,
@@ -318,6 +319,9 @@ object DeviceExplain {
         return names.mapNotNull { raw ->
             if (isGenericSignatureName(raw)) return@mapNotNull null
             val n = raw.lowercase()
+            v94ByName[n]?.let { family ->
+                return@mapNotNull Hint(if (family.kind == SignatureClass.ISP) "router" else "other", translate(family.name), translate(family.notes), 5)
+            }
             val v93 = v93ByName[n]
             if (v93 != null) {
                 val (bucket, label) = when (v93.id) {
