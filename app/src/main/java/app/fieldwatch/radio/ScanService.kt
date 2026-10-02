@@ -1,5 +1,7 @@
 package app.fieldwatch.radio
 
+import app.fieldwatch.UiText
+
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -94,7 +96,7 @@ class ScanService : LifecycleService() {
                 val hint = listOf(
                     wifi.throttleHint(),
                     ble.statusHint(),
-                    if (fastBlocked) "Wi-Fi fast scan needs Developer options" else "",
+                    if (fastBlocked) UiText.text(R.string.scan_fast_blocked) else "",
                 )
                     .filter { it.isNotBlank() }
                     .joinToString(" · ")
@@ -240,7 +242,7 @@ class ScanService : LifecycleService() {
     }
 
     private fun startAsForeground() {
-        val notification = buildNotification("Starting radios…")
+        val notification = buildNotification(UiText.text(R.string.notification_starting))
         if (Build.VERSION.SDK_INT >= 34) {
             startForeground(
                 NOTIF_ID,
@@ -264,7 +266,7 @@ class ScanService : LifecycleService() {
         if (now - lastNotifAt < 2_500L) return
         lastNotifAt = now
         val stats = (application as FieldwatchApp).devices.stats.value
-        val text = "${stats.wifiNow} Wi-Fi · ${stats.bleNow} BLE · ${stats.namedNow} signatures"
+        val text = UiText.text(R.string.notification_scan_counts, stats.wifiNow, stats.bleNow, stats.namedNow)
         val nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         nm.notify(NOTIF_ID, buildNotification(text))
     }
@@ -284,12 +286,12 @@ class ScanService : LifecycleService() {
         )
         return NotificationCompat.Builder(this, CHANNEL)
             .setSmallIcon(R.drawable.ic_stat_fieldwatch)
-            .setContentTitle("Fieldwatch scanning")
+            .setContentTitle(UiText.text(R.string.notification_scanning))
             .setContentText(text)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setContentIntent(launch)
-            .addAction(0, "Stop", stop)
+            .addAction(0, UiText.text(R.string.notification_stop), stop)
             .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             .build()
     }
@@ -344,8 +346,8 @@ class ScanService : LifecycleService() {
         if (Build.VERSION.SDK_INT < 26) return
         val nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         nm.createNotificationChannel(
-            NotificationChannel(CHANNEL, "Scanning", NotificationManager.IMPORTANCE_LOW).apply {
-                description = "Passive Wi-Fi and Bluetooth scan status"
+            NotificationChannel(CHANNEL, UiText.text(R.string.notification_scan_channel), NotificationManager.IMPORTANCE_LOW).apply {
+                description = UiText.text(R.string.notification_scan_description)
                 setShowBadge(false)
             },
         )

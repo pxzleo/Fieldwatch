@@ -30,6 +30,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 
 class FieldwatchApp : Application() {
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
@@ -63,6 +65,7 @@ class FieldwatchApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        UiText.context = AppLanguages.localizedContext(this, AppLanguage.SYSTEM)
         config = ConfigStore(this)
         RadioDb.init(this)
         devices = DeviceStore()
@@ -72,6 +75,18 @@ class FieldwatchApp : Application() {
         tak = TakPublisher()
         runBlocking {
             config.load()
+            if (android.os.Build.VERSION.SDK_INT >= 33) {
+                val platformLanguage = AppLanguages.systemSelection(this@FieldwatchApp)
+                val migration = getSharedPreferences("app_language", MODE_PRIVATE)
+                val language = if (!migration.getBoolean("platform_migrated", false) &&
+                    platformLanguage == AppLanguage.SYSTEM) config.settings.language else platformLanguage
+                AppLanguages.apply(this@FieldwatchApp, language)
+                migration.edit().putBoolean("platform_migrated", true).apply()
+                if (config.settings.language != language) {
+                    config.update { it.copy(settings = it.settings.copy(language = language)) }
+                }
+            }
+            AppLanguages.apply(this@FieldwatchApp, config.settings.language)
             logs.configure(
                 config.settings.logFormat,
                 config.settings.logRotateKb,
@@ -80,10 +95,26 @@ class FieldwatchApp : Application() {
             sits.load()
         }
         sits.startFlusher()
+        scope.launch {
+            config.config.map { it.settings.language }.distinctUntilChanged().collect {
+                AppLanguages.apply(this@FieldwatchApp, it)
+            }
+        }
         syncLocationUpdates()
         if (config.settings.alertVoice) alerter.prepareVoice()
         if (config.filter.arrivalsOnly) {
             beginArrivals(keepRemembered = true)
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val language = if (android.os.Build.VERSION.SDK_INT >= 33) {
+            AppLanguages.systemSelection(this)
+        } else config.settings.language
+        AppLanguages.apply(this, language)
+        if (language != config.settings.language) {
+            scope.launch { config.update { it.copy(settings = it.settings.copy(language = language)) } }
         }
     }
 

@@ -12,8 +12,17 @@ import app.fieldwatch.radio.RadioPermissions
 import app.fieldwatch.ui.FieldwatchRoot
 import app.fieldwatch.ui.FieldwatchViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 
 class MainActivity : ComponentActivity() {
+    override fun attachBaseContext(base: android.content.Context) {
+        val language = (base.applicationContext as FieldwatchApp).config.settings.language
+        super.attachBaseContext(
+            if (android.os.Build.VERSION.SDK_INT >= 33 || language == AppLanguage.SYSTEM) base
+            else AppLanguages.localizedContext(base, language),
+        )
+    }
     private val vm: FieldwatchViewModel by viewModels()
 
     private val permissionLauncher = registerForActivityResult(
@@ -29,6 +38,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        if (android.os.Build.VERSION.SDK_INT < 33) {
+            val initial = (application as FieldwatchApp).config.settings.language
+            lifecycleScope.launch {
+                (application as FieldwatchApp).config.config
+                    .map { it.settings.language }.distinctUntilChanged().collect { language ->
+                        if (language != initial) recreate()
+                    }
+            }
+        }
         setContent {
             FieldwatchRoot(vm) {
                 permissionLauncher.launch(RadioPermissions.required())

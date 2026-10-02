@@ -1,3 +1,1343 @@
 <resources>
-    <string name="app_name">Fieldwatch</string>
+    <string name="app_name">"Fieldwatch"</string>
+    <string name="ui_unmatched" formatted="false">"Unmatched"</string>
+    <string name="ui_wi_fi_access_point" formatted="false">"Wi-Fi access point"</string>
+    <string name="ui_ble_advertiser" formatted="false">"BLE advertiser"</string>
+    <string name="ui_disclaimer_and_license" formatted="false">"Disclaimer and license"</string>
+    <string name="ui_disclaimer" formatted="false">"Disclaimer"</string>
+    <string name="ui_i_have_read_this_and_i_agree" formatted="false">"I have read this and I agree"</string>
+    <string name="ui_continue" formatted="false">"Continue"</string>
+    <string name="ui_fieldwatch_needs_the_radios" formatted="false">"Fieldwatch needs the radios"</string>
+    <string name="ui_location_nearby_wi_fi_bluetooth_scan_and_notifications_let_fieldw" formatted="false">"Location, nearby Wi-Fi, Bluetooth scan, and notifications let Fieldwatch passively watch advertised networks and BLE devices. Nothing is transmitted."</string>
+    <string name="ui_grant_permissions" formatted="false">"Grant permissions"</string>
+    <string name="ui_sit_compare" formatted="false">"sit compare"</string>
+    <string name="ui_sit_compare_pdf" formatted="false">"Sit compare PDF"</string>
+    <string name="ui_sit_compare_ai_export" formatted="false">"Sit compare AI Export"</string>
+    <string name="ui_sit_compare_13" formatted="false">"Sit compare"</string>
+    <string name="ui_ai_export" formatted="false">"ai export"</string>
+    <string name="ui_ai_export_15" formatted="false">"AI Export"</string>
+    <string name="ui_debrief_pdf" formatted="false">"Debrief PDF"</string>
+    <string name="ui_debrief" formatted="false">"Debrief"</string>
+    <string name="ui_export" formatted="false">"Export"</string>
+    <string name="ui_please_wait" formatted="false">"Please wait…"</string>
+    <string name="ui_live_logging_is_paused_until_this_finishes_scanning_continues" formatted="false">"Live logging is paused until this finishes. Scanning continues."</string>
+    <string name="ui_could_not_export" formatted="false">"Could not export"</string>
+    <string name="ui_ok" formatted="false">"OK"</string>
+    <string name="ui_log_saved" formatted="false">"Log saved"</string>
+    <string name="ui_the_file_was_written_to_the_folder_you_picked_in_the_system_picke" formatted="false">"The file was written to the folder you picked. In the system picker, use the menu to choose the SD card if you want it off internal storage."</string>
+    <string name="ui_log_cleared" formatted="false">"Log cleared"</string>
+    <string name="ui_rotated_files_were_deleted_new_detections_will_start_a_fresh_log" formatted="false">"Rotated files were deleted. New detections will start a fresh log."</string>
+    <string name="ui_fieldwatch_sit_paused" formatted="false">"FIELDWATCH  ·  SIT  ·  PAUSED"</string>
+    <string name="ui_fieldwatch_sit" formatted="false">"FIELDWATCH  ·  SIT"</string>
+    <string name="ui_fieldwatch_paused" formatted="false">"FIELDWATCH  ·  PAUSED"</string>
+    <string name="ui_hide_scan_options" formatted="false">"Hide scan options"</string>
+    <string name="ui_show_scan_options" formatted="false">"Show scan options"</string>
+    <string name="ui_pause_display" formatted="false">"Pause display"</string>
+    <string name="ui_live" formatted="false">"Live"</string>
+    <string name="ui_pause" formatted="false">"Pause"</string>
+    <string name="ui_filters" formatted="false">"Filters"</string>
+    <string name="ui_signatures" formatted="false">"Signatures"</string>
+    <string name="ui_reports" formatted="false">"Reports"</string>
+    <string name="ui_settings" formatted="false">"Settings"</string>
+    <string name="ui_detail" formatted="false">"Detail"</string>
+    <string name="ui_back" formatted="false">"Back"</string>
+    <string name="ui_no_radio_selected" formatted="false">"No radio selected."</string>
+    <string name="ui_strongest" formatted="false">"Strongest"</string>
+    <string name="ui_newest_heard" formatted="false">"Newest heard"</string>
+    <string name="ui_newest_alert" formatted="false">"Newest alert"</string>
+    <string name="ui_newest_arrival" formatted="false">"Newest arrival"</string>
+    <string name="ui_new_at_bottom" formatted="false">"New at bottom"</string>
+    <string name="ui_name_a_z" formatted="false">"Name A–Z"</string>
+    <string name="ui_signatures_first" formatted="false">"Signatures first"</string>
+    <string name="ui_off" formatted="false">"Off"</string>
+    <string name="ui_display" formatted="false">"Display"</string>
+    <string name="ui_view" formatted="false">"View"</string>
+    <string name="ui_sort" formatted="false">"Sort"</string>
+    <string name="ui_strongest_signal" formatted="false">"Strongest signal"</string>
+    <string name="ui_strongest_avg_30s" formatted="false">"Strongest (avg 30s)"</string>
+    <string name="ui_brief_hold" formatted="false">"Brief hold"</string>
+    <string name="ui_off_stale_after_only" formatted="false">"Off — Stale after only"</string>
+    <string name="ui_title_line" formatted="false">"Title line"</string>
+    <string name="ui_subtitle_line" formatted="false">"Subtitle line"</string>
+    <string name="ui_rssi_bars" formatted="false">"RSSI bars"</string>
+    <string name="ui_signature_names" formatted="false">"Signature names"</string>
+    <string name="ui_frequency" formatted="false">"Frequency"</string>
+    <string name="ui_first_last_seen" formatted="false">"First / last seen"</string>
+    <string name="ui_more_display_options_below" formatted="false">"More display options below"</string>
+    <string name="ui_advertised_name" formatted="false">"Advertised name"</string>
+    <string name="ui_name_type" formatted="false">"Name + type"</string>
+    <string name="ui_mac_address" formatted="false">"MAC address"</string>
+    <string name="ui_none" formatted="false">"None"</string>
+    <string name="ui_mark_seen" formatted="false">"Mark seen"</string>
+    <string name="ui_reset_seen" formatted="false">"Reset seen"</string>
+    <string name="ui_start_over" formatted="false">"Start over"</string>
+    <string name="ui_export_fieldwatch_logs" formatted="false">"Export Fieldwatch logs"</string>
+    <string name="ui_hunt" formatted="false">"Hunt"</string>
+    <string name="ui_writing_sit_compare" formatted="false">"Writing sit compare…"</string>
+    <string name="ui_could_not_write_sit_compare" formatted="false">"Could not write sit compare"</string>
+    <string name="ui_writing_sit_compare_pdf" formatted="false">"Writing sit compare PDF…"</string>
+    <string name="ui_laying_out_sit_compare_pdf" formatted="false">"Laying out sit compare PDF…"</string>
+    <string name="ui_loading_map_tiles" formatted="false">"Loading map tiles…"</string>
+    <string name="ui_could_not_write_sit_compare_pdf" formatted="false">"Could not write sit compare PDF"</string>
+    <string name="ui_fieldwatch_sit_compare" formatted="false">"Fieldwatch sit compare"</string>
+    <string name="ui_building_compare_ai_export" formatted="false">"Building compare AI export…"</string>
+    <string name="ui_could_not_write_compare_ai_export" formatted="false">"Could not write compare AI export"</string>
+    <string name="ui_pick_a_second_sit" formatted="false">"Pick a second sit."</string>
+    <string name="ui_could_not_read_that_sit" formatted="false">"Could not read that sit."</string>
+    <string name="ui_could_not_read_this_sit" formatted="false">"Could not read this sit."</string>
+    <string name="ui_last_15_minutes" formatted="false">"Last 15 minutes"</string>
+    <string name="ui_sits" formatted="false">"Sits"</string>
+    <string name="ui_could_not_read_the_log" formatted="false">"Could not read the log"</string>
+    <string name="ui_fieldwatch_signatures" formatted="false">"Fieldwatch signatures"</string>
+    <string name="ui_could_not_export_signatures" formatted="false">"Could not export signatures"</string>
+    <string name="ui_could_not_write_to_the_location_you_picked" formatted="false">"Could not write to the location you picked."</string>
+    <string name="ui_signatures_saved" formatted="false">"Signatures saved"</string>
+    <string name="ui_the_pack_was_written_to_the_folder_you_picked_share_it_with_anoth" formatted="false">"The pack was written to the folder you picked. Share it with another Fieldwatch or keep it as a backup before Restore defaults."</string>
+    <string name="ui_could_not_save_signatures" formatted="false">"Could not save signatures"</string>
+    <string name="ui_no_internet" formatted="false">"No internet"</string>
+    <string name="ui_no_internet_use_import_signatures_from_a_file" formatted="false">"No internet. Use Import signatures from a file."</string>
+    <string name="ui_updating_stock_catalog" formatted="false">"Updating stock catalog…"</string>
+    <string name="ui_already_on_the_latest_catalog" formatted="false">"Already on the latest catalog"</string>
+    <string name="ui_no_stock_rows_changed" formatted="false">"No stock rows changed."</string>
+    <string name="ui_catalog_updated" formatted="false">"Catalog updated"</string>
+    <string name="ui_bookmarks_and_settings_were_not_changed" formatted="false">"Bookmarks and Settings were not changed."</string>
+    <string name="ui_signature_decoding_skipped" formatted="false">"Signature decoding skipped"</string>
+    <string name="ui_some_signature_field_maps_in_this_catalog_need_a_newer_fieldwatch" formatted="false">"Some signature field maps in this catalog need a newer Fieldwatch. "</string>
+    <string name="ui_signatures_still_match_install_a_newer_apk_to_decode_those_fields" formatted="false">"Signatures still match. Install a newer APK to decode those fields."</string>
+    <string name="ui_could_not_reach_github" formatted="false">"Could not reach GitHub"</string>
+    <string name="ui_could_not_reach_the_catalog_on_github_try_again_later_or_use_impo" formatted="false">"Could not reach the catalog on GitHub. Try again later, or use Import signatures from a file."</string>
+    <string name="ui_could_not_import_catalog" formatted="false">"Could not import catalog"</string>
+    <string name="ui_could_not_import_catalog_115" formatted="false">"Could not import catalog."</string>
+    <string name="ui_could_not_read_that_file" formatted="false">"Could not read that file."</string>
+    <string name="ui_signatures_imported" formatted="false">"Signatures imported"</string>
+    <string name="ui_could_not_import_signatures" formatted="false">"Could not import signatures"</string>
+    <string name="ui_fieldwatch_settings" formatted="false">"Fieldwatch settings"</string>
+    <string name="ui_could_not_export_settings" formatted="false">"Could not export settings"</string>
+    <string name="ui_settings_saved" formatted="false">"Settings saved"</string>
+    <string name="ui_the_pack_was_written_to_the_folder_you_picked_keep_it_for_a_facto" formatted="false">"The pack was written to the folder you picked. Keep it for a factory reset or a new phone. Import settings on the new install. Signatures are a separate pack."</string>
+    <string name="ui_could_not_save_settings" formatted="false">"Could not save settings"</string>
+    <string name="ui_settings_imported" formatted="false">"Settings imported"</string>
+    <string name="ui_could_not_import_settings" formatted="false">"Could not import settings"</string>
+    <string name="ui_tag_detections_with_gps_settings_to_record_a_path" formatted="false">"Tag detections with GPS (Settings) to record a path."</string>
+    <string name="ui_walk_with_tagging_on_path_needs_a_gps_fix" formatted="false">"Walk with tagging on. Path needs a GPS fix."</string>
+    <string name="ui_last_15_minutes_walk_with_tagging_on_or_start_sit_to_keep_a_longe" formatted="false">"Last 15 minutes. Walk with tagging on, or Start sit to keep a longer path."</string>
+    <string name="ui_writing_debrief_pdf" formatted="false">"Writing debrief PDF…"</string>
+    <string name="ui_laying_out_debrief_pdf" formatted="false">"Laying out debrief PDF…"</string>
+    <string name="ui_could_not_write_debrief_pdf" formatted="false">"Could not write debrief PDF"</string>
+    <string name="ui_writing_debrief" formatted="false">"Writing debrief…"</string>
+    <string name="ui_could_not_write_debrief" formatted="false">"Could not write debrief"</string>
+    <string name="ui_fieldwatch_sit_134" formatted="false">"FIELDWATCH SIT"</string>
+    <string name="ui_fieldwatch_field_debrief_last_15_minutes" formatted="false">"Fieldwatch field debrief — last 15 minutes"</string>
+    <string name="ui_gathering_sit" formatted="false">"Gathering sit…"</string>
+    <string name="ui_looking_up_place_names" formatted="false">"Looking up place names…"</string>
+    <string name="ui_building_debrief" formatted="false">"Building debrief…"</string>
+    <string name="ui_building_ai_export_prompt" formatted="false">"Building AI export prompt…"</string>
+    <string name="ui_fieldwatch_ai_export_last_15_minutes" formatted="false">"Fieldwatch AI export — last 15 minutes"</string>
+    <string name="ui_could_not_build_ai_export" formatted="false">"Could not build AI export"</string>
+    <string name="ui_device_detail" formatted="false">"Device detail"</string>
+    <string name="ui_could_not_share_device_detail" formatted="false">"Could not share device detail"</string>
+    <string name="ui_preparing_sit_export" formatted="false">"Preparing sit export…"</string>
+    <string name="ui_sit_export" formatted="false">"Sit export"</string>
+    <string name="ui_saving_sit_export" formatted="false">"Saving sit export…"</string>
+    <string name="ui_could_not_open_the_selected_location" formatted="false">"Could not open the selected location"</string>
+    <string name="ui_pick_a_map_format" formatted="false">"Pick a map format."</string>
+    <string name="ui_logging_paused_preparing_file" formatted="false">"Logging paused · preparing file…"</string>
+    <string name="ui_logging_paused_saving_to_the_location_you_picked" formatted="false">"Logging paused · saving to the location you picked…"</string>
+    <string name="ui_fieldwatch_log_csv" formatted="false">"Fieldwatch log (CSV)"</string>
+    <string name="ui_fieldwatch_log_json_lines" formatted="false">"Fieldwatch log (JSON lines)"</string>
+    <string name="ui_fieldwatch_gpx" formatted="false">"Fieldwatch GPX"</string>
+    <string name="ui_fieldwatch_kml" formatted="false">"Fieldwatch KML"</string>
+    <string name="ui_fieldwatch_wigle_csv" formatted="false">"Fieldwatch WiGLE CSV"</string>
+    <string name="ui_reading_log" formatted="false">"Reading log…"</string>
+    <string name="ui_wi_fi_radios" formatted="false">"Wi-Fi radios"</string>
+    <string name="ui_ble_radios" formatted="false">"BLE radios"</string>
+    <string name="ui_clearing_log" formatted="false">"Clearing log…"</string>
+    <string name="ui_could_not_clear_log" formatted="false">"Could not clear log"</string>
+    <string name="ui_export_failed" formatted="false">"Export failed"</string>
+    <string name="ui_tune" formatted="false">"Tune"</string>
+    <string name="ui_got_it" formatted="false">"Got it"</string>
+    <string name="ui_freeze_the_picture_tap_live_again_to_run" formatted="false">"Freeze the picture. Tap Live again to run."</string>
+    <string name="ui_who_is_shown" formatted="false">"Who is shown."</string>
+    <string name="ui_pattern_catalog" formatted="false">"Pattern catalog."</string>
+    <string name="ui_debrief_sits_log" formatted="false">"Debrief, sits, log."</string>
+    <string name="ui_scan_gps_tak" formatted="false">"Scan, GPS, TAK."</string>
+    <string name="ui_display_radar_list_timeline_hybrid_by_class" formatted="false">"Display — Radar, list, timeline, hybrid, By class."</string>
+    <string name="ui_decode_fields" formatted="false">"Decode fields"</string>
+    <string name="ui_start" formatted="false">"Start"</string>
+    <string name="ui_now" formatted="false">"Now"</string>
+    <string name="ui_end" formatted="false">"End"</string>
+    <string name="ui_1_alert_here" formatted="false">"1 alert here"</string>
+    <string name="ui_signature_candidates" formatted="false">"Signature candidates"</string>
+    <string name="ui_reading_the_log_and_re_matching_the_catalog" formatted="false">"Reading the log and re-matching the catalog…"</string>
+    <string name="ui_rotating_log" formatted="false">"Rotating log"</string>
+    <string name="ui_re_matched_now" formatted="false">" · re-matched now"</string>
+    <string name="ui_no_signature_families_in_this_log_randomized_addresses_and_house_" formatted="false">"No signature families in this log. Randomized addresses and house-like names are skipped. A candidate needs a unique on-air ID on two or more radios."</string>
+    <string name="ui_create_signature" formatted="false">"Create signature"</string>
+    <string name="ui_skipped" formatted="false">"Skipped "</string>
+    <string name="ui_and" formatted="false">" and "</string>
+    <string name="ui_those_are_not_catalog_families" formatted="false">". Those are not catalog families."</string>
+    <string name="ui_save" formatted="false">"Save"</string>
+    <string name="ui_source" formatted="false">"Source"</string>
+    <string name="ui_map_cleartext_ble_bytes_after_this_signature_matches_encrypted_ad" formatted="false">"Map cleartext BLE bytes after this signature matches. Encrypted ads stay hex."</string>
+    <string name="ui_manufacturer" formatted="false">"Manufacturer"</string>
+    <string name="ui_service_data" formatted="false">"Service data"</string>
+    <string name="ui_company_id" formatted="false">"Company ID"</string>
+    <string name="ui_optional_byte_0_is_the_first_byte_after_the_company_id_empty_any_" formatted="false">"Optional. Byte 0 is the first byte after the company ID. Empty = any record."</string>
+    <string name="ui_service_uuid" formatted="false">"Service UUID"</string>
+    <string name="ui_required_16_bit_feaa_or_full_uuid" formatted="false">"Required. 16-bit (FEAA) or full UUID."</string>
+    <string name="ui_fields" formatted="false">"Fields"</string>
+    <string name="ui_add_field" formatted="false">"Add field"</string>
+    <string name="ui_remove_decode_map" formatted="false">"Remove decode map"</string>
+    <string name="ui_removes_every_field_and_the_live_code_mark_save_after_adding_fiel" formatted="false">"Removes every field and the Live code mark. Save after adding fields still keeps the map."</string>
+    <string name="ui_preview" formatted="false">"Preview"</string>
+    <string name="ui_remove_decode_map_201" formatted="false">"Remove decode map?"</string>
+    <string name="ui_clears_all_fields_on_this_signature_live_no_longer_shows_the_code" formatted="false">"Clears all fields on this signature. Live no longer shows the code mark. Raw advertisements stay. This cannot be undone except by adding fields again."</string>
+    <string name="ui_remove" formatted="false">"Remove"</string>
+    <string name="ui_cancel" formatted="false">"Cancel"</string>
+    <string name="ui_no_matching_radio_on_the_air_save_anyway_detail_will_fill_in_when" formatted="false">"No matching radio on the air. Save anyway; detail will fill in when one is heard."</string>
+    <string name="ui_a_matching_radio_is_on_the_air_but_this_advertisement_has_no_byte" formatted="false">"A matching radio is on the air, but this advertisement has no bytes for the source above."</string>
+    <string name="ui_nothing_parsed_check_offset_length_and_that_byte_0_is_after_the_c" formatted="false">"Nothing parsed. Check offset, length, and that byte 0 is after the company ID."</string>
+    <string name="ui_label" formatted="false">"Label"</string>
+    <string name="ui_delete_field" formatted="false">"Delete field"</string>
+    <string name="ui_offset" formatted="false">"Offset"</string>
+    <string name="ui_length" formatted="false">"Length"</string>
+    <string name="ui_unit" formatted="false">"Unit"</string>
+    <string name="ui_bit_offset" formatted="false">"Bit offset"</string>
+    <string name="ui_bit_width" formatted="false">"Bit width"</string>
+    <string name="ui_scale" formatted="false">"Scale"</string>
+    <string name="ui_add" formatted="false">"Add"</string>
+    <string name="ui_live_row" formatted="false">"Live row"</string>
+    <string name="ui_show_this_value_next_to_the_signature_name_strong_values_use_a_he" formatted="false">"Show this value next to the signature name. Strong values use a heavier chip."</string>
+    <string name="ui_more" formatted="false">"More"</string>
+    <string name="ui_modulo" formatted="false">"Modulo"</string>
+    <string name="ui_hide_extra" formatted="false">"Hide extra"</string>
+    <string name="ui_only_if" formatted="false">"Only if…"</string>
+    <string name="ui_only_if_224" formatted="false">"Only if"</string>
+    <string name="ui_bytes" formatted="false">"Bytes"</string>
+    <string name="ui_hex" formatted="false">"Hex"</string>
+    <string name="ui_named_values" formatted="false">"Named values…"</string>
+    <string name="ui_named_values_228" formatted="false">"Named values"</string>
+    <string name="ui_raw" formatted="false">"Raw"</string>
+    <string name="ui_show_as" formatted="false">"Show as"</string>
+    <string name="ui_delete_value" formatted="false">"Delete value"</string>
+    <string name="ui_strong" formatted="false">"Strong"</string>
+    <string name="ui_note" formatted="false">"Note"</string>
+    <string name="ui_add_value" formatted="false">"Add value"</string>
+    <string name="ui_not_equals" formatted="false">"not equals"</string>
+    <string name="ui_none_of_bits" formatted="false">"none of bits"</string>
+    <string name="ui_when" formatted="false">"When"</string>
+    <string name="ui_payload_length" formatted="false">"payload length"</string>
+    <string name="ui_type" formatted="false">"Type"</string>
+    <string name="ui_endian" formatted="false">"Endian"</string>
+    <string name="ui_watch" formatted="false">"Watch"</string>
+    <string name="ui_not_on_the_air_this_is_the_last_detail_we_heard" formatted="false">"Not on the air. This is the last detail we heard."</string>
+    <string name="ui_custom_name" formatted="false">"Custom name"</string>
+    <string name="ui_advertised" formatted="false">"Advertised"</string>
+    <string name="ui_no_advertised_name" formatted="false">"No advertised name"</string>
+    <string name="ui_name" formatted="false">"Name"</string>
+    <string name="ui_hide_custom_name" formatted="false">"Hide custom name"</string>
+    <string name="ui_saved" formatted="false">"Saved"</string>
+    <string name="ui_save_name" formatted="false">"Save name"</string>
+    <string name="ui_observer_notes_cleared" formatted="false">"Observer notes cleared"</string>
+    <string name="ui_observer_notes_saved" formatted="false">"Observer notes saved"</string>
+    <string name="ui_identity" formatted="false">"Identity"</string>
+    <string name="ui_radio" formatted="false">"Radio"</string>
+    <string name="ui_wi_fi_access_point_beaconing_a_network" formatted="false">"Wi-Fi access point (beaconing a network)"</string>
+    <string name="ui_bluetooth_low_energy_advertiser" formatted="false">"Bluetooth Low Energy advertiser"</string>
+    <string name="ui_address" formatted="false">"Address"</string>
+    <string name="ui_who_made_it" formatted="false">"Who made it"</string>
+    <string name="ui_oui_vendor_prefix" formatted="false">"OUI (vendor prefix)"</string>
+    <string name="ui_network_name_ssid" formatted="false">"Network name (SSID)"</string>
+    <string name="ui_hidden_the_ap_is_beaconing_but_not_publishing_a_name" formatted="false">"Hidden — the AP is beaconing but not publishing a name"</string>
+    <string name="ui_signal" formatted="false">"Signal"</string>
+    <string name="ui_how_loud_here_rssi" formatted="false">"How loud here (RSSI)"</string>
+    <string name="ui_not_available" formatted="false">"Not available"</string>
+    <string name="ui_last_heard" formatted="false">"Last heard"</string>
+    <string name="ui_closer_to_0_dbm_is_louder_here_not_a_distance" formatted="false">"Closer to 0 dBm is louder here, not a distance."</string>
+    <string name="ui_heard_range_this_session" formatted="false">"Heard range this session"</string>
+    <string name="ui_claimed_transmit_power" formatted="false">"Claimed transmit power"</string>
+    <string name="ui_channel_frequency" formatted="false">"Channel / frequency"</string>
+    <string name="ui_wi_fi_generation" formatted="false">"Wi-Fi generation"</string>
+    <string name="ui_center_frequencies" formatted="false">"Center frequencies"</string>
+    <string name="ui_bluetooth_advertisement" formatted="false">"Bluetooth advertisement"</string>
+    <string name="ui_radio_phy" formatted="false">"Radio PHY"</string>
+    <string name="ui_connectable" formatted="false">"Connectable"</string>
+    <string name="ui_yes_a_phone_could_open_a_ble_connection" formatted="false">"Yes — a phone could open a BLE connection"</string>
+    <string name="ui_no_broadcast_only_you_can_hear_it_not_join_it_from_this_scan" formatted="false">"No — broadcast-only (you can hear it, not join it from this scan)"</string>
+    <string name="ui_how_often_it_advertises" formatted="false">"How often it advertises"</string>
+    <string name="ui_0f_ms_between_bursts_smaller_chattier_on_the_air" formatted="false">"%.0f ms between bursts (smaller = chattier on the air)"</string>
+    <string name="ui_periodic_advertising" formatted="false">"Periodic advertising"</string>
+    <string name="ui_0f_ms" formatted="false">"%.0f ms"</string>
+    <string name="ui_discoverability" formatted="false">"Discoverability"</string>
+    <string name="ui_flags_raw" formatted="false">"Flags (raw)"</string>
+    <string name="ui_what_it_says_it_is_appearance" formatted="false">"What it says it is (Appearance)"</string>
+    <string name="ui_unlisted_appearance_0x_04x" formatted="false">"Unlisted Appearance 0x%04X"</string>
+    <string name="ui_appearance_code" formatted="false">"Appearance code"</string>
+    <string name="ui_classic_bluetooth_class" formatted="false">"Classic Bluetooth class"</string>
+    <string name="ui_nthis_is_the_class_of_device_bitfield_used_by_classic_bluetooth" formatted="false">"\nThis is the Class of Device bitfield used by classic Bluetooth."</string>
+    <string name="ui_nalso_offers" formatted="false">"\nAlso offers: "</string>
+    <string name="ui_encryption_login" formatted="false">"Encryption / login"</string>
+    <string name="ui_security_string" formatted="false">"Security string"</string>
+    <string name="ui_supported_rates" formatted="false">"Supported rates"</string>
+    <string name="ui_capability_string" formatted="false">"Capability string"</string>
+    <string name="ui_services_it_offers" formatted="false">"Services it offers"</string>
+    <string name="ui_service_ids" formatted="false">"Service IDs"</string>
+    <string name="ui_decoded_fields" formatted="false">"Decoded fields"</string>
+    <string name="ui_decode_fields_did_not_apply_to_this_advertisement_short_payload_a" formatted="false">"Decode fields did not apply to this advertisement (short payload, a different company ID, or a different layout). Govee lights usually only send a name; hygrometers are H5074/H5075/H510x. Raw bytes are below."</string>
+    <string name="ui_decode_fields_did_not_apply_to_this_advertisement_short_payload_a_299" formatted="false">"Decode fields did not apply to this advertisement (short payload, a different company ID, or a different layout). Raw bytes are below."</string>
+    <string name="ui_this_signature_has_a_decode_map_but_this_advertisement_has_no_man" formatted="false">"This signature has a decode map, but this advertisement has no manufacturer or service payload to parse. Many Govee lights only broadcast a name."</string>
+    <string name="ui_this_signature_has_a_decode_map_but_this_advertisement_has_no_man_301" formatted="false">"This signature has a decode map, but this advertisement has no manufacturer or service payload to parse."</string>
+    <string name="ui_maker_data_inside_the_ad" formatted="false">"Maker data inside the ad"</string>
+    <string name="ui_not_in_the_bluetooth_company_list" formatted="false">"Not in the Bluetooth company list"</string>
+    <string name="ui_bluetooth_company_0x_04x" formatted="false">"Bluetooth company 0x%04X"</string>
+    <string name="ui_wi_fi_vendor_tags" formatted="false">"Wi-Fi vendor tags"</string>
+    <string name="ui_type_d" formatted="false">" type %d"</string>
+    <string name="ui_unknown_ieee_oui" formatted="false">"Unknown IEEE OUI"</string>
+    <string name="ui_extra_ap_information_element_not_the_ssid" formatted="false">" — extra AP information element, not the SSID."</string>
+    <string name="ui_session" formatted="false">"Session"</string>
+    <string name="ui_first_seen" formatted="false">"First seen"</string>
+    <string name="ui_last_seen" formatted="false">"Last seen"</string>
+    <string name="ui_hits" formatted="false">"Hits"</string>
+    <string name="ui_last_fix" formatted="false">"Last fix"</string>
+    <string name="ui_matched_signatures" formatted="false">"Matched signatures"</string>
+    <string name="ui_raw_advertisement" formatted="false">"Raw advertisement"</string>
+    <string name="ui_signal_trend" formatted="false">"Signal trend"</string>
+    <string name="ui_presence_15_min" formatted="false">"Presence (15 min)"</string>
+    <string name="ui_hunt_is_ble_only_wi_fi_access_points_update_too_slowly_on_stock_a" formatted="false">"Hunt is BLE only. Wi-Fi access points update too slowly on stock Android to walk toward."</string>
+    <string name="ui_create_signature_from_device" formatted="false">"Create signature from device"</string>
+    <string name="ui_share_as_text" formatted="false">"Share as text"</string>
+    <string name="ui_opens_a_paste_ready_prompt_for_a_chat_decode_this_radio_look_up_o" formatted="false">"Opens a paste-ready prompt for a chat: decode this radio, look up OUI/company/UUIDs, and say what it most likely is. Same experimental disclaimer as Settings → AI Export. One device only — not identity."</string>
+    <string name="ui_signature_family" formatted="false">"Signature family"</string>
+    <string name="ui_notes" formatted="false">"Notes"</string>
+    <string name="ui_observer_notes" formatted="false">"Observer notes"</string>
+    <string name="ui_hide_observer_notes" formatted="false">"Hide observer notes"</string>
+    <string name="ui_no_observer_notes" formatted="false">"No observer notes"</string>
+    <string name="ui_save_notes" formatted="false">"Save notes"</string>
+    <string name="ui_extra_attention" formatted="false">"Extra attention"</string>
+    <string name="ui_pattern_match_not_identity_not_a_safety_finding" formatted="false">"Pattern match, not identity. Not a safety finding."</string>
+    <string name="ui_what_this_looks_like" formatted="false">"What this looks like"</string>
+    <string name="ui_presets" formatted="false">"Presets"</string>
+    <string name="ui_tap_to_replace_the_whole_filter_long_press_a_chip_to_delete_it" formatted="false">"Tap to replace the whole filter. Long-press a chip to delete it. "</string>
+    <string name="ui_a_short_stock_set_ships_save_current_as_adds_your_own_cameras_pla" formatted="false">"A short stock set ships; Save current as… adds your own (Cameras, plaza −80, …). "</string>
+    <string name="ui_stock_chips_you_delete_come_back_with_settings_restore_default_si" formatted="false">"Stock chips you delete come back with Settings → Restore default signatures &amp; presets."</string>
+    <string name="ui_save_current_as" formatted="false">"Save current as…"</string>
+    <string name="ui_radios" formatted="false">"Radios"</string>
+    <string name="ui_moving_with_you_is_ble_only_both_and_wi_fi_only_stay_off_until_yo" formatted="false">"Moving with you is BLE only. Both and Wi-Fi only stay off until you turn that switch off."</string>
+    <string name="ui_these_are_include_switches_turn_both_on_to_see_wi_fi_and_ble_toge" formatted="false">"These are include switches. Turn both on to see Wi-Fi and BLE together. A single device is never both."</string>
+    <string name="ui_both" formatted="false">"Both"</string>
+    <string name="ui_wi_fi_only" formatted="false">"Wi-Fi only"</string>
+    <string name="ui_ble_only" formatted="false">"BLE only"</string>
+    <string name="ui_moving_with_you" formatted="false">"Moving with you"</string>
+    <string name="ui_turn_on_settings_tag_detections_with_gps_then_walk_or_drive" formatted="false">"Turn on Settings → Tag detections with GPS, then walk or drive. "</string>
+    <string name="ui_only_loud_ble_advertisers_that_stay_with_you_along_the_path" formatted="false">"Only loud BLE advertisers that stay with you along the path. "</string>
+    <string name="ui_wi_fi_access_points_stay_off_a_loud_ap_you_drive_past_paints_your" formatted="false">"Wi-Fi access points stay off — a loud AP you drive past paints your path. "</string>
+    <string name="ui_the_switch_starts_a_ble_follow_test_clears_signatures_only_show_o" formatted="false">"The switch starts a BLE follow test (clears Signatures only / Show only / Named radios only / Watched only). "</string>
+    <string name="ui_or_tap_the_moving_with_you_preset_at_the_top" formatted="false">"Or tap the Moving with you preset at the top."</string>
+    <string name="ui_if_this_stays_0_while_you_drive_location_is_not_giving_a_live_fix" formatted="false">"If this stays 0 while you drive, Location is not giving a live fix "</string>
+    <string name="ui_set_location_to_high_accuracy_last_known_only_is_not_enough" formatted="false">"(set Location to high accuracy). Last-known-only is not enough. "</string>
+    <string name="ui_a_second_iphone_usually_will_not_match_ble_mac_rotation_starts_a_" formatted="false">"A second iPhone usually will not match: BLE MAC rotation starts a new radio."</string>
+    <string name="ui_named_radios_only_is_also_on_unlabeled_radios_stay_hidden" formatted="false">" Named radios only is also on — unlabeled radios stay hidden."</string>
+    <string name="ui_watched_only_is_also_on_unwatched_radios_stay_hidden" formatted="false">" Watched only is also on — unwatched radios stay hidden."</string>
+    <string name="ui_signatures_only_show_only_is_also_on_unmatched_radios_stay_hidden" formatted="false">" Signatures only / Show only is also on — unmatched radios stay hidden."</string>
+    <string name="ui_named_radios_only_or_watched_only_is_also_on_so_only_those_radios" formatted="false">"Named radios only, or Watched only is also on, so only those radios can co-travel. "</string>
+    <string name="ui_tap_the_moving_with_you_preset_to_test_ble_a_tag_in_your_bag_or_c" formatted="false">"Tap the Moving with you preset to test BLE. A tag in your bag or car should match. Wi-Fi access points stay hidden."</string>
+    <string name="ui_path_at_a_fairly_steady_level_not_ones_that_only_appear_when_you" formatted="false">"path at a fairly steady level — not ones that only appear when you "</string>
+    <string name="ui_arrive_a_tag_in_your_bag_or_car_will_match_wi_fi_access_points_st" formatted="false">"arrive. A tag in your bag or car will match. Wi-Fi access points stay hidden "</string>
+    <string name="ui_range_looks_like_co_travel_a_phone_s_rotating_ble_address_will_no" formatted="false">"(range looks like co-travel). A phone’s rotating BLE address will not stitch as one follower. "</string>
+    <string name="ui_live_start_over_clears_the_path_and_trails_so_you_can_test_again" formatted="false">"Live → Start over clears the path and trails so you can test again."</string>
+    <string name="ui_new_detections" formatted="false">"New detections"</string>
+    <string name="ui_new_detections_only_learning" formatted="false">"New detections only  ·  learning"</string>
+    <string name="ui_new_detections_only" formatted="false">"New detections only"</string>
+    <string name="ui_mark_seen_and_reset_seen_sit_on_live_above_the_tabs" formatted="false">"Mark seen and Reset seen sit on Live, above the tabs. "</string>
+    <string name="ui_learning_sitting_wi_fi_into_already_seen" formatted="false">"Learning sitting Wi-Fi into already-seen."</string>
+    <string name="ui_already_seen_is_0" formatted="false">"Already seen is 0."</string>
+    <string name="ui_hide_radios_already_here_so_only_new_ones_show_on_live" formatted="false">"Hide radios already here so only new ones show on Live. "</string>
+    <string name="ui_mark_seen_reset_seen_appear_above_the_tabs_on_live_while_this_is_" formatted="false">"Mark seen / Reset seen appear above the tabs on Live while this is on. "</string>
+    <string name="ui_brief_hold_still_sets_how_long_a_new_radio_stays_after_the_last_p" formatted="false">"Brief hold still sets how long a new radio stays after the last packet. "</string>
+    <string name="ui_randomized_ble_addresses_look_new" formatted="false">"Randomized BLE addresses look new."</string>
+    <string name="ui_who_stays" formatted="false">"Who stays"</string>
+    <string name="ui_signatures_only_hide_unmatched" formatted="false">"Signatures only (hide unmatched)"</string>
+    <string name="ui_show_only_already_hides_unmatched_radios_turn_show_only_class_or_" formatted="false">"Show only already hides unmatched radios. Turn Show only (class or selected signatures) off to use this switch."</string>
+    <string name="ui_watched_only" formatted="false">"Watched only"</string>
+    <string name="ui_only_radios_that_match_a_bookmarked_signature_or_a_named_radio_wi" formatted="false">"Only radios that match a bookmarked signature, or a Named radio with Alert on. "</string>
+    <string name="ui_hide_these_still_applies_watched_only_hide_surveillance_drops_boo" formatted="false">"Hide these still applies (Watched only + Hide Surveillance drops bookmarked cameras). "</string>
+    <string name="ui_label_only_names_stay_on_named_radios_only_bookmark_on_signatures" formatted="false">"Label-only names stay on Named radios only. Bookmark on Signatures; Alert on detail."</string>
+    <string name="ui_named_radios_only" formatted="false">"Named radios only"</string>
+    <string name="ui_only_radios_you_gave_a_custom_name_alert_can_still_be_off_setting" formatted="false">"Only radios you gave a custom name. Alert can still be off. Settings → Named radios. "</string>
+    <string name="ui_a_random_privacy_mac_will_not_follow_a_rotation" formatted="false">"A random / privacy MAC will not follow a rotation."</string>
+    <string name="ui_hide_fast_pair_account_key" formatted="false">"Hide Fast Pair account-key"</string>
+    <string name="ui_plaza_noise_already_paired_fast_pair_chips_with_no_other_signatur" formatted="false">"Plaza noise: already-paired Fast Pair chips with no other signature. "</string>
+    <string name="ui_keeps_pairing_mode_tap_to_pair_model_id_hide_selected_fast_pair_s" formatted="false">"Keeps pairing-mode (tap-to-pair model ID). Hide selected Fast Pair still drops pairing-mode too."</string>
+    <string name="ui_signature_classes" formatted="false">"Signature classes"</string>
+    <string name="ui_live_only_signatures_still_label_log_and_can_beep" formatted="false">"Live only — signatures still label, log, and can beep. "</string>
+    <string name="ui_cameras_drones_finder_tags_and_the_rest_are_these_chips_show_only" formatted="false">"Cameras, Drones, Finder tags, and the rest are these chips — Show only, then Save current as… if you want a preset. "</string>
+    <string name="ui_show_only_with_no_class_picked_leaves_live_unchanged" formatted="false">"Show only with no class picked leaves Live unchanged."</string>
+    <string name="ui_show_only" formatted="false">"Show only"</string>
+    <string name="ui_hide_these" formatted="false">"Hide these"</string>
+    <string name="ui_selected_signatures" formatted="false">"Selected signatures"</string>
+    <string name="ui_show_only_selected_signatures" formatted="false">"Show only selected signatures"</string>
+    <string name="ui_tap_a_class_to_open_its_signatures_only_radios_matching_a_signatu" formatted="false">"Tap a class to open its signatures. Only radios matching a signature you turn on below stay on Live. "</string>
+    <string name="ui_empty_list_no_extra_include_live_unchanged_picks_stay_if_you_turn" formatted="false">"Empty list = no extra include (Live unchanged). Picks stay if you turn this off and on again."</string>
+    <string name="ui_hide_selected_signatures" formatted="false">"Hide selected signatures"</string>
+    <string name="ui_tap_a_class_to_open_its_signatures_devices_matching_a_signature_y" formatted="false">"Tap a class to open its signatures. Devices matching a signature you turn on below stay off the Live list. "</string>
+    <string name="ui_your_picks_stay_if_you_turn_this_off_and_on_again" formatted="false">"Your picks stay if you turn this off and on again."</string>
+    <string name="ui_fine_filter" formatted="false">"Fine filter"</string>
+    <string name="ui_name_mac_contains" formatted="false">"Name / MAC contains"</string>
+    <string name="ui_oui_vendor_contains" formatted="false">"OUI / vendor contains"</string>
+    <string name="ui_extra_filter_logic" formatted="false">"Extra filter logic"</string>
+    <string name="ui_and_or_applies_to_name_oui_rssi_and_class_include_not_to_radios_n" formatted="false">"AND/OR applies to name, OUI, RSSI, and class include — not to radios, Named radios only, Watched only, Hide Fast Pair account-key, or hide lists."</string>
+    <string name="ui_and_407" formatted="false">"AND"</string>
+    <string name="ui_or" formatted="false">"OR"</string>
+    <string name="ui_reset_filter" formatted="false">"Reset filter"</string>
+    <string name="ui_reset_filter_410" formatted="false">"Reset filter?"</string>
+    <string name="ui_clears_every_switch_and_pick_on_this_tab_radios_classes_selected_" formatted="false">"Clears every switch and pick on this tab (radios, classes, selected signatures, RSSI, name/OUI). "</string>
+    <string name="ui_presets_you_saved_stay_the_live_display_goes_back_to_the_unfilter" formatted="false">"Presets you saved stay. The Live display goes back to the unfiltered set. This is not undo."</string>
+    <string name="ui_reset" formatted="false">"Reset"</string>
+    <string name="ui_delete_preset" formatted="false">"Delete preset?"</string>
+    <string name="ui_delete" formatted="false">"Delete"</string>
+    <string name="ui_new_signature" formatted="false">"New signature"</string>
+    <string name="ui_tap_a_class_to_open_its_signatures_bookmark_beep_hide_a_family_on" formatted="false">"Tap a class to open its signatures. Bookmark = beep. Hide a family on Filters, not here."</string>
+    <string name="ui_tap_to_edit_bookmark_beep_when_that_family_appears_hide_a_family_" formatted="false">"Tap to edit. Bookmark = beep when that family appears. Hide a family on Filters, not here."</string>
+    <string name="ui_class_a_z" formatted="false">"Class A–Z"</string>
+    <string name="ui_beep_when_this_signature_appears" formatted="false">"Beep when this signature appears"</string>
+    <string name="ui_edit_signature" formatted="false">"Edit signature"</string>
+    <string name="ui_shows_on_radio_detail_for_matching_radios_and_in_share_ai_export_" formatted="false">"Shows on radio detail for matching radios, and in Share / AI Export. Not Extra attention — no Live “!” and not the amber card."</string>
+    <string name="ui_optional_if_this_is_not_empty_matching_radios_get_a_on_live_this_" formatted="false">"Optional. If this is not empty, matching radios get a “!” on Live, this amber card on detail, and a line in Debrief. Separate from Notes above."</string>
+    <string name="ui_matching" formatted="false">"Matching"</string>
+    <string name="ui_class" formatted="false">"Class"</string>
+    <string name="ui_filters_show_only_hide_these_class_sits_finder_tags_cameras_are_t" formatted="false">"Filters → Show only / Hide these. Class sits (Finder tags, Cameras, …) are those chips — Save current as… if you want a preset."</string>
+    <string name="ui_match_any_rule_or" formatted="false">"Match any rule (OR)"</string>
+    <string name="ui_cluster_by_oui" formatted="false">"Cluster by OUI"</string>
+    <string name="ui_sequential_macs" formatted="false">"Sequential MACs"</string>
+    <string name="ui_min_peers_0_off" formatted="false">"Min peers (0 = off)"</string>
+    <string name="ui_peer_window_seconds" formatted="false">"Peer window (seconds)"</string>
+    <string name="ui_color" formatted="false">"Color"</string>
+    <string name="ui_stock_colors_are_by_class_red_pentest_amber_cameras_alpr_purple_p" formatted="false">"Stock colors are by class (red pentest, amber cameras/ALPR, purple phones/tags, cyan wearables, green mesh, orange audio/glasses, teal in-car/vehicle). Change any row."</string>
+    <string name="ui_rules" formatted="false">"Rules"</string>
+    <string name="ui_each_rule_has_its_own_switch_off_keeps_the_rule_but_it_does_not_m" formatted="false">"Each rule has its own switch. Off keeps the rule but it does not match. "</string>
+    <string name="ui_use_that_to_mute_noisy_ouis_or_names_on_one_signature_without_del" formatted="false">"Use that to mute noisy OUIs or names on one signature without deleting them."</string>
+    <string name="ui_add_rule" formatted="false">"Add rule"</string>
+    <string name="ui_optional_after_this_signature_matches_map_cleartext_ble_bytes_to_" formatted="false">"Optional. After this signature matches, map cleartext BLE bytes to labels. Encrypted payloads stay hex."</string>
+    <string name="ui_delete_signature" formatted="false">"Delete signature"</string>
+    <string name="ui_delete_this_signature" formatted="false">"Delete this signature?"</string>
+    <string name="ui_selected_color" formatted="false">"Selected color"</string>
+    <string name="ui_kind" formatted="false">"Kind"</string>
+    <string name="ui_delete_rule" formatted="false">"Delete rule"</string>
+    <string name="ui_value" formatted="false">"Value"</string>
+    <string name="ui_company_id_hex" formatted="false">"Company ID hex"</string>
+    <string name="ui_data_prefix_hex" formatted="false">"Data prefix hex"</string>
+    <string name="ui_service_uuid_empty_any_contains" formatted="false">"Service UUID (empty = any, contains)"</string>
+    <string name="ui_contains_hex" formatted="false">"Contains hex"</string>
+    <string name="ui_matches_hidden_ssids" formatted="false">"Matches hidden SSIDs"</string>
+    <string name="ui_mac_prefix" formatted="false">"MAC prefix"</string>
+    <string name="ui_name_contains" formatted="false">"Name contains"</string>
+    <string name="ui_name_glob" formatted="false">"Name glob"</string>
+    <string name="ui_manufacturer_id" formatted="false">"Manufacturer ID"</string>
+    <string name="ui_manufacturer_data" formatted="false">"Manufacturer data"</string>
+    <string name="ui_radio_kind" formatted="false">"Radio kind"</string>
+    <string name="ui_hidden_ssid" formatted="false">"Hidden SSID"</string>
+    <string name="ui_vendor_ie_oui" formatted="false">"Vendor IE OUI"</string>
+    <string name="ui_reset_this_hunt" formatted="false">"Reset this hunt"</string>
+    <string name="ui_back_to_detail" formatted="false">"Back to detail"</string>
+    <string name="ui_beep" formatted="false">"Beep"</string>
+    <string name="ui_vibrate" formatted="false">"Vibrate"</string>
+    <string name="ui_no_live_rssi" formatted="false">"no live RSSI"</string>
+    <string name="ui_loudest_this_hunt" formatted="false">"Loudest this hunt  —"</string>
+    <string name="ui_last_heard_465" formatted="false">"last heard  —"</string>
+    <string name="ui_you" formatted="false">"YOU"</string>
+    <string name="ui_display_paused_radios_still_scanning_and_logging_filters_still_ap" formatted="false">"Display paused · radios still scanning and logging. Filters still apply when you run again. Tap Live to run the list again."</string>
+    <string name="ui_new_only_learning_sitting_wi_fi" formatted="false">"New only · learning sitting Wi-Fi"</string>
+    <string name="ui_new_only" formatted="false">"New only"</string>
+    <string name="ui_memory_cap" formatted="false">" · memory cap"</string>
+    <string name="ui_rename_sit" formatted="false">"Rename sit"</string>
+    <string name="ui_moving_with_you_needs_settings_tag_detections_with_gps_then_a_wal" formatted="false">"Moving with you needs Settings → Tag detections with GPS, then a walk or drive."</string>
+    <string name="ui_if_this_stays_0_location_is_not_updating_use_high_accuracy" formatted="false">"If this stays 0, Location is not updating (use high accuracy)."</string>
+    <string name="ui_no_loud_ble_has_stayed_with_you_among_the_radios_still_allowed" formatted="false">"No loud BLE has stayed with you among the radios still allowed. "</string>
+    <string name="ui_tap_the_moving_with_you_preset_to_test_ble_or_turn_off_signatures" formatted="false">"Tap the Moving with you preset to test BLE, or turn off Signatures only / Show only / Named radios only / Watched only."</string>
+    <string name="ui_no_loud_ble_has_stayed_with_you_along_this_path_wi_fi_access_poin" formatted="false">"No loud BLE has stayed with you along this path. Wi-Fi access points stay hidden. A tag in your bag or car should show. Find My MAC rotation will not stitch."</string>
+    <string name="ui_hiding_sitting_access_points_until_the_next_wi_fi_scan_new_blueto" formatted="false">"Hiding sitting access points until the next Wi-Fi scan. New Bluetooth still shows right away."</string>
+    <string name="ui_waiting_for_a_new_wi_fi_or_ble_radio_it_stays_while_we_hear_it_th" formatted="false">"Waiting for a new Wi-Fi or BLE radio. It stays while we hear it, then at least as long as Brief hold after the last packet."</string>
+    <string name="ui_no_watched_radios_on_the_air_bookmark_a_signature_turn_alert_on_a" formatted="false">"No watched radios on the air. Bookmark a signature, turn Alert on a Named radio, or turn off Filters → Watched only."</string>
+    <string name="ui_no_named_radios_on_the_air_set_a_custom_name_on_detail_or_turn_of" formatted="false">"No named radios on the air. Set a custom name on detail, or turn off Filters → Named radios only."</string>
+    <string name="ui_show_all" formatted="false">"Show all"</string>
+    <string name="ui_collapse_empty" formatted="false">"Collapse empty"</string>
+    <string name="ui_no_live_emitters_match_the_current_filter_if_this_just_emptied_th" formatted="false">"No live emitters match the current filter. If this just emptied, the OS may be between scan windows — the last set is held and should return without a burst."</string>
+    <string name="ui_no_signature" formatted="false">"no signature"</string>
+    <string name="ui_no_devices_match_the_current_filter" formatted="false">"No devices match the current filter"</string>
+    <string name="ui_pinch_to_zoom" formatted="false">" · pinch to zoom"</string>
+    <string name="ui_no_live_emitters_match_the_current_filter_if_this_just_emptied_th_488" formatted="false">"No live emitters match the current filter. If this just emptied, the OS may be between scan windows — the last set is held and should return without a burst. Use Timeline for recent disappearances."</string>
+    <string name="ui_alerted_this_session" formatted="false">"Alerted this session"</string>
+    <string name="ui_last_15_minutes_solid_bars_are_on_air_windows" formatted="false">"Last 15 minutes · solid bars are on-air windows"</string>
+    <string name="ui_unnamed_le" formatted="false">"unnamed LE"</string>
+    <string name="ui_one_mac_each_custom_name_shows_on_live_observer_notes_show_on_det" formatted="false">"One MAC each. Custom name shows on Live. Observer notes show on detail and reports. Alert is optional (pip / voice / flash). Filters → Named radios only hides everything else. Signature watches stay on Signatures."</string>
+    <string name="ui_no_named_radios_set_a_custom_name_on_detail_or_bookmark_a_radio_t" formatted="false">"No named radios. Set a custom name on detail, or bookmark a radio (top-right) to watch it."</string>
+    <string name="ui_clear_named_radios" formatted="false">"Clear named radios?"</string>
+    <string name="ui_clear" formatted="false">"Clear"</string>
+    <string name="ui_named_radio" formatted="false">"Named radio"</string>
+    <string name="ui_on_the_air_tap_to_open_detail" formatted="false">"On the air — tap to open detail"</string>
+    <string name="ui_not_this_session" formatted="false">"Not this session"</string>
+    <string name="ui_alert" formatted="false">"Alert"</string>
+    <string name="ui_edit" formatted="false">"Edit"</string>
+    <string name="ui_privacy_mode_is_on_mac_tails_in_debrief_sit_compare_ai_export_sit" formatted="false">"Privacy mode is on. MAC tails in Debrief, sit compare, AI Export (sit or compare), and detail Share are **:**:**. GPS coordinates are masked. The log file, sit export, and GPX / KML / WiGLE files still have full addresses and lat/lon."</string>
+    <string name="ui_a_sit_is_a_named_window_of_radios_heard_here_the_selection_below_" formatted="false">"A sit is a named window of radios heard here. The selection below drives Path, Debrief, and Compare’s this-sit side: open sit, a selected saved sit, or last 15 minutes if you never start one."</string>
+    <string name="ui_end_sit" formatted="false">"End sit"</string>
+    <string name="ui_start_sit" formatted="false">"Start sit"</string>
+    <string name="ui_no_sit_running_start_sit_here_path_and_debrief_stay_last_15_minut" formatted="false">"No sit running. Start sit here. Path and Debrief stay last 15 minutes until you do."</string>
+    <string name="ui_no_sit_running_start_sit_here_path_and_debrief_use_the_selected_s" formatted="false">"No sit running. Start sit here. Path and Debrief use the selected sit."</string>
+    <string name="ui_no_saved_sits" formatted="false">"No saved sits."</string>
+    <string name="ui_path_and_debrief_use_ram_not_a_saved_sit" formatted="false">"Path and Debrief use RAM, not a saved sit."</string>
+    <string name="ui_end_sit_to_pick_a_saved_one_for_path_and_debrief" formatted="false">"End sit to pick a saved one for Path and Debrief."</string>
+    <string name="ui_rename" formatted="false">"Rename"</string>
+    <string name="ui_delete_all_sits" formatted="false">"Delete all sits"</string>
+    <string name="ui_path" formatted="false">"Path"</string>
+    <string name="ui_north_up_the_line_is_this_phone_the_black_dot_is_the_start_the_bl" formatted="false">"North up. The line is this phone. The black dot is the start. The blue dot is you, at the last point. A MAC or signature alert is one class icon. A decoded latitude and longitude uses the last position that radio sent. A count is several in one spot. Thick green is a stay. Time ticks along the path."</string>
+    <string name="ui_tag_detections_with_gps_and_walk_or_open_a_sit_that_recorded_a_pa" formatted="false">"Tag detections with GPS and walk, or open a sit that recorded a path."</string>
+    <string name="ui_tap_a_count_for_the_radios_there_tap_a_single_icon_for_that_one_r" formatted="false">"Tap a count for the radios there. Tap a single icon for that one radio. Tap again to close. Tap a row in that list, or a row below, to open that radio."</string>
+    <string name="ui_advertised_track_within_2_km_of_this_path" formatted="false">"= advertised track within 2 km of this path"</string>
+    <string name="ui_one_advertised_position_within_2_km_of_this_path" formatted="false">"= one advertised position within 2 km of this path"</string>
+    <string name="ui_pilot" formatted="false">"= pilot"</string>
+    <string name="ui_no_mac_or_signature_alerts_with_a_gps_stamp_on_this_path" formatted="false">"No MAC or signature alerts with a GPS stamp on this path."</string>
+    <string name="ui_1_advertised_fix" formatted="false">"1 advertised fix"</string>
+    <string name="ui_1_alert" formatted="false">"1 alert"</string>
+    <string name="ui_an_advertised_position_with_no_uas_id_is_in_the_sit_report" formatted="false">"An advertised position with no UAS id is in the sit report."</string>
+    <string name="ui_advertised_positions_with_no_uas_id_are_in_the_sit_report" formatted="false">"Advertised positions with no UAS id are in the sit report."</string>
+    <string name="ui_sit_report" formatted="false">"Sit report"</string>
+    <string name="ui_debrief_text" formatted="false">"Debrief (text)"</string>
+    <string name="ui_debrief_pdf_526" formatted="false">"Debrief (PDF)"</string>
+    <string name="ui_show_unmatched_rotating_ble" formatted="false">"Show unmatched rotating BLE"</string>
+    <string name="ui_off_default_debrief_text_pdf_lists_skip_unmatched_rand_ble_counts" formatted="false">"Off (default): Debrief text/PDF lists skip unmatched RAND BLE. Counts still include them. Extra attention, named signatures, bookmarks, and payload pins stay. Sit export has every radio."</string>
+    <string name="ui_paste_ready_addendum_rates_rssi_bands_extra_attention_and_trackin" formatted="false">"Paste-ready addendum: rates, RSSI bands, Extra attention and tracking IDs. Does not reprint Debrief inventories. One-radio AI Export is on detail."</string>
+    <string name="ui_one_row_per_unique_radio_in_this_sit_or_last_15_minutes_csv_json_" formatted="false">"One row per unique radio in this sit (or last 15 minutes). CSV / JSON lines include matched signatures and Extra attention families. Not the rotating log. GPX / KML include this phone’s path as a track plus hear-points. Fieldwatch does not upload. Privacy mode does not mask this file."</string>
+    <string name="ui_compare_sits" formatted="false">"Compare sits"</string>
+    <string name="ui_save_a_second_sit_to_compare_start_sit_then_end_sit_last_15_minut" formatted="false">"Save a second sit to compare. Start sit, then End sit. Last 15 minutes can be this sit."</string>
+    <string name="ui_second_sit" formatted="false">"Second sit"</string>
+    <string name="ui_compare_text" formatted="false">"Compare (text)"</string>
+    <string name="ui_compare_pdf" formatted="false">"Compare (PDF)"</string>
+    <string name="ui_same_report_two_formats_presence_only_only_in_this_sit_only_in_th" formatted="false">"Same report, two formats. Presence only — only in this sit, only in the second, in both. Kind + MAC. Extra attention and Named radios are marked. Not a radio fix."</string>
+    <string name="ui_paste_ready_addendum_overlap_exclusive_extra_attention_named_radi" formatted="false">"Paste-ready addendum: overlap, exclusive Extra attention / Named radios, what another sit would shrink. Does not reprint the compare lists. Sit report AI Export stays this window only."</string>
+    <string name="ui_catalog" formatted="false">"Catalog"</string>
+    <string name="ui_unmatched_radios_in_the_log_that_share_a_unique_id_not_every_unkn" formatted="false">"Unmatched radios in the log that share a unique ID — not every unknown. You review; nothing is added until you Save."</string>
+    <string name="ui_log_export" formatted="false">"Log export"</string>
+    <string name="ui_logging_off" formatted="false">"  ·  logging off"</string>
+    <string name="ui_the_rotating_file_is_json_lines_csv_is_the_same_rows_as_a_spreads" formatted="false">"The rotating file is JSON lines. CSV is the same rows as a spreadsheet. GPX — GPS Exchange, KML — Google Earth, and WiGLE CSV — wigle.net are hear-points: where this phone was when it heard each radio, not a radio fix. Tag detections with GPS and logging on. Share uses the Android share sheet — Fieldwatch does not upload."</string>
+    <string name="ui_reset_clear_log" formatted="false">"Reset / clear log"</string>
+    <string name="ui_clear_the_log" formatted="false">"Clear the log?"</string>
+    <string name="ui_this_deletes_all_rotated_csv_json_files_on_the_phone_it_cannot_be" formatted="false">"This deletes all rotated CSV/JSON files on the phone. It cannot be undone. Live scanning will start a new empty log."</string>
+    <string name="ui_clear_log" formatted="false">"Clear log"</string>
+    <string name="ui_debrief_and_ai_export_use_this_window_until_you_end_it_the_live_l" formatted="false">"Debrief and AI Export use this window until you end it. The Live list is unchanged."</string>
+    <string name="ui_delete_this_sit" formatted="false">"Delete this sit?"</string>
+    <string name="ui_removes_the_saved_sit_from_this_phone_the_log_is_unchanged" formatted="false">"Removes the saved sit from this phone. The log is unchanged."</string>
+    <string name="ui_delete_all_sits_550" formatted="false">"Delete all sits?"</string>
+    <string name="ui_removes_saved_sits_from_this_phone_an_open_sit_is_not_deleted_the" formatted="false">"Removes saved sits from this phone. An open sit is not deleted. The log is unchanged."</string>
+    <string name="ui_delete_all" formatted="false">"Delete all"</string>
+    <string name="ui_this_sit_last_15_minutes_in_memory_about_400_radios_same_as_debri" formatted="false">"This sit: last 15 minutes in memory (about 400 radios). Same as Debrief."</string>
+    <string name="ui_format" formatted="false">"Format"</string>
+    <string name="ui_share" formatted="false">"Share"</string>
+    <string name="ui_save_to_sd_card_storage" formatted="false">"Save to SD card / storage…"</string>
+    <string name="ui_last_15_minutes_in_memory_same_window_as_path_two_formats_gps_fol" formatted="false">"Last 15 minutes in memory — same window as Path. Two formats. GPS following test when tagging is on and you have moved. Not a legal finding."</string>
+    <string name="ui_appearance" formatted="false">"Appearance"</string>
+    <string name="ui_night_mode" formatted="false">"Night mode"</string>
+    <string name="ui_off_by_default_red_on_black_field_display_so_chips_text_and_signa" formatted="false">"Off by default. Red-on-black field display so chips, text, and signal marks "</string>
+    <string name="ui_do_not_dump_green_or_blue_into_a_dark_sit_background_stays_dark" formatted="false">"do not dump green or blue into a dark sit. Background stays dark. "</string>
+    <string name="ui_phone_brightness_is_unchanged" formatted="false">"Phone brightness is unchanged."</string>
+    <string name="ui_keep_screen_on" formatted="false">"Keep screen on"</string>
+    <string name="ui_on_by_default_stops_the_display_from_sleeping_while_fieldwatch_is" formatted="false">"On by default. Stops the display from sleeping while Fieldwatch is open so BLE is not parked when the phone blanks. Scanning still runs in the notification if you leave the app. Turn it off when you pocket the phone."</string>
+    <string name="ui_privacy_mode" formatted="false">"Privacy mode"</string>
+    <string name="ui_hides_the_last_three_octets_of_every_mac_on_live_radar_timeline_d" formatted="false">"Hides the last three octets of every MAC on Live, radar, timeline, detail, Hunt, Named radios, and watchlist cards as **:**:** so the screen and sit reports do not show full addresses. GPS last-fix and Debrief / AI Export / detail Share coordinates become “masked”; street names are omitted from those sit reports. The first three octets (OUI / vendor prefix) stay. Off by default. The map on Reports → Path still loads when Online place names and maps is on. Logs, matching, filters, Hunt math, Moving with you, and saved signatures still use the real MAC and GPS. A TAK / CoT feed, if you turned it on, is paused while this is on so full MACs and coordinates are not sent onto the LAN. Turn this off when you need the full address or coordinates on screen."</string>
+    <string name="ui_scanning" formatted="false">"Scanning"</string>
+    <string name="ui_battery_saver" formatted="false">"Battery saver"</string>
+    <string name="ui_balanced" formatted="false">"Balanced"</string>
+    <string name="ui_high_performance" formatted="false">"High performance"</string>
+    <string name="ui_wi_fi_is_a_batch_radio_the_phone_grabs_every_ap_at_once_then_must" formatted="false">"Wi-Fi is a batch radio: the phone grabs every AP at once, then must wait. High performance asks about every 30s — that is the fastest cadence that stays under the OS limit of four scans per two minutes. BLE still streams in between."</string>
+    <string name="ui_wi_fi_waiting_on_os" formatted="false">"Wi-Fi waiting on OS"</string>
+    <string name="ui_wi_fi_scanning" formatted="false">"Wi-Fi scanning"</string>
+    <string name="ui_wi_fi_next_99s" formatted="false">"Wi-Fi next 99s"</string>
+    <string name="ui_faster_wi_fi_ap_scans" formatted="false">"Faster Wi-Fi AP scans"</string>
+    <string name="ui_needs_android_11_so_fieldwatch_can_read_whether_the_os_is_still_t" formatted="false">"Needs Android 11+ so Fieldwatch can read whether the OS is still throttling scans. This phone cannot confirm that, so the switch stays off."</string>
+    <string name="ui_on_fieldwatch_asks_for_a_new_ap_list_about_every_8_seconds_uses_m" formatted="false">"On. Fieldwatch asks for a new AP list about every 8 seconds. Uses more battery and heat. If the OS starts refusing scans, it backs off."</string>
+    <string name="ui_saved_on_but_not_in_effect_android_wi_fi_scan_throttling_is_still" formatted="false">"Saved on, but not in effect — Android Wi-Fi scan throttling is still on. Turn that off in Developer options, then return here."</string>
+    <string name="ui_stock_android_allows_about_four_ap_scans_per_two_minutes_faster_s" formatted="false">"Stock Android allows about four AP scans per two minutes. Faster scans only run after you turn off Wi-Fi scan throttling in Developer options. Fieldwatch checks that OS switch before turning this on, and cannot change it for you."</string>
+    <string name="ui_developer_options_required" formatted="false">"Developer options required"</string>
+    <string name="ui_this_phone_is_older_than_android_11_so_fieldwatch_cannot_read_the" formatted="false">"This phone is older than Android 11, so Fieldwatch cannot read the OS Wi-Fi scan-throttle switch. Faster AP scanning stays off."</string>
+    <string name="ui_android_is_still_throttling_wi_fi_scans_about_four_per_two_minute" formatted="false">"Android is still throttling Wi-Fi scans (about four per two minutes). Fieldwatch will not turn Faster Wi-Fi AP scans on until that is off.\n\n"</string>
+    <string name="ui_enable_developer_options_tap_build_number_seven_times_in_about_ph" formatted="false">"Enable Developer options (tap Build number seven times in About phone), then Settings → Developer options → Wi-Fi scan throttling → Off. Come back and flip this switch again."</string>
+    <string name="ui_open_developer_options" formatted="false">"Open developer options"</string>
+    <string name="ui_not_now" formatted="false">"Not now"</string>
+    <string name="ui_allow_background_usage" formatted="false">"Allow background usage"</string>
+    <string name="ui_mirrors_android_allow_background_usage_tap_to_open_fieldwatch_s_b" formatted="false">"Mirrors Android Allow background usage. Tap to open Fieldwatch’s Battery page and "</string>
+    <string name="ui_use_that_switch_fieldwatch_updates_when_you_return_off_the_os_can" formatted="false">"use that switch. Fieldwatch updates when you return. Off: the OS can kill the scan "</string>
+    <string name="ui_as_soon_as_you_leave_not_keep_screen_on" formatted="false">"as soon as you leave. Not Keep screen on."</string>
+    <string name="ui_unrestricted_battery" formatted="false">"Unrestricted battery"</string>
+    <string name="ui_mirrors_android_unrestricted_not_optimized_some_phones_samsung_am" formatted="false">"Mirrors Android Unrestricted (not Optimized). Some phones (Samsung among them) do not "</string>
+    <string name="ui_open_onto_that_choice_if_you_only_see_allow_background_usage_tap_" formatted="false">"open onto that choice. If you only see Allow background usage, tap that row to "</string>
+    <string name="ui_click_through_and_select_unrestricted_fieldwatch_updates_when_you" formatted="false">"click through and select Unrestricted. Fieldwatch updates when you return."</string>
+    <string name="ui_the_next_screen_is_fieldwatch_s_battery_page_use_the_allow_backgr" formatted="false">"The next screen is Fieldwatch’s Battery page. Use the Allow background usage switch. "</string>
+    <string name="ui_fieldwatch_will_match_that_setting_when_you_return" formatted="false">"Fieldwatch will match that setting when you return."</string>
+    <string name="ui_some_phones_samsung_among_them_do_not_open_onto_unrestricted" formatted="false">"Some phones (Samsung among them) do not open onto Unrestricted / "</string>
+    <string name="ui_optimized_restricted_if_you_only_see_allow_background_usage" formatted="false">"Optimized / Restricted. If you only see Allow background usage, "</string>
+    <string name="ui_tap_that_row_the_words_not_the_blue_switch_to_click_through" formatted="false">"tap that row (the words, not the blue switch) to click through, "</string>
+    <string name="ui_then_select_unrestricted_fieldwatch_will_match_that_when_you_retu" formatted="false">"then select Unrestricted. Fieldwatch will match that when you return."</string>
+    <string name="ui_open_android_settings" formatted="false">"Open Android settings"</string>
+    <string name="ui_watchlist" formatted="false">"Watchlist"</string>
+    <string name="ui_watchlist_alerts" formatted="false">"Watchlist alerts"</string>
+    <string name="ui_on_by_default_master_switch_for_bookmarked_signatures_and_devices" formatted="false">"On by default. Master switch for bookmarked signatures and devices. Off: no beep, vibration, flash, jump, or shade card. Bookmarking still works — you just will not be told when that radio appears."</string>
+    <string name="ui_custom_names_for_one_mac_alert_is_optional_filters_named_radios_o" formatted="false">"Custom names for one MAC. Alert is optional. Filters → Named radios only shows them on Live. Signature watches stay on Signatures."</string>
+    <string name="ui_beep_on_watched_signature" formatted="false">"Beep on watched signature"</string>
+    <string name="ui_the_double_pip_on_media_volume_when_a_bookmarked_signature_or_dev" formatted="false">"The double pip on media volume when a bookmarked signature or device first appears, or returns after leaving. Sitting detections do not beep again. Independent of Voice — use beep, voice, or both. Raise media volume if you hear nothing, then tap Test alert."</string>
+    <string name="ui_voice_on_watched_signature" formatted="false">"Voice on watched signature"</string>
+    <string name="ui_on_by_default_speaks_on_the_same_media_volume_as_the_pip_independ" formatted="false">"On by default. Speaks on the same media volume as the pip. Independent of Beep: with Beep on, voice follows the pip; with Beep off, voice only. Not Hunt. If a phrase is already being spoken, a second hit is skipped. Phones with no text-to-speech still beep if Beep is on."</string>
+    <string name="ui_what_to_say" formatted="false">"What to say"</string>
+    <string name="ui_for_signature_watches_class_is_the_live_glyph_bucket_finder_tags_" formatted="false">"For signature watches: Class is the Live glyph bucket (finder tags, audio, …). Signature is the catalog row (Apple AirTags, Axon, …). Class + signature (default) says both. A named radio with Alert on always says its custom name, even if it has no class. Test alert plays the signature mix you have on."</string>
+    <string name="ui_test_alert" formatted="false">"Test alert"</string>
+    <string name="ui_jump_to_new_watched_detection" formatted="false">"Jump to new watched detection"</string>
+    <string name="ui_when_a_new_watched_signature_or_device_appears_live_scrolls_to_th" formatted="false">"When a new watched signature or device appears, Live scrolls to that row so you can see the flash. Works with beep, voice, or both. Weak hits sit at the bottom of a strength-ranked list. Turn this off if you do not want the list to move."</string>
+    <string name="ui_system_notification" formatted="false">"System notification"</string>
+    <string name="ui_optional_posts_a_silent_shade_card_when_a_watched_radio_appears_o" formatted="false">"Optional. Posts a silent shade card when a watched radio appears. Off by default — the beep and flash are enough, and skipping the card keeps the scan loop lighter."</string>
+    <string name="ui_location" formatted="false">"Location"</string>
+    <string name="ui_tag_detections_with_gps" formatted="false">"Tag detections with GPS"</string>
+    <string name="ui_on_by_default_requests_live_gps_network_updates_and_stamps_each_h" formatted="false">"On by default. Requests live GPS/network updates and stamps each hear (Live detail, Moving with you, "</string>
+    <string name="ui_debrief_and_lat_lon_on_new_log_rows_last_known_only_is_ignored_if" formatted="false">"Debrief, and lat/lon on new log rows). Last-known-only is ignored if older than 30 s. "</string>
+    <string name="ui_that_is_your_gps_at_hear_time_not_an_independent_fix_on_the_other" formatted="false">"That is your GPS at hear-time, not an independent fix on the other radio. "</string>
+    <string name="ui_use_high_accuracy_location_or_the_path_stays_0_turn_off_if_you_do" formatted="false">"Use high-accuracy Location or the path stays 0. Turn off if you do not want operator coordinates on logs. "</string>
+    <string name="ui_heard_here_tak_pins_also_need_this_advertised_payload_coordinates" formatted="false">"Heard-here TAK pins also need this; advertised payload coordinates (Remote ID) do not."</string>
+    <string name="ui_online_place_names_and_maps" formatted="false">"Online place names and maps"</string>
+    <string name="ui_on_by_default_when_the_phone_has_internet_debrief_ai_export_rever" formatted="false">"On by default. When the phone has internet, Debrief / AI Export reverse-geocode GPS stamps "</string>
+    <string name="ui_to_street_city_and_reports_path_loads_openstreetmap_tiles_under_t" formatted="false">"to street/city, and Reports → Path loads OpenStreetMap tiles under the trace. "</string>
+    <string name="ui_no_fieldwatch_cloud_no_api_key_offline_or_no_geocoder_debrief_use" formatted="false">"No Fieldwatch cloud, no API key. Offline or no geocoder: Debrief uses coordinates only and Path stays the current north-up trace — no error dialog. "</string>
+    <string name="ui_turn_off_to_keep_streets_and_map_tiles_out_of_reports_and_path" formatted="false">"Turn off to keep streets and map tiles out of reports and Path. "</string>
+    <string name="ui_debrief_sit_export_log_export_and_reset_clear_log_are_on_the_repo" formatted="false">"Debrief, Sit export, Log export, and Reset / clear log are on the Reports tab."</string>
+    <string name="ui_tak_cot_feed" formatted="false">"TAK / CoT feed"</string>
+    <string name="ui_off_by_default_sends_cursor_on_target_udp_markers_to_atak_wintak_" formatted="false">"Off by default. Sends Cursor-on-Target UDP markers to ATAK, WinTAK, or iTAK. "</string>
+    <string name="ui_custom_is_a_unicast_ipv4_or_hostname_udp_only_a_tak_server_s_tcp_" formatted="false">"Custom is a unicast IPv4 or hostname. UDP only — a TAK server’s TCP 8087 is not this feed. "</string>
+    <string name="ui_heard_here_pins_sit_at_this_phone_s_gps_at_the_loudest_hear_close" formatted="false">"Heard-here pins sit at this phone’s GPS at the loudest hear (closest approach) and are labeled (here). "</string>
+    <string name="ui_walking_away_does_not_drag_the_pin_a_louder_hear_moves_it_keep_al" formatted="false">"Walking away does not drag the pin; a louder hear moves it. Keep-alives refresh the same lat/lon every ~10 s so ATAK does not drop it. "</string>
+    <string name="ui_advertised_lat_lon_stock_remote_id_sit_on_the_aircraft_the_same_r" formatted="false">"Advertised lat/lon (stock Remote ID) sit on the aircraft; the same Remote ID "</string>
+    <string name="ui_keeps_one_marker_that_moves_uas_id_not_the_rotating_ble_mac" formatted="false">"keeps one marker that moves (UAS ID, not the rotating BLE MAC). "</string>
+    <string name="ui_a_decoded_pilot_location_is_a_second_pin_gone_radios_are_dropped_" formatted="false">"A decoded pilot location is a second pin. Gone radios are dropped on ATAK instead of sitting 120 s. "</string>
+    <string name="ui_tap_a_marker_in_atak_for_remarks_name_mac_rssi_signatures" formatted="false">"Tap a marker in ATAK for remarks (name, MAC, RSSI, signatures). "</string>
+    <string name="ui_not_direction_finding_not_a_remote_id_plugin_privacy_mode_pauses_" formatted="false">"Not direction-finding. Not a Remote ID plugin. Privacy mode pauses the feed."</string>
+    <string name="ui_privacy_mode_is_on_the_feed_is_paused_so_full_macs_and_coordinate" formatted="false">"Privacy mode is on — the feed is paused so full MACs and coordinates are not sent. Turn Privacy mode off to publish."</string>
+    <string name="ui_logging" formatted="false">"Logging"</string>
+    <string name="ui_write_detections_to_disk" formatted="false">"Write detections to disk"</string>
+    <string name="ui_logging_is_on_new_detections_are_appended_to_the_rotating_file" formatted="false">"Logging is on. New detections are appended to the rotating file."</string>
+    <string name="ui_logging_is_off_scanning_still_runs_nothing_new_is_written_until_y" formatted="false">"Logging is off. Scanning still runs; nothing new is written until you turn this back on."</string>
+    <string name="ui_the_rotating_file_is_json_lines_one_hear_per_line_reports_log_for" formatted="false">"The rotating file is JSON lines (one hear per line). Reports → Log → Format writes CSV, JSON lines, GPX, KML, or WiGLE when you Share or Save."</string>
+    <string name="ui_share_save_and_reset_clear_log_are_on_the_reports_tab" formatted="false">"Share, Save, and Reset / clear log are on the Reports tab."</string>
+    <string name="ui_export_the_catalog_stock_plus_any_you_added_or_edited_to_share_wi" formatted="false">"Export the catalog (stock plus any you added or edited) to share with another Fieldwatch or as a backup. Import adds new rows and extra rules; it does not delete anything. Same id or the same match rules are skipped so a pack can be imported twice. Update stock catalog from GitHub replaces stock rows (including Extra attention) from the v2 pack on the repo; bookmarks, Settings, and signatures you added stay. Needs internet. Offline: Import signatures from a file. Restore defaults below still wipes customs."</string>
+    <string name="ui_export_signatures" formatted="false">"Export signatures"</string>
+    <string name="ui_save_signatures_to_sd_card_storage" formatted="false">"Save signatures to SD card / storage…"</string>
+    <string name="ui_import_signatures" formatted="false">"Import signatures…"</string>
+    <string name="ui_update_stock_catalog_from_github" formatted="false">"Update stock catalog from GitHub"</string>
+    <string name="ui_restore_default_signatures_presets" formatted="false">"Restore default signatures &amp; presets"</string>
+    <string name="ui_settings_backup" formatted="false">"Settings backup"</string>
+    <string name="ui_settings_switches_the_current_filter_filter_presets_named_radios_" formatted="false">"Settings switches, the current filter, filter presets, named radios, and signature watches. "</string>
+    <string name="ui_not_the_catalog_that_is_export_signatures_not_logs_or_gps" formatted="false">"Not the catalog — that is Export signatures. Not logs or GPS. "</string>
+    <string name="ui_import_replaces_those_on_this_phone_the_catalog_stays" formatted="false">"Import replaces those on this phone; the catalog stays. "</string>
+    <string name="ui_use_this_after_a_factory_reset_or_on_a_new_phone" formatted="false">"Use this after a factory reset or on a new phone."</string>
+    <string name="ui_export_settings" formatted="false">"Export settings"</string>
+    <string name="ui_save_settings_to_sd_card_storage" formatted="false">"Save settings to SD card / storage…"</string>
+    <string name="ui_import_settings" formatted="false">"Import settings…"</string>
+    <string name="ui_show_live_tour" formatted="false">"Show Live tour"</string>
+    <string name="ui_chrome_overlay_on_live_tune_is_display_radar_list_by_class_pause_" formatted="false">"Chrome overlay on Live: Tune is Display (Radar, list, By class), Pause, Filters, Signatures, Reports, Settings. First-run after the license; this button shows it again."</string>
+    <string name="ui_passive_wi_fi_ble_only" formatted="false">"Passive Wi-Fi + BLE only. "</string>
+    <string name="ui_stock_android_cannot_promiscuously_capture_wi_fi_stations_access_" formatted="false">"Stock Android cannot promiscuously capture Wi-Fi stations; access points and BLE advertisers are what the radios expose."</string>
+    <string name="ui_this_phone_s_ipv4_none" formatted="false">"This phone’s IPv4  ·  none"</string>
+    <string name="ui_restore_defaults" formatted="false">"Restore defaults?"</string>
+    <string name="ui_rewrites_the_catalog_stock_rows_class_colors_decode_fields_stock_" formatted="false">"Rewrites the catalog (stock rows, class colors, Decode fields), stock bookmarks, "</string>
+    <string name="ui_stock_filter_chips_and_default_settings_switches_custom_signature" formatted="false">"stock filter chips, and default Settings switches. Custom signatures and chips you "</string>
+    <string name="ui_saved_are_wiped_export_signatures_and_export_settings_first_if_yo" formatted="false">"saved are wiped. Export signatures and Export settings first if you want a backup. "</string>
+    <string name="ui_this_cannot_be_undone" formatted="false">"This cannot be undone."</string>
+    <string name="ui_restore" formatted="false">"Restore"</string>
+    <string name="ui_destination" formatted="false">"Destination"</string>
+    <string name="ui_this_phone" formatted="false">"This phone"</string>
+    <string name="ui_lan_multicast" formatted="false">"LAN multicast"</string>
+    <string name="ui_custom" formatted="false">"Custom"</string>
+    <string name="ui_custom_type_a_unicast_ipv4_or_hostname_udp_only_a_tak_server_s_tc" formatted="false">"Custom: type a unicast IPv4 or hostname. UDP only. A TAK server’s TCP 8087 is not this feed. "</string>
+    <string name="ui_host" formatted="false">"Host"</string>
+    <string name="ui_port" formatted="false">"Port"</string>
+    <string name="ui_what_to_send" formatted="false">"What to send"</string>
+    <string name="ui_payload_location" formatted="false">"Payload location"</string>
+    <string name="ui_all_signatures" formatted="false">"All signatures"</string>
+    <string name="ui_independent_chips_extra_attention_on_body_cam_glasses_recording_w" formatted="false">"Independent chips. Extra attention (on): body-cam, glasses, recording wearables, pentest, public-safety APs. "</string>
+    <string name="ui_payload_location_on_advertised_lat_lon_from_a_decode_map_required" formatted="false">"Payload location (on): advertised lat/lon from a decode map — required for stock Remote ID, which has no Extra attention mark. "</string>
+    <string name="ui_watchlist_off_bookmarked_signatures_and_named_radios_with_alert_o" formatted="false">"Watchlist (off): bookmarked signatures and named radios with Alert on. "</string>
+    <string name="ui_all_signatures_off_every_labeled_radio_noisy_in_a_plaza_unmatched" formatted="false">"All signatures (off): every labeled radio — noisy in a plaza. Unmatched radios never go. "</string>
+    <string name="ui_a_pin_still_needs_coordinates_advertised_payload_or_gps_tagging_w" formatted="false">"A pin still needs coordinates: advertised payload, or GPS tagging with a live fix. "</string>
+    <string name="ui_heard_here_holds_the_loudest_hear_not_the_last_and_callsigns_end_" formatted="false">"Heard-here holds the loudest hear, not the last, and callsigns end in (here). "</string>
+    <string name="ui_remote_id_keeps_one_aircraft_marker_uas_id_plus_a_pilot_pin_when_" formatted="false">"Remote ID keeps one aircraft marker (UAS ID) plus a pilot pin when that location decoded."</string>
+    <string name="ui_feed_status_paused_privacy_mode" formatted="false">"Feed status  ·  paused (Privacy mode)"</string>
+    <string name="ui_feed_status_no_send_yet_this_session" formatted="false">"Feed status  ·  no send yet this session"</string>
+    <string name="ui_1_gone" formatted="false">"1 gone"</string>
+    <string name="language" formatted="false">"Language"</string>
+    <string name="language_system" formatted="false">"Follow system"</string>
+    <string name="language_english" formatted="false">"English"</string>
+    <string name="language_chinese" formatted="false">"简体中文"</string>
+    <string name="ui_strongest_avg_values" formatted="true">"Strongest · avg %1$ss"</string>
+    <string name="ui_hold_values" formatted="true">"Hold %1$ss"</string>
+    <string name="ui_hold_values_after_last_packet" formatted="true">"Hold %1$ss after last packet"</string>
+    <string name="ui_fieldwatch_sit_compare_value" formatted="true">"Fieldwatch sit compare — %1$s"</string>
+    <string name="ui_fieldwatch_sit_compare_ai_export_value_vs_value" formatted="true">"Fieldwatch sit compare AI export — %1$s vs %2$s"</string>
+    <string name="ui_already_on_catalog_value_nothing_to_update" formatted="true">"Already on catalog %1$s. Nothing to update."</string>
+    <string name="ui_updated_value" formatted="true">"updated %1$s"</string>
+    <string name="ui_added_value" formatted="true">"added %1$s"</string>
+    <string name="ui_stock_catalog_is_now_value_value" formatted="true">"Stock catalog is now %1$s. %2$s "</string>
+    <string name="ui_privacy_mode_mac_tails_are_gps_coordinates_are_masked_logs_on_the" formatted="true">"Privacy mode: MAC tails are **:**:**. GPS coordinates are masked. Logs on the phone are unchanged.\n\n%1$s"</string>
+    <string name="ui_fieldwatch_ai_export_sit_value" formatted="true">"Fieldwatch AI export — sit %1$s"</string>
+    <string name="ui_fieldwatch_ai_export_value" formatted="true">"Fieldwatch AI export — %1$s"</string>
+    <string name="ui_fieldwatch_device_detail_value" formatted="true">"Fieldwatch device detail — %1$s"</string>
+    <string name="ui_writing_value_value_radios" formatted="true">"Writing %1$s · %2$s radios"</string>
+    <string name="ui_writing_value_value_pins" formatted="true">"Writing %1$s · %2$s pins"</string>
+    <string name="ui_writing_value_value_of_value" formatted="true">"Writing %1$s · %2$s of %3$s"</string>
+    <string name="ui_reading_log_value_kb_of_value_kb" formatted="true">"Reading log · %1$s KB of %2$s KB"</string>
+    <string name="ui_no_gps_tagged_value_settings_tag_detections_with_gps_logging_on_t" formatted="true">"No GPS-tagged %1$s. Settings → Tag detections with GPS, logging on, then sit."</string>
+    <string name="ui_writing_value_kb_of_value_kb" formatted="true">"Writing %1$s KB of %2$s KB"</string>
+    <string name="ui_value_alerts_here" formatted="true">"%1$s alerts here"</string>
+    <string name="ui_nand_value_more" formatted="true">"\nand %1$s more"</string>
+    <string name="ui_value_randomized_addresses" formatted="true">"%1$s randomized addresses"</string>
+    <string name="ui_value_house_like_names" formatted="true">"%1$s house-like names"</string>
+    <string name="ui_field_value" formatted="true">"Field %1$s"</string>
+    <string name="ui_saved_as_value" formatted="true">"Saved as %1$s"</string>
+    <string name="ui_value_no_ieee_match_randomized_addresses_usually_have_none" formatted="true">"%1$s — no IEEE match; randomized addresses usually have none"</string>
+    <string name="ui_at_value_dbm" formatted="true">" at %1$s dBm"</string>
+    <string name="ui_value_dbm_how_loud_it_says_it_transmits_not_a_distance" formatted="true">"%1$s dBm — how loud it says it transmits, not a distance"</string>
+    <string name="ui_channel_value" formatted="true">"channel %1$s"</string>
+    <string name="ui_value_wide" formatted="true">"  ·  %1$s wide"</string>
+    <string name="ui_value_nthe_device_publishes_this_gap_appearance_code_to_describe_" formatted="true">"%1$s\nThe device publishes this GAP Appearance code to describe itself."</string>
+    <string name="ui_value_mbps_required_basic_rate" formatted="true">"%1$s Mbps  (* = required basic rate)"</string>
+    <string name="ui_value_nthis_id_is_assigned_by_the_bluetooth_sig_and_is_carried_in" formatted="true">"%1$s\nThis ID is assigned by the Bluetooth SIG and is carried in manufacturer-specific data."</string>
+    <string name="ui_raw_payload_value_bytes" formatted="true">"Raw payload (%1$s bytes)"</string>
+    <string name="ui_vendor_oui_valuevalue" formatted="true">"Vendor OUI %1$s%2$s"</string>
+    <string name="ui_ieee_board_chip_vendor_value_value_this_is_who_owns_the_mac_prefi" formatted="true">"IEEE board/chip vendor: %1$s (%2$s). This is who owns the MAC prefix, not always the product brand."</string>
+    <string name="ui_bluetooth_company_in_the_ad_value_0x_04x" formatted="true">"Bluetooth company in the ad: %1$s (0x%2$04X)."</string>
+    <string name="ui_service_data_valuevaluevalue" formatted="true">"Service data %1$s%2$s%3$s"</string>
+    <string name="ui_gps_path_so_far_value_m_keep_moving_50_m" formatted="true">"GPS path so far %1$s m. Keep moving (~50 m). "</string>
+    <string name="ui_gps_path_value_m_signatures_only_class_show_only" formatted="true">"GPS path %1$s m. Signatures only, class Show only, "</string>
+    <string name="ui_gps_path_value_m_loud_ble_heard_along_that" formatted="true">"GPS path %1$s m. Loud BLE heard along that "</string>
+    <string name="ui_value_already_seen_are_hidden" formatted="true">"%1$s already seen are hidden."</string>
+    <string name="ui_minimum_rssi_value_dbm" formatted="true">"Minimum RSSI  %1$s dBm"</string>
+    <string name="ui_remove_stock_chip_value_from_this_list_catalog_updates_will_not_p" formatted="true">"Remove stock chip “%1$s” from this list? Catalog updates will not put it back. Settings → Restore default signatures &amp; presets restores all stock chips. The filter on Live does not change until you apply another chip or Reset filter."</string>
+    <string name="ui_delete_preset_value_this_cannot_be_undone_the_filter_on_live_does" formatted="true">"Delete preset “%1$s”? This cannot be undone. The filter on Live does not change until you apply another chip or Reset filter."</string>
+    <string name="ui_signatures_value" formatted="true">"Signatures (%1$s)"</string>
+    <string name="ui_value_value_rules_value_live_value" formatted="true">"%1$s · %2$s rules · %3$s live · %4$s"</string>
+    <string name="ui_value_fields" formatted="true">"%1$s fields"</string>
+    <string name="ui_value_is_a_built_in_signature_deleting_it_removes_matching_its_bo" formatted="true">"“%1$s” is a built-in signature. Deleting it removes matching, its bookmark, and filter chips. Restore default signatures in Settings will bring the stock set back."</string>
+    <string name="ui_value_will_be_removed_matching_its_bookmark_and_filter_chips_go_w" formatted="true">"“%1$s” will be removed. Matching, its bookmark, and filter chips go with it. This cannot be undone."</string>
+    <string name="ui_loudest_this_hunt_value_dbm" formatted="true">"Loudest this hunt  %1$s dBm"</string>
+    <string name="ui_last_heard_values_ago" formatted="true">"last heard %1$ss ago"</string>
+    <string name="ui_last_heard_valuem_ago" formatted="true">"last heard %1$sm ago"</string>
+    <string name="ui_new_only_value_hidden" formatted="true">"New only · %1$s hidden"</string>
+    <string name="ui_follow_path_value_m_start_over_clears_the_path" formatted="true">"Follow · path %1$s m · Start over clears the path"</string>
+    <string name="ui_value_cap" formatted="true">" · %1$s cap"</string>
+    <string name="ui_sit_value_value_value_radiosvalue" formatted="true">"Sit · %1$s · %2$s · %3$s radios%4$s"</string>
+    <string name="ui_gps_path_value_m_too_short_keep_moving" formatted="true">"GPS path %1$s m — too short. Keep moving. "</string>
+    <string name="ui_value_already_seen_are_hidden_a_new_radio_stays_while_we_hear_it_" formatted="true">"%1$s already seen are hidden. A new radio stays while we hear it, then at least as long as Brief hold after the last packet."</string>
+    <string name="ui_value_radios" formatted="true">"%1$s radios"</string>
+    <string name="ui_value_unmatched" formatted="true">" · %1$s unmatched"</string>
+    <string name="ui_value_in_more_than_one_class" formatted="true">" · %1$s in more than one class"</string>
+    <string name="ui_value_empty_hidden" formatted="true">" · %1$s empty hidden"</string>
+    <string name="ui_value_signatures" formatted="true">"%1$s signatures"</string>
+    <string name="ui_value_double_tap_reset" formatted="true">" · ×%1$s · double-tap reset"</string>
+    <string name="ui_value_on_air_value_in_filter_dim_gone_tap_a_blipvalue" formatted="true">"%1$s on-air · %2$s in filter · dim = gone · tap a blip%3$s"</string>
+    <string name="ui_new_values" formatted="true">"new %1$ss"</string>
+    <string name="ui_new_valuem" formatted="true">"new %1$sm"</string>
+    <string name="ui_avg_value" formatted="true">"avg %1$s"</string>
+    <string name="ui_chvalue" formatted="true">"ch%1$s"</string>
+    <string name="ui_first_value_last_value" formatted="true">"first %1$s  ·  last %2$s"</string>
+    <string name="ui_valuem_values" formatted="true">"%1$sm %2$ss"</string>
+    <string name="ui_valueh_valuem" formatted="true">"%1$sh %2$sm"</string>
+    <string name="ui_named_radios_value" formatted="true">"Named radios (%1$s)"</string>
+    <string name="ui_clear_all_value_named_radios" formatted="true">"Clear all %1$s named radios"</string>
+    <string name="ui_remove_value_named_radios_signature_watches_stay" formatted="true">"Remove %1$s named radios. Signature watches stay."</string>
+    <string name="ui_this_sit_value_value_value_radios" formatted="true">"This sit: %1$s · %2$s · %3$s radios"</string>
+    <string name="ui_extra_attention_value" formatted="true">" · Extra attention %1$s"</string>
+    <string name="ui_value_value_value_radiosvalue" formatted="true">"%1$s · %2$s · %3$s radios%4$s"</string>
+    <string name="ui_value_value_m_path_value_m_span" formatted="true">"%1$s · %2$s m path · %3$s m span"</string>
+    <string name="ui_value_alert" formatted="true">" · %1$s alert"</string>
+    <string name="ui_value_advertised_fixes" formatted="true">"%1$s advertised fixes"</string>
+    <string name="ui_value_alerts" formatted="true">"%1$s alerts"</string>
+    <string name="ui_value_value_value_radios" formatted="true">"%1$s · %2$s · %3$s radios"</string>
+    <string name="ui_value_lines_this_session_value_kb_on_disk" formatted="true">"%1$s lines this session  ·  %2$s KB on disk"</string>
+    <string name="ui_this_sit_value_named_window_up_to_value_same_as_debrief" formatted="true">"This sit: %1$s — named window (up to %2$s). Same as Debrief."</string>
+    <string name="ui_this_sit_value_same_window_as_path_gps_following_test_when_taggin" formatted="true">"This sit (%1$s) — same window as Path. GPS following test when tagging is on and you have moved. Not a legal finding."</string>
+    <string name="ui_sit_value_same_window_as_path_gps_following_test_when_tagging_is_" formatted="true">"Sit: %1$s — same window as Path. GPS following test when tagging is on and you have moved. Not a legal finding."</string>
+    <string name="ui_scan_intensity_value" formatted="true">"Scan intensity  ·  %1$s"</string>
+    <string name="ui_this_phone_value_value_is_atak_civ_on_this_handset" formatted="true">"This phone (%1$s:%2$s) is ATAK CIV on this handset. "</string>
+    <string name="ui_lan_multicast_is_value_value" formatted="true">"LAN multicast is %1$s:%2$s. "</string>
+    <string name="ui_rotate_at_value_kb" formatted="true">"Rotate at %1$s KB"</string>
+    <string name="ui_stale_after_values" formatted="true">"Stale after %1$ss"</string>
+    <string name="ui_value_lines_this_session_value_kb_on_disk_value" formatted="true">"%1$s lines this session  ·  %2$s KB on disk. "</string>
+    <string name="ui_fieldwatch_value_catalog_value" formatted="true">"Fieldwatch %1$s  ·  Catalog %2$s"</string>
+    <string name="ui_this_phone_s_ipv4_value" formatted="true">"This phone’s IPv4  ·  %1$s"</string>
+    <string name="ui_this_phone_value_value_atak_civ_on_this_handset" formatted="true">"This phone: %1$s:%2$s (ATAK CIV on this handset). "</string>
+    <string name="ui_lan_multicast_value_value_other_ataks_on_this_wi_fi" formatted="true">"LAN multicast: %1$s:%2$s (other ATAKs on this Wi-Fi). "</string>
+    <string name="ui_if_this_phone_does_not_plot_use_custom_with_this_phone_s_wi_fi_ip" formatted="true">"If This phone does not plot, use Custom with this phone’s Wi-Fi IPv4 from the footer and port %1$s."</string>
+    <string name="ui_udp_atak_civ_value_sa_multicast_value_not_tcp_8087" formatted="true">"UDP. ATAK CIV %1$s. SA multicast %2$s. Not TCP 8087."</string>
+    <string name="ui_feed_status_error_value" formatted="true">"Feed status  ·  error: %1$s"</string>
+    <string name="ui_on_the_feed_value" formatted="true">"on the feed %1$s"</string>
+    <string name="ui_sent_value" formatted="true">"sent %1$s"</string>
+    <string name="ui_value_gone" formatted="true">"%1$s gone"</string>
+    <string name="ui_feed_status_value" formatted="true">"Feed status  ·  %1$s"</string>
+    <string name="label_viewmode_radar" formatted="false">"Classic radar"</string>
+    <string name="label_viewmode_list" formatted="false">"Strength list"</string>
+    <string name="label_viewmode_timeline" formatted="false">"Timeline"</string>
+    <string name="label_viewmode_hybrid" formatted="false">"Hybrid + sparklines"</string>
+    <string name="label_viewmode_by_class" formatted="false">"By class"</string>
+    <string name="label_signatureclass_finder" formatted="false">"Finder tags"</string>
+    <string name="label_signatureclass_beacon" formatted="false">"Retail beacons"</string>
+    <string name="label_signatureclass_signage" formatted="false">"Signage"</string>
+    <string name="label_signatureclass_wearable" formatted="false">"Wearables"</string>
+    <string name="label_signatureclass_surveillance" formatted="false">"Surveillance"</string>
+    <string name="label_signatureclass_drone" formatted="false">"Drones"</string>
+    <string name="label_signatureclass_hacking" formatted="false">"Pentest"</string>
+    <string name="label_signatureclass_bodyworn" formatted="false">"Body-worn"</string>
+    <string name="label_signatureclass_law_enforcement" formatted="false">"Public safety"</string>
+    <string name="label_signatureclass_vehicle" formatted="false">"Vehicle"</string>
+    <string name="label_signatureclass_glasses" formatted="false">"Glasses"</string>
+    <string name="label_signatureclass_audio" formatted="false">"Audio"</string>
+    <string name="label_signatureclass_camera" formatted="false">"Cameras"</string>
+    <string name="label_signatureclass_thermostat" formatted="false">"Thermostats"</string>
+    <string name="label_signatureclass_lock" formatted="false">"Access control"</string>
+    <string name="label_signatureclass_health" formatted="false">"Health"</string>
+    <string name="label_signatureclass_home" formatted="false">"Home IoT"</string>
+    <string name="label_signatureclass_isp" formatted="false">"ISP / routers"</string>
+    <string name="label_signatureclass_mesh" formatted="false">"Mesh"</string>
+    <string name="label_signatureclass_phone" formatted="false">"Phones / PCs"</string>
+    <string name="label_signatureclass_other" formatted="false">"Other"</string>
+    <string name="label_alertvoicewhat_class" formatted="false">"Class"</string>
+    <string name="label_alertvoicewhat_signature" formatted="false">"Signature"</string>
+    <string name="label_alertvoicewhat_both" formatted="false">"Class + signature"</string>
+    <string name="label_signaturelistsort_name" formatted="false">"Name A–Z"</string>
+    <string name="label_signaturelistsort_class" formatted="false">"Class A–Z"</string>
+    <string name="label_huntcue_very_close" formatted="false">"Very Close"</string>
+    <string name="label_huntcue_closer" formatted="false">"Closer"</string>
+    <string name="label_huntcue_further" formatted="false">"Further"</string>
+    <string name="label_huntcue_same" formatted="false">"About the same"</string>
+    <string name="label_huntcue_waiting" formatted="false">"Listening…"</string>
+    <string name="label_huntcue_quiet" formatted="false">"Quiet"</string>
+    <string name="label_huntcue_gone" formatted="false">"Gone"</string>
+    <string name="hint_hunt_very_close" formatted="false">"Screaming loud here. Look around — usually in-hand, pocket, or the same bag. Not meters."</string>
+    <string name="hint_hunt_closer" formatted="false">"Louder than a few seconds ago. Keep walking that way."</string>
+    <string name="hint_hunt_further" formatted="false">"Quieter than a few seconds ago. Turn or back up."</string>
+    <string name="hint_hunt_same" formatted="false">"No clear change yet. Slow down; hold the phone still."</string>
+    <string name="hint_hunt_waiting" formatted="false">"Need a few seconds of packets to compare."</string>
+    <string name="hint_hunt_quiet" formatted="false">"No packet for a few seconds. Silent, or behind a wall."</string>
+    <string name="hint_hunt_gone" formatted="false">"Left the live set. Randomized BLE often vanishes mid-hunt."</string>
+    <string name="label_equals" formatted="false">"equals"</string>
+    <string name="label_mask" formatted="false">"mask"</string>
+    <string name="label_length" formatted="false">"length"</string>
+    <string name="label_little" formatted="false">"little"</string>
+    <string name="label_big" formatted="false">"big"</string>
+    <string name="label_signatures" formatted="false">"signatures"</string>
+    <string name="label_unlisted" formatted="false">"unlisted"</string>
+    <string name="observer_notes_hint" formatted="false">"Pinned to this MAC. Shows on Debrief, Compare, Path, and AI Export. Does not turn Alert on."</string>
+    <string name="first_run_disclaimer" formatted="false">"This is a hobby project, provided as-is under the MIT License. Use at your own risk.\n\nDetections, pattern matches, “Moving with you” / “possible tail,” Debrief text, and AI Export are hypotheses — not identity, not a legal finding, and not a complete RF capture. Radios that are off, asleep, randomized, cellular-only, or hidden by the OS will not appear.\n\nYou are solely responsible for how you use this app and for following local law. To the maximum extent permitted by law, Off Grid Pete LLC is not liable for indirect, incidental, special, consequential, or punitive damages arising from its use."</string>
+    <string name="disclaimer_accept" formatted="false">"By checking the box and continuing, you accept these terms and the MIT License."</string>
+    <string name="notification_starting" formatted="false">"Starting radios…"</string>
+    <string name="notification_scanning" formatted="false">"Fieldwatch scanning"</string>
+    <string name="notification_scan_counts" formatted="true">"%1$d Wi-Fi · %2$d BLE · %3$d signatures"</string>
+    <string name="notification_stop" formatted="false">"Stop"</string>
+    <string name="notification_scan_channel" formatted="false">"Scanning"</string>
+    <string name="notification_scan_description" formatted="false">"Passive Wi-Fi and Bluetooth scan status"</string>
+    <string name="notification_watch_title" formatted="false">"Fieldwatch watchlist"</string>
+    <string name="notification_watch_appeared" formatted="true">"%1$s appeared\n%2$s  %3$s\n%4$d dBm  %5$s"</string>
+    <string name="notification_watch_channel" formatted="false">"Watchlist"</string>
+    <string name="notification_watch_description" formatted="false">"Appearing signatures and devices on your watchlist. Beep is played separately."</string>
+    <string name="scan_fast_blocked" formatted="false">"Wi-Fi fast scan needs Developer options"</string>
+    <string name="explain_bluetooth_le_advertiser" formatted="false">"Bluetooth LE advertiser"</string>
+    <string name="explain_it_is_on_the_air_but_it_did_not_advertise_a_product_class" formatted="false">"It is on the air, but it did not advertise a product class "</string>
+    <string name="explain_no_appearance_class_of_device_or_well_known_service_that_names_a" formatted="false">"(no Appearance, Class of Device, or well-known service that names a type)."</string>
+    <string name="explain_most_likely" formatted="false">"Most likely"</string>
+    <string name="explain_could_be" formatted="false">"Could be"</string>
+    <string name="explain_this_is_what_the_device_is_advertising_not_a_visual_id" formatted="false">" This is what the device is advertising, not a visual ID."</string>
+    <string name="explain_limited_discoverable_briefly_looking_for_a_nearby_connection" formatted="false">"Limited-discoverable: briefly looking for a nearby connection."</string>
+    <string name="explain_discoverable_other_ble_devices_can_find_it" formatted="false">"Discoverable: other BLE devices can find it."</string>
+    <string name="explain_ble_only_no_classic_bluetooth_headsets_file_send_radio" formatted="false">"BLE-only: no classic Bluetooth (headsets/file-send radio)."</string>
+    <string name="explain_may_also_do_classic_bluetooth_br_edr_as_well_as_ble" formatted="false">"May also do classic Bluetooth (BR/EDR) as well as BLE."</string>
+    <string name="explain_dual_mode_chip_ble_and_classic_can_run_together" formatted="false">"Dual-mode chip: BLE and classic can run together."</string>
+    <string name="explain_locally_administered_bssid_vehicle_mesh_and_guest_aps_often_keep" formatted="false">"Locally administered BSSID. Vehicle, mesh, and guest APs often keep this address. Not a rotating phone MAC."</string>
+    <string name="explain_public_factory_address_stable_ieee_assigned" formatted="false">"Public factory address (stable, IEEE-assigned)."</string>
+    <string name="explain_random_privacy_address_the_mac_can_change_so_this_is_not_a_lasti" formatted="false">"Random / privacy address. The MAC can change, so this is not a lasting identity."</string>
+    <string name="explain_anonymous_the_stack_hid_the_address" formatted="false">"Anonymous: the stack hid the address."</string>
+    <string name="explain_universal_ieee_address_stable_oui" formatted="false">"Universal IEEE address (stable OUI)."</string>
+    <string name="explain_not_available" formatted="false">"not available"</string>
+    <string name="explain_very_strong" formatted="false">"very strong"</string>
+    <string name="explain_very_weak" formatted="false">"very weak"</string>
+    <string name="explain_wpa3_password_sae_handshake" formatted="false">"WPA3 password (SAE handshake)"</string>
+    <string name="explain_enhanced_open_encrypted_no_password" formatted="false">"Enhanced Open (encrypted, no password)"</string>
+    <string name="explain_wpa2_password_psk" formatted="false">"WPA2 password (PSK)"</string>
+    <string name="explain_wi_fi_password_wpa_psk" formatted="false">"Wi-Fi password (WPA/PSK)"</string>
+    <string name="explain_enterprise_login_802_1x" formatted="false">"Enterprise login (802.1X)"</string>
+    <string name="explain_wep_old_weak" formatted="false">"WEP (old, weak)"</string>
+    <string name="explain_open_or_encryption_not_parsed" formatted="false">"Open or encryption not parsed"</string>
+    <string name="explain_aes_encryption" formatted="false">"AES encryption"</string>
+    <string name="explain_tkip_older_weaker_cipher" formatted="false">"TKIP (older, weaker cipher)"</string>
+    <string name="explain_wps_setup_is_enabled" formatted="false">"WPS setup is enabled"</string>
+    <string name="explain_mesh_node" formatted="false">"mesh node"</string>
+    <string name="explain_ad_hoc_network" formatted="false">"ad-hoc network"</string>
+    <string name="explain_infrastructure_access_point" formatted="false">"infrastructure access point"</string>
+    <string name="explain_connection_basics" formatted="false">"connection basics"</string>
+    <string name="explain_attribute_protocol" formatted="false">"attribute protocol"</string>
+    <string name="explain_model_serial_firmware" formatted="false">"model / serial / firmware"</string>
+    <string name="explain_battery_level" formatted="false">"battery level"</string>
+    <string name="explain_keyboard_mouse_or_gamepad" formatted="false">"keyboard, mouse, or gamepad"</string>
+    <string name="explain_heart_rate_sensor" formatted="false">"heart-rate sensor"</string>
+    <string name="explain_blood_pressure_sensor" formatted="false">"blood-pressure sensor"</string>
+    <string name="explain_temperature_humidity_style_sensor" formatted="false">"temperature / humidity style sensor"</string>
+    <string name="explain_le_cycling_power_speed" formatted="false">"LE cycling power/speed"</string>
+    <string name="explain_google_fast_pair_often_buds_speakers" formatted="false">"Google Fast Pair (often buds/speakers)"</string>
+    <string name="explain_apple_find_my_related" formatted="false">"Apple Find My related"</string>
+    <string name="explain_tile_tracker" formatted="false">"Tile tracker"</string>
+    <string name="explain_tuya_iot" formatted="false">"Tuya IoT"</string>
+    <string name="explain_hp_printer" formatted="false">"HP printer"</string>
+    <string name="explain_sonos_speaker" formatted="false">"Sonos speaker"</string>
+    <string name="explain_august_home_lock" formatted="false">"August Home lock"</string>
+    <string name="explain_apple_not_assa_abloy" formatted="false">"Apple (not ASSA ABLOY)"</string>
+    <string name="explain_earbuds_or_headphones" formatted="false">"earbuds or headphones"</string>
+    <string name="explain_a_speaker" formatted="false">"a speaker"</string>
+    <string name="explain_a_mouse" formatted="false">"a mouse"</string>
+    <string name="explain_a_keyboard" formatted="false">"a keyboard"</string>
+    <string name="explain_a_game_controller" formatted="false">"a game controller"</string>
+    <string name="explain_a_watch_or_wrist_wearable" formatted="false">"a watch or wrist wearable"</string>
+    <string name="explain_a_phone" formatted="false">"a phone"</string>
+    <string name="explain_a_computer_or_tablet" formatted="false">"a computer or tablet"</string>
+    <string name="explain_a_finder_tag_tracker" formatted="false">"a finder tag / tracker"</string>
+    <string name="explain_a_remote_control" formatted="false">"a remote control"</string>
+    <string name="explain_an_input_device_keyboard_mouse_or_similar" formatted="false">"an input device (keyboard, mouse, or similar)"</string>
+    <string name="explain_a_heart_rate_monitor" formatted="false">"a heart-rate monitor"</string>
+    <string name="explain_a_health_sensor" formatted="false">"a health sensor"</string>
+    <string name="explain_a_display_or_tv_stick" formatted="false">"a display or TV stick"</string>
+    <string name="explain_a_clock" formatted="false">"a clock"</string>
+    <string name="explain_smart_glasses" formatted="false">"smart glasses"</string>
+    <string name="explain_earbuds_or_a_headset" formatted="false">"earbuds or a headset"</string>
+    <string name="explain_a_computer" formatted="false">"a computer"</string>
+    <string name="explain_a_watch" formatted="false">"a watch"</string>
+    <string name="explain_an_audio_device" formatted="false">"an audio device"</string>
+    <string name="explain_an_input_accessory" formatted="false">"an input accessory"</string>
+    <string name="explain_a_keyboard_mouse_or_gamepad" formatted="false">"a keyboard, mouse, or gamepad"</string>
+    <string name="explain_it_offers_the_hid_human_interface_service" formatted="false">"It offers the HID (human-interface) service."</string>
+    <string name="explain_headphones_a_headset_or_a_speaker" formatted="false">"headphones, a headset, or a speaker"</string>
+    <string name="explain_it_offers_a_classic_audio_headset_service" formatted="false">"It offers a classic audio / headset service."</string>
+    <string name="explain_le_audio_earbuds_or_a_speaker" formatted="false">"LE Audio earbuds or a speaker"</string>
+    <string name="explain_it_offers_bluetooth_le_audio_services" formatted="false">"It offers Bluetooth LE Audio services."</string>
+    <string name="explain_it_offers_the_heart_rate_service" formatted="false">"It offers the Heart Rate service."</string>
+    <string name="explain_a_blood_pressure_monitor" formatted="false">"a blood-pressure monitor"</string>
+    <string name="explain_it_offers_the_blood_pressure_service" formatted="false">"It offers the Blood Pressure service."</string>
+    <string name="explain_an_environmental_sensor" formatted="false">"an environmental sensor"</string>
+    <string name="explain_it_offers_environmental_sensing" formatted="false">"It offers Environmental Sensing."</string>
+    <string name="explain_earbuds_or_a_speaker" formatted="false">"earbuds or a speaker"</string>
+    <string name="explain_google_fast_pair_is_present_common_on_buds_and_speakers" formatted="false">"Google Fast Pair is present (common on buds and speakers)."</string>
+    <string name="explain_a_samsung_smarttag" formatted="false">"a Samsung SmartTag"</string>
+    <string name="explain_smarttag_service_uuid" formatted="false">"SmartTag service UUID."</string>
+    <string name="explain_an_apple_find_my_accessory" formatted="false">"an Apple Find My accessory"</string>
+    <string name="explain_find_my_related_uuid" formatted="false">"Find My related UUID."</string>
+    <string name="explain_a_tile_tracker" formatted="false">"a Tile tracker"</string>
+    <string name="explain_tile_service_uuid" formatted="false">"Tile service UUID."</string>
+    <string name="explain_a_dult_finder_tag" formatted="false">"a DULT finder tag"</string>
+    <string name="explain_a_google_find_hub_tag" formatted="false">"a Google Find Hub tag"</string>
+    <string name="explain_an_apple_airtag_find_my_tag" formatted="false">"an Apple AirTag / Find My tag"</string>
+    <string name="explain_an_iphone_ipad_or_mac" formatted="false">"an iPhone, iPad, or Mac"</string>
+    <string name="explain_a_windows_surface_xbox_radio" formatted="false">"a Windows / Surface / Xbox radio"</string>
+    <string name="explain_a_tesla_ble_tire_sensor" formatted="false">"a Tesla BLE tire sensor"</string>
+    <string name="explain_a_ble_tire_pressure_sensor" formatted="false">"a BLE tire-pressure sensor"</string>
+    <string name="explain_vuzix_smart_glasses" formatted="false">"Vuzix smart glasses"</string>
+    <string name="explain_a_tesla_vehicle_including_cybertruck_or_phone_as_key" formatted="false">"a Tesla vehicle (including Cybertruck) or phone-as-key"</string>
+    <string name="explain_a_pixel_or_other_google_radio" formatted="false">"a Pixel or other Google radio"</string>
+    <string name="explain_sony_headphones_a_tv_or_a_camera" formatted="false">"Sony headphones, a TV, or a camera"</string>
+    <string name="explain_bose_headphones_or_a_speaker" formatted="false">"Bose headphones or a speaker"</string>
+    <string name="explain_a_garmin_watch_or_inreach" formatted="false">"a Garmin watch or inReach"</string>
+    <string name="explain_an_echo_fire_or_other_amazon_radio" formatted="false">"an Echo, Fire, or other Amazon radio"</string>
+    <string name="explain_a_fitbit" formatted="false">"a Fitbit"</string>
+    <string name="explain_an_oura_ring" formatted="false">"an Oura ring"</string>
+    <string name="explain_a_logitech_mouse_keyboard_or_webcam" formatted="false">"a Logitech mouse, keyboard, or webcam"</string>
+    <string name="explain_jbl_or_harman_audio" formatted="false">"JBL or Harman audio"</string>
+    <string name="explain_a_sonos_speaker" formatted="false">"a Sonos speaker"</string>
+    <string name="explain_a_gopro" formatted="false">"a GoPro"</string>
+    <string name="explain_a_dji_osmo_action_camera" formatted="false">"a DJI Osmo action camera"</string>
+    <string name="explain_an_insta360_camera" formatted="false">"an Insta360 camera"</string>
+    <string name="explain_a_dji_drone_or_controller" formatted="false">"a DJI drone or controller"</string>
+    <string name="explain_a_drone_broadcasting_astm_remote_id" formatted="false">"a drone broadcasting ASTM Remote ID"</string>
+    <string name="explain_a_skydio_drone" formatted="false">"a Skydio drone"</string>
+    <string name="explain_an_autel_drone" formatted="false">"an Autel drone"</string>
+    <string name="explain_a_parrot_anafi_or_bebop_drone" formatted="false">"a Parrot ANAFI or Bebop drone"</string>
+    <string name="explain_a_hoverair_flying_camera" formatted="false">"a HOVERAir flying camera"</string>
+    <string name="explain_a_netgear_or_orbi_access_point" formatted="false">"a NETGEAR or Orbi access point"</string>
+    <string name="explain_a_tp_link_access_point" formatted="false">"a TP-Link access point"</string>
+    <string name="explain_an_asus_access_point" formatted="false">"an ASUS access point"</string>
+    <string name="explain_a_linksys_or_velop_access_point" formatted="false">"a Linksys or Velop access point"</string>
+    <string name="explain_an_eero_mesh_node" formatted="false">"an Eero mesh node"</string>
+    <string name="explain_a_google_wifi_or_nest_wifi_point" formatted="false">"a Google Wifi or Nest Wifi point"</string>
+    <string name="explain_a_d_link_access_point" formatted="false">"a D-Link access point"</string>
+    <string name="explain_a_belkin_access_point" formatted="false">"a Belkin access point"</string>
+    <string name="explain_an_xfinity_gateway_or_hotspot" formatted="false">"an Xfinity gateway or hotspot"</string>
+    <string name="explain_a_spectrum_gateway_or_spectrum_mobile_hotspot" formatted="false">"a Spectrum gateway or Spectrum Mobile hotspot"</string>
+    <string name="explain_an_at_t_gateway_or_attwifi_hotspot" formatted="false">"an AT&amp;T gateway or attwifi hotspot"</string>
+    <string name="explain_a_verizon_or_fios_gateway" formatted="false">"a Verizon or Fios gateway"</string>
+    <string name="explain_a_starlink_router" formatted="false">"a Starlink router"</string>
+    <string name="explain_a_cisco_meraki_access_point" formatted="false">"a Cisco Meraki access point"</string>
+    <string name="explain_a_cisco_aironet_catalyst_business_rv_or_spvtg_access_point" formatted="false">"a Cisco Aironet, Catalyst, Business, RV, or SPVTG access point"</string>
+    <string name="explain_a_juniper_mist_access_point" formatted="false">"a Juniper Mist access point"</string>
+    <string name="explain_a_t_mobile_home_internet_gateway_or_hotspot" formatted="false">"a T-Mobile Home Internet gateway or hotspot"</string>
+    <string name="explain_a_humax_gateway_often_t_mobile_home_internet" formatted="false">"a HUMAX gateway (often T-Mobile Home Internet)"</string>
+    <string name="explain_a_sagemcom_isp_gateway" formatted="false">"a Sagemcom ISP gateway"</string>
+    <string name="explain_an_arcadyan_isp_gateway" formatted="false">"an Arcadyan ISP gateway"</string>
+    <string name="explain_an_askey_isp_5g_gateway" formatted="false">"an Askey ISP / 5G gateway"</string>
+    <string name="explain_a_calix_fiber_gateway" formatted="false">"a Calix fiber gateway"</string>
+    <string name="explain_a_nokia_solutions_and_networks_gateway" formatted="false">"a Nokia Solutions and Networks gateway"</string>
+    <string name="explain_an_airties_isp_mesh_node" formatted="false">"an AirTies ISP mesh node"</string>
+    <string name="explain_a_tenda_access_point" formatted="false">"a Tenda access point"</string>
+    <string name="explain_a_ruijie_or_reyee_access_point" formatted="false">"a Ruijie or Reyee access point"</string>
+    <string name="explain_a_dwnet_access_point" formatted="false">"a DWnet access point"</string>
+    <string name="explain_a_wavlink_access_point" formatted="false">"a WAVLINK access point"</string>
+    <string name="explain_a_sercomm_isp_gateway" formatted="false">"a Sercomm ISP gateway"</string>
+    <string name="explain_a_luxul_access_point" formatted="false">"a Luxul access point"</string>
+    <string name="explain_a_sophos_firewall_or_access_point" formatted="false">"a Sophos firewall or access point"</string>
+    <string name="explain_an_aumovio_continental_vehicle_wi_fi_radio" formatted="false">"an AUMOVIO / Continental vehicle Wi-Fi radio"</string>
+    <string name="explain_a_centurylink_gateway" formatted="false">"a CenturyLink gateway"</string>
+    <string name="explain_a_gm_in_car_hotspot_cadillac_gmc_buick_chevrolet" formatted="false">"a GM in-car hotspot (Cadillac / GMC / Buick / Chevrolet)"</string>
+    <string name="explain_an_audi_mmi_in_car_hotspot" formatted="false">"an Audi MMI in-car hotspot"</string>
+    <string name="explain_an_extreme_networks_access_point" formatted="false">"an Extreme Networks access point"</string>
+    <string name="explain_an_adtran_fiber_gateway_often_centurylink_quantum_fiber_oem" formatted="false">"an Adtran fiber gateway (often CenturyLink / Quantum Fiber OEM)"</string>
+    <string name="explain_a_cambium_or_ignitenet_access_point" formatted="false">"a Cambium or IgniteNet access point"</string>
+    <string name="explain_a_trendnet_access_point" formatted="false">"a TRENDnet access point"</string>
+    <string name="explain_a_cudy_travel_or_home_router" formatted="false">"a Cudy travel or home router"</string>
+    <string name="explain_a_snapav_control4_wattbox_access_point" formatted="false">"a SnapAV / Control4 / Wattbox access point"</string>
+    <string name="explain_an_arlo_camera_or_vmb_base_station" formatted="false">"an Arlo camera or VMB base station"</string>
+    <string name="explain_a_vantiva_or_technicolor_isp_gateway" formatted="false">"a Vantiva or Technicolor ISP gateway"</string>
+    <string name="explain_a_hitron_cable_gateway_often_xfinity_oem" formatted="false">"a Hitron cable gateway (often Xfinity OEM)"</string>
+    <string name="explain_an_actiontec_fios_or_frontier_gateway" formatted="false">"an Actiontec FiOS or Frontier gateway"</string>
+    <string name="explain_a_buffalo_airstation_or_router" formatted="false">"a Buffalo AirStation or router"</string>
+    <string name="explain_a_grandstream_gwn_access_point" formatted="false">"a Grandstream GWN access point"</string>
+    <string name="explain_an_edgecore_access_point" formatted="false">"an Edgecore access point"</string>
+    <string name="explain_a_watchguard_firewall_or_access_point" formatted="false">"a WatchGuard firewall or access point"</string>
+    <string name="explain_a_mojo_networks_arista_cognitive_wi_fi_access_point" formatted="false">"a Mojo Networks / Arista Cognitive Wi-Fi access point"</string>
+    <string name="explain_a_winegard_rv_or_marine_wi_fi_radio" formatted="false">"a Winegard RV or marine Wi-Fi radio"</string>
+    <string name="explain_an_inseego_5g_or_mifi_hotspot" formatted="false">"an Inseego 5G or MiFi hotspot"</string>
+    <string name="explain_a_franklin_technology_5g_home_internet_gateway_rg3100_class" formatted="false">"a Franklin Technology 5G home-internet gateway (RG3100 class)"</string>
+    <string name="explain_a_synology_nas_or_router_access_point" formatted="false">"a Synology NAS or router access point"</string>
+    <string name="explain_an_hpe_aruba_instant_or_instant_on_access_point" formatted="false">"an HPE Aruba Instant or Instant On access point"</string>
+    <string name="explain_a_ruckus_access_point" formatted="false">"a RUCKUS access point"</string>
+    <string name="explain_a_fortinet_fortiap_or_fortiwifi" formatted="false">"a Fortinet FortiAP or FortiWiFi"</string>
+    <string name="explain_a_mikrotik_router_or_access_point" formatted="false">"a MikroTik router or access point"</string>
+    <string name="explain_an_engenius_access_point" formatted="false">"an EnGenius access point"</string>
+    <string name="explain_a_zyxel_gateway_or_access_point" formatted="false">"a Zyxel gateway or access point"</string>
+    <string name="explain_a_peplink_or_pepwave_router" formatted="false">"a Peplink or Pepwave router"</string>
+    <string name="explain_an_openwrt_router" formatted="false">"an OpenWrt router"</string>
+    <string name="explain_an_arris_or_surfboard_cable_gateway" formatted="false">"an Arris or SURFboard cable gateway"</string>
+    <string name="explain_a_ubiquiti_unifi_access_point" formatted="false">"a Ubiquiti UniFi access point"</string>
+    <string name="explain_a_unifi_protect_instant_camera" formatted="false">"a UniFi Protect Instant camera"</string>
+    <string name="explain_a_unifi_ubiquiti_name" formatted="false">"a UniFi / Ubiquiti name"</string>
+    <string name="explain_an_ecobee_thermostat" formatted="false">"an ecobee thermostat"</string>
+    <string name="explain_a_sensi_thermostat" formatted="false">"a Sensi thermostat"</string>
+    <string name="explain_a_honeywell_home_or_lyric_thermostat" formatted="false">"a Honeywell Home or Lyric thermostat"</string>
+    <string name="explain_a_honeywell_xenon_healthcare_barcode_scanner" formatted="false">"a Honeywell Xenon healthcare barcode scanner"</string>
+    <string name="explain_an_omron_blood_pressure_cuff_or_scale" formatted="false">"an Omron blood-pressure cuff or scale"</string>
+    <string name="explain_a_withings_scale_or_blood_pressure_monitor" formatted="false">"a Withings scale or blood-pressure monitor"</string>
+    <string name="explain_a_dexcom_glucose_sensor" formatted="false">"a Dexcom glucose sensor"</string>
+    <string name="explain_a_nest_thermostat_or_nest_labs_ble_sensor" formatted="false">"a Nest thermostat or Nest Labs BLE sensor"</string>
+    <string name="explain_a_nest_protect_camera_or_other_weave_ble_device" formatted="false">"a Nest Protect, camera, or other Weave BLE device"</string>
+    <string name="explain_a_haiku_or_mammoth_ceiling_fan" formatted="false">"a Haiku or Mammoth ceiling fan"</string>
+    <string name="explain_a_tuya_ble_gadget_plug_light_camera_sensor" formatted="false">"a Tuya BLE gadget (plug, light, camera, sensor)"</string>
+    <string name="explain_an_assa_abloy_lock_yale_lock_hid_reader_or_seos_credential" formatted="false">"an ASSA ABLOY lock, Yale lock, HID reader, or Seos credential"</string>
+    <string name="explain_an_august_smart_lock" formatted="false">"an August smart lock"</string>
+    <string name="explain_a_schlage_or_allegion_lock" formatted="false">"a Schlage or Allegion lock"</string>
+    <string name="explain_a_nuki_lock_or_opener" formatted="false">"a Nuki lock or opener"</string>
+    <string name="explain_a_salto_access_reader_or_lock" formatted="false">"a SALTO access reader or lock"</string>
+    <string name="explain_a_dormakaba_saflok_or_oracode_lock" formatted="false">"a dormakaba, Saflok, or Oracode lock"</string>
+    <string name="explain_a_lockly_smart_lock" formatted="false">"a Lockly smart lock"</string>
+    <string name="explain_a_kwikset_kevo_or_unikey_lock" formatted="false">"a Kwikset Kevo or Unikey lock"</string>
+    <string name="explain_a_master_lock_padlock" formatted="false">"a Master Lock padlock"</string>
+    <string name="explain_an_igloohome_lock_or_keybox" formatted="false">"an igloohome lock or keybox"</string>
+    <string name="explain_a_tedee_smart_lock" formatted="false">"a Tedee smart lock"</string>
+    <string name="explain_a_paxton_reader_or_net2_access_point" formatted="false">"a Paxton reader or Net2 access point"</string>
+    <string name="explain_a_kwikset_lock" formatted="false">"a Kwikset lock"</string>
+    <string name="explain_a_chamberlain_myq_garage_hub" formatted="false">"a Chamberlain myQ garage hub"</string>
+    <string name="explain_a_chevrolet_in_car_wi_fi_hotspot" formatted="false">"a Chevrolet in-car Wi-Fi hotspot"</string>
+    <string name="explain_a_rivian_vehicle_phone_key_or_sensor" formatted="false">"a Rivian vehicle, phone key, or sensor"</string>
+    <string name="explain_a_ford_or_lincoln_vehicle_or_phone_as_key" formatted="false">"a Ford or Lincoln vehicle or phone-as-key"</string>
+    <string name="explain_a_honda_or_acura_vehicle_or_phone_as_key" formatted="false">"a Honda or Acura vehicle or phone-as-key"</string>
+    <string name="explain_a_hyundai_or_genesis_vehicle_or_phone_as_key" formatted="false">"a Hyundai or Genesis vehicle or phone-as-key"</string>
+    <string name="explain_a_toyota_or_lexus_vehicle_or_phone_as_key" formatted="false">"a Toyota or Lexus vehicle or phone-as-key"</string>
+    <string name="explain_a_nissan_or_infiniti_vehicle_or_phone_as_key" formatted="false">"a Nissan or Infiniti vehicle or phone-as-key"</string>
+    <string name="explain_a_subaru_vehicle_or_phone_as_key" formatted="false">"a Subaru vehicle or phone-as-key"</string>
+    <string name="explain_a_bmw_vehicle_phone_as_key_or_factory_hotspot" formatted="false">"a BMW vehicle, phone-as-key, or factory hotspot"</string>
+    <string name="explain_a_volkswagen_vehicle_or_phone_as_key" formatted="false">"a Volkswagen vehicle or phone-as-key"</string>
+    <string name="explain_a_porsche_vehicle_or_phone_as_key" formatted="false">"a Porsche vehicle or phone-as-key"</string>
+    <string name="explain_a_jaguar_land_rover_or_range_rover" formatted="false">"a Jaguar, Land Rover, or Range Rover"</string>
+    <string name="explain_a_byd_vehicle_or_phone_as_key" formatted="false">"a BYD vehicle or phone-as-key"</string>
+    <string name="explain_a_govee_light_or_sensor" formatted="false">"a Govee light or sensor"</string>
+    <string name="explain_an_hp_printer" formatted="false">"an HP printer"</string>
+    <string name="explain_an_epson_ecotank_or_workforce_printer" formatted="false">"an Epson EcoTank or WorkForce printer"</string>
+    <string name="explain_an_lg_webos_tv" formatted="false">"an LG webOS TV"</string>
+    <string name="explain_a_roku_streaming_stick_or_roku_tv_often_a_hidden_wi_fi_direct_re" formatted="false">"a Roku streaming stick or Roku TV (often a hidden Wi-Fi Direct remote AP)"</string>
+    <string name="explain_a_samsung_fridge_range_oven_or_cooktop_setup_ap" formatted="false">"a Samsung fridge, range, oven, or cooktop (setup AP)"</string>
+    <string name="explain_an_ecowater_water_softener_setup_ap" formatted="false">"an EcoWater water softener (setup AP)"</string>
+    <string name="explain_a_nespresso_coffee_machine" formatted="false">"a Nespresso coffee machine"</string>
+    <string name="explain_a_radiacode_radiation_detector" formatted="false">"a RadiaCode radiation detector"</string>
+    <string name="explain_shokz_openrun_or_openfit_headphones" formatted="false">"Shokz OpenRun or OpenFit headphones"</string>
+    <string name="explain_a_mercedes_mbux_in_car_hotspot" formatted="false">"a Mercedes MBUX in-car hotspot"</string>
+    <string name="explain_a_motive_keeptruckin_fleet_eld_hotspot" formatted="false">"a Motive / KeepTruckin fleet ELD hotspot"</string>
+    <string name="explain_a_peoplenet_fleet_eld_hotspot" formatted="false">"a PeopleNet fleet ELD hotspot"</string>
+    <string name="explain_a_uconnect_in_car_hotspot" formatted="false">"a Uconnect in-car hotspot"</string>
+    <string name="explain_a_carplay_in_car_hotspot" formatted="false">"a CarPlay in-car hotspot"</string>
+    <string name="explain_a_cradlepoint_vehicle_router_often_public_safety_fleet" formatted="false">"a Cradlepoint vehicle router (often public-safety / fleet)"</string>
+    <string name="explain_a_sierra_wireless_airlink_vehicle_gateway" formatted="false">"a Sierra Wireless AirLink vehicle gateway"</string>
+    <string name="explain_a_compex_access_point_sometimes_public_safety_fleet" formatted="false">"a Compex access point (sometimes public-safety / fleet)"</string>
+    <string name="explain_a_novatel_wireless_inseego_vehicle_radio" formatted="false">"a Novatel Wireless / Inseego vehicle radio"</string>
+    <string name="explain_a_utility_inc_vehicle_or_public_safety_radio" formatted="false">"a Utility, Inc vehicle or public-safety radio"</string>
+    <string name="explain_a_gl_inet_travel_router" formatted="false">"a GL.iNet travel router"</string>
+    <string name="explain_an_ibeacon" formatted="false">"an iBeacon"</string>
+    <string name="explain_a_target_atrius_basket_tag" formatted="false">"a Target Atrius basket tag"</string>
+    <string name="explain_a_minew_ble_beacon_or_sensor" formatted="false">"a Minew BLE beacon or sensor"</string>
+    <string name="explain_an_estimote_beacon" formatted="false">"an Estimote beacon"</string>
+    <string name="explain_a_kontakt_io_beacon" formatted="false">"a Kontakt.io beacon"</string>
+    <string name="explain_an_iteris_bluetoad_vantage_velocity_roadside_bluetooth_travel_ti" formatted="false">"an Iteris BlueTOAD / Vantage Velocity roadside Bluetooth travel-time reader"</string>
+    <string name="explain_a_blip_systems_bliptrack_roadside_travel_time_sensor" formatted="false">"a BLIP Systems BlipTrack roadside travel-time sensor"</string>
+    <string name="explain_a_flock_raven_or_shotspotter_acoustic_gunshot_sensor" formatted="false">"a Flock Raven or ShotSpotter acoustic gunshot sensor"</string>
+    <string name="explain_a_digital_ally_body_worn_or_in_car_camera" formatted="false">"a Digital Ally body-worn or in-car camera"</string>
+    <string name="explain_a_reveal_media_body_worn_camera" formatted="false">"a Reveal Media body-worn camera"</string>
+    <string name="explain_a_wolfcom_body_worn_or_in_car_camera" formatted="false">"a Wolfcom body-worn or in-car camera"</string>
+    <string name="explain_a_panasonic_i_pro_camera_or_arbitrator_in_car_system" formatted="false">"a Panasonic i-PRO camera or Arbitrator in-car system"</string>
+    <string name="explain_a_limitless_pendant_conversation_recorder" formatted="false">"a Limitless Pendant conversation recorder"</string>
+    <string name="explain_a_bee_pioneer_wearable_recorder" formatted="false">"a Bee Pioneer wearable recorder"</string>
+    <string name="explain_an_omi_pendant_or_openglass_camera_glasses" formatted="false">"an Omi pendant or OpenGlass camera glasses"</string>
+    <string name="explain_a_friend_pendant_necklace" formatted="false">"a Friend Pendant necklace"</string>
+    <string name="explain_brilliant_labs_frame_ar_glasses" formatted="false">"Brilliant Labs Frame AR glasses"</string>
+    <string name="explain_even_realities_g1_glasses" formatted="false">"Even Realities G1 glasses"</string>
+    <string name="explain_a_hayden_ai_bus_or_vehicle_mounted_camera" formatted="false">"a Hayden AI bus- or vehicle-mounted camera"</string>
+    <string name="explain_a_miovision_intersection_traffic_camera" formatted="false">"a Miovision intersection traffic camera"</string>
+    <string name="explain_a_tattile_plate_reader" formatted="false">"a Tattile plate reader"</string>
+    <string name="explain_an_lvt_liveview_solar_surveillance_trailer" formatted="false">"an LVT / LiveView solar surveillance trailer"</string>
+    <string name="explain_a_hanwha_vision_wisenet_camera" formatted="false">"a Hanwha Vision / Wisenet camera"</string>
+    <string name="explain_a_uniview_unv_camera" formatted="false">"a Uniview / UNV camera"</string>
+    <string name="explain_a_rhombus_cloud_camera" formatted="false">"a Rhombus cloud camera"</string>
+    <string name="explain_a_meshcore_lora_companion_radio" formatted="false">"a MeshCore LoRa companion radio"</string>
+    <string name="explain_a_gotenna_mesh_or_pro_radio" formatted="false">"a goTenna Mesh or Pro radio"</string>
+    <string name="explain_a_sensecap_lorawan_helium_gateway" formatted="false">"a SenseCAP LoRaWAN / Helium gateway"</string>
+    <string name="explain_a_rak_wisgate_lorawan_gateway" formatted="false">"a RAK WisGate LoRaWAN gateway"</string>
+    <string name="explain_a_ghostesp_esp32_audit_board" formatted="false">"a GhostESP ESP32 audit board"</string>
+    <string name="explain_a_bruce_esp32_pentest_board" formatted="false">"a Bruce ESP32 pentest board"</string>
+    <string name="explain_a_camera_module_radio_liteon_or_similar" formatted="false">"a camera-module radio (LiteOn or similar)"</string>
+    <string name="explain_a_finder_tag" formatted="false">"a finder tag"</string>
+    <string name="explain_a_wi_fi_direct_access_point" formatted="false">"a Wi-Fi Direct access point"</string>
+    <string name="explain_ssid_starts_with_direct" formatted="false">"SSID starts with DIRECT-."</string>
+    <string name="explain_a_phone_or_tv_using_wi_fi_direct" formatted="false">"a phone or TV using Wi-Fi Direct"</string>
+    <string name="explain_a_phone_hotspot" formatted="false">"a phone hotspot"</string>
+    <string name="explain_ssid_looks_like_a_phone_hotspot" formatted="false">"SSID looks like a phone hotspot."</string>
+    <string name="explain_a_mesh_wi_fi_node" formatted="false">"a mesh Wi-Fi node"</string>
+    <string name="explain_capability_list_includes_mesh" formatted="false">"Capability list includes mesh."</string>
+    <string name="explain_a_hidden_wi_fi_access_point" formatted="false">"a hidden Wi-Fi access point"</string>
+    <string name="explain_ssid_is_hidden_the_radio_is_still_beaconing" formatted="false">"SSID is hidden; the radio is still beaconing."</string>
+    <string name="explain_a_wi_fi_access_point" formatted="false">"a Wi-Fi access point"</string>
+    <string name="explain_stock_android_only_reports_beaconing_aps" formatted="false">"Stock Android only reports beaconing APs."</string>
+    <string name="explain_probably" formatted="false">"Probably"</string>
+    <string name="explain_strong" formatted="false">"strong"</string>
+    <string name="explain_medium" formatted="false">"medium"</string>
+    <string name="explain_weak" formatted="false">"weak"</string>
+    <string name="explain_it_advertises_appearance_as_1_s" formatted="true">"It advertises Appearance as %1$s."</string>
+    <string name="explain_class_of_device_says_1_s" formatted="true">"Class of Device says %1$s."</string>
+    <string name="explain_matched_signature_1_s" formatted="true">"Matched signature %1$s."</string>
+    <string name="explain_1_s_long_range_ble_slower_farther" formatted="true">"%1$s — long-range BLE (slower, farther)"</string>
+    <string name="explain_1_s_faster_ble_bluetooth_5" formatted="true">"%1$s — faster BLE (Bluetooth 5)"</string>
+    <string name="explain_1_s_standard_ble_radio" formatted="true">"%1$s — standard BLE radio"</string>
+    <string name="candidate_family_count">" · %1$d family"</string>
+    <string name="candidate_families_count">" · %1$d families"</string>
+    <string name="payload_google_manufacturer_data" formatted="false">"Google manufacturer data"</string>
+    <string name="payload_1_s_bytes" formatted="false">"%1$s bytes"</string>
+    <string name="payload_a_tesla_vehicle_or_phone_as_key" formatted="false">"a Tesla vehicle or phone-as-key"</string>
+    <string name="payload_tesla_phone_key_ibeacon_uuid_ios_background_find" formatted="false">"Tesla phone-key iBeacon UUID (iOS background find)."</string>
+    <string name="payload_target_atrius_ibeacon_uuid_shopping_basket_asset_tag" formatted="false">"Target / Atrius iBeacon UUID (shopping-basket asset tag)."</string>
+    <string name="payload_apple_ibeacon_payload" formatted="false">"Apple iBeacon payload."</string>
+    <string name="payload_an_iphone_or_ipad_offering_airdrop" formatted="false">"an iPhone or iPad offering AirDrop"</string>
+    <string name="payload_apple_airdrop_advertisement" formatted="false">"Apple AirDrop advertisement."</string>
+    <string name="payload_airpods_or_beats_headphones" formatted="false">"AirPods or Beats headphones"</string>
+    <string name="payload_apple_proximity_pairing_1_s" formatted="false">"Apple Proximity Pairing: %1$s."</string>
+    <string name="payload_apple_proximity_pairing_airpods_beats" formatted="false">"Apple Proximity Pairing (AirPods / Beats)."</string>
+    <string name="payload_an_apple_device_that_just_heard_hey_siri" formatted="false">"an Apple device that just heard “Hey Siri”"</string>
+    <string name="payload_hey_siri_advertisement" formatted="false">"Hey Siri advertisement."</string>
+    <string name="payload_an_airplay_speaker_or_apple_tv" formatted="false">"an AirPlay speaker or Apple TV"</string>
+    <string name="payload_airplay_advertisement" formatted="false">"AirPlay advertisement."</string>
+    <string name="payload_an_apple_device_doing_handoff" formatted="false">"an Apple device doing Handoff"</string>
+    <string name="payload_handoff_advertisement" formatted="false">"Handoff advertisement."</string>
+    <string name="payload_an_apple_device_looking_for_instant_hotspot" formatted="false">"an Apple device looking for Instant Hotspot"</string>
+    <string name="payload_tethering_target_advertisement" formatted="false">"Tethering-target advertisement."</string>
+    <string name="payload_an_iphone_ipad_offering_instant_hotspot" formatted="false">"an iPhone/iPad offering Instant Hotspot"</string>
+    <string name="payload_tethering_source_advertisement" formatted="false">"Tethering-source advertisement."</string>
+    <string name="payload_an_apple_device_nearby_action" formatted="false">"an Apple device (Nearby Action)"</string>
+    <string name="payload_an_iphone_ipad_mac_nearby_info" formatted="false">"an iPhone / iPad / Mac (Nearby Info)"</string>
+    <string name="payload_a_find_my_network_radio" formatted="false">"a Find My network radio"</string>
+    <string name="payload_apple_offline_finding_airtag_find_my_accessory_or_an_apple_devic" formatted="false">"Apple Offline Finding — AirTag, Find My accessory, or an Apple device locating itself."</string>
+    <string name="payload_a_fast_pair_accessory_often_earbuds_or_a_speaker" formatted="false">"a Fast Pair accessory (often earbuds or a speaker)"</string>
+    <string name="payload_google_fast_pair_model_0x_06x_in_pairing_mode" formatted="false">"Google Fast Pair model 0x%06X, in pairing mode."</string>
+    <string name="payload_a_fast_pair_accessory_already_paired_to_someone" formatted="false">"a Fast Pair accessory already paired to someone"</string>
+    <string name="payload_google_fast_pair_account_key_broadcast_not_in_pairing_mode" formatted="false">"Google Fast Pair account-key broadcast (not in pairing mode)."</string>
+    <string name="payload_find_hub_separated_unwanted_tracking_frame" formatted="false">"Find Hub separated (unwanted-tracking) frame."</string>
+    <string name="payload_find_hub_nearby_frame" formatted="false">"Find Hub nearby frame."</string>
+    <string name="payload_an_eddystone_beacon" formatted="false">"an Eddystone beacon"</string>
+    <string name="payload_eddystone_service_data" formatted="false">"Eddystone service data."</string>
+    <string name="payload_apple_payload" formatted="false">"Apple payload"</string>
+    <string name="payload_1_s_bytes_unparsed" formatted="false">"%1$s bytes (unparsed)"</string>
+    <string name="payload_apple_continuity_type" formatted="false">"Apple Continuity type"</string>
+    <string name="payload_1_s_bytes_of_homekit_setup_data" formatted="false">"%1$s bytes of HomeKit setup data"</string>
+    <string name="payload_this_device_is_advertising_as_an_airplay_source_or_target" formatted="false">"This device is advertising as an AirPlay source or target."</string>
+    <string name="payload_apple_watch_wrist_unlock_related" formatted="false">"Apple Watch wrist / unlock related."</string>
+    <string name="payload_payload" formatted="false">"Payload"</string>
+    <string name="payload_proximity_pairing_airpods_beats" formatted="false">"Proximity Pairing (AirPods / Beats)"</string>
+    <string name="payload_magic_switch_watch" formatted="false">"Magic Switch (Watch)"</string>
+    <string name="payload_handoff_or_instant_hotspot_target" formatted="false">"Handoff or Instant Hotspot (target)"</string>
+    <string name="payload_instant_hotspot_source" formatted="false">"Instant Hotspot (source)"</string>
+    <string name="payload_find_my_offline_finding" formatted="false">"Find My / Offline Finding"</string>
+    <string name="payload_nearby_action_extended" formatted="false">"Nearby Action (extended)"</string>
+    <string name="payload_truncated_1_s_bytes" formatted="false">"truncated (%1$s bytes)"</string>
+    <string name="payload_1_s_tesla_phone_as_key_ios_background_find_not_a_mall_beacon" formatted="false">"%1$s — Tesla phone-as-key (iOS background find). Not a mall beacon."</string>
+    <string name="payload_ibeacon_major_minor" formatted="false">"iBeacon major / minor"</string>
+    <string name="payload_ibeacon_calibrated_tx" formatted="false">"iBeacon calibrated TX"</string>
+    <string name="payload_1_s_dbm_at_1_m_used_to_estimate_range" formatted="false">"%1$s dBm at 1 m (used to estimate range)"</string>
+    <string name="payload_someone_nearby_is_offering_airdrop_1_s_bytes" formatted="false">"Someone nearby is offering AirDrop (%1$s bytes)."</string>
+    <string name="payload_someone_nearby_has_airdrop_receiving_on_hashes_are_truncated_ids" formatted="false">"Someone nearby has AirDrop receiving on. Hashes are truncated IDs, not names."</string>
+    <string name="payload_apple_id_hash_2_bytes" formatted="false">"Apple ID hash (2 bytes)"</string>
+    <string name="payload_proximity_pairing_truncated" formatted="false">"Proximity Pairing, truncated."</string>
+    <string name="payload_proximity_pairing" formatted="false">"Proximity Pairing."</string>
+    <string name="payload_product" formatted="false">"Product"</string>
+    <string name="payload_apple_audio_0x_04x" formatted="false">"Apple audio 0x%04X"</string>
+    <string name="payload_pod_position" formatted="false">"Pod position"</string>
+    <string name="payload_battery_left_right" formatted="false">"Battery (left / right)"</string>
+    <string name="payload_case" formatted="false">"case"</string>
+    <string name="payload_right" formatted="false">"right"</string>
+    <string name="payload_left" formatted="false">"left"</string>
+    <string name="payload_case_battery" formatted="false">"Case battery"</string>
+    <string name="payload_charging" formatted="false">"Charging"</string>
+    <string name="payload_one_or_both_out_of_the_case" formatted="false">"One or both out of the case"</string>
+    <string name="payload_case_open" formatted="false">"Case open"</string>
+    <string name="payload_taken_out_in_ear_transition" formatted="false">"Taken out / in-ear transition"</string>
+    <string name="payload_one_in_ear" formatted="false">"One in ear"</string>
+    <string name="payload_both_out_not_in_ear" formatted="false">"Both out, not in ear"</string>
+    <string name="payload_in_ear_activity" formatted="false">"In-ear activity"</string>
+    <string name="payload_both_in_ear" formatted="false">"Both in ear"</string>
+    <string name="payload_one_in_ear_sharing" formatted="false">"One in ear (sharing?)"</string>
+    <string name="payload_both_in_case_lid_open" formatted="false">"Both in case, lid open"</string>
+    <string name="payload_both_in_case_lid_closed" formatted="false">"Both in case, lid closed"</string>
+    <string name="payload_in_case" formatted="false">"In case"</string>
+    <string name="payload_status_0x_02x" formatted="false">"Status 0x%02X"</string>
+    <string name="payload_white" formatted="false">"White"</string>
+    <string name="payload_black" formatted="false">"Black"</string>
+    <string name="payload_red" formatted="false">"Red"</string>
+    <string name="payload_blue" formatted="false">"Blue"</string>
+    <string name="payload_pink" formatted="false">"Pink"</string>
+    <string name="payload_gray" formatted="false">"Gray"</string>
+    <string name="payload_silver" formatted="false">"Silver"</string>
+    <string name="payload_gold" formatted="false">"Gold"</string>
+    <string name="payload_rose_gold" formatted="false">"Rose gold"</string>
+    <string name="payload_space_gray" formatted="false">"Space gray"</string>
+    <string name="payload_dark_blue" formatted="false">"Dark blue"</string>
+    <string name="payload_light_blue" formatted="false">"Light blue"</string>
+    <string name="payload_yellow" formatted="false">"Yellow"</string>
+    <string name="payload_unknown_not_present" formatted="false">"unknown / not present"</string>
+    <string name="payload_siri_was_just_triggered_on_a_nearby_apple_device" formatted="false">"Siri was just triggered on a nearby Apple device."</string>
+    <string name="payload_class_0x_04x" formatted="false">"class 0x%04X"</string>
+    <string name="payload_a_1_s_just_heard_a_siri_trigger_the_packet_carries_a_short_voice" formatted="false">"A %1$s just heard a Siri trigger. The packet carries a short voice hash, not the words."</string>
+    <string name="payload_continuity_handoff_a_task_can_be_continued_on_another_apple_devi" formatted="false">"Continuity Handoff: a task can be continued on another Apple device. Payload is encrypted."</string>
+    <string name="payload_instant_hotspot_looking" formatted="false">"Instant Hotspot (looking)"</string>
+    <string name="payload_this_apple_device_is_searching_for_a_paired_phone_s_hotspot" formatted="false">"This Apple device is searching for a paired phone’s hotspot."</string>
+    <string name="payload_an_iphone_ipad_is_offering_a_personal_hotspot" formatted="false">"An iPhone/iPad is offering a personal hotspot."</string>
+    <string name="payload_type_1_s" formatted="false">"type %1$s"</string>
+    <string name="payload_instant_hotspot_offering" formatted="false">"Instant Hotspot (offering)"</string>
+    <string name="payload_paired_iphone_ipad_hotspot" formatted="false">"Paired iPhone/iPad hotspot"</string>
+    <string name="payload_1_s_5_bars" formatted="false">" · %1$s/5 bars"</string>
+    <string name="payload_nearby_action_advertisement" formatted="false">"Nearby Action advertisement."</string>
+    <string name="payload_nearby_action_1_s" formatted="false">"Nearby Action: %1$s."</string>
+    <string name="payload_apple_tv_setup" formatted="false">"Apple TV setup"</string>
+    <string name="payload_mobile_backup" formatted="false">"Mobile backup"</string>
+    <string name="payload_watch_setup" formatted="false">"Watch setup"</string>
+    <string name="payload_apple_tv_pair" formatted="false">"Apple TV pair"</string>
+    <string name="payload_wi_fi_password_sharing_prompting_nearby_iphones" formatted="false">"Wi-Fi password sharing (prompting nearby iPhones)"</string>
+    <string name="payload_ios_setup" formatted="false">"iOS setup"</string>
+    <string name="payload_repair" formatted="false">"Repair"</string>
+    <string name="payload_speaker_setup" formatted="false">"Speaker setup"</string>
+    <string name="payload_whole_home_audio_setup" formatted="false">"Whole-home audio setup"</string>
+    <string name="payload_answered_a_call" formatted="false">"Answered a call"</string>
+    <string name="payload_ended_a_call" formatted="false">"Ended a call"</string>
+    <string name="payload_remote_autofill" formatted="false">"Remote AutoFill"</string>
+    <string name="payload_companion_link_proximity" formatted="false">"Companion Link proximity"</string>
+    <string name="payload_remote_display" formatted="false">"Remote display"</string>
+    <string name="payload_action_0x_02x" formatted="false">"action 0x%02X"</string>
+    <string name="payload_apple_device_usage_state" formatted="false">"Apple device usage state."</string>
+    <string name="payload_activity_unknown" formatted="false">"activity unknown"</string>
+    <string name="payload_activity_reporting_off" formatted="false">"activity reporting off"</string>
+    <string name="payload_idle_screen_locked" formatted="false">"idle (screen locked)"</string>
+    <string name="payload_audio_playing_screen_locked" formatted="false">"audio playing, screen locked"</string>
+    <string name="payload_active_screen_on" formatted="false">"active (screen on)"</string>
+    <string name="payload_screen_on_video_playing" formatted="false">"screen on, video playing"</string>
+    <string name="payload_watch_on_wrist_and_unlocked" formatted="false">"Watch on wrist and unlocked"</string>
+    <string name="payload_recent_interaction" formatted="false">"recent interaction"</string>
+    <string name="payload_user_is_driving" formatted="false">"user is driving"</string>
+    <string name="payload_phone_or_facetime_call" formatted="false">"phone or FaceTime call"</string>
+    <string name="payload_activity_0x_x" formatted="false">"activity 0x%X"</string>
+    <string name="payload_primary_icloud_device" formatted="false">"primary iCloud device"</string>
+    <string name="payload_airdrop_receiving_on" formatted="false">"AirDrop receiving on"</string>
+    <string name="payload_wi_fi_on" formatted="false">"Wi-Fi on"</string>
+    <string name="payload_airpods_connected" formatted="false">"AirPods connected"</string>
+    <string name="payload_watch_locked" formatted="false">"Watch locked"</string>
+    <string name="payload_what_the_apple_device_is_doing" formatted="false">"What the Apple device is doing"</string>
+    <string name="payload_nearby_info_advertisement" formatted="false">"Nearby Info advertisement."</string>
+    <string name="payload_phone_is_idle_locked" formatted="false">"Phone is idle / locked."</string>
+    <string name="payload_audio_playing_with_the_screen_locked" formatted="false">"Audio playing with the screen locked."</string>
+    <string name="payload_screen_is_on_someone_is_using_it" formatted="false">"Screen is on — someone is using it."</string>
+    <string name="payload_device_reports_the_user_is_driving" formatted="false">"Device reports the user is driving."</string>
+    <string name="payload_in_a_phone_or_facetime_call" formatted="false">"In a phone or FaceTime call."</string>
+    <string name="payload_offline_finding_advertisement" formatted="false">"Offline Finding advertisement."</string>
+    <string name="payload_full" formatted="false">"full"</string>
+    <string name="payload_low" formatted="false">"low"</string>
+    <string name="payload_critical" formatted="false">"critical"</string>
+    <string name="payload_broadcasting_a_public_key_so_the_find_my_network_can_report_a_lo" formatted="false">"Broadcasting a public key so the Find My network can report a location. "</string>
+    <string name="payload_used_by_airtags_find_my_accessories_and_apple_devices_locating_t" formatted="false">"Used by AirTags, Find My accessories, and Apple devices locating themselves. "</string>
+    <string name="payload_owner_seen_recently" formatted="false">"Owner seen recently. "</string>
+    <string name="payload_owner_not_seen_in_the_current_key_window" formatted="false">"Owner not seen in the current key window. "</string>
+    <string name="payload_battery_1_s" formatted="false">"Battery %1$s. "</string>
+    <string name="payload_1_s_byte_key_fragment_not_a_serial_number" formatted="false">"(%1$s-byte key fragment — not a serial number.)"</string>
+    <string name="payload_in_pairing_mode_android_will_pop_a_tap_to_pair_card" formatted="false">"In pairing mode — Android will pop a tap-to-pair card."</string>
+    <string name="payload_model_id" formatted="false">"Model ID"</string>
+    <string name="payload_0x_06x_not_in_the_local_name_list" formatted="false">"0x%06X (not in the local name list)"</string>
+    <string name="payload_wants_to_show_a_pairing_card" formatted="false">"wants to show a pairing card"</string>
+    <string name="payload_hiding_the_pairing_card_e_g_buds_back_in_the_case" formatted="false">"hiding the pairing card (e.g. buds back in the case)"</string>
+    <string name="payload_filter_type_1_s" formatted="false">"filter type %1$s"</string>
+    <string name="payload_account_key_bloom_filter" formatted="false">"account-key bloom filter"</string>
+    <string name="payload_already_paired_to_an_account_not_in_pairing_mode_1_s_version_2_s" formatted="false">"Already paired to an account (not in pairing mode). %1$s. Version %2$s."</string>
+    <string name="payload_truncated" formatted="false">"truncated"</string>
+    <string name="payload_eddystone_uid_namespace" formatted="false">"Eddystone-UID namespace"</string>
+    <string name="payload_eddystone_uid_instance" formatted="false">"Eddystone-UID instance"</string>
+    <string name="payload_telemetry_battery_temperature_advert_count" formatted="false">"telemetry (battery / temperature / advert count)"</string>
+    <string name="payload_ephemeral_id_rotating" formatted="false">"ephemeral ID (rotating)"</string>
+    <string name="payload_separated_unwanted_tracking_mode" formatted="false">"separated (unwanted-tracking mode)"</string>
+    <string name="payload_nearby_with_owner" formatted="false">"nearby / with owner"</string>
+    <string name="payload_frame_0x_02x" formatted="false">"frame 0x%02X"</string>
+    <string name="payload_windows_desktop" formatted="false">"Windows desktop"</string>
+    <string name="payload_windows_phone" formatted="false">"Windows phone"</string>
+    <string name="payload_windows_laptop" formatted="false">"Windows laptop"</string>
+    <string name="payload_windows_tablet" formatted="false">"Windows tablet"</string>
+    <string name="payload_microsoft_nearby_sharing_swift_pair" formatted="false">"Microsoft Nearby Sharing / Swift Pair"</string>
+    <string name="payload_a_1_s_is_advertising_for_quick_pairing_or_sharing" formatted="false">"A %1$s is advertising for quick pairing or sharing."</string>
+    <string name="payload_microsoft_manufacturer_data" formatted="false">"Microsoft manufacturer data"</string>
+    <string name="payload_altbeacon_major_minor" formatted="false">"AltBeacon major / minor"</string>
+    <string name="payload_hidden" formatted="false">"&lt;hidden&gt;"</string>
+    <string name="payload_1_s_device" formatted="false">"%1$s device"</string>
+    <string name="payload_unnamed" formatted="false">"unnamed"</string>
+    <string name="payload_google_fast_pair_model_1_s_0x_2_06x_in_pairing_mode" formatted="false">"Google Fast Pair model %1$s (0x%2$06X), in pairing mode."</string>
+    <string name="payload_phone_battery_1_s" formatted="false">" · phone battery %1$s%%"</string>
+    <string name="sit_dropped_notice" formatted="false">"Dropped oldest sit “%1$s” (keep %2$d)."</string>
+    <string name="log_csv_label" formatted="false">"Log file — CSV"</string>
+    <string name="log_json_label" formatted="false">"Log file — JSON lines"</string>
+    <string name="log_both_radios_label" formatted="false">"Both radios"</string>
+    <string name="placeholder_empty">"(empty)"</string>
+    <string name="status_random">"rand"</string>
+    <string name="status_pairing">"pair"</string>
+    <string name="status_gone">"gone"</string>
+    <string name="wifi_next_scan">"Wi-Fi next %1$ds"</string>
+    <string name="ble_scan_failed">"BLE scan failed (%1$d)"</string>
+    <string name="bluetooth_off">"Bluetooth is off"</string>
+    <string name="ble_scanner_unavailable">"BLE scanner unavailable"</string>
+    <string name="ble_start_failed">"BLE start failed"</string>
+    <string name="ble_unavailable">"BLE unavailable"</string>
+    <string name="ble_retrying">"BLE retrying"</string>
+    <string name="ble_cycling">"BLE cycling"</string>
+    <string name="ble_parked_restarting">"BLE parked · restarting"</string>
 </resources>

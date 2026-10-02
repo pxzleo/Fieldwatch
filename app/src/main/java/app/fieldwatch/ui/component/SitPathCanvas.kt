@@ -1,5 +1,8 @@
 package app.fieldwatch.ui.component
 
+import app.fieldwatch.UiText
+import app.fieldwatch.R
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -198,9 +201,9 @@ fun SitPathCanvas(
                 val start = lay.path.first()
                 val end = lay.path.last()
                 drawStartDot(start.x, start.y)
-                val startT = measurer.measure("Start", labelStyle)
+                val startT = measurer.measure(UiText.text(R.string.ui_start), labelStyle)
                 drawText(startT, topLeft = Offset((start.x + 8f).coerceAtMost(size.width - startT.size.width), start.y - 6f))
-                val endLabel = if (model.live) "Now" else "End"
+                val endLabel = if (model.live) UiText.text(R.string.ui_now) else UiText.text(R.string.ui_end)
                 val endT = measurer.measure(endLabel, labelStyle)
                 drawText(
                     endT,
@@ -265,7 +268,7 @@ fun SitPathCanvas(
                     .padding(8.dp),
             ) {
                 Text(
-                    if (selected.members.size == 1) "1 alert here" else "${selected.members.size} alerts here",
+                    if (selected.members.size == 1) UiText.text(R.string.ui_1_alert_here) else UiText.text(R.string.ui_value_alerts_here, (selected.members.size).toString()),
                     style = MaterialTheme.typography.labelSmall,
                     color = muted,
                 )
@@ -341,8 +344,8 @@ private fun pathMarkers(
     if (lay.path.size < 2 || width < 8f) return emptyList()
     val start = lay.path.first()
     val end = lay.path.last()
-    val startText = measurer.measure("Start", labelStyle)
-    val endText = measurer.measure(if (live) "Now" else "End", labelStyle)
+    val startText = measurer.measure(UiText.text(R.string.ui_start), labelStyle)
+    val endText = measurer.measure(if (live) UiText.text(R.string.ui_now) else UiText.text(R.string.ui_end), labelStyle)
     return listOf(
         hitMarker(start, 12f, startText, width, dx = 8f, dy = -6f),
         hitMarker(end, 12f, endText, width, dx = 10f, dy = -(endText.size.height + 4f).toFloat()),

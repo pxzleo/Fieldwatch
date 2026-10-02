@@ -1,5 +1,9 @@
 package app.fieldwatch.ui.screen
 
+import app.fieldwatch.UiText
+import app.fieldwatch.ui.uiLabel
+import app.fieldwatch.R
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
@@ -132,7 +136,7 @@ fun LivePane(
     Column(Modifier.fillMaxSize()) {
         if (state.displayPaused) {
             Text(
-                "Display paused · radios still scanning and logging. Filters still apply when you run again. Tap Live to run the list again.",
+                UiText.text(R.string.ui_display_paused_radios_still_scanning_and_logging_filters_still_ap),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
@@ -141,9 +145,9 @@ fun LivePane(
         if (state.filter.arrivalsOnly) {
             Text(
                 when {
-                    state.arrivalsLearning -> "New only · learning sitting Wi-Fi"
-                    state.hiddenKnown > 0 -> "New only · ${state.hiddenKnown} hidden"
-                    else -> "New only"
+                    state.arrivalsLearning -> UiText.text(R.string.ui_new_only_learning_sitting_wi_fi)
+                    state.hiddenKnown > 0 -> UiText.text(R.string.ui_new_only_value_hidden, (state.hiddenKnown).toString())
+                    else -> UiText.text(R.string.ui_new_only)
                 },
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -152,7 +156,7 @@ fun LivePane(
         }
         if (state.filter.movingWithYou) {
             Text(
-                "Follow · path ${state.operatorSpanM.toInt()} m · Start over clears the path",
+                UiText.text(R.string.ui_follow_path_value_m_start_over_clears_the_path, (state.operatorSpanM.toInt()).toString()),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
@@ -160,7 +164,7 @@ fun LivePane(
         }
         if (state.filter.watchedOnly) {
             Text(
-                "Watched only",
+                UiText.text(R.string.ui_watched_only),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
@@ -168,7 +172,7 @@ fun LivePane(
         }
         if (state.filter.customNamesOnly) {
             Text(
-                "Named radios only",
+                UiText.text(R.string.ui_named_radios_only),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
@@ -179,8 +183,8 @@ fun LivePane(
             val now = System.currentTimeMillis()
             val dur = Sit.fmtDuration(openSit.durationMs(now))
             val cap = when {
-                state.sit.memoryTight -> " · memory cap"
-                state.sit.atCap -> " · ${Sit.RADIO_CAP} cap"
+                state.sit.memoryTight -> UiText.text(R.string.ui_memory_cap)
+                state.sit.atCap -> UiText.text(R.string.ui_value_cap, (Sit.RADIO_CAP).toString())
                 else -> ""
             }
             Row(
@@ -190,7 +194,7 @@ fun LivePane(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    "Sit · ${openSit.name} · $dur · ${state.sit.radioCount} radios$cap",
+                    UiText.text(R.string.ui_sit_value_value_value_radiosvalue, (openSit.name).toString(), (dur).toString(), (state.sit.radioCount).toString(), (cap).toString()),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.primary,
                     maxLines = 1,
@@ -207,12 +211,12 @@ fun LivePane(
         if (renameSit && openSit != null) {
             AlertDialog(
                 onDismissRequest = { renameSit = false },
-                title = { Text("Rename sit") },
+                title = { Text(UiText.text(R.string.ui_rename_sit)) },
                 text = {
                     FieldwatchOutlinedField(
                         value = renameDraft,
                         onValueChange = { renameDraft = it.take(Sit.NAME_MAX) },
-                        label = "Name",
+                        label = UiText.text(R.string.ui_name),
                     )
                 },
                 confirmButton = {
@@ -221,10 +225,10 @@ fun LivePane(
                             renameSit = false
                             vm.renameSit(openSit.id, renameDraft)
                         },
-                    ) { Text("Save") }
+                    ) { Text(UiText.text(R.string.ui_save)) }
                 },
                 dismissButton = {
-                    TextButton(onClick = { renameSit = false }) { Text("Cancel") }
+                    TextButton(onClick = { renameSit = false }) { Text(UiText.text(R.string.ui_cancel)) }
                 },
             )
         }
@@ -252,32 +256,32 @@ private fun arrivalsEmpty(state: FieldwatchUi): String? {
     if (state.filter.movingWithYou) {
         return when {
             !state.settings.tagLocation ->
-                "Moving with you needs Settings → Tag detections with GPS, then a walk or drive."
+                UiText.text(R.string.ui_moving_with_you_needs_settings_tag_detections_with_gps_then_a_wal)
             state.operatorSpanM < 45.0 ->
-                "GPS path ${state.operatorSpanM.toInt()} m — too short. Keep moving. " +
-                    "If this stays 0, Location is not updating (use high accuracy)."
+                UiText.text(R.string.ui_gps_path_value_m_too_short_keep_moving, (state.operatorSpanM.toInt()).toString()) +
+                    UiText.text(R.string.ui_if_this_stays_0_location_is_not_updating_use_high_accuracy)
             state.filter.customNamesOnly || state.filter.watchedOnly ||
                 state.filter.namedOnly || state.filter.namedOnlyImplied() ->
-                "No loud BLE has stayed with you among the radios still allowed. " +
-                    "Tap the Moving with you preset to test BLE, or turn off Signatures only / Show only / Named radios only / Watched only."
+                UiText.text(R.string.ui_no_loud_ble_has_stayed_with_you_among_the_radios_still_allowed) +
+                    UiText.text(R.string.ui_tap_the_moving_with_you_preset_to_test_ble_or_turn_off_signatures)
             else ->
-                "No loud BLE has stayed with you along this path. Wi-Fi access points stay hidden. A tag in your bag or car should show. Find My MAC rotation will not stitch."
+                UiText.text(R.string.ui_no_loud_ble_has_stayed_with_you_along_this_path_wi_fi_access_poin)
         }
     }
     if (state.filter.arrivalsOnly) {
         return when {
-            state.arrivalsLearning -> "Hiding sitting access points until the next Wi-Fi scan. New Bluetooth still shows right away."
+            state.arrivalsLearning -> UiText.text(R.string.ui_hiding_sitting_access_points_until_the_next_wi_fi_scan_new_blueto)
             state.hiddenKnown > 0 ->
-                "${state.hiddenKnown} already seen are hidden. A new radio stays while we hear it, then at least as long as Brief hold after the last packet."
+                UiText.text(R.string.ui_value_already_seen_are_hidden_a_new_radio_stays_while_we_hear_it_, (state.hiddenKnown).toString())
             else ->
-                "Waiting for a new Wi-Fi or BLE radio. It stays while we hear it, then at least as long as Brief hold after the last packet."
+                UiText.text(R.string.ui_waiting_for_a_new_wi_fi_or_ble_radio_it_stays_while_we_hear_it_th)
         }
     }
     if (state.filter.watchedOnly) {
-        return "No watched radios on the air. Bookmark a signature, turn Alert on a Named radio, or turn off Filters → Watched only."
+        return UiText.text(R.string.ui_no_watched_radios_on_the_air_bookmark_a_signature_turn_alert_on_a)
     }
     if (state.filter.customNamesOnly) {
-        return "No named radios on the air. Set a custom name on detail, or turn off Filters → Named radios only."
+        return UiText.text(R.string.ui_no_named_radios_on_the_air_set_a_custom_name_on_detail_or_turn_of)
     }
     return null
 }
@@ -285,7 +289,7 @@ private fun arrivalsEmpty(state: FieldwatchUi): String? {
 private fun Sighting.rowTitle(vm: FieldwatchViewModel): String {
     val watch = vm.watchLabelFor(key)
     if (!watch.isNullOrBlank()) return watch
-    return listTitle(fleetIds.map { vm.fleetName(it) })
+    return listTitle(fleetIds.map { vm.fleetName(it) }, UiText::explanation)
 }
 
 @Composable
@@ -356,13 +360,13 @@ private fun ClassOutlineView(
                 FieldwatchFilterChip(
                     selected = !hideEmpty,
                     onClick = { vm.updateSettings { it.copy(outlineHideEmpty = false) } },
-                    label = { Text("Show all") },
+                    label = { Text(UiText.text(R.string.ui_show_all)) },
                     modifier = Modifier.weight(1f),
                 )
                 FieldwatchFilterChip(
                     selected = hideEmpty,
                     onClick = { vm.updateSettings { it.copy(outlineHideEmpty = true) } },
-                    label = { Text("Collapse empty") },
+                    label = { Text(UiText.text(R.string.ui_collapse_empty)) },
                     modifier = Modifier.weight(1f),
                 )
             }
@@ -371,7 +375,7 @@ private fun ClassOutlineView(
             item {
                 Text(
                     emptyHint
-                        ?: "No live emitters match the current filter. If this just emptied, the OS may be between scan windows — the last set is held and should return without a burst.",
+                        ?: UiText.text(R.string.ui_no_live_emitters_match_the_current_filter_if_this_just_emptied_th),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(24.dp),
@@ -382,10 +386,10 @@ private fun ClassOutlineView(
         item(key = "outline-summary") {
             val hidden = slices.count { it.radios.isEmpty() }
             val summary = buildString {
-                append("${devices.size} radios")
-                if (unmatched > 0) append(" · $unmatched unmatched")
-                if (multi > 0) append(" · $multi in more than one class")
-                if (hideEmpty && hidden > 0) append(" · $hidden empty hidden")
+                append(UiText.text(R.string.ui_value_radios, (devices.size).toString()))
+                if (unmatched > 0) append(UiText.text(R.string.ui_value_unmatched, (unmatched).toString()))
+                if (multi > 0) append(UiText.text(R.string.ui_value_in_more_than_one_class, (multi).toString()))
+                if (hideEmpty && hidden > 0) append(UiText.text(R.string.ui_value_empty_hidden, (hidden).toString()))
             }
             Text(
                 summary,
@@ -396,13 +400,13 @@ private fun ClassOutlineView(
         visible.forEach { slice ->
             item(key = "class-${slice.id}") {
                 OutlineGroupRow(
-                    title = slice.label(),
+                    title = slice.uiLabel(),
                     count = slice.radios.size,
                     subtitle = when {
                         slice.radios.isEmpty() -> null
-                        slice.kind == null -> "no signature"
+                        slice.kind == null -> UiText.text(R.string.ui_no_signature)
                         slice.signatures.size == 1 -> vm.fleetName(slice.signatures.first().fleetId)
-                        else -> "${slice.signatures.size} signatures"
+                        else -> UiText.text(R.string.ui_value_signatures, (slice.signatures.size).toString())
                     },
                     accent = slice.accent(vm).nightIf(LocalNightMode.current),
                     expanded = slice.id in openClasses,
@@ -891,7 +895,7 @@ private fun RadarView(
 
             drawCircle(youColor, radius = 7f, center = c)
             drawCircle(youColor.copy(alpha = 0.2f), radius = 16f, center = c)
-            val you = measurer.measure("YOU", ringStyle.copy(color = youColor, fontWeight = FontWeight.Bold))
+            val you = measurer.measure(UiText.text(R.string.ui_you), ringStyle.copy(color = youColor, fontWeight = FontWeight.Bold))
             drawText(you, topLeft = Offset(c.x - you.size.width / 2f, c.y + 12f))
         }
 
@@ -902,14 +906,14 @@ private fun RadarView(
         ) {
             Text(
                 if (devices.isEmpty()) {
-                    emptyHint ?: "No devices match the current filter"
+                    emptyHint ?: UiText.text(R.string.ui_no_devices_match_the_current_filter)
                 } else {
                     val zoomBit = if (zoom > 1.04f) {
-                        " · ×${"%.1f".format(Locale.US, zoom)} · double-tap reset"
+                        UiText.text(R.string.ui_value_double_tap_reset, ("%.1f".format(Locale.US, zoom)).toString())
                     } else {
-                        " · pinch to zoom"
+                        UiText.text(R.string.ui_pinch_to_zoom)
                     }
-                    "$onAir on-air · ${devices.size} in filter · dim = gone · tap a blip$zoomBit"
+                    UiText.text(R.string.ui_value_on_air_value_in_filter_dim_gone_tap_a_blipvalue, (onAir).toString(), (devices.size).toString(), (zoomBit).toString())
                 },
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -1075,7 +1079,7 @@ private fun RankedList(
             item {
                 Text(
                     emptyHint
-                        ?: "No live emitters match the current filter. If this just emptied, the OS may be between scan windows — the last set is held and should return without a burst. Use Timeline for recent disappearances.",
+                        ?: UiText.text(R.string.ui_no_live_emitters_match_the_current_filter_if_this_just_emptied_th_488),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(24.dp),
@@ -1145,9 +1149,9 @@ fun DeviceRow(
                 ) {
                     val names = device.fleetIds.map { vm.fleetName(it) }
                     val watch = vm.watchLabelFor(device.key)
-                    val crumbs = device.statusCrumbs()
+                    val crumbs = device.statusCrumbs(UiText::explanation)
                     val showSub = subtitleLine != ListLine.NONE
-                    val titleCore = MacUtil.redactMacIn(device.listLineText(titleLine, names, watch), device.mac, demoMode)
+                    val titleCore = MacUtil.redactMacIn(device.listLineText(titleLine, names, watch, UiText::explanation), device.mac, demoMode)
                     val titleText = if (!showSub && crumbs.isNotEmpty()) {
                         if (titleCore.isNotEmpty()) "$titleCore  $crumbs" else crumbs
                     } else {
@@ -1200,13 +1204,13 @@ fun DeviceRow(
                     if (showNewAge) {
                         val ageSec = ((now - device.firstSeen) / 1000L).coerceAtLeast(0L)
                         Text(
-                            if (ageSec < 60L) "new ${ageSec}s" else "new ${ageSec / 60L}m",
+                            if (ageSec < 60L) UiText.text(R.string.ui_new_values, (ageSec).toString()) else UiText.text(R.string.ui_new_valuem, (ageSec / 60L).toString()),
                             style = compactLine(10.sp, 11.sp).copy(fontFamily = FontFamily.Monospace),
                             color = MaterialTheme.colorScheme.primary,
                         )
                     } else if (sort == StrengthSort.AVERAGE) {
                         Text(
-                            "avg $rankRssi",
+                            UiText.text(R.string.ui_avg_value, (rankRssi).toString()),
                             style = compactLine(10.sp, 11.sp).copy(fontFamily = FontFamily.Monospace),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -1281,7 +1285,7 @@ private fun FleetNameChips(
             ) {
                 Icon(
                     Icons.AutoMirrored.Outlined.Notes,
-                    contentDescription = "Observer notes",
+                    contentDescription = UiText.text(R.string.ui_observer_notes),
                     modifier = Modifier
                         .padding(horizontal = 5.dp, vertical = 1.dp)
                         .size(11.dp),
@@ -1297,7 +1301,7 @@ private fun FleetNameChips(
             ) {
                 Icon(
                     Icons.Outlined.Notifications,
-                    contentDescription = "Alerted this session",
+                    contentDescription = UiText.text(R.string.ui_alerted_this_session),
                     modifier = Modifier
                         .padding(horizontal = 5.dp, vertical = 1.dp)
                         .size(11.dp),
@@ -1413,7 +1417,7 @@ private fun TimelineView(
     ) {
         item {
             Text(
-                "Last 15 minutes · solid bars are on-air windows",
+                UiText.text(R.string.ui_last_15_minutes_solid_bars_are_on_air_windows),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -1445,9 +1449,9 @@ private fun TimelineView(
                         Spacer(Modifier.width(8.dp))
                         val names = device.fleetIds.map { vm.fleetName(it) }
                         val watch = vm.watchLabelFor(device.key)
-                        val crumbs = device.statusCrumbs()
+                        val crumbs = device.statusCrumbs(UiText::explanation)
                         val showSub = subtitleLine != ListLine.NONE
-                        val titleCore = MacUtil.redactMacIn(device.listLineText(titleLine, names, watch), device.mac, demoMode)
+                        val titleCore = MacUtil.redactMacIn(device.listLineText(titleLine, names, watch, UiText::explanation), device.mac, demoMode)
                         val titleText = if (!showSub && crumbs.isNotEmpty()) {
                             if (titleCore.isNotEmpty()) "$titleCore  $crumbs" else crumbs
                         } else {
@@ -1548,9 +1552,9 @@ private fun listSubtitle(
     demoMode: Boolean,
     watchName: String? = null,
 ): String {
-    val raw = MacUtil.redactMacIn(device.listLineText(subtitleLine, names, watchName), device.mac, demoMode)
-    val body = if (raw.equals("unnamed LE", ignoreCase = true)) "unnamed" else raw
-    val crumbs = device.statusCrumbs()
+    val raw = MacUtil.redactMacIn(device.listLineText(subtitleLine, names, watchName, UiText::explanation), device.mac, demoMode)
+    val body = if (raw.equals(UiText.text(R.string.ui_unnamed_le), ignoreCase = true)) UiText.explanation("unnamed") else raw
+    val crumbs = device.statusCrumbs(UiText::explanation)
     return buildString {
         if (body.isNotEmpty()) append(body)
         if (crumbs.isNotEmpty()) {
@@ -1561,7 +1565,7 @@ private fun listSubtitle(
 }
 
 private fun radioFactLine(device: Sighting): String? {
-    val ch = if (device.channel != 0) "ch${device.channel}" else null
+    val ch = if (device.channel != 0) UiText.text(R.string.ui_chvalue, (device.channel).toString()) else null
     val mhz = if (device.frequencyMhz != 0) "${device.frequencyMhz}MHz" else null
     return listOfNotNull(ch, mhz).takeIf { it.isNotEmpty() }?.joinToString(" · ")
 }
@@ -1570,7 +1574,7 @@ private fun seenTimesLabel(device: Sighting, now: Long): String {
     val first = formatAge(now - device.firstSeen)
     val lastMs = now - device.lastSeen
     val last = if (lastMs < 1_000L) "now" else formatAge(lastMs)
-    return "first $first  ·  last $last"
+    return UiText.text(R.string.ui_first_value_last_value, (first).toString(), (last).toString())
 }
 
 private fun formatAge(ms: Long): String {
@@ -1580,12 +1584,12 @@ private fun formatAge(ms: Long): String {
         sec < 3600L -> {
             val m = sec / 60L
             val s = sec % 60L
-            if (s == 0L) "${m}m" else "${m}m ${s}s"
+            if (s == 0L) "${m}m" else UiText.text(R.string.ui_valuem_values, (m).toString(), (s).toString())
         }
         else -> {
             val h = sec / 3600L
             val m = (sec % 3600L) / 60L
-            if (m == 0L) "${h}h" else "${h}h ${m}m"
+            if (m == 0L) "${h}h" else UiText.text(R.string.ui_valueh_valuem, (h).toString(), (m).toString())
         }
     }
 }

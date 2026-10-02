@@ -1,5 +1,8 @@
 package app.fieldwatch.radio
 
+import app.fieldwatch.R
+import app.fieldwatch.UiText
+
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothManager
 import android.bluetooth.le.BluetoothLeScanner
@@ -67,7 +70,7 @@ class BleRadio(
             failStreak = (failStreak + 1).coerceAtMost(5)
             val backoff = (4_000L * (1L shl (failStreak - 1))).coerceAtMost(30_000L)
             nextRetryAt.set(System.currentTimeMillis() + backoff)
-            lastError = "BLE scan failed ($errorCode)"
+            lastError = UiText.text(R.string.ble_scan_failed, errorCode)
             hint = "BLE retrying"
             demoted = true
             onError(lastError!!)
@@ -81,7 +84,7 @@ class BleRadio(
         val adapter = manager.adapter
         if (adapter == null || !adapter.isEnabled) {
             running.set(false)
-            lastError = "Bluetooth is off"
+            lastError = UiText.text(R.string.bluetooth_off)
             hint = "Bluetooth is off"
             onError(lastError!!)
             nextRetryAt.set(now + 8_000L)
@@ -90,7 +93,7 @@ class BleRadio(
         val next = adapter.bluetoothLeScanner
         if (next == null) {
             running.set(false)
-            lastError = "BLE scanner unavailable"
+            lastError = UiText.text(R.string.ble_scanner_unavailable)
             hint = "BLE unavailable"
             onError(lastError!!)
             nextRetryAt.set(now + 8_000L)
@@ -121,7 +124,7 @@ class BleRadio(
             failStreak = (failStreak + 1).coerceAtMost(5)
             val backoff = (4_000L * (1L shl (failStreak - 1))).coerceAtMost(30_000L)
             nextRetryAt.set(System.currentTimeMillis() + backoff)
-            lastError = ok.exceptionOrNull()?.message ?: "BLE start failed"
+            lastError = ok.exceptionOrNull()?.message ?: UiText.text(R.string.ble_start_failed)
             hint = "BLE retrying"
             demoted = true
             onError(lastError!!)
@@ -140,7 +143,14 @@ class BleRadio(
 
     fun holding(): Boolean = !running.get()
 
-    fun statusHint(): String = hint
+    fun statusHint(): String = when (hint) {
+        "Bluetooth is off" -> UiText.text(R.string.bluetooth_off)
+        "BLE unavailable" -> UiText.text(R.string.ble_unavailable)
+        "BLE retrying" -> UiText.text(R.string.ble_retrying)
+        "BLE cycling" -> UiText.text(R.string.ble_cycling)
+        "BLE parked · restarting" -> UiText.text(R.string.ble_parked_restarting)
+        else -> hint
+    }
 
     fun restartBackoffMs(): Long = restMs
 

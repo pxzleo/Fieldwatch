@@ -1,0 +1,1343 @@
+<resources>
+    <string name="app_name">"Fieldwatch"</string>
+    <string name="ui_unmatched" formatted="false">"未匹配"</string>
+    <string name="ui_wi_fi_access_point" formatted="false">"Wi-Fi 接入点"</string>
+    <string name="ui_ble_advertiser" formatted="false">"BLE 广播设备"</string>
+    <string name="ui_disclaimer_and_license" formatted="false">"免责声明与许可证"</string>
+    <string name="ui_disclaimer" formatted="false">"免责声明"</string>
+    <string name="ui_i_have_read_this_and_i_agree" formatted="false">"我已阅读并同意"</string>
+    <string name="ui_continue" formatted="false">"继续"</string>
+    <string name="ui_fieldwatch_needs_the_radios" formatted="false">"Fieldwatch 需要无线扫描权限"</string>
+    <string name="ui_location_nearby_wi_fi_bluetooth_scan_and_notifications_let_fieldw" formatted="false">"位置、附近 Wi-Fi、蓝牙扫描与通知权限使 Fieldwatch 能被动观察广播的网络及 BLE 设备。不会发送任何无线数据。"</string>
+    <string name="ui_grant_permissions" formatted="false">"授予权限"</string>
+    <string name="ui_sit_compare" formatted="false">"观测比较"</string>
+    <string name="ui_sit_compare_pdf" formatted="false">"观测比较 PDF"</string>
+    <string name="ui_sit_compare_ai_export" formatted="false">"观测比较 AI 导出"</string>
+    <string name="ui_sit_compare_13" formatted="false">"观测比较"</string>
+    <string name="ui_ai_export" formatted="false">"AI 导出"</string>
+    <string name="ui_ai_export_15" formatted="false">"AI 导出"</string>
+    <string name="ui_debrief_pdf" formatted="false">"观测简报 PDF"</string>
+    <string name="ui_debrief" formatted="false">"观测简报"</string>
+    <string name="ui_export" formatted="false">"导出"</string>
+    <string name="ui_please_wait" formatted="false">"请稍候…"</string>
+    <string name="ui_live_logging_is_paused_until_this_finishes_scanning_continues" formatted="false">"完成前暂时停止实时日志写入。扫描继续运行。"</string>
+    <string name="ui_could_not_export" formatted="false">"无法导出"</string>
+    <string name="ui_ok" formatted="false">"确定"</string>
+    <string name="ui_log_saved" formatted="false">"日志已保存"</string>
+    <string name="ui_the_file_was_written_to_the_folder_you_picked_in_the_system_picke" formatted="false">"文件已写入所选文件夹。在系统文件选择器的菜单中可选择 SD 卡，将文件保存在外部存储。"</string>
+    <string name="ui_log_cleared" formatted="false">"日志已清空"</string>
+    <string name="ui_rotated_files_were_deleted_new_detections_will_start_a_fresh_log" formatted="false">"轮转日志文件已删除。新检测结果将写入新日志。"</string>
+    <string name="ui_fieldwatch_sit_paused" formatted="false">"FIELDWATCH  ·  观测  ·  已暂停"</string>
+    <string name="ui_fieldwatch_sit" formatted="false">"FIELDWATCH  ·  观测"</string>
+    <string name="ui_fieldwatch_paused" formatted="false">"FIELDWATCH  ·  已暂停"</string>
+    <string name="ui_hide_scan_options" formatted="false">"隐藏扫描选项"</string>
+    <string name="ui_show_scan_options" formatted="false">"显示扫描选项"</string>
+    <string name="ui_pause_display" formatted="false">"暂停显示"</string>
+    <string name="ui_live" formatted="false">"实时"</string>
+    <string name="ui_pause" formatted="false">"暂停"</string>
+    <string name="ui_filters" formatted="false">"筛选"</string>
+    <string name="ui_signatures" formatted="false">"特征库"</string>
+    <string name="ui_reports" formatted="false">"报告"</string>
+    <string name="ui_settings" formatted="false">"设置"</string>
+    <string name="ui_detail" formatted="false">"详情"</string>
+    <string name="ui_back" formatted="false">"返回"</string>
+    <string name="ui_no_radio_selected" formatted="false">"未选择无线设备。"</string>
+    <string name="ui_strongest" formatted="false">"信号最强"</string>
+    <string name="ui_newest_heard" formatted="false">"最近接收"</string>
+    <string name="ui_newest_alert" formatted="false">"最近告警"</string>
+    <string name="ui_newest_arrival" formatted="false">"最近出现"</string>
+    <string name="ui_new_at_bottom" formatted="false">"新设备置底"</string>
+    <string name="ui_name_a_z" formatted="false">"名称 A–Z"</string>
+    <string name="ui_signatures_first" formatted="false">"特征匹配优先"</string>
+    <string name="ui_off" formatted="false">"关闭"</string>
+    <string name="ui_display" formatted="false">"显示"</string>
+    <string name="ui_view" formatted="false">"视图"</string>
+    <string name="ui_sort" formatted="false">"排序"</string>
+    <string name="ui_strongest_signal" formatted="false">"最强信号"</string>
+    <string name="ui_strongest_avg_30s" formatted="false">"最强信号（30 秒平均）"</string>
+    <string name="ui_brief_hold" formatted="false">"短暂保留"</string>
+    <string name="ui_off_stale_after_only" formatted="false">"关闭 — 仅按过期时间移除"</string>
+    <string name="ui_title_line" formatted="false">"标题行"</string>
+    <string name="ui_subtitle_line" formatted="false">"副标题行"</string>
+    <string name="ui_rssi_bars" formatted="false">"RSSI 信号条"</string>
+    <string name="ui_signature_names" formatted="false">"特征名称"</string>
+    <string name="ui_frequency" formatted="false">"频率"</string>
+    <string name="ui_first_last_seen" formatted="false">"首次 / 最近发现"</string>
+    <string name="ui_more_display_options_below" formatted="false">"更多显示选项在下方"</string>
+    <string name="ui_advertised_name" formatted="false">"广播名称"</string>
+    <string name="ui_name_type" formatted="false">"名称 + 类型"</string>
+    <string name="ui_mac_address" formatted="false">"MAC 地址"</string>
+    <string name="ui_none" formatted="false">"无"</string>
+    <string name="ui_mark_seen" formatted="false">"标记已见"</string>
+    <string name="ui_reset_seen" formatted="false">"重置已见"</string>
+    <string name="ui_start_over" formatted="false">"重新开始"</string>
+    <string name="ui_export_fieldwatch_logs" formatted="false">"导出 Fieldwatch 日志"</string>
+    <string name="ui_hunt" formatted="false">"寻踪"</string>
+    <string name="ui_writing_sit_compare" formatted="false">"正在写入观测比较…"</string>
+    <string name="ui_could_not_write_sit_compare" formatted="false">"无法写入观测比较"</string>
+    <string name="ui_writing_sit_compare_pdf" formatted="false">"正在写入观测比较 PDF…"</string>
+    <string name="ui_laying_out_sit_compare_pdf" formatted="false">"正在排版观测比较 PDF…"</string>
+    <string name="ui_loading_map_tiles" formatted="false">"正在加载地图瓦片…"</string>
+    <string name="ui_could_not_write_sit_compare_pdf" formatted="false">"无法写入观测比较 PDF"</string>
+    <string name="ui_fieldwatch_sit_compare" formatted="false">"Fieldwatch 观测比较"</string>
+    <string name="ui_building_compare_ai_export" formatted="false">"正在生成比较 AI 导出…"</string>
+    <string name="ui_could_not_write_compare_ai_export" formatted="false">"无法写入比较 AI 导出"</string>
+    <string name="ui_pick_a_second_sit" formatted="false">"请选择第二次观测。"</string>
+    <string name="ui_could_not_read_that_sit" formatted="false">"无法读取该次观测。"</string>
+    <string name="ui_could_not_read_this_sit" formatted="false">"无法读取本次观测。"</string>
+    <string name="ui_last_15_minutes" formatted="false">"最近 15 分钟"</string>
+    <string name="ui_sits" formatted="false">"观测记录"</string>
+    <string name="ui_could_not_read_the_log" formatted="false">"无法读取日志"</string>
+    <string name="ui_fieldwatch_signatures" formatted="false">"Fieldwatch 特征库"</string>
+    <string name="ui_could_not_export_signatures" formatted="false">"无法导出特征库"</string>
+    <string name="ui_could_not_write_to_the_location_you_picked" formatted="false">"无法写入所选位置。"</string>
+    <string name="ui_signatures_saved" formatted="false">"特征库已保存"</string>
+    <string name="ui_the_pack_was_written_to_the_folder_you_picked_share_it_with_anoth" formatted="false">"特征包已写入所选文件夹。可分享给其他 Fieldwatch 用户，或在恢复默认值前保留备份。"</string>
+    <string name="ui_could_not_save_signatures" formatted="false">"无法保存特征库"</string>
+    <string name="ui_no_internet" formatted="false">"无网络连接"</string>
+    <string name="ui_no_internet_use_import_signatures_from_a_file" formatted="false">"无网络连接。请从文件导入特征库。"</string>
+    <string name="ui_updating_stock_catalog" formatted="false">"正在更新内置特征库…"</string>
+    <string name="ui_already_on_the_latest_catalog" formatted="false">"已是最新特征库"</string>
+    <string name="ui_no_stock_rows_changed" formatted="false">"没有内置条目发生变化。"</string>
+    <string name="ui_catalog_updated" formatted="false">"特征库已更新"</string>
+    <string name="ui_bookmarks_and_settings_were_not_changed" formatted="false">"书签和设置保持不变。"</string>
+    <string name="ui_signature_decoding_skipped" formatted="false">"已跳过特征解码"</string>
+    <string name="ui_some_signature_field_maps_in_this_catalog_need_a_newer_fieldwatch" formatted="false">"此特征库的部分字段映射需要更新版本的 Fieldwatch。"</string>
+    <string name="ui_signatures_still_match_install_a_newer_apk_to_decode_those_fields" formatted="false">"特征匹配仍然有效。请安装更新的 APK 以解码这些字段。"</string>
+    <string name="ui_could_not_reach_github" formatted="false">"无法连接 GitHub"</string>
+    <string name="ui_could_not_reach_the_catalog_on_github_try_again_later_or_use_impo" formatted="false">"无法连接 GitHub 上的特征库。请稍后重试，或从文件导入特征库。"</string>
+    <string name="ui_could_not_import_catalog" formatted="false">"无法导入特征库"</string>
+    <string name="ui_could_not_import_catalog_115" formatted="false">"无法导入特征库。"</string>
+    <string name="ui_could_not_read_that_file" formatted="false">"无法读取该文件。"</string>
+    <string name="ui_signatures_imported" formatted="false">"特征库已导入"</string>
+    <string name="ui_could_not_import_signatures" formatted="false">"无法导入特征库"</string>
+    <string name="ui_fieldwatch_settings" formatted="false">"Fieldwatch 设置"</string>
+    <string name="ui_could_not_export_settings" formatted="false">"无法导出设置"</string>
+    <string name="ui_settings_saved" formatted="false">"设置已保存"</string>
+    <string name="ui_the_pack_was_written_to_the_folder_you_picked_keep_it_for_a_facto" formatted="false">"设置包已写入所选文件夹。恢复出厂设置或更换手机时可保留此备份，再在新安装中导入。特征库另行导出。"</string>
+    <string name="ui_could_not_save_settings" formatted="false">"无法保存设置"</string>
+    <string name="ui_settings_imported" formatted="false">"设置已导入"</string>
+    <string name="ui_could_not_import_settings" formatted="false">"无法导入设置"</string>
+    <string name="ui_tag_detections_with_gps_settings_to_record_a_path" formatted="false">"请在设置中启用 GPS 标记检测，以记录路径。"</string>
+    <string name="ui_walk_with_tagging_on_path_needs_a_gps_fix" formatted="false">"开启 GPS 标记后移动。路径需要有效 GPS 定位。"</string>
+    <string name="ui_last_15_minutes_walk_with_tagging_on_or_start_sit_to_keep_a_longe" formatted="false">"最近 15 分钟。开启 GPS 标记后移动，或开始观测以保存更长路径。"</string>
+    <string name="ui_writing_debrief_pdf" formatted="false">"正在写入观测简报 PDF…"</string>
+    <string name="ui_laying_out_debrief_pdf" formatted="false">"正在排版观测简报 PDF…"</string>
+    <string name="ui_could_not_write_debrief_pdf" formatted="false">"无法写入观测简报 PDF"</string>
+    <string name="ui_writing_debrief" formatted="false">"正在写入观测简报…"</string>
+    <string name="ui_could_not_write_debrief" formatted="false">"无法写入观测简报"</string>
+    <string name="ui_fieldwatch_sit_134" formatted="false">"FIELDWATCH 观测"</string>
+    <string name="ui_fieldwatch_field_debrief_last_15_minutes" formatted="false">"Fieldwatch 现场简报 — 最近 15 分钟"</string>
+    <string name="ui_gathering_sit" formatted="false">"正在收集观测记录…"</string>
+    <string name="ui_looking_up_place_names" formatted="false">"正在查询地名…"</string>
+    <string name="ui_building_debrief" formatted="false">"正在生成观测简报…"</string>
+    <string name="ui_building_ai_export_prompt" formatted="false">"正在生成 AI 导出提示词…"</string>
+    <string name="ui_fieldwatch_ai_export_last_15_minutes" formatted="false">"Fieldwatch AI 导出 — 最近 15 分钟"</string>
+    <string name="ui_could_not_build_ai_export" formatted="false">"无法生成 AI 导出"</string>
+    <string name="ui_device_detail" formatted="false">"设备详情"</string>
+    <string name="ui_could_not_share_device_detail" formatted="false">"无法分享设备详情"</string>
+    <string name="ui_preparing_sit_export" formatted="false">"正在准备观测导出…"</string>
+    <string name="ui_sit_export" formatted="false">"观测导出"</string>
+    <string name="ui_saving_sit_export" formatted="false">"正在保存观测导出…"</string>
+    <string name="ui_could_not_open_the_selected_location" formatted="false">"无法打开所选位置"</string>
+    <string name="ui_pick_a_map_format" formatted="false">"请选择地图格式。"</string>
+    <string name="ui_logging_paused_preparing_file" formatted="false">"日志已暂停 · 正在准备文件…"</string>
+    <string name="ui_logging_paused_saving_to_the_location_you_picked" formatted="false">"日志已暂停 · 正在保存至所选位置…"</string>
+    <string name="ui_fieldwatch_log_csv" formatted="false">"Fieldwatch 日志（CSV）"</string>
+    <string name="ui_fieldwatch_log_json_lines" formatted="false">"Fieldwatch 日志（JSON 行）"</string>
+    <string name="ui_fieldwatch_gpx" formatted="false">"Fieldwatch GPX"</string>
+    <string name="ui_fieldwatch_kml" formatted="false">"Fieldwatch KML"</string>
+    <string name="ui_fieldwatch_wigle_csv" formatted="false">"Fieldwatch WiGLE CSV"</string>
+    <string name="ui_reading_log" formatted="false">"正在读取日志…"</string>
+    <string name="ui_wi_fi_radios" formatted="false">"Wi-Fi 无线设备"</string>
+    <string name="ui_ble_radios" formatted="false">"BLE 无线设备"</string>
+    <string name="ui_clearing_log" formatted="false">"正在清空日志…"</string>
+    <string name="ui_could_not_clear_log" formatted="false">"无法清空日志"</string>
+    <string name="ui_export_failed" formatted="false">"导出失败"</string>
+    <string name="ui_tune" formatted="false">"调节"</string>
+    <string name="ui_got_it" formatted="false">"知道了"</string>
+    <string name="ui_freeze_the_picture_tap_live_again_to_run" formatted="false">"冻结画面。再次点击实时以继续。"</string>
+    <string name="ui_who_is_shown" formatted="false">"选择显示哪些设备。"</string>
+    <string name="ui_pattern_catalog" formatted="false">"特征模式库。"</string>
+    <string name="ui_debrief_sits_log" formatted="false">"简报、观测和日志。"</string>
+    <string name="ui_scan_gps_tak" formatted="false">"扫描、GPS、TAK。"</string>
+    <string name="ui_display_radar_list_timeline_hybrid_by_class" formatted="false">"显示 — 雷达、列表、时间线、混合、按类别。"</string>
+    <string name="ui_decode_fields" formatted="false">"解码字段"</string>
+    <string name="ui_start" formatted="false">"开始"</string>
+    <string name="ui_now" formatted="false">"现在"</string>
+    <string name="ui_end" formatted="false">"结束"</string>
+    <string name="ui_1_alert_here" formatted="false">"此处 1 条告警"</string>
+    <string name="ui_signature_candidates" formatted="false">"特征候选"</string>
+    <string name="ui_reading_the_log_and_re_matching_the_catalog" formatted="false">"正在读取日志并重新匹配特征库…"</string>
+    <string name="ui_rotating_log" formatted="false">"轮转日志"</string>
+    <string name="ui_re_matched_now" formatted="false">" · 已重新匹配"</string>
+    <string name="ui_no_signature_families_in_this_log_randomized_addresses_and_house_" formatted="false">"日志中没有特征家族。随机地址及普通家庭名称会被跳过。候选需要至少两个无线设备共享唯一的广播标识。"</string>
+    <string name="ui_create_signature" formatted="false">"创建特征"</string>
+    <string name="ui_skipped" formatted="false">"已跳过"</string>
+    <string name="ui_and" formatted="false">"和"</string>
+    <string name="ui_those_are_not_catalog_families" formatted="false">"。这些不属于特征家族。"</string>
+    <string name="ui_save" formatted="false">"保存"</string>
+    <string name="ui_source" formatted="false">"来源"</string>
+    <string name="ui_map_cleartext_ble_bytes_after_this_signature_matches_encrypted_ad" formatted="false">"特征匹配后，映射 BLE 明文字节。加密广播仍显示十六进制。"</string>
+    <string name="ui_manufacturer" formatted="false">"制造商"</string>
+    <string name="ui_service_data" formatted="false">"服务数据"</string>
+    <string name="ui_company_id" formatted="false">"公司 ID"</string>
+    <string name="ui_optional_byte_0_is_the_first_byte_after_the_company_id_empty_any_" formatted="false">"可选。字节 0 是公司 ID 之后的第一个字节。留空表示任意记录。"</string>
+    <string name="ui_service_uuid" formatted="false">"服务 UUID"</string>
+    <string name="ui_required_16_bit_feaa_or_full_uuid" formatted="false">"必填。16 位（FEAA）或完整 UUID。"</string>
+    <string name="ui_fields" formatted="false">"字段"</string>
+    <string name="ui_add_field" formatted="false">"添加字段"</string>
+    <string name="ui_remove_decode_map" formatted="false">"移除解码映射"</string>
+    <string name="ui_removes_every_field_and_the_live_code_mark_save_after_adding_fiel" formatted="false">"移除所有字段及实时解码标记。添加字段后保存仍会保留映射。"</string>
+    <string name="ui_preview" formatted="false">"预览"</string>
+    <string name="ui_remove_decode_map_201" formatted="false">"移除解码映射？"</string>
+    <string name="ui_clears_all_fields_on_this_signature_live_no_longer_shows_the_code" formatted="false">"清除此特征的所有字段。实时界面不再显示解码标记。原始广播保留。除重新添加字段外无法撤销。"</string>
+    <string name="ui_remove" formatted="false">"移除"</string>
+    <string name="ui_cancel" formatted="false">"取消"</string>
+    <string name="ui_no_matching_radio_on_the_air_save_anyway_detail_will_fill_in_when" formatted="false">"当前没有匹配的无线设备。仍可保存；收到匹配设备后详情会更新。"</string>
+    <string name="ui_a_matching_radio_is_on_the_air_but_this_advertisement_has_no_byte" formatted="false">"当前存在匹配设备，但其广播没有包含上述来源的字节。"</string>
+    <string name="ui_nothing_parsed_check_offset_length_and_that_byte_0_is_after_the_c" formatted="false">"未解析出内容。请检查偏移、长度，并确认字节 0 位于公司 ID 之后。"</string>
+    <string name="ui_label" formatted="false">"标签"</string>
+    <string name="ui_delete_field" formatted="false">"删除字段"</string>
+    <string name="ui_offset" formatted="false">"偏移"</string>
+    <string name="ui_length" formatted="false">"长度"</string>
+    <string name="ui_unit" formatted="false">"单位"</string>
+    <string name="ui_bit_offset" formatted="false">"位偏移"</string>
+    <string name="ui_bit_width" formatted="false">"位宽"</string>
+    <string name="ui_scale" formatted="false">"缩放"</string>
+    <string name="ui_add" formatted="false">"添加"</string>
+    <string name="ui_live_row" formatted="false">"实时行"</string>
+    <string name="ui_show_this_value_next_to_the_signature_name_strong_values_use_a_he" formatted="false">"在特征名称旁显示此值。重要值使用更醒目的标签。"</string>
+    <string name="ui_more" formatted="false">"更多"</string>
+    <string name="ui_modulo" formatted="false">"取模"</string>
+    <string name="ui_hide_extra" formatted="false">"隐藏额外选项"</string>
+    <string name="ui_only_if" formatted="false">"仅当…"</string>
+    <string name="ui_only_if_224" formatted="false">"仅当"</string>
+    <string name="ui_bytes" formatted="false">"字节"</string>
+    <string name="ui_hex" formatted="false">"十六进制"</string>
+    <string name="ui_named_values" formatted="false">"命名值…"</string>
+    <string name="ui_named_values_228" formatted="false">"命名值"</string>
+    <string name="ui_raw" formatted="false">"原始值"</string>
+    <string name="ui_show_as" formatted="false">"显示为"</string>
+    <string name="ui_delete_value" formatted="false">"删除值"</string>
+    <string name="ui_strong" formatted="false">"重要"</string>
+    <string name="ui_note" formatted="false">"备注"</string>
+    <string name="ui_add_value" formatted="false">"添加值"</string>
+    <string name="ui_not_equals" formatted="false">"不等于"</string>
+    <string name="ui_none_of_bits" formatted="false">"位均未设置"</string>
+    <string name="ui_when" formatted="false">"条件"</string>
+    <string name="ui_payload_length" formatted="false">"载荷长度"</string>
+    <string name="ui_type" formatted="false">"类型"</string>
+    <string name="ui_endian" formatted="false">"字节序"</string>
+    <string name="ui_watch" formatted="false">"关注"</string>
+    <string name="ui_not_on_the_air_this_is_the_last_detail_we_heard" formatted="false">"当前未收到广播。这是最近接收到的详情。"</string>
+    <string name="ui_custom_name" formatted="false">"自定义名称"</string>
+    <string name="ui_advertised" formatted="false">"广播名称"</string>
+    <string name="ui_no_advertised_name" formatted="false">"无广播名称"</string>
+    <string name="ui_name" formatted="false">"名称"</string>
+    <string name="ui_hide_custom_name" formatted="false">"隐藏自定义名称"</string>
+    <string name="ui_saved" formatted="false">"已保存"</string>
+    <string name="ui_save_name" formatted="false">"保存名称"</string>
+    <string name="ui_observer_notes_cleared" formatted="false">"观察备注已清空"</string>
+    <string name="ui_observer_notes_saved" formatted="false">"观察备注已保存"</string>
+    <string name="ui_identity" formatted="false">"身份信息"</string>
+    <string name="ui_radio" formatted="false">"无线类型"</string>
+    <string name="ui_wi_fi_access_point_beaconing_a_network" formatted="false">"Wi-Fi 接入点（广播网络）"</string>
+    <string name="ui_bluetooth_low_energy_advertiser" formatted="false">"蓝牙低功耗广播设备"</string>
+    <string name="ui_address" formatted="false">"地址"</string>
+    <string name="ui_who_made_it" formatted="false">"制造商"</string>
+    <string name="ui_oui_vendor_prefix" formatted="false">"OUI（厂商前缀）"</string>
+    <string name="ui_network_name_ssid" formatted="false">"网络名称（SSID）"</string>
+    <string name="ui_hidden_the_ap_is_beaconing_but_not_publishing_a_name" formatted="false">"隐藏 — 接入点广播中，但未公开名称"</string>
+    <string name="ui_signal" formatted="false">"信号"</string>
+    <string name="ui_how_loud_here_rssi" formatted="false">"此处信号强度（RSSI）"</string>
+    <string name="ui_not_available" formatted="false">"不可用"</string>
+    <string name="ui_last_heard" formatted="false">"最近接收"</string>
+    <string name="ui_closer_to_0_dbm_is_louder_here_not_a_distance" formatted="false">"越接近 0 dBm，表示此处信号越强，并不表示距离。"</string>
+    <string name="ui_heard_range_this_session" formatted="false">"本次会话接收范围"</string>
+    <string name="ui_claimed_transmit_power" formatted="false">"声明发射功率"</string>
+    <string name="ui_channel_frequency" formatted="false">"信道 / 频率"</string>
+    <string name="ui_wi_fi_generation" formatted="false">"Wi-Fi 代际"</string>
+    <string name="ui_center_frequencies" formatted="false">"中心频率"</string>
+    <string name="ui_bluetooth_advertisement" formatted="false">"蓝牙广播"</string>
+    <string name="ui_radio_phy" formatted="false">"无线 PHY"</string>
+    <string name="ui_connectable" formatted="false">"可连接"</string>
+    <string name="ui_yes_a_phone_could_open_a_ble_connection" formatted="false">"是 — 手机可建立 BLE 连接"</string>
+    <string name="ui_no_broadcast_only_you_can_hear_it_not_join_it_from_this_scan" formatted="false">"否 — 仅广播（可接收，无法通过本次扫描连接）"</string>
+    <string name="ui_how_often_it_advertises" formatted="false">"广播频率"</string>
+    <string name="ui_0f_ms_between_bursts_smaller_chattier_on_the_air" formatted="false">"广播间隔 %.0f 毫秒（越短表示广播越频繁）"</string>
+    <string name="ui_periodic_advertising" formatted="false">"周期广播"</string>
+    <string name="ui_0f_ms" formatted="false">"%.0f 毫秒"</string>
+    <string name="ui_discoverability" formatted="false">"可发现性"</string>
+    <string name="ui_flags_raw" formatted="false">"标志（原始）"</string>
+    <string name="ui_what_it_says_it_is_appearance" formatted="false">"声明的设备类型（Appearance）"</string>
+    <string name="ui_unlisted_appearance_0x_04x" formatted="false">"未列出的 Appearance 0x%04X"</string>
+    <string name="ui_appearance_code" formatted="false">"Appearance 代码"</string>
+    <string name="ui_classic_bluetooth_class" formatted="false">"经典蓝牙类别"</string>
+    <string name="ui_nthis_is_the_class_of_device_bitfield_used_by_classic_bluetooth" formatted="false">"\n这是经典蓝牙使用的设备类别位字段。"</string>
+    <string name="ui_nalso_offers" formatted="false">"\n还提供："</string>
+    <string name="ui_encryption_login" formatted="false">"加密 / 登录"</string>
+    <string name="ui_security_string" formatted="false">"安全字符串"</string>
+    <string name="ui_supported_rates" formatted="false">"支持的速率"</string>
+    <string name="ui_capability_string" formatted="false">"能力字符串"</string>
+    <string name="ui_services_it_offers" formatted="false">"提供的服务"</string>
+    <string name="ui_service_ids" formatted="false">"服务 ID"</string>
+    <string name="ui_decoded_fields" formatted="false">"已解码字段"</string>
+    <string name="ui_decode_fields_did_not_apply_to_this_advertisement_short_payload_a" formatted="false">"解码字段不适用于此广播（载荷过短、公司 ID 不同或布局不同）。Govee 灯通常仅发送名称；温湿度计型号为 H5074/H5075/H510x。原始字节在下方。"</string>
+    <string name="ui_decode_fields_did_not_apply_to_this_advertisement_short_payload_a_299" formatted="false">"解码字段不适用于此广播（载荷过短、公司 ID 不同或布局不同）。原始字节在下方。"</string>
+    <string name="ui_this_signature_has_a_decode_map_but_this_advertisement_has_no_man" formatted="false">"此特征有解码映射，但广播未包含可解析的制造商或服务载荷。许多 Govee 灯仅广播名称。"</string>
+    <string name="ui_this_signature_has_a_decode_map_but_this_advertisement_has_no_man_301" formatted="false">"此特征有解码映射，但广播未包含可解析的制造商或服务载荷。"</string>
+    <string name="ui_maker_data_inside_the_ad" formatted="false">"广播内的制造商数据"</string>
+    <string name="ui_not_in_the_bluetooth_company_list" formatted="false">"未列入蓝牙公司列表"</string>
+    <string name="ui_bluetooth_company_0x_04x" formatted="false">"蓝牙公司 0x%04X"</string>
+    <string name="ui_wi_fi_vendor_tags" formatted="false">"Wi-Fi 厂商标记"</string>
+    <string name="ui_type_d" formatted="false">" 类型 %d"</string>
+    <string name="ui_unknown_ieee_oui" formatted="false">"未知 IEEE OUI"</string>
+    <string name="ui_extra_ap_information_element_not_the_ssid" formatted="false">" — 接入点的额外信息元素，并非 SSID。"</string>
+    <string name="ui_session" formatted="false">"会话"</string>
+    <string name="ui_first_seen" formatted="false">"首次发现"</string>
+    <string name="ui_last_seen" formatted="false">"最近发现"</string>
+    <string name="ui_hits" formatted="false">"接收次数"</string>
+    <string name="ui_last_fix" formatted="false">"最近定位"</string>
+    <string name="ui_matched_signatures" formatted="false">"匹配的特征"</string>
+    <string name="ui_raw_advertisement" formatted="false">"原始广播"</string>
+    <string name="ui_signal_trend" formatted="false">"信号趋势"</string>
+    <string name="ui_presence_15_min" formatted="false">"出现时间（15 分钟）"</string>
+    <string name="ui_hunt_is_ble_only_wi_fi_access_points_update_too_slowly_on_stock_a" formatted="false">"寻踪仅适用于 BLE。原生 Android 的 Wi-Fi 接入点更新速度不足以支持边走边寻找。"</string>
+    <string name="ui_create_signature_from_device" formatted="false">"从设备创建特征"</string>
+    <string name="ui_share_as_text" formatted="false">"分享为文本"</string>
+    <string name="ui_opens_a_paste_ready_prompt_for_a_chat_decode_this_radio_look_up_o" formatted="false">"生成可粘贴到聊天的提示词：解码此无线设备、查询 OUI/公司/UUID，并说明最可能的类型。与设置中的 AI 导出使用相同实验性免责声明。仅分析单个设备，不确认身份。"</string>
+    <string name="ui_signature_family" formatted="false">"特征家族"</string>
+    <string name="ui_notes" formatted="false">"备注"</string>
+    <string name="ui_observer_notes" formatted="false">"观察备注"</string>
+    <string name="ui_hide_observer_notes" formatted="false">"隐藏观察备注"</string>
+    <string name="ui_no_observer_notes" formatted="false">"无观察备注"</string>
+    <string name="ui_save_notes" formatted="false">"保存备注"</string>
+    <string name="ui_extra_attention" formatted="false">"特别关注"</string>
+    <string name="ui_pattern_match_not_identity_not_a_safety_finding" formatted="false">"仅为模式匹配，不确认身份，也不构成安全结论。"</string>
+    <string name="ui_what_this_looks_like" formatted="false">"可能的设备类型"</string>
+    <string name="ui_presets" formatted="false">"预设"</string>
+    <string name="ui_tap_to_replace_the_whole_filter_long_press_a_chip_to_delete_it" formatted="false">"点击替换整个筛选条件。长按标签删除。"</string>
+    <string name="ui_a_short_stock_set_ships_save_current_as_adds_your_own_cameras_pla" formatted="false">"附带少量内置预设；使用“当前条件另存为…”添加自定义预设（摄像头、广场 −80 等）。"</string>
+    <string name="ui_stock_chips_you_delete_come_back_with_settings_restore_default_si" formatted="false">"已删除的内置预设可通过设置中的“恢复默认特征与预设”恢复。"</string>
+    <string name="ui_save_current_as" formatted="false">"当前条件另存为…"</string>
+    <string name="ui_radios" formatted="false">"无线设备"</string>
+    <string name="ui_moving_with_you_is_ble_only_both_and_wi_fi_only_stay_off_until_yo" formatted="false">"随你移动仅适用于 BLE。关闭该功能后才能启用“两者”或“仅 Wi-Fi”。"</string>
+    <string name="ui_these_are_include_switches_turn_both_on_to_see_wi_fi_and_ble_toge" formatted="false">"这些是包含开关。同时启用即可显示 Wi-Fi 和 BLE。单个设备不会同时属于两种类型。"</string>
+    <string name="ui_both" formatted="false">"两者"</string>
+    <string name="ui_wi_fi_only" formatted="false">"仅 Wi-Fi"</string>
+    <string name="ui_ble_only" formatted="false">"仅 BLE"</string>
+    <string name="ui_moving_with_you" formatted="false">"随你移动"</string>
+    <string name="ui_turn_on_settings_tag_detections_with_gps_then_walk_or_drive" formatted="false">"在设置中启用 GPS 标记检测，然后步行或驾车。"</string>
+    <string name="ui_only_loud_ble_advertisers_that_stay_with_you_along_the_path" formatted="false">"仅显示沿途以较稳定的强信号随你移动的 BLE 设备。"</string>
+    <string name="ui_wi_fi_access_points_stay_off_a_loud_ap_you_drive_past_paints_your" formatted="false">"Wi-Fi 接入点保持隐藏，因为路过的强信号接入点会误绘路径。"</string>
+    <string name="ui_the_switch_starts_a_ble_follow_test_clears_signatures_only_show_o" formatted="false">"该开关开始 BLE 跟随测试（清除仅特征 / 仅显示 / 仅命名设备 / 仅关注设备）。"</string>
+    <string name="ui_or_tap_the_moving_with_you_preset_at_the_top" formatted="false">"也可点击顶部的“随你移动”预设。"</string>
+    <string name="ui_if_this_stays_0_while_you_drive_location_is_not_giving_a_live_fix" formatted="false">"驾车时始终为 0 表示位置服务未提供实时定位"</string>
+    <string name="ui_set_location_to_high_accuracy_last_known_only_is_not_enough" formatted="false">"（请设为高精度）。仅上次已知位置不足以测试。"</string>
+    <string name="ui_a_second_iphone_usually_will_not_match_ble_mac_rotation_starts_a_" formatted="false">"第二部 iPhone 通常不会匹配：BLE MAC 轮换会被视为新设备。"</string>
+    <string name="ui_named_radios_only_is_also_on_unlabeled_radios_stay_hidden" formatted="false">" 同时启用了“仅命名设备” — 未命名设备保持隐藏。"</string>
+    <string name="ui_watched_only_is_also_on_unwatched_radios_stay_hidden" formatted="false">" 同时启用了“仅关注设备” — 未关注设备保持隐藏。"</string>
+    <string name="ui_signatures_only_show_only_is_also_on_unmatched_radios_stay_hidden" formatted="false">" 同时启用了“仅特征 / 仅显示” — 未匹配设备保持隐藏。"</string>
+    <string name="ui_named_radios_only_or_watched_only_is_also_on_so_only_those_radios" formatted="false">"同时启用了仅命名设备或仅关注设备，因此只有这些设备能参与跟随测试。"</string>
+    <string name="ui_tap_the_moving_with_you_preset_to_test_ble_a_tag_in_your_bag_or_c" formatted="false">"点击“随你移动”预设测试 BLE。包内或车内的标签应能匹配。Wi-Fi 接入点保持隐藏。"</string>
+    <string name="ui_path_at_a_fairly_steady_level_not_ones_that_only_appear_when_you" formatted="false">"沿途以较稳定的强度出现，而非仅在"</string>
+    <string name="ui_arrive_a_tag_in_your_bag_or_car_will_match_wi_fi_access_points_st" formatted="false">"到达时出现。包内或车内标签会匹配。Wi-Fi 接入点保持隐藏"</string>
+    <string name="ui_range_looks_like_co_travel_a_phone_s_rotating_ble_address_will_no" formatted="false">"（信号范围可能被误判为跟随）。手机轮换的 BLE 地址不会合并为同一跟随设备。"</string>
+    <string name="ui_live_start_over_clears_the_path_and_trails_so_you_can_test_again" formatted="false">"在实时界面点击“重新开始”清除路径和轨迹，以再次测试。"</string>
+    <string name="ui_new_detections" formatted="false">"新检测"</string>
+    <string name="ui_new_detections_only_learning" formatted="false">"仅新检测  ·  学习中"</string>
+    <string name="ui_new_detections_only" formatted="false">"仅新检测"</string>
+    <string name="ui_mark_seen_and_reset_seen_sit_on_live_above_the_tabs" formatted="false">"标记已见和重置已见位于实时界面的标签栏上方。"</string>
+    <string name="ui_learning_sitting_wi_fi_into_already_seen" formatted="false">"正在将静止的 Wi-Fi 接入点学习为已见。"</string>
+    <string name="ui_already_seen_is_0" formatted="false">"已见数量为 0。"</string>
+    <string name="ui_hide_radios_already_here_so_only_new_ones_show_on_live" formatted="false">"隐藏此处已有设备，只在实时界面显示新设备。"</string>
+    <string name="ui_mark_seen_reset_seen_appear_above_the_tabs_on_live_while_this_is_" formatted="false">"启用后，实时界面标签栏上方显示标记已见 / 重置已见。"</string>
+    <string name="ui_brief_hold_still_sets_how_long_a_new_radio_stays_after_the_last_p" formatted="false">"短暂保留仍决定新设备在最后一个数据包后保留多久。"</string>
+    <string name="ui_randomized_ble_addresses_look_new" formatted="false">"随机 BLE 地址会被视为新设备。"</string>
+    <string name="ui_who_stays" formatted="false">"显示哪些设备"</string>
+    <string name="ui_signatures_only_hide_unmatched" formatted="false">"仅特征（隐藏未匹配）"</string>
+    <string name="ui_show_only_already_hides_unmatched_radios_turn_show_only_class_or_" formatted="false">"“仅显示”已隐藏未匹配设备。先关闭按类别或所选特征的“仅显示”，再使用此开关。"</string>
+    <string name="ui_watched_only" formatted="false">"仅关注设备"</string>
+    <string name="ui_only_radios_that_match_a_bookmarked_signature_or_a_named_radio_wi" formatted="false">"仅显示匹配已收藏特征或已开启告警的命名设备。"</string>
+    <string name="ui_hide_these_still_applies_watched_only_hide_surveillance_drops_boo" formatted="false">"“隐藏这些”仍然生效（仅关注设备 + 隐藏监控类会隐藏已收藏的摄像头）。"</string>
+    <string name="ui_label_only_names_stay_on_named_radios_only_bookmark_on_signatures" formatted="false">"仅有名称的设备使用“仅命名设备”。在特征库收藏特征，在详情中启用告警。"</string>
+    <string name="ui_named_radios_only" formatted="false">"仅命名设备"</string>
+    <string name="ui_only_radios_you_gave_a_custom_name_alert_can_still_be_off_setting" formatted="false">"仅显示你设置过自定义名称的设备。告警仍可关闭。设置 → 命名设备。"</string>
+    <string name="ui_a_random_privacy_mac_will_not_follow_a_rotation" formatted="false">"随机 / 隐私 MAC 不会跟随地址轮换。"</string>
+    <string name="ui_hide_fast_pair_account_key" formatted="false">"隐藏 Fast Pair 账户密钥"</string>
+    <string name="ui_plaza_noise_already_paired_fast_pair_chips_with_no_other_signatur" formatted="false">"广场噪声：没有其他特征的已配对 Fast Pair 标签。"</string>
+    <string name="ui_keeps_pairing_mode_tap_to_pair_model_id_hide_selected_fast_pair_s" formatted="false">"保留配对模式（点击配对的型号 ID）。隐藏所选 Fast Pair 特征也会隐藏配对模式。"</string>
+    <string name="ui_signature_classes" formatted="false">"特征类别"</string>
+    <string name="ui_live_only_signatures_still_label_log_and_can_beep" formatted="false">"仅影响实时界面 — 特征仍可标记、记录和告警。"</string>
+    <string name="ui_cameras_drones_finder_tags_and_the_rest_are_these_chips_show_only" formatted="false">"摄像头、无人机、寻物标签等类别对应这些标签。选择“仅显示”，再另存为预设。"</string>
+    <string name="ui_show_only_with_no_class_picked_leaves_live_unchanged" formatted="false">"未选类别时，“仅显示”不改变实时显示。"</string>
+    <string name="ui_show_only" formatted="false">"仅显示"</string>
+    <string name="ui_hide_these" formatted="false">"隐藏这些"</string>
+    <string name="ui_selected_signatures" formatted="false">"所选特征"</string>
+    <string name="ui_show_only_selected_signatures" formatted="false">"仅显示所选特征"</string>
+    <string name="ui_tap_a_class_to_open_its_signatures_only_radios_matching_a_signatu" formatted="false">"点击类别展开特征。实时界面只保留匹配下方已启用特征的设备。"</string>
+    <string name="ui_empty_list_no_extra_include_live_unchanged_picks_stay_if_you_turn" formatted="false">"列表为空时不额外筛选（实时显示不变）。关闭后再次开启仍保留选择。"</string>
+    <string name="ui_hide_selected_signatures" formatted="false">"隐藏所选特征"</string>
+    <string name="ui_tap_a_class_to_open_its_signatures_devices_matching_a_signature_y" formatted="false">"点击类别展开特征。匹配下方已启用特征的设备不出现在实时列表中。"</string>
+    <string name="ui_your_picks_stay_if_you_turn_this_off_and_on_again" formatted="false">"关闭后再次开启仍保留选择。"</string>
+    <string name="ui_fine_filter" formatted="false">"精细筛选"</string>
+    <string name="ui_name_mac_contains" formatted="false">"名称 / MAC 包含"</string>
+    <string name="ui_oui_vendor_contains" formatted="false">"OUI / 厂商包含"</string>
+    <string name="ui_extra_filter_logic" formatted="false">"额外筛选逻辑"</string>
+    <string name="ui_and_or_applies_to_name_oui_rssi_and_class_include_not_to_radios_n" formatted="false">"AND/OR 适用于名称、OUI、RSSI 和类别包含条件，不适用于无线类型、仅命名设备、仅关注设备、隐藏 Fast Pair 账户密钥或隐藏列表。"</string>
+    <string name="ui_and_407" formatted="false">"与（AND）"</string>
+    <string name="ui_or" formatted="false">"或（OR）"</string>
+    <string name="ui_reset_filter" formatted="false">"重置筛选"</string>
+    <string name="ui_reset_filter_410" formatted="false">"重置筛选？"</string>
+    <string name="ui_clears_every_switch_and_pick_on_this_tab_radios_classes_selected_" formatted="false">"清除此页的所有开关和选择（无线类型、类别、所选特征、RSSI、名称/OUI）。"</string>
+    <string name="ui_presets_you_saved_stay_the_live_display_goes_back_to_the_unfilter" formatted="false">"保留已保存的预设。实时显示恢复为未筛选集合。此操作不是撤销。"</string>
+    <string name="ui_reset" formatted="false">"重置"</string>
+    <string name="ui_delete_preset" formatted="false">"删除预设？"</string>
+    <string name="ui_delete" formatted="false">"删除"</string>
+    <string name="ui_new_signature" formatted="false">"新建特征"</string>
+    <string name="ui_tap_a_class_to_open_its_signatures_bookmark_beep_hide_a_family_on" formatted="false">"点击类别展开特征。收藏会触发告警。在筛选页隐藏家族。"</string>
+    <string name="ui_tap_to_edit_bookmark_beep_when_that_family_appears_hide_a_family_" formatted="false">"点击编辑。收藏后该家族出现时会告警。在筛选页隐藏家族。"</string>
+    <string name="ui_class_a_z" formatted="false">"类别 A–Z"</string>
+    <string name="ui_beep_when_this_signature_appears" formatted="false">"此特征出现时告警"</string>
+    <string name="ui_edit_signature" formatted="false">"编辑特征"</string>
+    <string name="ui_shows_on_radio_detail_for_matching_radios_and_in_share_ai_export_" formatted="false">"显示于匹配设备的详情及分享 / AI 导出中。不同于特别关注，不会在实时界面显示“!”或黄色卡片。"</string>
+    <string name="ui_optional_if_this_is_not_empty_matching_radios_get_a_on_live_this_" formatted="false">"可选。填写后，匹配设备会在实时界面显示“!”、在详情显示黄色卡片，并在简报增加一行。与上方备注独立。"</string>
+    <string name="ui_matching" formatted="false">"匹配"</string>
+    <string name="ui_class" formatted="false">"类别"</string>
+    <string name="ui_filters_show_only_hide_these_class_sits_finder_tags_cameras_are_t" formatted="false">"筛选 → 仅显示 / 隐藏这些。寻物标签、摄像头等类别对应那些标签。可将当前条件另存为预设。"</string>
+    <string name="ui_match_any_rule_or" formatted="false">"匹配任意规则（OR）"</string>
+    <string name="ui_cluster_by_oui" formatted="false">"按 OUI 聚类"</string>
+    <string name="ui_sequential_macs" formatted="false">"连续 MAC"</string>
+    <string name="ui_min_peers_0_off" formatted="false">"最少同类设备（0 = 关闭）"</string>
+    <string name="ui_peer_window_seconds" formatted="false">"同类时间窗口（秒）"</string>
+    <string name="ui_color" formatted="false">"颜色"</string>
+    <string name="ui_stock_colors_are_by_class_red_pentest_amber_cameras_alpr_purple_p" formatted="false">"内置颜色按类别指定：渗透测试红色、摄像头/ALPR 黄色、手机/标签紫色、穿戴青色、Mesh 绿色、音频/眼镜橙色、车载蓝绿色。每条均可修改。"</string>
+    <string name="ui_rules" formatted="false">"规则"</string>
+    <string name="ui_each_rule_has_its_own_switch_off_keeps_the_rule_but_it_does_not_m" formatted="false">"每条规则有独立开关。关闭会保留规则，但不参与匹配。"</string>
+    <string name="ui_use_that_to_mute_noisy_ouis_or_names_on_one_signature_without_del" formatted="false">"可用此方式静默特定特征中嘈杂的 OUI 或名称，而无需删除。"</string>
+    <string name="ui_add_rule" formatted="false">"添加规则"</string>
+    <string name="ui_optional_after_this_signature_matches_map_cleartext_ble_bytes_to_" formatted="false">"可选。特征匹配后将 BLE 明文字节映射为标签。加密载荷仍显示十六进制。"</string>
+    <string name="ui_delete_signature" formatted="false">"删除特征"</string>
+    <string name="ui_delete_this_signature" formatted="false">"删除此特征？"</string>
+    <string name="ui_selected_color" formatted="false">"所选颜色"</string>
+    <string name="ui_kind" formatted="false">"种类"</string>
+    <string name="ui_delete_rule" formatted="false">"删除规则"</string>
+    <string name="ui_value" formatted="false">"值"</string>
+    <string name="ui_company_id_hex" formatted="false">"公司 ID 十六进制"</string>
+    <string name="ui_data_prefix_hex" formatted="false">"数据前缀十六进制"</string>
+    <string name="ui_service_uuid_empty_any_contains" formatted="false">"服务 UUID（留空 = 任意，包含匹配）"</string>
+    <string name="ui_contains_hex" formatted="false">"包含十六进制"</string>
+    <string name="ui_matches_hidden_ssids" formatted="false">"匹配隐藏 SSID"</string>
+    <string name="ui_mac_prefix" formatted="false">"MAC 前缀"</string>
+    <string name="ui_name_contains" formatted="false">"名称包含"</string>
+    <string name="ui_name_glob" formatted="false">"名称通配符"</string>
+    <string name="ui_manufacturer_id" formatted="false">"制造商 ID"</string>
+    <string name="ui_manufacturer_data" formatted="false">"制造商数据"</string>
+    <string name="ui_radio_kind" formatted="false">"无线类型"</string>
+    <string name="ui_hidden_ssid" formatted="false">"隐藏 SSID"</string>
+    <string name="ui_vendor_ie_oui" formatted="false">"厂商 IE OUI"</string>
+    <string name="ui_reset_this_hunt" formatted="false">"重置本次寻踪"</string>
+    <string name="ui_back_to_detail" formatted="false">"返回详情"</string>
+    <string name="ui_beep" formatted="false">"提示音"</string>
+    <string name="ui_vibrate" formatted="false">"振动"</string>
+    <string name="ui_no_live_rssi" formatted="false">"无实时 RSSI"</string>
+    <string name="ui_loudest_this_hunt" formatted="false">"本次最强信号  —"</string>
+    <string name="ui_last_heard_465" formatted="false">"最近接收  —"</string>
+    <string name="ui_you" formatted="false">"你"</string>
+    <string name="ui_display_paused_radios_still_scanning_and_logging_filters_still_ap" formatted="false">"显示已暂停 · 无线扫描和日志仍继续运行。恢复时仍应用筛选条件。点击实时恢复列表。"</string>
+    <string name="ui_new_only_learning_sitting_wi_fi" formatted="false">"仅新设备 · 学习静止 Wi-Fi"</string>
+    <string name="ui_new_only" formatted="false">"仅新设备"</string>
+    <string name="ui_memory_cap" formatted="false">" · 内存上限"</string>
+    <string name="ui_rename_sit" formatted="false">"重命名观测"</string>
+    <string name="ui_moving_with_you_needs_settings_tag_detections_with_gps_then_a_wal" formatted="false">"随你移动需要在设置中启用 GPS 标记检测，然后步行或驾车。"</string>
+    <string name="ui_if_this_stays_0_location_is_not_updating_use_high_accuracy" formatted="false">"始终为 0 表示位置未更新（请使用高精度定位）。"</string>
+    <string name="ui_no_loud_ble_has_stayed_with_you_among_the_radios_still_allowed" formatted="false">"允许显示的设备中，尚无强信号 BLE 沿途持续跟随。"</string>
+    <string name="ui_tap_the_moving_with_you_preset_to_test_ble_or_turn_off_signatures" formatted="false">"点击“随你移动”预设测试 BLE，或关闭仅特征 / 仅显示 / 仅命名设备 / 仅关注设备。"</string>
+    <string name="ui_no_loud_ble_has_stayed_with_you_along_this_path_wi_fi_access_poin" formatted="false">"尚无强信号 BLE 沿此路径跟随。Wi-Fi 接入点保持隐藏。包内或车内标签应能显示。Find My 的 MAC 轮换不会合并。"</string>
+    <string name="ui_hiding_sitting_access_points_until_the_next_wi_fi_scan_new_blueto" formatted="false">"在下一次 Wi-Fi 扫描前隐藏静止接入点。新蓝牙设备仍会立即显示。"</string>
+    <string name="ui_waiting_for_a_new_wi_fi_or_ble_radio_it_stays_while_we_hear_it_th" formatted="false">"等待新的 Wi-Fi 或 BLE 设备。接收期间保持显示，最后一个数据包后至少保留“短暂保留”设置的时长。"</string>
+    <string name="ui_no_watched_radios_on_the_air_bookmark_a_signature_turn_alert_on_a" formatted="false">"当前没有关注设备广播。收藏一个特征、为命名设备启用告警，或关闭筛选 → 仅关注设备。"</string>
+    <string name="ui_no_named_radios_on_the_air_set_a_custom_name_on_detail_or_turn_of" formatted="false">"当前没有命名设备广播。在详情设置自定义名称，或关闭筛选 → 仅命名设备。"</string>
+    <string name="ui_show_all" formatted="false">"显示全部"</string>
+    <string name="ui_collapse_empty" formatted="false">"折叠空类别"</string>
+    <string name="ui_no_live_emitters_match_the_current_filter_if_this_just_emptied_th" formatted="false">"当前没有广播设备符合筛选条件。若刚刚清空，可能处于系统扫描间隙 — 最近的集合会被保留并应恢复。"</string>
+    <string name="ui_no_signature" formatted="false">"无特征"</string>
+    <string name="ui_no_devices_match_the_current_filter" formatted="false">"没有设备符合当前筛选条件"</string>
+    <string name="ui_pinch_to_zoom" formatted="false">" · 双指缩放"</string>
+    <string name="ui_no_live_emitters_match_the_current_filter_if_this_just_emptied_th_488" formatted="false">"当前没有广播设备符合筛选条件。若刚刚清空，可能处于系统扫描间隙 — 最近的集合会被保留并应恢复。可使用时间线查看最近消失的设备。"</string>
+    <string name="ui_alerted_this_session" formatted="false">"本次会话已告警"</string>
+    <string name="ui_last_15_minutes_solid_bars_are_on_air_windows" formatted="false">"最近 15 分钟 · 实心条表示广播时间窗口"</string>
+    <string name="ui_unnamed_le" formatted="false">"未命名 LE"</string>
+    <string name="ui_one_mac_each_custom_name_shows_on_live_observer_notes_show_on_det" formatted="false">"每个 MAC 对应一条。自定义名称显示于实时界面；观察备注显示于详情和报告。告警可选（提示音 / 语音 / 闪烁）。筛选 → 仅命名设备会隐藏其他设备。特征关注保留在特征库页。"</string>
+    <string name="ui_no_named_radios_set_a_custom_name_on_detail_or_bookmark_a_radio_t" formatted="false">"没有命名设备。请在详情设置自定义名称，或点击右上角收藏设备以关注。"</string>
+    <string name="ui_clear_named_radios" formatted="false">"清空命名设备？"</string>
+    <string name="ui_clear" formatted="false">"清空"</string>
+    <string name="ui_named_radio" formatted="false">"命名设备"</string>
+    <string name="ui_on_the_air_tap_to_open_detail" formatted="false">"正在广播 — 点击打开详情"</string>
+    <string name="ui_not_this_session" formatted="false">"本次会话未发现"</string>
+    <string name="ui_alert" formatted="false">"告警"</string>
+    <string name="ui_edit" formatted="false">"编辑"</string>
+    <string name="ui_privacy_mode_is_on_mac_tails_in_debrief_sit_compare_ai_export_sit" formatted="false">"隐私模式已开启。简报、观测比较、AI 导出和详情分享中的 MAC 后半部分显示为 **:**:**，GPS 坐标被遮蔽。日志、观测导出及 GPX / KML / WiGLE 文件仍保留完整地址及经纬度。"</string>
+    <string name="ui_a_sit_is_a_named_window_of_radios_heard_here_the_selection_below_" formatted="false">"观测是带名称的无线记录窗口。下方选择决定路径、简报及比较中的本次观测：正在进行的观测、所选已保存观测；从未开始观测时使用最近 15 分钟。"</string>
+    <string name="ui_end_sit" formatted="false">"结束观测"</string>
+    <string name="ui_start_sit" formatted="false">"开始观测"</string>
+    <string name="ui_no_sit_running_start_sit_here_path_and_debrief_stay_last_15_minut" formatted="false">"暂无进行中的观测。在此开始观测。此前路径与简报使用最近 15 分钟。"</string>
+    <string name="ui_no_sit_running_start_sit_here_path_and_debrief_use_the_selected_s" formatted="false">"暂无进行中的观测。在此开始观测。路径与简报使用所选观测。"</string>
+    <string name="ui_no_saved_sits" formatted="false">"没有已保存观测。"</string>
+    <string name="ui_path_and_debrief_use_ram_not_a_saved_sit" formatted="false">"路径与简报使用内存记录，并非已保存观测。"</string>
+    <string name="ui_end_sit_to_pick_a_saved_one_for_path_and_debrief" formatted="false">"结束当前观测后，才能为路径与简报选择已保存记录。"</string>
+    <string name="ui_rename" formatted="false">"重命名"</string>
+    <string name="ui_delete_all_sits" formatted="false">"删除所有观测"</string>
+    <string name="ui_path" formatted="false">"路径"</string>
+    <string name="ui_north_up_the_line_is_this_phone_the_black_dot_is_the_start_the_bl" formatted="false">"北向上。线条是本手机路径，黑点是起点，蓝点是最后的位置。MAC 或特征告警使用类别图标。解码出的经纬度使用设备最后发送的位置。数字表示同一位置的多个设备，粗绿线表示停留，路径沿线显示时间。"</string>
+    <string name="ui_tag_detections_with_gps_and_walk_or_open_a_sit_that_recorded_a_pa" formatted="false">"开启 GPS 标记检测后步行，或打开记录过路径的观测。"</string>
+    <string name="ui_tap_a_count_for_the_radios_there_tap_a_single_icon_for_that_one_r" formatted="false">"点击数量查看该处设备；点击单个图标查看该设备；再次点击关闭。点击列表中的条目或下方条目打开设备。"</string>
+    <string name="ui_advertised_track_within_2_km_of_this_path" formatted="false">"= 此路径 2 公里内的广播轨迹"</string>
+    <string name="ui_one_advertised_position_within_2_km_of_this_path" formatted="false">"= 此路径 2 公里内的单个广播位置"</string>
+    <string name="ui_pilot" formatted="false">"= 飞手"</string>
+    <string name="ui_no_mac_or_signature_alerts_with_a_gps_stamp_on_this_path" formatted="false">"此路径没有带 GPS 标记的 MAC 或特征告警。"</string>
+    <string name="ui_1_advertised_fix" formatted="false">"1 个广播定位"</string>
+    <string name="ui_1_alert" formatted="false">"1 条告警"</string>
+    <string name="ui_an_advertised_position_with_no_uas_id_is_in_the_sit_report" formatted="false">"不含 UAS ID 的广播位置已纳入观测报告。"</string>
+    <string name="ui_advertised_positions_with_no_uas_id_are_in_the_sit_report" formatted="false">"不含 UAS ID 的广播位置已纳入观测报告。"</string>
+    <string name="ui_sit_report" formatted="false">"观测报告"</string>
+    <string name="ui_debrief_text" formatted="false">"观测简报（文本）"</string>
+    <string name="ui_debrief_pdf_526" formatted="false">"观测简报（PDF）"</string>
+    <string name="ui_show_unmatched_rotating_ble" formatted="false">"显示未匹配的轮换 BLE"</string>
+    <string name="ui_off_default_debrief_text_pdf_lists_skip_unmatched_rand_ble_counts" formatted="false">"默认关闭：简报文本/PDF 清单跳过未匹配的随机 BLE，但计数仍包含它们。特别关注、已命名特征、书签和载荷定位保留。观测导出包含全部设备。"</string>
+    <string name="ui_paste_ready_addendum_rates_rssi_bands_extra_attention_and_trackin" formatted="false">"可直接粘贴的补充内容：速率、RSSI 区间、特别关注及追踪 ID，不重复简报清单。单设备 AI 导出位于详情页。"</string>
+    <string name="ui_one_row_per_unique_radio_in_this_sit_or_last_15_minutes_csv_json_" formatted="false">"此观测或最近 15 分钟内每个唯一设备一行。CSV / JSON 行包含匹配特征和特别关注家族，并非轮转日志。GPX / KML 包含本手机路径及接收点。Fieldwatch 不上传。隐私模式不遮蔽此文件。"</string>
+    <string name="ui_compare_sits" formatted="false">"比较观测"</string>
+    <string name="ui_save_a_second_sit_to_compare_start_sit_then_end_sit_last_15_minut" formatted="false">"保存第二次观测以比较。开始观测后结束观测。最近 15 分钟可作为本次观测。"</string>
+    <string name="ui_second_sit" formatted="false">"第二次观测"</string>
+    <string name="ui_compare_text" formatted="false">"比较（文本）"</string>
+    <string name="ui_compare_pdf" formatted="false">"比较（PDF）"</string>
+    <string name="ui_same_report_two_formats_presence_only_only_in_this_sit_only_in_th" formatted="false">"相同报告，两种格式。仅比较出现情况：仅本次、仅第二次、两次均有。按类型 + MAC 区分，标记特别关注和命名设备，并非设备位置定位。"</string>
+    <string name="ui_paste_ready_addendum_overlap_exclusive_extra_attention_named_radi" formatted="false">"可直接粘贴的补充内容：重叠、独有的特别关注 / 命名设备及另一次观测能缩小哪些范围，不重复比较清单。观测报告 AI 导出仍仅使用当前窗口。"</string>
+    <string name="ui_catalog" formatted="false">"特征库"</string>
+    <string name="ui_unmatched_radios_in_the_log_that_share_a_unique_id_not_every_unkn" formatted="false">"日志中共享唯一标识的未匹配设备，并非所有未知设备。需你审阅；保存前不会添加。"</string>
+    <string name="ui_log_export" formatted="false">"日志导出"</string>
+    <string name="ui_logging_off" formatted="false">"  ·  日志关闭"</string>
+    <string name="ui_the_rotating_file_is_json_lines_csv_is_the_same_rows_as_a_spreads" formatted="false">"轮转文件采用 JSON 行。CSV 是相同行的表格形式。GPX、KML 和 WiGLE CSV 记录本手机收到设备广播时的位置，并非设备自身定位。需启用 GPS 标记和日志。分享使用 Android 分享面板，Fieldwatch 不上传。"</string>
+    <string name="ui_reset_clear_log" formatted="false">"重置 / 清空日志"</string>
+    <string name="ui_clear_the_log" formatted="false">"清空日志？"</string>
+    <string name="ui_this_deletes_all_rotated_csv_json_files_on_the_phone_it_cannot_be" formatted="false">"删除手机上全部轮转 CSV/JSON 文件，无法撤销。实时扫描将生成新的空日志。"</string>
+    <string name="ui_clear_log" formatted="false">"清空日志"</string>
+    <string name="ui_debrief_and_ai_export_use_this_window_until_you_end_it_the_live_l" formatted="false">"结束前，简报和 AI 导出使用此时间窗口。实时列表不变。"</string>
+    <string name="ui_delete_this_sit" formatted="false">"删除此观测？"</string>
+    <string name="ui_removes_the_saved_sit_from_this_phone_the_log_is_unchanged" formatted="false">"从本手机移除已保存观测。日志不变。"</string>
+    <string name="ui_delete_all_sits_550" formatted="false">"删除所有观测？"</string>
+    <string name="ui_removes_saved_sits_from_this_phone_an_open_sit_is_not_deleted_the" formatted="false">"从本手机移除已保存观测。正在进行的观测不会删除。日志不变。"</string>
+    <string name="ui_delete_all" formatted="false">"全部删除"</string>
+    <string name="ui_this_sit_last_15_minutes_in_memory_about_400_radios_same_as_debri" formatted="false">"本次观测：内存中的最近 15 分钟（约 400 个设备），与简报相同。"</string>
+    <string name="ui_format" formatted="false">"格式"</string>
+    <string name="ui_share" formatted="false">"分享"</string>
+    <string name="ui_save_to_sd_card_storage" formatted="false">"保存到 SD 卡 / 存储…"</string>
+    <string name="ui_last_15_minutes_in_memory_same_window_as_path_two_formats_gps_fol" formatted="false">"内存中的最近 15 分钟，与路径使用相同窗口。两种格式。开启 GPS 标记且移动后可进行 GPS 跟随测试，并非法律结论。"</string>
+    <string name="ui_appearance" formatted="false">"外观"</string>
+    <string name="ui_night_mode" formatted="false">"夜间模式"</string>
+    <string name="ui_off_by_default_red_on_black_field_display_so_chips_text_and_signa" formatted="false">"默认关闭。红字黑底的现场显示使标签、文字和信号标记"</string>
+    <string name="ui_do_not_dump_green_or_blue_into_a_dark_sit_background_stays_dark" formatted="false">"不会在黑暗环境中发出绿色或蓝色。背景保持深色。"</string>
+    <string name="ui_phone_brightness_is_unchanged" formatted="false">"手机亮度不变。"</string>
+    <string name="ui_keep_screen_on" formatted="false">"保持屏幕常亮"</string>
+    <string name="ui_on_by_default_stops_the_display_from_sleeping_while_fieldwatch_is" formatted="false">"默认开启。Fieldwatch 打开时防止屏幕休眠，避免手机息屏后暂停 BLE。离开应用后扫描仍通过通知运行。将手机放入口袋时可关闭。"</string>
+    <string name="ui_privacy_mode" formatted="false">"隐私模式"</string>
+    <string name="ui_hides_the_last_three_octets_of_every_mac_on_live_radar_timeline_d" formatted="false">"在实时、雷达、时间线、详情、寻踪、命名设备和关注卡片中，将每个 MAC 的末三段隐藏为 **:**:**。GPS 最近定位及简报 / AI 导出 / 详情分享中的坐标被遮蔽，观测报告省略街道名称，保留前三段（OUI / 厂商前缀）。默认关闭。开启在线地名与地图时，报告 → 路径仍加载地图。日志、匹配、筛选、寻踪计算、随你移动及保存的特征仍使用真实 MAC 和 GPS。已启用的 TAK / CoT 数据流会暂停，避免向局域网发送完整地址与坐标。需要查看完整地址或坐标时关闭。"</string>
+    <string name="ui_scanning" formatted="false">"扫描"</string>
+    <string name="ui_battery_saver" formatted="false">"省电"</string>
+    <string name="ui_balanced" formatted="false">"均衡"</string>
+    <string name="ui_high_performance" formatted="false">"高性能"</string>
+    <string name="ui_wi_fi_is_a_batch_radio_the_phone_grabs_every_ap_at_once_then_must" formatted="false">"Wi-Fi 批量扫描：一次获取所有接入点，然后必须等待。高性能模式约每 30 秒请求一次，这是满足系统每两分钟四次限制的最快频率。期间 BLE 持续接收。"</string>
+    <string name="ui_wi_fi_waiting_on_os" formatted="false">"Wi-Fi 等待系统"</string>
+    <string name="ui_wi_fi_scanning" formatted="false">"Wi-Fi 扫描中"</string>
+    <string name="ui_wi_fi_next_99s" formatted="false">"Wi-Fi 下次 99 秒"</string>
+    <string name="ui_faster_wi_fi_ap_scans" formatted="false">"加快 Wi-Fi 接入点扫描"</string>
+    <string name="ui_needs_android_11_so_fieldwatch_can_read_whether_the_os_is_still_t" formatted="false">"需要 Android 11 以上以读取系统扫描限流状态。此手机无法确认，开关保持关闭。"</string>
+    <string name="ui_on_fieldwatch_asks_for_a_new_ap_list_about_every_8_seconds_uses_m" formatted="false">"已开启。约每 8 秒请求新接入点列表，会增加耗电及发热。系统拒绝扫描时会退避。"</string>
+    <string name="ui_saved_on_but_not_in_effect_android_wi_fi_scan_throttling_is_still" formatted="false">"已保存开启，但未生效 — Android Wi-Fi 扫描限流仍开启。请在开发者选项中关闭，再返回此处。"</string>
+    <string name="ui_stock_android_allows_about_four_ap_scans_per_two_minutes_faster_s" formatted="false">"原生 Android 约每两分钟允许四次接入点扫描。必须先在开发者选项关闭 Wi-Fi 扫描限流才能加速。Fieldwatch 会检查该系统开关，无法替你更改。"</string>
+    <string name="ui_developer_options_required" formatted="false">"需要开发者选项"</string>
+    <string name="ui_this_phone_is_older_than_android_11_so_fieldwatch_cannot_read_the" formatted="false">"此手机低于 Android 11，无法读取系统 Wi-Fi 扫描限流开关。快速接入点扫描保持关闭。"</string>
+    <string name="ui_android_is_still_throttling_wi_fi_scans_about_four_per_two_minute" formatted="false">"Android 仍在限制 Wi-Fi 扫描（约每两分钟四次）。关闭限流前，Fieldwatch 不会开启快速扫描。\n\n"</string>
+    <string name="ui_enable_developer_options_tap_build_number_seven_times_in_about_ph" formatted="false">"启用开发者选项（在关于手机连续点击版本号七次），然后进入设置 → 开发者选项 → Wi-Fi 扫描限流 → 关闭。返回后重新开启此开关。"</string>
+    <string name="ui_open_developer_options" formatted="false">"打开开发者选项"</string>
+    <string name="ui_not_now" formatted="false">"暂不"</string>
+    <string name="ui_allow_background_usage" formatted="false">"允许后台运行"</string>
+    <string name="ui_mirrors_android_allow_background_usage_tap_to_open_fieldwatch_s_b" formatted="false">"反映 Android 的允许后台运行状态。点击打开 Fieldwatch 的电池页，"</string>
+    <string name="ui_use_that_switch_fieldwatch_updates_when_you_return_off_the_os_can" formatted="false">"使用该开关。返回时会更新。关闭后，离开应用时系统可停止扫描。"</string>
+    <string name="ui_as_soon_as_you_leave_not_keep_screen_on" formatted="false">"此设置与保持屏幕常亮不同。"</string>
+    <string name="ui_unrestricted_battery" formatted="false">"电池无限制"</string>
+    <string name="ui_mirrors_android_unrestricted_not_optimized_some_phones_samsung_am" formatted="false">"反映 Android 的“无限制”（非优化）。部分手机（如三星）不会"</string>
+    <string name="ui_open_onto_that_choice_if_you_only_see_allow_background_usage_tap_" formatted="false">"直接打开该选项。若只看到允许后台运行，请点击该行"</string>
+    <string name="ui_click_through_and_select_unrestricted_fieldwatch_updates_when_you" formatted="false">"进入并选择无限制。返回时 Fieldwatch 会更新。"</string>
+    <string name="ui_the_next_screen_is_fieldwatch_s_battery_page_use_the_allow_backgr" formatted="false">"下一页是 Fieldwatch 的电池设置。请使用允许后台运行开关。"</string>
+    <string name="ui_fieldwatch_will_match_that_setting_when_you_return" formatted="false">"返回时 Fieldwatch 会同步该状态。"</string>
+    <string name="ui_some_phones_samsung_among_them_do_not_open_onto_unrestricted" formatted="false">"部分手机（如三星）不会直接显示无限制 /"</string>
+    <string name="ui_optimized_restricted_if_you_only_see_allow_background_usage" formatted="false">"优化 / 受限。若只看到允许后台运行，"</string>
+    <string name="ui_tap_that_row_the_words_not_the_blue_switch_to_click_through" formatted="false">"请点击该行文字（不是蓝色开关）进入，"</string>
+    <string name="ui_then_select_unrestricted_fieldwatch_will_match_that_when_you_retu" formatted="false">"然后选择无限制。返回时 Fieldwatch 会同步。"</string>
+    <string name="ui_open_android_settings" formatted="false">"打开 Android 设置"</string>
+    <string name="ui_watchlist" formatted="false">"关注列表"</string>
+    <string name="ui_watchlist_alerts" formatted="false">"关注列表告警"</string>
+    <string name="ui_on_by_default_master_switch_for_bookmarked_signatures_and_devices" formatted="false">"默认开启。已收藏特征与设备的告警总开关。关闭后无提示音、振动、闪烁、跳转或通知卡片。仍可收藏，但设备出现时不会通知。"</string>
+    <string name="ui_custom_names_for_one_mac_alert_is_optional_filters_named_radios_o" formatted="false">"为单个 MAC 设置自定义名称。告警可选。筛选 → 仅命名设备会在实时界面显示它们。特征关注保留在特征库页。"</string>
+    <string name="ui_beep_on_watched_signature" formatted="false">"关注特征提示音"</string>
+    <string name="ui_the_double_pip_on_media_volume_when_a_bookmarked_signature_or_dev" formatted="false">"已收藏特征或设备首次出现或消失后重新出现时，以媒体音量播放双声提示。持续存在的设备不会重复提示。可独立启用提示音、语音或两者。若听不到，请提高媒体音量并测试告警。"</string>
+    <string name="ui_voice_on_watched_signature" formatted="false">"关注特征语音"</string>
+    <string name="ui_on_by_default_speaks_on_the_same_media_volume_as_the_pip_independ" formatted="false">"默认开启。与提示音使用相同媒体音量。独立于提示音：两者开启时语音在提示音后播放；关闭提示音则仅语音。与寻踪无关。已有语音播放时跳过新命中。没有语音引擎时，若开启提示音仍会响。"</string>
+    <string name="ui_what_to_say" formatted="false">"播报内容"</string>
+    <string name="ui_for_signature_watches_class_is_the_live_glyph_bucket_finder_tags_" formatted="false">"特征关注：类别是实时图标类别（寻物标签、音频等），特征是特征库条目（Apple AirTags、Axon 等）。默认“类别 + 特征”播报两者。开启告警的命名设备始终播报自定义名称，即使没有类别。测试告警会播放当前选择。"</string>
+    <string name="ui_test_alert" formatted="false">"测试告警"</string>
+    <string name="ui_jump_to_new_watched_detection" formatted="false">"跳转到新的关注检测"</string>
+    <string name="ui_when_a_new_watched_signature_or_device_appears_live_scrolls_to_th" formatted="false">"新的关注特征或设备出现时，实时列表滚动到该行以显示闪烁。可与提示音、语音或两者配合。信号排序中弱信号位于底部。不希望列表移动时关闭。"</string>
+    <string name="ui_system_notification" formatted="false">"系统通知"</string>
+    <string name="ui_optional_posts_a_silent_shade_card_when_a_watched_radio_appears_o" formatted="false">"可选。关注设备出现时发送静默通知卡片。默认关闭 — 提示音和闪烁通常足够，省略通知可减轻扫描负担。"</string>
+    <string name="ui_location" formatted="false">"位置"</string>
+    <string name="ui_tag_detections_with_gps" formatted="false">"使用 GPS 标记检测"</string>
+    <string name="ui_on_by_default_requests_live_gps_network_updates_and_stamps_each_h" formatted="false">"默认开启。请求实时 GPS/网络位置并为每次接收标记位置（实时详情、随你移动、"</string>
+    <string name="ui_debrief_and_lat_lon_on_new_log_rows_last_known_only_is_ignored_if" formatted="false">"简报及新日志的经纬度）。超过 30 秒的已知位置会被忽略。"</string>
+    <string name="ui_that_is_your_gps_at_hear_time_not_an_independent_fix_on_the_other" formatted="false">"这是接收时你的 GPS 位置，并非对另一设备的独立定位。"</string>
+    <string name="ui_use_high_accuracy_location_or_the_path_stays_0_turn_off_if_you_do" formatted="false">"请使用高精度位置，否则路径保持为 0。若不希望日志包含操作员坐标可关闭。"</string>
+    <string name="ui_heard_here_tak_pins_also_need_this_advertised_payload_coordinates" formatted="false">"接收地 TAK 标记也需要此设置；广播载荷坐标（Remote ID）则不需要。"</string>
+    <string name="ui_online_place_names_and_maps" formatted="false">"在线地名与地图"</string>
+    <string name="ui_on_by_default_when_the_phone_has_internet_debrief_ai_export_rever" formatted="false">"默认开启。联网时，简报 / AI 导出将 GPS 标记反向解析为"</string>
+    <string name="ui_to_street_city_and_reports_path_loads_openstreetmap_tiles_under_t" formatted="false">"街道/城市，报告 → 路径会在线条下加载 OpenStreetMap 瓦片。"</string>
+    <string name="ui_no_fieldwatch_cloud_no_api_key_offline_or_no_geocoder_debrief_use" formatted="false">"无 Fieldwatch 云服务，无需 API 密钥。离线或无地理编码器时，简报只用坐标，路径保留北向上轨迹，不显示错误对话框。"</string>
+    <string name="ui_turn_off_to_keep_streets_and_map_tiles_out_of_reports_and_path" formatted="false">"关闭可从报告和路径中移除街道与地图瓦片。"</string>
+    <string name="ui_debrief_sit_export_log_export_and_reset_clear_log_are_on_the_repo" formatted="false">"简报、观测导出、日志导出和重置 / 清空日志位于报告页。"</string>
+    <string name="ui_tak_cot_feed" formatted="false">"TAK / CoT 数据流"</string>
+    <string name="ui_off_by_default_sends_cursor_on_target_udp_markers_to_atak_wintak_" formatted="false">"默认关闭。向 ATAK、WinTAK 或 iTAK 发送 Cursor-on-Target UDP 标记。"</string>
+    <string name="ui_custom_is_a_unicast_ipv4_or_hostname_udp_only_a_tak_server_s_tcp_" formatted="false">"自定义目标为单播 IPv4 或主机名，仅支持 UDP — TAK 服务器 TCP 8087 不适用于此数据流。"</string>
+    <string name="ui_heard_here_pins_sit_at_this_phone_s_gps_at_the_loudest_hear_close" formatted="false">"接收地标记位于最强接收（最近接近）时的本手机 GPS，并标注 (here)。"</string>
+    <string name="ui_walking_away_does_not_drag_the_pin_a_louder_hear_moves_it_keep_al" formatted="false">"离开不会拖动标记；更强接收会移动它。约每 10 秒在相同坐标刷新以防 ATAK 移除。"</string>
+    <string name="ui_advertised_lat_lon_stock_remote_id_sit_on_the_aircraft_the_same_r" formatted="false">"广播经纬度（内置 Remote ID）标记飞机位置；同一 Remote ID"</string>
+    <string name="ui_keeps_one_marker_that_moves_uas_id_not_the_rotating_ble_mac" formatted="false">"保持一个移动标记（使用 UAS ID，而非轮换 BLE MAC）。"</string>
+    <string name="ui_a_decoded_pilot_location_is_a_second_pin_gone_radios_are_dropped_" formatted="false">"解码出的飞手位置生成第二个标记。消失设备会在 ATAK 移除，而非停留 120 秒。"</string>
+    <string name="ui_tap_a_marker_in_atak_for_remarks_name_mac_rssi_signatures" formatted="false">"点击 ATAK 标记查看备注（名称、MAC、RSSI、特征）。"</string>
+    <string name="ui_not_direction_finding_not_a_remote_id_plugin_privacy_mode_pauses_" formatted="false">"这不是测向，也不是 Remote ID 插件。隐私模式会暂停数据流。"</string>
+    <string name="ui_privacy_mode_is_on_the_feed_is_paused_so_full_macs_and_coordinate" formatted="false">"隐私模式已开启 — 数据流暂停，不发送完整 MAC 与坐标。关闭隐私模式以发布。"</string>
+    <string name="ui_logging" formatted="false">"日志"</string>
+    <string name="ui_write_detections_to_disk" formatted="false">"将检测记录写入磁盘"</string>
+    <string name="ui_logging_is_on_new_detections_are_appended_to_the_rotating_file" formatted="false">"日志已开启。新检测结果追加到轮转文件。"</string>
+    <string name="ui_logging_is_off_scanning_still_runs_nothing_new_is_written_until_y" formatted="false">"日志已关闭。扫描继续运行，重新开启前不写入新记录。"</string>
+    <string name="ui_the_rotating_file_is_json_lines_one_hear_per_line_reports_log_for" formatted="false">"轮转文件为 JSON 行（每次接收一行）。报告 → 日志 → 格式可在分享或保存时写入 CSV、JSON 行、GPX、KML 或 WiGLE。"</string>
+    <string name="ui_share_save_and_reset_clear_log_are_on_the_reports_tab" formatted="false">"分享、保存和重置 / 清空日志位于报告页。"</string>
+    <string name="ui_export_the_catalog_stock_plus_any_you_added_or_edited_to_share_wi" formatted="false">"导出特征库（内置及自建/修改条目）可分享给其他 Fieldwatch 用户或备份。导入会添加新条目与额外规则，不会删除。同 ID 或相同规则会跳过，可重复导入。GitHub 更新替换仓库 v2 包的内置条目（含特别关注）；保留书签、设置及自建特征。需要联网。离线请从文件导入。下方恢复默认值仍会清除自定义内容。"</string>
+    <string name="ui_export_signatures" formatted="false">"导出特征库"</string>
+    <string name="ui_save_signatures_to_sd_card_storage" formatted="false">"保存特征库到 SD 卡 / 存储…"</string>
+    <string name="ui_import_signatures" formatted="false">"导入特征库…"</string>
+    <string name="ui_update_stock_catalog_from_github" formatted="false">"从 GitHub 更新内置特征库"</string>
+    <string name="ui_restore_default_signatures_presets" formatted="false">"恢复默认特征与预设"</string>
+    <string name="ui_settings_backup" formatted="false">"设置备份"</string>
+    <string name="ui_settings_switches_the_current_filter_filter_presets_named_radios_" formatted="false">"设置开关、当前筛选、筛选预设、命名设备及特征关注。"</string>
+    <string name="ui_not_the_catalog_that_is_export_signatures_not_logs_or_gps" formatted="false">"不含特征库（需单独导出）、日志或 GPS。"</string>
+    <string name="ui_import_replaces_those_on_this_phone_the_catalog_stays" formatted="false">"导入将替换本手机的这些内容，但保留特征库。"</string>
+    <string name="ui_use_this_after_a_factory_reset_or_on_a_new_phone" formatted="false">"可用于恢复出厂设置或新手机。"</string>
+    <string name="ui_export_settings" formatted="false">"导出设置"</string>
+    <string name="ui_save_settings_to_sd_card_storage" formatted="false">"保存设置到 SD 卡 / 存储…"</string>
+    <string name="ui_import_settings" formatted="false">"导入设置…"</string>
+    <string name="ui_show_live_tour" formatted="false">"显示实时引导"</string>
+    <string name="ui_chrome_overlay_on_live_tune_is_display_radar_list_by_class_pause_" formatted="false">"实时界面浮层引导：调节可选择显示方式（雷达、列表、按类别），以及暂停、筛选、特征库、报告、设置。首次同意许可证后显示，可通过此按钮再次打开。"</string>
+    <string name="ui_passive_wi_fi_ble_only" formatted="false">"仅被动 Wi-Fi + BLE。"</string>
+    <string name="ui_stock_android_cannot_promiscuously_capture_wi_fi_stations_access_" formatted="false">"原生 Android 无法混杂捕获 Wi-Fi 客户端；无线接口仅提供接入点与 BLE 广播设备。"</string>
+    <string name="ui_this_phone_s_ipv4_none" formatted="false">"本手机 IPv4  ·  无"</string>
+    <string name="ui_restore_defaults" formatted="false">"恢复默认值？"</string>
+    <string name="ui_rewrites_the_catalog_stock_rows_class_colors_decode_fields_stock_" formatted="false">"重写特征库（内置条目、类别颜色、解码字段）、内置书签、"</string>
+    <string name="ui_stock_filter_chips_and_default_settings_switches_custom_signature" formatted="false">"内置筛选标签及默认设置开关。会清除已保存的自定义特征和标签。"</string>
+    <string name="ui_saved_are_wiped_export_signatures_and_export_settings_first_if_yo" formatted="false">"需要备份时，请先导出特征库和设置。"</string>
+    <string name="ui_this_cannot_be_undone" formatted="false">"此操作无法撤销。"</string>
+    <string name="ui_restore" formatted="false">"恢复"</string>
+    <string name="ui_destination" formatted="false">"目标"</string>
+    <string name="ui_this_phone" formatted="false">"本手机"</string>
+    <string name="ui_lan_multicast" formatted="false">"局域网组播"</string>
+    <string name="ui_custom" formatted="false">"自定义"</string>
+    <string name="ui_custom_type_a_unicast_ipv4_or_hostname_udp_only_a_tak_server_s_tc" formatted="false">"自定义：填写单播 IPv4 或主机名。仅支持 UDP。TAK 服务器 TCP 8087 不适用于此数据流。"</string>
+    <string name="ui_host" formatted="false">"主机"</string>
+    <string name="ui_port" formatted="false">"端口"</string>
+    <string name="ui_what_to_send" formatted="false">"发送内容"</string>
+    <string name="ui_payload_location" formatted="false">"载荷位置"</string>
+    <string name="ui_all_signatures" formatted="false">"所有特征"</string>
+    <string name="ui_independent_chips_extra_attention_on_body_cam_glasses_recording_w" formatted="false">"各标签相互独立。特别关注（开启）：随身摄像头、眼镜、录制穿戴设备、渗透测试及公共安全接入点。"</string>
+    <string name="ui_payload_location_on_advertised_lat_lon_from_a_decode_map_required" formatted="false">"载荷位置（开启）：解码映射中的广播经纬度；内置 Remote ID 无特别关注标记，因此需要此项。"</string>
+    <string name="ui_watchlist_off_bookmarked_signatures_and_named_radios_with_alert_o" formatted="false">"关注列表（关闭）：已收藏特征及已开启告警的命名设备。"</string>
+    <string name="ui_all_signatures_off_every_labeled_radio_noisy_in_a_plaza_unmatched" formatted="false">"所有特征（关闭）：全部已标记设备，广场中会较嘈杂。未匹配设备从不发送。"</string>
+    <string name="ui_a_pin_still_needs_coordinates_advertised_payload_or_gps_tagging_w" formatted="false">"标记仍需坐标：广播载荷，或具有实时定位的 GPS 标记。"</string>
+    <string name="ui_heard_here_holds_the_loudest_hear_not_the_last_and_callsigns_end_" formatted="false">"接收地保留最强接收位置，并非最后位置，呼号以 (here) 结尾。"</string>
+    <string name="ui_remote_id_keeps_one_aircraft_marker_uas_id_plus_a_pilot_pin_when_" formatted="false">"Remote ID 保持一个飞机标记（UAS ID），并在解码出飞手位置时增加飞手标记。"</string>
+    <string name="ui_feed_status_paused_privacy_mode" formatted="false">"数据流状态  ·  已暂停（隐私模式）"</string>
+    <string name="ui_feed_status_no_send_yet_this_session" formatted="false">"数据流状态  ·  本次会话尚未发送"</string>
+    <string name="ui_1_gone" formatted="false">"1 个已消失"</string>
+    <string name="language" formatted="false">"语言"</string>
+    <string name="language_system" formatted="false">"跟随系统"</string>
+    <string name="language_english" formatted="false">"English"</string>
+    <string name="language_chinese" formatted="false">"简体中文"</string>
+    <string name="ui_strongest_avg_values" formatted="true">"最强信号 · %1$s 秒平均"</string>
+    <string name="ui_hold_values" formatted="true">"保留 %1$s 秒"</string>
+    <string name="ui_hold_values_after_last_packet" formatted="true">"最后数据包后保留 %1$s 秒"</string>
+    <string name="ui_fieldwatch_sit_compare_value" formatted="true">"Fieldwatch 观测比较 — %1$s"</string>
+    <string name="ui_fieldwatch_sit_compare_ai_export_value_vs_value" formatted="true">"Fieldwatch 观测比较 AI 导出 — %1$s 对比 %2$s"</string>
+    <string name="ui_already_on_catalog_value_nothing_to_update" formatted="true">"已使用特征库 %1$s，无需更新。"</string>
+    <string name="ui_updated_value" formatted="true">"更新 %1$s"</string>
+    <string name="ui_added_value" formatted="true">"添加 %1$s"</string>
+    <string name="ui_stock_catalog_is_now_value_value" formatted="true">"内置特征库已更新至 %1$s。%2$s"</string>
+    <string name="ui_privacy_mode_mac_tails_are_gps_coordinates_are_masked_logs_on_the" formatted="true">"隐私模式：MAC 后半部分显示为 **:**:**，GPS 坐标被遮蔽。手机日志不变。\n\n%1$s"</string>
+    <string name="ui_fieldwatch_ai_export_sit_value" formatted="true">"Fieldwatch AI 导出 — 观测 %1$s"</string>
+    <string name="ui_fieldwatch_ai_export_value" formatted="true">"Fieldwatch AI 导出 — %1$s"</string>
+    <string name="ui_fieldwatch_device_detail_value" formatted="true">"Fieldwatch 设备详情 — %1$s"</string>
+    <string name="ui_writing_value_value_radios" formatted="true">"正在写入 %1$s · %2$s 个设备"</string>
+    <string name="ui_writing_value_value_pins" formatted="true">"正在写入 %1$s · %2$s 个标记"</string>
+    <string name="ui_writing_value_value_of_value" formatted="true">"正在写入 %1$s · %2$s / %3$s"</string>
+    <string name="ui_reading_log_value_kb_of_value_kb" formatted="true">"正在读取日志 · %1$s / %2$s KB"</string>
+    <string name="ui_no_gps_tagged_value_settings_tag_detections_with_gps_logging_on_t" formatted="true">"没有带 GPS 标记的 %1$s。请在设置中启用 GPS 标记检测及日志，然后开始观测。"</string>
+    <string name="ui_writing_value_kb_of_value_kb" formatted="true">"正在写入 %1$s / %2$s KB"</string>
+    <string name="ui_value_alerts_here" formatted="true">"此处 %1$s 条告警"</string>
+    <string name="ui_nand_value_more" formatted="true">"\n另有 %1$s 项"</string>
+    <string name="ui_value_randomized_addresses" formatted="true">"%1$s 个随机地址"</string>
+    <string name="ui_value_house_like_names" formatted="true">"%1$s 个普通家庭名称"</string>
+    <string name="ui_field_value" formatted="true">"字段 %1$s"</string>
+    <string name="ui_saved_as_value" formatted="true">"已保存为 %1$s"</string>
+    <string name="ui_value_no_ieee_match_randomized_addresses_usually_have_none" formatted="true">"%1$s — 无 IEEE 匹配；随机地址通常没有匹配"</string>
+    <string name="ui_at_value_dbm" formatted="true">" 信号 %1$s dBm"</string>
+    <string name="ui_value_dbm_how_loud_it_says_it_transmits_not_a_distance" formatted="true">"%1$s dBm — 设备声明的发射强度，并非距离"</string>
+    <string name="ui_channel_value" formatted="true">"信道 %1$s"</string>
+    <string name="ui_value_wide" formatted="true">"  ·  带宽 %1$s"</string>
+    <string name="ui_value_nthe_device_publishes_this_gap_appearance_code_to_describe_" formatted="true">"%1$s\n设备发布此 GAP Appearance 代码来描述自身类型。"</string>
+    <string name="ui_value_mbps_required_basic_rate" formatted="true">"%1$s Mbps（* = 必需的基本速率）"</string>
+    <string name="ui_value_nthis_id_is_assigned_by_the_bluetooth_sig_and_is_carried_in" formatted="true">"%1$s\n此 ID 由 Bluetooth SIG 分配，包含于制造商专用数据。"</string>
+    <string name="ui_raw_payload_value_bytes" formatted="true">"原始载荷（%1$s 字节）"</string>
+    <string name="ui_vendor_oui_valuevalue" formatted="true">"厂商 OUI %1$s%2$s"</string>
+    <string name="ui_ieee_board_chip_vendor_value_value_this_is_who_owns_the_mac_prefi" formatted="true">"IEEE 主板/芯片厂商：%1$s（%2$s）。这是 MAC 前缀所有者，不一定是产品品牌。"</string>
+    <string name="ui_bluetooth_company_in_the_ad_value_0x_04x" formatted="true">"广播中的蓝牙公司：%1$s（0x%2$04X）。"</string>
+    <string name="ui_service_data_valuevaluevalue" formatted="true">"服务数据 %1$s%2$s%3$s"</string>
+    <string name="ui_gps_path_so_far_value_m_keep_moving_50_m" formatted="true">"当前 GPS 路径 %1$s 米。继续移动（约 50 米）。"</string>
+    <string name="ui_gps_path_value_m_signatures_only_class_show_only" formatted="true">"GPS 路径 %1$s 米。仅特征、按类别仅显示、"</string>
+    <string name="ui_gps_path_value_m_loud_ble_heard_along_that" formatted="true">"GPS 路径 %1$s 米。沿该路径接收的强信号 BLE"</string>
+    <string name="ui_value_already_seen_are_hidden" formatted="true">"已隐藏 %1$s 个已见设备。"</string>
+    <string name="ui_minimum_rssi_value_dbm" formatted="true">"最低 RSSI  %1$s dBm"</string>
+    <string name="ui_remove_stock_chip_value_from_this_list_catalog_updates_will_not_p" formatted="true">"从列表移除内置预设“%1$s”？特征库更新不会恢复它；设置 → 恢复默认特征与预设可恢复全部内置预设。应用其他预设或重置筛选前，实时筛选保持不变。"</string>
+    <string name="ui_delete_preset_value_this_cannot_be_undone_the_filter_on_live_does" formatted="true">"删除预设“%1$s”？无法撤销。应用其他预设或重置筛选前，实时筛选保持不变。"</string>
+    <string name="ui_signatures_value" formatted="true">"特征库（%1$s）"</string>
+    <string name="ui_value_value_rules_value_live_value" formatted="true">"%1$s · %2$s 条规则 · %3$s 个实时设备 · %4$s"</string>
+    <string name="ui_value_fields" formatted="true">"%1$s 个字段"</string>
+    <string name="ui_value_is_a_built_in_signature_deleting_it_removes_matching_its_bo" formatted="true">"“%1$s”是内置特征。删除会移除匹配、书签及筛选标签。设置中的恢复默认特征会恢复内置集合。"</string>
+    <string name="ui_value_will_be_removed_matching_its_bookmark_and_filter_chips_go_w" formatted="true">"将移除“%1$s”，连同其匹配、书签及筛选标签。无法撤销。"</string>
+    <string name="ui_loudest_this_hunt_value_dbm" formatted="true">"本次最强信号  %1$s dBm"</string>
+    <string name="ui_last_heard_values_ago" formatted="true">"最近接收于 %1$s 秒前"</string>
+    <string name="ui_last_heard_valuem_ago" formatted="true">"最近接收于 %1$s 分钟前"</string>
+    <string name="ui_new_only_value_hidden" formatted="true">"仅新设备 · 已隐藏 %1$s 个"</string>
+    <string name="ui_follow_path_value_m_start_over_clears_the_path" formatted="true">"跟随 · 路径 %1$s 米 · 重新开始可清除路径"</string>
+    <string name="ui_value_cap" formatted="true">" · 上限 %1$s"</string>
+    <string name="ui_sit_value_value_value_radiosvalue" formatted="true">"观测 · %1$s · %2$s · %3$s 个设备%4$s"</string>
+    <string name="ui_gps_path_value_m_too_short_keep_moving" formatted="true">"GPS 路径 %1$s 米 — 太短。继续移动。"</string>
+    <string name="ui_value_already_seen_are_hidden_a_new_radio_stays_while_we_hear_it_" formatted="true">"已隐藏 %1$s 个已见设备。新设备在接收期间保留，最后数据包后至少保留“短暂保留”设置的时长。"</string>
+    <string name="ui_value_radios" formatted="true">"%1$s 个设备"</string>
+    <string name="ui_value_unmatched" formatted="true">" · %1$s 个未匹配"</string>
+    <string name="ui_value_in_more_than_one_class" formatted="true">" · %1$s 个属于多个类别"</string>
+    <string name="ui_value_empty_hidden" formatted="true">" · 隐藏 %1$s 个空类别"</string>
+    <string name="ui_value_signatures" formatted="true">"%1$s 个特征"</string>
+    <string name="ui_value_double_tap_reset" formatted="true">" · ×%1$s · 双击重置"</string>
+    <string name="ui_value_on_air_value_in_filter_dim_gone_tap_a_blipvalue" formatted="true">"%1$s 个正在广播 · 筛选内 %2$s 个 · 暗色 = 已消失 · 点击信号点%3$s"</string>
+    <string name="ui_new_values" formatted="true">"新增 %1$s 秒"</string>
+    <string name="ui_new_valuem" formatted="true">"新增 %1$s 分钟"</string>
+    <string name="ui_avg_value" formatted="true">"平均 %1$s"</string>
+    <string name="ui_chvalue" formatted="true">"信道 %1$s"</string>
+    <string name="ui_first_value_last_value" formatted="true">"首次 %1$s  ·  最近 %2$s"</string>
+    <string name="ui_valuem_values" formatted="true">"%1$s 分 %2$s 秒"</string>
+    <string name="ui_valueh_valuem" formatted="true">"%1$s 时 %2$s 分"</string>
+    <string name="ui_named_radios_value" formatted="true">"命名设备（%1$s）"</string>
+    <string name="ui_clear_all_value_named_radios" formatted="true">"清空全部 %1$s 个命名设备"</string>
+    <string name="ui_remove_value_named_radios_signature_watches_stay" formatted="true">"移除 %1$s 个命名设备。保留特征关注。"</string>
+    <string name="ui_this_sit_value_value_value_radios" formatted="true">"本次观测：%1$s · %2$s · %3$s 个设备"</string>
+    <string name="ui_extra_attention_value" formatted="true">" · 特别关注 %1$s"</string>
+    <string name="ui_value_value_value_radiosvalue" formatted="true">"%1$s · %2$s · %3$s 个设备%4$s"</string>
+    <string name="ui_value_value_m_path_value_m_span" formatted="true">"%1$s · 路径 %2$s 米 · 跨度 %3$s 米"</string>
+    <string name="ui_value_alert" formatted="true">" · %1$s 条告警"</string>
+    <string name="ui_value_advertised_fixes" formatted="true">"%1$s 个广播定位"</string>
+    <string name="ui_value_alerts" formatted="true">"%1$s 条告警"</string>
+    <string name="ui_value_value_value_radios" formatted="true">"%1$s · %2$s · %3$s 个设备"</string>
+    <string name="ui_value_lines_this_session_value_kb_on_disk" formatted="true">"本次会话 %1$s 行  ·  磁盘 %2$s KB"</string>
+    <string name="ui_this_sit_value_named_window_up_to_value_same_as_debrief" formatted="true">"本次观测：%1$s — 命名窗口（最多 %2$s 个），与简报相同。"</string>
+    <string name="ui_this_sit_value_same_window_as_path_gps_following_test_when_taggin" formatted="true">"本次观测（%1$s）— 与路径相同的窗口。开启 GPS 标记且移动后可进行跟随测试，并非法律结论。"</string>
+    <string name="ui_sit_value_same_window_as_path_gps_following_test_when_tagging_is_" formatted="true">"观测：%1$s — 与路径相同的窗口。开启 GPS 标记且移动后可进行跟随测试，并非法律结论。"</string>
+    <string name="ui_scan_intensity_value" formatted="true">"扫描强度  ·  %1$s"</string>
+    <string name="ui_this_phone_value_value_is_atak_civ_on_this_handset" formatted="true">"本手机（%1$s:%2$s）用于本机 ATAK CIV。"</string>
+    <string name="ui_lan_multicast_is_value_value" formatted="true">"局域网组播为 %1$s:%2$s。"</string>
+    <string name="ui_rotate_at_value_kb" formatted="true">"达到 %1$s KB 时轮转"</string>
+    <string name="ui_stale_after_values" formatted="true">"%1$s 秒后过期"</string>
+    <string name="ui_value_lines_this_session_value_kb_on_disk_value" formatted="true">"本次会话 %1$s 行  ·  磁盘 %2$s KB。"</string>
+    <string name="ui_fieldwatch_value_catalog_value" formatted="true">"Fieldwatch %1$s  ·  特征库 %2$s"</string>
+    <string name="ui_this_phone_s_ipv4_value" formatted="true">"本手机 IPv4  ·  %1$s"</string>
+    <string name="ui_this_phone_value_value_atak_civ_on_this_handset" formatted="true">"本手机：%1$s:%2$s（本机 ATAK CIV）。"</string>
+    <string name="ui_lan_multicast_value_value_other_ataks_on_this_wi_fi" formatted="true">"局域网组播：%1$s:%2$s（此 Wi-Fi 中的其他 ATAK）。"</string>
+    <string name="ui_if_this_phone_does_not_plot_use_custom_with_this_phone_s_wi_fi_ip" formatted="true">"本手机选项无法显示时，选择自定义，填写页脚中的本手机 Wi-Fi IPv4 及端口 %1$s。"</string>
+    <string name="ui_udp_atak_civ_value_sa_multicast_value_not_tcp_8087" formatted="true">"UDP。ATAK CIV %1$s，SA 组播 %2$s，不是 TCP 8087。"</string>
+    <string name="ui_feed_status_error_value" formatted="true">"数据流状态  ·  错误：%1$s"</string>
+    <string name="ui_on_the_feed_value" formatted="true">"数据流内 %1$s"</string>
+    <string name="ui_sent_value" formatted="true">"已发送 %1$s"</string>
+    <string name="ui_value_gone" formatted="true">"%1$s 个已消失"</string>
+    <string name="ui_feed_status_value" formatted="true">"数据流状态  ·  %1$s"</string>
+    <string name="label_viewmode_radar" formatted="false">"经典雷达"</string>
+    <string name="label_viewmode_list" formatted="false">"信号列表"</string>
+    <string name="label_viewmode_timeline" formatted="false">"时间线"</string>
+    <string name="label_viewmode_hybrid" formatted="false">"混合 + 趋势线"</string>
+    <string name="label_viewmode_by_class" formatted="false">"按类别"</string>
+    <string name="label_signatureclass_finder" formatted="false">"寻物标签"</string>
+    <string name="label_signatureclass_beacon" formatted="false">"零售信标"</string>
+    <string name="label_signatureclass_signage" formatted="false">"标牌"</string>
+    <string name="label_signatureclass_wearable" formatted="false">"穿戴设备"</string>
+    <string name="label_signatureclass_surveillance" formatted="false">"监控"</string>
+    <string name="label_signatureclass_drone" formatted="false">"无人机"</string>
+    <string name="label_signatureclass_hacking" formatted="false">"渗透测试"</string>
+    <string name="label_signatureclass_bodyworn" formatted="false">"随身设备"</string>
+    <string name="label_signatureclass_law_enforcement" formatted="false">"公共安全"</string>
+    <string name="label_signatureclass_vehicle" formatted="false">"车辆"</string>
+    <string name="label_signatureclass_glasses" formatted="false">"眼镜"</string>
+    <string name="label_signatureclass_audio" formatted="false">"音频"</string>
+    <string name="label_signatureclass_camera" formatted="false">"摄像头"</string>
+    <string name="label_signatureclass_thermostat" formatted="false">"温控器"</string>
+    <string name="label_signatureclass_lock" formatted="false">"门禁"</string>
+    <string name="label_signatureclass_health" formatted="false">"健康"</string>
+    <string name="label_signatureclass_home" formatted="false">"家庭物联网"</string>
+    <string name="label_signatureclass_isp" formatted="false">"运营商 / 路由器"</string>
+    <string name="label_signatureclass_mesh" formatted="false">"Mesh 网络"</string>
+    <string name="label_signatureclass_phone" formatted="false">"手机 / 电脑"</string>
+    <string name="label_signatureclass_other" formatted="false">"其他"</string>
+    <string name="label_alertvoicewhat_class" formatted="false">"类别"</string>
+    <string name="label_alertvoicewhat_signature" formatted="false">"特征"</string>
+    <string name="label_alertvoicewhat_both" formatted="false">"类别 + 特征"</string>
+    <string name="label_signaturelistsort_name" formatted="false">"名称 A–Z"</string>
+    <string name="label_signaturelistsort_class" formatted="false">"类别 A–Z"</string>
+    <string name="label_huntcue_very_close" formatted="false">"非常近"</string>
+    <string name="label_huntcue_closer" formatted="false">"更近"</string>
+    <string name="label_huntcue_further" formatted="false">"更远"</string>
+    <string name="label_huntcue_same" formatted="false">"基本相同"</string>
+    <string name="label_huntcue_waiting" formatted="false">"监听中…"</string>
+    <string name="label_huntcue_quiet" formatted="false">"无广播"</string>
+    <string name="label_huntcue_gone" formatted="false">"已消失"</string>
+    <string name="hint_hunt_very_close" formatted="false">"此处信号极强。查看周围，通常在手中、口袋或同一个包内。这不是米数。"</string>
+    <string name="hint_hunt_closer" formatted="false">"比几秒前更强。继续朝该方向走。"</string>
+    <string name="hint_hunt_further" formatted="false">"比几秒前更弱。转向或后退。"</string>
+    <string name="hint_hunt_same" formatted="false">"尚无明显变化。放慢速度，保持手机稳定。"</string>
+    <string name="hint_hunt_waiting" formatted="false">"需要几秒数据包才能比较。"</string>
+    <string name="hint_hunt_quiet" formatted="false">"几秒内没有数据包。设备可能静默或位于墙后。"</string>
+    <string name="hint_hunt_gone" formatted="false">"已离开实时集合。随机地址 BLE 常在寻踪中消失。"</string>
+    <string name="label_equals" formatted="false">"等于"</string>
+    <string name="label_mask" formatted="false">"位掩码"</string>
+    <string name="label_length" formatted="false">"长度"</string>
+    <string name="label_little" formatted="false">"小端"</string>
+    <string name="label_big" formatted="false">"大端"</string>
+    <string name="label_signatures" formatted="false">"特征"</string>
+    <string name="label_unlisted" formatted="false">"未列出"</string>
+    <string name="observer_notes_hint" formatted="false">"绑定此 MAC，显示于简报、比较、路径和 AI 导出，不会开启告警。"</string>
+    <string name="first_run_disclaimer" formatted="false">"这是一个业余项目，按 MIT 许可证原样提供，使用风险由你承担。\n\n检测、模式匹配、“随你移动”/“可能跟随”、简报文本及 AI 导出均为假设，不确认身份，不构成法律结论，也不是完整的无线电捕获。关闭、休眠、地址随机化、仅蜂窝通信或被系统隐藏的设备不会出现。\n\n你对本应用的使用方式及遵守当地法律负全部责任。在法律允许的最大范围内，Off Grid Pete LLC 对因使用本应用产生的间接、附带、特殊、后果性或惩罚性损害不承担责任。"</string>
+    <string name="disclaimer_accept" formatted="false">"勾选并继续即表示你接受上述条款及 MIT 许可证。"</string>
+    <string name="notification_starting" formatted="false">"正在启动无线扫描…"</string>
+    <string name="notification_scanning" formatted="false">"Fieldwatch 扫描中"</string>
+    <string name="notification_scan_counts" formatted="true">"%1$d 个 Wi-Fi · %2$d 个 BLE · %3$d 个特征"</string>
+    <string name="notification_stop" formatted="false">"停止"</string>
+    <string name="notification_scan_channel" formatted="false">"扫描"</string>
+    <string name="notification_scan_description" formatted="false">"被动 Wi-Fi 与蓝牙扫描状态"</string>
+    <string name="notification_watch_title" formatted="false">"Fieldwatch 关注列表"</string>
+    <string name="notification_watch_appeared" formatted="true">"%1$s 已出现\n%2$s  %3$s\n%4$d dBm  %5$s"</string>
+    <string name="notification_watch_channel" formatted="false">"关注列表"</string>
+    <string name="notification_watch_description" formatted="false">"关注列表中的特征与设备出现通知，提示音单独播放。"</string>
+    <string name="scan_fast_blocked" formatted="false">"快速 Wi-Fi 扫描需要开发者选项"</string>
+    <string name="explain_bluetooth_le_advertiser" formatted="false">"蓝牙低功耗广播设备"</string>
+    <string name="explain_it_is_on_the_air_but_it_did_not_advertise_a_product_class" formatted="false">"设备正在广播，但未声明产品类别"</string>
+    <string name="explain_no_appearance_class_of_device_or_well_known_service_that_names_a" formatted="false">"（没有指明类型的 Appearance、设备类别或常见服务）。"</string>
+    <string name="explain_most_likely" formatted="false">"最可能是"</string>
+    <string name="explain_could_be" formatted="false">"可能是"</string>
+    <string name="explain_this_is_what_the_device_is_advertising_not_a_visual_id" formatted="false">" 这是设备广播的信息，并非目视身份确认。"</string>
+    <string name="explain_limited_discoverable_briefly_looking_for_a_nearby_connection" formatted="false">"有限可发现：短暂寻找附近连接。"</string>
+    <string name="explain_discoverable_other_ble_devices_can_find_it" formatted="false">"可发现：其他 BLE 设备可找到它。"</string>
+    <string name="explain_ble_only_no_classic_bluetooth_headsets_file_send_radio" formatted="false">"仅 BLE：不支持经典蓝牙（耳机/文件传送）。"</string>
+    <string name="explain_may_also_do_classic_bluetooth_br_edr_as_well_as_ble" formatted="false">"除了 BLE，还可能支持经典蓝牙（BR/EDR）。"</string>
+    <string name="explain_dual_mode_chip_ble_and_classic_can_run_together" formatted="false">"双模式芯片：BLE 与经典蓝牙可同时运行。"</string>
+    <string name="explain_locally_administered_bssid_vehicle_mesh_and_guest_aps_often_keep" formatted="false">"本地管理 BSSID。车辆、Mesh 和访客接入点通常保留此地址，并非手机轮换 MAC。"</string>
+    <string name="explain_public_factory_address_stable_ieee_assigned" formatted="false">"公开出厂地址（稳定、由 IEEE 分配）。"</string>
+    <string name="explain_random_privacy_address_the_mac_can_change_so_this_is_not_a_lasti" formatted="false">"随机 / 隐私地址。MAC 可能改变，不能作为持久身份。"</string>
+    <string name="explain_anonymous_the_stack_hid_the_address" formatted="false">"匿名：协议栈隐藏了地址。"</string>
+    <string name="explain_universal_ieee_address_stable_oui" formatted="false">"通用 IEEE 地址（稳定 OUI）。"</string>
+    <string name="explain_not_available" formatted="false">"不可用"</string>
+    <string name="explain_very_strong" formatted="false">"非常强"</string>
+    <string name="explain_very_weak" formatted="false">"非常弱"</string>
+    <string name="explain_wpa3_password_sae_handshake" formatted="false">"WPA3 密码（SAE 握手）"</string>
+    <string name="explain_enhanced_open_encrypted_no_password" formatted="false">"增强开放网络（加密、无密码）"</string>
+    <string name="explain_wpa2_password_psk" formatted="false">"WPA2 密码（PSK）"</string>
+    <string name="explain_wi_fi_password_wpa_psk" formatted="false">"Wi-Fi 密码（WPA/PSK）"</string>
+    <string name="explain_enterprise_login_802_1x" formatted="false">"企业登录（802.1X）"</string>
+    <string name="explain_wep_old_weak" formatted="false">"WEP（旧式、较弱）"</string>
+    <string name="explain_open_or_encryption_not_parsed" formatted="false">"开放网络或加密未解析"</string>
+    <string name="explain_aes_encryption" formatted="false">"AES 加密"</string>
+    <string name="explain_tkip_older_weaker_cipher" formatted="false">"TKIP（旧式、较弱的密码算法）"</string>
+    <string name="explain_wps_setup_is_enabled" formatted="false">"已启用 WPS 设置"</string>
+    <string name="explain_mesh_node" formatted="false">"Mesh 节点"</string>
+    <string name="explain_ad_hoc_network" formatted="false">"临时网络"</string>
+    <string name="explain_infrastructure_access_point" formatted="false">"基础设施接入点"</string>
+    <string name="explain_connection_basics" formatted="false">"连接基础"</string>
+    <string name="explain_attribute_protocol" formatted="false">"属性协议"</string>
+    <string name="explain_model_serial_firmware" formatted="false">"型号 / 序列号 / 固件"</string>
+    <string name="explain_battery_level" formatted="false">"电池电量"</string>
+    <string name="explain_keyboard_mouse_or_gamepad" formatted="false">"键盘、鼠标或游戏手柄"</string>
+    <string name="explain_heart_rate_sensor" formatted="false">"心率传感器"</string>
+    <string name="explain_blood_pressure_sensor" formatted="false">"血压传感器"</string>
+    <string name="explain_temperature_humidity_style_sensor" formatted="false">"温度 / 湿度类传感器"</string>
+    <string name="explain_le_cycling_power_speed" formatted="false">"LE 骑行功率/速度"</string>
+    <string name="explain_google_fast_pair_often_buds_speakers" formatted="false">"Google Fast Pair（常见于耳塞/音箱）"</string>
+    <string name="explain_apple_find_my_related" formatted="false">"Apple Find My 相关"</string>
+    <string name="explain_tile_tracker" formatted="false">"Tile 追踪器"</string>
+    <string name="explain_tuya_iot" formatted="false">"Tuya 物联网"</string>
+    <string name="explain_hp_printer" formatted="false">"HP 打印机"</string>
+    <string name="explain_sonos_speaker" formatted="false">"Sonos 音箱"</string>
+    <string name="explain_august_home_lock" formatted="false">"August Home 门锁"</string>
+    <string name="explain_apple_not_assa_abloy" formatted="false">"Apple（并非 ASSA ABLOY）"</string>
+    <string name="explain_earbuds_or_headphones" formatted="false">"耳塞或耳机"</string>
+    <string name="explain_a_speaker" formatted="false">"音箱"</string>
+    <string name="explain_a_mouse" formatted="false">"鼠标"</string>
+    <string name="explain_a_keyboard" formatted="false">"键盘"</string>
+    <string name="explain_a_game_controller" formatted="false">"游戏控制器"</string>
+    <string name="explain_a_watch_or_wrist_wearable" formatted="false">"手表或腕部穿戴设备"</string>
+    <string name="explain_a_phone" formatted="false">"手机"</string>
+    <string name="explain_a_computer_or_tablet" formatted="false">"电脑或平板"</string>
+    <string name="explain_a_finder_tag_tracker" formatted="false">"寻物标签 / 追踪器"</string>
+    <string name="explain_a_remote_control" formatted="false">"遥控器"</string>
+    <string name="explain_an_input_device_keyboard_mouse_or_similar" formatted="false">"输入设备（键盘、鼠标等）"</string>
+    <string name="explain_a_heart_rate_monitor" formatted="false">"心率监测器"</string>
+    <string name="explain_a_health_sensor" formatted="false">"健康传感器"</string>
+    <string name="explain_a_display_or_tv_stick" formatted="false">"显示器或电视棒"</string>
+    <string name="explain_a_clock" formatted="false">"时钟"</string>
+    <string name="explain_smart_glasses" formatted="false">"智能眼镜"</string>
+    <string name="explain_earbuds_or_a_headset" formatted="false">"耳塞或耳机"</string>
+    <string name="explain_a_computer" formatted="false">"电脑"</string>
+    <string name="explain_a_watch" formatted="false">"手表"</string>
+    <string name="explain_an_audio_device" formatted="false">"音频设备"</string>
+    <string name="explain_an_input_accessory" formatted="false">"输入配件"</string>
+    <string name="explain_a_keyboard_mouse_or_gamepad" formatted="false">"键盘、鼠标或游戏手柄"</string>
+    <string name="explain_it_offers_the_hid_human_interface_service" formatted="false">"提供 HID（人机接口）服务。"</string>
+    <string name="explain_headphones_a_headset_or_a_speaker" formatted="false">"耳机、耳麦或音箱"</string>
+    <string name="explain_it_offers_a_classic_audio_headset_service" formatted="false">"提供经典音频 / 耳机服务。"</string>
+    <string name="explain_le_audio_earbuds_or_a_speaker" formatted="false">"LE Audio 耳塞或音箱"</string>
+    <string name="explain_it_offers_bluetooth_le_audio_services" formatted="false">"提供蓝牙 LE Audio 服务。"</string>
+    <string name="explain_it_offers_the_heart_rate_service" formatted="false">"提供心率服务。"</string>
+    <string name="explain_a_blood_pressure_monitor" formatted="false">"血压监测器"</string>
+    <string name="explain_it_offers_the_blood_pressure_service" formatted="false">"提供血压服务。"</string>
+    <string name="explain_an_environmental_sensor" formatted="false">"环境传感器"</string>
+    <string name="explain_it_offers_environmental_sensing" formatted="false">"提供环境感知服务。"</string>
+    <string name="explain_earbuds_or_a_speaker" formatted="false">"耳塞或音箱"</string>
+    <string name="explain_google_fast_pair_is_present_common_on_buds_and_speakers" formatted="false">"包含 Google Fast Pair（常见于耳塞和音箱）。"</string>
+    <string name="explain_a_samsung_smarttag" formatted="false">"Samsung SmartTag"</string>
+    <string name="explain_smarttag_service_uuid" formatted="false">"SmartTag 服务 UUID。"</string>
+    <string name="explain_an_apple_find_my_accessory" formatted="false">"Apple Find My 配件"</string>
+    <string name="explain_find_my_related_uuid" formatted="false">"Find My 相关 UUID。"</string>
+    <string name="explain_a_tile_tracker" formatted="false">"Tile 追踪器"</string>
+    <string name="explain_tile_service_uuid" formatted="false">"Tile 服务 UUID。"</string>
+    <string name="explain_a_dult_finder_tag" formatted="false">"DULT 寻物标签"</string>
+    <string name="explain_a_google_find_hub_tag" formatted="false">"Google Find Hub 标签"</string>
+    <string name="explain_an_apple_airtag_find_my_tag" formatted="false">"Apple AirTag / Find My 标签"</string>
+    <string name="explain_an_iphone_ipad_or_mac" formatted="false">"iPhone、iPad 或 Mac"</string>
+    <string name="explain_a_windows_surface_xbox_radio" formatted="false">"Windows / Surface / Xbox 无线设备"</string>
+    <string name="explain_a_tesla_ble_tire_sensor" formatted="false">"Tesla BLE 胎压传感器"</string>
+    <string name="explain_a_ble_tire_pressure_sensor" formatted="false">"BLE 胎压传感器"</string>
+    <string name="explain_vuzix_smart_glasses" formatted="false">"Vuzix 智能眼镜"</string>
+    <string name="explain_a_tesla_vehicle_including_cybertruck_or_phone_as_key" formatted="false">"Tesla 车辆（含 Cybertruck）或手机钥匙"</string>
+    <string name="explain_a_pixel_or_other_google_radio" formatted="false">"Pixel 或其他 Google 无线设备"</string>
+    <string name="explain_sony_headphones_a_tv_or_a_camera" formatted="false">"Sony 耳机、电视或相机"</string>
+    <string name="explain_bose_headphones_or_a_speaker" formatted="false">"Bose 耳机或音箱"</string>
+    <string name="explain_a_garmin_watch_or_inreach" formatted="false">"Garmin 手表或 inReach"</string>
+    <string name="explain_an_echo_fire_or_other_amazon_radio" formatted="false">"Echo、Fire 或其他 Amazon 无线设备"</string>
+    <string name="explain_a_fitbit" formatted="false">"Fitbit"</string>
+    <string name="explain_an_oura_ring" formatted="false">"Oura 戒指"</string>
+    <string name="explain_a_logitech_mouse_keyboard_or_webcam" formatted="false">"Logitech 鼠标、键盘或网络摄像头"</string>
+    <string name="explain_jbl_or_harman_audio" formatted="false">"JBL 或 Harman 音频设备"</string>
+    <string name="explain_a_sonos_speaker" formatted="false">"Sonos 音箱"</string>
+    <string name="explain_a_gopro" formatted="false">"GoPro"</string>
+    <string name="explain_a_dji_osmo_action_camera" formatted="false">"DJI Osmo 运动相机"</string>
+    <string name="explain_an_insta360_camera" formatted="false">"Insta360 相机"</string>
+    <string name="explain_a_dji_drone_or_controller" formatted="false">"DJI 无人机或控制器"</string>
+    <string name="explain_a_drone_broadcasting_astm_remote_id" formatted="false">"广播 ASTM Remote ID 的无人机"</string>
+    <string name="explain_a_skydio_drone" formatted="false">"Skydio 无人机"</string>
+    <string name="explain_an_autel_drone" formatted="false">"Autel 无人机"</string>
+    <string name="explain_a_parrot_anafi_or_bebop_drone" formatted="false">"Parrot ANAFI 或 Bebop 无人机"</string>
+    <string name="explain_a_hoverair_flying_camera" formatted="false">"HOVERAir 飞行相机"</string>
+    <string name="explain_a_netgear_or_orbi_access_point" formatted="false">"NETGEAR 或 Orbi 接入点"</string>
+    <string name="explain_a_tp_link_access_point" formatted="false">"TP-Link 接入点"</string>
+    <string name="explain_an_asus_access_point" formatted="false">"ASUS 接入点"</string>
+    <string name="explain_a_linksys_or_velop_access_point" formatted="false">"Linksys 或 Velop 接入点"</string>
+    <string name="explain_an_eero_mesh_node" formatted="false">"Eero Mesh 节点"</string>
+    <string name="explain_a_google_wifi_or_nest_wifi_point" formatted="false">"Google Wifi 或 Nest Wifi 接入点"</string>
+    <string name="explain_a_d_link_access_point" formatted="false">"D-Link 接入点"</string>
+    <string name="explain_a_belkin_access_point" formatted="false">"Belkin 接入点"</string>
+    <string name="explain_an_xfinity_gateway_or_hotspot" formatted="false">"Xfinity 网关或热点"</string>
+    <string name="explain_a_spectrum_gateway_or_spectrum_mobile_hotspot" formatted="false">"Spectrum 网关或 Spectrum Mobile 热点"</string>
+    <string name="explain_an_at_t_gateway_or_attwifi_hotspot" formatted="false">"AT&amp;T 网关或 attwifi 热点"</string>
+    <string name="explain_a_verizon_or_fios_gateway" formatted="false">"Verizon 或 Fios 网关"</string>
+    <string name="explain_a_starlink_router" formatted="false">"Starlink 路由器"</string>
+    <string name="explain_a_cisco_meraki_access_point" formatted="false">"Cisco Meraki 接入点"</string>
+    <string name="explain_a_cisco_aironet_catalyst_business_rv_or_spvtg_access_point" formatted="false">"Cisco Aironet、Catalyst、Business、RV 或 SPVTG 接入点"</string>
+    <string name="explain_a_juniper_mist_access_point" formatted="false">"Juniper Mist 接入点"</string>
+    <string name="explain_a_t_mobile_home_internet_gateway_or_hotspot" formatted="false">"T-Mobile Home Internet 网关或热点"</string>
+    <string name="explain_a_humax_gateway_often_t_mobile_home_internet" formatted="false">"HUMAX 网关（常见于 T-Mobile Home Internet）"</string>
+    <string name="explain_a_sagemcom_isp_gateway" formatted="false">"Sagemcom 运营商网关"</string>
+    <string name="explain_an_arcadyan_isp_gateway" formatted="false">"Arcadyan 运营商网关"</string>
+    <string name="explain_an_askey_isp_5g_gateway" formatted="false">"Askey 运营商 / 5G 网关"</string>
+    <string name="explain_a_calix_fiber_gateway" formatted="false">"Calix 光纤网关"</string>
+    <string name="explain_a_nokia_solutions_and_networks_gateway" formatted="false">"Nokia Solutions and Networks 网关"</string>
+    <string name="explain_an_airties_isp_mesh_node" formatted="false">"AirTies 运营商 Mesh 节点"</string>
+    <string name="explain_a_tenda_access_point" formatted="false">"Tenda 接入点"</string>
+    <string name="explain_a_ruijie_or_reyee_access_point" formatted="false">"Ruijie 或 Reyee 接入点"</string>
+    <string name="explain_a_dwnet_access_point" formatted="false">"DWnet 接入点"</string>
+    <string name="explain_a_wavlink_access_point" formatted="false">"WAVLINK 接入点"</string>
+    <string name="explain_a_sercomm_isp_gateway" formatted="false">"Sercomm 运营商网关"</string>
+    <string name="explain_a_luxul_access_point" formatted="false">"Luxul 接入点"</string>
+    <string name="explain_a_sophos_firewall_or_access_point" formatted="false">"Sophos 防火墙或接入点"</string>
+    <string name="explain_an_aumovio_continental_vehicle_wi_fi_radio" formatted="false">"AUMOVIO / Continental 车载 Wi-Fi 设备"</string>
+    <string name="explain_a_centurylink_gateway" formatted="false">"CenturyLink 网关"</string>
+    <string name="explain_a_gm_in_car_hotspot_cadillac_gmc_buick_chevrolet" formatted="false">"GM 车载热点（Cadillac / GMC / Buick / Chevrolet）"</string>
+    <string name="explain_an_audi_mmi_in_car_hotspot" formatted="false">"Audi MMI 车载热点"</string>
+    <string name="explain_an_extreme_networks_access_point" formatted="false">"Extreme Networks 接入点"</string>
+    <string name="explain_an_adtran_fiber_gateway_often_centurylink_quantum_fiber_oem" formatted="false">"Adtran 光纤网关（常见于 CenturyLink / Quantum Fiber 代工）"</string>
+    <string name="explain_a_cambium_or_ignitenet_access_point" formatted="false">"Cambium 或 IgniteNet 接入点"</string>
+    <string name="explain_a_trendnet_access_point" formatted="false">"TRENDnet 接入点"</string>
+    <string name="explain_a_cudy_travel_or_home_router" formatted="false">"Cudy 旅行或家庭路由器"</string>
+    <string name="explain_a_snapav_control4_wattbox_access_point" formatted="false">"SnapAV / Control4 / Wattbox 接入点"</string>
+    <string name="explain_an_arlo_camera_or_vmb_base_station" formatted="false">"Arlo 摄像头或 VMB 基站"</string>
+    <string name="explain_a_vantiva_or_technicolor_isp_gateway" formatted="false">"Vantiva 或 Technicolor 运营商网关"</string>
+    <string name="explain_a_hitron_cable_gateway_often_xfinity_oem" formatted="false">"Hitron 有线网关（常见于 Xfinity 代工）"</string>
+    <string name="explain_an_actiontec_fios_or_frontier_gateway" formatted="false">"Actiontec FiOS 或 Frontier 网关"</string>
+    <string name="explain_a_buffalo_airstation_or_router" formatted="false">"Buffalo AirStation 或路由器"</string>
+    <string name="explain_a_grandstream_gwn_access_point" formatted="false">"Grandstream GWN 接入点"</string>
+    <string name="explain_an_edgecore_access_point" formatted="false">"Edgecore 接入点"</string>
+    <string name="explain_a_watchguard_firewall_or_access_point" formatted="false">"WatchGuard 防火墙或接入点"</string>
+    <string name="explain_a_mojo_networks_arista_cognitive_wi_fi_access_point" formatted="false">"Mojo Networks / Arista Cognitive Wi-Fi 接入点"</string>
+    <string name="explain_a_winegard_rv_or_marine_wi_fi_radio" formatted="false">"Winegard 房车或船用 Wi-Fi 设备"</string>
+    <string name="explain_an_inseego_5g_or_mifi_hotspot" formatted="false">"Inseego 5G 或 MiFi 热点"</string>
+    <string name="explain_a_franklin_technology_5g_home_internet_gateway_rg3100_class" formatted="false">"Franklin Technology 5G 家庭互联网网关（RG3100 类）"</string>
+    <string name="explain_a_synology_nas_or_router_access_point" formatted="false">"Synology NAS 或路由器接入点"</string>
+    <string name="explain_an_hpe_aruba_instant_or_instant_on_access_point" formatted="false">"HPE Aruba Instant 或 Instant On 接入点"</string>
+    <string name="explain_a_ruckus_access_point" formatted="false">"RUCKUS 接入点"</string>
+    <string name="explain_a_fortinet_fortiap_or_fortiwifi" formatted="false">"Fortinet FortiAP 或 FortiWiFi"</string>
+    <string name="explain_a_mikrotik_router_or_access_point" formatted="false">"MikroTik 路由器或接入点"</string>
+    <string name="explain_an_engenius_access_point" formatted="false">"EnGenius 接入点"</string>
+    <string name="explain_a_zyxel_gateway_or_access_point" formatted="false">"Zyxel 网关或接入点"</string>
+    <string name="explain_a_peplink_or_pepwave_router" formatted="false">"Peplink 或 Pepwave 路由器"</string>
+    <string name="explain_an_openwrt_router" formatted="false">"OpenWrt 路由器"</string>
+    <string name="explain_an_arris_or_surfboard_cable_gateway" formatted="false">"Arris 或 SURFboard 有线网关"</string>
+    <string name="explain_a_ubiquiti_unifi_access_point" formatted="false">"Ubiquiti UniFi 接入点"</string>
+    <string name="explain_a_unifi_protect_instant_camera" formatted="false">"UniFi Protect Instant 摄像头"</string>
+    <string name="explain_a_unifi_ubiquiti_name" formatted="false">"UniFi / Ubiquiti 名称"</string>
+    <string name="explain_an_ecobee_thermostat" formatted="false">"ecobee 温控器"</string>
+    <string name="explain_a_sensi_thermostat" formatted="false">"Sensi 温控器"</string>
+    <string name="explain_a_honeywell_home_or_lyric_thermostat" formatted="false">"Honeywell Home 或 Lyric 温控器"</string>
+    <string name="explain_a_honeywell_xenon_healthcare_barcode_scanner" formatted="false">"Honeywell Xenon 医疗条码扫描器"</string>
+    <string name="explain_an_omron_blood_pressure_cuff_or_scale" formatted="false">"Omron 血压袖带或体重秤"</string>
+    <string name="explain_a_withings_scale_or_blood_pressure_monitor" formatted="false">"Withings 体重秤或血压监测器"</string>
+    <string name="explain_a_dexcom_glucose_sensor" formatted="false">"Dexcom 血糖传感器"</string>
+    <string name="explain_a_nest_thermostat_or_nest_labs_ble_sensor" formatted="false">"Nest 温控器或 Nest Labs BLE 传感器"</string>
+    <string name="explain_a_nest_protect_camera_or_other_weave_ble_device" formatted="false">"Nest Protect、摄像头或其他 Weave BLE 设备"</string>
+    <string name="explain_a_haiku_or_mammoth_ceiling_fan" formatted="false">"Haiku 或 Mammoth 吊扇"</string>
+    <string name="explain_a_tuya_ble_gadget_plug_light_camera_sensor" formatted="false">"Tuya BLE 设备（插座、灯、摄像头、传感器）"</string>
+    <string name="explain_an_assa_abloy_lock_yale_lock_hid_reader_or_seos_credential" formatted="false">"ASSA ABLOY 锁、Yale 锁、HID 读卡器或 Seos 凭证"</string>
+    <string name="explain_an_august_smart_lock" formatted="false">"August 智能锁"</string>
+    <string name="explain_a_schlage_or_allegion_lock" formatted="false">"Schlage 或 Allegion 锁"</string>
+    <string name="explain_a_nuki_lock_or_opener" formatted="false">"Nuki 锁或开门器"</string>
+    <string name="explain_a_salto_access_reader_or_lock" formatted="false">"SALTO 门禁读卡器或锁"</string>
+    <string name="explain_a_dormakaba_saflok_or_oracode_lock" formatted="false">"dormakaba、Saflok 或 Oracode 锁"</string>
+    <string name="explain_a_lockly_smart_lock" formatted="false">"Lockly 智能锁"</string>
+    <string name="explain_a_kwikset_kevo_or_unikey_lock" formatted="false">"Kwikset Kevo 或 Unikey 锁"</string>
+    <string name="explain_a_master_lock_padlock" formatted="false">"Master Lock 挂锁"</string>
+    <string name="explain_an_igloohome_lock_or_keybox" formatted="false">"igloohome 锁或钥匙盒"</string>
+    <string name="explain_a_tedee_smart_lock" formatted="false">"Tedee 智能锁"</string>
+    <string name="explain_a_paxton_reader_or_net2_access_point" formatted="false">"Paxton 读卡器或 Net2 接入点"</string>
+    <string name="explain_a_kwikset_lock" formatted="false">"Kwikset 锁"</string>
+    <string name="explain_a_chamberlain_myq_garage_hub" formatted="false">"Chamberlain myQ 车库控制器"</string>
+    <string name="explain_a_chevrolet_in_car_wi_fi_hotspot" formatted="false">"Chevrolet 车载 Wi-Fi 热点"</string>
+    <string name="explain_a_rivian_vehicle_phone_key_or_sensor" formatted="false">"Rivian 车辆、手机钥匙或传感器"</string>
+    <string name="explain_a_ford_or_lincoln_vehicle_or_phone_as_key" formatted="false">"Ford 或 Lincoln 车辆或手机钥匙"</string>
+    <string name="explain_a_honda_or_acura_vehicle_or_phone_as_key" formatted="false">"Honda 或 Acura 车辆或手机钥匙"</string>
+    <string name="explain_a_hyundai_or_genesis_vehicle_or_phone_as_key" formatted="false">"Hyundai 或 Genesis 车辆或手机钥匙"</string>
+    <string name="explain_a_toyota_or_lexus_vehicle_or_phone_as_key" formatted="false">"Toyota 或 Lexus 车辆或手机钥匙"</string>
+    <string name="explain_a_nissan_or_infiniti_vehicle_or_phone_as_key" formatted="false">"Nissan 或 Infiniti 车辆或手机钥匙"</string>
+    <string name="explain_a_subaru_vehicle_or_phone_as_key" formatted="false">"Subaru 车辆或手机钥匙"</string>
+    <string name="explain_a_bmw_vehicle_phone_as_key_or_factory_hotspot" formatted="false">"BMW 车辆、手机钥匙或出厂热点"</string>
+    <string name="explain_a_volkswagen_vehicle_or_phone_as_key" formatted="false">"Volkswagen 车辆或手机钥匙"</string>
+    <string name="explain_a_porsche_vehicle_or_phone_as_key" formatted="false">"Porsche 车辆或手机钥匙"</string>
+    <string name="explain_a_jaguar_land_rover_or_range_rover" formatted="false">"Jaguar、Land Rover 或 Range Rover"</string>
+    <string name="explain_a_byd_vehicle_or_phone_as_key" formatted="false">"BYD 车辆或手机钥匙"</string>
+    <string name="explain_a_govee_light_or_sensor" formatted="false">"Govee 灯或传感器"</string>
+    <string name="explain_an_hp_printer" formatted="false">"HP 打印机"</string>
+    <string name="explain_an_epson_ecotank_or_workforce_printer" formatted="false">"Epson EcoTank 或 WorkForce 打印机"</string>
+    <string name="explain_an_lg_webos_tv" formatted="false">"LG webOS 电视"</string>
+    <string name="explain_a_roku_streaming_stick_or_roku_tv_often_a_hidden_wi_fi_direct_re" formatted="false">"Roku 流媒体棒或 Roku 电视（通常为隐藏的 Wi-Fi Direct 遥控接入点）"</string>
+    <string name="explain_a_samsung_fridge_range_oven_or_cooktop_setup_ap" formatted="false">"Samsung 冰箱、炉灶、烤箱或灶台（设置接入点）"</string>
+    <string name="explain_an_ecowater_water_softener_setup_ap" formatted="false">"EcoWater 软水器（设置接入点）"</string>
+    <string name="explain_a_nespresso_coffee_machine" formatted="false">"Nespresso 咖啡机"</string>
+    <string name="explain_a_radiacode_radiation_detector" formatted="false">"RadiaCode 辐射探测器"</string>
+    <string name="explain_shokz_openrun_or_openfit_headphones" formatted="false">"Shokz OpenRun 或 OpenFit 耳机"</string>
+    <string name="explain_a_mercedes_mbux_in_car_hotspot" formatted="false">"Mercedes MBUX 车载热点"</string>
+    <string name="explain_a_motive_keeptruckin_fleet_eld_hotspot" formatted="false">"Motive / KeepTruckin 车队 ELD 热点"</string>
+    <string name="explain_a_peoplenet_fleet_eld_hotspot" formatted="false">"PeopleNet 车队 ELD 热点"</string>
+    <string name="explain_a_uconnect_in_car_hotspot" formatted="false">"Uconnect 车载热点"</string>
+    <string name="explain_a_carplay_in_car_hotspot" formatted="false">"CarPlay 车载热点"</string>
+    <string name="explain_a_cradlepoint_vehicle_router_often_public_safety_fleet" formatted="false">"Cradlepoint 车载路由器（常见于公共安全 / 车队）"</string>
+    <string name="explain_a_sierra_wireless_airlink_vehicle_gateway" formatted="false">"Sierra Wireless AirLink 车载网关"</string>
+    <string name="explain_a_compex_access_point_sometimes_public_safety_fleet" formatted="false">"Compex 接入点（部分用于公共安全 / 车队）"</string>
+    <string name="explain_a_novatel_wireless_inseego_vehicle_radio" formatted="false">"Novatel Wireless / Inseego 车载设备"</string>
+    <string name="explain_a_utility_inc_vehicle_or_public_safety_radio" formatted="false">"Utility, Inc 车载或公共安全设备"</string>
+    <string name="explain_a_gl_inet_travel_router" formatted="false">"GL.iNet 旅行路由器"</string>
+    <string name="explain_an_ibeacon" formatted="false">"iBeacon"</string>
+    <string name="explain_a_target_atrius_basket_tag" formatted="false">"Target Atrius 购物篮标签"</string>
+    <string name="explain_a_minew_ble_beacon_or_sensor" formatted="false">"Minew BLE 信标或传感器"</string>
+    <string name="explain_an_estimote_beacon" formatted="false">"Estimote 信标"</string>
+    <string name="explain_a_kontakt_io_beacon" formatted="false">"Kontakt.io 信标"</string>
+    <string name="explain_an_iteris_bluetoad_vantage_velocity_roadside_bluetooth_travel_ti" formatted="false">"Iteris BlueTOAD / Vantage Velocity 路侧蓝牙行程时间读卡器"</string>
+    <string name="explain_a_blip_systems_bliptrack_roadside_travel_time_sensor" formatted="false">"BLIP Systems BlipTrack 路侧行程时间传感器"</string>
+    <string name="explain_a_flock_raven_or_shotspotter_acoustic_gunshot_sensor" formatted="false">"Flock Raven 或 ShotSpotter 声学枪声传感器"</string>
+    <string name="explain_a_digital_ally_body_worn_or_in_car_camera" formatted="false">"Digital Ally 随身或车载摄像头"</string>
+    <string name="explain_a_reveal_media_body_worn_camera" formatted="false">"Reveal Media 随身摄像头"</string>
+    <string name="explain_a_wolfcom_body_worn_or_in_car_camera" formatted="false">"Wolfcom 随身或车载摄像头"</string>
+    <string name="explain_a_panasonic_i_pro_camera_or_arbitrator_in_car_system" formatted="false">"Panasonic i-PRO 摄像头或 Arbitrator 车载系统"</string>
+    <string name="explain_a_limitless_pendant_conversation_recorder" formatted="false">"Limitless Pendant 对话录音器"</string>
+    <string name="explain_a_bee_pioneer_wearable_recorder" formatted="false">"Bee Pioneer 穿戴录音器"</string>
+    <string name="explain_an_omi_pendant_or_openglass_camera_glasses" formatted="false">"Omi 吊坠或 OpenGlass 摄像眼镜"</string>
+    <string name="explain_a_friend_pendant_necklace" formatted="false">"Friend Pendant 项链"</string>
+    <string name="explain_brilliant_labs_frame_ar_glasses" formatted="false">"Brilliant Labs Frame AR 眼镜"</string>
+    <string name="explain_even_realities_g1_glasses" formatted="false">"Even Realities G1 眼镜"</string>
+    <string name="explain_a_hayden_ai_bus_or_vehicle_mounted_camera" formatted="false">"Hayden AI 公交或车载摄像头"</string>
+    <string name="explain_a_miovision_intersection_traffic_camera" formatted="false">"Miovision 路口交通摄像头"</string>
+    <string name="explain_a_tattile_plate_reader" formatted="false">"Tattile 车牌识别器"</string>
+    <string name="explain_an_lvt_liveview_solar_surveillance_trailer" formatted="false">"LVT / LiveView 太阳能监控拖车"</string>
+    <string name="explain_a_hanwha_vision_wisenet_camera" formatted="false">"Hanwha Vision / Wisenet 摄像头"</string>
+    <string name="explain_a_uniview_unv_camera" formatted="false">"Uniview / UNV 摄像头"</string>
+    <string name="explain_a_rhombus_cloud_camera" formatted="false">"Rhombus 云摄像头"</string>
+    <string name="explain_a_meshcore_lora_companion_radio" formatted="false">"MeshCore LoRa 配套设备"</string>
+    <string name="explain_a_gotenna_mesh_or_pro_radio" formatted="false">"goTenna Mesh 或 Pro 设备"</string>
+    <string name="explain_a_sensecap_lorawan_helium_gateway" formatted="false">"SenseCAP LoRaWAN / Helium 网关"</string>
+    <string name="explain_a_rak_wisgate_lorawan_gateway" formatted="false">"RAK WisGate LoRaWAN 网关"</string>
+    <string name="explain_a_ghostesp_esp32_audit_board" formatted="false">"GhostESP ESP32 审计板"</string>
+    <string name="explain_a_bruce_esp32_pentest_board" formatted="false">"Bruce ESP32 渗透测试板"</string>
+    <string name="explain_a_camera_module_radio_liteon_or_similar" formatted="false">"摄像头模块设备（LiteOn 等）"</string>
+    <string name="explain_a_finder_tag" formatted="false">"寻物标签"</string>
+    <string name="explain_a_wi_fi_direct_access_point" formatted="false">"Wi-Fi Direct 接入点"</string>
+    <string name="explain_ssid_starts_with_direct" formatted="false">"SSID 以 DIRECT- 开头。"</string>
+    <string name="explain_a_phone_or_tv_using_wi_fi_direct" formatted="false">"使用 Wi-Fi Direct 的手机或电视"</string>
+    <string name="explain_a_phone_hotspot" formatted="false">"手机热点"</string>
+    <string name="explain_ssid_looks_like_a_phone_hotspot" formatted="false">"SSID 类似手机热点。"</string>
+    <string name="explain_a_mesh_wi_fi_node" formatted="false">"Mesh Wi-Fi 节点"</string>
+    <string name="explain_capability_list_includes_mesh" formatted="false">"能力列表包含 Mesh。"</string>
+    <string name="explain_a_hidden_wi_fi_access_point" formatted="false">"隐藏 Wi-Fi 接入点"</string>
+    <string name="explain_ssid_is_hidden_the_radio_is_still_beaconing" formatted="false">"SSID 已隐藏，但设备仍在广播。"</string>
+    <string name="explain_a_wi_fi_access_point" formatted="false">"Wi-Fi 接入点"</string>
+    <string name="explain_stock_android_only_reports_beaconing_aps" formatted="false">"原生 Android 仅报告广播中的接入点。"</string>
+    <string name="explain_probably" formatted="false">"大概是"</string>
+    <string name="explain_strong" formatted="false">"强"</string>
+    <string name="explain_medium" formatted="false">"中等"</string>
+    <string name="explain_weak" formatted="false">"弱"</string>
+    <string name="explain_it_advertises_appearance_as_1_s" formatted="true">"广播的 Appearance 为 %1$s。"</string>
+    <string name="explain_class_of_device_says_1_s" formatted="true">"设备类别为 %1$s。"</string>
+    <string name="explain_matched_signature_1_s" formatted="true">"匹配特征 %1$s。"</string>
+    <string name="explain_1_s_long_range_ble_slower_farther" formatted="true">"%1$s — 远距离 BLE（较慢、较远）"</string>
+    <string name="explain_1_s_faster_ble_bluetooth_5" formatted="true">"%1$s — 更快的 BLE（蓝牙 5）"</string>
+    <string name="explain_1_s_standard_ble_radio" formatted="true">"%1$s — 标准 BLE 无线通信"</string>
+    <string name="candidate_family_count">" · %1$d 个家族"</string>
+    <string name="candidate_families_count">" · %1$d 个家族"</string>
+    <string name="payload_google_manufacturer_data" formatted="false">"Google 制造商数据"</string>
+    <string name="payload_1_s_bytes" formatted="false">"%1$s 字节"</string>
+    <string name="payload_a_tesla_vehicle_or_phone_as_key" formatted="false">"Tesla 车辆或手机钥匙"</string>
+    <string name="payload_tesla_phone_key_ibeacon_uuid_ios_background_find" formatted="false">"Tesla 手机钥匙 iBeacon UUID（iOS 后台查找）。"</string>
+    <string name="payload_target_atrius_ibeacon_uuid_shopping_basket_asset_tag" formatted="false">"Target / Atrius iBeacon UUID（购物篮资产标签）。"</string>
+    <string name="payload_apple_ibeacon_payload" formatted="false">"Apple iBeacon 载荷。"</string>
+    <string name="payload_an_iphone_or_ipad_offering_airdrop" formatted="false">"提供 AirDrop 的 iPhone 或 iPad"</string>
+    <string name="payload_apple_airdrop_advertisement" formatted="false">"Apple AirDrop 广播。"</string>
+    <string name="payload_airpods_or_beats_headphones" formatted="false">"AirPods 或 Beats 耳机"</string>
+    <string name="payload_apple_proximity_pairing_1_s" formatted="false">"Apple 近距离配对：%1$s。"</string>
+    <string name="payload_apple_proximity_pairing_airpods_beats" formatted="false">"Apple 近距离配对（AirPods / Beats）。"</string>
+    <string name="payload_an_apple_device_that_just_heard_hey_siri" formatted="false">"刚听到“Hey Siri”的 Apple 设备"</string>
+    <string name="payload_hey_siri_advertisement" formatted="false">"Hey Siri 广播。"</string>
+    <string name="payload_an_airplay_speaker_or_apple_tv" formatted="false">"AirPlay 音箱或 Apple TV"</string>
+    <string name="payload_airplay_advertisement" formatted="false">"AirPlay 广播。"</string>
+    <string name="payload_an_apple_device_doing_handoff" formatted="false">"正在使用 Handoff 的 Apple 设备"</string>
+    <string name="payload_handoff_advertisement" formatted="false">"Handoff 广播。"</string>
+    <string name="payload_an_apple_device_looking_for_instant_hotspot" formatted="false">"寻找即时热点的 Apple 设备"</string>
+    <string name="payload_tethering_target_advertisement" formatted="false">"热点目标广播。"</string>
+    <string name="payload_an_iphone_ipad_offering_instant_hotspot" formatted="false">"提供即时热点的 iPhone/iPad"</string>
+    <string name="payload_tethering_source_advertisement" formatted="false">"热点来源广播。"</string>
+    <string name="payload_an_apple_device_nearby_action" formatted="false">"Apple 设备（Nearby Action）"</string>
+    <string name="payload_an_iphone_ipad_mac_nearby_info" formatted="false">"iPhone / iPad / Mac（Nearby Info）"</string>
+    <string name="payload_a_find_my_network_radio" formatted="false">"Find My 网络设备"</string>
+    <string name="payload_apple_offline_finding_airtag_find_my_accessory_or_an_apple_devic" formatted="false">"Apple 离线查找 — AirTag、Find My 配件或正在定位自身的 Apple 设备。"</string>
+    <string name="payload_a_fast_pair_accessory_often_earbuds_or_a_speaker" formatted="false">"Fast Pair 配件（通常是耳塞或音箱）"</string>
+    <string name="payload_google_fast_pair_model_0x_06x_in_pairing_mode" formatted="false">"Google Fast Pair 型号 0x%06X，处于配对模式。"</string>
+    <string name="payload_a_fast_pair_accessory_already_paired_to_someone" formatted="false">"已与某人配对的 Fast Pair 配件"</string>
+    <string name="payload_google_fast_pair_account_key_broadcast_not_in_pairing_mode" formatted="false">"Google Fast Pair 账户密钥广播（非配对模式）。"</string>
+    <string name="payload_find_hub_separated_unwanted_tracking_frame" formatted="false">"Find Hub 分离（不期望的追踪）帧。"</string>
+    <string name="payload_find_hub_nearby_frame" formatted="false">"Find Hub 附近帧。"</string>
+    <string name="payload_an_eddystone_beacon" formatted="false">"Eddystone 信标"</string>
+    <string name="payload_eddystone_service_data" formatted="false">"Eddystone 服务数据。"</string>
+    <string name="payload_apple_payload" formatted="false">"Apple 载荷"</string>
+    <string name="payload_1_s_bytes_unparsed" formatted="false">"%1$s 字节（未解析）"</string>
+    <string name="payload_apple_continuity_type" formatted="false">"Apple Continuity 类型"</string>
+    <string name="payload_1_s_bytes_of_homekit_setup_data" formatted="false">"%1$s 字节的 HomeKit 设置数据"</string>
+    <string name="payload_this_device_is_advertising_as_an_airplay_source_or_target" formatted="false">"设备正广播为 AirPlay 来源或目标。"</string>
+    <string name="payload_apple_watch_wrist_unlock_related" formatted="false">"与 Apple Watch 腕部 / 解锁相关。"</string>
+    <string name="payload_payload" formatted="false">"载荷"</string>
+    <string name="payload_proximity_pairing_airpods_beats" formatted="false">"近距离配对（AirPods / Beats）"</string>
+    <string name="payload_magic_switch_watch" formatted="false">"Magic Switch（Watch）"</string>
+    <string name="payload_handoff_or_instant_hotspot_target" formatted="false">"Handoff 或即时热点（目标）"</string>
+    <string name="payload_instant_hotspot_source" formatted="false">"即时热点（来源）"</string>
+    <string name="payload_find_my_offline_finding" formatted="false">"Find My / 离线查找"</string>
+    <string name="payload_nearby_action_extended" formatted="false">"Nearby Action（扩展）"</string>
+    <string name="payload_truncated_1_s_bytes" formatted="false">"已截断（%1$s 字节）"</string>
+    <string name="payload_1_s_tesla_phone_as_key_ios_background_find_not_a_mall_beacon" formatted="false">"%1$s — Tesla 手机钥匙（iOS 后台查找），并非商场信标。"</string>
+    <string name="payload_ibeacon_major_minor" formatted="false">"iBeacon 主编号 / 次编号"</string>
+    <string name="payload_ibeacon_calibrated_tx" formatted="false">"iBeacon 校准发射功率"</string>
+    <string name="payload_1_s_dbm_at_1_m_used_to_estimate_range" formatted="false">"距 1 米时 %1$s dBm（用于估计范围）"</string>
+    <string name="payload_someone_nearby_is_offering_airdrop_1_s_bytes" formatted="false">"附近有人提供 AirDrop（%1$s 字节）。"</string>
+    <string name="payload_someone_nearby_has_airdrop_receiving_on_hashes_are_truncated_ids" formatted="false">"附近有人开启了 AirDrop 接收。哈希是截断标识，并非姓名。"</string>
+    <string name="payload_apple_id_hash_2_bytes" formatted="false">"Apple ID 哈希（2 字节）"</string>
+    <string name="payload_proximity_pairing_truncated" formatted="false">"近距离配对，已截断。"</string>
+    <string name="payload_proximity_pairing" formatted="false">"近距离配对。"</string>
+    <string name="payload_product" formatted="false">"产品"</string>
+    <string name="payload_apple_audio_0x_04x" formatted="false">"Apple 音频 0x%04X"</string>
+    <string name="payload_pod_position" formatted="false">"耳机位置"</string>
+    <string name="payload_battery_left_right" formatted="false">"电量（左 / 右）"</string>
+    <string name="payload_case" formatted="false">"充电盒"</string>
+    <string name="payload_right" formatted="false">"右"</string>
+    <string name="payload_left" formatted="false">"左"</string>
+    <string name="payload_case_battery" formatted="false">"充电盒电量"</string>
+    <string name="payload_charging" formatted="false">"充电中"</string>
+    <string name="payload_one_or_both_out_of_the_case" formatted="false">"一个或两个耳机在盒外"</string>
+    <string name="payload_case_open" formatted="false">"充电盒打开"</string>
+    <string name="payload_taken_out_in_ear_transition" formatted="false">"取出 / 入耳过渡"</string>
+    <string name="payload_one_in_ear" formatted="false">"一个耳机入耳"</string>
+    <string name="payload_both_out_not_in_ear" formatted="false">"两个耳机在盒外，未入耳"</string>
+    <string name="payload_in_ear_activity" formatted="false">"入耳活动"</string>
+    <string name="payload_both_in_ear" formatted="false">"两个耳机均入耳"</string>
+    <string name="payload_one_in_ear_sharing" formatted="false">"一个耳机入耳（共享？）"</string>
+    <string name="payload_both_in_case_lid_open" formatted="false">"两个耳机在盒内，盒盖打开"</string>
+    <string name="payload_both_in_case_lid_closed" formatted="false">"两个耳机在盒内，盒盖关闭"</string>
+    <string name="payload_in_case" formatted="false">"在盒内"</string>
+    <string name="payload_status_0x_02x" formatted="false">"状态 0x%02X"</string>
+    <string name="payload_white" formatted="false">"白色"</string>
+    <string name="payload_black" formatted="false">"黑色"</string>
+    <string name="payload_red" formatted="false">"红色"</string>
+    <string name="payload_blue" formatted="false">"蓝色"</string>
+    <string name="payload_pink" formatted="false">"粉色"</string>
+    <string name="payload_gray" formatted="false">"灰色"</string>
+    <string name="payload_silver" formatted="false">"银色"</string>
+    <string name="payload_gold" formatted="false">"金色"</string>
+    <string name="payload_rose_gold" formatted="false">"玫瑰金"</string>
+    <string name="payload_space_gray" formatted="false">"深空灰"</string>
+    <string name="payload_dark_blue" formatted="false">"深蓝色"</string>
+    <string name="payload_light_blue" formatted="false">"浅蓝色"</string>
+    <string name="payload_yellow" formatted="false">"黄色"</string>
+    <string name="payload_unknown_not_present" formatted="false">"未知 / 不存在"</string>
+    <string name="payload_siri_was_just_triggered_on_a_nearby_apple_device" formatted="false">"附近 Apple 设备上的 Siri 刚被唤醒。"</string>
+    <string name="payload_class_0x_04x" formatted="false">"类别 0x%04X"</string>
+    <string name="payload_a_1_s_just_heard_a_siri_trigger_the_packet_carries_a_short_voice" formatted="false">"%1$s 刚听到 Siri 唤醒。数据包包含短语音哈希，并非所说内容。"</string>
+    <string name="payload_continuity_handoff_a_task_can_be_continued_on_another_apple_devi" formatted="false">"Continuity Handoff：任务可在另一台 Apple 设备继续。载荷已加密。"</string>
+    <string name="payload_instant_hotspot_looking" formatted="false">"即时热点（寻找中）"</string>
+    <string name="payload_this_apple_device_is_searching_for_a_paired_phone_s_hotspot" formatted="false">"此 Apple 设备正在寻找已配对手机的热点。"</string>
+    <string name="payload_an_iphone_ipad_is_offering_a_personal_hotspot" formatted="false">"iPhone/iPad 正提供个人热点。"</string>
+    <string name="payload_type_1_s" formatted="false">"类型 %1$s"</string>
+    <string name="payload_instant_hotspot_offering" formatted="false">"即时热点（提供中）"</string>
+    <string name="payload_paired_iphone_ipad_hotspot" formatted="false">"已配对 iPhone/iPad 热点"</string>
+    <string name="payload_1_s_5_bars" formatted="false">" · 信号 %1$s/5 格"</string>
+    <string name="payload_nearby_action_advertisement" formatted="false">"Nearby Action 广播。"</string>
+    <string name="payload_nearby_action_1_s" formatted="false">"Nearby Action：%1$s。"</string>
+    <string name="payload_apple_tv_setup" formatted="false">"Apple TV 设置"</string>
+    <string name="payload_mobile_backup" formatted="false">"移动备份"</string>
+    <string name="payload_watch_setup" formatted="false">"Watch 设置"</string>
+    <string name="payload_apple_tv_pair" formatted="false">"Apple TV 配对"</string>
+    <string name="payload_wi_fi_password_sharing_prompting_nearby_iphones" formatted="false">"Wi-Fi 密码分享（提示附近 iPhone）"</string>
+    <string name="payload_ios_setup" formatted="false">"iOS 设置"</string>
+    <string name="payload_repair" formatted="false">"修复"</string>
+    <string name="payload_speaker_setup" formatted="false">"音箱设置"</string>
+    <string name="payload_whole_home_audio_setup" formatted="false">"全屋音频设置"</string>
+    <string name="payload_answered_a_call" formatted="false">"已接听电话"</string>
+    <string name="payload_ended_a_call" formatted="false">"已结束电话"</string>
+    <string name="payload_remote_autofill" formatted="false">"远程自动填充"</string>
+    <string name="payload_companion_link_proximity" formatted="false">"Companion Link 接近"</string>
+    <string name="payload_remote_display" formatted="false">"远程显示"</string>
+    <string name="payload_action_0x_02x" formatted="false">"操作 0x%02X"</string>
+    <string name="payload_apple_device_usage_state" formatted="false">"Apple 设备使用状态。"</string>
+    <string name="payload_activity_unknown" formatted="false">"活动未知"</string>
+    <string name="payload_activity_reporting_off" formatted="false">"活动报告关闭"</string>
+    <string name="payload_idle_screen_locked" formatted="false">"空闲（屏幕锁定）"</string>
+    <string name="payload_audio_playing_screen_locked" formatted="false">"正在播放音频，屏幕锁定"</string>
+    <string name="payload_active_screen_on" formatted="false">"活跃（屏幕开启）"</string>
+    <string name="payload_screen_on_video_playing" formatted="false">"屏幕开启，正在播放视频"</string>
+    <string name="payload_watch_on_wrist_and_unlocked" formatted="false">"Watch 佩戴于腕部且已解锁"</string>
+    <string name="payload_recent_interaction" formatted="false">"最近发生交互"</string>
+    <string name="payload_user_is_driving" formatted="false">"用户正在驾车"</string>
+    <string name="payload_phone_or_facetime_call" formatted="false">"电话或 FaceTime 通话"</string>
+    <string name="payload_activity_0x_x" formatted="false">"活动 0x%X"</string>
+    <string name="payload_primary_icloud_device" formatted="false">"主要 iCloud 设备"</string>
+    <string name="payload_airdrop_receiving_on" formatted="false">"AirDrop 接收开启"</string>
+    <string name="payload_wi_fi_on" formatted="false">"Wi-Fi 开启"</string>
+    <string name="payload_airpods_connected" formatted="false">"AirPods 已连接"</string>
+    <string name="payload_watch_locked" formatted="false">"Watch 已锁定"</string>
+    <string name="payload_what_the_apple_device_is_doing" formatted="false">"Apple 设备当前活动"</string>
+    <string name="payload_nearby_info_advertisement" formatted="false">"Nearby Info 广播。"</string>
+    <string name="payload_phone_is_idle_locked" formatted="false">"手机空闲 / 锁定。"</string>
+    <string name="payload_audio_playing_with_the_screen_locked" formatted="false">"屏幕锁定，音频播放中。"</string>
+    <string name="payload_screen_is_on_someone_is_using_it" formatted="false">"屏幕已开启 — 有人正在使用设备。"</string>
+    <string name="payload_device_reports_the_user_is_driving" formatted="false">"设备报告用户正在驾车。"</string>
+    <string name="payload_in_a_phone_or_facetime_call" formatted="false">"电话或 FaceTime 通话中。"</string>
+    <string name="payload_offline_finding_advertisement" formatted="false">"离线查找广播。"</string>
+    <string name="payload_full" formatted="false">"充足"</string>
+    <string name="payload_low" formatted="false">"低"</string>
+    <string name="payload_critical" formatted="false">"极低"</string>
+    <string name="payload_broadcasting_a_public_key_so_the_find_my_network_can_report_a_lo" formatted="false">"正在广播公钥，以便 Find My 网络报告位置。"</string>
+    <string name="payload_used_by_airtags_find_my_accessories_and_apple_devices_locating_t" formatted="false">"用于 AirTag、Find My 配件及正在定位自身的 Apple 设备。"</string>
+    <string name="payload_owner_seen_recently" formatted="false">"最近发现所有者。"</string>
+    <string name="payload_owner_not_seen_in_the_current_key_window" formatted="false">"当前密钥窗口未发现所有者。"</string>
+    <string name="payload_battery_1_s" formatted="false">"电量 %1$s。"</string>
+    <string name="payload_1_s_byte_key_fragment_not_a_serial_number" formatted="false">"（%1$s 字节密钥片段 — 并非序列号。）"</string>
+    <string name="payload_in_pairing_mode_android_will_pop_a_tap_to_pair_card" formatted="false">"配对模式 — Android 会弹出点击配对卡片。"</string>
+    <string name="payload_model_id" formatted="false">"型号 ID"</string>
+    <string name="payload_0x_06x_not_in_the_local_name_list" formatted="false">"0x%06X（未列入本地名称列表）"</string>
+    <string name="payload_wants_to_show_a_pairing_card" formatted="false">"希望显示配对卡片"</string>
+    <string name="payload_hiding_the_pairing_card_e_g_buds_back_in_the_case" formatted="false">"隐藏配对卡片（如耳机已放回盒内）"</string>
+    <string name="payload_filter_type_1_s" formatted="false">"筛选类型 %1$s"</string>
+    <string name="payload_account_key_bloom_filter" formatted="false">"账户密钥布隆过滤器"</string>
+    <string name="payload_already_paired_to_an_account_not_in_pairing_mode_1_s_version_2_s" formatted="false">"已与账户配对（非配对模式）。%1$s。版本 %2$s。"</string>
+    <string name="payload_truncated" formatted="false">"已截断"</string>
+    <string name="payload_eddystone_uid_namespace" formatted="false">"Eddystone-UID 命名空间"</string>
+    <string name="payload_eddystone_uid_instance" formatted="false">"Eddystone-UID 实例"</string>
+    <string name="payload_telemetry_battery_temperature_advert_count" formatted="false">"遥测（电量 / 温度 / 广播计数）"</string>
+    <string name="payload_ephemeral_id_rotating" formatted="false">"临时 ID（轮换）"</string>
+    <string name="payload_separated_unwanted_tracking_mode" formatted="false">"分离（不期望的追踪模式）"</string>
+    <string name="payload_nearby_with_owner" formatted="false">"附近 / 与所有者同行"</string>
+    <string name="payload_frame_0x_02x" formatted="false">"帧 0x%02X"</string>
+    <string name="payload_windows_desktop" formatted="false">"Windows 台式电脑"</string>
+    <string name="payload_windows_phone" formatted="false">"Windows 手机"</string>
+    <string name="payload_windows_laptop" formatted="false">"Windows 笔记本电脑"</string>
+    <string name="payload_windows_tablet" formatted="false">"Windows 平板"</string>
+    <string name="payload_microsoft_nearby_sharing_swift_pair" formatted="false">"Microsoft Nearby Sharing / Swift Pair"</string>
+    <string name="payload_a_1_s_is_advertising_for_quick_pairing_or_sharing" formatted="false">"%1$s 正广播以进行快速配对或分享。"</string>
+    <string name="payload_microsoft_manufacturer_data" formatted="false">"Microsoft 制造商数据"</string>
+    <string name="payload_altbeacon_major_minor" formatted="false">"AltBeacon 主编号 / 次编号"</string>
+    <string name="payload_hidden" formatted="false">"&lt;隐藏&gt;"</string>
+    <string name="payload_1_s_device" formatted="false">"%1$s 设备"</string>
+    <string name="payload_unnamed" formatted="false">"未命名"</string>
+    <string name="payload_google_fast_pair_model_1_s_0x_2_06x_in_pairing_mode" formatted="false">"Google Fast Pair 型号 %1$s（0x%2$06X），处于配对模式。"</string>
+    <string name="payload_phone_battery_1_s" formatted="false">" · 手机电量 %1$s%%"</string>
+    <string name="sit_dropped_notice" formatted="false">"已移除最早的观测“%1$s”（保留 %2$d 次）。"</string>
+    <string name="log_csv_label" formatted="false">"日志文件 — CSV"</string>
+    <string name="log_json_label" formatted="false">"日志文件 — JSON 行"</string>
+    <string name="log_both_radios_label" formatted="false">"两种无线类型"</string>
+    <string name="placeholder_empty">"（空）"</string>
+    <string name="status_random">"随机"</string>
+    <string name="status_pairing">"配对"</string>
+    <string name="status_gone">"已消失"</string>
+    <string name="wifi_next_scan">"Wi-Fi 下次扫描 %1$d 秒"</string>
+    <string name="ble_scan_failed">"BLE 扫描失败（%1$d）"</string>
+    <string name="bluetooth_off">"蓝牙已关闭"</string>
+    <string name="ble_scanner_unavailable">"BLE 扫描器不可用"</string>
+    <string name="ble_start_failed">"BLE 启动失败"</string>
+    <string name="ble_unavailable">"BLE 不可用"</string>
+    <string name="ble_retrying">"BLE 正在重试"</string>
+    <string name="ble_cycling">"BLE 周期重启"</string>
+    <string name="ble_parked_restarting">"BLE 已暂停 · 正在重启"</string>
+</resources>

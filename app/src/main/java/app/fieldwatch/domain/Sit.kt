@@ -219,6 +219,8 @@ data class SitFile(
     val operatorPath: List<GpsSample> = emptyList(),
 )
 
+data class SitNotice(val droppedName: String, val keep: Int)
+
 data class SitUi(
     val open: SitSummary? = null,
     val radioCount: Int = 0,
@@ -227,7 +229,7 @@ data class SitUi(
     val closed: List<SitSummary> = emptyList(),
     val selectedId: String? = null,
     val compareId: String? = null,
-    val notice: String? = null,
+    val notice: SitNotice? = null,
 )
 
 data class SitDebrief(

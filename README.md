@@ -14,6 +14,10 @@ If you spot an error, something stupid, or have a feature idea — in the app or
 
 **Just want to install it?** Download [Fieldwatch.apk](https://github.com/OffGridPete/Fieldwatch/raw/main/dist/Fieldwatch.apk). Instruction card and manual: [instruction.txt](https://github.com/OffGridPete/Fieldwatch/raw/main/dist/instruction.txt), [Fieldwatch_User_Manual.pdf](https://github.com/OffGridPete/Fieldwatch/raw/main/dist/Fieldwatch_User_Manual.pdf). [What’s new](CHANGELOG.md) is the changelog for each build. Leave the APK named `Fieldwatch.apk`. GitHub may say the file is too big to preview — that is their viewer; use Download.
 
+## 界面语言
+
+支持英语和简体中文，默认跟随手机系统语言；其他系统语言使用英语。进入“设置 → 语言”可选择“跟随系统”、English 或简体中文，立即刷新界面并保存选择，重启后仍然有效。Android 13 及以上的系统应用语言设置与应用内选择保持同步。设置导入/导出包含语言选择。设备广播名称、MAC/UUID 等协议标识、自定义内容、特征库原始资料和导出数据格式保持原样；MIT 许可证保留英文原文。
+
 ## Safety & disclaimer
 
 This is a hobby project, provided as-is under the MIT License. A few things to know before you do:

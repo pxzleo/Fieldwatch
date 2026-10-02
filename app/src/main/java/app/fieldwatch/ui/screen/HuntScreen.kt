@@ -1,5 +1,10 @@
 package app.fieldwatch.ui.screen
 
+import app.fieldwatch.UiText
+import app.fieldwatch.ui.uiLabel
+import app.fieldwatch.ui.uiHint
+import app.fieldwatch.R
+
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -112,11 +117,11 @@ fun HuntScreen(
             TopAppBar(
                 title = {
                     val shown = hunt.device?.let { MacUtil.redactMacIn(hunt.title, it.mac, demoMode) } ?: hunt.title
-                    Text(shown.ifBlank { "Hunt" }, maxLines = 1)
+                    Text(shown.ifBlank { UiText.text(R.string.ui_hunt) }, maxLines = 1)
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, UiText.text(R.string.ui_back))
                     }
                 },
             )
@@ -134,13 +139,13 @@ fun HuntScreen(
                     modifier = Modifier.fillMaxWidth(),
                     enabled = hunt.active,
                 ) {
-                    Text("Reset this hunt")
+                    Text(UiText.text(R.string.ui_reset_this_hunt))
                 }
                 FieldwatchActionButton(
                     onClick = onBack,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Text("Back to detail")
+                    Text(UiText.text(R.string.ui_back_to_detail))
                 }
                 Row(
                     Modifier.fillMaxWidth(),
@@ -151,7 +156,7 @@ fun HuntScreen(
                         Modifier.weight(1f),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text("Beep", Modifier.weight(1f))
+                        Text(UiText.text(R.string.ui_beep), Modifier.weight(1f))
                         FieldwatchSwitch(
                             huntBeep,
                             { on ->
@@ -164,7 +169,7 @@ fun HuntScreen(
                         Modifier.weight(1f),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text("Vibrate", Modifier.weight(1f))
+                        Text(UiText.text(R.string.ui_vibrate), Modifier.weight(1f))
                         FieldwatchSwitch(
                             huntVibrate,
                             { on ->
@@ -191,7 +196,7 @@ fun HuntScreen(
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    Hunt.label(hunt.cue),
+                    hunt.cue.uiLabel(),
                     color = cueColor,
                     fontWeight = FontWeight.Bold,
                     fontSize = 32.sp,
@@ -208,7 +213,7 @@ fun HuntScreen(
                 contentAlignment = Alignment.TopCenter,
             ) {
                 Text(
-                    Hunt.hint(hunt.cue),
+                    hunt.cue.uiHint(),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
@@ -226,24 +231,24 @@ fun HuntScreen(
                 color = accent,
             )
             Text(
-                rssi?.let { DeviceExplain.rssiExplain(it) } ?: "no live RSSI",
+                rssi?.let { DeviceExplain.rssiExplain(it, UiText::explanation) } ?: UiText.text(R.string.ui_no_live_rssi),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(
                 if (hunt.peakRssi > -127) {
-                    "Loudest this hunt  ${hunt.peakRssi} dBm"
+                    UiText.text(R.string.ui_loudest_this_hunt_value_dbm, (hunt.peakRssi).toString())
                 } else {
-                    "Loudest this hunt  —"
+                    UiText.text(R.string.ui_loudest_this_hunt)
                 },
                 fontFamily = FontFamily.Monospace,
                 style = MaterialTheme.typography.bodyMedium,
             )
             Text(
                 when {
-                    heardAgo == null -> "last heard  —"
-                    heardAgo < 60L -> "last heard ${heardAgo}s ago"
-                    else -> "last heard ${heardAgo / 60L}m ago"
+                    heardAgo == null -> UiText.text(R.string.ui_last_heard_465)
+                    heardAgo < 60L -> UiText.text(R.string.ui_last_heard_values_ago, (heardAgo).toString())
+                    else -> UiText.text(R.string.ui_last_heard_valuem_ago, (heardAgo / 60L).toString())
                 },
                 fontFamily = FontFamily.Monospace,
                 style = MaterialTheme.typography.labelMedium,
@@ -344,7 +349,7 @@ private fun HuntNeedle(
             HuntCue.GONE -> pulse(0.88f, 0.28f, 2.2f)
         }
         drawCircle(color.copy(alpha = 0.95f), radius = 5.5f, center = c)
-        val you = measurer.measure("YOU", youStyle)
+        val you = measurer.measure(UiText.text(R.string.ui_you), youStyle)
         drawText(
             you,
             topLeft = Offset(c.x - you.size.width / 2f, c.y + 10f),

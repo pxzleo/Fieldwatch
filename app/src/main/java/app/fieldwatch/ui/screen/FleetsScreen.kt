@@ -1,5 +1,9 @@
 package app.fieldwatch.ui.screen
 
+import app.fieldwatch.UiText
+import app.fieldwatch.ui.uiLabel
+import app.fieldwatch.R
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -141,10 +145,10 @@ fun FleetsScreen(
     }
     Scaffold(
         contentWindowInsets = NestedTabInsets,
-        topBar = { NestedTopBar("Signatures (${state.fleets.size})") },
+        topBar = { NestedTopBar(UiText.text(R.string.ui_signatures_value, (state.fleets.size).toString())) },
         floatingActionButton = {
             FloatingActionButton(onClick = vm::beginNewFleet) {
-                Icon(Icons.Outlined.Add, "New signature")
+                Icon(Icons.Outlined.Add, UiText.text(R.string.ui_new_signature))
             }
         },
     ) { pad ->
@@ -158,9 +162,9 @@ fun FleetsScreen(
             item {
                 Text(
                     if (sort == SignatureListSort.CLASS) {
-                        "Tap a class to open its signatures. Bookmark = beep. Hide a family on Filters, not here."
+                        UiText.text(R.string.ui_tap_a_class_to_open_its_signatures_bookmark_beep_hide_a_family_on)
                     } else {
-                        "Tap to edit. Bookmark = beep when that family appears. Hide a family on Filters, not here."
+                        UiText.text(R.string.ui_tap_to_edit_bookmark_beep_when_that_family_appears_hide_a_family_)
                     },
                     style = compactLine(12.sp, 14.sp),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -173,12 +177,12 @@ fun FleetsScreen(
                     FieldwatchFilterChip(
                         selected = sort == SignatureListSort.NAME,
                         onClick = { vm.setSignatureListSort(SignatureListSort.NAME) },
-                        label = { Text("Name A–Z") },
+                        label = { Text(UiText.text(R.string.ui_name_a_z)) },
                     )
                     FieldwatchFilterChip(
                         selected = sort == SignatureListSort.CLASS,
                         onClick = { vm.setSignatureListSort(SignatureListSort.CLASS) },
-                        label = { Text("Class A–Z") },
+                        label = { Text(UiText.text(R.string.ui_class_a_z)) },
                     )
                 }
             }
@@ -235,7 +239,7 @@ private fun SignatureClassHeader(
             RadioClassBadge(classKind = kind, accent = accent)
             Spacer(Modifier.width(10.dp))
             Text(
-                kind.label(),
+                kind.uiLabel(),
                 style = compactLine(16.sp, 18.sp, FontWeight.SemiBold),
                 modifier = Modifier.weight(1f),
                 maxLines = 1,
@@ -294,7 +298,7 @@ private fun SignatureRow(fleet: Fleet, state: FieldwatchUi, vm: FieldwatchViewMo
                     }
                 }
                 Text(
-                    "${fleet.kind.label()} · ${fleet.rules.size} rules · $liveHits live · ${if (fleet.matchAny) "OR" else "AND"}",
+                    UiText.text(R.string.ui_value_value_rules_value_live_value, (fleet.kind.uiLabel()).toString(), (fleet.rules.size).toString(), (liveHits).toString(), (if (fleet.matchAny) "OR" else "AND").toString()),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = compactLine(11.sp, 13.sp),
@@ -307,7 +311,7 @@ private fun SignatureRow(fleet: Fleet, state: FieldwatchUi, vm: FieldwatchViewMo
             ) {
                 Icon(
                     if (vm.isFleetWatched(fleet.id)) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder,
-                    "Beep when this signature appears",
+                    UiText.text(R.string.ui_beep_when_this_signature_appears),
                     modifier = Modifier.size(20.dp),
                 )
             }
@@ -334,9 +338,9 @@ fun FleetEditor(
         contentWindowInsets = NestedTabInsets,
         topBar = {
             NestedTopBar(
-                title = if (isNew) "New signature" else "Edit signature",
-                navigationIcon = { TextButton(onClick = onCancel) { Text("Cancel") } },
-                actions = { TextButton(onClick = { onSave(fleet) }) { Text("Save") } },
+                title = if (isNew) UiText.text(R.string.ui_new_signature) else UiText.text(R.string.ui_edit_signature),
+                navigationIcon = { TextButton(onClick = onCancel) { Text(UiText.text(R.string.ui_cancel)) } },
+                actions = { TextButton(onClick = { onSave(fleet) }) { Text(UiText.text(R.string.ui_save)) } },
             )
         },
     ) { pad ->
@@ -348,34 +352,34 @@ fun FleetEditor(
                 .padding(horizontal = 12.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            SectionCard("Identity") {
-            FieldwatchOutlinedField(fleet.name, { fleet = fleet.copy(name = it) }, "Name")
+            SectionCard(UiText.text(R.string.ui_identity)) {
+            FieldwatchOutlinedField(fleet.name, { fleet = fleet.copy(name = it) }, UiText.text(R.string.ui_name))
             FieldwatchOutlinedField(
                 fleet.notes,
                 { fleet = fleet.copy(notes = it) },
-                "Notes",
-                supportingText = "Shows on radio detail for matching radios, and in Share / AI Export. Not Extra attention — no Live “!” and not the amber card.",
+                UiText.text(R.string.ui_notes),
+                supportingText = UiText.text(R.string.ui_shows_on_radio_detail_for_matching_radios_and_in_share_ai_export_),
                 singleLine = false,
                 minLines = 2,
             )
             FieldwatchOutlinedField(
                 fleet.attentionNote,
                 { fleet = fleet.copy(attentionNote = it) },
-                "Extra attention",
-                supportingText = "Optional. If this is not empty, matching radios get a “!” on Live, this amber card on detail, and a line in Debrief. Separate from Notes above.",
+                UiText.text(R.string.ui_extra_attention),
+                supportingText = UiText.text(R.string.ui_optional_if_this_is_not_empty_matching_radios_get_a_on_live_this_),
                 singleLine = false,
                 minLines = 3,
             )
             }
 
-            SectionCard("Matching") {
+            SectionCard(UiText.text(R.string.ui_matching)) {
             var classMenu by remember { mutableStateOf(false) }
             ExposedDropdownMenuBox(classMenu, { classMenu = it }) {
-                FieldwatchDropdownField("Class", fleet.kind.label(), classMenu)
+                FieldwatchDropdownField(UiText.text(R.string.ui_class), fleet.kind.uiLabel(), classMenu)
                 ExposedDropdownMenu(classMenu, { classMenu = false }) {
-                    SignatureClass.visible.sortedBy { it.label().lowercase() }.forEach { kind ->
+                    SignatureClass.visible.sortedBy { it.uiLabel().lowercase() }.forEach { kind ->
                         DropdownMenuItem(
-                            text = { Text(kind.label()) },
+                            text = { Text(kind.uiLabel()) },
                             onClick = {
                                 fleet = fleet.copy(kind = kind)
                                 classMenu = false
@@ -385,47 +389,47 @@ fun FleetEditor(
                 }
             }
             Text(
-                "Filters → Show only / Hide these. Class sits (Finder tags, Cameras, …) are those chips — Save current as… if you want a preset.",
+                UiText.text(R.string.ui_filters_show_only_hide_these_class_sits_finder_tags_cameras_are_t),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Match any rule (OR)", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_match_any_rule_or), Modifier.weight(1f))
                 FieldwatchSwitch(fleet.matchAny, { fleet = fleet.copy(matchAny = it) })
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Cluster by OUI", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_cluster_by_oui), Modifier.weight(1f))
                 FieldwatchSwitch(fleet.clusterByOui, { fleet = fleet.copy(clusterByOui = it) })
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Sequential MACs", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_sequential_macs), Modifier.weight(1f))
                 FieldwatchSwitch(fleet.sequentialMac, { fleet = fleet.copy(sequentialMac = it) })
             }
             FieldwatchOutlinedField(
                 fleet.minPeers.toString(),
                 { fleet = fleet.copy(minPeers = it.toIntOrNull() ?: 0) },
-                "Min peers (0 = off)",
+                UiText.text(R.string.ui_min_peers_0_off),
             )
             FieldwatchOutlinedField(
                 fleet.peerWindowSec.toString(),
                 { fleet = fleet.copy(peerWindowSec = it.toIntOrNull() ?: 60) },
-                "Peer window (seconds)",
+                UiText.text(R.string.ui_peer_window_seconds),
             )
             }
 
-            SectionCard("Color") {
+            SectionCard(UiText.text(R.string.ui_color)) {
             ColorPicker(fleet.colorIndex) { fleet = fleet.copy(colorIndex = it) }
             Text(
-                "Stock colors are by class (red pentest, amber cameras/ALPR, purple phones/tags, cyan wearables, green mesh, orange audio/glasses, teal in-car/vehicle). Change any row.",
+                UiText.text(R.string.ui_stock_colors_are_by_class_red_pentest_amber_cameras_alpr_purple_p),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             }
 
-            SectionCard("Rules") {
+            SectionCard(UiText.text(R.string.ui_rules)) {
             Text(
-                "Each rule has its own switch. Off keeps the rule but it does not match. " +
-                    "Use that to mute noisy OUIs or names on one signature without deleting them.",
+                UiText.text(R.string.ui_each_rule_has_its_own_switch_off_keeps_the_rule_but_it_does_not_m) +
+                    UiText.text(R.string.ui_use_that_to_mute_noisy_ouis_or_names_on_one_signature_without_del),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -447,12 +451,12 @@ fun FleetEditor(
                     fleet = fleet.copy(rules = fleet.rules + MatchRule(RuleKind.OUI, text = ""))
                 },
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Add rule") }
+            ) { Text(UiText.text(R.string.ui_add_rule)) }
             }
 
             if (fleet.canHaveBleDecode()) {
                 val decodeCount = fleet.decode?.fields?.size ?: 0
-                SectionCard("Decode fields") {
+                SectionCard(UiText.text(R.string.ui_decode_fields)) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -460,7 +464,7 @@ fun FleetEditor(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        if (decodeCount == 0) "None" else "$decodeCount fields",
+                        if (decodeCount == 0) UiText.text(R.string.ui_none) else UiText.text(R.string.ui_value_fields, (decodeCount).toString()),
                         Modifier.weight(1f),
                         style = MaterialTheme.typography.bodyLarge,
                     )
@@ -471,7 +475,7 @@ fun FleetEditor(
                     )
                 }
                 Text(
-                    "Optional. After this signature matches, map cleartext BLE bytes to labels. Encrypted payloads stay hex.",
+                    UiText.text(R.string.ui_optional_after_this_signature_matches_map_cleartext_ble_bytes_to_),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -484,7 +488,7 @@ fun FleetEditor(
                 ) {
                     Icon(Icons.Outlined.Delete, null)
                     Spacer(Modifier.padding(4.dp))
-                    Text("Delete signature")
+                    Text(UiText.text(R.string.ui_delete_signature))
                 }
             }
         }
@@ -492,13 +496,13 @@ fun FleetEditor(
     if (confirmDelete && onDelete != null) {
         AlertDialog(
             onDismissRequest = { confirmDelete = false },
-            title = { Text("Delete this signature?") },
+            title = { Text(UiText.text(R.string.ui_delete_this_signature)) },
             text = {
                 Text(
                     if (initial.builtIn) {
-                        "“${fleet.name}” is a built-in signature. Deleting it removes matching, its bookmark, and filter chips. Restore default signatures in Settings will bring the stock set back."
+                        UiText.text(R.string.ui_value_is_a_built_in_signature_deleting_it_removes_matching_its_bo, (fleet.name).toString())
                     } else {
-                        "“${fleet.name}” will be removed. Matching, its bookmark, and filter chips go with it. This cannot be undone."
+                        UiText.text(R.string.ui_value_will_be_removed_matching_its_bookmark_and_filter_chips_go_w, (fleet.name).toString())
                     },
                 )
             },
@@ -506,10 +510,10 @@ fun FleetEditor(
                 TextButton(onClick = {
                     confirmDelete = false
                     onDelete()
-                }) { Text("Delete") }
+                }) { Text(UiText.text(R.string.ui_delete)) }
             },
             dismissButton = {
-                TextButton(onClick = { confirmDelete = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmDelete = false }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
@@ -545,7 +549,7 @@ private fun ColorPicker(selected: Int, onSelect: (Int) -> Unit) {
                         if (on) {
                             Icon(
                                 Icons.Outlined.Check,
-                                contentDescription = "Selected color",
+                                contentDescription = UiText.text(R.string.ui_selected_color),
                                 tint = if (fill.luminance() > 0.45f) {
                                     Color(0xFF12171C)
                                 } else {
@@ -582,7 +586,7 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
                     .weight(1f)
                     .padding(start = 8.dp, end = 4.dp),
             ) {
-                FieldwatchDropdownField("Kind", ruleKindLabel(rule.kind), expanded)
+                FieldwatchDropdownField(UiText.text(R.string.ui_kind), ruleKindLabel(rule.kind), expanded)
                 ExposedDropdownMenu(expanded, { expanded = false }) {
                     RuleKind.entries.forEach { kind ->
                         DropdownMenuItem(text = { Text(ruleKindLabel(kind)) }, onClick = {
@@ -592,7 +596,7 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
                     }
                 }
             }
-            IconButton(onClick = onDelete) { Icon(Icons.Outlined.Delete, "Delete rule") }
+            IconButton(onClick = onDelete) { Icon(Icons.Outlined.Delete, UiText.text(R.string.ui_delete_rule)) }
         }
         Column(
             Modifier.padding(top = 12.dp, start = 8.dp),
@@ -603,7 +607,7 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
                 FieldwatchOutlinedField(
                     rule.text,
                     { onChange(rule.copy(text = it)) },
-                    "Value",
+                    UiText.text(R.string.ui_value),
                 )
             }
             RuleKind.MANUFACTURER_ID -> {
@@ -613,7 +617,7 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
                         val parsed = it.removePrefix("0x").removePrefix("0X").toIntOrNull(16) ?: 0
                         onChange(rule.copy(companyId = parsed))
                     },
-                    "Company ID hex",
+                    UiText.text(R.string.ui_company_id_hex),
                 )
             }
             RuleKind.MANUFACTURER_DATA -> {
@@ -623,24 +627,24 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
                         val parsed = it.removePrefix("0x").removePrefix("0X").toIntOrNull(16) ?: 0
                         onChange(rule.copy(companyId = parsed))
                     },
-                    "Company ID hex",
+                    UiText.text(R.string.ui_company_id_hex),
                 )
                 FieldwatchOutlinedField(
                     rule.dataPrefixHex,
                     { onChange(rule.copy(dataPrefixHex = it)) },
-                    "Data prefix hex",
+                    UiText.text(R.string.ui_data_prefix_hex),
                 )
             }
             RuleKind.SERVICE_DATA -> {
                 FieldwatchOutlinedField(
                     rule.text,
                     { onChange(rule.copy(text = it)) },
-                    "Service UUID (empty = any, contains)",
+                    UiText.text(R.string.ui_service_uuid_empty_any_contains),
                 )
                 FieldwatchOutlinedField(
                     rule.dataPrefixHex,
                     { onChange(rule.copy(dataPrefixHex = it)) },
-                    if (rule.text.isBlank()) "Contains hex" else "Data prefix hex",
+                    if (rule.text.isBlank()) UiText.text(R.string.ui_contains_hex) else UiText.text(R.string.ui_data_prefix_hex),
                 )
             }
             RuleKind.RADIO_KIND -> {
@@ -649,7 +653,7 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
                     FieldwatchSwitch(rule.radio != RadioKind.BLE, { onChange(rule.copy(radio = if (it) RadioKind.WIFI else RadioKind.BLE)) })
                 }
             }
-            RuleKind.HIDDEN_SSID -> Text("Matches hidden SSIDs", style = MaterialTheme.typography.bodySmall)
+            RuleKind.HIDDEN_SSID -> Text(UiText.text(R.string.ui_matches_hidden_ssids), style = MaterialTheme.typography.bodySmall)
         }
         }
     }
@@ -657,16 +661,16 @@ private fun RuleEditor(rule: MatchRule, onChange: (MatchRule) -> Unit, onDelete:
 
 private fun ruleKindLabel(kind: RuleKind): String = when (kind) {
     RuleKind.OUI -> "OUI"
-    RuleKind.MAC_PREFIX -> "MAC prefix"
-    RuleKind.NAME_CONTAINS -> "Name contains"
-    RuleKind.NAME_GLOB -> "Name glob"
-    RuleKind.SERVICE_UUID -> "Service UUID"
-    RuleKind.SERVICE_DATA -> "Service data"
-    RuleKind.MANUFACTURER_ID -> "Manufacturer ID"
-    RuleKind.MANUFACTURER_DATA -> "Manufacturer data"
-    RuleKind.RADIO_KIND -> "Radio kind"
-    RuleKind.HIDDEN_SSID -> "Hidden SSID"
-    RuleKind.VENDOR_IE_OUI -> "Vendor IE OUI"
+    RuleKind.MAC_PREFIX -> UiText.text(R.string.ui_mac_prefix)
+    RuleKind.NAME_CONTAINS -> UiText.text(R.string.ui_name_contains)
+    RuleKind.NAME_GLOB -> UiText.text(R.string.ui_name_glob)
+    RuleKind.SERVICE_UUID -> UiText.text(R.string.ui_service_uuid)
+    RuleKind.SERVICE_DATA -> UiText.text(R.string.ui_service_data)
+    RuleKind.MANUFACTURER_ID -> UiText.text(R.string.ui_manufacturer_id)
+    RuleKind.MANUFACTURER_DATA -> UiText.text(R.string.ui_manufacturer_data)
+    RuleKind.RADIO_KIND -> UiText.text(R.string.ui_radio_kind)
+    RuleKind.HIDDEN_SSID -> UiText.text(R.string.ui_hidden_ssid)
+    RuleKind.VENDOR_IE_OUI -> UiText.text(R.string.ui_vendor_ie_oui)
 }
 
 private fun compactLine(

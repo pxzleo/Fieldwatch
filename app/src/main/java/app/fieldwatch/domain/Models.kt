@@ -548,6 +548,7 @@ data class WatchTarget(
 
 @Serializable
 data class AppSettings(
+    val language: app.fieldwatch.AppLanguage = app.fieldwatch.AppLanguage.SYSTEM,
     /** Kept in settings packs. The UI is always dark; Night mode is the red overlay. */
     val darkTheme: Boolean = true,
     val keepScreenOn: Boolean = true,
@@ -753,30 +754,31 @@ data class Sighting(
      * Live first-line title. BLE does not repeat the MAC (that is the second line).
      * Advertised name, else the same guess as the detail page (vendor · type), else unnamed LE.
      */
-    fun listTitle(signatureNames: List<String> = emptyList()): String {
+    fun listTitle(signatureNames: List<String> = emptyList(), translate: (String) -> String = { it }): String {
         val advertised = name.trim()
         if (advertised.isNotEmpty() && !advertised.equals(mac, ignoreCase = true)) return advertised
-        if (kind == RadioKind.WIFI) return if (hiddenSsid) "<hidden>" else mac
-        return DeviceExplain.listLabel(this, signatureNames) ?: "unnamed LE"
+        if (kind == RadioKind.WIFI) return if (hiddenSsid) translate("<hidden>") else mac
+        return DeviceExplain.listLabel(this, signatureNames, translate) ?: translate("unnamed LE")
     }
 
     /** SSID or BLE local name; placeholders if blank. */
-    fun advertisedName(): String {
+    fun advertisedName(translate: (String) -> String = { it }): String {
         val advertised = name.trim()
         if (advertised.isNotEmpty() && !advertised.equals(mac, ignoreCase = true)) return advertised
-        if (kind == RadioKind.WIFI) return if (hiddenSsid) "<hidden>" else mac
-        return "unnamed LE"
+        if (kind == RadioKind.WIFI) return if (hiddenSsid) translate("<hidden>") else mac
+        return translate("unnamed LE")
     }
 
     fun listLineText(
         line: ListLine,
         signatureNames: List<String> = emptyList(),
         watchName: String? = null,
+        translate: (String) -> String = { it },
     ): String {
         val custom = watchName?.trim()?.takeIf { it.isNotEmpty() }
         return when (line) {
-            ListLine.ADVERTISED_NAME -> custom ?: advertisedName()
-            ListLine.NAME_AND_TYPE -> custom ?: listTitle(signatureNames)
+            ListLine.ADVERTISED_NAME -> custom ?: advertisedName(translate)
+            ListLine.NAME_AND_TYPE -> custom ?: listTitle(signatureNames, translate)
             ListLine.MAC -> mac
             ListLine.NONE -> ""
         }
@@ -784,15 +786,15 @@ data class Sighting(
 
     fun radioKindTag(): String = if (kind == RadioKind.WIFI) "AP" else "LE"
 
-    fun statusCrumbs(): String = buildString {
-        if (randomized) append("rand")
+    fun statusCrumbs(translate: (String) -> String = { it }): String = buildString {
+        if (randomized) append(translate("rand"))
         if (fastPairPairing) {
             if (isNotEmpty()) append("  ")
-            append("pair")
+            append(translate("pair"))
         }
         if (gone) {
             if (isNotEmpty()) append("  ")
-            append("gone")
+            append(translate("gone"))
         }
     }
 

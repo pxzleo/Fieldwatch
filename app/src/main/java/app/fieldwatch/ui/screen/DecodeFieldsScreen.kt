@@ -1,5 +1,8 @@
 package app.fieldwatch.ui.screen
 
+import app.fieldwatch.UiText
+import app.fieldwatch.R
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -106,9 +109,9 @@ fun DecodeFieldsScreen(
         contentWindowInsets = NestedTabInsets,
         topBar = {
             NestedTopBar(
-                title = "Decode fields",
-                navigationIcon = { TextButton(onClick = onBack) { Text("Back") } },
-                actions = { TextButton(onClick = { onSave(currentDecode()) }) { Text("Save") } },
+                title = UiText.text(R.string.ui_decode_fields),
+                navigationIcon = { TextButton(onClick = onBack) { Text(UiText.text(R.string.ui_back)) } },
+                actions = { TextButton(onClick = { onSave(currentDecode()) }) { Text(UiText.text(R.string.ui_save)) } },
             )
         },
     ) { pad ->
@@ -120,9 +123,9 @@ fun DecodeFieldsScreen(
                 .padding(horizontal = 12.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            SectionCard("Source") {
+            SectionCard(UiText.text(R.string.ui_source)) {
             Text(
-                "Map cleartext BLE bytes after this signature matches. Encrypted ads stay hex.",
+                UiText.text(R.string.ui_map_cleartext_ble_bytes_after_this_signature_matches_encrypted_ad),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -130,23 +133,23 @@ fun DecodeFieldsScreen(
                 FieldwatchFilterChip(
                     selected = source == DecodeSource.MANUFACTURER_DATA,
                     onClick = { source = DecodeSource.MANUFACTURER_DATA },
-                    label = { Text("Manufacturer") },
+                    label = { Text(UiText.text(R.string.ui_manufacturer)) },
                 )
                 FieldwatchFilterChip(
                     selected = source == DecodeSource.SERVICE_DATA,
                     onClick = { source = DecodeSource.SERVICE_DATA },
-                    label = { Text("Service data") },
+                    label = { Text(UiText.text(R.string.ui_service_data)) },
                 )
             }
             if (source == DecodeSource.MANUFACTURER_DATA) {
                 CompactField(
                     companyText,
                     { companyText = it },
-                    "Company ID",
+                    UiText.text(R.string.ui_company_id),
                     modifier = Modifier.fillMaxWidth(),
                 )
                 Text(
-                    "Optional. Byte 0 is the first byte after the company ID. Empty = any record.",
+                    UiText.text(R.string.ui_optional_byte_0_is_the_first_byte_after_the_company_id_empty_any_),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -154,18 +157,18 @@ fun DecodeFieldsScreen(
                 CompactField(
                     serviceUuid,
                     { serviceUuid = it },
-                    "Service UUID",
+                    UiText.text(R.string.ui_service_uuid),
                     modifier = Modifier.fillMaxWidth(),
                 )
                 Text(
-                    "Required. 16-bit (FEAA) or full UUID.",
+                    UiText.text(R.string.ui_required_16_bit_feaa_or_full_uuid),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             }
 
-            SectionCard("Fields") {
+            SectionCard(UiText.text(R.string.ui_fields)) {
             fields.forEachIndexed { index, field ->
                 FieldCard(
                     field = field,
@@ -183,27 +186,27 @@ fun DecodeFieldsScreen(
                     val n = fields.size + 1
                     fields = fields + DecodeField(
                         id = "field_$n",
-                        label = "Field $n",
+                        label = UiText.text(R.string.ui_field_value, (n).toString()),
                         offset = nextOffset,
                         type = DecodeType.U8,
                     )
                 },
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Add field") }
+            ) { Text(UiText.text(R.string.ui_add_field)) }
             if (initial != null || fields.isNotEmpty()) {
                 FieldwatchActionButton(
                     onClick = { confirmRemove = true },
                     modifier = Modifier.fillMaxWidth(),
-                ) { Text("Remove decode map") }
+                ) { Text(UiText.text(R.string.ui_remove_decode_map)) }
                 Text(
-                    "Removes every field and the Live code mark. Save after adding fields still keeps the map.",
+                    UiText.text(R.string.ui_removes_every_field_and_the_live_code_mark_save_after_adding_fiel),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             }
 
-            SectionCard("Preview") {
+            SectionCard(UiText.text(R.string.ui_preview)) {
             PreviewBlock(
                 previewDevice = previewDevice,
                 previewHex = previewHex,
@@ -215,9 +218,9 @@ fun DecodeFieldsScreen(
     if (confirmRemove) {
         AlertDialog(
             onDismissRequest = { confirmRemove = false },
-            title = { Text("Remove decode map?") },
+            title = { Text(UiText.text(R.string.ui_remove_decode_map_201)) },
             text = {
-                Text("Clears all fields on this signature. Live no longer shows the code mark. Raw advertisements stay. This cannot be undone except by adding fields again.")
+                Text(UiText.text(R.string.ui_clears_all_fields_on_this_signature_live_no_longer_shows_the_code))
             },
             confirmButton = {
                 TextButton(
@@ -225,10 +228,10 @@ fun DecodeFieldsScreen(
                         confirmRemove = false
                         onSave(null)
                     },
-                ) { Text("Remove") }
+                ) { Text(UiText.text(R.string.ui_remove)) }
             },
             dismissButton = {
-                TextButton(onClick = { confirmRemove = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmRemove = false }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
@@ -243,14 +246,14 @@ private fun PreviewBlock(
     when {
         previewDevice == null -> {
             Text(
-                "No matching radio on the air. Save anyway; detail will fill in when one is heard.",
+                UiText.text(R.string.ui_no_matching_radio_on_the_air_save_anyway_detail_will_fill_in_when),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
         previewHex.isNullOrBlank() -> {
             Text(
-                "A matching radio is on the air, but this advertisement has no bytes for the source above.",
+                UiText.text(R.string.ui_a_matching_radio_is_on_the_air_but_this_advertisement_has_no_byte),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -264,7 +267,7 @@ private fun PreviewBlock(
             )
             if (previewRows.isEmpty()) {
                 Text(
-                    "Nothing parsed. Check offset, length, and that byte 0 is after the company ID.",
+                    UiText.text(R.string.ui_nothing_parsed_check_offset_length_and_that_byte_0_is_after_the_c),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -322,31 +325,31 @@ private fun FieldCard(
                         val id = if (looksGeneratedId(field.id, field.label)) slugId(next) else field.id
                         onChange(field.copy(label = next, id = id))
                     },
-                    "Label",
+                    UiText.text(R.string.ui_label),
                     modifier = Modifier.weight(1f),
                 )
                 TypeMenu(field.type, Modifier.width(112.dp)) { onChange(field.copy(type = it)) }
-                IconButton(onClick = onDelete) { Icon(Icons.Outlined.Delete, "Delete field") }
+                IconButton(onClick = onDelete) { Icon(Icons.Outlined.Delete, UiText.text(R.string.ui_delete_field)) }
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 CompactField(
                     field.offset.toString(),
                     { onChange(field.copy(offset = it.toIntOrNull() ?: 0)) },
-                    "Offset",
+                    UiText.text(R.string.ui_offset),
                     keyboard = KeyboardType.Number,
                     modifier = Modifier.weight(1f),
                 )
                 CompactField(
                     (field.length ?: field.type.defaultLength()).toString(),
                     { onChange(field.copy(length = it.toIntOrNull()?.coerceAtLeast(1))) },
-                    "Length",
+                    UiText.text(R.string.ui_length),
                     keyboard = KeyboardType.Number,
                     modifier = Modifier.weight(1f),
                 )
                 CompactField(
                     field.unit.orEmpty(),
                     { onChange(field.copy(unit = it.ifBlank { null })) },
-                    "Unit",
+                    UiText.text(R.string.ui_unit),
                     modifier = Modifier.width(72.dp),
                 )
                 if (needsEndian) {
@@ -358,14 +361,14 @@ private fun FieldCard(
                     CompactField(
                         (field.bitOffset ?: 0).toString(),
                         { onChange(field.copy(bitOffset = it.toIntOrNull() ?: 0)) },
-                        "Bit offset",
+                        UiText.text(R.string.ui_bit_offset),
                         keyboard = KeyboardType.Number,
                         modifier = Modifier.weight(1f),
                     )
                     CompactField(
                         (field.bitWidth ?: 1).toString(),
                         { onChange(field.copy(bitWidth = it.toIntOrNull()?.coerceAtLeast(1) ?: 1)) },
-                        "Bit width",
+                        UiText.text(R.string.ui_bit_width),
                         keyboard = KeyboardType.Number,
                         modifier = Modifier.weight(1f),
                     )
@@ -376,14 +379,14 @@ private fun FieldCard(
                     CompactField(
                         field.scale?.toString().orEmpty(),
                         { onChange(field.copy(scale = it.toDoubleOrNull())) },
-                        "Scale",
+                        UiText.text(R.string.ui_scale),
                         keyboard = KeyboardType.Decimal,
                         modifier = Modifier.weight(1f),
                     )
                     CompactField(
                         field.offsetAdd?.toString().orEmpty(),
                         { onChange(field.copy(offsetAdd = it.toDoubleOrNull())) },
-                        "Add",
+                        UiText.text(R.string.ui_add),
                         keyboard = KeyboardType.Decimal,
                         modifier = Modifier.weight(1f),
                     )
@@ -395,9 +398,9 @@ private fun FieldCard(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Column(Modifier.weight(1f)) {
-                    Text("Live row", style = MaterialTheme.typography.titleSmall)
+                    Text(UiText.text(R.string.ui_live_row), style = MaterialTheme.typography.titleSmall)
                     Text(
-                        "Show this value next to the signature name. Strong values use a heavier chip.",
+                        UiText.text(R.string.ui_show_this_value_next_to_the_signature_name_strong_values_use_a_he),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -409,7 +412,7 @@ private fun FieldCard(
             }
             NamedValuesBlock(field, onChange)
             if (!more) {
-                TextButton(onClick = { more = true }) { Text("More") }
+                TextButton(onClick = { more = true }) { Text(UiText.text(R.string.ui_more)) }
             } else {
                 CompactField(
                     field.id,
@@ -421,12 +424,12 @@ private fun FieldCard(
                     CompactField(
                         field.modulo?.toString().orEmpty(),
                         { onChange(field.copy(modulo = it.toDoubleOrNull())) },
-                        "Modulo",
+                        UiText.text(R.string.ui_modulo),
                         keyboard = KeyboardType.Decimal,
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
-                TextButton(onClick = { more = false }) { Text("Hide extra") }
+                TextButton(onClick = { more = false }) { Text(UiText.text(R.string.ui_hide_extra)) }
             }
         }
     }
@@ -438,10 +441,10 @@ private fun OnlyIfBlock(gate: DecodeWhen?, onChange: (DecodeWhen?) -> Unit) {
     if (gate == null) {
         TextButton(onClick = {
             onChange(DecodeWhen(offset = 0, length = 1, op = DecodeWhenOp.EQ, valueHex = ""))
-        }) { Text("Only if…") }
+        }) { Text(UiText.text(R.string.ui_only_if)) }
         return
     }
-    Text("Only if", style = MaterialTheme.typography.titleSmall)
+    Text(UiText.text(R.string.ui_only_if_224), style = MaterialTheme.typography.titleSmall)
     if (gate.op == DecodeWhenOp.LEN) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -451,7 +454,7 @@ private fun OnlyIfBlock(gate: DecodeWhen?, onChange: (DecodeWhen?) -> Unit) {
             CompactField(
                 gate.length.toString(),
                 { onChange(gate.copy(length = it.toIntOrNull()?.coerceAtLeast(1) ?: 1)) },
-                "Bytes",
+                UiText.text(R.string.ui_bytes),
                 keyboard = KeyboardType.Number,
                 modifier = Modifier.weight(1f),
             )
@@ -461,14 +464,14 @@ private fun OnlyIfBlock(gate: DecodeWhen?, onChange: (DecodeWhen?) -> Unit) {
             CompactField(
                 gate.offset.toString(),
                 { onChange(gate.copy(offset = it.toIntOrNull() ?: 0)) },
-                "Offset",
+                UiText.text(R.string.ui_offset),
                 keyboard = KeyboardType.Number,
                 modifier = Modifier.weight(1f),
             )
             CompactField(
                 gate.length.toString(),
                 { onChange(gate.copy(length = it.toIntOrNull()?.coerceAtLeast(1) ?: 1)) },
-                "Length",
+                UiText.text(R.string.ui_length),
                 keyboard = KeyboardType.Number,
                 modifier = Modifier.weight(1f),
             )
@@ -481,12 +484,12 @@ private fun OnlyIfBlock(gate: DecodeWhen?, onChange: (DecodeWhen?) -> Unit) {
             CompactField(
                 gate.valueHex,
                 { onChange(gate.copy(valueHex = it)) },
-                "Hex",
+                UiText.text(R.string.ui_hex),
                 modifier = Modifier.width(96.dp),
             )
         }
     }
-    TextButton(onClick = { onChange(null) }) { Text("Remove") }
+    TextButton(onClick = { onChange(null) }) { Text(UiText.text(R.string.ui_remove)) }
 }
 
 @Composable
@@ -517,10 +520,10 @@ private fun NamedValuesBlock(
         TextButton(onClick = {
             open = true
             rows = listOf("" to "")
-        }) { Text("Named values…") }
+        }) { Text(UiText.text(R.string.ui_named_values)) }
         return
     }
-    Text("Named values", style = MaterialTheme.typography.titleSmall)
+    Text(UiText.text(R.string.ui_named_values_228), style = MaterialTheme.typography.titleSmall)
     rows.forEachIndexed { index, (raw, shown) ->
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Row(
@@ -536,7 +539,7 @@ private fun NamedValuesBlock(
                         val notes = field.enumNotes?.mapKeys { (key, _) -> if (key == raw) next else key }
                         publish(nextRows, emphasis, notes)
                     },
-                    "Raw",
+                    UiText.text(R.string.ui_raw),
                     modifier = Modifier.width(88.dp),
                 )
                 CompactField(
@@ -546,7 +549,7 @@ private fun NamedValuesBlock(
                         rows = nextRows
                         publish(nextRows)
                     },
-                    "Show as",
+                    UiText.text(R.string.ui_show_as),
                     modifier = Modifier.weight(1f),
                 )
                 IconButton(
@@ -562,7 +565,7 @@ private fun NamedValuesBlock(
                             publish(nextRows, emphasis, notes)
                         }
                     },
-                ) { Icon(Icons.Outlined.Delete, "Delete value") }
+                ) { Icon(Icons.Outlined.Delete, UiText.text(R.string.ui_delete_value)) }
             }
             if (field.live && raw.isNotBlank()) {
                 Row(
@@ -580,7 +583,7 @@ private fun NamedValuesBlock(
                             }
                             publish(rows, emphasis)
                         },
-                        label = { Text("Strong") },
+                        label = { Text(UiText.text(R.string.ui_strong)) },
                     )
                     CompactField(
                         field.enumNotes?.get(raw).orEmpty(),
@@ -589,7 +592,7 @@ private fun NamedValuesBlock(
                             if (note.isBlank()) notes.remove(raw) else notes[raw] = note
                             publish(rows, notes = notes)
                         },
-                        "Note",
+                        UiText.text(R.string.ui_note),
                         modifier = Modifier.weight(1f),
                     )
                 }
@@ -597,14 +600,14 @@ private fun NamedValuesBlock(
         }
     }
     Row {
-        TextButton(onClick = { rows = rows + ("" to "") }) { Text("Add value") }
+        TextButton(onClick = { rows = rows + ("" to "") }) { Text(UiText.text(R.string.ui_add_value)) }
         TextButton(
             onClick = {
                 open = false
                 rows = emptyList()
                 onChange(field.copy(enumLabels = null, liveEmphasis = emptyList(), enumNotes = null))
             },
-        ) { Text("Remove") }
+        ) { Text(UiText.text(R.string.ui_remove)) }
     }
 }
 
@@ -630,20 +633,20 @@ private fun CompactField(
 private fun WhenOpMenu(op: DecodeWhenOp, modifier: Modifier, onChange: (DecodeWhenOp) -> Unit) {
     var open by remember { mutableStateOf(false) }
     val label = when (op) {
-        DecodeWhenOp.EQ -> "equals"
-        DecodeWhenOp.NEQ -> "not equals"
-        DecodeWhenOp.MASK -> "mask"
-        DecodeWhenOp.NMASK -> "none of bits"
-        DecodeWhenOp.LEN -> "length"
+        DecodeWhenOp.EQ -> UiText.text(R.string.label_equals)
+        DecodeWhenOp.NEQ -> UiText.text(R.string.ui_not_equals)
+        DecodeWhenOp.MASK -> UiText.text(R.string.label_mask)
+        DecodeWhenOp.NMASK -> UiText.text(R.string.ui_none_of_bits)
+        DecodeWhenOp.LEN -> UiText.text(R.string.label_length)
     }
     ExposedDropdownMenuBox(open, { open = it }, modifier) {
-        FieldwatchDropdownField("When", label, open)
+        FieldwatchDropdownField(UiText.text(R.string.ui_when), label, open)
         ExposedDropdownMenu(open, { open = false }) {
-            DropdownMenuItem(text = { Text("equals") }, onClick = { onChange(DecodeWhenOp.EQ); open = false })
-            DropdownMenuItem(text = { Text("not equals") }, onClick = { onChange(DecodeWhenOp.NEQ); open = false })
-            DropdownMenuItem(text = { Text("mask") }, onClick = { onChange(DecodeWhenOp.MASK); open = false })
-            DropdownMenuItem(text = { Text("none of bits") }, onClick = { onChange(DecodeWhenOp.NMASK); open = false })
-            DropdownMenuItem(text = { Text("payload length") }, onClick = { onChange(DecodeWhenOp.LEN); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.label_equals)) }, onClick = { onChange(DecodeWhenOp.EQ); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.ui_not_equals)) }, onClick = { onChange(DecodeWhenOp.NEQ); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.label_mask)) }, onClick = { onChange(DecodeWhenOp.MASK); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.ui_none_of_bits)) }, onClick = { onChange(DecodeWhenOp.NMASK); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.ui_payload_length)) }, onClick = { onChange(DecodeWhenOp.LEN); open = false })
         }
     }
 }
@@ -664,7 +667,7 @@ private fun List<Pair<String, String>>.toEnumMap(): Map<String, String>? {
 private fun TypeMenu(type: DecodeType, modifier: Modifier, onChange: (DecodeType) -> Unit) {
     var open by remember { mutableStateOf(false) }
     ExposedDropdownMenuBox(open, { open = it }, modifier) {
-        FieldwatchDropdownField("Type", type.name.lowercase(), open)
+        FieldwatchDropdownField(UiText.text(R.string.ui_type), type.name.lowercase(), open)
         ExposedDropdownMenu(open, { open = false }) {
             DecodeType.entries.forEach { t ->
                 DropdownMenuItem(
@@ -681,10 +684,10 @@ private fun TypeMenu(type: DecodeType, modifier: Modifier, onChange: (DecodeType
 private fun EndianMenu(endian: DecodeEndian, modifier: Modifier, onChange: (DecodeEndian) -> Unit) {
     var open by remember { mutableStateOf(false) }
     ExposedDropdownMenuBox(open, { open = it }, modifier) {
-        FieldwatchDropdownField("Endian", if (endian == DecodeEndian.BE) "BE" else "LE", open)
+        FieldwatchDropdownField(UiText.text(R.string.ui_endian), if (endian == DecodeEndian.BE) "BE" else "LE", open)
         ExposedDropdownMenu(open, { open = false }) {
-            DropdownMenuItem(text = { Text("little") }, onClick = { onChange(DecodeEndian.LE); open = false })
-            DropdownMenuItem(text = { Text("big") }, onClick = { onChange(DecodeEndian.BE); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.label_little)) }, onClick = { onChange(DecodeEndian.LE); open = false })
+            DropdownMenuItem(text = { Text(UiText.text(R.string.label_big)) }, onClick = { onChange(DecodeEndian.BE); open = false })
         }
     }
 }

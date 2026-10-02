@@ -1,5 +1,7 @@
 package app.fieldwatch.alert
 
+import app.fieldwatch.UiText
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -200,11 +202,11 @@ class Alerter(private val context: Context) {
         )
         val note = NotificationCompat.Builder(context, CHANNEL)
             .setSmallIcon(R.drawable.ic_stat_fieldwatch)
-            .setContentTitle("Fieldwatch watchlist")
+            .setContentTitle(UiText.text(R.string.notification_watch_title))
             .setContentText("$label  ${device.rssi} dBm  ${MacUtil.screenMac(device.mac, demoMode)}")
             .setStyle(
                 NotificationCompat.BigTextStyle().bigText(
-                    "$label appeared\n${device.kind}  ${MacUtil.screenMac(device.mac, demoMode)}\n${device.rssi} dBm  ${MacUtil.redactMacIn(device.displayName, device.mac, demoMode)}",
+                    UiText.text(R.string.notification_watch_appeared, label, device.kind, MacUtil.screenMac(device.mac, demoMode), device.rssi, MacUtil.redactMacIn(device.displayName, device.mac, demoMode)),
                 ),
             )
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -495,10 +497,15 @@ class Alerter(private val context: Context) {
     private fun ensureChannel() {
         if (Build.VERSION.SDK_INT < 26) return
         runCatching { manager.deleteNotificationChannel("fieldwatch_watch_v2") }
-        if (manager.getNotificationChannel(CHANNEL) != null) return
+        manager.getNotificationChannel(CHANNEL)?.let { channel ->
+            channel.name = UiText.text(R.string.notification_watch_channel)
+            channel.description = UiText.text(R.string.notification_watch_description)
+            manager.createNotificationChannel(channel)
+            return
+        }
         manager.createNotificationChannel(
-            NotificationChannel(CHANNEL, "Watchlist", NotificationManager.IMPORTANCE_HIGH).apply {
-                description = "Appearing signatures and devices on your watchlist. Beep is played separately."
+            NotificationChannel(CHANNEL, UiText.text(R.string.notification_watch_channel), NotificationManager.IMPORTANCE_HIGH).apply {
+                description = UiText.text(R.string.notification_watch_description)
                 enableVibration(true)
                 enableLights(true)
                 setSound(null, null)

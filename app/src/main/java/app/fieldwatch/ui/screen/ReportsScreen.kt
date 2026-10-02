@@ -1,5 +1,9 @@
 package app.fieldwatch.ui.screen
 
+import app.fieldwatch.UiText
+import app.fieldwatch.ui.uiLabel
+import app.fieldwatch.R
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -93,7 +97,7 @@ fun ReportsScreen(
     var confirmDeleteAll by remember { mutableStateOf(false) }
     Scaffold(
         contentWindowInsets = NestedTabInsets,
-        topBar = { NestedTopBar("Reports") },
+        topBar = { NestedTopBar(UiText.text(R.string.ui_reports)) },
     ) { pad ->
         Column(
             Modifier
@@ -105,15 +109,15 @@ fun ReportsScreen(
         ) {
             if (settings.demoMode) {
                 Text(
-                    "Privacy mode is on. MAC tails in Debrief, sit compare, AI Export (sit or compare), and detail Share are **:**:**. GPS coordinates are masked. The log file, sit export, and GPX / KML / WiGLE files still have full addresses and lat/lon.",
+                    UiText.text(R.string.ui_privacy_mode_is_on_mac_tails_in_debrief_sit_compare_ai_export_sit),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
                 )
             }
 
-            SectionCard("Sits") {
+            SectionCard(UiText.text(R.string.ui_sits)) {
                 Text(
-                    "A sit is a named window of radios heard here. The selection below drives Path, Debrief, and Compare’s this-sit side: open sit, a selected saved sit, or last 15 minutes if you never start one.",
+                    UiText.text(R.string.ui_a_sit_is_a_named_window_of_radios_heard_here_the_selection_below_),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -121,14 +125,14 @@ fun ReportsScreen(
                 if (open != null) {
                     val dur = Sit.fmtDuration(open.durationMs())
                     Text(
-                        "This sit: ${open.name} · $dur · ${state.sit.radioCount} radios",
+                        UiText.text(R.string.ui_this_sit_value_value_value_radios, (open.name).toString(), (dur).toString(), (state.sit.radioCount).toString()),
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     FieldwatchActionButton(
                         onClick = vm::endSit,
                         enabled = !exporting,
                         modifier = Modifier.fillMaxWidth(),
-                    ) { Text("End sit") }
+                    ) { Text(UiText.text(R.string.ui_end_sit)) }
                 } else {
                     FieldwatchActionButton(
                         onClick = {
@@ -137,12 +141,12 @@ fun ReportsScreen(
                         },
                         enabled = !exporting,
                         modifier = Modifier.fillMaxWidth(),
-                    ) { Text("Start sit") }
+                    ) { Text(UiText.text(R.string.ui_start_sit)) }
                     Text(
                         if (state.sit.closed.isEmpty()) {
-                            "No sit running. Start sit here. Path and Debrief stay last 15 minutes until you do."
+                            UiText.text(R.string.ui_no_sit_running_start_sit_here_path_and_debrief_stay_last_15_minut)
                         } else {
-                            "No sit running. Start sit here. Path and Debrief use the selected sit."
+                            UiText.text(R.string.ui_no_sit_running_start_sit_here_path_and_debrief_use_the_selected_s)
                         },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -150,7 +154,7 @@ fun ReportsScreen(
                 }
                 if (state.sit.closed.isEmpty() && open == null) {
                     Text(
-                        "No saved sits.",
+                        UiText.text(R.string.ui_no_saved_sits),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -160,14 +164,14 @@ fun ReportsScreen(
                     SitChoiceRow(
                         selected = state.sit.selectedId == null,
                         enabled = pickEnabled,
-                        title = "Last 15 minutes",
-                        subtitle = "Path and Debrief use RAM, not a saved sit.",
+                        title = UiText.text(R.string.ui_last_15_minutes),
+                        subtitle = UiText.text(R.string.ui_path_and_debrief_use_ram_not_a_saved_sit),
                         onSelect = { vm.selectSit(null) },
                     )
                     state.sit.closed.forEach { row ->
                         val dur = Sit.fmtDuration(row.durationMs())
                         val extra = if (row.extraAttentionCount > 0) {
-                            " · Extra attention ${row.extraAttentionCount}"
+                            UiText.text(R.string.ui_extra_attention_value, (row.extraAttentionCount).toString())
                         } else {
                             ""
                         }
@@ -175,13 +179,13 @@ fun ReportsScreen(
                             selected = state.sit.selectedId == row.id,
                             enabled = pickEnabled,
                             title = row.name,
-                            subtitle = "${Sit.defaultName(row.startAt)} · $dur · ${row.radioCount} radios$extra",
+                            subtitle = UiText.text(R.string.ui_value_value_value_radiosvalue, (Sit.defaultName(row.startAt)).toString(), (dur).toString(), (row.radioCount).toString(), (extra).toString()),
                             onSelect = { vm.selectSit(row.id) },
                         )
                     }
                     if (open != null) {
                         Text(
-                            "End sit to pick a saved one for Path and Debrief.",
+                            UiText.text(R.string.ui_end_sit_to_pick_a_saved_one_for_path_and_debrief),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -200,18 +204,18 @@ fun ReportsScreen(
                             },
                             enabled = !exporting && picked != null,
                             modifier = Modifier.weight(1f),
-                        ) { Text("Rename") }
+                        ) { Text(UiText.text(R.string.ui_rename)) }
                         FieldwatchActionButton(
                             onClick = { if (picked != null) deleteSitId = picked.id },
                             enabled = !exporting && picked != null,
                             modifier = Modifier.weight(1f),
-                        ) { Text("Delete") }
+                        ) { Text(UiText.text(R.string.ui_delete)) }
                     }
                     FieldwatchActionButton(
                         onClick = { confirmDeleteAll = true },
                         enabled = !exporting,
                         modifier = Modifier.fillMaxWidth(),
-                    ) { Text("Delete all sits") }
+                    ) { Text(UiText.text(R.string.ui_delete_all_sits)) }
                 }
             }
 
@@ -222,9 +226,9 @@ fun ReportsScreen(
                     kotlinx.coroutines.delay(3_000L)
                 }
             }
-            SectionCard("Path") {
+            SectionCard(UiText.text(R.string.ui_path)) {
                 Text(
-                    "North up. The line is this phone. The black dot is the start. The blue dot is you, at the last point. A MAC or signature alert is one class icon. A decoded latitude and longitude uses the last position that radio sent. A count is several in one spot. Thick green is a stay. Time ticks along the path.",
+                    UiText.text(R.string.ui_north_up_the_line_is_this_phone_the_black_dot_is_the_start_the_bl),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -233,7 +237,7 @@ fun ReportsScreen(
                 val showAircraft = model != null && model.aircraftCards.isNotEmpty()
                 if (model == null || (!showWalk && !showAircraft)) {
                     Text(
-                        model?.emptyHint ?: "Tag detections with GPS and walk, or open a sit that recorded a path.",
+                        model?.emptyHint ?: UiText.text(R.string.ui_tag_detections_with_gps_and_walk_or_open_a_sit_that_recorded_a_pa),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -242,7 +246,7 @@ fun ReportsScreen(
                     val aircraftTiles by vm.pathAircraftTiles.collectAsStateWithLifecycle()
                     if (!showWalk) {
                         Text(
-                            model.emptyHint ?: "Tag detections with GPS and walk, or open a sit that recorded a path.",
+                            model.emptyHint ?: UiText.text(R.string.ui_tag_detections_with_gps_and_walk_or_open_a_sit_that_recorded_a_pa),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -251,9 +255,9 @@ fun ReportsScreen(
                     val stopN = model.dots.size
                     Text(
                         buildString {
-                            append("${model.title} · ${model.lengthM.toInt()} m path · ${model.spanM.toInt()} m span")
+                            append(UiText.text(R.string.ui_value_value_m_path_value_m_span, (model.title).toString(), (model.lengthM.toInt()).toString(), (model.spanM.toInt()).toString()))
                             if (stopN > 0) {
-                                append(" · $stopN alert")
+                                append(UiText.text(R.string.ui_value_alert, (stopN).toString()))
                                 if (stopN != 1) append("s")
                             }
                         },
@@ -261,7 +265,7 @@ fun ReportsScreen(
                     )
                     SitPathCanvas(model, tiles = pathTiles, onOpenRadio = onOpenPathRadio)
                     Text(
-                        "Tap a count for the radios there. Tap a single icon for that one radio. Tap again to close. Tap a row in that list, or a row below, to open that radio.",
+                        UiText.text(R.string.ui_tap_a_count_for_the_radios_there_tap_a_single_icon_for_that_one_r),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -276,9 +280,9 @@ fun ReportsScreen(
                                     if (multi) AdvertisedTrackSwatch() else AdvertisedRingSwatch()
                                     Text(
                                         if (multi) {
-                                            "= advertised track within 2 km of this path"
+                                            UiText.text(R.string.ui_advertised_track_within_2_km_of_this_path)
                                         } else {
-                                            "= one advertised position within 2 km of this path"
+                                            UiText.text(R.string.ui_one_advertised_position_within_2_km_of_this_path)
                                         },
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurface,
@@ -292,7 +296,7 @@ fun ReportsScreen(
                                 ) {
                                     PilotSwatch()
                                     Text(
-                                        "= pilot",
+                                        UiText.text(R.string.ui_pilot),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     )
@@ -303,7 +307,7 @@ fun ReportsScreen(
                     val alertsOnACard = model.aircraftCards.any { it.dots.isNotEmpty() }
                     if (model.dots.isEmpty() && !alertsOnACard) {
                         Text(
-                            "No MAC or signature alerts with a GPS stamp on this path.",
+                            UiText.text(R.string.ui_no_mac_or_signature_alerts_with_a_gps_stamp_on_this_path),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -331,7 +335,7 @@ fun ReportsScreen(
                         Text(
                             buildString {
                                 append(
-                                    if (fixes == 1) "1 advertised fix" else "$fixes advertised fixes",
+                                    if (fixes == 1) UiText.text(R.string.ui_1_advertised_fix) else UiText.text(R.string.ui_value_advertised_fixes, (fixes).toString()),
                                 )
                                 if (card.lengthM >= 1.0) append(" · ${card.lengthM.toInt()} m")
                             },
@@ -339,7 +343,7 @@ fun ReportsScreen(
                         )
                         if (card.dots.isNotEmpty()) {
                             Text(
-                                if (card.dots.size == 1) "1 alert" else "${card.dots.size} alerts",
+                                if (card.dots.size == 1) UiText.text(R.string.ui_1_alert) else UiText.text(R.string.ui_value_alerts, (card.dots.size).toString()),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -372,9 +376,9 @@ fun ReportsScreen(
                     if (model.looseAdvertised > 0) {
                         Text(
                             if (model.looseAdvertised == 1) {
-                                "An advertised position with no UAS id is in the sit report."
+                                UiText.text(R.string.ui_an_advertised_position_with_no_uas_id_is_in_the_sit_report)
                             } else {
-                                "Advertised positions with no UAS id are in the sit report."
+                                UiText.text(R.string.ui_advertised_positions_with_no_uas_id_are_in_the_sit_report)
                             },
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -383,7 +387,7 @@ fun ReportsScreen(
                 }
             }
 
-            SectionCard("Sit report") {
+            SectionCard(UiText.text(R.string.ui_sit_report)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -392,12 +396,12 @@ fun ReportsScreen(
                     onClick = vm::startFieldDebrief,
                     enabled = !exporting,
                     modifier = Modifier.weight(1f),
-                ) { Text("Debrief (text)") }
+                ) { Text(UiText.text(R.string.ui_debrief_text)) }
                 FieldwatchActionButton(
                     onClick = vm::startFieldDebriefPdf,
                     enabled = !exporting,
                     modifier = Modifier.weight(1f),
-                ) { Text("Debrief (PDF)") }
+                ) { Text(UiText.text(R.string.ui_debrief_pdf_526)) }
             }
             Text(
                 sitReportCaption(state),
@@ -409,7 +413,7 @@ fun ReportsScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    "Show unmatched rotating BLE",
+                    UiText.text(R.string.ui_show_unmatched_rotating_ble),
                     modifier = Modifier.weight(1f),
                     style = MaterialTheme.typography.bodyMedium,
                 )
@@ -419,7 +423,7 @@ fun ReportsScreen(
                 )
             }
             Text(
-                "Off (default): Debrief text/PDF lists skip unmatched RAND BLE. Counts still include them. Extra attention, named signatures, bookmarks, and payload pins stay. Sit export has every radio.",
+                UiText.text(R.string.ui_off_default_debrief_text_pdf_lists_skip_unmatched_rand_ble_counts),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -427,15 +431,15 @@ fun ReportsScreen(
                 onClick = vm::startAiExport,
                 enabled = !exporting,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("AI Export") }
+            ) { Text(UiText.text(R.string.ui_ai_export_15)) }
             Text(
-                "Paste-ready addendum: rates, RSSI bands, Extra attention and tracking IDs. Does not reprint Debrief inventories. One-radio AI Export is on detail.",
+                UiText.text(R.string.ui_paste_ready_addendum_rates_rssi_bands_extra_attention_and_trackin),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             }
 
-            SectionCard("Sit export") {
+            SectionCard(UiText.text(R.string.ui_sit_export)) {
             val sitKind by vm.sitExportKind.collectAsStateWithLifecycle()
             val sitRadios by vm.sitExportRadios.collectAsStateWithLifecycle()
             ExportFormatBlock(
@@ -446,11 +450,11 @@ fun ReportsScreen(
                 onRadios = vm::setSitExportRadios,
                 onShare = vm::startSitExport,
                 onSave = onSaveSitToStorage,
-                hint = "One row per unique radio in this sit (or last 15 minutes). CSV / JSON lines include matched signatures and Extra attention families. Not the rotating log. GPX / KML include this phone’s path as a track plus hear-points. Fieldwatch does not upload. Privacy mode does not mask this file.",
+                hint = UiText.text(R.string.ui_one_row_per_unique_radio_in_this_sit_or_last_15_minutes_csv_json_),
             )
             }
 
-            SectionCard("Compare sits") {
+            SectionCard(UiText.text(R.string.ui_compare_sits)) {
                 Text(
                     compareThisCaption(state),
                     style = MaterialTheme.typography.bodySmall,
@@ -460,13 +464,13 @@ fun ReportsScreen(
                 val choices = SitDiff.secondSitChoices(state.sit.closed, thisSaved)
                 if (choices.isEmpty()) {
                     Text(
-                        "Save a second sit to compare. Start sit, then End sit. Last 15 minutes can be this sit.",
+                        UiText.text(R.string.ui_save_a_second_sit_to_compare_start_sit_then_end_sit_last_15_minut),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 } else {
                     Text(
-                        "Second sit",
+                        UiText.text(R.string.ui_second_sit),
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     choices.forEach { row ->
@@ -475,7 +479,7 @@ fun ReportsScreen(
                             selected = state.sit.compareId == row.id,
                             enabled = !exporting,
                             title = row.name,
-                            subtitle = "${Sit.defaultName(row.startAt)} · $dur · ${row.radioCount} radios",
+                            subtitle = UiText.text(R.string.ui_value_value_value_radios, (Sit.defaultName(row.startAt)).toString(), (dur).toString(), (row.radioCount).toString()),
                             onSelect = { vm.selectCompareSit(row.id) },
                         )
                     }
@@ -488,15 +492,15 @@ fun ReportsScreen(
                         onClick = vm::startSitCompare,
                         enabled = !exporting && state.sit.compareId != null,
                         modifier = Modifier.weight(1f),
-                    ) { Text("Compare (text)") }
+                    ) { Text(UiText.text(R.string.ui_compare_text)) }
                     FieldwatchActionButton(
                         onClick = vm::startSitComparePdf,
                         enabled = !exporting && state.sit.compareId != null,
                         modifier = Modifier.weight(1f),
-                    ) { Text("Compare (PDF)") }
+                    ) { Text(UiText.text(R.string.ui_compare_pdf)) }
                 }
                 Text(
-                    "Same report, two formats. Presence only — only in this sit, only in the second, in both. Kind + MAC. Extra attention and Named radios are marked. Not a radio fix.",
+                    UiText.text(R.string.ui_same_report_two_formats_presence_only_only_in_this_sit_only_in_th),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -504,31 +508,31 @@ fun ReportsScreen(
                     onClick = vm::startSitCompareAiExport,
                     enabled = !exporting && state.sit.compareId != null,
                     modifier = Modifier.fillMaxWidth(),
-                ) { Text("AI Export") }
+                ) { Text(UiText.text(R.string.ui_ai_export_15)) }
                 Text(
-                    "Paste-ready addendum: overlap, exclusive Extra attention / Named radios, what another sit would shrink. Does not reprint the compare lists. Sit report AI Export stays this window only.",
+                    UiText.text(R.string.ui_paste_ready_addendum_overlap_exclusive_extra_attention_named_radi),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            SectionCard("Catalog") {
+            SectionCard(UiText.text(R.string.ui_catalog)) {
             FieldwatchActionButton(
                 onClick = onSignatureCandidates,
                 enabled = !exporting,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Signature candidates") }
+            ) { Text(UiText.text(R.string.ui_signature_candidates)) }
             Text(
-                "Unmatched radios in the log that share a unique ID — not every unknown. You review; nothing is added until you Save.",
+                UiText.text(R.string.ui_unmatched_radios_in_the_log_that_share_a_unique_id_not_every_unkn),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             }
 
-            SectionCard("Log export") {
+            SectionCard(UiText.text(R.string.ui_log_export)) {
             Text(
-                "${state.logLines} lines this session  ·  ${vm.logBytes() / 1024} KB on disk" +
-                    if (settings.loggingEnabled) "" else "  ·  logging off",
+                UiText.text(R.string.ui_value_lines_this_session_value_kb_on_disk, (state.logLines).toString(), (vm.logBytes() / 1024).toString()) +
+                    if (settings.loggingEnabled) "" else UiText.text(R.string.ui_logging_off),
                 style = MaterialTheme.typography.bodySmall,
             )
             val logKind by vm.logExportKind.collectAsStateWithLifecycle()
@@ -541,30 +545,30 @@ fun ReportsScreen(
                 onRadios = vm::setLogExportRadios,
                 onShare = vm::startExport,
                 onSave = onSaveToStorage,
-                hint = "The rotating file is JSON lines. CSV is the same rows as a spreadsheet. GPX — GPS Exchange, KML — Google Earth, and WiGLE CSV — wigle.net are hear-points: where this phone was when it heard each radio, not a radio fix. Tag detections with GPS and logging on. Share uses the Android share sheet — Fieldwatch does not upload.",
+                hint = UiText.text(R.string.ui_the_rotating_file_is_json_lines_csv_is_the_same_rows_as_a_spreads),
             )
             FieldwatchActionButton(
                 onClick = { confirmClear = true },
                 enabled = !exporting,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("Reset / clear log")
+                Text(UiText.text(R.string.ui_reset_clear_log))
             }
             if (confirmClear) {
                 AlertDialog(
                     onDismissRequest = { confirmClear = false },
-                    title = { Text("Clear the log?") },
+                    title = { Text(UiText.text(R.string.ui_clear_the_log)) },
                     text = {
-                        Text("This deletes all rotated CSV/JSON files on the phone. It cannot be undone. Live scanning will start a new empty log.")
+                        Text(UiText.text(R.string.ui_this_deletes_all_rotated_csv_json_files_on_the_phone_it_cannot_be))
                     },
                     confirmButton = {
                         TextButton(onClick = {
                             confirmClear = false
                             vm.clearLogs()
-                        }) { Text("Clear log") }
+                        }) { Text(UiText.text(R.string.ui_clear_log)) }
                     },
                     dismissButton = {
-                        TextButton(onClick = { confirmClear = false }) { Text("Cancel") }
+                        TextButton(onClick = { confirmClear = false }) { Text(UiText.text(R.string.ui_cancel)) }
                     },
                 )
             }
@@ -574,16 +578,16 @@ fun ReportsScreen(
     if (startSit) {
         AlertDialog(
             onDismissRequest = { startSit = false },
-            title = { Text("Start sit") },
+            title = { Text(UiText.text(R.string.ui_start_sit)) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     FieldwatchOutlinedField(
                         value = sitNameDraft,
                         onValueChange = { sitNameDraft = it.take(Sit.NAME_MAX) },
-                        label = "Name",
+                        label = UiText.text(R.string.ui_name),
                     )
                     Text(
-                        "Debrief and AI Export use this window until you end it. The Live list is unchanged.",
+                        UiText.text(R.string.ui_debrief_and_ai_export_use_this_window_until_you_end_it_the_live_l),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -600,10 +604,10 @@ fun ReportsScreen(
                 TextButton(onClick = {
                     startSit = false
                     vm.startSit(sitNameDraft)
-                }) { Text("Start") }
+                }) { Text(UiText.text(R.string.ui_start)) }
             },
             dismissButton = {
-                TextButton(onClick = { startSit = false }) { Text("Cancel") }
+                TextButton(onClick = { startSit = false }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
@@ -611,22 +615,22 @@ fun ReportsScreen(
     if (renaming != null) {
         AlertDialog(
             onDismissRequest = { renameSitId = null },
-            title = { Text("Rename sit") },
+            title = { Text(UiText.text(R.string.ui_rename_sit)) },
             text = {
                 FieldwatchOutlinedField(
                     value = renameDraft,
                     onValueChange = { renameDraft = it.take(Sit.NAME_MAX) },
-                    label = "Name",
+                    label = UiText.text(R.string.ui_name),
                 )
             },
             confirmButton = {
                 TextButton(onClick = {
                     renameSitId = null
                     vm.renameSit(renaming, renameDraft)
-                }) { Text("Save") }
+                }) { Text(UiText.text(R.string.ui_save)) }
             },
             dismissButton = {
-                TextButton(onClick = { renameSitId = null }) { Text("Cancel") }
+                TextButton(onClick = { renameSitId = null }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
@@ -634,32 +638,32 @@ fun ReportsScreen(
     if (deleting != null) {
         AlertDialog(
             onDismissRequest = { deleteSitId = null },
-            title = { Text("Delete this sit?") },
-            text = { Text("Removes the saved sit from this phone. The log is unchanged.") },
+            title = { Text(UiText.text(R.string.ui_delete_this_sit)) },
+            text = { Text(UiText.text(R.string.ui_removes_the_saved_sit_from_this_phone_the_log_is_unchanged)) },
             confirmButton = {
                 TextButton(onClick = {
                     deleteSitId = null
                     vm.deleteSit(deleting)
-                }) { Text("Delete") }
+                }) { Text(UiText.text(R.string.ui_delete)) }
             },
             dismissButton = {
-                TextButton(onClick = { deleteSitId = null }) { Text("Cancel") }
+                TextButton(onClick = { deleteSitId = null }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
     if (confirmDeleteAll) {
         AlertDialog(
             onDismissRequest = { confirmDeleteAll = false },
-            title = { Text("Delete all sits?") },
-            text = { Text("Removes saved sits from this phone. An open sit is not deleted. The log is unchanged.") },
+            title = { Text(UiText.text(R.string.ui_delete_all_sits_550)) },
+            text = { Text(UiText.text(R.string.ui_removes_saved_sits_from_this_phone_an_open_sit_is_not_deleted_the)) },
             confirmButton = {
                 TextButton(onClick = {
                     confirmDeleteAll = false
                     vm.deleteAllSits()
-                }) { Text("Delete all") }
+                }) { Text(UiText.text(R.string.ui_delete_all)) }
             },
             dismissButton = {
-                TextButton(onClick = { confirmDeleteAll = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmDeleteAll = false }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
@@ -827,13 +831,13 @@ private fun PathRadioRow(
 private fun compareThisCaption(state: FieldwatchUi): String {
     val open = state.sit.open
     if (open != null) {
-        return "This sit: ${open.name} — named window (up to ${Sit.RADIO_CAP}). Same as Debrief."
+        return UiText.text(R.string.ui_this_sit_value_named_window_up_to_value_same_as_debrief, (open.name).toString(), (Sit.RADIO_CAP).toString())
     }
     val selected = state.sit.closed.firstOrNull { it.id == state.sit.selectedId }
     if (selected != null) {
-        return "This sit: ${selected.name} — named window (up to ${Sit.RADIO_CAP}). Same as Debrief."
+        return UiText.text(R.string.ui_this_sit_value_named_window_up_to_value_same_as_debrief, (selected.name).toString(), (Sit.RADIO_CAP).toString())
     }
-    return "This sit: last 15 minutes in memory (about 400 radios). Same as Debrief."
+    return UiText.text(R.string.ui_this_sit_last_15_minutes_in_memory_about_400_radios_same_as_debri)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -854,11 +858,11 @@ private fun ExportFormatBlock(
         onExpandedChange = { openFormat = it },
         modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
     ) {
-        FieldwatchDropdownField("Format", kind.label, openFormat)
+        FieldwatchDropdownField(UiText.text(R.string.ui_format), kind.uiLabel(), openFormat)
         ExposedDropdownMenu(openFormat, { openFormat = false }) {
             LogExportKind.entries.forEach { item ->
                 DropdownMenuItem(
-                    text = { Text(item.label) },
+                    text = { Text(item.uiLabel()) },
                     onClick = {
                         onKind(item)
                         openFormat = false
@@ -887,7 +891,7 @@ private fun ExportFormatBlock(
                     onClick = { onRadios(item) },
                     enabled = !exporting,
                 )
-                Text(item.label, style = MaterialTheme.typography.bodySmall)
+                Text(item.uiLabel(), style = MaterialTheme.typography.bodySmall)
             }
         }
     }
@@ -895,12 +899,12 @@ private fun ExportFormatBlock(
         onClick = onShare,
         enabled = !exporting,
         modifier = Modifier.fillMaxWidth(),
-    ) { Text("Share") }
+    ) { Text(UiText.text(R.string.ui_share)) }
     FieldwatchActionButton(
         onClick = onSave,
         enabled = !exporting,
         modifier = Modifier.fillMaxWidth(),
-    ) { Text("Save to SD card / storage…") }
+    ) { Text(UiText.text(R.string.ui_save_to_sd_card_storage)) }
     Text(
         hint,
         style = MaterialTheme.typography.bodySmall,
@@ -911,11 +915,11 @@ private fun ExportFormatBlock(
 private fun sitReportCaption(state: FieldwatchUi): String {
     val open = state.sit.open
     if (open != null) {
-        return "This sit (${open.name}) — same window as Path. GPS following test when tagging is on and you have moved. Not a legal finding."
+        return UiText.text(R.string.ui_this_sit_value_same_window_as_path_gps_following_test_when_taggin, (open.name).toString())
     }
     val selected = state.sit.closed.firstOrNull { it.id == state.sit.selectedId }
     if (selected != null) {
-        return "Sit: ${selected.name} — same window as Path. GPS following test when tagging is on and you have moved. Not a legal finding."
+        return UiText.text(R.string.ui_sit_value_same_window_as_path_gps_following_test_when_tagging_is_, (selected.name).toString())
     }
-    return "Last 15 minutes in memory — same window as Path. Two formats. GPS following test when tagging is on and you have moved. Not a legal finding."
+    return UiText.text(R.string.ui_last_15_minutes_in_memory_same_window_as_path_two_formats_gps_fol)
 }

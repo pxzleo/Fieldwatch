@@ -12,6 +12,7 @@ import app.fieldwatch.domain.SitFile
 import app.fieldwatch.domain.SitSession
 import app.fieldwatch.domain.SitSummary
 import app.fieldwatch.domain.SitUi
+import app.fieldwatch.domain.SitNotice
 import app.fieldwatch.domain.Sighting
 import app.fieldwatch.domain.WatchTarget
 import kotlinx.coroutines.CoroutineScope
@@ -149,7 +150,7 @@ class SitStore(
                 selectedId = file.summary.id
                 pruneClosedLocked()
             }
-            val notice = dropped?.let { "Dropped oldest sit “$it” (keep ${Sit.CLOSED_CAP})." }
+            val notice = dropped?.let { SitNotice(it, Sit.CLOSED_CAP) }
             publishLocked(notice)
             return file.summary
         }
@@ -304,7 +305,7 @@ class SitStore(
         return drop.lastOrNull()?.name
     }
 
-    private fun publishLocked(notice: String? = _ui.value.notice) {
+    private fun publishLocked(notice: SitNotice? = _ui.value.notice) {
         val session = open
         val thisSaved = SitDiff.thisSavedId(session?.summary, selectedId)
         val choices = SitDiff.secondSitChoices(closed, thisSaved)

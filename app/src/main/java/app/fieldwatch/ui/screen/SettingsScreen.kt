@@ -1,5 +1,8 @@
 package app.fieldwatch.ui.screen
 
+import app.fieldwatch.UiText
+import app.fieldwatch.ui.uiLabel
+
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
@@ -104,7 +107,7 @@ fun SettingsScreen(
     var confirmRestore by remember { mutableStateOf(false) }
     Scaffold(
         contentWindowInsets = NestedTabInsets,
-        topBar = { NestedTopBar("Settings") },
+        topBar = { NestedTopBar(UiText.text(R.string.ui_settings)) },
     ) { pad ->
         Column(
             Modifier
@@ -114,45 +117,62 @@ fun SettingsScreen(
                 .padding(horizontal = 12.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            SectionCard("Appearance") {
+            SectionCard(app.fieldwatch.UiText.text(R.string.language)) {
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    app.fieldwatch.AppLanguage.entries.forEach { language ->
+                        FieldwatchFilterChip(
+                            selected = settings.language == language,
+                            onClick = { vm.updateSettings { it.copy(language = language) } },
+                            label = {
+                                Text(app.fieldwatch.UiText.text(when (language) {
+                                    app.fieldwatch.AppLanguage.SYSTEM -> R.string.language_system
+                                    app.fieldwatch.AppLanguage.ENGLISH -> R.string.language_english
+                                    app.fieldwatch.AppLanguage.SIMPLIFIED_CHINESE -> R.string.language_chinese
+                                }))
+                            },
+                        )
+                    }
+                }
+            }
+            SectionCard(UiText.text(R.string.ui_appearance)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Night mode", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_night_mode), Modifier.weight(1f))
                 FieldwatchSwitch(settings.nightMode, { on -> vm.updateSettings { it.copy(nightMode = on) } })
             }
             Text(
-                "Off by default. Red-on-black field display so chips, text, and signal marks " +
-                    "do not dump green or blue into a dark sit. Background stays dark. " +
-                    "Phone brightness is unchanged.",
+                UiText.text(R.string.ui_off_by_default_red_on_black_field_display_so_chips_text_and_signa) +
+                    UiText.text(R.string.ui_do_not_dump_green_or_blue_into_a_dark_sit_background_stays_dark) +
+                    UiText.text(R.string.ui_phone_brightness_is_unchanged),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Keep screen on", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_keep_screen_on), Modifier.weight(1f))
                 FieldwatchSwitch(settings.keepScreenOn, { on -> vm.updateSettings { it.copy(keepScreenOn = on) } })
             }
             Text(
-                "On by default. Stops the display from sleeping while Fieldwatch is open so BLE is not parked when the phone blanks. Scanning still runs in the notification if you leave the app. Turn it off when you pocket the phone.",
+                UiText.text(R.string.ui_on_by_default_stops_the_display_from_sleeping_while_fieldwatch_is),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Privacy mode", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_privacy_mode), Modifier.weight(1f))
                 FieldwatchSwitch(settings.demoMode, { on -> vm.updateSettings { it.copy(demoMode = on) } })
             }
             Text(
-                "Hides the last three octets of every MAC on Live, radar, timeline, detail, Hunt, Named radios, and watchlist cards as **:**:** so the screen and sit reports do not show full addresses. GPS last-fix and Debrief / AI Export / detail Share coordinates become “masked”; street names are omitted from those sit reports. The first three octets (OUI / vendor prefix) stay. Off by default. The map on Reports → Path still loads when Online place names and maps is on. Logs, matching, filters, Hunt math, Moving with you, and saved signatures still use the real MAC and GPS. A TAK / CoT feed, if you turned it on, is paused while this is on so full MACs and coordinates are not sent onto the LAN. Turn this off when you need the full address or coordinates on screen.",
+                UiText.text(R.string.ui_hides_the_last_three_octets_of_every_mac_on_live_radar_timeline_d),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             }
 
-            SectionCard("Scanning") {
+            SectionCard(UiText.text(R.string.ui_scanning)) {
             val label = when (settings.intensity) {
-                ScanIntensity.SAVER -> "Battery saver"
-                ScanIntensity.BALANCED -> "Balanced"
-                ScanIntensity.PERFORMANCE -> "High performance"
+                ScanIntensity.SAVER -> UiText.text(R.string.ui_battery_saver)
+                ScanIntensity.BALANCED -> UiText.text(R.string.ui_balanced)
+                ScanIntensity.PERFORMANCE -> UiText.text(R.string.ui_high_performance)
             }
-            Text("Scan intensity  ·  $label")
+            Text(UiText.text(R.string.ui_scan_intensity_value, (label).toString()))
             FieldwatchSlider(
                 value = settings.intensity.ordinal.toFloat(),
                 onValueChange = { v ->
@@ -163,15 +183,15 @@ fun SettingsScreen(
                 steps = 1,
             )
             Text(
-                "Wi-Fi is a batch radio: the phone grabs every AP at once, then must wait. High performance asks about every 30s — that is the fastest cadence that stays under the OS limit of four scans per two minutes. BLE still streams in between.",
+                UiText.text(R.string.ui_wi_fi_is_a_batch_radio_the_phone_grabs_every_ap_at_once_then_must),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             StableCaption(
                 state.throttleHint.ifBlank { " " },
-                "Wi-Fi waiting on OS",
-                "Wi-Fi scanning",
-                "Wi-Fi next 99s",
+                UiText.text(R.string.ui_wi_fi_waiting_on_os),
+                UiText.text(R.string.ui_wi_fi_scanning),
+                UiText.text(R.string.ui_wi_fi_next_99s),
                 " ",
             )
 
@@ -194,7 +214,7 @@ fun SettingsScreen(
             }
             val fastActive = settings.wifiFastScan && !osThrottled
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Faster Wi-Fi AP scans", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_faster_wi_fi_ap_scans), Modifier.weight(1f))
                 FieldwatchSwitch(
                     checked = settings.wifiFastScan,
                     onCheckedChange = { on ->
@@ -211,30 +231,30 @@ fun SettingsScreen(
             StableCaption(
                 when {
                     Build.VERSION.SDK_INT < 30 ->
-                        "Needs Android 11+ so Fieldwatch can read whether the OS is still throttling scans. This phone cannot confirm that, so the switch stays off."
+                        UiText.text(R.string.ui_needs_android_11_so_fieldwatch_can_read_whether_the_os_is_still_t)
                     fastActive ->
-                        "On. Fieldwatch asks for a new AP list about every 8 seconds. Uses more battery and heat. If the OS starts refusing scans, it backs off."
+                        UiText.text(R.string.ui_on_fieldwatch_asks_for_a_new_ap_list_about_every_8_seconds_uses_m)
                     settings.wifiFastScan && osThrottled ->
-                        "Saved on, but not in effect — Android Wi-Fi scan throttling is still on. Turn that off in Developer options, then return here."
+                        UiText.text(R.string.ui_saved_on_but_not_in_effect_android_wi_fi_scan_throttling_is_still)
                     else ->
-                        "Stock Android allows about four AP scans per two minutes. Faster scans only run after you turn off Wi-Fi scan throttling in Developer options. Fieldwatch checks that OS switch before turning this on, and cannot change it for you."
+                        UiText.text(R.string.ui_stock_android_allows_about_four_ap_scans_per_two_minutes_faster_s)
                 },
-                "Needs Android 11+ so Fieldwatch can read whether the OS is still throttling scans. This phone cannot confirm that, so the switch stays off.",
-                "On. Fieldwatch asks for a new AP list about every 8 seconds. Uses more battery and heat. If the OS starts refusing scans, it backs off.",
-                "Saved on, but not in effect — Android Wi-Fi scan throttling is still on. Turn that off in Developer options, then return here.",
-                "Stock Android allows about four AP scans per two minutes. Faster scans only run after you turn off Wi-Fi scan throttling in Developer options. Fieldwatch checks that OS switch before turning this on, and cannot change it for you.",
+                UiText.text(R.string.ui_needs_android_11_so_fieldwatch_can_read_whether_the_os_is_still_t),
+                UiText.text(R.string.ui_on_fieldwatch_asks_for_a_new_ap_list_about_every_8_seconds_uses_m),
+                UiText.text(R.string.ui_saved_on_but_not_in_effect_android_wi_fi_scan_throttling_is_still),
+                UiText.text(R.string.ui_stock_android_allows_about_four_ap_scans_per_two_minutes_faster_s),
             )
             if (needDevOptions) {
                 AlertDialog(
                     onDismissRequest = { needDevOptions = false },
-                    title = { Text("Developer options required") },
+                    title = { Text(UiText.text(R.string.ui_developer_options_required)) },
                     text = {
                         Text(
                             if (Build.VERSION.SDK_INT < 30) {
-                                "This phone is older than Android 11, so Fieldwatch cannot read the OS Wi-Fi scan-throttle switch. Faster AP scanning stays off."
+                                UiText.text(R.string.ui_this_phone_is_older_than_android_11_so_fieldwatch_cannot_read_the)
                             } else {
-                                "Android is still throttling Wi-Fi scans (about four per two minutes). Fieldwatch will not turn Faster Wi-Fi AP scans on until that is off.\n\n" +
-                                    "Enable Developer options (tap Build number seven times in About phone), then Settings → Developer options → Wi-Fi scan throttling → Off. Come back and flip this switch again."
+                                UiText.text(R.string.ui_android_is_still_throttling_wi_fi_scans_about_four_per_two_minute) +
+                                    UiText.text(R.string.ui_enable_developer_options_tap_build_number_seven_times_in_about_ph)
                             },
                         )
                     },
@@ -247,43 +267,43 @@ fun SettingsScreen(
                                         context.startActivity(Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
                                     }
                                 },
-                            ) { Text("Open developer options") }
+                            ) { Text(UiText.text(R.string.ui_open_developer_options)) }
                         } else {
-                            TextButton(onClick = { needDevOptions = false }) { Text("OK") }
+                            TextButton(onClick = { needDevOptions = false }) { Text(UiText.text(R.string.ui_ok)) }
                         }
                     },
                     dismissButton = {
                         if (Build.VERSION.SDK_INT >= 30) {
-                            TextButton(onClick = { needDevOptions = false }) { Text("Not now") }
+                            TextButton(onClick = { needDevOptions = false }) { Text(UiText.text(R.string.ui_not_now)) }
                         }
                     },
                 )
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Allow background usage", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_allow_background_usage), Modifier.weight(1f))
                 FieldwatchSwitch(
                     checked = backgroundAllowed,
                     onCheckedChange = { batteryGate = BatteryAndroidGate.BACKGROUND },
                 )
             }
             Text(
-                "Mirrors Android Allow background usage. Tap to open Fieldwatch’s Battery page and " +
-                    "use that switch. Fieldwatch updates when you return. Off: the OS can kill the scan " +
-                    "as soon as you leave. Not Keep screen on.",
+                UiText.text(R.string.ui_mirrors_android_allow_background_usage_tap_to_open_fieldwatch_s_b) +
+                    UiText.text(R.string.ui_use_that_switch_fieldwatch_updates_when_you_return_off_the_os_can) +
+                    UiText.text(R.string.ui_as_soon_as_you_leave_not_keep_screen_on),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Unrestricted battery", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_unrestricted_battery), Modifier.weight(1f))
                 FieldwatchSwitch(
                     checked = unrestricted,
                     onCheckedChange = { batteryGate = BatteryAndroidGate.UNRESTRICTED },
                 )
             }
             Text(
-                "Mirrors Android Unrestricted (not Optimized). Some phones (Samsung among them) do not " +
-                    "open onto that choice. If you only see Allow background usage, tap that row to " +
-                    "click through and select Unrestricted. Fieldwatch updates when you return.",
+                UiText.text(R.string.ui_mirrors_android_unrestricted_not_optimized_some_phones_samsung_am) +
+                    UiText.text(R.string.ui_open_onto_that_choice_if_you_only_see_allow_background_usage_tap_) +
+                    UiText.text(R.string.ui_click_through_and_select_unrestricted_fieldwatch_updates_when_you),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -292,18 +312,18 @@ fun SettingsScreen(
                 AlertDialog(
                     onDismissRequest = { batteryGate = null },
                     title = {
-                        Text(if (background) "Allow background usage" else "Unrestricted battery")
+                        Text(if (background) UiText.text(R.string.ui_allow_background_usage) else UiText.text(R.string.ui_unrestricted_battery))
                     },
                     text = {
                         Text(
                             if (background) {
-                                "The next screen is Fieldwatch’s Battery page. Use the Allow background usage switch. " +
-                                    "Fieldwatch will match that setting when you return."
+                                UiText.text(R.string.ui_the_next_screen_is_fieldwatch_s_battery_page_use_the_allow_backgr) +
+                                    UiText.text(R.string.ui_fieldwatch_will_match_that_setting_when_you_return)
                             } else {
-                                "Some phones (Samsung among them) do not open onto Unrestricted / " +
-                                    "Optimized / Restricted. If you only see Allow background usage, " +
-                                    "tap that row (the words, not the blue switch) to click through, " +
-                                    "then select Unrestricted. Fieldwatch will match that when you return."
+                                UiText.text(R.string.ui_some_phones_samsung_among_them_do_not_open_onto_unrestricted) +
+                                    UiText.text(R.string.ui_optimized_restricted_if_you_only_see_allow_background_usage) +
+                                    UiText.text(R.string.ui_tap_that_row_the_words_not_the_blue_switch_to_click_through) +
+                                    UiText.text(R.string.ui_then_select_unrestricted_fieldwatch_will_match_that_when_you_retu)
                             },
                         )
                     },
@@ -317,22 +337,22 @@ fun SettingsScreen(
                                     highlightBackground = gate == BatteryAndroidGate.BACKGROUND,
                                 )
                             },
-                        ) { Text("Open Android settings") }
+                        ) { Text(UiText.text(R.string.ui_open_android_settings)) }
                     },
                     dismissButton = {
-                        TextButton(onClick = { batteryGate = null }) { Text("Not now") }
+                        TextButton(onClick = { batteryGate = null }) { Text(UiText.text(R.string.ui_not_now)) }
                     },
                 )
             }
             }
 
-            SectionCard("Watchlist") {
+            SectionCard(UiText.text(R.string.ui_watchlist)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Watchlist alerts", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_watchlist_alerts), Modifier.weight(1f))
                 FieldwatchSwitch(settings.alertsEnabled, { on -> vm.updateSettings { it.copy(alertsEnabled = on) } })
             }
             Text(
-                "On by default. Master switch for bookmarked signatures and devices. Off: no beep, vibration, flash, jump, or shade card. Bookmarking still works — you just will not be told when that radio appears.",
+                UiText.text(R.string.ui_on_by_default_master_switch_for_bookmarked_signatures_and_devices),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -340,14 +360,14 @@ fun SettingsScreen(
             FieldwatchActionButton(
                 onClick = onRadioBookmarks,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Named radios ($radioWatchN)") }
+            ) { Text(UiText.text(R.string.ui_named_radios_value, (radioWatchN).toString())) }
             Text(
-                "Custom names for one MAC. Alert is optional. Filters → Named radios only shows them on Live. Signature watches stay on Signatures.",
+                UiText.text(R.string.ui_custom_names_for_one_mac_alert_is_optional_filters_named_radios_o),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Beep on watched signature", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_beep_on_watched_signature), Modifier.weight(1f))
                 FieldwatchSwitch(
                     settings.alertBeep,
                     { on -> vm.updateSettings { it.copy(alertBeep = on) } },
@@ -355,12 +375,12 @@ fun SettingsScreen(
                 )
             }
             Text(
-                "The double pip on media volume when a bookmarked signature or device first appears, or returns after leaving. Sitting detections do not beep again. Independent of Voice — use beep, voice, or both. Raise media volume if you hear nothing, then tap Test alert.",
+                UiText.text(R.string.ui_the_double_pip_on_media_volume_when_a_bookmarked_signature_or_dev),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Voice on watched signature", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_voice_on_watched_signature), Modifier.weight(1f))
                 FieldwatchSwitch(
                     settings.alertVoice,
                     { on -> vm.updateSettings { it.copy(alertVoice = on) } },
@@ -368,23 +388,23 @@ fun SettingsScreen(
                 )
             }
             Text(
-                "On by default. Speaks on the same media volume as the pip. Independent of Beep: with Beep on, voice follows the pip; with Beep off, voice only. Not Hunt. If a phrase is already being spoken, a second hit is skipped. Phones with no text-to-speech still beep if Beep is on.",
+                UiText.text(R.string.ui_on_by_default_speaks_on_the_same_media_volume_as_the_pip_independ),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            Text("What to say", style = MaterialTheme.typography.labelLarge)
+            Text(UiText.text(R.string.ui_what_to_say), style = MaterialTheme.typography.labelLarge)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 AlertVoiceWhat.entries.forEach { item ->
                     FieldwatchFilterChip(
                         selected = settings.alertVoiceWhat == item,
                         onClick = { vm.updateSettings { it.copy(alertVoiceWhat = item) } },
                         enabled = settings.alertsEnabled && settings.alertVoice,
-                        label = { Text(item.label()) },
+                        label = { Text(item.uiLabel()) },
                     )
                 }
             }
             Text(
-                "For signature watches: Class is the Live glyph bucket (finder tags, audio, …). Signature is the catalog row (Apple AirTags, Axon, …). Class + signature (default) says both. A named radio with Alert on always says its custom name, even if it has no class. Test alert plays the signature mix you have on.",
+                UiText.text(R.string.ui_for_signature_watches_class_is_the_live_glyph_bucket_finder_tags_),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -392,9 +412,9 @@ fun SettingsScreen(
                 onClick = vm::testWatchBeep,
                 modifier = Modifier.fillMaxWidth(),
                 enabled = settings.alertsEnabled && (settings.alertBeep || settings.alertVoice),
-            ) { Text("Test alert") }
+            ) { Text(UiText.text(R.string.ui_test_alert)) }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Jump to new watched detection", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_jump_to_new_watched_detection), Modifier.weight(1f))
                 FieldwatchSwitch(
                     settings.snapToBeep,
                     { on -> vm.updateSettings { it.copy(snapToBeep = on) } },
@@ -402,12 +422,12 @@ fun SettingsScreen(
                 )
             }
             Text(
-                "When a new watched signature or device appears, Live scrolls to that row so you can see the flash. Works with beep, voice, or both. Weak hits sit at the bottom of a strength-ranked list. Turn this off if you do not want the list to move.",
+                UiText.text(R.string.ui_when_a_new_watched_signature_or_device_appears_live_scrolls_to_th),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("System notification", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_system_notification), Modifier.weight(1f))
                 FieldwatchSwitch(
                     settings.alertShade,
                     { on -> vm.updateSettings { it.copy(alertShade = on) } },
@@ -415,36 +435,36 @@ fun SettingsScreen(
                 )
             }
             Text(
-                "Optional. Posts a silent shade card when a watched radio appears. Off by default — the beep and flash are enough, and skipping the card keeps the scan loop lighter.",
+                UiText.text(R.string.ui_optional_posts_a_silent_shade_card_when_a_watched_radio_appears_o),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             }
 
-            SectionCard("Location") {
+            SectionCard(UiText.text(R.string.ui_location)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Tag detections with GPS", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_tag_detections_with_gps), Modifier.weight(1f))
                 FieldwatchSwitch(settings.tagLocation, { on -> vm.updateSettings { it.copy(tagLocation = on) } })
             }
             Text(
-                "On by default. Requests live GPS/network updates and stamps each hear (Live detail, Moving with you, " +
-                    "Debrief, and lat/lon on new log rows). Last-known-only is ignored if older than 30 s. " +
-                    "That is your GPS at hear-time, not an independent fix on the other radio. " +
-                    "Use high-accuracy Location or the path stays 0. Turn off if you do not want operator coordinates on logs. " +
-                    "Heard-here TAK pins also need this; advertised payload coordinates (Remote ID) do not.",
+                UiText.text(R.string.ui_on_by_default_requests_live_gps_network_updates_and_stamps_each_h) +
+                    UiText.text(R.string.ui_debrief_and_lat_lon_on_new_log_rows_last_known_only_is_ignored_if) +
+                    UiText.text(R.string.ui_that_is_your_gps_at_hear_time_not_an_independent_fix_on_the_other) +
+                    UiText.text(R.string.ui_use_high_accuracy_location_or_the_path_stays_0_turn_off_if_you_do) +
+                    UiText.text(R.string.ui_heard_here_tak_pins_also_need_this_advertised_payload_coordinates),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Online place names and maps", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_online_place_names_and_maps), Modifier.weight(1f))
                 FieldwatchSwitch(settings.onlineLookup, { on -> vm.updateSettings { it.copy(onlineLookup = on) } })
             }
             Text(
-                "On by default. When the phone has internet, Debrief / AI Export reverse-geocode GPS stamps " +
-                    "to street/city, and Reports → Path loads OpenStreetMap tiles under the trace. " +
-                    "No Fieldwatch cloud, no API key. Offline or no geocoder: Debrief uses coordinates only and Path stays the current north-up trace — no error dialog. " +
-                    "Turn off to keep streets and map tiles out of reports and Path. " +
-                    "Debrief, Sit export, Log export, and Reset / clear log are on the Reports tab.",
+                UiText.text(R.string.ui_on_by_default_when_the_phone_has_internet_debrief_ai_export_rever) +
+                    UiText.text(R.string.ui_to_street_city_and_reports_path_loads_openstreetmap_tiles_under_t) +
+                    UiText.text(R.string.ui_no_fieldwatch_cloud_no_api_key_offline_or_no_geocoder_debrief_use) +
+                    UiText.text(R.string.ui_turn_off_to_keep_streets_and_map_tiles_out_of_reports_and_path) +
+                    UiText.text(R.string.ui_debrief_sit_export_log_export_and_reset_clear_log_are_on_the_repo),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -452,27 +472,27 @@ fun SettingsScreen(
 
             SectionCard("TAK / CoT") {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("TAK / CoT feed", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_tak_cot_feed), Modifier.weight(1f))
                 FieldwatchSwitch(settings.takEnabled, { on -> vm.updateSettings { it.copy(takEnabled = on) } })
             }
             Text(
-                "Off by default. Sends Cursor-on-Target UDP markers to ATAK, WinTAK, or iTAK. " +
-                    "This phone (${TakDefaults.LOOPBACK}:${TakDefaults.PORT}) is ATAK CIV on this handset. " +
-                    "LAN multicast is ${TakDefaults.SA_HOST}:${TakDefaults.SA_PORT}. " +
-                    "Custom is a unicast IPv4 or hostname. UDP only — a TAK server’s TCP 8087 is not this feed. " +
-                    "Heard-here pins sit at this phone’s GPS at the loudest hear (closest approach) and are labeled (here). " +
-                    "Walking away does not drag the pin; a louder hear moves it. Keep-alives refresh the same lat/lon every ~10 s so ATAK does not drop it. " +
-                    "Advertised lat/lon (stock Remote ID) sit on the aircraft; the same Remote ID " +
-                    "keeps one marker that moves (UAS ID, not the rotating BLE MAC). " +
-                    "A decoded pilot location is a second pin. Gone radios are dropped on ATAK instead of sitting 120 s. " +
-                    "Tap a marker in ATAK for remarks (name, MAC, RSSI, signatures). " +
-                    "Not direction-finding. Not a Remote ID plugin. Privacy mode pauses the feed.",
+                UiText.text(R.string.ui_off_by_default_sends_cursor_on_target_udp_markers_to_atak_wintak_) +
+                    UiText.text(R.string.ui_this_phone_value_value_is_atak_civ_on_this_handset, (TakDefaults.LOOPBACK).toString(), (TakDefaults.PORT).toString()) +
+                    UiText.text(R.string.ui_lan_multicast_is_value_value, (TakDefaults.SA_HOST).toString(), (TakDefaults.SA_PORT).toString()) +
+                    UiText.text(R.string.ui_custom_is_a_unicast_ipv4_or_hostname_udp_only_a_tak_server_s_tcp_) +
+                    UiText.text(R.string.ui_heard_here_pins_sit_at_this_phone_s_gps_at_the_loudest_hear_close) +
+                    UiText.text(R.string.ui_walking_away_does_not_drag_the_pin_a_louder_hear_moves_it_keep_al) +
+                    UiText.text(R.string.ui_advertised_lat_lon_stock_remote_id_sit_on_the_aircraft_the_same_r) +
+                    UiText.text(R.string.ui_keeps_one_marker_that_moves_uas_id_not_the_rotating_ble_mac) +
+                    UiText.text(R.string.ui_a_decoded_pilot_location_is_a_second_pin_gone_radios_are_dropped_) +
+                    UiText.text(R.string.ui_tap_a_marker_in_atak_for_remarks_name_mac_rssi_signatures) +
+                    UiText.text(R.string.ui_not_direction_finding_not_a_remote_id_plugin_privacy_mode_pauses_),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             if (settings.takEnabled && settings.demoMode) {
                 Text(
-                    "Privacy mode is on — the feed is paused so full MACs and coordinates are not sent. Turn Privacy mode off to publish.",
+                    UiText.text(R.string.ui_privacy_mode_is_on_the_feed_is_paused_so_full_macs_and_coordinate),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
                 )
@@ -482,22 +502,22 @@ fun SettingsScreen(
             }
             }
 
-            SectionCard("Logging") {
+            SectionCard(UiText.text(R.string.ui_logging)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Write detections to disk", Modifier.weight(1f))
+                Text(UiText.text(R.string.ui_write_detections_to_disk), Modifier.weight(1f))
                 FieldwatchSwitch(settings.loggingEnabled, { on -> vm.updateSettings { it.copy(loggingEnabled = on) } })
             }
             StableCaption(
                 if (settings.loggingEnabled) {
-                    "Logging is on. New detections are appended to the rotating file."
+                    UiText.text(R.string.ui_logging_is_on_new_detections_are_appended_to_the_rotating_file)
                 } else {
-                    "Logging is off. Scanning still runs; nothing new is written until you turn this back on."
+                    UiText.text(R.string.ui_logging_is_off_scanning_still_runs_nothing_new_is_written_until_y)
                 },
-                "Logging is on. New detections are appended to the rotating file.",
-                "Logging is off. Scanning still runs; nothing new is written until you turn this back on.",
+                UiText.text(R.string.ui_logging_is_on_new_detections_are_appended_to_the_rotating_file),
+                UiText.text(R.string.ui_logging_is_off_scanning_still_runs_nothing_new_is_written_until_y),
             )
             Text(
-                "The rotating file is JSON lines (one hear per line). Reports → Log → Format writes CSV, JSON lines, GPX, KML, or WiGLE when you Share or Save.",
+                UiText.text(R.string.ui_the_rotating_file_is_json_lines_one_hear_per_line_reports_log_for),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -506,7 +526,7 @@ fun SettingsScreen(
             LaunchedEffect(settings.logRotateKb) {
                 if (!rotateDragging) rotateDrag = settings.logRotateKb
             }
-            Text("Rotate at $rotateDrag KB")
+            Text(UiText.text(R.string.ui_rotate_at_value_kb, (rotateDrag).toString()))
             FieldwatchSlider(
                 value = rotateDrag.toFloat(),
                 onValueChange = {
@@ -524,7 +544,7 @@ fun SettingsScreen(
             LaunchedEffect(settings.staleSec) {
                 if (!staleDragging) staleDrag = settings.staleSec
             }
-            Text("Stale after ${staleDrag}s")
+            Text(UiText.text(R.string.ui_stale_after_values, (staleDrag).toString()))
             FieldwatchSlider(
                 value = staleDrag.toFloat(),
                 onValueChange = {
@@ -539,89 +559,89 @@ fun SettingsScreen(
             )
             StickyHeight("log-stats") {
                 Text(
-                    "${state.logLines} lines this session  ·  ${vm.logBytes() / 1024} KB on disk. " +
-                        "Share, Save, and Reset / clear log are on the Reports tab.",
+                    UiText.text(R.string.ui_value_lines_this_session_value_kb_on_disk_value, (state.logLines).toString(), (vm.logBytes() / 1024).toString()) +
+                        UiText.text(R.string.ui_share_save_and_reset_clear_log_are_on_the_reports_tab),
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
             }
 
-            SectionCard("Signatures") {
+            SectionCard(UiText.text(R.string.ui_signatures)) {
             Text(
-                "Export the catalog (stock plus any you added or edited) to share with another Fieldwatch or as a backup. Import adds new rows and extra rules; it does not delete anything. Same id or the same match rules are skipped so a pack can be imported twice. Update stock catalog from GitHub replaces stock rows (including Extra attention) from the v2 pack on the repo; bookmarks, Settings, and signatures you added stay. Needs internet. Offline: Import signatures from a file. Restore defaults below still wipes customs.",
+                UiText.text(R.string.ui_export_the_catalog_stock_plus_any_you_added_or_edited_to_share_wi),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             FieldwatchActionButton(
                 onClick = vm::startSignatureShare,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Export signatures") }
+            ) { Text(UiText.text(R.string.ui_export_signatures)) }
             FieldwatchActionButton(
                 onClick = { saveSignatures.launch(vm.suggestedSignaturesName()) },
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Save signatures to SD card / storage…") }
+            ) { Text(UiText.text(R.string.ui_save_signatures_to_sd_card_storage)) }
             FieldwatchActionButton(
                 onClick = {
                     importSignatures.launch(arrayOf("application/json", "text/plain", "*/*"))
                 },
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Import signatures…") }
+            ) { Text(UiText.text(R.string.ui_import_signatures)) }
             FieldwatchActionButton(
                 onClick = vm::updateStockCatalogFromGitHub,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Update stock catalog from GitHub") }
+            ) { Text(UiText.text(R.string.ui_update_stock_catalog_from_github)) }
 
             FieldwatchActionButton(
                 onClick = { confirmRestore = true },
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("Restore default signatures & presets")
+                Text(UiText.text(R.string.ui_restore_default_signatures_presets))
             }
             }
 
-            SectionCard("Settings backup") {
+            SectionCard(UiText.text(R.string.ui_settings_backup)) {
             Text(
-                "Settings switches, the current filter, filter presets, named radios, and signature watches. " +
-                    "Not the catalog — that is Export signatures. Not logs or GPS. " +
-                    "Import replaces those on this phone; the catalog stays. " +
-                    "Use this after a factory reset or on a new phone.",
+                UiText.text(R.string.ui_settings_switches_the_current_filter_filter_presets_named_radios_) +
+                    UiText.text(R.string.ui_not_the_catalog_that_is_export_signatures_not_logs_or_gps) +
+                    UiText.text(R.string.ui_import_replaces_those_on_this_phone_the_catalog_stays) +
+                    UiText.text(R.string.ui_use_this_after_a_factory_reset_or_on_a_new_phone),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             FieldwatchActionButton(
                 onClick = vm::startSettingsShare,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Export settings") }
+            ) { Text(UiText.text(R.string.ui_export_settings)) }
             FieldwatchActionButton(
                 onClick = { saveSettings.launch(vm.suggestedSettingsName()) },
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Save settings to SD card / storage…") }
+            ) { Text(UiText.text(R.string.ui_save_settings_to_sd_card_storage)) }
             FieldwatchActionButton(
                 onClick = {
                     importSettings.launch(arrayOf("application/json", "text/plain", "*/*"))
                 },
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Import settings…") }
+            ) { Text(UiText.text(R.string.ui_import_settings)) }
             }
 
             FieldwatchActionButton(
                 onClick = onShowLiveTour,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Show Live tour") }
+            ) { Text(UiText.text(R.string.ui_show_live_tour)) }
             Text(
-                "Chrome overlay on Live: Tune is Display (Radar, list, By class), Pause, Filters, Signatures, Reports, Settings. First-run after the license; this button shows it again.",
+                UiText.text(R.string.ui_chrome_overlay_on_live_tune_is_display_radar_list_by_class_pause_),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             Text(
-                "Fieldwatch ${app.fieldwatch.BuildConfig.VERSION_NAME}  ·  Catalog ${state.catalogVersion}",
+                UiText.text(R.string.ui_fieldwatch_value_catalog_value, (app.fieldwatch.BuildConfig.VERSION_NAME).toString(), (state.catalogVersion).toString()),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(
-                "Passive Wi-Fi + BLE only. " +
-                    "Stock Android cannot promiscuously capture Wi-Fi stations; access points and BLE advertisers are what the radios expose.",
+                UiText.text(R.string.ui_passive_wi_fi_ble_only) +
+                    UiText.text(R.string.ui_stock_android_cannot_promiscuously_capture_wi_fi_stations_access_),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -636,9 +656,9 @@ fun SettingsScreen(
             }
             Text(
                 if (ipv4.isEmpty()) {
-                    "This phone’s IPv4  ·  none"
+                    UiText.text(R.string.ui_this_phone_s_ipv4_none)
                 } else {
-                    "This phone’s IPv4  ·  ${ipv4.joinToString("  ·  ")}"
+                    UiText.text(R.string.ui_this_phone_s_ipv4_value, (ipv4.joinToString("  ·  ")).toString())
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -651,13 +671,13 @@ fun SettingsScreen(
     if (confirmRestore) {
         AlertDialog(
             onDismissRequest = { confirmRestore = false },
-            title = { Text("Restore defaults?") },
+            title = { Text(UiText.text(R.string.ui_restore_defaults)) },
             text = {
                 Text(
-                    "Rewrites the catalog (stock rows, class colors, Decode fields), stock bookmarks, " +
-                        "stock filter chips, and default Settings switches. Custom signatures and chips you " +
-                        "saved are wiped. Export signatures and Export settings first if you want a backup. " +
-                        "This cannot be undone.",
+                    UiText.text(R.string.ui_rewrites_the_catalog_stock_rows_class_colors_decode_fields_stock_) +
+                        UiText.text(R.string.ui_stock_filter_chips_and_default_settings_switches_custom_signature) +
+                        UiText.text(R.string.ui_saved_are_wiped_export_signatures_and_export_settings_first_if_yo) +
+                        UiText.text(R.string.ui_this_cannot_be_undone),
                 )
             },
             confirmButton = {
@@ -666,10 +686,10 @@ fun SettingsScreen(
                         confirmRestore = false
                         vm.restoreDefaults()
                     },
-                ) { Text("Restore") }
+                ) { Text(UiText.text(R.string.ui_restore)) }
             },
             dismissButton = {
-                TextButton(onClick = { confirmRestore = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmRestore = false }) { Text(UiText.text(R.string.ui_cancel)) }
             },
         )
     }
@@ -748,7 +768,7 @@ private fun TakFeedSettings(settings: AppSettings, vm: FieldwatchViewModel, stat
     LaunchedEffect(settings.takHost) { hostText = settings.takHost }
     LaunchedEffect(settings.takPort) { portText = settings.takPort.toString() }
     val preset = TakPublish.udpPreset(settings.takHost, settings.takPort)
-    Text("Destination", style = MaterialTheme.typography.labelLarge)
+    Text(UiText.text(R.string.ui_destination), style = MaterialTheme.typography.labelLarge)
     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         FieldwatchFilterChip(
             selected = preset == TakUdpPreset.THIS_PHONE,
@@ -757,7 +777,7 @@ private fun TakFeedSettings(settings: AppSettings, vm: FieldwatchViewModel, stat
                 vm.updateSettings { it.copy(takHost = host, takPort = port) }
             },
             enabled = !settings.demoMode,
-            label = { Text("This phone") },
+            label = { Text(UiText.text(R.string.ui_this_phone)) },
         )
         FieldwatchFilterChip(
             selected = preset == TakUdpPreset.LAN_MULTICAST,
@@ -766,7 +786,7 @@ private fun TakFeedSettings(settings: AppSettings, vm: FieldwatchViewModel, stat
                 vm.updateSettings { it.copy(takHost = host, takPort = port) }
             },
             enabled = !settings.demoMode,
-            label = { Text("LAN multicast") },
+            label = { Text(UiText.text(R.string.ui_lan_multicast)) },
         )
         FieldwatchFilterChip(
             selected = preset == TakUdpPreset.CUSTOM,
@@ -777,14 +797,14 @@ private fun TakFeedSettings(settings: AppSettings, vm: FieldwatchViewModel, stat
                 }
             },
             enabled = !settings.demoMode,
-            label = { Text("Custom") },
+            label = { Text(UiText.text(R.string.ui_custom)) },
         )
     }
     Text(
-        "This phone: ${TakDefaults.LOOPBACK}:${TakDefaults.PORT} (ATAK CIV on this handset). " +
-            "LAN multicast: ${TakDefaults.SA_HOST}:${TakDefaults.SA_PORT} (other ATAKs on this Wi-Fi). " +
-            "Custom: type a unicast IPv4 or hostname. UDP only. A TAK server’s TCP 8087 is not this feed. " +
-            "If This phone does not plot, use Custom with this phone’s Wi-Fi IPv4 from the footer and port ${TakDefaults.PORT}.",
+        UiText.text(R.string.ui_this_phone_value_value_atak_civ_on_this_handset, (TakDefaults.LOOPBACK).toString(), (TakDefaults.PORT).toString()) +
+            UiText.text(R.string.ui_lan_multicast_value_value_other_ataks_on_this_wi_fi, (TakDefaults.SA_HOST).toString(), (TakDefaults.SA_PORT).toString()) +
+            UiText.text(R.string.ui_custom_type_a_unicast_ipv4_or_hostname_udp_only_a_tak_server_s_tc) +
+            UiText.text(R.string.ui_if_this_phone_does_not_plot_use_custom_with_this_phone_s_wi_fi_ip, (TakDefaults.PORT).toString()),
         style = MaterialTheme.typography.bodySmall,
         color = muted,
     )
@@ -797,7 +817,7 @@ private fun TakFeedSettings(settings: AppSettings, vm: FieldwatchViewModel, stat
                 vm.updateSettings { it.copy(takHost = trimmed) }
             }
         },
-        label = "Host",
+        label = UiText.text(R.string.ui_host),
         placeholder = TakDefaults.HOST,
         enabled = !settings.demoMode,
     )
@@ -812,72 +832,72 @@ private fun TakFeedSettings(settings: AppSettings, vm: FieldwatchViewModel, stat
                 }
             }
         },
-        label = "Port",
+        label = UiText.text(R.string.ui_port),
         placeholder = TakDefaults.PORT.toString(),
-        supportingText = "UDP. ATAK CIV ${TakDefaults.PORT}. SA multicast ${TakDefaults.SA_PORT}. Not TCP 8087.",
+        supportingText = UiText.text(R.string.ui_udp_atak_civ_value_sa_multicast_value_not_tcp_8087, (TakDefaults.PORT).toString(), (TakDefaults.SA_PORT).toString()),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         enabled = !settings.demoMode,
     )
     Text(takStatusLine(status), style = MaterialTheme.typography.bodySmall, color = muted)
-    Text("What to send", style = MaterialTheme.typography.labelLarge)
+    Text(UiText.text(R.string.ui_what_to_send), style = MaterialTheme.typography.labelLarge)
     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         FieldwatchFilterChip(
             selected = settings.takAttention,
             onClick = { vm.updateSettings { it.copy(takAttention = !it.takAttention) } },
             enabled = !settings.demoMode,
-            label = { Text("Extra attention") },
+            label = { Text(UiText.text(R.string.ui_extra_attention)) },
         )
         FieldwatchFilterChip(
             selected = settings.takPayloadFix,
             onClick = { vm.updateSettings { it.copy(takPayloadFix = !it.takPayloadFix) } },
             enabled = !settings.demoMode,
-            label = { Text("Payload location") },
+            label = { Text(UiText.text(R.string.ui_payload_location)) },
         )
         FieldwatchFilterChip(
             selected = settings.takWatchlist,
             onClick = { vm.updateSettings { it.copy(takWatchlist = !it.takWatchlist) } },
             enabled = !settings.demoMode,
-            label = { Text("Watchlist") },
+            label = { Text(UiText.text(R.string.ui_watchlist)) },
         )
         FieldwatchFilterChip(
             selected = settings.takAllSignatures,
             onClick = { vm.updateSettings { it.copy(takAllSignatures = !it.takAllSignatures) } },
             enabled = !settings.demoMode,
-            label = { Text("All signatures") },
+            label = { Text(UiText.text(R.string.ui_all_signatures)) },
         )
     }
     Text(
-        "Independent chips. Extra attention (on): body-cam, glasses, recording wearables, pentest, public-safety APs. " +
-            "Payload location (on): advertised lat/lon from a decode map — required for stock Remote ID, which has no Extra attention mark. " +
-            "Watchlist (off): bookmarked signatures and named radios with Alert on. " +
-            "All signatures (off): every labeled radio — noisy in a plaza. Unmatched radios never go. " +
-            "A pin still needs coordinates: advertised payload, or GPS tagging with a live fix. " +
-            "Heard-here holds the loudest hear, not the last, and callsigns end in (here). " +
-            "Remote ID keeps one aircraft marker (UAS ID) plus a pilot pin when that location decoded.",
+        UiText.text(R.string.ui_independent_chips_extra_attention_on_body_cam_glasses_recording_w) +
+            UiText.text(R.string.ui_payload_location_on_advertised_lat_lon_from_a_decode_map_required) +
+            UiText.text(R.string.ui_watchlist_off_bookmarked_signatures_and_named_radios_with_alert_o) +
+            UiText.text(R.string.ui_all_signatures_off_every_labeled_radio_noisy_in_a_plaza_unmatched) +
+            UiText.text(R.string.ui_a_pin_still_needs_coordinates_advertised_payload_or_gps_tagging_w) +
+            UiText.text(R.string.ui_heard_here_holds_the_loudest_hear_not_the_last_and_callsigns_end_) +
+            UiText.text(R.string.ui_remote_id_keeps_one_aircraft_marker_uas_id_plus_a_pilot_pin_when_),
         style = MaterialTheme.typography.bodySmall,
         color = muted,
     )
 }
 
 private fun takStatusLine(status: TakFeedStatus): String {
-    if (status.paused) return "Feed status  ·  paused (Privacy mode)"
+    if (status.paused) return UiText.text(R.string.ui_feed_status_paused_privacy_mode)
     if (status.error != null) {
         val whenAt = takStatusWhen(status.at)
-        return "Feed status  ·  error: ${status.error}" + if (whenAt.isNotEmpty()) "  ·  $whenAt" else ""
+        return UiText.text(R.string.ui_feed_status_error_value, (status.error).toString()) + if (whenAt.isNotEmpty()) "  ·  $whenAt" else ""
     }
     if (status.at <= 0L) {
-        return "Feed status  ·  no send yet this session"
+        return UiText.text(R.string.ui_feed_status_no_send_yet_this_session)
     }
     val bits = ArrayList<String>(5)
-    bits += "on the feed ${status.onFeed}"
-    bits += "sent ${status.sent}"
+    bits += UiText.text(R.string.ui_on_the_feed_value, (status.onFeed).toString())
+    bits += UiText.text(R.string.ui_sent_value, (status.sent).toString())
     if (status.gone > 0) {
-        bits += if (status.gone == 1) "1 gone" else "${status.gone} gone"
+        bits += if (status.gone == 1) UiText.text(R.string.ui_1_gone) else UiText.text(R.string.ui_value_gone, (status.gone).toString())
     }
     if (status.dest.isNotBlank()) bits += status.dest
     val whenAt = takStatusWhen(status.at)
     if (whenAt.isNotEmpty()) bits += whenAt
-    val head = "Feed status  ·  ${bits.joinToString("  ·  ")}"
+    val head = UiText.text(R.string.ui_feed_status_value, (bits.joinToString("  ·  ")).toString())
     return if (status.detail.isNotBlank() && status.sent == 0 && status.gone == 0) {
         "$head  ·  ${status.detail}"
     } else {
