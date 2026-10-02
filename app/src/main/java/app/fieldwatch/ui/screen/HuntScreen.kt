@@ -4,16 +4,20 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Navigation
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontFamily
@@ -42,6 +46,8 @@ import app.fieldwatch.ui.uiLabel
 import kotlinx.coroutines.delay
 import java.util.Locale
 import kotlin.math.roundToInt
+import kotlin.math.cos
+import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -112,8 +118,16 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(hunt.device?.let { MacUtil.redactMacIn(hunt.title, it.mac, demoMode) } ?: hunt.title,
                 style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
-            Text(UiText.text(R.string.hunt_phone_heading, headingText(hunt.session.heading?.takeIf { it.fresh(hunt.now) })),
-                style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant, textAlign = TextAlign.Center)
+            val heading = hunt.session.heading?.takeIf { it.fresh(hunt.now) }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                HeadingArrow(heading, Modifier.size(56.dp))
+                Column {
+                    Text(UiText.text(R.string.hunt_phone_heading, headingText(heading)),
+                        style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
+                    Text(UiText.text(R.string.hunt_heading_arrow_reference),
+                        style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
+                }
+            }
             Box(Modifier.fillMaxWidth().height(124.dp), contentAlignment = Alignment.Center) {
                 Canvas(Modifier.size(112.dp)) {
                     val stroke = 8.dp.toPx()
@@ -168,10 +182,45 @@ private fun HuntPointValue(label: String, point: HuntPoint?, modifier: Modifier)
     Column(modifier) {
         Text(UiText.text(R.string.hunt_position, label), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(point?.signal?.let { "%.1f dBm".format(Locale.US, it) } ?: "—", style = MaterialTheme.typography.titleLarge, fontFamily = FontFamily.Monospace)
-        if (point != null) Text(UiText.text(R.string.hunt_sample_heading, headingText(point.heading)),
-            style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        if (point != null) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            HeadingArrow(point.heading, Modifier.size(28.dp))
+            Text(UiText.text(R.string.hunt_sample_heading, headingText(point.heading)), Modifier.weight(1f),
+                style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
         Text(UiText.text(when { point == null -> R.string.hunt_not_sampled; point.sufficient -> R.string.hunt_sample_saved; else -> R.string.hunt_sample_retry }),
             style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+@Composable
+private fun HeadingArrow(heading: HuntHeading?, modifier: Modifier) {
+    val scheme = MaterialTheme.colorScheme
+    var previous by remember { mutableIntStateOf(heading?.degrees ?: 0) }
+    var target by remember { mutableFloatStateOf(previous.toFloat()) }
+    LaunchedEffect(heading?.degrees) {
+        heading?.let {
+            // Cross north along the shortest arc instead of spinning almost a full turn.
+            target += ((it.degrees - previous + 540) % 360 - 180)
+            previous = it.degrees
+        }
+    }
+    val rotation by animateFloatAsState(target, animationSpec = tween(180), label = "phoneHeading")
+    val tint = if (heading?.reliable == true) scheme.primary else scheme.onSurfaceVariant
+    Box(modifier, contentAlignment = Alignment.Center) {
+        Canvas(Modifier.fillMaxSize()) {
+            val radius = size.minDimension * .44f
+            drawCircle(scheme.outlineVariant, radius, style = Stroke(1.dp.toPx()))
+            repeat(8) { i ->
+                val angle = Math.toRadians(i * 45.0 - 90)
+                val outer = Offset(center.x + cos(angle).toFloat() * radius, center.y + sin(angle).toFloat() * radius)
+                val inner = Offset(center.x + cos(angle).toFloat() * radius * .8f, center.y + sin(angle).toFloat() * radius * .8f)
+                drawLine(if (i == 0) scheme.primary else scheme.outlineVariant, inner, outer, 2.dp.toPx())
+            }
+        }
+        if (heading != null) Icon(Icons.Filled.Navigation,
+            contentDescription = UiText.text(R.string.hunt_heading_arrow_description, headingText(heading)),
+            tint = tint, modifier = Modifier.fillMaxSize(.62f).rotate(rotation))
+        else Text("—", color = scheme.onSurfaceVariant, style = MaterialTheme.typography.labelSmall)
     }
 }
 

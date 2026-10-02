@@ -10,6 +10,8 @@
     <string name="hunt_indoor_compare">比较位置</string>
     <string name="hunt_indoor_instruction">先在 A 静止采样，再到 B；保持相同朝向与握持。</string>
     <string name="hunt_phone_heading">手机顶部朝向：%1$s · 磁北</string>
+    <string name="hunt_heading_arrow_reference">磁北在上 · 箭头为手机朝向</string>
+    <string name="hunt_heading_arrow_description">手机朝向箭头：%1$s</string>
     <string name="hunt_sample_heading">开始朝向：%1$s</string>
     <string name="hunt_heading_value">%1$d° %2$s</string>
     <string name="hunt_heading_unavailable">暂不可用</string>

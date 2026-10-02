@@ -10,6 +10,8 @@
     <string name="hunt_indoor_compare">Compare positions</string>
     <string name="hunt_indoor_instruction">Sample at A, then at B. Keep the same heading and grip.</string>
     <string name="hunt_phone_heading">Phone top: %1$s · magnetic north</string>
+    <string name="hunt_heading_arrow_reference">North is up · arrow shows phone heading</string>
+    <string name="hunt_heading_arrow_description">Phone heading arrow: %1$s</string>
     <string name="hunt_sample_heading">Start heading: %1$s</string>
     <string name="hunt_heading_value">%1$d° %2$s</string>
     <string name="hunt_heading_unavailable">unavailable</string>
