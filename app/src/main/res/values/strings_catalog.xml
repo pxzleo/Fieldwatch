@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_001" formatted="false">Flock-style roadside ALPR / camera pole. IEEE B4:1E:52 or a Flock-* / FLCK / Condor / Falcon / Sparrow name. Current poles are often quiet on Wi-Fi and BLE. LiteOn module prefixes are a separate row, not Extra attention.</string>
+    <string name="catalog_002" formatted="false">Flock-style roadside ALPR / camera pole — reads plates and can be used to locate a vehicle. IEEE B4:1E:52 or a Flock-* SSID is the strong hit. Current poles are often quiet on Wi-Fi and BLE. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_003" formatted="false">Wi-Fi module prefixes commonly seen on camera boards (LiteOn and similar). Not Flock\'s IEEE block. Doorbells and other OEM radios use these chips. A Flock name or B4:1E:52 is Flock Safety Cameras.</string>
+    <string name="catalog_004" formatted="false">Flock Raven or ShotSpotter-style acoustic gunshot sensor, usually on a pole with cameras. BLE UUIDs 3100–3500 are the Raven radio. The XUNTONG battery manufacturer ID is Penguin, not this row. Current Flock-family poles are often quiet on Wi-Fi and BLE.</string>
+    <string name="catalog_005" formatted="false">Apple AirTag or Find My accessory. iPhones also send Find My so they can be located — that stays on Apple Device unless the name is AirTag. Addresses rotate.</string>
+    <string name="catalog_006" formatted="false">Samsung SmartTag / SmartTag+ item finder. Addresses often rotate.</string>
+    <string name="catalog_007" formatted="false">Generic proximity beacon. Stores, baskets, TVs, and cars can all send this Apple layout. Mute in a dense mall.</string>
+    <string name="catalog_008" formatted="false">Target shopping-basket tag. Dual-labels with generic iBeacon; this row is the store basket.</string>
+    <string name="catalog_009" formatted="false">Minew location or asset beacon. Often also sends iBeacon or Eddystone on the same radio.</string>
+    <string name="catalog_010" formatted="false">Store or venue location beacon / sticker. Decoded fields can show Nearable vs telemetry.</string>
+    <string name="catalog_011" formatted="false">Store or venue location beacon. Decoded fields can show battery, TX, and whether it is moving.</string>
+    <string name="catalog_012" formatted="false">Tile item finder. Decoded fields can show a rotating private id — not a serial.</string>
+    <string name="catalog_013" formatted="false">Penguin Flock-family external battery. The XUNTONG BLE manufacturer ID is the usual fingerprint; Penguin* names are older firmware. Newer packs often advertise a 10-digit name. Decode fields show the TN serial from manufacturer data when present.</string>
+    <string name="catalog_014" formatted="false">Penguin is a Flock-family external battery (XUNTONG manufacturer ID). Name hits are older firmware and low uniqueness. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_015" formatted="false">Pigvision Flock-family / roadside camera name.</string>
+    <string name="catalog_016" formatted="false">Pigvision is a Flock-family / roadside camera name. Name-only. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_017" formatted="false">External battery pack usually associated with a Flock-style camera pole. Name hits are stronger. Current poles are often quiet on Wi-Fi and BLE.</string>
+    <string name="catalog_018" formatted="false">Usually associated with a Flock-style camera — an external battery pack on the pole. Name hits are stronger. Current poles are often quiet on Wi-Fi and BLE. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_019" formatted="false">iPhone, iPad, or Mac advertising Continuity (Nearby, Handoff, AirDrop, Instant Hotspot). Find My on this radio is the phone locating itself, not a second AirTag. Not AirPods.</string>
+    <string name="catalog_020" formatted="false">AirPods, Beats, or an Apple TV/speaker advertising AirPlay. Not an AirTag and not the iPhone itself.</string>
+    <string name="catalog_021" formatted="false">Windows PC, Surface, or Xbox advertising Swift Pair / Nearby Sharing.</string>
+    <string name="catalog_022" formatted="false">Tesla phone-as-key, vehicle, Wall Connector, or TeslaGW Wi-Fi. iOS also sees an iBeacon layout from the car — that is still Tesla, not a mall beacon. Tire sensors are the tsTPMS row.</string>
+    <string name="catalog_023" formatted="false">Ford or Lincoln phone-as-key / infotainment. Not a dealer Wi-Fi name.</string>
+    <string name="catalog_024" formatted="false">Honda or Acura phone-as-key / infotainment.</string>
+    <string name="catalog_025" formatted="false">Hyundai or Genesis phone-as-key / infotainment. Not a dealer Wi-Fi name.</string>
+    <string name="catalog_026" formatted="false">Toyota or Lexus phone-as-key, or a factory TOYOTA / LEXUS hotspot.</string>
+    <string name="catalog_027" formatted="false">Nissan or Infiniti phone-as-key / infotainment.</string>
+    <string name="catalog_028" formatted="false">Subaru phone-as-key / infotainment. Not Starlink satellite internet.</string>
+    <string name="catalog_029" formatted="false">BMW phone-as-key or in-car hotspot. Factory BMW_ Wi-Fi is the car, not a dealer showroom.</string>
+    <string name="catalog_030" formatted="false">Volkswagen phone-as-key or My VW hotspot. Skoda, SEAT, and Porsche have their own rows.</string>
+    <string name="catalog_031" formatted="false">Porsche phone-as-key or factory Porsche_WLAN hotspot. Separate from Volkswagen.</string>
+    <string name="catalog_032" formatted="false">Jaguar, Land Rover, or Range Rover phone-as-key / infotainment.</string>
+    <string name="catalog_033" formatted="false">BYD phone-as-key or vehicle BLE. Pattern match, not a specific model.</string>
+    <string name="catalog_034" formatted="false">Pixel phone or Chromecast. Fast Pair accessories are the Fast Pair row.</string>
+    <string name="catalog_035" formatted="false">Android accessory (buds, watch, phone) advertising Fast Pair. Pairing-mode is tap-to-pair; longer ads are already-paired plaza noise. Not a person. Filters can hide the plaza chips.</string>
+    <string name="catalog_036" formatted="false">Sony headphones, TV, or camera. Bravia TVs also send a generic iBeacon for Cast — Fieldwatch keeps Sony.</string>
+    <string name="catalog_037" formatted="false">Bose headphones or speaker. Quiet Charge / QC buds advertise even when in the case.</string>
+    <string name="catalog_038" formatted="false">Garmin watch, bike computer, or inReach messenger.</string>
+    <string name="catalog_039" formatted="false">Amazon Echo, Fire, or Kindle when it advertises. Not every AmazonBasics gadget.</string>
+    <string name="catalog_040" formatted="false">Fitbit watch or tracker. Advertisements are identity-only; step counts are not in the broadcast.</string>
+    <string name="catalog_041" formatted="false">Oura wellness ring. Always-on BLE while worn. Pattern match, not that person.</string>
+    <string name="catalog_042" formatted="false">Logitech mouse, keyboard, or webcam. Office noise.</string>
+    <string name="catalog_043" formatted="false">JBL, Harman Kardon, or some car-audio BLE. Headphones, speakers, or a head unit.</string>
+    <string name="catalog_044" formatted="false">Sonos home/office speaker. Setup or idle ads. Not a tracker.</string>
+    <string name="catalog_045" formatted="false">GoPro action camera. Decoded fields can show whether it is awake, in Wi-Fi AP mode, or pairing.</string>
+    <string name="catalog_046" formatted="false">DJI Osmo handheld / action camera (Action, Pocket, 360, Nano). Not a flying DJI aircraft.</string>
+    <string name="catalog_047" formatted="false">Insta360 action / 360 camera. The advertised name is often the model plus serial. Consumer camera, not a pole.</string>
+    <string name="catalog_048" formatted="false">DJI aircraft, controller, or setup Wi-Fi. Handheld Osmo cameras are the Osmo row. In-flight digital license plate is the Remote ID row.</string>
+    <string name="catalog_049" formatted="false">NETGEAR or Orbi home router / mesh. Renamed SSIDs still hit on the board vendor.</string>
+    <string name="catalog_050" formatted="false">TP-Link or Deco home router / mesh. A Tapo camera on a TP-Link board can also hit this row.</string>
+    <string name="catalog_051" formatted="false">ASUS home router or mesh. An ASUS laptop hotspot can also hit.</string>
+    <string name="catalog_052" formatted="false">Linksys or Velop home mesh. Some Velop units use Belkin boards.</string>
+    <string name="catalog_053" formatted="false">Amazon Eero mesh. Not an Echo speaker.</string>
+    <string name="catalog_054" formatted="false">Google Wifi / Nest Wifi mesh. Not a Pixel phone and not a Nest camera.</string>
+    <string name="catalog_055" formatted="false">Huawei home router, or a phone hotspot on a public Huawei address. Randomized hotspots need the factory SSID. Not Honor.</string>
+    <string name="catalog_056" formatted="false">Plume SuperPod / HomePass mesh. ISP-branded pods (xFi and similar) often use the carrier OEM board instead.</string>
+    <string name="catalog_057" formatted="false">Phone personal hotspot on a factory name (AndroidAP, Galaxy, Pixel). Custom hotspot names miss. iPhone hotspots stay on Apple Device.</string>
+    <string name="catalog_058" formatted="false">D-Link home router. Renamed SSIDs still hit on the board vendor.</string>
+    <string name="catalog_059" formatted="false">DWnet consumer / SMB access point. Cloud SSIDs are house names, so the board vendor is the hit.</string>
+    <string name="catalog_060" formatted="false">Belkin home router. Some Linksys Velop units land here too.</string>
+    <string name="catalog_061" formatted="false">Comcast xfinitywifi hotspot or Xfinity / XFSETUP gateway name. Most boxes are Arris / Hitron / Technicolor OEM — those hit the OEM row.</string>
+    <string name="catalog_062" formatted="false">Charter Spectrum setup or hotspot Wi-Fi. Boxes are usually Arris / Hitron / Technicolor OEM.</string>
+    <string name="catalog_063" formatted="false">AT&amp;T hotspot or gateway (attwifi, ATT-GUEST, Pace-style factory names). Many boxes are Pace / Arris OEM.</string>
+    <string name="catalog_064" formatted="false">Verizon or Fios hotspot / gateway name. Many FiOS boxes are Actiontec OEM.</string>
+    <string name="catalog_065" formatted="false">Starlink router. The BSSID is often randomized now — the STARLINK name is the usual hit.</string>
+    <string name="catalog_066" formatted="false">Cisco Meraki campus / cloud access point. Renamed site SSIDs still hit on the board vendor. Not a camera pole.</string>
+    <string name="catalog_067" formatted="false">GL.iNet travel router. Chip-module boards without a GL name miss.</string>
+    <string name="catalog_068" formatted="false">Chipolo item finder (Find Hub / Find My). A tag you clip to keys or a bag.</string>
+    <string name="catalog_069" formatted="false">Pebblebee or Motorola moto tag item finder. A tag you clip to keys or a bag.</string>
+    <string name="catalog_070" formatted="false">Google Find Hub / Find My Device network tag (Chipolo, Pebblebee, moto tag, and other partners). Nearby vs separated frames. Separated mode can hold a MAC about a day. Addresses otherwise rotate. Pattern match, not that bag.</string>
+    <string name="catalog_071" formatted="false">IETF DULT location-enabled advertisement (Detecting Unwanted Location Trackers). Chipolo, Pebblebee, moto tag, and other partner tags may dual-label. Near-owner vs separated is a bit in the payload. Separated mode can hold a MAC about a day. Pattern match, not that bag.</string>
+    <string name="catalog_072" formatted="false">Verkada cloud camera, including LPR-capable bullets, on buildings and some public sites.</string>
+    <string name="catalog_073" formatted="false">Verkada cloud cameras, including LPR-capable bullets. Used on buildings and some public sites — video and sometimes plates. Name-only. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_074" formatted="false">Motorola Vigilant plate reader used by agencies and parking.</string>
+    <string name="catalog_075" formatted="false">Motorola Vigilant is LPR — plate readers used by agencies and parking. Name-only when advertised. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_076" formatted="false">eufy home camera or tag. Common in houses. Consumer camera, not a roadside pole.</string>
+    <string name="catalog_077" formatted="false">Wyze home camera. Very common consumer gear, not a roadside pole.</string>
+    <string name="catalog_078" formatted="false">Amazon Ring doorbell or camera. Common on houses. Consumer camera, not a roadside pole.</string>
+    <string name="catalog_079" formatted="false">Arlo home camera or its base-station Wi-Fi. Consumer camera, not a roadside pole. Renamed SSIDs still hit on the board vendor.</string>
+    <string name="catalog_080" formatted="false">Google Nest home camera. Consumer camera, not the Nest thermostat row.</string>
+    <string name="catalog_081" formatted="false">Nest thermostat. Temperature sensors on some generations can hit this too. Not a Nest camera.</string>
+    <string name="catalog_082" formatted="false">Nest Protect, thermostat, or other Weave-over-BLE home device. Randomized address. Decoded fields can show product and pairing.</string>
+    <string name="catalog_083" formatted="false">ecobee thermostat. Room sensors can hit the same row. Premium uses BLE for setup / Spotify.</string>
+    <string name="catalog_084" formatted="false">Sensi thermostat in BLE setup.</string>
+    <string name="catalog_085" formatted="false">Honeywell Home / Lyric / Resideo thermostat (including Amazon Smart Thermostat). Not Honeywell industrial or smoke gear. T9/T10 room sensors are 900 MHz, not BLE.</string>
+    <string name="catalog_086" formatted="false">Big Ass Fans Haiku or Mammoth ceiling fan.</string>
+    <string name="catalog_087" formatted="false">Tuya plug, light, camera, or sensor. Dense in some apartments. Decoded fields can show whether it is bound.</string>
+    <string name="catalog_088" formatted="false">ASSA ABLOY / HID Seos or Yale access credential. Phones on HID Mobile Access can advertise a Seos name.</string>
+    <string name="catalog_089" formatted="false">August smart lock (now ASSA-owned). Door lock, not a camera.</string>
+    <string name="catalog_090" formatted="false">Schlage / Allegion smart lock (Encode and similar).</string>
+    <string name="catalog_091" formatted="false">Nuki smart lock or opener (retrofit on a European cylinder).</string>
+    <string name="catalog_092" formatted="false">SALTO commercial access lock or reader.</string>
+    <string name="catalog_093" formatted="false">dormakaba, Saflok, or Oracode hotel / commercial lock.</string>
+    <string name="catalog_094" formatted="false">Lockly smart lock, usually while in BLE setup.</string>
+    <string name="catalog_095" formatted="false">Kwikset Kevo smart lock.</string>
+    <string name="catalog_096" formatted="false">Master Lock Bluetooth padlock.</string>
+    <string name="catalog_097" formatted="false">igloohome keybox or smart lock.</string>
+    <string name="catalog_098" formatted="false">Tedee retrofit smart lock.</string>
+    <string name="catalog_099" formatted="false">Paxton / Net2 door reader or access panel.</string>
+    <string name="catalog_100" formatted="false">Kwikset smart lock. Kevo has its own row.</string>
+    <string name="catalog_101" formatted="false">Chamberlain myQ garage-door hub.</string>
+    <string name="catalog_102" formatted="false">Chevrolet in-car hotspot (myChevrolet). Cadillac / GMC / Buick are the GM hotspot row. Not a dealer.</string>
+    <string name="catalog_103" formatted="false">Stellantis Uconnect in-car hotspot (Chrysler, Jeep, Ram, Dodge, Fiat). BSSID often randomized.</string>
+    <string name="catalog_104" formatted="false">In-car CarPlay / Alpine head-unit hotspot. Factory name from the dash, not an ISP.</string>
+    <string name="catalog_105" formatted="false">Aftermarket CarPlay / Android Auto adapter hotspot (CARLINK-). Head-unit dongle, not the car’s own modem.</string>
+    <string name="catalog_106" formatted="false">Rivian phone-as-key, camp speaker, or sensor. Phones can advertise Rivian Sensor.</string>
+    <string name="catalog_107" formatted="false">Govee light or hygrometer. Lights usually only send a name; hygrometers can decode temp / humidity / battery below.</string>
+    <string name="catalog_108" formatted="false">HP home/office printer (ENVY, HP-Print). Office noise. Not HPE Aruba campus Wi-Fi.</string>
+    <string name="catalog_109" formatted="false">Mercedes MBUX in-car hotspot. Factory name from the car.</string>
+    <string name="catalog_110" formatted="false">Motive (KeepTruckin) electronic logging device / fleet Wi-Fi in a truck.</string>
+    <string name="catalog_111" formatted="false">PeopleNet truck ELD / fleet Wi-Fi. Separate from Motive.</string>
+    <string name="catalog_112" formatted="false">Goodyear intelligent-tire BLE, not the 315/433 MHz valve-stem TPMS in most cars. Pattern match, not that car.</string>
+    <string name="catalog_113" formatted="false">Schrader aftermarket BLE TPMS (AirCheck, trailer, RV). Not the 315/433 MHz factory stems.</string>
+    <string name="catalog_114" formatted="false">Pacific Industrial OEM tire electronics. BLE TPMS on some newer vehicles.</string>
+    <string name="catalog_115" formatted="false">Huf tire sensor or vehicle access (door handle / PEPS). Not only a valve stem.</string>
+    <string name="catalog_116" formatted="false">FOBO aftermarket BLE tire-pressure sensor. Motorcycle or car. Pattern match, not that vehicle.</string>
+    <string name="catalog_117" formatted="false">Aftermarket BLE valve-cap tire sensor (TPMS1 / FBB0 family). Decoded fields can show wheel, pressure, temperature, battery, and alarm. Pattern match, not that vehicle.</string>
+    <string name="catalog_118" formatted="false">SYTPMS / BR bicycle or scooter BLE tire sensor. Decoded fields can show gauge pressure, temperature, battery, and motion. Pattern match, not that vehicle.</string>
+    <string name="catalog_119" formatted="false">TireCheck BLE tire-pressure sensor. Pattern match, not that vehicle.</string>
+    <string name="catalog_120" formatted="false">Bluetooth SIG Tire Pressure Monitoring System service. Any sensor that advertises that standard service.</string>
+    <string name="catalog_121" formatted="false">Ruuvi broadcast sensor tag (temp / humidity / pressure / motion). Decoded fields on this page parse the sensor payload.</string>
+    <string name="catalog_122" formatted="false">Blue Maestro Tempo Disc temperature / humidity logger. Decoded fields can show version, battery, and temperature.</string>
+    <string name="catalog_123" formatted="false">SensorPush temperature / humidity logger.</string>
+    <string name="catalog_124" formatted="false">Samsara fleet tracker or vehicle Wi-Fi. Truck / van telematics, adjacent to Motive.</string>
+    <string name="catalog_125" formatted="false">TP-Link Tapo home camera. Consumer camera, not a roadside pole.</string>
+    <string name="catalog_126" formatted="false">Reolink home / small-business camera. Consumer camera, not a roadside pole.</string>
+    <string name="catalog_127" formatted="false">Hikvision camera. Common on commercial CCTV and some public poles.</string>
+    <string name="catalog_128" formatted="false">Hikvision cameras. Common on commercial CCTV and some public poles. Name-only. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_129" formatted="false">Dahua camera. Common on commercial CCTV and some public poles.</string>
+    <string name="catalog_130" formatted="false">Dahua cameras. Common on commercial CCTV and some public poles. Name-only. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_131" formatted="false">Meshtastic LoRa mesh node. Off-grid text/location radios, not cellular.</string>
+    <string name="catalog_132" formatted="false">Helium / LoRaWAN hotspot when it advertises a name.</string>
+    <string name="catalog_133" formatted="false">MeshCore LoRa companion radio. Off-grid text/location, not cellular. Name-only — Nordic UART UUID is every ESP32 serial board and is not this row.</string>
+    <string name="catalog_134" formatted="false">goTenna Mesh or Pro companion radio. Pairs over BLE; the mesh itself is UHF and Fieldwatch cannot hear it. Pro is sold to agencies. Pattern match, not that operator.</string>
+    <string name="catalog_135" formatted="false">Seeed SenseCAP LoRaWAN / Helium indoor gateway setup AP (SenseCAP_XXXXXX). Quiet once it is on Ethernet. Helium-named units can also hit the Helium row.</string>
+    <string name="catalog_136" formatted="false">RAKwireless WisGate LoRaWAN gateway setup AP (RAK7268_XXXX and similar). Quiet once it is on Ethernet.</string>
+    <string name="catalog_137" formatted="false">Genetec AutoVu parking or roadside plate reader.</string>
+    <string name="catalog_138" formatted="false">Genetec AutoVu is municipal / parking ALPR — reads plates at lots and roadside. Name-only when advertised. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_139" formatted="false">Iteris roadside Bluetooth travel-time reader (Vantage Velocity, now BlueTOAD Spectra / Spectra CV). Samples phones, headsets, and in-car Bluetooth as vehicles pass; matching the same ID at two points gives speed. About 100 m. A sample, not a full count. Quiet or Ethernet-only cabinets may not advertise. Spectra CV also uses 5.9 GHz C-V2X, which Fieldwatch cannot hear. IEEE Iteris OUI can also hit other Iteris roadside kit. Pattern match, not that cabinet.</string>
+    <string name="catalog_140" formatted="false">BLIP Systems BlipTrack roadside Bluetooth/Wi-Fi travel-time sensor. Same job as BlueTOAD Spectra: samples passing phones and in-car radios at two points for speed. Quiet or Ethernet-only cabinets may not advertise. Pattern match, not that cabinet.</string>
+    <string name="catalog_141" formatted="false">Hanwha Vision / Wisenet camera (ex-Samsung Techwin). Common on commercial CCTV and some public poles.</string>
+    <string name="catalog_142" formatted="false">Hanwha Vision / Wisenet cameras. Common on commercial CCTV and some public poles. A *_WISENET setup SSID is the stronger hit; IEEE 00:09:18 is Samsung Techwin. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_143" formatted="false">Uniview / UNV / Uniarch camera. Common on commercial CCTV and some public poles.</string>
+    <string name="catalog_144" formatted="false">Uniview / UNV cameras. Common on commercial CCTV and some public poles. IEEE Zhejiang Uniview OUIs or a Uniview / UNV- name. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_145" formatted="false">Rhombus cloud camera. BLE is loudest when the camera is unregistered or offline.</string>
+    <string name="catalog_146" formatted="false">Rhombus cloud cameras on buildings and some public sites. IEEE CC:47:BD or a Rhombus name. BLE often only while unregistered or offline. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_147" formatted="false">Rekor highway or transit plate reader.</string>
+    <string name="catalog_148" formatted="false">Rekor is highway / transit ALPR — reads plates on roads and at checkpoints. Name-only. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_149" formatted="false">Axon body-worn camera, in-car system, dock, or TASER. Quiet or LTE-only units will not appear.</string>
+    <string name="catalog_150" formatted="false">Axon body-worn, in-car (Fleet), dock, or TASER gear. IEEE OUI 00:25:DF is Axon Enterprise. Body 3/4 often advertise BLE on that public OUI while worn. A name like Axon Body is a pattern, not that officer. Quiet or LTE-only units will not appear. The word Axon also hits some ZTE phones. Look with your eyes. Not identity.</string>
+    <string name="catalog_151" formatted="false">WatchGuard Video body-worn or in-car camera (now Motorola). Not the WatchGuard firewall company. Patrol units may stay quiet.</string>
+    <string name="catalog_152" formatted="false">WatchGuard Video body-worn or in-car (VISTA / V300 family). IEEE OUI 00:1D:96 is WatchGuard Video, not the WatchGuard firewall company. Patrol units may stay quiet. Pattern match, not identity. Look with your eyes.</string>
+    <string name="catalog_153" formatted="false">Digital Ally body-worn or in-car camera (FirstVu / EVO). Quiet or LTE-only units will not appear.</string>
+    <string name="catalog_154" formatted="false">Digital Ally body-worn or in-car (FirstVu / EVO family). IEEE OUI 00:23:BD is Digital Ally, Inc. — camera gear, not a chip vendor. Patrol units may stay on LTE and stay quiet. Pattern match, not that officer. Look with your eyes. Not identity.</string>
+    <string name="catalog_155" formatted="false">Reveal Media / BodyWorn camera. Common in UK and some US agencies. Quiet units will not appear.</string>
+    <string name="catalog_156" formatted="false">Reveal Media body-worn camera (D-series / BodyWorn). Name-only when advertised. Patrol units may stay quiet. Pattern match, not that officer. Look with your eyes.</string>
+    <string name="catalog_157" formatted="false">Wolfcom body-worn or in-car camera. Quiet units will not appear.</string>
+    <string name="catalog_158" formatted="false">Wolfcom body-worn or in-car camera. Name-only when advertised. Patrol units may stay quiet. Pattern match, not that officer. Look with your eyes.</string>
+    <string name="catalog_159" formatted="false">Panasonic i-PRO camera or Arbitrator in-car system. Panasonic TVs and phones use other names.</string>
+    <string name="catalog_160" formatted="false">Panasonic i-PRO camera or Arbitrator in-car video. Used on buildings and some patrol cars — video and sometimes plates. Name-only (i-PRO / Arbitrator). Not every Panasonic radio. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_161" formatted="false">Avigilon building or municipal camera, sometimes with LPR.</string>
+    <string name="catalog_162" formatted="false">Motorola Avigilon cameras / LPR. Used on municipal poles and commercial sites — video and sometimes plates. Name-only. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_163" formatted="false">Axis camera, common on municipal poles and public CCTV.</string>
+    <string name="catalog_164" formatted="false">Axis Communications cameras, common on municipal poles and public CCTV. Name-only (AXIS-). Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_165" formatted="false">Hayden AI bus- or vehicle-mounted camera used for parking and traffic enforcement.</string>
+    <string name="catalog_166" formatted="false">Hayden AI cameras ride on buses and city vehicles — video and plates. Name-only when advertised. LTE-only units will not appear. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_167" formatted="false">Miovision intersection / traffic camera (SmartLink / Scout).</string>
+    <string name="catalog_168" formatted="false">Miovision traffic cameras at intersections. Video and sometimes plates. Name-only when advertised. Many units are cellular-only and stay quiet. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_169" formatted="false">Tattile ALPR camera, common on European roads and some US sites.</string>
+    <string name="catalog_170" formatted="false">Tattile plate readers on roads and at gates. Name-only when advertised. Pattern match, not that camera. Look with your eyes.</string>
+    <string name="catalog_171" formatted="false">LiveView Technologies (LVT) solar surveillance trailer. Most units are cellular-only and will not appear.</string>
+    <string name="catalog_172" formatted="false">LVT / LiveView solar camera trailer — parking lots, construction, some city parks. Video and sometimes plates. Most units use cellular and stay quiet on Wi-Fi/BLE. A LiveView or LVT- name is a pattern, not that trailer. Look with your eyes.</string>
+    <string name="catalog_173" formatted="false">UniFi / Ubiquiti name on Wi-Fi or BLE. Prefer UniFi AP for BSSID hits. Instant cameras stay on UniFi Protect.</string>
+    <string name="catalog_174" formatted="false">UniFi / Ubiquiti Wi-Fi access point (including airMAX / AmpliFi). Renamed SSIDs still hit on the board vendor or Ubiquiti vendor tag. Instant cameras stay on UniFi Protect.</string>
+    <string name="catalog_175" formatted="false">Cheap hobby UART module advertised under a default name (HM-10, JDY, CC41, ESP32 BLE). Common on printers, cars, and DIY. Fieldwatch does not see Classic HC-05/HC-06.</string>
+    <string name="catalog_176" formatted="false">These default BLE serial names are cheap hobby modules. Some pump/ATM overlays have used boards like this so someone nearby can pull data over Bluetooth. The same modules show up on printers, cars, and DIY. If this radio is loud next to a card reader, treat it with caution and look with your eyes. Not proof of a skimmer. A miss is not a clean bill (name changed, Classic HC-05/HC-06, or cellular). Fieldwatch does not connect and does not try default PINs. Fieldwatch does not see Classic HC-05/HC-06.</string>
+    <string name="catalog_177" formatted="false">Ray-Ban Meta / Oakley Meta smart glasses, or a Quest / other Meta wearable.</string>
+    <string name="catalog_178" formatted="false">Meta / Luxottica BLE — often Ray-Ban Meta smart glasses. The same company IDs show up on Quest headsets and other Meta wearables. Not proof someone is recording. A miss is not a clean bill (paired and quiet, asleep, or a different brand). Look with your eyes.</string>
+    <string name="catalog_179" formatted="false">Snap Spectacles or other Snap BLE product.</string>
+    <string name="catalog_180" formatted="false">Snapchat BLE company ID — used by Snap Spectacles. Other Snap BLE products could match. Not proof of recording. Look with your eyes.</string>
+    <string name="catalog_181" formatted="false">Vuzix smart glasses or other Vuzix BLE wearable.</string>
+    <string name="catalog_182" formatted="false">Vuzix BLE glasses. Not proof of recording. A miss is not a clean bill (paired and quiet, asleep, or a different brand). Look with your eyes.</string>
+    <string name="catalog_183" formatted="false">Brilliant Labs Frame AR glasses.</string>
+    <string name="catalog_184" formatted="false">Brilliant Labs Frame AR glasses. BLE service 7A230001. Not proof someone is recording. A miss is not a clean bill (off, or a different brand). Look with your eyes.</string>
+    <string name="catalog_185" formatted="false">Even Realities G1 glasses. Name-only (Even G1). Nordic UART is too common to use as a rule.</string>
+    <string name="catalog_186" formatted="false">Even Realities G1 glasses. Name-only when advertised (Even G1). Not proof of recording. A miss is not a clean bill (off, renamed, or paired and quiet). Look with your eyes.</string>
+    <string name="catalog_187" formatted="false">Hak5 WiFi Pineapple setup or management AP. Cloned café SSIDs from PineAP look like ordinary Wi-Fi and will not hit this row.</string>
+    <string name="catalog_188" formatted="false">Hak5 WiFi Pineapple setup or management AP (Pineapple_XXXX). That is the admin radio, not every rogue SSID PineAP might impersonate — those look like ordinary café Wi-Fi. A miss is not a clean bill (renamed, or only cloning). Pattern match, not identity. Look with your eyes.</string>
+    <string name="catalog_189" formatted="false">Flipper Zero (or other Flipper Devices). Default name starts with Flipper; custom firmware can hide it.</string>
+    <string name="catalog_190" formatted="false">Flipper Zero (or other Flipper Devices) BLE. Default name starts with Flipper; newer units use IEEE OUI 0C:FA:22. Custom firmware can change the name and MAC. Not proof of an attack. A miss is not a clean bill (Bluetooth off, or renamed). Look with your eyes.</string>
+    <string name="catalog_191" formatted="false">Pwnagotchi-style Wi-Fi handshake collector. Classic units use a distinctive BSSID and the name pwnagotchi.</string>
+    <string name="catalog_192" formatted="false">Pwnagotchi-style Wi-Fi handshake collector. Classic units beacon BSSID de:ad:be:ef:de:ad. A pwnagotchi name is a pattern. Not proof of an attack. Look with your eyes.</string>
+    <string name="catalog_193" formatted="false">ESP32 Marauder or Spacehuhn-style Wi-Fi deauther on a default name. Same boards are DIY; renamed units miss.</string>
+    <string name="catalog_194" formatted="false">ESP32 Marauder or Spacehuhn-style Wi-Fi deauther default names. Same boards are DIY. Not proof of an attack. A miss is not a clean bill (renamed). Look with your eyes.</string>
+    <string name="catalog_195" formatted="false">GhostESP ESP32 audit firmware. Default setup AP is GhostNet. Same boards are DIY; renamed units miss.</string>
+    <string name="catalog_196" formatted="false">GhostESP ESP32 audit firmware default AP (GhostNet). Same boards are DIY. Not proof of an attack. A miss is not a clean bill (renamed). Look with your eyes.</string>
+    <string name="catalog_197" formatted="false">Bruce ESP32 pentest firmware. Default setup AP is BruceNet. Same boards are DIY; renamed units and evil-portal SSIDs miss.</string>
+    <string name="catalog_198" formatted="false">Bruce ESP32 pentest firmware default AP (BruceNet). Same boards are DIY. Evil-portal SSIDs look like ordinary Wi-Fi and will not hit this row. Not proof of an attack. Look with your eyes.</string>
+    <string name="catalog_199" formatted="false">Porkchop pentest firmware on a Cardputer or Cheap Yellow Display. Default AP name PORKCHOP. BLE spam that spoofs Apple/Android is not this row.</string>
+    <string name="catalog_200" formatted="false">M5PORKCHOP / Porkchop — pocket Wi-Fi pentest firmware (Cardputer or Cheap Yellow Display). Default CYD remote AP is named PORKCHOP. BACON-mode fake APs brand vendor IE 50:52:4B. A miss is not a clean bill (renamed, passive only, or no AP). Pattern match, not identity, not proof of an attack. Look with your eyes.</string>
+    <string name="catalog_201" formatted="false">Nintendo Pokémon GO Plus or Plus + wrist accessory. Not a Joy-Con or Switch.</string>
+    <string name="catalog_202" formatted="false">Hatch Rest / Restore / Mini sound machine. Nursery / bedroom noise.</string>
+    <string name="catalog_203" formatted="false">Orbit B-hyve hose timer / irrigation.</string>
+    <string name="catalog_204" formatted="false">Samsung Family Hub fridge, range, or oven setup Wi-Fi. Not a SmartTag.</string>
+    <string name="catalog_205" formatted="false">EcoWater / water-softener setup Wi-Fi. Home plumbing IoT.</string>
+    <string name="catalog_206" formatted="false">Fieldy pendant — wearable AI note-taker.</string>
+    <string name="catalog_207" formatted="false">Fieldy wearable AI note-taker (pendant). It records conversations and transcribes them. Not proof someone is recording you. A miss is not a clean bill (off, paired and quiet, or a different brand). Look with your eyes.</string>
+    <string name="catalog_208" formatted="false">Plaud Note / NotePin AI meeting recorder.</string>
+    <string name="catalog_209" formatted="false">Plaud Note / NotePin AI recorder. It records meetings. Not proof someone is recording you. A miss is not a clean bill (off, renamed, or a different brand). Look with your eyes.</string>
+    <string name="catalog_210" formatted="false">Limitless / Rewind AI pendant — wearable conversation recorder.</string>
+    <string name="catalog_211" formatted="false">Limitless Pendant wearable recorder. BLE service 632de001. It records conversations. Not proof someone is recording you. A miss is not a clean bill (off, paired and quiet, or a different brand). Look with your eyes.</string>
+    <string name="catalog_212" formatted="false">Bee Pioneer wearable recorder (now Amazon). Always-on audio capture.</string>
+    <string name="catalog_213" formatted="false">Bee Pioneer wearable recorder (Amazon). BLE service 03d5d5c4. It records conversations. Not proof someone is recording you. A miss is not a clean bill (off, or a different brand). Look with your eyes.</string>
+    <string name="catalog_214" formatted="false">Omi / OpenGlass wearable recorder or camera glasses. Arduino-default 19B10000 is too common to use as a rule.</string>
+    <string name="catalog_215" formatted="false">Omi pendant or OpenGlass camera glasses. Name or BLE service 23ba7924. It can record audio (OpenGlass also has a camera). Not proof someone is recording you. A miss is not a clean bill (off, renamed, or a DIY board using other names). Look with your eyes.</string>
+    <string name="catalog_216" formatted="false">Friend AI necklace — wearable companion that listens.</string>
+    <string name="catalog_217" formatted="false">Friend Pendant / necklace. BLE service 1a3fd0e7. It listens to conversations. Not proof someone is recording you. A miss is not a clean bill (off, or a different brand). Look with your eyes.</string>
+    <string name="catalog_218" formatted="false">BLE LED message display. The advertised name is the sign text, not a product name.</string>
+    <string name="catalog_219" formatted="false">Electronic shelf label (store price tag) on the Bluetooth ESL service. Most Hanshow / SES-imagotag tags use a private radio and will not hit this.</string>
+    <string name="catalog_220" formatted="false">UniFi Protect Instant camera in BLE setup. Not a UniFi Wi-Fi access point.</string>
+    <string name="catalog_221" formatted="false">Tesla BLE tire sensor. Decoded fields can show pressure, temperature, and battery when the sensor is awake. Pattern match, not that car. Phone-as-key stays on the Tesla row.</string>
+    <string name="catalog_222" formatted="false">RadiaCode handheld radiation detector.</string>
+    <string name="catalog_223" formatted="false">LG webOS TV. Unnamed LG radios can also hit this row.</string>
+    <string name="catalog_224" formatted="false">Roku streaming stick or Roku TV. Often a hidden Wi-Fi Direct AP for the remote. Not an ISP router.</string>
+    <string name="catalog_225" formatted="false">Nespresso machine (Vertuo / Barista).</string>
+    <string name="catalog_226" formatted="false">Epson EcoTank or WorkForce printer (Wi-Fi Direct or BLE).</string>
+    <string name="catalog_227" formatted="false">Shokz bone-conduction headphones (OpenRun / OpenFit). Worn on the head, not a tracker.</string>
+    <string name="catalog_228" formatted="false">In-flight drone digital license plate (ASTM / FAA Remote ID). Decoded fields can show ID, position, heading, and operator. Pattern match, not a tail number. Wi-Fi Remote ID often misses on stock Android.</string>
+    <string name="catalog_229" formatted="false">Skydio drone (common in US public-safety / enterprise). In-flight Remote ID is often Wi-Fi and easy to miss — the Remote ID row is the license plate.</string>
+    <string name="catalog_230" formatted="false">Autel drone, controller, or setup Wi-Fi. In-flight digital license plate is the Remote ID row.</string>
+    <string name="catalog_231" formatted="false">Parrot ANAFI or Bebop drone. In-flight digital license plate is the Remote ID row. Not a Parrot car kit.</string>
+    <string name="catalog_232" formatted="false">HOVERAir pocket selfie drone. In-flight digital license plate (PRO / PROMAX) is the Remote ID row.</string>
+    <string name="catalog_233" formatted="false">Cradlepoint vehicle router (IBR / R-series). Common in police, EMS, utilities, and commercial fleets. Hidden SSIDs still hit on the board vendor.</string>
+    <string name="catalog_234" formatted="false">Ericsson Cradlepoint vehicle router (IBR / R-series). Common in US police and public-safety fleets; also utilities, EMS, and commercial fleet. Hidden or renamed SSIDs still hit on the CradlePoint IEEE OUI. Pattern match, not that agency or that car. Look with your eyes.</string>
+    <string name="catalog_235" formatted="false">Sierra Wireless AirLink vehicle / fleet gateway. Common in public-safety and commercial fleets. Hidden SSIDs still hit on the board vendor.</string>
+    <string name="catalog_236" formatted="false">Sierra Wireless AirLink vehicle gateway. Common in US police and public-safety fleets; also commercial fleet. Hidden or renamed SSIDs still hit on the Sierra Wireless IEEE OUI. Pattern match, not that agency or that car. Look with your eyes.</string>
+    <string name="catalog_237" formatted="false">Compex vehicle or agency Wi-Fi access point. Same boards appear on other Compex radios.</string>
+    <string name="catalog_238" formatted="false">Compex Wi-Fi AP. Some US public-safety agencies use these in vehicles. The same IEEE OUIs appear on other Compex radios. Pattern match, not that agency. Look with your eyes.</string>
+    <string name="catalog_239" formatted="false">Novatel Wireless / Inseego vehicle radio. The same prefix is also on some consumer MiFi hotspots.</string>
+    <string name="catalog_240" formatted="false">Novatel Wireless / Inseego OUI 28:80:A2. Reported in public-safety vehicle AP work. Same prefix is also on some Inseego consumer MiFi radios. Pattern match, not that agency. Look with your eyes.</string>
+    <string name="catalog_241" formatted="false">Utility, Inc vehicle or public-safety access point.</string>
+    <string name="catalog_242" formatted="false">Utility, Inc radio. Reported in public-safety vehicle AP work. Pattern match, not that agency. Look with your eyes.</string>
+    <string name="catalog_243" formatted="false">Cisco Aironet / Catalyst / Business access point. Fieldwatch sees AP beacons, not phones or switches. Meraki has its own row.</string>
+    <string name="catalog_244" formatted="false">HPE Aruba campus or Instant On Wi-Fi access point. An HPE BSSID here is an AP, not a server. Not an HP printer.</string>
+    <string name="catalog_245" formatted="false">RUCKUS Unleashed / ZoneFlex campus access point. Not the Arris cable-modem family.</string>
+    <string name="catalog_246" formatted="false">Ruijie / Reyee campus or SMB access point.</string>
+    <string name="catalog_247" formatted="false">Fortinet FortiAP / FortiWiFi campus or branch access point.</string>
+    <string name="catalog_248" formatted="false">MikroTik RouterOS access point or travel router.</string>
+    <string name="catalog_249" formatted="false">EnGenius Cloud / ECW access point.</string>
+    <string name="catalog_250" formatted="false">Zyxel home or SMB gateway / access point.</string>
+    <string name="catalog_251" formatted="false">Peplink / Pepwave travel or branch router.</string>
+    <string name="catalog_252" formatted="false">OpenWrt factory SSID on a flashed travel / DIY router that was never renamed.</string>
+    <string name="catalog_253" formatted="false">Arris / SURFboard cable gateway. After the ISP renames the Wi-Fi, the board vendor still hits.</string>
+    <string name="catalog_254" formatted="false">Juniper Mist campus access point. Cloud SSIDs are site names; the board vendor is the hit.</string>
+    <string name="catalog_255" formatted="false">T-Mobile Home Internet or hotspot. Gateways are often HUMAX / Arcadyan / Askey OEM.</string>
+    <string name="catalog_256" formatted="false">HUMAX 5G or cable gateway. Often T-Mobile Home Internet in the field.</string>
+    <string name="catalog_257" formatted="false">Sagemcom ISP gateway. Common Comcast / other cable OEM.</string>
+    <string name="catalog_258" formatted="false">Arcadyan ISP gateway or mesh. Common Verizon / T-Mobile OEM.</string>
+    <string name="catalog_259" formatted="false">Askey 5G / ISP gateway. Common T-Mobile Home Internet OEM.</string>
+    <string name="catalog_260" formatted="false">Calix fiber gateway (GigaSpire class). After rename, the board vendor still hits.</string>
+    <string name="catalog_261" formatted="false">Nokia ISP gateway or small cell. Not a Nokia phone.</string>
+    <string name="catalog_262" formatted="false">AirTies ISP mesh extender. Carrier-issued home mesh.</string>
+    <string name="catalog_263" formatted="false">Tenda consumer router or extender.</string>
+    <string name="catalog_264" formatted="false">WAVLINK consumer travel / home router.</string>
+    <string name="catalog_265" formatted="false">Sercomm ISP gateway. Common cable / fiber OEM.</string>
+    <string name="catalog_266" formatted="false">Luxul / Legrand small-business access point.</string>
+    <string name="catalog_267" formatted="false">Sophos firewall or access point. Campus / SMB Wi-Fi, not a camera pole.</string>
+    <string name="catalog_268" formatted="false">Vehicle Wi-Fi from an AUMOVIO (ex-Continental) module. The car’s AP, not an ISP router.</string>
+    <string name="catalog_269" formatted="false">CenturyLink factory gateway name. Renamed fiber Wi-Fi misses this row.</string>
+    <string name="catalog_270" formatted="false">GM in-car hotspot (Cadillac, GMC, Buick). myChevrolet has its own row. BSSID is often randomized.</string>
+    <string name="catalog_271" formatted="false">Audi in-car MMI hotspot. Factory name from the car, not a dealer.</string>
+    <string name="catalog_272" formatted="false">Extreme Networks campus access point. Cloud SSIDs are site names; the board vendor is the hit.</string>
+    <string name="catalog_273" formatted="false">Adtran fiber gateway. Common CenturyLink / Lumen / Quantum Fiber OEM.</string>
+    <string name="catalog_274" formatted="false">Cambium or IgniteNet outdoor / WISP access point.</string>
+    <string name="catalog_275" formatted="false">TRENDnet consumer access point.</string>
+    <string name="catalog_276" formatted="false">Cudy travel or home router.</string>
+    <string name="catalog_277" formatted="false">Control4 / Wattbox home-AV processor or power unit.</string>
+    <string name="catalog_278" formatted="false">Vantiva (ex-Technicolor) ISP gateway. After the ISP renames the Wi-Fi, the board vendor still hits.</string>
+    <string name="catalog_279" formatted="false">Hitron cable gateway. Common Xfinity OEM; the Xfinity name row can also hit.</string>
+    <string name="catalog_280" formatted="false">Actiontec FiOS / Frontier gateway. Often a Verizon box; the Verizon name row can also hit.</string>
+    <string name="catalog_281" formatted="false">Buffalo AirStation home router.</string>
+    <string name="catalog_282" formatted="false">Grandstream GWN office access point.</string>
+    <string name="catalog_283" formatted="false">Edgecore campus / open Wi-Fi access point. Cloud SSIDs are site names; the board vendor is the hit.</string>
+    <string name="catalog_284" formatted="false">WatchGuard firewall or access point. Not WatchGuard Video body-worn cameras.</string>
+    <string name="catalog_285" formatted="false">Mojo / Arista Cognitive Wi-Fi campus access point.</string>
+    <string name="catalog_286" formatted="false">Winegard RV or marine Wi-Fi antenna / router.</string>
+    <string name="catalog_287" formatted="false">Inseego 5G / MiFi hotspot.</string>
+    <string name="catalog_288" formatted="false">Franklin 5G / LTE home-internet gateway (often carrier-issued). Guest SSIDs still hit.</string>
+    <string name="catalog_289" formatted="false">Synology NAS or router access point.</string>
+    <string name="catalog_290" formatted="false">Honeywell Xenon healthcare barcode scanner or its charge base (white, disinfectant-ready). Clinic / hospital kit, not a home thermostat and not a warehouse-only Xenon.</string>
+    <string name="catalog_291" formatted="false">Omron blood-pressure cuff or body-composition scale. Home / clinic health kit, not industrial Omron.</string>
+    <string name="catalog_292" formatted="false">Withings (Nokia Health) scale or BPM Connect cuff. Not a Nokia phone and not a Nokia ISP gateway.</string>
+    <string name="catalog_293" formatted="false">Dexcom continuous glucose monitor (G6 / G7). Pattern match, not a patient.</string>
+    <string name="catalog_294" formatted="false">Accel X</string>
+    <string name="catalog_295" formatted="false">Accel Y</string>
+    <string name="catalog_296" formatted="false">Accel Z</string>
+    <string name="catalog_297" formatted="false">Alarm</string>
+    <string name="catalog_298" formatted="false">Altitude (baro)</string>
+    <string name="catalog_299" formatted="false">Altitude (HAE)</string>
+    <string name="catalog_300" formatted="false">App code</string>
+    <string name="catalog_301" formatted="false">Battery</string>
+    <string name="catalog_302" formatted="false">Bound</string>
+    <string name="catalog_303" formatted="false">Channel</string>
+    <string name="catalog_304" formatted="false">Counter</string>
+    <string name="catalog_305" formatted="false">Ephemeral ID</string>
+    <string name="catalog_306" formatted="false">Format</string>
+    <string name="catalog_307" formatted="false">Frame</string>
+    <string name="catalog_308" formatted="false">Heading</string>
+    <string name="catalog_309" formatted="false">Height</string>
+    <string name="catalog_310" formatted="false">Horizontal speed</string>
+    <string name="catalog_311" formatted="false">Humidity</string>
+    <string name="catalog_312" formatted="false">ID type</string>
+    <string name="catalog_313" formatted="false">Latitude</string>
+    <string name="catalog_314" formatted="false">Log interval</string>
+    <string name="catalog_315" formatted="false">Longitude</string>
+    <string name="catalog_316" formatted="false">MAC in payload</string>
+    <string name="catalog_317" formatted="false">Media offload</string>
+    <string name="catalog_318" formatted="false">Message</string>
+    <string name="catalog_319" formatted="false">Mode</string>
+    <string name="catalog_320" formatted="false">Model</string>
+    <string name="catalog_321" formatted="false">Model id</string>
+    <string name="catalog_322" formatted="false">Movement</string>
+    <string name="catalog_323" formatted="false">Moving</string>
+    <string name="catalog_324" formatted="false">Network ID</string>
+    <string name="catalog_325" formatted="false">New media</string>
+    <string name="catalog_326" formatted="false">Operator ID</string>
+    <string name="catalog_327" formatted="false">Operator lat</string>
+    <string name="catalog_328" formatted="false">Operator lon</string>
+    <string name="catalog_329" formatted="false">Packet</string>
+    <string name="catalog_330" formatted="false">Pairing</string>
+    <string name="catalog_331" formatted="false">Pressure</string>
+    <string name="catalog_332" formatted="false">Private ID</string>
+    <string name="catalog_333" formatted="false">Processor</string>
+    <string name="catalog_334" formatted="false">Product</string>
+    <string name="catalog_335" formatted="false">Protocol</string>
+    <string name="catalog_336" formatted="false">Rotating</string>
+    <string name="catalog_337" formatted="false">Schema</string>
+    <string name="catalog_338" formatted="false">Self ID</string>
+    <string name="catalog_339" formatted="false">Sensor id</string>
+    <string name="catalog_340" formatted="false">Sequence</string>
+    <string name="catalog_341" formatted="false">Serial</string>
+    <string name="catalog_342" formatted="false">Standing still</string>
+    <string name="catalog_343" formatted="false">Status</string>
+    <string name="catalog_344" formatted="false">Stored logs</string>
+    <string name="catalog_345" formatted="false">Temperature</string>
+    <string name="catalog_346" formatted="false">TX power</string>
+    <string name="catalog_347" formatted="false">UA type</string>
+    <string name="catalog_348" formatted="false">UAS ID</string>
+    <string name="catalog_349" formatted="false">Vendor</string>
+    <string name="catalog_350" formatted="false">Version</string>
+    <string name="catalog_351" formatted="false">Vertical speed</string>
+    <string name="catalog_352" formatted="false">Weave device id</string>
+    <string name="catalog_353" formatted="false">Wheel</string>
+    <string name="catalog_354" formatted="false">Wi-Fi AP</string>
+    <string name="catalog_355" formatted="false">Aeroplane</string>
+    <string name="catalog_356" formatted="false">Airborne</string>
+    <string name="catalog_357" formatted="false">Airship</string>
+    <string name="catalog_358" formatted="false">Auth</string>
+    <string name="catalog_359" formatted="false">Basic ID</string>
+    <string name="catalog_360" formatted="false">CAA registration</string>
+    <string name="catalog_361" formatted="false">Emergency</string>
+    <string name="catalog_362" formatted="false">Glider</string>
+    <string name="catalog_363" formatted="false">Ground</string>
+    <string name="catalog_364" formatted="false">Gyroplane</string>
+    <string name="catalog_365" formatted="false">Helicopter / multirotor</string>
+    <string name="catalog_366" formatted="false">Hybrid lift</string>
+    <string name="catalog_367" formatted="false">Location</string>
+    <string name="catalog_368" formatted="false">Message pack</string>
+    <string name="catalog_369" formatted="false">Near its owner. With you the whole sit, this is often your own tag. First heard after the sit started, it is more often someone who joined with their own keys.</string>
+    <string name="catalog_370" formatted="false">near owner</string>
+    <string name="catalog_371" formatted="false">nearby</string>
+    <string name="catalog_372" formatted="false">Nearby its owner. With you the whole sit, this is often your own tag. First heard after the sit started, it is more often someone who joined with their own keys.</string>
+    <string name="catalog_373" formatted="false">Nest Cam IQ indoor</string>
+    <string name="catalog_374" formatted="false">Nest Cam IQ outdoor</string>
+    <string name="catalog_375" formatted="false">Nest Guard backplate</string>
+    <string name="catalog_376" formatted="false">Nest Heat Link (2nd)</string>
+    <string name="catalog_377" formatted="false">Nest Heat Link backplate</string>
+    <string name="catalog_378" formatted="false">Nest Learning Thermostat (1st/2nd)</string>
+    <string name="catalog_379" formatted="false">Nest Learning Thermostat (1st/2nd) backplate</string>
+    <string name="catalog_380" formatted="false">Nest Learning Thermostat (3rd, EU)</string>
+    <string name="catalog_381" formatted="false">Nest Learning Thermostat (3rd, EU) backplate</string>
+    <string name="catalog_382" formatted="false">Nest Learning Thermostat (3rd)</string>
+    <string name="catalog_383" formatted="false">Nest Learning Thermostat (3rd) backplate</string>
+    <string name="catalog_384" formatted="false">Nest Protect (1st gen)</string>
+    <string name="catalog_385" formatted="false">Nest Protect (2nd gen)</string>
+    <string name="catalog_386" formatted="false">no pressure</string>
+    <string name="catalog_387" formatted="false">None</string>
+    <string name="catalog_388" formatted="false">ok</string>
+    <string name="catalog_389" formatted="false">Other</string>
+    <string name="catalog_390" formatted="false">RID failure</string>
+    <string name="catalog_391" formatted="false">separated</string>
+    <string name="catalog_392" formatted="false">Separated from its owner. The address can hold still for about a day.</string>
+    <string name="catalog_393" formatted="false">Serial (CTA-2063)</string>
+    <string name="catalog_394" formatted="false">Session ID</string>
+    <string name="catalog_395" formatted="false">sleep</string>
+    <string name="catalog_396" formatted="false">System</string>
+    <string name="catalog_397" formatted="false">Telemetry</string>
+    <string name="catalog_398" formatted="false">Undeclared</string>
+    <string name="catalog_399" formatted="false">asleep</string>
+    <string name="catalog_400" formatted="false">available</string>
+    <string name="catalog_401" formatted="false">awake</string>
+    <string name="catalog_402" formatted="false">bound</string>
+    <string name="catalog_403" formatted="false">moving</string>
+    <string name="catalog_404" formatted="false">no</string>
+    <string name="catalog_405" formatted="false">off</string>
+    <string name="catalog_406" formatted="false">on</string>
+    <string name="catalog_407" formatted="false">paired</string>
+    <string name="catalog_408" formatted="false">still</string>
+    <string name="catalog_409" formatted="false">unbound</string>
+    <string name="catalog_410" formatted="false">unpaired</string>
+    <string name="catalog_411" formatted="false">yes</string>
+    <string name="catalog_412" formatted="false">zero pressure</string>
+    <string name="catalog_413" formatted="false">Flock Safety Cameras</string>
+    <string name="catalog_414" formatted="false">LiteOn camera radio</string>
+    <string name="catalog_415" formatted="false">Apple AirTags</string>
+    <string name="catalog_416" formatted="false">Samsung SmartTags</string>
+    <string name="catalog_417" formatted="false">Target Atrius basket</string>
+    <string name="catalog_418" formatted="false">Tile Trackers</string>
+    <string name="catalog_419" formatted="false">FS Ext Battery</string>
+    <string name="catalog_420" formatted="false">Apple Device</string>
+    <string name="catalog_421" formatted="false">Apple audio</string>
+    <string name="catalog_422" formatted="false">Microsoft Device</string>
+    <string name="catalog_423" formatted="false">Phone hotspot</string>
+    <string name="catalog_424" formatted="false">DULT tracker</string>
+    <string name="catalog_425" formatted="false">Nest Thermostat</string>
+    <string name="catalog_426" formatted="false">Haiku Fan</string>
+    <string name="catalog_427" formatted="false">Chevrolet hotspot</string>
+    <string name="catalog_428" formatted="false">Goodyear TPMS</string>
+    <string name="catalog_429" formatted="false">Schrader TPMS</string>
+    <string name="catalog_430" formatted="false">Pacific TPMS</string>
+    <string name="catalog_431" formatted="false">FOBO TPMS</string>
+    <string name="catalog_432" formatted="false">Aftermarket TPMS</string>
+    <string name="catalog_433" formatted="false">TPMS service</string>
+    <string name="catalog_434" formatted="false">UniFi AP</string>
+    <string name="catalog_435" formatted="false">Hobby BLE serial</string>
+    <string name="catalog_436" formatted="false">Ray-Ban / Meta glasses</string>
+    <string name="catalog_437" formatted="false">Marauder / Deauther</string>
+    <string name="catalog_438" formatted="false">Samsung appliance</string>
+    <string name="catalog_439" formatted="false">Limitless Pendant</string>
+    <string name="catalog_440" formatted="false">Bee Pendant</string>
+    <string name="catalog_441" formatted="false">Friend Pendant</string>
+    <string name="catalog_442" formatted="false">Retail LED sign</string>
+    <string name="catalog_443" formatted="false">Electronic shelf label</string>
+    <string name="catalog_444" formatted="false">LG webOS TV</string>
+    <string name="catalog_445" formatted="false">GM hotspot</string>
+    <string name="catalog_446" formatted="false">WatchGuard AP</string>
+    <string name="catalog_447" formatted="false">New Signature</string>
+</resources>

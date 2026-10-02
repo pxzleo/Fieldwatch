@@ -1,6 +1,7 @@
 package app.fieldwatch.ui.screen
 
 import app.fieldwatch.UiText
+import app.fieldwatch.UiDetailText
 import app.fieldwatch.ui.uiLabel
 import app.fieldwatch.R
 
@@ -207,7 +208,7 @@ private fun CandidateCard(
                 modifier = Modifier.padding(start = 38.dp, top = 8.dp),
             )
             Text(
-                cand.why,
+                UiDetailText.candidateWhy(cand.why),
                 style = compact(13.sp, 16.sp),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 38.dp, top = 4.dp),

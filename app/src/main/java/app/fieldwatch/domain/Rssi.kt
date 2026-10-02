@@ -7,15 +7,15 @@ package app.fieldwatch.domain
 object Rssi {
     fun measured(rssi: Int): Boolean = rssi in -127..126
 
-    fun sessionRange(min: Int, max: Int, history: List<RssiSample> = emptyList()): String {
+    fun sessionRange(min: Int, max: Int, history: List<RssiSample> = emptyList(), translate: (String) -> String = { it }): String {
         val vals = ArrayList<Int>(history.size + 2)
         if (measured(min)) vals += min
         if (measured(max)) vals += max
         for (s in history) if (measured(s.rssi)) vals += s.rssi
-        if (vals.isEmpty()) return "Not available"
+        if (vals.isEmpty()) return translate("Not available")
         val lo = vals.min()
         val hi = vals.max()
-        return if (lo == hi) "$lo dBm" else "$lo to $hi dBm"
+        return if (lo == hi) "$lo dBm" else translate("%1\$s to %2\$s dBm").format(lo, hi)
     }
 
     fun lastMeasured(rssi: Int, history: List<RssiSample>): Int? {

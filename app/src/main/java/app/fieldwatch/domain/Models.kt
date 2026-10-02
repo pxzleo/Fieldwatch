@@ -744,10 +744,10 @@ data class Sighting(
         get() = name.ifBlank { if (hiddenSsid) "<hidden>" else mac }
 
     /** Custom name from Named radios, else advertised / hidden / MAC. */
-    fun reportName(customNames: Map<String, String>): String {
+    fun reportName(customNames: Map<String, String>, translate: (String) -> String = { it }): String {
         val custom = customNames[key]?.trim()
         if (!custom.isNullOrEmpty()) return custom
-        return displayName
+        return if (name.isBlank() && hiddenSsid) translate("<hidden>") else displayName
     }
 
     /**

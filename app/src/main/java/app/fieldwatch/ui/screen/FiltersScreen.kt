@@ -638,7 +638,7 @@ private fun SignaturePickList(
                         modifier = Modifier.padding(start = 24.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text(fleet.name, Modifier.weight(1f))
+                        Text(app.fieldwatch.UiCatalogText.forFleet(fleet, fleet.name), Modifier.weight(1f))
                         FieldwatchSwitch(on, { checked -> onToggle(fleet.id, checked) })
                     }
                 }

@@ -1,6 +1,8 @@
 package app.fieldwatch.ui.screen
 
 import app.fieldwatch.UiText
+import app.fieldwatch.UiCatalogText
+import app.fieldwatch.UiDetailText
 import app.fieldwatch.R
 
 import androidx.compose.foundation.BorderStroke
@@ -205,7 +207,7 @@ fun DeviceDetailScreen(
                     value = nameDraft,
                     onValueChange = { nameDraft = it.take(RadioBookmarks.MAX_NAME) },
                     label = UiText.text(R.string.ui_custom_name),
-                    supportingText = RadioBookmarks.customNameHint(device),
+                    supportingText = RadioBookmarks.customNameHint(device, UiText::explanation),
                 )
                 FieldwatchActionButton(
                     onClick = {
@@ -272,11 +274,11 @@ fun DeviceDetailScreen(
 
             val guess = DeviceExplain.guess(device, device.fleetIds.map { vm.fleetName(it) }, UiText::explanation)
             StickyHeight(device.key to "guess") { GuessCard(guess) }
-            val attention = vm.attentionNotesFor(device)
+            val attention = vm.uiSignatureNotesFor(device, attention = true)
             if (attention.isNotEmpty()) {
                 StickyHeight(device.key to "attention") { ExtraAttentionCard(attention) }
             }
-            val notes = vm.signatureNotesFor(device)
+            val notes = vm.uiSignatureNotesFor(device)
             if (notes.isNotEmpty()) {
                 StickyHeight(device.key to "notes") { SignatureNotesCard(notes) }
             }
@@ -322,7 +324,7 @@ fun DeviceDetailScreen(
                 }
                 Meta(
                     UiText.text(R.string.ui_heard_range_this_session),
-                    Rssi.sessionRange(device.rssiMin, device.rssiMax, device.rssiHistory),
+                    Rssi.sessionRange(device.rssiMin, device.rssiMax, device.rssiHistory, UiText::explanation),
                 )
                 facts.txPowerDbm?.let {
                     Meta(UiText.text(R.string.ui_claimed_transmit_power), UiText.text(R.string.ui_value_dbm_how_loud_it_says_it_transmits_not_a_distance, (it).toString()))
@@ -380,7 +382,7 @@ fun DeviceDetailScreen(
                     Meta(UiText.text(R.string.ui_flags_raw), "0x%02X".format(flags), mono = true)
                 }
                 facts.appearance?.let { value ->
-                    val name = RadioDb.appearance(value)
+                    val name = RadioDb.appearance(value)?.let(UiText::explanation)
                     Meta(
                         UiText.text(R.string.ui_what_it_says_it_is_appearance),
                         name?.let { UiText.text(R.string.ui_value_nthe_device_publishes_this_gap_appearance_code_to_describe_, (it).toString()) }
@@ -388,7 +390,7 @@ fun DeviceDetailScreen(
                     )
                     Meta(UiText.text(R.string.ui_appearance_code), "0x%04X".format(value), mono = true)
                 }
-                CodDecoder.decodeOrNull(facts.deviceClass)?.let { cod ->
+                CodDecoder.decodeOrNull(facts.deviceClass, UiText::explanation)?.let { cod ->
                     Meta(
                         UiText.text(R.string.ui_classic_bluetooth_class),
                         buildString {
@@ -447,7 +449,7 @@ fun DeviceDetailScreen(
 
             if (device.kind == RadioKind.BLE || device.kind == RadioKind.WIFI) {
                 val fleets = vm.ui.value.fleets
-                val decoded = remember(device.key, device.facts, device.fleetIds) {
+                val decoded = remember(device.key, device.facts, device.fleetIds, fleets) {
                     SignatureFieldDecoder.decodeSighting(device, fleets)
                 }
                 val mapped = device.fleetIds.mapNotNull { id -> fleets.find { it.id == id && it.decode != null } }
@@ -472,10 +474,13 @@ fun DeviceDetailScreen(
                     }
                     val multi = decoded.map { it.fleetId }.distinct().size > 1
                     decoded.forEach { row ->
-                        Meta(if (multi) "${row.fleetName} · ${row.label}" else row.label, row.display)
+                        val fleet = fleets.firstOrNull { it.id == row.fleetId }
+                        val label = UiCatalogText.forFleet(fleet, row.label)
+                        Meta(if (multi) "${UiCatalogText.forFleet(fleet, row.fleetName)} · $label" else label,
+                            UiCatalogText.decoded(fleet, row))
                         if (row.note.isNotBlank()) {
                             Text(
-                                row.note,
+                                UiCatalogText.forFleet(fleet, row.note),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -557,7 +562,7 @@ fun DeviceDetailScreen(
                     Meta(
                         UiText.text(R.string.ui_matched_signatures),
                         device.fleetIds.joinToString("\n") { id ->
-                            val name = vm.fleetName(id)
+                            val name = vm.fleetUiName(id)
                             if (vm.fleetHasDecode(id)) "$name  ⬡" else name
                         },
                     )
@@ -588,7 +593,7 @@ fun DeviceDetailScreen(
                 )
             }
             familyHint?.let { hint ->
-                StickyHeight(device.key to "family") { FamilyCard(hint) }
+                StickyHeight(device.key to "family") { FamilyCard(UiDetailText.family(hint)) }
             }
             FieldwatchActionButton(
                 onClick = onCreateFleet,
@@ -875,7 +880,7 @@ private fun uuidShort(uuid: String): String {
 }
 
 private fun serviceDataHeading(sd: ServiceDataRecord): String {
-    val named = RadioDb.serviceUuid(sd.uuid)?.let { " ($it)" } ?: ""
+    val named = RadioDb.serviceUuid(sd.uuid)?.let { " (${UiText.explanation(it)})" } ?: ""
     val frame = eddystoneFrameTag(sd)?.let { " · $it" } ?: ""
     return UiText.text(R.string.ui_service_data_valuevaluevalue, (uuidShort(sd.uuid)).toString(), (named).toString(), (frame).toString())
 }

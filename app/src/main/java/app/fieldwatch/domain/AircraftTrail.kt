@@ -139,7 +139,7 @@ object AircraftTrail {
         )
     }
 
-    fun body(pictures: List<Picture>): String {
+    fun body(pictures: List<Picture>, translate: (String) -> String = { it }): String {
         if (pictures.isEmpty()) return ""
         return buildString {
             pictures.forEachIndexed { index, pic ->
@@ -147,30 +147,30 @@ object AircraftTrail {
                 val head = if (pic.status.isBlank()) pic.title else "${pic.title} — ${pic.status}"
                 appendLine("• $head")
                 val last = pic.fixes.last()
-                appendLine("  Last ${fmtCoord(last.lat, last.lon)}")
+                appendLine(ReportText.format("  Last {0}", translate, fmtCoord(last.lat, last.lon)))
                 val motion = listOfNotNull(
                     pic.alt?.let { "${fmtNum(it)} m" },
-                    pic.heading?.let { "course ${fmtNum(it)}°" },
+                    pic.heading?.let { ReportText.format("course {0}°", translate, fmtNum(it)) },
                     pic.speed?.let { "${fmtNum(it)} m/s" },
                 )
                 if (motion.isNotEmpty()) appendLine("  ${motion.joinToString("  ·  ")}")
                 val length = lengthM(pic.fixes)
                 val count = pic.fixes.size
-                val shape = if (count == 1) "1 advertised fix" else "$count advertised fixes, ${fmtDist(length)}"
+                val shape = if (count == 1) translate("1 advertised fix") else ReportText.format("{0} advertised fixes, {1}", translate, count, fmtDist(length))
                 appendLine("  $shape")
                 if (pic.pilotLat != null && pic.pilotLon != null) {
-                    appendLine("  Pilot ${fmtCoord(pic.pilotLat, pic.pilotLon)}")
+                    appendLine(ReportText.format("  Pilot {0}", translate, fmtCoord(pic.pilotLat, pic.pilotLon)))
                 }
             }
             val hidden = (pictures.count { it.ownFigure } - MAX_OWN_FIGURES).coerceAtLeast(0)
             if (hidden > 0) {
-                appendLine("$hidden more aircraft tracks are listed here and left off the map.")
+                appendLine(ReportText.format("{0} more aircraft tracks are listed here and left off the map.", translate, hidden))
             }
-            append("These positions were broadcast by the radio. They are not this phone's GPS.")
+            append(translate("These positions were broadcast by the radio. They are not this phone's GPS."))
         }.trimEnd()
     }
 
-    fun compareBody(leftName: String, left: List<Picture>, rightName: String, right: List<Picture>): String {
+    fun compareBody(leftName: String, left: List<Picture>, rightName: String, right: List<Picture>, translate: (String) -> String = { it }): String {
         val ids = (left.map { it.uasId } + right.map { it.uasId }).filter { it.isNotBlank() }.distinct()
         val looseLeft = left.filter { it.uasId.isBlank() }
         val looseRight = right.filter { it.uasId.isBlank() }
@@ -181,17 +181,17 @@ object AircraftTrail {
                 val a = left.find { it.uasId == id }
                 val b = right.find { it.uasId == id }
                 appendLine("• $id")
-                if (a != null) appendLine("  $leftName: ${sideBit(a)}")
-                if (b != null) appendLine("  $rightName: ${sideBit(b)}")
+                if (a != null) appendLine("  $leftName: ${sideBit(a, translate = translate)}")
+                if (b != null) appendLine("  $rightName: ${sideBit(b, translate = translate)}")
                 val aStatus = a?.status.orEmpty()
                 val bStatus = b?.status.orEmpty()
                 if (aStatus.isNotBlank() && bStatus.isNotBlank() && aStatus != bStatus) {
-                    appendLine("  Status changed: $aStatus → $bStatus")
+                    appendLine(ReportText.format("  Status changed: {0} → {1}", translate, aStatus, bStatus))
                 }
             }
-            looseLeft.forEach { appendLine("$leftName, no UAS id: ${sideBit(it)} (${it.title})") }
-            looseRight.forEach { appendLine("$rightName, no UAS id: ${sideBit(it)} (${it.title})") }
-            append("These positions were broadcast by the radio. They are not this phone's GPS.")
+            looseLeft.forEach { appendLine(ReportText.format("{0}, no UAS id: {1} ({2})", translate, leftName, sideBit(it, translate = translate), it.title)) }
+            looseRight.forEach { appendLine(ReportText.format("{0}, no UAS id: {1} ({2})", translate, rightName, sideBit(it, translate = translate), it.title)) }
+            append(translate("These positions were broadcast by the radio. They are not this phone's GPS."))
         }.trimEnd()
     }
 
@@ -203,12 +203,12 @@ object AircraftTrail {
         headingDeg = pic.heading,
     )
 
-    fun pilotMark(pic: Picture): SitPathPlot.Mark? {
+    fun pilotMark(pic: Picture, translate: (String) -> String = { it }): SitPathPlot.Mark? {
         if (!pic.pilotOnMap || pic.pilotLat == null || pic.pilotLon == null) return null
-        return SitPathPlot.Mark(pic.pilotLat, pic.pilotLon, "Pilot")
+        return SitPathPlot.Mark(pic.pilotLat, pic.pilotLon, translate("Pilot"))
     }
 
-    fun applyWalk(base: SitPathPlot.Figure?, pictures: List<Picture>, secondary: Boolean): SitPathPlot.Figure? {
+    fun applyWalk(base: SitPathPlot.Figure?, pictures: List<Picture>, secondary: Boolean, translate: (String) -> String = { it }): SitPathPlot.Figure? {
         if (base == null) return null
         val near = pictures.filter { it.onWalk }
         if (near.isEmpty()) return base
@@ -217,41 +217,41 @@ object AircraftTrail {
         val covered = near.flatMap { it.keys }.filter { it.isNotEmpty() }.toSet()
         return base.copy(
             tracks = base.tracks + added,
-            pilots = base.pilots + near.mapNotNull { pilotMark(it) },
+            pilots = base.pilots + near.mapNotNull { pilotMark(it, translate = translate) },
             dots = base.dots.filter { it.key !in covered },
-            craftKeys = base.craftKeys + near.map { pathKeyLine(it) },
+            craftKeys = base.craftKeys + near.map { pathKeyLine(it, translate = translate) },
             spanM = Geo.spanM(framed),
             caption = if (secondary) {
-                if ("second sit’s advertised track" in base.caption) {
+                if (translate("second sit’s advertised track") in base.caption) {
                     base.caption
                 } else {
-                    base.caption + " A blue dotted line is the second sit’s advertised track within 2 km of this path."
+                    base.caption + translate(" A blue dotted line is the second sit’s advertised track within 2 km of this path.")
                 }
-            } else if ("black dotted line is an advertised track" in base.caption) {
+            } else if (translate("black dotted line is an advertised track") in base.caption) {
                 base.caption
             } else {
-                base.caption + " A black dotted line is an advertised track within 2 km of this path."
+                base.caption + translate(" A black dotted line is an advertised track within 2 km of this path.")
             },
         )
     }
 
-    fun ownFigures(pictures: List<Picture>, secondary: Boolean = false): List<SitPathPlot.Figure> =
-        pictures.filter { it.ownFigure }.take(MAX_OWN_FIGURES).map { pictureFigure(it, secondary) }
+    fun ownFigures(pictures: List<Picture>, secondary: Boolean = false, translate: (String) -> String = { it }): List<SitPathPlot.Figure> =
+        pictures.filter { it.ownFigure }.take(MAX_OWN_FIGURES).map { pictureFigure(it, secondary, translate = translate) }
 
-    private fun pictureFigure(pic: Picture, secondary: Boolean = false): SitPathPlot.Figure {
+    private fun pictureFigure(pic: Picture, secondary: Boolean = false, translate: (String) -> String = { it }): SitPathPlot.Figure {
         val samples = samples(pic.fixes)
         return SitPathPlot.Figure(
-            kicker = "AIRCRAFT",
+            kicker = translate("AIRCRAFT"),
             tracks = listOf(track(pic, secondary)),
             dots = emptyList(),
             lengthM = lengthM(pic.fixes),
             spanM = Geo.spanM(samples),
-            caption = aircraftCaption(pic),
-            pilots = listOfNotNull(pilotMark(pic)),
+            caption = aircraftCaption(pic, translate = translate),
+            pilots = listOfNotNull(pilotMark(pic, translate = translate)),
         )
     }
 
-    fun compareOwnFigures(left: List<Picture>, right: List<Picture>): List<SitPathPlot.Figure> {
+    fun compareOwnFigures(left: List<Picture>, right: List<Picture>, translate: (String) -> String = { it }): List<SitPathPlot.Figure> {
         val ids = (left + right).filter { it.ownFigure }.map { it.uasId }.filter { it.isNotBlank() }.distinct()
         return ids.take(MAX_OWN_FIGURES).map { id ->
             val a = left.find { it.uasId == id && it.ownFigure }
@@ -261,19 +261,19 @@ object AircraftTrail {
             val lenA = a?.let { lengthM(it.fixes) } ?: 0.0
             val lenB = b?.let { lengthM(it.fixes) } ?: 0.0
             SitPathPlot.Figure(
-                kicker = "AIRCRAFT",
+                kicker = translate("AIRCRAFT"),
                 tracks = tracks,
                 dots = emptyList(),
                 lengthM = maxOf(lenA, lenB),
                 spanM = Geo.spanM(samples),
                 caption = when {
                     a != null && b != null ->
-                        "North-up. Black dots are this sit. Blue dots are the second sit. The marker is the last advertised position."
+                        translate("North-up. Black dots are this sit. Blue dots are the second sit. The marker is the last advertised position.")
                     b != null ->
-                        "North-up. The blue dotted line is the advertised track for ${b.title}. The marker is the last advertised position."
-                    else -> aircraftCaption(a!!)
+                        ReportText.format("North-up. The blue dotted line is the advertised track for {0}. The marker is the last advertised position.", translate, b.title)
+                    else -> aircraftCaption(a!!, translate = translate)
                 },
-                pilots = listOfNotNull(a?.let { pilotMark(it) }, b?.let { pilotMark(it) }),
+                pilots = listOfNotNull(a?.let { pilotMark(it, translate = translate) }, b?.let { pilotMark(it, translate = translate) }),
             )
         }
     }
@@ -354,11 +354,11 @@ object AircraftTrail {
         return sum
     }
 
-    private fun aircraftCaption(pic: Picture): String {
+    private fun aircraftCaption(pic: Picture, translate: (String) -> String = { it }): String {
         return if (pic.fixes.size < 2) {
-            "Last advertised position for ${pic.title}. The marker is that position."
+            ReportText.format("Last advertised position for {0}. The marker is that position.", translate, pic.title)
         } else {
-            "North-up. The black dotted line is the advertised track for ${pic.title}. The marker is the last advertised position."
+            ReportText.format("North-up. The black dotted line is the advertised track for {0}. The marker is the last advertised position.", translate, pic.title)
         }
     }
 
@@ -377,31 +377,32 @@ object AircraftTrail {
         speed: Double?,
         pilotLat: Double?,
         pilotLon: Double?,
+        translate: (String) -> String = { it },
     ): String {
         val bits = ArrayList<String>()
         val state = status.trim()
         if (state.isNotEmpty()) bits += state
         val id = uasId.trim()
-        if (id.isNotEmpty() && !id.equals(label.trim(), ignoreCase = true)) bits += "UAS $id"
-        bits += "last ${fmtCoord(lat, lon)}"
+        if (id.isNotEmpty() && !id.equals(label.trim(), ignoreCase = true)) bits += ReportText.format("UAS {0}", translate, id)
+        bits += ReportText.format("last {0}", translate, fmtCoord(lat, lon))
         alt?.let { bits += "${fmtNum(it)} m" }
-        heading?.let { bits += "course ${fmtNum(it)}°" }
+        heading?.let { bits += ReportText.format("course {0}°", translate, fmtNum(it)) }
         speed?.let { bits += "${fmtNum(it)} m/s" }
         if (PayloadLocation.validCoord(pilotLat, pilotLon)) {
-            bits += "pilot ${fmtCoord(pilotLat!!, pilotLon!!)}"
+            bits += ReportText.format("pilot {0}", translate, fmtCoord(pilotLat!!, pilotLon!!))
         }
         return bits.joinToString(" · ")
     }
 
     /** Path key row for the class icon at the end of an advertised track. */
-    fun pathKeyLine(pic: Picture): String {
+    fun pathKeyLine(pic: Picture, translate: (String) -> String = { it }): String {
         val last = pic.fixes.lastOrNull()
         val head = listOf(pic.who.ifBlank { pic.title }, pic.mac)
             .map { it.trim() }
             .filter { it.isNotEmpty() }
             .distinct()
             .joinToString(" ")
-            .ifBlank { "Advertised position" }
+            .ifBlank { translate("Advertised position") }
         if (last == null) return head
         val note = advertisedNote(
             status = pic.status,
@@ -413,16 +414,16 @@ object AircraftTrail {
             heading = pic.heading,
             speed = pic.speed,
             pilotLat = pic.pilotLat,
-            pilotLon = pic.pilotLon,
+            pilotLon = pic.pilotLon, translate = translate,
         )
         return "$head — $note"
     }
 
-    private fun sideBit(pic: Picture): String {
+    private fun sideBit(pic: Picture, translate: (String) -> String = { it }): String {
         val status = if (pic.status.isBlank()) "" else "${pic.status}, "
         val last = pic.fixes.lastOrNull()
-        val where = if (last == null) "" else " last ${fmtCoord(last.lat, last.lon)}"
-        val count = if (pic.fixes.size == 1) "1 fix" else "${pic.fixes.size} fixes"
+        val where = if (last == null) "" else ReportText.format(" last {0}", translate, fmtCoord(last.lat, last.lon))
+        val count = if (pic.fixes.size == 1) translate("1 fix") else ReportText.format("{0} fixes", translate, pic.fixes.size)
         return "$status$count$where".trim()
     }
 

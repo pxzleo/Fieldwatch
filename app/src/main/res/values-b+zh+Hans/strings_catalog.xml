@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_001" formatted="false">Flock 风格的路边自动车牌识别（ALPR）设备／摄像杆。通过 IEEE B4:1E:52 或 Flock-*／FLCK／Condor／Falcon／Sparrow 名称匹配。目前这些杆上的 Wi-Fi 和 BLE 往往不广播。LiteOn 模块前缀单列，不属于“特别关注”。</string>
+    <string name="catalog_002" formatted="false">Flock 风格的路边自动车牌识别（ALPR）设备／摄像杆，可读取车牌并用于定位车辆。IEEE B4:1E:52 或 Flock-* SSID 是较强的匹配依据。目前这些杆上的 Wi-Fi 和 BLE 往往不广播。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_003" formatted="false">摄像机主板上常见的 Wi-Fi 模块前缀（LiteOn 等），并非 Flock 的 IEEE 地址段。门铃和其他 OEM 无线设备也使用这些芯片。Flock 名称或 B4:1E:52 对应 Flock Safety Cameras 条目。</string>
+    <string name="catalog_004" formatted="false">Flock Raven 或 ShotSpotter 风格的声学枪声传感器，通常与摄像机一起装在杆上。BLE UUID 3100–3500 对应 Raven 无线设备。XUNTONG 电池厂商 ID 对应 Penguin，非本条目。目前 Flock 系列杆上的 Wi-Fi 和 BLE 往往不广播。</string>
+    <string name="catalog_005" formatted="false">Apple AirTag 或 Find My 配件。iPhone 也会发送 Find My 广播供定位；除非名称是 AirTag，否则仍归入 Apple Device。地址会轮换。</string>
+    <string name="catalog_006" formatted="false">Samsung SmartTag／SmartTag+ 物品查找器。地址经常轮换。</string>
+    <string name="catalog_007" formatted="false">通用近距离信标。商店、购物篮、电视和汽车都可能发送这种 Apple 格式。在信号密集的商场可将其静音。</string>
+    <string name="catalog_008" formatted="false">Target 购物篮标签。同时标注为通用 iBeacon；本条目表示商店购物篮。</string>
+    <string name="catalog_009" formatted="false">Minew 定位或资产信标。同一无线设备通常也发送 iBeacon 或 Eddystone。</string>
+    <string name="catalog_010" formatted="false">商店或场馆的定位信标／贴片。解码字段可区分 Nearable 与遥测数据。</string>
+    <string name="catalog_011" formatted="false">商店或场馆的定位信标。解码字段可显示电池、发射功率及是否移动。</string>
+    <string name="catalog_012" formatted="false">Tile 物品查找器。解码字段可显示轮换的私有 ID，并非序列号。</string>
+    <string name="catalog_013" formatted="false">Penguin 是 Flock 系列外置电池。XUNTONG BLE 厂商 ID 是常见特征；Penguin* 名称见于旧固件。较新的电池组通常广播 10 位数字名称。厂商数据包含 TN 序列号时，解码字段可显示它。</string>
+    <string name="catalog_014" formatted="false">Penguin 是 Flock 系列外置电池（XUNTONG 厂商 ID）。名称匹配见于旧固件，独特性较低。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_015" formatted="false">Pigvision 是 Flock 系列／路边摄像机名称。</string>
+    <string name="catalog_016" formatted="false">Pigvision 是 Flock 系列／路边摄像机名称。仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_017" formatted="false">通常与 Flock 风格摄像杆关联的外置电池组。名称匹配依据较强。目前这些杆上的 Wi-Fi 和 BLE 往往不广播。</string>
+    <string name="catalog_018" formatted="false">通常与 Flock 风格摄像机关联，是装在杆上的外置电池组。名称匹配依据较强。目前这些杆上的 Wi-Fi 和 BLE 往往不广播。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_019" formatted="false">iPhone、iPad 或 Mac 广播 Continuity（Nearby、Handoff、AirDrop、Instant Hotspot）。此无线设备的 Find My 广播用于定位手机自身，并非另一个 AirTag。不是 AirPods。</string>
+    <string name="catalog_020" formatted="false">AirPods、Beats 或广播 AirPlay 的 Apple TV／扬声器。不是 AirTag，也不是 iPhone 本身。</string>
+    <string name="catalog_021" formatted="false">广播 Swift Pair／Nearby Sharing 的 Windows 电脑、Surface 或 Xbox。</string>
+    <string name="catalog_022" formatted="false">Tesla 手机钥匙、车辆、Wall Connector 或 TeslaGW Wi-Fi。iOS 也能看到车辆的 iBeacon 格式广播，仍归属 Tesla，并非商场信标。轮胎传感器归入 tsTPMS 条目。</string>
+    <string name="catalog_023" formatted="false">Ford 或 Lincoln 手机钥匙／车载信息娱乐系统。不是经销商 Wi-Fi 名称。</string>
+    <string name="catalog_024" formatted="false">Honda 或 Acura 手机钥匙／车载信息娱乐系统。</string>
+    <string name="catalog_025" formatted="false">Hyundai 或 Genesis 手机钥匙／车载信息娱乐系统。不是经销商 Wi-Fi 名称。</string>
+    <string name="catalog_026" formatted="false">Toyota 或 Lexus 手机钥匙，或出厂 TOYOTA／LEXUS 热点。</string>
+    <string name="catalog_027" formatted="false">Nissan 或 Infiniti 手机钥匙／车载信息娱乐系统。</string>
+    <string name="catalog_028" formatted="false">Subaru 手机钥匙／车载信息娱乐系统。不是 Starlink 卫星互联网。</string>
+    <string name="catalog_029" formatted="false">BMW 手机钥匙或车载热点。出厂 BMW_ Wi-Fi 表示车辆，并非经销商展厅。</string>
+    <string name="catalog_030" formatted="false">Volkswagen 手机钥匙或 My VW 热点。Skoda、SEAT 和 Porsche 各有独立条目。</string>
+    <string name="catalog_031" formatted="false">Porsche 手机钥匙或出厂 Porsche_WLAN 热点。与 Volkswagen 分开。</string>
+    <string name="catalog_032" formatted="false">Jaguar、Land Rover 或 Range Rover 手机钥匙／车载信息娱乐系统。</string>
+    <string name="catalog_033" formatted="false">BYD 手机钥匙或车辆 BLE。只是模式匹配，不能确定具体车型。</string>
+    <string name="catalog_034" formatted="false">Pixel 手机或 Chromecast。Fast Pair 配件归入 Fast Pair 条目。</string>
+    <string name="catalog_035" formatted="false">广播 Fast Pair 的 Android 配件（耳机、手表、手机）。配对模式用于轻触配对；较长广播是已配对设备的常见背景信号。不能代表某个人。可用筛选隐藏这些背景标签。</string>
+    <string name="catalog_036" formatted="false">Sony 耳机、电视或摄像机。Bravia 电视也会为 Cast 发送通用 iBeacon；Fieldwatch 仍归入 Sony。</string>
+    <string name="catalog_037" formatted="false">Bose 耳机或扬声器。Quiet Charge／QC 耳机即使在充电盒内也会广播。</string>
+    <string name="catalog_038" formatted="false">Garmin 手表、自行车码表或 inReach 通信设备。</string>
+    <string name="catalog_039" formatted="false">广播时可识别的 Amazon Echo、Fire 或 Kindle。并非所有 AmazonBasics 设备。</string>
+    <string name="catalog_040" formatted="false">Fitbit 手表或活动追踪器。广播仅用于识别设备，不包含步数。</string>
+    <string name="catalog_041" formatted="false">Oura 健康戒指。佩戴期间 BLE 持续开启。只是模式匹配，不能确认具体的人。</string>
+    <string name="catalog_042" formatted="false">Logitech 鼠标、键盘或网络摄像头。常见办公室背景信号。</string>
+    <string name="catalog_043" formatted="false">JBL、Harman Kardon 或部分汽车音响 BLE。可能是耳机、扬声器或车载主机。</string>
+    <string name="catalog_044" formatted="false">Sonos 家庭／办公室扬声器。设置或空闲广播。不是追踪器。</string>
+    <string name="catalog_045" formatted="false">GoPro 运动相机。解码字段可显示是否唤醒、处于 Wi-Fi AP 模式或正在配对。</string>
+    <string name="catalog_046" formatted="false">DJI Osmo 手持／运动相机（Action、Pocket、360、Nano）。不是飞行中的 DJI 航空器。</string>
+    <string name="catalog_047" formatted="false">Insta360 运动／360 相机。广播名称通常是型号加序列号。是消费级相机，不是摄像杆。</string>
+    <string name="catalog_048" formatted="false">DJI 航空器、遥控器或设置 Wi-Fi。手持 Osmo 相机归入 Osmo 条目。飞行中的数字身份标识归入 Remote ID 条目。</string>
+    <string name="catalog_049" formatted="false">NETGEAR 或 Orbi 家用路由器／Mesh。SSID 改名后仍可通过主板厂商匹配。</string>
+    <string name="catalog_050" formatted="false">TP-Link 或 Deco 家用路由器／Mesh。使用 TP-Link 主板的 Tapo 摄像机也可能匹配此条目。</string>
+    <string name="catalog_051" formatted="false">ASUS 家用路由器或 Mesh。ASUS 笔记本热点也可能匹配。</string>
+    <string name="catalog_052" formatted="false">Linksys 或 Velop 家用 Mesh。部分 Velop 设备使用 Belkin 主板。</string>
+    <string name="catalog_053" formatted="false">Amazon Eero Mesh。不是 Echo 扬声器。</string>
+    <string name="catalog_054" formatted="false">Google Wifi／Nest Wifi Mesh。不是 Pixel 手机，也不是 Nest 摄像机。</string>
+    <string name="catalog_055" formatted="false">Huawei 家用路由器，或使用公共 Huawei 地址的手机热点。随机地址热点需要出厂 SSID 才能匹配。不是 Honor。</string>
+    <string name="catalog_056" formatted="false">Plume SuperPod／HomePass Mesh。运营商品牌节点（xFi 等）通常改用运营商 OEM 主板。</string>
+    <string name="catalog_057" formatted="false">使用出厂名称（AndroidAP、Galaxy、Pixel）的手机个人热点。自定义热点名称无法匹配。iPhone 热点归入 Apple Device。</string>
+    <string name="catalog_058" formatted="false">D-Link 家用路由器。SSID 改名后仍可通过主板厂商匹配。</string>
+    <string name="catalog_059" formatted="false">DWnet 消费级／中小企业接入点。云管理 SSID 通常是场所名称，因此依据主板厂商匹配。</string>
+    <string name="catalog_060" formatted="false">Belkin 家用路由器。部分 Linksys Velop 设备也归入这里。</string>
+    <string name="catalog_061" formatted="false">Comcast xfinitywifi 热点或 Xfinity／XFSETUP 网关名称。大多数设备由 Arris／Hitron／Technicolor 代工，会匹配相应 OEM 条目。</string>
+    <string name="catalog_062" formatted="false">Charter Spectrum 设置或热点 Wi-Fi。设备通常由 Arris／Hitron／Technicolor 代工。</string>
+    <string name="catalog_063" formatted="false">AT&amp;T 热点或网关（attwifi、ATT-GUEST、Pace 风格出厂名称）。许多设备由 Pace／Arris 代工。</string>
+    <string name="catalog_064" formatted="false">Verizon 或 Fios 热点／网关名称。许多 FiOS 设备由 Actiontec 代工。</string>
+    <string name="catalog_065" formatted="false">Starlink 路由器。目前 BSSID 经常随机化，通常依靠 STARLINK 名称匹配。</string>
+    <string name="catalog_066" formatted="false">Cisco Meraki 园区／云管理接入点。场所 SSID 改名后仍可通过主板厂商匹配。不是摄像杆。</string>
+    <string name="catalog_067" formatted="false">GL.iNet 旅行路由器。没有 GL 名称的芯片模块主板无法匹配。</string>
+    <string name="catalog_068" formatted="false">Chipolo 物品查找器（Find Hub／Find My）。可挂在钥匙或包上的标签。</string>
+    <string name="catalog_069" formatted="false">Pebblebee 或 Motorola moto tag 物品查找器。可挂在钥匙或包上的标签。</string>
+    <string name="catalog_070" formatted="false">Google Find Hub／Find My Device 网络标签（Chipolo、Pebblebee、moto tag 及其他合作品牌）。有附近和分离两种帧。分离模式可将 MAC 保持约一天，其他情况下地址会轮换。只是模式匹配，不能确认具体的包。</string>
+    <string name="catalog_071" formatted="false">IETF DULT 定位广播（Detecting Unwanted Location Trackers）。Chipolo、Pebblebee、moto tag 等合作标签可能同时标注。载荷中的一位表示靠近主人或分离。分离模式可将 MAC 保持约一天。只是模式匹配，不能确认具体的包。</string>
+    <string name="catalog_072" formatted="false">Verkada 云摄像机，包括可识别车牌的筒型摄像机，常见于建筑和部分公共场所。</string>
+    <string name="catalog_073" formatted="false">Verkada 云摄像机，包括可识别车牌的筒型摄像机。用于建筑及部分公共场所，记录视频，有时也读取车牌。仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_074" formatted="false">机构和停车场使用的 Motorola Vigilant 车牌识别设备。</string>
+    <string name="catalog_075" formatted="false">Motorola Vigilant 是机构和停车场使用的车牌识别（LPR）设备。广播时仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_076" formatted="false">eufy 家用摄像机或标签。住宅中常见。是消费级摄像机，不是路边摄像杆。</string>
+    <string name="catalog_077" formatted="false">Wyze 家用摄像机。常见消费级设备，不是路边摄像杆。</string>
+    <string name="catalog_078" formatted="false">Amazon Ring 门铃或摄像机。住宅中常见。是消费级摄像机，不是路边摄像杆。</string>
+    <string name="catalog_079" formatted="false">Arlo 家用摄像机或基站 Wi-Fi。是消费级摄像机，不是路边摄像杆。SSID 改名后仍可通过主板厂商匹配。</string>
+    <string name="catalog_080" formatted="false">Google Nest 家用摄像机。是消费级摄像机，不是 Nest 温控器条目。</string>
+    <string name="catalog_081" formatted="false">Nest 温控器。某些代际的温度传感器也可匹配此条目。不是 Nest 摄像机。</string>
+    <string name="catalog_082" formatted="false">Nest Protect、温控器或其他通过 BLE 使用 Weave 的家用设备。地址随机化。解码字段可显示产品和配对状态。</string>
+    <string name="catalog_083" formatted="false">ecobee 温控器。房间传感器可匹配同一条目。Premium 使用 BLE 进行设置／Spotify 连接。</string>
+    <string name="catalog_084" formatted="false">处于 BLE 设置模式的 Sensi 温控器。</string>
+    <string name="catalog_085" formatted="false">Honeywell Home／Lyric／Resideo 温控器（包括 Amazon Smart Thermostat）。不是 Honeywell 工业或烟雾设备。T9/T10 房间传感器使用 900 MHz，不使用 BLE。</string>
+    <string name="catalog_086" formatted="false">Big Ass Fans Haiku 或 Mammoth 吊扇。</string>
+    <string name="catalog_087" formatted="false">Tuya 插座、灯、摄像机或传感器。部分公寓内数量很多。解码字段可显示是否绑定。</string>
+    <string name="catalog_088" formatted="false">ASSA ABLOY／HID Seos 或 Yale 门禁凭证。使用 HID Mobile Access 的手机可广播 Seos 名称。</string>
+    <string name="catalog_089" formatted="false">August 智能锁（现归 ASSA 所有）。是门锁，不是摄像机。</string>
+    <string name="catalog_090" formatted="false">Schlage／Allegion 智能锁（Encode 等）。</string>
+    <string name="catalog_091" formatted="false">Nuki 智能锁或开门器（加装在欧式锁芯上）。</string>
+    <string name="catalog_092" formatted="false">SALTO 商用门禁锁或读卡器。</string>
+    <string name="catalog_093" formatted="false">dormakaba、Saflok 或 Oracode 酒店／商用门锁。</string>
+    <string name="catalog_094" formatted="false">Lockly 智能锁，通常在 BLE 设置时广播。</string>
+    <string name="catalog_095" formatted="false">Kwikset Kevo 智能锁。</string>
+    <string name="catalog_096" formatted="false">Master Lock 蓝牙挂锁。</string>
+    <string name="catalog_097" formatted="false">igloohome 钥匙盒或智能锁。</string>
+    <string name="catalog_098" formatted="false">Tedee 加装式智能锁。</string>
+    <string name="catalog_099" formatted="false">Paxton／Net2 门禁读卡器或控制面板。</string>
+    <string name="catalog_100" formatted="false">Kwikset 智能锁。Kevo 有独立条目。</string>
+    <string name="catalog_101" formatted="false">Chamberlain myQ 车库门网关。</string>
+    <string name="catalog_102" formatted="false">Chevrolet 车载热点（myChevrolet）。Cadillac／GMC／Buick 归入 GM 热点条目。不是经销商热点。</string>
+    <string name="catalog_103" formatted="false">Stellantis Uconnect 车载热点（Chrysler、Jeep、Ram、Dodge、Fiat）。BSSID 经常随机化。</string>
+    <string name="catalog_104" formatted="false">车内 CarPlay／Alpine 主机热点。来自仪表台的出厂名称，不是网络运营商。</string>
+    <string name="catalog_105" formatted="false">后装 CarPlay／Android Auto 适配器热点（CARLINK-）。是车载主机适配器，不是汽车自带的调制解调器。</string>
+    <string name="catalog_106" formatted="false">Rivian 手机钥匙、露营扬声器或传感器。手机也可广播 Rivian Sensor。</string>
+    <string name="catalog_107" formatted="false">Govee 灯或温湿度计。灯通常只广播名称；温湿度计可在下方解码温度、湿度和电池。</string>
+    <string name="catalog_108" formatted="false">HP 家庭／办公室打印机（ENVY、HP-Print）。常见办公室背景信号。不是 HPE Aruba 园区 Wi-Fi。</string>
+    <string name="catalog_109" formatted="false">Mercedes MBUX 车载热点。来自汽车的出厂名称。</string>
+    <string name="catalog_110" formatted="false">卡车中的 Motive（KeepTruckin）电子行车日志设备／车队 Wi-Fi。</string>
+    <string name="catalog_111" formatted="false">PeopleNet 卡车电子行车日志（ELD）／车队 Wi-Fi。与 Motive 分开。</string>
+    <string name="catalog_112" formatted="false">Goodyear 智能轮胎 BLE，不是大多数汽车的 315/433 MHz 气门杆胎压监测。只是模式匹配，不能确认具体的车。</string>
+    <string name="catalog_113" formatted="false">Schrader 后装 BLE 胎压监测（AirCheck、拖车、房车）。不是 315/433 MHz 原厂气门杆设备。</string>
+    <string name="catalog_114" formatted="false">Pacific Industrial 原厂轮胎电子设备。部分新车使用 BLE 胎压监测。</string>
+    <string name="catalog_115" formatted="false">Huf 轮胎传感器或车辆门禁（门把手／PEPS）。不仅限于气门杆。</string>
+    <string name="catalog_116" formatted="false">FOBO 后装 BLE 胎压传感器，用于摩托车或汽车。只是模式匹配，不能确认具体的车辆。</string>
+    <string name="catalog_117" formatted="false">后装 BLE 气门帽轮胎传感器（TPMS1／FBB0 系列）。解码字段可显示车轮、压力、温度、电池和报警。只是模式匹配，不能确认具体的车辆。</string>
+    <string name="catalog_118" formatted="false">SYTPMS／BR 自行车或滑板车 BLE 轮胎传感器。解码字段可显示表压、温度、电池和运动状态。只是模式匹配，不能确认具体的车辆。</string>
+    <string name="catalog_119" formatted="false">TireCheck BLE 胎压传感器。只是模式匹配，不能确认具体的车辆。</string>
+    <string name="catalog_120" formatted="false">Bluetooth SIG 胎压监测系统服务。任何广播该标准服务的传感器都可匹配。</string>
+    <string name="catalog_121" formatted="false">Ruuvi 广播传感器标签（温度／湿度／压力／运动）。本页解码字段解析传感器载荷。</string>
+    <string name="catalog_122" formatted="false">Blue Maestro Tempo Disc 温湿度记录仪。解码字段可显示版本、电池和温度。</string>
+    <string name="catalog_123" formatted="false">SensorPush 温湿度记录仪。</string>
+    <string name="catalog_124" formatted="false">Samsara 车队追踪器或车辆 Wi-Fi。用于卡车／货车远程信息处理，与 Motive 类似。</string>
+    <string name="catalog_125" formatted="false">TP-Link Tapo 家用摄像机。是消费级摄像机，不是路边摄像杆。</string>
+    <string name="catalog_126" formatted="false">Reolink 家庭／小企业摄像机。是消费级摄像机，不是路边摄像杆。</string>
+    <string name="catalog_127" formatted="false">Hikvision 摄像机。常见于商业闭路监控及部分公共摄像杆。</string>
+    <string name="catalog_128" formatted="false">Hikvision 摄像机。常见于商业闭路监控及部分公共摄像杆。仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_129" formatted="false">Dahua 摄像机。常见于商业闭路监控及部分公共摄像杆。</string>
+    <string name="catalog_130" formatted="false">Dahua 摄像机。常见于商业闭路监控及部分公共摄像杆。仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_131" formatted="false">Meshtastic LoRa Mesh 节点。用于离网文字／定位通信，不是蜂窝网络。</string>
+    <string name="catalog_132" formatted="false">广播名称时可识别的 Helium／LoRaWAN 热点。</string>
+    <string name="catalog_133" formatted="false">MeshCore LoRa 配套无线设备。用于离网文字／定位，不是蜂窝网络。仅依据名称；Nordic UART UUID 被各种 ESP32 串口板使用，不能据此匹配本条目。</string>
+    <string name="catalog_134" formatted="false">goTenna Mesh 或 Pro 配套无线设备。通过 BLE 配对；Mesh 本身使用 UHF，Fieldwatch 无法接收。Pro 面向机构销售。只是模式匹配，不能确认具体操作者。</string>
+    <string name="catalog_135" formatted="false">Seeed SenseCAP LoRaWAN／Helium 室内网关设置接入点（SenseCAP_XXXXXX）。连接以太网后通常不广播。含 Helium 名称的设备也可匹配 Helium 条目。</string>
+    <string name="catalog_136" formatted="false">RAKwireless WisGate LoRaWAN 网关设置接入点（RAK7268_XXXX 等）。连接以太网后通常不广播。</string>
+    <string name="catalog_137" formatted="false">Genetec AutoVu 停车场或路边车牌识别设备。</string>
+    <string name="catalog_138" formatted="false">Genetec AutoVu 是市政／停车场自动车牌识别（ALPR）设备，在停车场和路边读取车牌。广播时仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_139" formatted="false">Iteris 路边蓝牙旅行时间采集设备（Vantage Velocity，现为 BlueTOAD Spectra／Spectra CV）。采样途经车辆的手机、耳机和车载蓝牙；在两点匹配同一 ID 可得出速度。范围约 100 米。只是采样，并非完整计数。静默或仅用以太网的机柜可能不广播。Spectra CV 还使用 5.9 GHz C-V2X，Fieldwatch 无法接收。IEEE Iteris OUI 也可匹配其他 Iteris 路边设备。只是模式匹配，不能确认具体机柜。</string>
+    <string name="catalog_140" formatted="false">BLIP Systems BlipTrack 路边蓝牙／Wi-Fi 旅行时间传感器。与 BlueTOAD Spectra 用途相同：在两点采样途经手机和车载无线设备以计算速度。静默或仅用以太网的机柜可能不广播。只是模式匹配，不能确认具体机柜。</string>
+    <string name="catalog_141" formatted="false">Hanwha Vision／Wisenet 摄像机（原 Samsung Techwin）。常见于商业闭路监控及部分公共摄像杆。</string>
+    <string name="catalog_142" formatted="false">Hanwha Vision／Wisenet 摄像机。常见于商业闭路监控及部分公共摄像杆。*_WISENET 设置 SSID 是较强的匹配依据；IEEE 00:09:18 对应 Samsung Techwin。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_143" formatted="false">Uniview／UNV／Uniarch 摄像机。常见于商业闭路监控及部分公共摄像杆。</string>
+    <string name="catalog_144" formatted="false">Uniview／UNV 摄像机。常见于商业闭路监控及部分公共摄像杆。依据 IEEE Zhejiang Uniview OUI 或 Uniview／UNV- 名称匹配。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_145" formatted="false">Rhombus 云摄像机。未注册或离线时 BLE 广播最明显。</string>
+    <string name="catalog_146" formatted="false">建筑及部分公共场所的 Rhombus 云摄像机。依据 IEEE CC:47:BD 或 Rhombus 名称匹配。BLE 通常仅在未注册或离线时广播。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_147" formatted="false">Rekor 高速公路或交通车牌识别设备。</string>
+    <string name="catalog_148" formatted="false">Rekor 是高速公路／交通自动车牌识别（ALPR）设备，在道路和检查点读取车牌。仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_149" formatted="false">Axon 随身摄像机、车载系统、底座或 TASER。静默或仅使用 LTE 的设备不会显示。</string>
+    <string name="catalog_150" formatted="false">Axon 随身、车载（Fleet）、底座或 TASER 设备。IEEE OUI 00:25:DF 对应 Axon Enterprise。Body 3/4 佩戴时通常通过该公共 OUI 广播 BLE。Axon Body 等名称只是模式匹配，不能确认具体警员。静默或仅使用 LTE 的设备不会显示。Axon 一词也可能匹配部分 ZTE 手机。请现场目视核实，不能据此确认身份。</string>
+    <string name="catalog_151" formatted="false">WatchGuard Video 随身或车载摄像机（现归 Motorola）。不是 WatchGuard 防火墙公司。巡逻设备可能不广播。</string>
+    <string name="catalog_152" formatted="false">WatchGuard Video 随身或车载设备（VISTA／V300 系列）。IEEE OUI 00:1D:96 对应 WatchGuard Video，不是 WatchGuard 防火墙公司。巡逻设备可能不广播。只是模式匹配，不能确认身份，请现场目视核实。</string>
+    <string name="catalog_153" formatted="false">Digital Ally 随身或车载摄像机（FirstVu／EVO）。静默或仅使用 LTE 的设备不会显示。</string>
+    <string name="catalog_154" formatted="false">Digital Ally 随身或车载设备（FirstVu／EVO 系列）。IEEE OUI 00:23:BD 对应 Digital Ally, Inc.，是摄像设备厂商，不是芯片厂商。巡逻设备可能仅使用 LTE 而不广播。只是模式匹配，不能确认具体警员，请现场目视核实，不能据此确认身份。</string>
+    <string name="catalog_155" formatted="false">Reveal Media／BodyWorn 摄像机。常见于英国及部分美国机构。静默设备不会显示。</string>
+    <string name="catalog_156" formatted="false">Reveal Media 随身摄像机（D-series／BodyWorn）。广播时仅依据名称。巡逻设备可能不广播。只是模式匹配，不能确认具体警员，请现场目视核实。</string>
+    <string name="catalog_157" formatted="false">Wolfcom 随身或车载摄像机。静默设备不会显示。</string>
+    <string name="catalog_158" formatted="false">Wolfcom 随身或车载摄像机。广播时仅依据名称。巡逻设备可能不广播。只是模式匹配，不能确认具体警员，请现场目视核实。</string>
+    <string name="catalog_159" formatted="false">Panasonic i-PRO 摄像机或 Arbitrator 车载系统。Panasonic 电视和手机使用其他名称。</string>
+    <string name="catalog_160" formatted="false">Panasonic i-PRO 摄像机或 Arbitrator 车载录像设备。用于建筑及部分巡逻车，记录视频，有时也读取车牌。仅依据名称（i-PRO／Arbitrator），并非所有 Panasonic 无线设备。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_161" formatted="false">Avigilon 建筑或市政摄像机，有时支持车牌识别。</string>
+    <string name="catalog_162" formatted="false">Motorola Avigilon 摄像机／车牌识别（LPR）设备。用于市政摄像杆和商业场所，记录视频，有时也读取车牌。仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_163" formatted="false">Axis 摄像机，常见于市政摄像杆及公共闭路监控。</string>
+    <string name="catalog_164" formatted="false">Axis Communications 摄像机，常见于市政摄像杆及公共闭路监控。仅依据名称（AXIS-）。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_165" formatted="false">Hayden AI 公交车或车辆搭载的摄像机，用于停车和交通执法。</string>
+    <string name="catalog_166" formatted="false">Hayden AI 摄像机搭载在公交车和市政车辆上，记录视频和车牌。广播时仅依据名称。仅使用 LTE 的设备不会显示。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_167" formatted="false">Miovision 路口／交通摄像机（SmartLink／Scout）。</string>
+    <string name="catalog_168" formatted="false">Miovision 路口交通摄像机。记录视频，有时也读取车牌。广播时仅依据名称。许多设备仅使用蜂窝网络而不广播。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_169" formatted="false">Tattile 自动车牌识别（ALPR）摄像机，常见于欧洲道路及部分美国场所。</string>
+    <string name="catalog_170" formatted="false">道路和出入口的 Tattile 车牌识别设备。广播时仅依据名称。只是模式匹配，不能确认就是那台摄像机，请现场目视核实。</string>
+    <string name="catalog_171" formatted="false">LiveView Technologies（LVT）太阳能监控拖车。多数设备仅使用蜂窝网络，不会显示。</string>
+    <string name="catalog_172" formatted="false">LVT／LiveView 太阳能摄像拖车，用于停车场、工地及部分城市公园。记录视频，有时也读取车牌。多数设备使用蜂窝网络，Wi-Fi／BLE 不广播。LiveView 或 LVT- 名称只是模式匹配，不能确认具体拖车，请现场目视核实。</string>
+    <string name="catalog_173" formatted="false">Wi-Fi 或 BLE 上的 UniFi／Ubiquiti 名称。BSSID 匹配优先归入 UniFi AP。Instant 摄像机归入 UniFi Protect。</string>
+    <string name="catalog_174" formatted="false">UniFi／Ubiquiti Wi-Fi 接入点（包括 airMAX／AmpliFi）。SSID 改名后仍可通过主板厂商或 Ubiquiti 厂商标记匹配。Instant 摄像机归入 UniFi Protect。</string>
+    <string name="catalog_175" formatted="false">以默认名称广播的廉价爱好者 UART 模块（HM-10、JDY、CC41、ESP32 BLE）。常见于打印机、汽车和 DIY 设备。Fieldwatch 无法发现经典蓝牙 HC-05／HC-06。</string>
+    <string name="catalog_176" formatted="false">这些默认 BLE 串口名称属于廉价爱好者模块。一些加油机／ATM 盗刷附加装置曾使用此类主板，让附近的人通过蓝牙读取数据。同类模块也常见于打印机、汽车和 DIY。若此信号在读卡器旁很强，请谨慎并现场目视核实。这不是盗刷器存在的证据。未匹配也不能排除风险（名称更改、经典蓝牙 HC-05／HC-06 或蜂窝网络）。Fieldwatch 不连接设备，也不尝试默认 PIN。Fieldwatch 无法发现经典蓝牙 HC-05／HC-06。</string>
+    <string name="catalog_177" formatted="false">Ray-Ban Meta／Oakley Meta 智能眼镜，或 Quest／其他 Meta 可穿戴设备。</string>
+    <string name="catalog_178" formatted="false">Meta／Luxottica BLE，通常是 Ray-Ban Meta 智能眼镜。同一厂商 ID 也见于 Quest 头显及其他 Meta 可穿戴设备。不能证明有人在录制。未匹配也不能排除风险（配对后静默、休眠或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_179" formatted="false">Snap Spectacles 或其他 Snap BLE 产品。</string>
+    <string name="catalog_180" formatted="false">Snapchat BLE 厂商 ID，用于 Snap Spectacles。其他 Snap BLE 产品也可能匹配。不能证明正在录制，请现场目视核实。</string>
+    <string name="catalog_181" formatted="false">Vuzix 智能眼镜或其他 Vuzix BLE 可穿戴设备。</string>
+    <string name="catalog_182" formatted="false">Vuzix BLE 眼镜。不能证明正在录制。未匹配也不能排除风险（配对后静默、休眠或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_183" formatted="false">Brilliant Labs Frame AR 眼镜。</string>
+    <string name="catalog_184" formatted="false">Brilliant Labs Frame AR 眼镜。BLE 服务 7A230001。不能证明有人在录制。未匹配也不能排除风险（关机或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_185" formatted="false">Even Realities G1 眼镜。仅依据名称（Even G1）。Nordic UART 太常见，不能用作规则。</string>
+    <string name="catalog_186" formatted="false">Even Realities G1 眼镜。广播时仅依据名称（Even G1）。不能证明正在录制。未匹配也不能排除风险（关机、改名或配对后静默）。请现场目视核实。</string>
+    <string name="catalog_187" formatted="false">Hak5 WiFi Pineapple 设置或管理接入点。PineAP 克隆的咖啡馆 SSID 看起来与普通 Wi-Fi 相同，不会匹配此条目。</string>
+    <string name="catalog_188" formatted="false">Hak5 WiFi Pineapple 设置或管理接入点（Pineapple_XXXX）。这是管理无线设备，并非 PineAP 可能冒充的每个伪造 SSID；那些看起来与普通咖啡馆 Wi-Fi 相同。未匹配也不能排除风险（改名或仅进行克隆）。只是模式匹配，不能确认身份，请现场目视核实。</string>
+    <string name="catalog_189" formatted="false">Flipper Zero（或其他 Flipper Devices 设备）。默认名称以 Flipper 开头；自定义固件可隐藏它。</string>
+    <string name="catalog_190" formatted="false">Flipper Zero（或其他 Flipper Devices 设备）BLE。默认名称以 Flipper 开头；较新设备使用 IEEE OUI 0C:FA:22。自定义固件可更改名称和 MAC。不能证明存在攻击。未匹配也不能排除风险（蓝牙关闭或改名）。请现场目视核实。</string>
+    <string name="catalog_191" formatted="false">Pwnagotchi 风格的 Wi-Fi 握手采集器。经典设备使用独特的 BSSID 和 pwnagotchi 名称。</string>
+    <string name="catalog_192" formatted="false">Pwnagotchi 风格的 Wi-Fi 握手采集器。经典设备广播 BSSID de:ad:be:ef:de:ad。pwnagotchi 名称只是模式匹配，不能证明存在攻击，请现场目视核实。</string>
+    <string name="catalog_193" formatted="false">使用默认名称的 ESP32 Marauder 或 Spacehuhn 风格 Wi-Fi 解除认证设备。同类主板也用于 DIY；改名设备无法匹配。</string>
+    <string name="catalog_194" formatted="false">ESP32 Marauder 或 Spacehuhn 风格 Wi-Fi 解除认证设备的默认名称。同类主板也用于 DIY。不能证明存在攻击。未匹配也不能排除风险（改名）。请现场目视核实。</string>
+    <string name="catalog_195" formatted="false">GhostESP ESP32 审计固件。默认设置接入点是 GhostNet。同类主板也用于 DIY；改名设备无法匹配。</string>
+    <string name="catalog_196" formatted="false">GhostESP ESP32 审计固件默认接入点（GhostNet）。同类主板也用于 DIY。不能证明存在攻击。未匹配也不能排除风险（改名）。请现场目视核实。</string>
+    <string name="catalog_197" formatted="false">Bruce ESP32 渗透测试固件。默认设置接入点是 BruceNet。同类主板也用于 DIY；改名设备和恶意门户 SSID 无法匹配。</string>
+    <string name="catalog_198" formatted="false">Bruce ESP32 渗透测试固件默认接入点（BruceNet）。同类主板也用于 DIY。恶意门户 SSID 看起来与普通 Wi-Fi 相同，不会匹配此条目。不能证明存在攻击，请现场目视核实。</string>
+    <string name="catalog_199" formatted="false">Cardputer 或 Cheap Yellow Display 上的 Porkchop 渗透测试固件。默认接入点名称为 PORKCHOP。冒充 Apple／Android 的 BLE 垃圾广播不归入此条目。</string>
+    <string name="catalog_200" formatted="false">M5PORKCHOP／Porkchop，便携 Wi-Fi 渗透测试固件（Cardputer 或 Cheap Yellow Display）。默认 CYD 远程接入点名为 PORKCHOP。BACON 模式伪造接入点带有厂商 IE 50:52:4B。未匹配也不能排除风险（改名、仅被动工作或未开接入点）。只是模式匹配，不能确认身份，也不能证明存在攻击，请现场目视核实。</string>
+    <string name="catalog_201" formatted="false">Nintendo Pokémon GO Plus 或 Plus + 腕戴配件。不是 Joy-Con 或 Switch。</string>
+    <string name="catalog_202" formatted="false">Hatch Rest／Restore／Mini 助眠音响。常见育婴室／卧室背景信号。</string>
+    <string name="catalog_203" formatted="false">Orbit B-hyve 水管定时器／灌溉设备。</string>
+    <string name="catalog_204" formatted="false">Samsung Family Hub 冰箱、炉灶或烤箱设置 Wi-Fi。不是 SmartTag。</string>
+    <string name="catalog_205" formatted="false">EcoWater／软水器设置 Wi-Fi。家用水路物联网设备。</string>
+    <string name="catalog_206" formatted="false">Fieldy 吊坠，可穿戴 AI 笔记设备。</string>
+    <string name="catalog_207" formatted="false">Fieldy 可穿戴 AI 笔记设备（吊坠）。记录对话并转写。不能证明有人正在录下你。未匹配也不能排除风险（关机、配对后静默或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_208" formatted="false">Plaud Note／NotePin AI 会议录音设备。</string>
+    <string name="catalog_209" formatted="false">Plaud Note／NotePin AI 录音设备，可记录会议。不能证明有人正在录下你。未匹配也不能排除风险（关机、改名或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_210" formatted="false">Limitless／Rewind AI 吊坠，可穿戴对话录音设备。</string>
+    <string name="catalog_211" formatted="false">Limitless Pendant 可穿戴录音设备。BLE 服务 632de001。可记录对话。不能证明有人正在录下你。未匹配也不能排除风险（关机、配对后静默或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_212" formatted="false">Bee Pioneer 可穿戴录音设备（现归 Amazon）。持续采集音频。</string>
+    <string name="catalog_213" formatted="false">Bee Pioneer 可穿戴录音设备（Amazon）。BLE 服务 03d5d5c4。可记录对话。不能证明有人正在录下你。未匹配也不能排除风险（关机或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_214" formatted="false">Omi／OpenGlass 可穿戴录音设备或摄像眼镜。Arduino 默认 19B10000 太常见，不能用作规则。</string>
+    <string name="catalog_215" formatted="false">Omi 吊坠或 OpenGlass 摄像眼镜。依据名称或 BLE 服务 23ba7924 匹配。可录音（OpenGlass 还带摄像机）。不能证明有人正在录下你。未匹配也不能排除风险（关机、改名或使用其他名称的 DIY 主板）。请现场目视核实。</string>
+    <string name="catalog_216" formatted="false">Friend AI 项链，可聆听的可穿戴伴侣设备。</string>
+    <string name="catalog_217" formatted="false">Friend Pendant／项链。BLE 服务 1a3fd0e7。可聆听对话。不能证明有人正在录下你。未匹配也不能排除风险（关机或其他品牌）。请现场目视核实。</string>
+    <string name="catalog_218" formatted="false">BLE LED 信息显示牌。广播名称是显示的文字，并非产品名称。</string>
+    <string name="catalog_219" formatted="false">使用蓝牙 ESL 服务的电子货架标签（商店价签）。多数 Hanshow／SES-imagotag 标签使用私有无线协议，不会匹配此条目。</string>
+    <string name="catalog_220" formatted="false">处于 BLE 设置模式的 UniFi Protect Instant 摄像机。不是 UniFi Wi-Fi 接入点。</string>
+    <string name="catalog_221" formatted="false">Tesla BLE 轮胎传感器。唤醒时，解码字段可显示压力、温度和电池。只是模式匹配，不能确认具体的车。手机钥匙归入 Tesla 条目。</string>
+    <string name="catalog_222" formatted="false">RadiaCode 手持辐射检测仪。</string>
+    <string name="catalog_223" formatted="false">LG webOS 电视。没有名称的 LG 无线设备也可匹配此条目。</string>
+    <string name="catalog_224" formatted="false">Roku 串流棒或 Roku 电视。通常有用于遥控器的隐藏 Wi-Fi Direct 接入点。不是网络运营商路由器。</string>
+    <string name="catalog_225" formatted="false">Nespresso 咖啡机（Vertuo／Barista）。</string>
+    <string name="catalog_226" formatted="false">Epson EcoTank 或 WorkForce 打印机（Wi-Fi Direct 或 BLE）。</string>
+    <string name="catalog_227" formatted="false">Shokz 骨传导耳机（OpenRun／OpenFit）。佩戴在头上，不是追踪器。</string>
+    <string name="catalog_228" formatted="false">飞行中的无人机数字身份标识（ASTM／FAA Remote ID）。解码字段可显示 ID、位置、航向和操作者。只是模式匹配，不能确认航空器注册号。原生 Android 通常无法发现 Wi-Fi Remote ID。</string>
+    <string name="catalog_229" formatted="false">Skydio 无人机（常见于美国公共安全／企业用途）。飞行中的 Remote ID 通常使用 Wi-Fi，容易漏检；Remote ID 条目表示数字身份标识。</string>
+    <string name="catalog_230" formatted="false">Autel 无人机、遥控器或设置 Wi-Fi。飞行中的数字身份标识归入 Remote ID 条目。</string>
+    <string name="catalog_231" formatted="false">Parrot ANAFI 或 Bebop 无人机。飞行中的数字身份标识归入 Remote ID 条目。不是 Parrot 车载套件。</string>
+    <string name="catalog_232" formatted="false">HOVERAir 便携自拍无人机。飞行中的数字身份标识（PRO／PROMAX）归入 Remote ID 条目。</string>
+    <string name="catalog_233" formatted="false">Cradlepoint 车载路由器（IBR／R-series）。常见于警察、急救、公用事业和商业车队。SSID 隐藏后仍可通过主板厂商匹配。</string>
+    <string name="catalog_234" formatted="false">Ericsson Cradlepoint 车载路由器（IBR／R-series）。常见于美国警察及公共安全车队，也用于公用事业、急救和商业车队。SSID 隐藏或改名后仍可通过 CradlePoint IEEE OUI 匹配。只是模式匹配，不能确认具体机构或车辆，请现场目视核实。</string>
+    <string name="catalog_235" formatted="false">Sierra Wireless AirLink 车辆／车队网关。常见于公共安全及商业车队。SSID 隐藏后仍可通过主板厂商匹配。</string>
+    <string name="catalog_236" formatted="false">Sierra Wireless AirLink 车载网关。常见于美国警察及公共安全车队，也用于商业车队。SSID 隐藏或改名后仍可通过 Sierra Wireless IEEE OUI 匹配。只是模式匹配，不能确认具体机构或车辆，请现场目视核实。</string>
+    <string name="catalog_237" formatted="false">Compex 车辆或机构 Wi-Fi 接入点。同类主板也用于其他 Compex 无线设备。</string>
+    <string name="catalog_238" formatted="false">Compex Wi-Fi 接入点。部分美国公共安全机构在车内使用。同一 IEEE OUI 也见于其他 Compex 无线设备。只是模式匹配，不能确认具体机构，请现场目视核实。</string>
+    <string name="catalog_239" formatted="false">Novatel Wireless／Inseego 车载无线设备。同一前缀也见于部分消费级 MiFi 热点。</string>
+    <string name="catalog_240" formatted="false">Novatel Wireless／Inseego OUI 28:80:A2。据报用于公共安全车载接入点。同一前缀也见于部分 Inseego 消费级 MiFi 无线设备。只是模式匹配，不能确认具体机构，请现场目视核实。</string>
+    <string name="catalog_241" formatted="false">Utility, Inc 车载或公共安全接入点。</string>
+    <string name="catalog_242" formatted="false">Utility, Inc 无线设备。据报用于公共安全车载接入点。只是模式匹配，不能确认具体机构，请现场目视核实。</string>
+    <string name="catalog_243" formatted="false">Cisco Aironet／Catalyst／Business 接入点。Fieldwatch 发现的是接入点信标，不是手机或交换机。Meraki 有独立条目。</string>
+    <string name="catalog_244" formatted="false">HPE Aruba 园区或 Instant On Wi-Fi 接入点。此处 HPE BSSID 表示接入点，不是服务器，也不是 HP 打印机。</string>
+    <string name="catalog_245" formatted="false">RUCKUS Unleashed／ZoneFlex 园区接入点。不是 Arris 有线调制解调器系列。</string>
+    <string name="catalog_246" formatted="false">Ruijie／Reyee 园区或中小企业接入点。</string>
+    <string name="catalog_247" formatted="false">Fortinet FortiAP／FortiWiFi 园区或分支机构接入点。</string>
+    <string name="catalog_248" formatted="false">MikroTik RouterOS 接入点或旅行路由器。</string>
+    <string name="catalog_249" formatted="false">EnGenius Cloud／ECW 接入点。</string>
+    <string name="catalog_250" formatted="false">Zyxel 家庭或中小企业网关／接入点。</string>
+    <string name="catalog_251" formatted="false">Peplink／Pepwave 旅行或分支机构路由器。</string>
+    <string name="catalog_252" formatted="false">刷机后从未改名的旅行／DIY 路由器所使用的 OpenWrt 出厂 SSID。</string>
+    <string name="catalog_253" formatted="false">Arris／SURFboard 有线网关。运营商更改 Wi-Fi 名称后仍可通过主板厂商匹配。</string>
+    <string name="catalog_254" formatted="false">Juniper Mist 园区接入点。云管理 SSID 是场所名称，依据主板厂商匹配。</string>
+    <string name="catalog_255" formatted="false">T-Mobile Home Internet 或热点。网关通常由 HUMAX／Arcadyan／Askey 代工。</string>
+    <string name="catalog_256" formatted="false">HUMAX 5G 或有线网关。实际使用中常为 T-Mobile Home Internet。</string>
+    <string name="catalog_257" formatted="false">Sagemcom 网络运营商网关。常见 Comcast／其他有线网络代工设备。</string>
+    <string name="catalog_258" formatted="false">Arcadyan 网络运营商网关或 Mesh。常见 Verizon／T-Mobile 代工设备。</string>
+    <string name="catalog_259" formatted="false">Askey 5G／网络运营商网关。常见 T-Mobile Home Internet 代工设备。</string>
+    <string name="catalog_260" formatted="false">Calix 光纤网关（GigaSpire 系列）。改名后仍可通过主板厂商匹配。</string>
+    <string name="catalog_261" formatted="false">Nokia 网络运营商网关或小基站。不是 Nokia 手机。</string>
+    <string name="catalog_262" formatted="false">AirTies 网络运营商 Mesh 扩展器。运营商提供的家用 Mesh。</string>
+    <string name="catalog_263" formatted="false">Tenda 消费级路由器或扩展器。</string>
+    <string name="catalog_264" formatted="false">WAVLINK 消费级旅行／家用路由器。</string>
+    <string name="catalog_265" formatted="false">Sercomm 网络运营商网关。常见有线／光纤网络代工设备。</string>
+    <string name="catalog_266" formatted="false">Luxul／Legrand 小企业接入点。</string>
+    <string name="catalog_267" formatted="false">Sophos 防火墙或接入点。是园区／中小企业 Wi-Fi，不是摄像杆。</string>
+    <string name="catalog_268" formatted="false">使用 AUMOVIO（原 Continental）模块的车辆 Wi-Fi。是汽车接入点，不是网络运营商路由器。</string>
+    <string name="catalog_269" formatted="false">CenturyLink 出厂网关名称。改名后的光纤 Wi-Fi 无法匹配此条目。</string>
+    <string name="catalog_270" formatted="false">GM 车载热点（Cadillac、GMC、Buick）。myChevrolet 有独立条目。BSSID 经常随机化。</string>
+    <string name="catalog_271" formatted="false">Audi 车载 MMI 热点。来自汽车的出厂名称，不是经销商热点。</string>
+    <string name="catalog_272" formatted="false">Extreme Networks 园区接入点。云管理 SSID 是场所名称，依据主板厂商匹配。</string>
+    <string name="catalog_273" formatted="false">Adtran 光纤网关。常见 CenturyLink／Lumen／Quantum Fiber 代工设备。</string>
+    <string name="catalog_274" formatted="false">Cambium 或 IgniteNet 室外／无线网络运营商（WISP）接入点。</string>
+    <string name="catalog_275" formatted="false">TRENDnet 消费级接入点。</string>
+    <string name="catalog_276" formatted="false">Cudy 旅行或家用路由器。</string>
+    <string name="catalog_277" formatted="false">Control4／Wattbox 家庭影音处理器或电源设备。</string>
+    <string name="catalog_278" formatted="false">Vantiva（原 Technicolor）网络运营商网关。运营商更改 Wi-Fi 名称后仍可通过主板厂商匹配。</string>
+    <string name="catalog_279" formatted="false">Hitron 有线网关。常见 Xfinity 代工设备；Xfinity 名称条目也可匹配。</string>
+    <string name="catalog_280" formatted="false">Actiontec FiOS／Frontier 网关。通常为 Verizon 设备；Verizon 名称条目也可匹配。</string>
+    <string name="catalog_281" formatted="false">Buffalo AirStation 家用路由器。</string>
+    <string name="catalog_282" formatted="false">Grandstream GWN 办公室接入点。</string>
+    <string name="catalog_283" formatted="false">Edgecore 园区／开放 Wi-Fi 接入点。云管理 SSID 是场所名称，依据主板厂商匹配。</string>
+    <string name="catalog_284" formatted="false">WatchGuard 防火墙或接入点。不是 WatchGuard Video 随身摄像机。</string>
+    <string name="catalog_285" formatted="false">Mojo／Arista Cognitive Wi-Fi 园区接入点。</string>
+    <string name="catalog_286" formatted="false">Winegard 房车或船用 Wi-Fi 天线／路由器。</string>
+    <string name="catalog_287" formatted="false">Inseego 5G／MiFi 热点。</string>
+    <string name="catalog_288" formatted="false">Franklin 5G／LTE 家庭互联网网关（通常由运营商提供）。访客 SSID 仍可匹配。</string>
+    <string name="catalog_289" formatted="false">Synology NAS 或路由器接入点。</string>
+    <string name="catalog_290" formatted="false">Honeywell Xenon 医疗条码扫描器或充电底座（白色，可消毒）。用于诊所／医院，不是家用温控器，也不是仅用于仓库的 Xenon。</string>
+    <string name="catalog_291" formatted="false">Omron 血压袖带或身体成分秤。用于家庭／诊所健康监测，不是工业 Omron 设备。</string>
+    <string name="catalog_292" formatted="false">Withings（Nokia Health）体重秤或 BPM Connect 血压袖带。不是 Nokia 手机，也不是 Nokia 网络运营商网关。</string>
+    <string name="catalog_293" formatted="false">Dexcom 连续血糖监测仪（G6／G7）。只是模式匹配，不能确认具体患者。</string>
+    <string name="catalog_294" formatted="false">X 轴加速度</string>
+    <string name="catalog_295" formatted="false">Y 轴加速度</string>
+    <string name="catalog_296" formatted="false">Z 轴加速度</string>
+    <string name="catalog_297" formatted="false">报警</string>
+    <string name="catalog_298" formatted="false">气压高度</string>
+    <string name="catalog_299" formatted="false">椭球高度（HAE）</string>
+    <string name="catalog_300" formatted="false">应用代码</string>
+    <string name="catalog_301" formatted="false">电池</string>
+    <string name="catalog_302" formatted="false">绑定状态</string>
+    <string name="catalog_303" formatted="false">信道</string>
+    <string name="catalog_304" formatted="false">计数器</string>
+    <string name="catalog_305" formatted="false">临时 ID</string>
+    <string name="catalog_306" formatted="false">格式</string>
+    <string name="catalog_307" formatted="false">帧</string>
+    <string name="catalog_308" formatted="false">航向</string>
+    <string name="catalog_309" formatted="false">高度</string>
+    <string name="catalog_310" formatted="false">水平速度</string>
+    <string name="catalog_311" formatted="false">湿度</string>
+    <string name="catalog_312" formatted="false">ID 类型</string>
+    <string name="catalog_313" formatted="false">纬度</string>
+    <string name="catalog_314" formatted="false">记录间隔</string>
+    <string name="catalog_315" formatted="false">经度</string>
+    <string name="catalog_316" formatted="false">载荷中的 MAC</string>
+    <string name="catalog_317" formatted="false">媒体导出</string>
+    <string name="catalog_318" formatted="false">消息</string>
+    <string name="catalog_319" formatted="false">模式</string>
+    <string name="catalog_320" formatted="false">型号</string>
+    <string name="catalog_321" formatted="false">型号 ID</string>
+    <string name="catalog_322" formatted="false">运动计数</string>
+    <string name="catalog_323" formatted="false">运动状态</string>
+    <string name="catalog_324" formatted="false">网络 ID</string>
+    <string name="catalog_325" formatted="false">新媒体</string>
+    <string name="catalog_326" formatted="false">操作者 ID</string>
+    <string name="catalog_327" formatted="false">操作者纬度</string>
+    <string name="catalog_328" formatted="false">操作者经度</string>
+    <string name="catalog_329" formatted="false">数据包</string>
+    <string name="catalog_330" formatted="false">配对状态</string>
+    <string name="catalog_331" formatted="false">压力</string>
+    <string name="catalog_332" formatted="false">私有 ID</string>
+    <string name="catalog_333" formatted="false">处理器</string>
+    <string name="catalog_334" formatted="false">产品</string>
+    <string name="catalog_335" formatted="false">协议</string>
+    <string name="catalog_336" formatted="false">旋转状态</string>
+    <string name="catalog_337" formatted="false">数据结构版本</string>
+    <string name="catalog_338" formatted="false">自身 ID</string>
+    <string name="catalog_339" formatted="false">传感器 ID</string>
+    <string name="catalog_340" formatted="false">序列计数</string>
+    <string name="catalog_341" formatted="false">序列号</string>
+    <string name="catalog_342" formatted="false">静止状态</string>
+    <string name="catalog_343" formatted="false">状态</string>
+    <string name="catalog_344" formatted="false">已存记录</string>
+    <string name="catalog_345" formatted="false">温度</string>
+    <string name="catalog_346" formatted="false">发射功率</string>
+    <string name="catalog_347" formatted="false">无人航空器类型</string>
+    <string name="catalog_348" formatted="false">无人航空器系统 ID</string>
+    <string name="catalog_349" formatted="false">厂商</string>
+    <string name="catalog_350" formatted="false">版本</string>
+    <string name="catalog_351" formatted="false">垂直速度</string>
+    <string name="catalog_352" formatted="false">Weave 设备 ID</string>
+    <string name="catalog_353" formatted="false">车轮</string>
+    <string name="catalog_354" formatted="false">Wi-Fi 接入点</string>
+    <string name="catalog_355" formatted="false">固定翼飞机</string>
+    <string name="catalog_356" formatted="false">空中</string>
+    <string name="catalog_357" formatted="false">飞艇</string>
+    <string name="catalog_358" formatted="false">认证</string>
+    <string name="catalog_359" formatted="false">基本 ID</string>
+    <string name="catalog_360" formatted="false">民航主管机构注册号</string>
+    <string name="catalog_361" formatted="false">紧急情况</string>
+    <string name="catalog_362" formatted="false">滑翔机</string>
+    <string name="catalog_363" formatted="false">地面</string>
+    <string name="catalog_364" formatted="false">旋翼机</string>
+    <string name="catalog_365" formatted="false">直升机／多旋翼</string>
+    <string name="catalog_366" formatted="false">混合升力</string>
+    <string name="catalog_367" formatted="false">位置</string>
+    <string name="catalog_368" formatted="false">消息包</string>
+    <string name="catalog_369" formatted="false">靠近主人。若整个静坐观察期间一直伴随你，往往是你自己的标签。若观察开始后才首次发现，更可能是后来携带自己钥匙加入的人。</string>
+    <string name="catalog_370" formatted="false">靠近主人</string>
+    <string name="catalog_371" formatted="false">附近</string>
+    <string name="catalog_372" formatted="false">在主人附近。若整个静坐观察期间一直伴随你，往往是你自己的标签。若观察开始后才首次发现，更可能是后来携带自己钥匙加入的人。</string>
+    <string name="catalog_373" formatted="false">Nest Cam IQ 室内款</string>
+    <string name="catalog_374" formatted="false">Nest Cam IQ 室外款</string>
+    <string name="catalog_375" formatted="false">Nest Guard 背板</string>
+    <string name="catalog_376" formatted="false">Nest Heat Link（第 2 代）</string>
+    <string name="catalog_377" formatted="false">Nest Heat Link 背板</string>
+    <string name="catalog_378" formatted="false">Nest Learning Thermostat（第 1／2 代）</string>
+    <string name="catalog_379" formatted="false">Nest Learning Thermostat（第 1／2 代）背板</string>
+    <string name="catalog_380" formatted="false">Nest Learning Thermostat（第 3 代，欧洲款）</string>
+    <string name="catalog_381" formatted="false">Nest Learning Thermostat（第 3 代，欧洲款）背板</string>
+    <string name="catalog_382" formatted="false">Nest Learning Thermostat（第 3 代）</string>
+    <string name="catalog_383" formatted="false">Nest Learning Thermostat（第 3 代）背板</string>
+    <string name="catalog_384" formatted="false">Nest Protect（第 1 代）</string>
+    <string name="catalog_385" formatted="false">Nest Protect（第 2 代）</string>
+    <string name="catalog_386" formatted="false">无压力</string>
+    <string name="catalog_387" formatted="false">无</string>
+    <string name="catalog_388" formatted="false">正常</string>
+    <string name="catalog_389" formatted="false">其他</string>
+    <string name="catalog_390" formatted="false">远程 ID 故障</string>
+    <string name="catalog_391" formatted="false">与主人分离</string>
+    <string name="catalog_392" formatted="false">与主人分离。地址可能保持不变约一天。</string>
+    <string name="catalog_393" formatted="false">序列号（CTA-2063）</string>
+    <string name="catalog_394" formatted="false">会话 ID</string>
+    <string name="catalog_395" formatted="false">休眠</string>
+    <string name="catalog_396" formatted="false">系统</string>
+    <string name="catalog_397" formatted="false">遥测</string>
+    <string name="catalog_398" formatted="false">未声明</string>
+    <string name="catalog_399" formatted="false">休眠</string>
+    <string name="catalog_400" formatted="false">可用</string>
+    <string name="catalog_401" formatted="false">唤醒</string>
+    <string name="catalog_402" formatted="false">已绑定</string>
+    <string name="catalog_403" formatted="false">移动中</string>
+    <string name="catalog_404" formatted="false">否</string>
+    <string name="catalog_405" formatted="false">关闭</string>
+    <string name="catalog_406" formatted="false">开启</string>
+    <string name="catalog_407" formatted="false">已配对</string>
+    <string name="catalog_408" formatted="false">静止</string>
+    <string name="catalog_409" formatted="false">未绑定</string>
+    <string name="catalog_410" formatted="false">未配对</string>
+    <string name="catalog_411" formatted="false">是</string>
+    <string name="catalog_412" formatted="false">零压力</string>
+    <string name="catalog_413" formatted="false">Flock Safety 摄像机</string>
+    <string name="catalog_414" formatted="false">LiteOn 摄像机无线模块</string>
+    <string name="catalog_415" formatted="false">Apple AirTag 标签</string>
+    <string name="catalog_416" formatted="false">Samsung SmartTag 标签</string>
+    <string name="catalog_417" formatted="false">Target Atrius 购物篮</string>
+    <string name="catalog_418" formatted="false">Tile 追踪器</string>
+    <string name="catalog_419" formatted="false">FS 外置电池</string>
+    <string name="catalog_420" formatted="false">Apple 设备</string>
+    <string name="catalog_421" formatted="false">Apple 音频设备</string>
+    <string name="catalog_422" formatted="false">Microsoft 设备</string>
+    <string name="catalog_423" formatted="false">手机热点</string>
+    <string name="catalog_424" formatted="false">DULT 追踪器</string>
+    <string name="catalog_425" formatted="false">Nest 温控器</string>
+    <string name="catalog_426" formatted="false">Haiku 风扇</string>
+    <string name="catalog_427" formatted="false">Chevrolet 车载热点</string>
+    <string name="catalog_428" formatted="false">Goodyear 胎压监测</string>
+    <string name="catalog_429" formatted="false">Schrader 胎压监测</string>
+    <string name="catalog_430" formatted="false">Pacific 胎压监测</string>
+    <string name="catalog_431" formatted="false">FOBO 胎压监测</string>
+    <string name="catalog_432" formatted="false">后装胎压监测</string>
+    <string name="catalog_433" formatted="false">胎压监测服务</string>
+    <string name="catalog_434" formatted="false">UniFi 接入点</string>
+    <string name="catalog_435" formatted="false">爱好者 BLE 串口模块</string>
+    <string name="catalog_436" formatted="false">Ray-Ban／Meta 眼镜</string>
+    <string name="catalog_437" formatted="false">Marauder／解除认证设备</string>
+    <string name="catalog_438" formatted="false">Samsung 家电</string>
+    <string name="catalog_439" formatted="false">Limitless 吊坠</string>
+    <string name="catalog_440" formatted="false">Bee 吊坠</string>
+    <string name="catalog_441" formatted="false">Friend 吊坠</string>
+    <string name="catalog_442" formatted="false">商用 LED 显示牌</string>
+    <string name="catalog_443" formatted="false">电子货架标签</string>
+    <string name="catalog_444" formatted="false">LG webOS 电视</string>
+    <string name="catalog_445" formatted="false">GM 车载热点</string>
+    <string name="catalog_446" formatted="false">WatchGuard 接入点</string>
+    <string name="catalog_447" formatted="false">新识别规则</string>
+</resources>

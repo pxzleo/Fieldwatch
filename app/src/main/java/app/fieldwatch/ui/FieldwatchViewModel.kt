@@ -53,6 +53,11 @@ import app.fieldwatch.domain.Sighting
 import app.fieldwatch.domain.SignatureCandidate
 import app.fieldwatch.domain.SignatureCandidates
 import app.fieldwatch.domain.SignatureFamilyHint
+import app.fieldwatch.UiCatalogText
+import app.fieldwatch.domain.DecodedFieldValue
+import app.fieldwatch.domain.SignatureFieldDecoder
+import app.fieldwatch.domain.LiveDecodeChip
+import app.fieldwatch.domain.resolvedLength
 import app.fieldwatch.domain.CandidateReport
 
 import app.fieldwatch.domain.SignatureClass
@@ -723,7 +728,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_SUBJECT, compareSubject(doc))
-                    putExtra(Intent.EXTRA_TEXT, doc.toPlainText())
+                    putExtra(Intent.EXTRA_TEXT, doc.toPlainText(UiText::report))
                 }
             }.onSuccess { intent ->
                 _export.value = ExportUi(
@@ -792,7 +797,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 val (thisSide, second) = compareSides()
                 publishExport(0.45f, UiText.text(R.string.ui_building_compare_ai_export))
                 val text = withContext(Dispatchers.Default) {
-                    SitDiffPrompt.build(thisSide, second, app.config.settings.demoMode)
+                    SitDiffPrompt.build(thisSide, second, app.config.settings.demoMode, translate = UiText::report)
                 }
                 Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
@@ -822,8 +827,9 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             thisSide,
             second,
             RadioBookmarks.watchedFleetIds(app.config.watchlist),
+            translate = UiText::report,
         )
-            .withDemoMacs(macs, app.config.settings.demoMode)
+            .withDemoMacs(macs, app.config.settings.demoMode, UiText::report)
     }
 
     private suspend fun compareSides(): Pair<SitDiff.Side, SitDiff.Side> {
@@ -831,7 +837,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         val otherId = sit.compareId ?: error(UiText.text(R.string.ui_pick_a_second_sit))
         val otherFile = withContext(Dispatchers.IO) { app.sits.sitFile(otherId) }
             ?: error(UiText.text(R.string.ui_could_not_read_that_sit))
-        val fleets = app.config.fleets
+        val fleets = reportFleets().map { it.copy(name = fleetUiName(it.id)) }
         val customNames = RadioBookmarks.labels(app.config.watchlist)
         val observerNotes = RadioBookmarks.notes(app.config.watchlist)
         val bookmarkedKeys = RadioBookmarks.alertDeviceKeys(app.config.watchlist)
@@ -840,7 +846,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             name = otherFile.summary.name,
             ram = false,
             radios = otherFile.radios.map {
-                SitDiff.fromSitRadio(it, fleets, customNames, observerNotes, bookmarkedKeys)
+                SitDiff.fromSitRadio(it.copy(liveDecode = reportDevice(it.toSighting()).liveDecode), fleets, customNames, observerNotes, bookmarkedKeys)
             },
             path = otherFile.operatorPath,
         )
@@ -861,7 +867,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 name = open.name,
                 ram = false,
                 radios = source?.devices.orEmpty().map {
-                    SitDiff.fromSighting(it, fleets, customNames, observerNotes, bookmarkedKeys)
+                    SitDiff.fromSighting(reportDevice(it), fleets, customNames, observerNotes, bookmarkedKeys, UiText::report)
                 },
                 path = source?.operatorPath.orEmpty(),
             )
@@ -874,7 +880,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 name = selected.name,
                 ram = false,
                 radios = file.radios.map {
-                    SitDiff.fromSitRadio(it, fleets, customNames, observerNotes, bookmarkedKeys)
+                    SitDiff.fromSitRadio(it.copy(liveDecode = reportDevice(it.toSighting()).liveDecode), fleets, customNames, observerNotes, bookmarkedKeys)
                 },
                 path = file.operatorPath,
             )
@@ -884,7 +890,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             name = UiText.text(R.string.ui_last_15_minutes),
             ram = true,
             radios = app.devices.devices.value.map {
-                SitDiff.fromSighting(it, fleets, customNames, observerNotes, bookmarkedKeys)
+                SitDiff.fromSighting(reportDevice(it), fleets, customNames, observerNotes, bookmarkedKeys, UiText::report)
             },
             path = app.operatorPathCopy().filter { it.at >= now - DebriefPrompt.WINDOW_MS },
         )
@@ -1340,7 +1346,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                     policy = app.config.settings.detectionPolicy(),
                     decaySec = app.config.settings.decaySec,
                 )
-                result.summary()
+                result.uiSummary()
             }.onSuccess { summary ->
                 _export.value = ExportUi(
                     noticeTitle = UiText.text(R.string.ui_signatures_imported),
@@ -1450,7 +1456,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                     decaySec = next.decaySec,
                 )
                 if (next.alertVoice) app.alerter.prepareVoice()
-                result.summary()
+                result.uiSummary()
             }.onSuccess { summary ->
                 _export.value = ExportUi(
                     noticeTitle = UiText.text(R.string.ui_settings_imported),
@@ -1698,7 +1704,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_SUBJECT, debriefSubject(doc))
-                    putExtra(Intent.EXTRA_TEXT, doc.toPlainText())
+                    putExtra(Intent.EXTRA_TEXT, doc.toPlainText(UiText::report))
                 }
             }.onSuccess { intent ->
                 _export.value = ExportUi(
@@ -1719,17 +1725,17 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
     private suspend fun fieldDebriefDoc(): DebriefDoc {
         publishExport(0.08f, UiText.text(R.string.ui_gathering_sit))
         val settings = app.config.settings
-        val fleets = app.config.fleets
+        val fleets = reportFleets()
         val now = System.currentTimeMillis()
         val source = app.sits.debriefSource(now)
-        val devices = source?.devices ?: app.devices.devices.value
+        val devices = (source?.devices ?: app.devices.devices.value).map(::reportDevice)
         val path = source?.operatorPath ?: app.operatorPathCopy()
         val window = source?.let { DebriefWindow(it.startAt, it.endAt, it.name) }
         val places = if (settings.demoMode) {
             DebriefPlaces.Off
         } else if (settings.onlineLookup) {
             publishExport(0.14f, UiText.text(R.string.ui_looking_up_place_names))
-            val found = PlaceLookup.lookup(app, path, devices, now, onProgress = { msg ->
+            val found = PlaceLookup.lookup(app, path, devices, now, translate = UiText::report, onProgress = { msg ->
                 kotlinx.coroutines.runBlocking { publishExport(0.18f, msg) }
             })
             found
@@ -1750,7 +1756,9 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 observerNotes = RadioBookmarks.notes(app.config.watchlist),
                 bookmarkedKeys = RadioBookmarks.alertDeviceKeys(app.config.watchlist),
                 watchedFleetIds = RadioBookmarks.watchedFleetIds(app.config.watchlist),
-            ).withDemoMacs(devices.map { it.mac }, settings.demoMode)
+                translate = UiText::report,
+                displaySignatureNames = app.config.fleets.associate { it.id to fleetUiName(it.id) },
+            ).withDemoMacs(devices.map { it.mac }, settings.demoMode, UiText::report)
         }
     }
 
@@ -1760,17 +1768,17 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             publishExport(0.06f, UiText.text(R.string.ui_building_ai_export_prompt))
             runCatching {
                 val settings = app.config.settings
-                val fleets = app.config.fleets
+                val fleets = reportFleets()
                 val now = System.currentTimeMillis()
                 val source = app.sits.debriefSource(now)
-                val devices = source?.devices ?: app.devices.devices.value
+                val devices = (source?.devices ?: app.devices.devices.value).map(::reportDevice)
                 val path = source?.operatorPath ?: app.operatorPathCopy()
                 val window = source?.let { DebriefWindow(it.startAt, it.endAt, it.name) }
                 val places = if (settings.demoMode) {
                     DebriefPlaces.Off
                 } else if (settings.onlineLookup) {
                     publishExport(0.12f, UiText.text(R.string.ui_looking_up_place_names))
-                    val found = PlaceLookup.lookup(app, path, devices, now) { msg ->
+                    val found = PlaceLookup.lookup(app, path, devices, now, translate = UiText::report) { msg ->
                         kotlinx.coroutines.runBlocking { publishExport(0.16f, msg) }
                     }
                     publishExport(0.35f, UiText.text(R.string.ui_building_ai_export_prompt))
@@ -1791,6 +1799,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                         customNames = RadioBookmarks.labels(app.config.watchlist),
                         observerNotes = RadioBookmarks.notes(app.config.watchlist),
                         bookmarkedKeys = RadioBookmarks.alertDeviceKeys(app.config.watchlist),
+                        translate = UiText::report,
+                        displaySignatureNames = app.config.fleets.associate { it.id to fleetUiName(it.id) },
                     )
                     val masked = Geo.redactCoordsIn(
                         MacUtil.redactMacsIn(raw, devices.map { it.mac }, settings.demoMode),
@@ -1831,13 +1841,13 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             runCatching {
                 val settings = app.config.settings
                 val names = device.fleetIds.map { fleetName(it) }
-                val attention = attentionNotesFor(device)
-                val notes = signatureNotesFor(device)
+                val attention = uiSignatureNotesFor(device, attention = true)
+                val notes = uiSignatureNotesFor(device)
                 val places = if (settings.demoMode) {
                     DebriefPlaces.Off
                 } else if (settings.onlineLookup && (settings.tagLocation || device.latitude != null)) {
                     publishExport(0.15f, UiText.text(R.string.ui_looking_up_place_names))
-                    val found = PlaceLookup.lookup(app, app.operatorPathCopy(), listOf(device), System.currentTimeMillis()) { msg ->
+                    val found = PlaceLookup.lookup(app, app.operatorPathCopy(), listOf(device), System.currentTimeMillis(), translate = UiText::report) { msg ->
                         kotlinx.coroutines.runBlocking { publishExport(0.2f, msg) }
                     }
                     publishExport(0.4f, UiText.text(R.string.ui_building_ai_export_prompt))
@@ -1850,7 +1860,9 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                     val raw = DeviceDetailPrompt.build(
                         device, names, settings, places, attentionNotes = attention,
                         signatureNotes = notes,
-                        fleets = app.config.fleets,
+                        fleets = reportFleets(),
+                        translate = UiText::report,
+                        displaySignatureNames = device.fleetIds.map(::fleetUiName),
                     )
                     val masked = Geo.redactCoordsIn(
                         MacUtil.redactMacIn(raw, device.mac, settings.demoMode),
@@ -1887,12 +1899,14 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             runCatching {
                 val settings = app.config.settings
                 val names = device.fleetIds.map { fleetName(it) }
-                val attention = attentionNotesFor(device)
-                val notes = signatureNotesFor(device)
+                val attention = uiSignatureNotesFor(device, attention = true)
+                val notes = uiSignatureNotesFor(device)
                 val text = withContext(Dispatchers.Default) {
                     val raw = DeviceDetailText.build(
                         device, names, attentionNotes = attention, signatureNotes = notes,
-                        fleets = app.config.fleets,
+                        fleets = reportFleets(),
+                        translate = UiText::report,
+                        displaySignatureNames = device.fleetIds.map(::fleetUiName),
                     )
                     val masked = Geo.redactCoordsIn(
                         MacUtil.redactMacIn(raw, device.mac, settings.demoMode),
@@ -2041,6 +2055,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                         }
                     }
                 },
+                translate = UiText::report,
             )
         }
     }
@@ -2165,6 +2180,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                         }
                     }
                 },
+                translate = UiText::report,
             )
         }
     }
@@ -2227,6 +2243,29 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     fun fleetName(id: String): String = app.config.fleets.firstOrNull { it.id == id }?.name ?: id
 
+    fun fleetUiName(id: String): String {
+        val fleet = app.config.fleets.firstOrNull { it.id == id } ?: return id
+        return UiCatalogText.forFleet(fleet, fleet.name)
+    }
+
+    /** Localized report copy; matching and persisted configuration keep their original data. */
+    private fun reportFleets(): List<Fleet> = app.config.fleets.map { fleet ->
+        fun t(source: String) = UiCatalogText.forFleet(fleet, source)
+        fleet.copy(
+            notes = t(fleet.notes),
+            attentionNote = t(fleet.attentionNote),
+            decode = fleet.decode?.let { decode ->
+                decode.copy(fields = decode.fields.map { field ->
+                    field.copy(
+                        label = t(field.label),
+                        enumLabels = field.enumLabels?.mapValues { t(it.value) },
+                        enumNotes = field.enumNotes?.mapValues { t(it.value) },
+                    )
+                })
+            },
+        )
+    }
+
     fun fleetKind(id: String): SignatureClass? = app.config.fleets.firstOrNull { it.id == id }?.kind
 
     fun fleetColor(id: String): Int =
@@ -2249,6 +2288,40 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     fun signatureNotesFor(device: Sighting): List<Pair<String, String>> =
         device.signatureNotes(app.config.fleets)
+
+    /** Translate stock display text without changing signature data or exports. */
+    fun uiSignatureNotesFor(device: Sighting, attention: Boolean = false): List<Pair<String, String>> =
+        device.fleetIds.mapNotNull { id ->
+            val fleet = app.config.fleets.firstOrNull { it.id == id } ?: return@mapNotNull null
+            val note = (if (attention) fleet.attentionNote else fleet.notes).trim()
+            if (note.isEmpty()) null else
+                UiCatalogText.forFleet(fleet, fleet.name) to
+                    UiCatalogText.forFleet(fleet, note)
+        }
+
+    fun liveDecodeUiLabel(device: Sighting, chip: LiveDecodeChip): String {
+        return localizedLiveChip(device, chip).reportLabel()
+    }
+
+    private fun localizedLiveChip(device: Sighting, chip: LiveDecodeChip): LiveDecodeChip {
+        val row = SignatureFieldDecoder.decodeSighting(device, app.config.fleets)
+            .singleOrNull { it.live && it.display.trim() == chip.text &&
+                (chip.fleetId.isEmpty() || (it.fleetId == chip.fleetId && it.id == chip.fieldId)) }
+            ?: chip.fleetId.takeIf { it in device.fleetIds }?.let { id ->
+                val fleet = app.config.fleets.firstOrNull { it.id == id } ?: return@let null
+                val field = fleet.decode?.fields?.firstOrNull { it.id == chip.fieldId }
+                field?.let {
+                    DecodedFieldValue(id, fleet.name, it.id, it.label,
+                        chip.text, it.offset, it.resolvedLength(), note = chip.note, live = true)
+                }
+            } ?: return chip
+        val fleet = app.config.fleets.firstOrNull { it.id == row.fleetId }
+        return chip.copy(text = UiCatalogText.decoded(fleet, row),
+            note = UiCatalogText.forFleet(fleet, row.note))
+    }
+
+    private fun reportDevice(device: Sighting): Sighting =
+        device.copy(liveDecode = device.liveDecode.map { localizedLiveChip(device, it) })
 
     fun isWatched(deviceKey: String): Boolean =
         app.config.watchlist.any { it.deviceKey == deviceKey && it.alert }

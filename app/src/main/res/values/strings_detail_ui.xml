@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_candidate_name_glob">Same name glob on %1$s %2$s — not a house SSID.</string>
+    <string name="detail_candidate_vendor_ie">Same vendor IE on %1$s BSSIDs. Not WPS / P2P.</string>
+    <string name="detail_candidate_service_uuid">Same service UUID on %1$s BLE advertisers.</string>
+    <string name="detail_candidate_manufacturer_prefix">Same manufacturer data prefix on %1$s BLE advertisers.</string>
+    <string name="detail_candidate_ieee_oui">Same IEEE OUI on %1$s stable BSSIDs. Not a chip-module prefix.</string>
+    <string name="detail_fast_pair_pairing">Fast Pair · pairing</string>
+    <string name="lookup_place_progress">Looking up place names (%1$s of %2$s)…</string>
+    <string name="import_nothing">Nothing to import.</string>
+    <string name="import_already_present">Nothing new. %1$d already on this phone.</string>
+    <string name="import_added">Added %1$d</string>
+    <string name="import_added_renamed">Added %1$d (%2$d renamed)</string>
+    <string name="import_merged">Merged extra rules on %1$d</string>
+    <string name="import_skipped">Skipped %1$d already present</string>
+    <string name="import_settings_summary">Restored settings and the current filter. Presets: %1$d; named radios: %2$d; signature watches: %3$d.</string>
+    <string name="detail_tak_host_unresolved">Host %1$s did not resolve</string>
+    <string name="detail_tak_no_eligible_radios">0 eligible radios (need Extra attention / payload latlon / GPS stamp)</string>
+    <string name="detail_custom_name_hint">Shows on Live. Bookmark (top-right) is the alert; this does not turn it on.</string>
+    <string name="detail_custom_name_bssid_hint">Pinned to this BSSID. Vehicle, mesh, and guest APs often keep a locally administered address.</string>
+</resources>

@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_mfg_word">厂商</string>
+    <string name="detail_unknown_1" formatted="false">未知</string>
+    <string name="detail_phone_2" formatted="false">电话</string>
+    <string name="detail_computer_3" formatted="false">计算机</string>
+    <string name="detail_computer_desktop_workstation_4" formatted="false">计算机 / 台式工作站</string>
+    <string name="detail_computer_server_class_computer_5" formatted="false">计算机 / 服务器</string>
+    <string name="detail_computer_laptop_6" formatted="false">计算机 / 笔记本电脑</string>
+    <string name="detail_computer_handheld_pc_pda_clamshell_7" formatted="false">计算机 / 翻盖式掌上电脑/PDA</string>
+    <string name="detail_computer_palm_size_pc_pda_8" formatted="false">计算机 / 掌上电脑/PDA</string>
+    <string name="detail_computer_wearable_computer_watch_size_9" formatted="false">计算机 / 手表大小的可穿戴计算机</string>
+    <string name="detail_computer_tablet_10" formatted="false">计算机 / 平板电脑</string>
+    <string name="detail_computer_docking_station_11" formatted="false">计算机 / 扩展坞</string>
+    <string name="detail_computer_all_in_one_12" formatted="false">计算机 / 一体机</string>
+    <string name="detail_computer_blade_server_13" formatted="false">计算机 / 刀片服务器</string>
+    <string name="detail_computer_convertible_14" formatted="false">计算机 / 可翻转笔记本</string>
+    <string name="detail_computer_detachable_15" formatted="false">计算机 / 可拆卸式电脑</string>
+    <string name="detail_computer_iot_gateway_16" formatted="false">计算机 / 物联网网关</string>
+    <string name="detail_computer_mini_pc_17" formatted="false">计算机 / 迷你电脑</string>
+    <string name="detail_computer_stick_pc_18" formatted="false">计算机 / 棒式电脑</string>
+    <string name="detail_watch_19" formatted="false">手表</string>
+    <string name="detail_watch_sports_watch_20" formatted="false">手表 / 运动手表</string>
+    <string name="detail_watch_smartwatch_21" formatted="false">手表 / 智能手表</string>
+    <string name="detail_clock_22" formatted="false">时钟</string>
+    <string name="detail_display_23" formatted="false">显示器</string>
+    <string name="detail_remote_control_24" formatted="false">遥控器</string>
+    <string name="detail_eye_glasses_25" formatted="false">眼镜</string>
+    <string name="detail_tag_26" formatted="false">标签</string>
+    <string name="detail_keyring_27" formatted="false">钥匙环</string>
+    <string name="detail_media_player_28" formatted="false">媒体播放器</string>
+    <string name="detail_barcode_scanner_29" formatted="false">条码扫描器</string>
+    <string name="detail_thermometer_30" formatted="false">温度计</string>
+    <string name="detail_thermometer_ear_thermometer_31" formatted="false">温度计 / 耳温计</string>
+    <string name="detail_heart_rate_sensor_32" formatted="false">心率传感器</string>
+    <string name="detail_heart_rate_sensor_heart_rate_belt_33" formatted="false">心率传感器 / 心率带</string>
+    <string name="detail_blood_pressure_34" formatted="false">血压</string>
+    <string name="detail_blood_pressure_arm_blood_pressure_35" formatted="false">血压 / 上臂血压计</string>
+    <string name="detail_blood_pressure_wrist_blood_pressure_36" formatted="false">血压 / 腕式血压计</string>
+    <string name="detail_human_interface_device_37" formatted="false">人机接口设备</string>
+    <string name="detail_human_interface_device_keyboard_38" formatted="false">人机接口设备 / 键盘</string>
+    <string name="detail_human_interface_device_mouse_39" formatted="false">人机接口设备 / 鼠标</string>
+    <string name="detail_human_interface_device_joystick_40" formatted="false">人机接口设备 / 操纵杆</string>
+    <string name="detail_human_interface_device_gamepad_41" formatted="false">人机接口设备 / 游戏手柄</string>
+    <string name="detail_human_interface_device_digitizer_tablet_42" formatted="false">人机接口设备 / 数位板</string>
+    <string name="detail_human_interface_device_card_reader_43" formatted="false">人机接口设备 / 读卡器</string>
+    <string name="detail_human_interface_device_digital_pen_44" formatted="false">人机接口设备 / 数字笔</string>
+    <string name="detail_human_interface_device_barcode_scanner_45" formatted="false">人机接口设备 / 条码扫描器</string>
+    <string name="detail_human_interface_device_touchpad_46" formatted="false">人机接口设备 / 触摸板</string>
+    <string name="detail_human_interface_device_presentation_remote_47" formatted="false">人机接口设备 / 演示遥控器</string>
+    <string name="detail_glucose_meter_48" formatted="false">血糖仪</string>
+    <string name="detail_running_walking_sensor_49" formatted="false">跑步/步行传感器</string>
+    <string name="detail_running_walking_sensor_in_shoe_running_walking_sensor_50" formatted="false">跑步/步行传感器 / 鞋内跑步/步行传感器</string>
+    <string name="detail_running_walking_sensor_on_shoe_running_walking_sensor_51" formatted="false">跑步/步行传感器 / 鞋上跑步/步行传感器</string>
+    <string name="detail_running_walking_sensor_on_hip_running_walking_sensor_52" formatted="false">跑步/步行传感器 / 腰部跑步/步行传感器</string>
+    <string name="detail_cycling_53" formatted="false">骑行</string>
+    <string name="detail_cycling_cycling_computer_54" formatted="false">骑行 / 自行车码表</string>
+    <string name="detail_cycling_speed_sensor_55" formatted="false">骑行 / 速度传感器</string>
+    <string name="detail_cycling_cadence_sensor_56" formatted="false">骑行 / 踏频传感器</string>
+    <string name="detail_cycling_power_sensor_57" formatted="false">骑行 / 功率传感器</string>
+    <string name="detail_cycling_speed_and_cadence_sensor_58" formatted="false">骑行 / 速度与踏频传感器</string>
+    <string name="detail_control_device_59" formatted="false">控制设备</string>
+    <string name="detail_control_device_switch_60" formatted="false">控制设备 / 开关</string>
+    <string name="detail_control_device_multi_switch_61" formatted="false">控制设备 / 多联开关</string>
+    <string name="detail_control_device_button_62" formatted="false">控制设备 / 按钮</string>
+    <string name="detail_control_device_slider_63" formatted="false">控制设备 / 滑动控制器</string>
+    <string name="detail_control_device_rotary_switch_64" formatted="false">控制设备 / 旋转开关</string>
+    <string name="detail_control_device_touch_panel_65" formatted="false">控制设备 / 触摸面板</string>
+    <string name="detail_control_device_single_switch_66" formatted="false">控制设备 / 单联开关</string>
+    <string name="detail_control_device_double_switch_67" formatted="false">控制设备 / 双联开关</string>
+    <string name="detail_control_device_triple_switch_68" formatted="false">控制设备 / 三联开关</string>
+    <string name="detail_control_device_battery_switch_69" formatted="false">控制设备 / 电池供电开关</string>
+    <string name="detail_control_device_energy_harvesting_switch_70" formatted="false">控制设备 / 能量采集开关</string>
+    <string name="detail_control_device_push_button_71" formatted="false">控制设备 / 按压按钮</string>
+    <string name="detail_control_device_dial_72" formatted="false">控制设备 / 旋钮</string>
+    <string name="detail_network_device_73" formatted="false">网络设备</string>
+    <string name="detail_network_device_access_point_74" formatted="false">网络设备 / 接入点</string>
+    <string name="detail_network_device_mesh_device_75" formatted="false">网络设备 / Mesh 设备</string>
+    <string name="detail_network_device_mesh_network_proxy_76" formatted="false">网络设备 / Mesh 网络代理</string>
+    <string name="detail_sensor_77" formatted="false">传感器</string>
+    <string name="detail_sensor_motion_sensor_78" formatted="false">传感器 / 运动传感器</string>
+    <string name="detail_sensor_air_quality_sensor_79" formatted="false">传感器 / 空气质量传感器</string>
+    <string name="detail_sensor_temperature_sensor_80" formatted="false">传感器 / 温度传感器</string>
+    <string name="detail_sensor_humidity_sensor_81" formatted="false">传感器 / 湿度传感器</string>
+    <string name="detail_sensor_leak_sensor_82" formatted="false">传感器 / 漏水传感器</string>
+    <string name="detail_sensor_smoke_sensor_83" formatted="false">传感器 / 烟雾传感器</string>
+    <string name="detail_sensor_occupancy_sensor_84" formatted="false">传感器 / 占用传感器</string>
+    <string name="detail_sensor_contact_sensor_85" formatted="false">传感器 / 接触传感器</string>
+    <string name="detail_sensor_carbon_monoxide_sensor_86" formatted="false">传感器 / 一氧化碳传感器</string>
+    <string name="detail_sensor_carbon_dioxide_sensor_87" formatted="false">传感器 / 二氧化碳传感器</string>
+    <string name="detail_sensor_ambient_light_sensor_88" formatted="false">传感器 / 环境光传感器</string>
+    <string name="detail_sensor_energy_sensor_89" formatted="false">传感器 / 能量传感器</string>
+    <string name="detail_sensor_color_light_sensor_90" formatted="false">传感器 / 彩色光传感器</string>
+    <string name="detail_sensor_rain_sensor_91" formatted="false">传感器 / 雨量传感器</string>
+    <string name="detail_sensor_fire_sensor_92" formatted="false">传感器 / 火灾传感器</string>
+    <string name="detail_sensor_wind_sensor_93" formatted="false">传感器 / 风力传感器</string>
+    <string name="detail_sensor_proximity_sensor_94" formatted="false">传感器 / 接近传感器</string>
+    <string name="detail_sensor_multi_sensor_95" formatted="false">传感器 / 多传感器</string>
+    <string name="detail_sensor_flush_mounted_sensor_96" formatted="false">传感器 / 嵌入式传感器</string>
+    <string name="detail_sensor_ceiling_mounted_sensor_97" formatted="false">传感器 / 吸顶式传感器</string>
+    <string name="detail_sensor_wall_mounted_sensor_98" formatted="false">传感器 / 壁挂式传感器</string>
+    <string name="detail_sensor_multisensor_99" formatted="false">传感器 / 多传感器</string>
+    <string name="detail_sensor_energy_meter_100" formatted="false">传感器 / 电能表</string>
+    <string name="detail_sensor_flame_detector_101" formatted="false">传感器 / 火焰探测器</string>
+    <string name="detail_sensor_vehicle_tire_pressure_sensor_102" formatted="false">传感器 / 车辆胎压传感器</string>
+    <string name="detail_light_fixtures_103" formatted="false">灯具</string>
+    <string name="detail_light_fixtures_wall_light_104" formatted="false">灯具 / 壁灯</string>
+    <string name="detail_light_fixtures_ceiling_light_105" formatted="false">灯具 / 吸顶灯</string>
+    <string name="detail_light_fixtures_floor_light_106" formatted="false">灯具 / 落地灯</string>
+    <string name="detail_light_fixtures_cabinet_light_107" formatted="false">灯具 / 橱柜灯</string>
+    <string name="detail_light_fixtures_desk_light_108" formatted="false">灯具 / 台灯</string>
+    <string name="detail_light_fixtures_troffer_light_109" formatted="false">灯具 / 嵌入式格栅灯</string>
+    <string name="detail_light_fixtures_pendant_light_110" formatted="false">灯具 / 吊灯</string>
+    <string name="detail_light_fixtures_in_ground_light_111" formatted="false">灯具 / 地埋灯</string>
+    <string name="detail_light_fixtures_flood_light_112" formatted="false">灯具 / 泛光灯</string>
+    <string name="detail_light_fixtures_underwater_light_113" formatted="false">灯具 / 水下灯</string>
+    <string name="detail_light_fixtures_bollard_with_light_114" formatted="false">灯具 / 照明柱</string>
+    <string name="detail_light_fixtures_pathway_light_115" formatted="false">灯具 / 步道灯</string>
+    <string name="detail_light_fixtures_garden_light_116" formatted="false">灯具 / 庭院灯</string>
+    <string name="detail_light_fixtures_pole_top_light_117" formatted="false">灯具 / 杆顶灯</string>
+    <string name="detail_light_fixtures_spotlight_118" formatted="false">灯具 / 聚光灯</string>
+    <string name="detail_light_fixtures_linear_light_119" formatted="false">灯具 / 线形灯</string>
+    <string name="detail_light_fixtures_street_light_120" formatted="false">灯具 / 路灯</string>
+    <string name="detail_light_fixtures_shelves_light_121" formatted="false">灯具 / 货架灯</string>
+    <string name="detail_light_fixtures_bay_light_122" formatted="false">灯具 / 工矿灯</string>
+    <string name="detail_light_fixtures_emergency_exit_light_123" formatted="false">灯具 / 应急出口灯</string>
+    <string name="detail_light_fixtures_light_controller_124" formatted="false">灯具 / 照明控制器</string>
+    <string name="detail_light_fixtures_light_driver_125" formatted="false">灯具 / 照明驱动器</string>
+    <string name="detail_light_fixtures_bulb_126" formatted="false">灯具 / 灯泡</string>
+    <string name="detail_light_fixtures_low_bay_light_127" formatted="false">灯具 / 低棚灯</string>
+    <string name="detail_light_fixtures_high_bay_light_128" formatted="false">灯具 / 高棚灯</string>
+    <string name="detail_fan_129" formatted="false">风扇</string>
+    <string name="detail_fan_ceiling_fan_130" formatted="false">风扇 / 吊扇</string>
+    <string name="detail_fan_axial_fan_131" formatted="false">风扇 / 轴流风扇</string>
+    <string name="detail_fan_exhaust_fan_132" formatted="false">风扇 / 排风扇</string>
+    <string name="detail_fan_pedestal_fan_133" formatted="false">风扇 / 落地扇</string>
+    <string name="detail_fan_desk_fan_134" formatted="false">风扇 / 台式风扇</string>
+    <string name="detail_fan_wall_fan_135" formatted="false">风扇 / 壁扇</string>
+    <string name="detail_hvac_136" formatted="false">暖通空调</string>
+    <string name="detail_hvac_thermostat_137" formatted="false">暖通空调 / 恒温器</string>
+    <string name="detail_hvac_humidifier_138" formatted="false">暖通空调 / 加湿器</string>
+    <string name="detail_hvac_de_humidifier_139" formatted="false">暖通空调 / 除湿器</string>
+    <string name="detail_hvac_heater_140" formatted="false">暖通空调 / 加热器</string>
+    <string name="detail_hvac_radiator_141" formatted="false">暖通空调 / 暖气片</string>
+    <string name="detail_hvac_boiler_142" formatted="false">暖通空调 / 锅炉</string>
+    <string name="detail_hvac_heat_pump_143" formatted="false">暖通空调 / 热泵</string>
+    <string name="detail_hvac_infrared_heater_144" formatted="false">暖通空调 / 红外加热器</string>
+    <string name="detail_hvac_radiant_panel_heater_145" formatted="false">暖通空调 / 辐射板加热器</string>
+    <string name="detail_hvac_fan_heater_146" formatted="false">暖通空调 / 暖风机</string>
+    <string name="detail_hvac_air_curtain_147" formatted="false">暖通空调 / 风幕机</string>
+    <string name="detail_air_conditioning_148" formatted="false">空调</string>
+    <string name="detail_humidifier_149" formatted="false">加湿器</string>
+    <string name="detail_heating_150" formatted="false">供暖</string>
+    <string name="detail_heating_radiator_151" formatted="false">供暖 / 暖气片</string>
+    <string name="detail_heating_boiler_152" formatted="false">供暖 / 锅炉</string>
+    <string name="detail_heating_heat_pump_153" formatted="false">供暖 / 热泵</string>
+    <string name="detail_heating_infrared_heater_154" formatted="false">供暖 / 红外加热器</string>
+    <string name="detail_heating_radiant_panel_heater_155" formatted="false">供暖 / 辐射板加热器</string>
+    <string name="detail_heating_fan_heater_156" formatted="false">供暖 / 暖风机</string>
+    <string name="detail_heating_air_curtain_157" formatted="false">供暖 / 风幕机</string>
+    <string name="detail_access_control_158" formatted="false">门禁</string>
+    <string name="detail_access_control_access_door_159" formatted="false">门禁 / 门禁门</string>
+    <string name="detail_access_control_garage_door_160" formatted="false">门禁 / 车库门</string>
+    <string name="detail_access_control_emergency_exit_door_161" formatted="false">门禁 / 应急出口门</string>
+    <string name="detail_access_control_access_lock_162" formatted="false">门禁 / 门禁锁</string>
+    <string name="detail_access_control_elevator_163" formatted="false">门禁 / 电梯</string>
+    <string name="detail_access_control_window_164" formatted="false">门禁 / 窗户</string>
+    <string name="detail_access_control_entrance_gate_165" formatted="false">门禁 / 入口闸门</string>
+    <string name="detail_access_control_door_lock_166" formatted="false">门禁 / 门锁</string>
+    <string name="detail_access_control_locker_167" formatted="false">门禁 / 储物柜</string>
+    <string name="detail_motorized_device_168" formatted="false">电动设备</string>
+    <string name="detail_motorized_device_motorized_gate_169" formatted="false">电动设备 / 电动闸门</string>
+    <string name="detail_motorized_device_awning_170" formatted="false">电动设备 / 遮阳篷</string>
+    <string name="detail_motorized_device_blinds_or_shades_171" formatted="false">电动设备 / 百叶帘或遮阳帘</string>
+    <string name="detail_motorized_device_curtains_172" formatted="false">电动设备 / 窗帘</string>
+    <string name="detail_motorized_device_screen_173" formatted="false">电动设备 / 屏幕</string>
+    <string name="detail_power_device_174" formatted="false">电源设备</string>
+    <string name="detail_power_device_power_outlet_175" formatted="false">电源设备 / 电源插座</string>
+    <string name="detail_power_device_power_strip_176" formatted="false">电源设备 / 电源排插</string>
+    <string name="detail_power_device_plug_177" formatted="false">电源设备 / 插头</string>
+    <string name="detail_power_device_power_supply_178" formatted="false">电源设备 / 电源</string>
+    <string name="detail_power_device_led_driver_179" formatted="false">电源设备 / LED 驱动器</string>
+    <string name="detail_power_device_fluorescent_lamp_gear_180" formatted="false">电源设备 / 荧光灯镇流器</string>
+    <string name="detail_power_device_hid_lamp_gear_181" formatted="false">电源设备 / 高强度气体放电灯镇流器</string>
+    <string name="detail_power_device_charge_case_182" formatted="false">电源设备 / 充电盒</string>
+    <string name="detail_power_device_power_bank_183" formatted="false">电源设备 / 移动电源</string>
+    <string name="detail_light_source_184" formatted="false">光源</string>
+    <string name="detail_light_source_incandescent_light_bulb_185" formatted="false">光源 / 白炽灯泡</string>
+    <string name="detail_light_source_led_lamp_186" formatted="false">光源 / LED 灯</string>
+    <string name="detail_light_source_hid_lamp_187" formatted="false">光源 / 高强度气体放电灯</string>
+    <string name="detail_light_source_fluorescent_lamp_188" formatted="false">光源 / 荧光灯</string>
+    <string name="detail_light_source_led_array_189" formatted="false">光源 / LED 阵列</string>
+    <string name="detail_light_source_multi_color_led_array_190" formatted="false">光源 / 多色 LED 阵列</string>
+    <string name="detail_light_source_low_voltage_halogen_191" formatted="false">光源 / 低压卤素灯</string>
+    <string name="detail_light_source_organic_light_emitting_diode_oled_192" formatted="false">光源 / 有机发光二极管 (OLED)</string>
+    <string name="detail_window_covering_193" formatted="false">窗户遮挡设备</string>
+    <string name="detail_window_covering_window_shades_194" formatted="false">窗户遮挡设备 / 遮阳帘</string>
+    <string name="detail_window_covering_window_blinds_195" formatted="false">窗户遮挡设备 / 百叶帘</string>
+    <string name="detail_window_covering_window_awning_196" formatted="false">窗户遮挡设备 / 窗户遮阳篷</string>
+    <string name="detail_window_covering_window_curtain_197" formatted="false">窗户遮挡设备 / 窗帘</string>
+    <string name="detail_window_covering_exterior_shutter_198" formatted="false">窗户遮挡设备 / 外部百叶窗</string>
+    <string name="detail_window_covering_exterior_screen_199" formatted="false">窗户遮挡设备 / 外部遮阳屏</string>
+    <string name="detail_audio_sink_200" formatted="false">音频接收设备</string>
+    <string name="detail_audio_sink_standalone_speaker_201" formatted="false">音频接收设备 / 独立扬声器</string>
+    <string name="detail_audio_sink_soundbar_202" formatted="false">音频接收设备 / 条形音箱</string>
+    <string name="detail_audio_sink_bookshelf_speaker_203" formatted="false">音频接收设备 / 书架音箱</string>
+    <string name="detail_audio_sink_standmounted_speaker_204" formatted="false">音频接收设备 / 支架式音箱</string>
+    <string name="detail_audio_sink_speakerphone_205" formatted="false">音频接收设备 / 免提电话</string>
+    <string name="detail_audio_source_206" formatted="false">音频源设备</string>
+    <string name="detail_audio_source_microphone_207" formatted="false">音频源设备 / 麦克风</string>
+    <string name="detail_audio_source_alarm_208" formatted="false">音频源设备 / 警报器</string>
+    <string name="detail_audio_source_bell_209" formatted="false">音频源设备 / 铃</string>
+    <string name="detail_audio_source_horn_210" formatted="false">音频源设备 / 喇叭</string>
+    <string name="detail_audio_source_broadcasting_device_211" formatted="false">音频源设备 / 广播设备</string>
+    <string name="detail_audio_source_service_desk_212" formatted="false">音频源设备 / 服务台</string>
+    <string name="detail_audio_source_kiosk_213" formatted="false">音频源设备 / 自助终端</string>
+    <string name="detail_audio_source_broadcasting_room_214" formatted="false">音频源设备 / 广播室</string>
+    <string name="detail_audio_source_auditorium_215" formatted="false">音频源设备 / 礼堂</string>
+    <string name="detail_motorized_vehicle_216" formatted="false">机动车辆</string>
+    <string name="detail_motorized_vehicle_car_217" formatted="false">机动车辆 / 汽车</string>
+    <string name="detail_motorized_vehicle_large_goods_vehicle_218" formatted="false">机动车辆 / 大型货车</string>
+    <string name="detail_motorized_vehicle_2_wheeled_vehicle_219" formatted="false">机动车辆 / 两轮车辆</string>
+    <string name="detail_motorized_vehicle_motorbike_220" formatted="false">机动车辆 / 摩托车</string>
+    <string name="detail_motorized_vehicle_scooter_221" formatted="false">机动车辆 / 踏板车</string>
+    <string name="detail_motorized_vehicle_moped_222" formatted="false">机动车辆 / 轻便摩托车</string>
+    <string name="detail_motorized_vehicle_3_wheeled_vehicle_223" formatted="false">机动车辆 / 三轮车辆</string>
+    <string name="detail_motorized_vehicle_light_vehicle_224" formatted="false">机动车辆 / 轻型车辆</string>
+    <string name="detail_motorized_vehicle_quad_bike_225" formatted="false">机动车辆 / 四轮摩托车</string>
+    <string name="detail_motorized_vehicle_minibus_226" formatted="false">机动车辆 / 小型客车</string>
+    <string name="detail_motorized_vehicle_bus_227" formatted="false">机动车辆 / 公交车</string>
+    <string name="detail_motorized_vehicle_trolley_228" formatted="false">机动车辆 / 电车</string>
+    <string name="detail_motorized_vehicle_agricultural_vehicle_229" formatted="false">机动车辆 / 农业车辆</string>
+    <string name="detail_motorized_vehicle_camper_caravan_230" formatted="false">机动车辆 / 露营车 / 拖挂房车</string>
+    <string name="detail_motorized_vehicle_recreational_vehicle_motor_home_231" formatted="false">机动车辆 / 休闲车 / 自行式房车</string>
+    <string name="detail_domestic_appliance_232" formatted="false">家用电器</string>
+    <string name="detail_domestic_appliance_refrigerator_233" formatted="false">家用电器 / 冰箱</string>
+    <string name="detail_domestic_appliance_freezer_234" formatted="false">家用电器 / 冷柜</string>
+    <string name="detail_domestic_appliance_oven_235" formatted="false">家用电器 / 烤箱</string>
+    <string name="detail_domestic_appliance_microwave_236" formatted="false">家用电器 / 微波炉</string>
+    <string name="detail_domestic_appliance_toaster_237" formatted="false">家用电器 / 烤面包机</string>
+    <string name="detail_domestic_appliance_washing_machine_238" formatted="false">家用电器 / 洗衣机</string>
+    <string name="detail_domestic_appliance_dryer_239" formatted="false">家用电器 / 烘干机</string>
+    <string name="detail_domestic_appliance_coffee_maker_240" formatted="false">家用电器 / 咖啡机</string>
+    <string name="detail_domestic_appliance_clothes_iron_241" formatted="false">家用电器 / 电熨斗</string>
+    <string name="detail_domestic_appliance_curling_iron_242" formatted="false">家用电器 / 卷发棒</string>
+    <string name="detail_domestic_appliance_hair_dryer_243" formatted="false">家用电器 / 吹风机</string>
+    <string name="detail_domestic_appliance_vacuum_cleaner_244" formatted="false">家用电器 / 吸尘器</string>
+    <string name="detail_domestic_appliance_robotic_vacuum_cleaner_245" formatted="false">家用电器 / 扫地机器人</string>
+    <string name="detail_domestic_appliance_rice_cooker_246" formatted="false">家用电器 / 电饭煲</string>
+    <string name="detail_domestic_appliance_clothes_steamer_247" formatted="false">家用电器 / 挂烫机</string>
+    <string name="detail_wearable_audio_device_248" formatted="false">可穿戴音频设备</string>
+    <string name="detail_wearable_audio_device_earbud_249" formatted="false">可穿戴音频设备 / 入耳式耳机</string>
+    <string name="detail_wearable_audio_device_headset_250" formatted="false">可穿戴音频设备 / 耳麦</string>
+    <string name="detail_wearable_audio_device_headphones_251" formatted="false">可穿戴音频设备 / 耳机</string>
+    <string name="detail_wearable_audio_device_neck_band_252" formatted="false">可穿戴音频设备 / 颈挂式耳机</string>
+    <string name="detail_wearable_audio_device_left_earbud_253" formatted="false">可穿戴音频设备 / 左耳耳机</string>
+    <string name="detail_wearable_audio_device_right_earbud_254" formatted="false">可穿戴音频设备 / 右耳耳机</string>
+    <string name="detail_aircraft_255" formatted="false">飞行器</string>
+    <string name="detail_aircraft_light_aircraft_256" formatted="false">飞行器 / 轻型飞机</string>
+    <string name="detail_aircraft_microlight_257" formatted="false">飞行器 / 超轻型飞机</string>
+    <string name="detail_aircraft_paraglider_258" formatted="false">飞行器 / 滑翔伞</string>
+    <string name="detail_aircraft_large_passenger_aircraft_259" formatted="false">飞行器 / 大型客机</string>
+    <string name="detail_av_equipment_260" formatted="false">影音设备</string>
+    <string name="detail_av_equipment_amplifier_261" formatted="false">影音设备 / 放大器</string>
+    <string name="detail_av_equipment_receiver_262" formatted="false">影音设备 / 接收器</string>
+    <string name="detail_av_equipment_radio_263" formatted="false">影音设备 / 收音机</string>
+    <string name="detail_av_equipment_tuner_264" formatted="false">影音设备 / 调谐器</string>
+    <string name="detail_av_equipment_turntable_265" formatted="false">影音设备 / 唱片机</string>
+    <string name="detail_av_equipment_cd_player_266" formatted="false">影音设备 / CD 播放器</string>
+    <string name="detail_av_equipment_dvd_player_267" formatted="false">影音设备 / DVD 播放器</string>
+    <string name="detail_av_equipment_bluray_player_268" formatted="false">影音设备 / 蓝光播放器</string>
+    <string name="detail_av_equipment_optical_disc_player_269" formatted="false">影音设备 / 光盘播放器</string>
+    <string name="detail_av_equipment_set_top_box_270" formatted="false">影音设备 / 机顶盒</string>
+    <string name="detail_display_equipment_271" formatted="false">显示设备</string>
+    <string name="detail_display_equipment_television_272" formatted="false">显示设备 / 电视机</string>
+    <string name="detail_display_equipment_monitor_273" formatted="false">显示设备 / 监视器</string>
+    <string name="detail_display_equipment_projector_274" formatted="false">显示设备 / 投影仪</string>
+    <string name="detail_hearing_aid_275" formatted="false">助听器</string>
+    <string name="detail_hearing_aid_in_ear_hearing_aid_276" formatted="false">助听器 / 耳内式助听器</string>
+    <string name="detail_hearing_aid_behind_ear_hearing_aid_277" formatted="false">助听器 / 耳背式助听器</string>
+    <string name="detail_hearing_aid_cochlear_implant_278" formatted="false">助听器 / 人工耳蜗</string>
+    <string name="detail_gaming_279" formatted="false">游戏设备</string>
+    <string name="detail_gaming_home_video_game_console_280" formatted="false">游戏设备 / 家用游戏机</string>
+    <string name="detail_gaming_portable_handheld_console_281" formatted="false">游戏设备 / 便携掌上游戏机</string>
+    <string name="detail_signage_282" formatted="false">标牌</string>
+    <string name="detail_signage_digital_signage_283" formatted="false">标牌 / 数字标牌</string>
+    <string name="detail_signage_electronic_label_284" formatted="false">标牌 / 电子标签</string>
+    <string name="detail_pulse_oximeter_285" formatted="false">血氧仪</string>
+    <string name="detail_pulse_oximeter_fingertip_pulse_oximeter_286" formatted="false">血氧仪 / 指夹式血氧仪</string>
+    <string name="detail_pulse_oximeter_wrist_worn_pulse_oximeter_287" formatted="false">血氧仪 / 腕戴式血氧仪</string>
+    <string name="detail_weight_scale_288" formatted="false">体重秤</string>
+    <string name="detail_personal_mobility_device_289" formatted="false">个人助行设备</string>
+    <string name="detail_personal_mobility_device_powered_wheelchair_290" formatted="false">个人助行设备 / 电动轮椅</string>
+    <string name="detail_personal_mobility_device_mobility_scooter_291" formatted="false">个人助行设备 / 助行代步车</string>
+    <string name="detail_continuous_glucose_monitor_292" formatted="false">连续血糖监测仪</string>
+    <string name="detail_insulin_pump_293" formatted="false">胰岛素泵</string>
+    <string name="detail_insulin_pump_insulin_pump_durable_pump_294" formatted="false">胰岛素泵 / 耐用式胰岛素泵</string>
+    <string name="detail_insulin_pump_insulin_pump_patch_pump_295" formatted="false">胰岛素泵 / 贴片式胰岛素泵</string>
+    <string name="detail_insulin_pump_insulin_pen_296" formatted="false">胰岛素泵 / 胰岛素笔</string>
+    <string name="detail_medication_delivery_297" formatted="false">药物输送设备</string>
+    <string name="detail_spirometer_298" formatted="false">肺活量计</string>
+    <string name="detail_spirometer_handheld_spirometer_299" formatted="false">肺活量计 / 手持肺活量计</string>
+    <string name="detail_outdoor_sports_activity_300" formatted="false">户外运动设备</string>
+    <string name="detail_outdoor_sports_activity_location_display_301" formatted="false">户外运动设备 / 定位显示器</string>
+    <string name="detail_outdoor_sports_activity_location_and_navigation_display_302" formatted="false">户外运动设备 / 定位与导航显示器</string>
+    <string name="detail_outdoor_sports_activity_location_pod_303" formatted="false">户外运动设备 / 定位模块</string>
+    <string name="detail_outdoor_sports_activity_location_and_navigation_pod_304" formatted="false">户外运动设备 / 定位与导航模块</string>
+    <string name="detail_industrial_measurement_device_305" formatted="false">工业测量设备</string>
+    <string name="detail_industrial_measurement_device_torque_testing_device_306" formatted="false">工业测量设备 / 扭矩测试设备</string>
+    <string name="detail_industrial_measurement_device_caliper_307" formatted="false">工业测量设备 / 卡尺</string>
+    <string name="detail_industrial_measurement_device_dial_indicator_308" formatted="false">工业测量设备 / 百分表</string>
+    <string name="detail_industrial_measurement_device_micrometer_309" formatted="false">工业测量设备 / 千分尺</string>
+    <string name="detail_industrial_measurement_device_height_gauge_310" formatted="false">工业测量设备 / 高度尺</string>
+    <string name="detail_industrial_measurement_device_force_gauge_311" formatted="false">工业测量设备 / 测力计</string>
+    <string name="detail_industrial_tools_312" formatted="false">工业工具</string>
+    <string name="detail_industrial_tools_machine_tool_holder_313" formatted="false">工业工具 / 机床刀柄</string>
+    <string name="detail_industrial_tools_generic_clamping_device_314" formatted="false">工业工具 / 通用夹持装置</string>
+    <string name="detail_industrial_tools_clamping_jaws_jaw_chuck_315" formatted="false">工业工具 / 夹爪/卡爪夹头</string>
+    <string name="detail_industrial_tools_clamping_collet_chuck_316" formatted="false">工业工具 / 筒夹夹头</string>
+    <string name="detail_industrial_tools_clamping_mandrel_317" formatted="false">工业工具 / 夹持芯轴</string>
+    <string name="detail_industrial_tools_vise_318" formatted="false">工业工具 / 台钳</string>
+    <string name="detail_industrial_tools_zero_point_clamping_system_319" formatted="false">工业工具 / 零点夹持系统</string>
+    <string name="detail_industrial_tools_torque_wrench_320" formatted="false">工业工具 / 扭矩扳手</string>
+    <string name="detail_industrial_tools_torque_screwdriver_321" formatted="false">工业工具 / 扭矩螺丝刀</string>
+    <string name="detail_cookware_device_322" formatted="false">炊具设备</string>
+    <string name="detail_cookware_device_pot_and_jugs_323" formatted="false">炊具设备 / 锅和壶</string>
+    <string name="detail_cookware_device_pressure_cooker_324" formatted="false">炊具设备 / 压力锅</string>
+    <string name="detail_cookware_device_slow_cooker_325" formatted="false">炊具设备 / 慢炖锅</string>
+    <string name="detail_cookware_device_steam_cooker_326" formatted="false">炊具设备 / 蒸锅</string>
+    <string name="detail_cookware_device_saucepan_327" formatted="false">炊具设备 / 长柄炖锅</string>
+    <string name="detail_cookware_device_frying_pan_328" formatted="false">炊具设备 / 煎锅</string>
+    <string name="detail_cookware_device_casserole_329" formatted="false">炊具设备 / 焖烧锅</string>
+    <string name="detail_cookware_device_dutch_oven_330" formatted="false">炊具设备 / 厚壁炖锅</string>
+    <string name="detail_cookware_device_grill_pan_raclette_grill_griddle_pan_331" formatted="false">炊具设备 / 烤盘/奶酪烤炉/煎盘</string>
+    <string name="detail_cookware_device_braising_pan_332" formatted="false">炊具设备 / 焖锅</string>
+    <string name="detail_cookware_device_wok_pan_333" formatted="false">炊具设备 / 炒锅</string>
+    <string name="detail_cookware_device_paella_pan_334" formatted="false">炊具设备 / 西班牙海鲜饭锅</string>
+    <string name="detail_cookware_device_crepe_pan_335" formatted="false">炊具设备 / 薄饼锅</string>
+    <string name="detail_cookware_device_tagine_336" formatted="false">炊具设备 / 塔吉锅</string>
+    <string name="detail_cookware_device_fondue_337" formatted="false">炊具设备 / 奶酪火锅</string>
+    <string name="detail_cookware_device_lid_338" formatted="false">炊具设备 / 锅盖</string>
+    <string name="detail_cookware_device_wired_probe_339" formatted="false">炊具设备 / 有线探针</string>
+    <string name="detail_cookware_device_wireless_probe_340" formatted="false">炊具设备 / 无线探针</string>
+    <string name="detail_cookware_device_baking_molds_341" formatted="false">炊具设备 / 烘焙模具</string>
+    <string name="detail_cookware_device_baking_tray_342" formatted="false">炊具设备 / 烤盘</string>
+    <string name="detail_gap_343" formatted="false">GAP</string>
+    <string name="detail_gatt_344" formatted="false">GATT</string>
+    <string name="detail_immediate_alert_345" formatted="false">即时警报</string>
+    <string name="detail_link_loss_346" formatted="false">连接丢失</string>
+    <string name="detail_tx_power_347" formatted="false">发射功率</string>
+    <string name="detail_current_time_348" formatted="false">当前时间</string>
+    <string name="detail_reference_time_update_349" formatted="false">参考时间更新</string>
+    <string name="detail_next_dst_change_350" formatted="false">下次夏令时变更</string>
+    <string name="detail_glucose_351" formatted="false">血糖</string>
+    <string name="detail_health_thermometer_352" formatted="false">健康温度计</string>
+    <string name="detail_device_information_353" formatted="false">设备信息</string>
+    <string name="detail_heart_rate_354" formatted="false">心率</string>
+    <string name="detail_phone_alert_status_355" formatted="false">电话警报状态</string>
+    <string name="detail_battery_356" formatted="false">电池</string>
+    <string name="detail_alert_notification_357" formatted="false">警报通知</string>
+    <string name="detail_scan_parameters_358" formatted="false">扫描参数</string>
+    <string name="detail_running_speed_and_cadence_359" formatted="false">跑步速度与步频</string>
+    <string name="detail_automation_io_360" formatted="false">自动化输入/输出</string>
+    <string name="detail_cycling_speed_and_cadence_361" formatted="false">骑行速度与踏频</string>
+    <string name="detail_cycling_power_362" formatted="false">骑行功率</string>
+    <string name="detail_location_and_navigation_363" formatted="false">定位与导航</string>
+    <string name="detail_environmental_sensing_364" formatted="false">环境感知</string>
+    <string name="detail_body_composition_365" formatted="false">身体成分</string>
+    <string name="detail_user_data_366" formatted="false">用户数据</string>
+    <string name="detail_bond_management_367" formatted="false">绑定管理</string>
+    <string name="detail_continuous_glucose_monitoring_368" formatted="false">连续血糖监测</string>
+    <string name="detail_internet_protocol_support_369" formatted="false">互联网协议支持</string>
+    <string name="detail_indoor_positioning_370" formatted="false">室内定位</string>
+    <string name="detail_http_proxy_371" formatted="false">HTTP 代理</string>
+    <string name="detail_transport_discovery_372" formatted="false">传输发现</string>
+    <string name="detail_object_transfer_373" formatted="false">对象传输</string>
+    <string name="detail_fitness_machine_374" formatted="false">健身器械</string>
+    <string name="detail_mesh_provisioning_375" formatted="false">Mesh 配网</string>
+    <string name="detail_mesh_proxy_376" formatted="false">Mesh 代理</string>
+    <string name="detail_reconnection_configuration_377" formatted="false">重连配置</string>
+    <string name="detail_insulin_delivery_378" formatted="false">胰岛素输送</string>
+    <string name="detail_binary_sensor_379" formatted="false">二值传感器</string>
+    <string name="detail_emergency_configuration_380" formatted="false">应急配置</string>
+    <string name="detail_authorization_control_381" formatted="false">授权控制</string>
+    <string name="detail_physical_activity_monitor_382" formatted="false">身体活动监测</string>
+    <string name="detail_elapsed_time_383" formatted="false">经过时间</string>
+    <string name="detail_generic_health_sensor_384" formatted="false">通用健康传感器</string>
+    <string name="detail_audio_input_control_385" formatted="false">音频输入控制</string>
+    <string name="detail_volume_control_386" formatted="false">音量控制</string>
+    <string name="detail_volume_offset_control_387" formatted="false">音量偏移控制</string>
+    <string name="detail_coordinated_set_identification_388" formatted="false">协调设备组标识</string>
+    <string name="detail_device_time_389" formatted="false">设备时间</string>
+    <string name="detail_media_control_390" formatted="false">媒体控制</string>
+    <string name="detail_generic_media_control_391" formatted="false">通用媒体控制</string>
+    <string name="detail_constant_tone_extension_392" formatted="false">恒定音调扩展</string>
+    <string name="detail_telephone_bearer_393" formatted="false">电话承载</string>
+    <string name="detail_generic_telephone_bearer_394" formatted="false">通用电话承载</string>
+    <string name="detail_microphone_control_395" formatted="false">麦克风控制</string>
+    <string name="detail_audio_stream_control_396" formatted="false">音频流控制</string>
+    <string name="detail_broadcast_audio_scan_397" formatted="false">广播音频扫描</string>
+    <string name="detail_published_audio_capabilities_398" formatted="false">公布音频能力</string>
+    <string name="detail_basic_audio_announcement_399" formatted="false">基本音频公告</string>
+    <string name="detail_broadcast_audio_announcement_400" formatted="false">广播音频公告</string>
+    <string name="detail_common_audio_401" formatted="false">通用音频</string>
+    <string name="detail_hearing_access_402" formatted="false">助听访问</string>
+    <string name="detail_telephony_and_media_audio_403" formatted="false">电话与媒体音频</string>
+    <string name="detail_public_broadcast_announcement_404" formatted="false">公共广播公告</string>
+    <string name="detail_electronic_shelf_label_405" formatted="false">电子货架标签</string>
+    <string name="detail_gaming_audio_406" formatted="false">游戏音频</string>
+    <string name="detail_mesh_proxy_solicitation_407" formatted="false">Mesh 代理请求</string>
+    <string name="detail_ranging_408" formatted="false">测距</string>
+    <string name="detail_hid_iso_409" formatted="false">HID ISO</string>
+    <string name="detail_cookware_410" formatted="false">炊具</string>
+    <string name="detail_voice_assistant_411" formatted="false">语音助手</string>
+    <string name="detail_generic_voice_assistant_412" formatted="false">通用语音助手</string>
+    <string name="detail_tire_pressure_monitoring_system_413" formatted="false">胎压监测系统</string>
+    <string name="detail_miscellaneous_414" formatted="false">其他</string>
+    <string name="detail_lan_network_ap_415" formatted="false">局域网/网络接入点</string>
+    <string name="detail_audio_video_416" formatted="false">音频/视频</string>
+    <string name="detail_peripheral_417" formatted="false">外设</string>
+    <string name="detail_imaging_418" formatted="false">成像设备</string>
+    <string name="detail_wearable_419" formatted="false">可穿戴设备</string>
+    <string name="detail_toy_420" formatted="false">玩具</string>
+    <string name="detail_health_421" formatted="false">健康设备</string>
+    <string name="detail_uncategorized_422" formatted="false">未分类</string>
+    <string name="detail_major_0x_02x_423" formatted="false">主类别 0x%02X</string>
+    <string name="detail_desktop_424" formatted="false">台式电脑</string>
+    <string name="detail_server_425" formatted="false">服务器</string>
+    <string name="detail_laptop_426" formatted="false">笔记本电脑</string>
+    <string name="detail_handheld_pc_pda_427" formatted="false">掌上电脑/PDA</string>
+    <string name="detail_palm_size_pda_428" formatted="false">掌上 PDA</string>
+    <string name="detail_wearable_computer_429" formatted="false">可穿戴计算机</string>
+    <string name="detail_tablet_430" formatted="false">平板电脑</string>
+    <string name="detail_computer_0x_02x_431" formatted="false">计算机 0x%02X</string>
+    <string name="detail_cellular_432" formatted="false">蜂窝电话</string>
+    <string name="detail_cordless_433" formatted="false">无绳电话</string>
+    <string name="detail_smartphone_434" formatted="false">智能手机</string>
+    <string name="detail_wired_modem_voice_gateway_435" formatted="false">有线调制解调器/语音网关</string>
+    <string name="detail_common_isdn_access_436" formatted="false">通用 ISDN 接入</string>
+    <string name="detail_phone_0x_02x_437" formatted="false">电话 0x%02X</string>
+    <string name="detail_fully_available_438" formatted="false">完全可用</string>
+    <string name="detail_1_17_utilized_439" formatted="false">使用率 1–17%</string>
+    <string name="detail_17_33_utilized_440" formatted="false">使用率 17–33%</string>
+    <string name="detail_33_50_utilized_441" formatted="false">使用率 33–50%</string>
+    <string name="detail_50_67_utilized_442" formatted="false">使用率 50–67%</string>
+    <string name="detail_67_83_utilized_443" formatted="false">使用率 67–83%</string>
+    <string name="detail_83_99_utilized_444" formatted="false">使用率 83–99%</string>
+    <string name="detail_no_service_available_445" formatted="false">无可用服务</string>
+    <string name="detail_wearable_headset_446" formatted="false">可穿戴耳麦</string>
+    <string name="detail_hands_free_447" formatted="false">免提设备</string>
+    <string name="detail_microphone_448" formatted="false">麦克风</string>
+    <string name="detail_loudspeaker_449" formatted="false">扬声器</string>
+    <string name="detail_headphones_450" formatted="false">耳机</string>
+    <string name="detail_portable_audio_451" formatted="false">便携音频设备</string>
+    <string name="detail_car_audio_452" formatted="false">车载音响</string>
+    <string name="detail_set_top_box_453" formatted="false">机顶盒</string>
+    <string name="detail_hifi_audio_454" formatted="false">高保真音响</string>
+    <string name="detail_vcr_455" formatted="false">录像机</string>
+    <string name="detail_video_camera_456" formatted="false">摄像机</string>
+    <string name="detail_camcorder_457" formatted="false">便携式摄像机</string>
+    <string name="detail_video_monitor_458" formatted="false">视频监视器</string>
+    <string name="detail_video_display_and_loudspeaker_459" formatted="false">视频显示器及扬声器</string>
+    <string name="detail_video_conferencing_460" formatted="false">视频会议</string>
+    <string name="detail_gaming_toy_461" formatted="false">游戏/玩具</string>
+    <string name="detail_a_v_0x_02x_462" formatted="false">音频/视频 0x%02X</string>
+    <string name="detail_joystick_463" formatted="false">操纵杆</string>
+    <string name="detail_gamepad_464" formatted="false">游戏手柄</string>
+    <string name="detail_remote_control_465" formatted="false">遥控器</string>
+    <string name="detail_sensing_device_466" formatted="false">感应设备</string>
+    <string name="detail_digitizer_tablet_467" formatted="false">数位板</string>
+    <string name="detail_card_reader_468" formatted="false">读卡器</string>
+    <string name="detail_digital_pen_469" formatted="false">数字笔</string>
+    <string name="detail_handheld_scanner_470" formatted="false">手持扫描器</string>
+    <string name="detail_handheld_gestural_input_471" formatted="false">手持手势输入设备</string>
+    <string name="detail_peripheral_0x_x_472" formatted="false">外设 0x%X</string>
+    <string name="detail_keyboard_473" formatted="false">键盘</string>
+    <string name="detail_pointing_474" formatted="false">指点设备</string>
+    <string name="detail_keyboard_pointing_475" formatted="false">键盘/指点设备</string>
+    <string name="detail_camera_476" formatted="false">相机</string>
+    <string name="detail_scanner_477" formatted="false">扫描仪</string>
+    <string name="detail_printer_478" formatted="false">打印机</string>
+    <string name="detail_wristwatch_479" formatted="false">腕表</string>
+    <string name="detail_pager_480" formatted="false">寻呼机</string>
+    <string name="detail_jacket_481" formatted="false">夹克</string>
+    <string name="detail_helmet_482" formatted="false">头盔</string>
+    <string name="detail_glasses_483" formatted="false">眼镜</string>
+    <string name="detail_wearable_0x_02x_484" formatted="false">可穿戴设备 0x%02X</string>
+    <string name="detail_robot_485" formatted="false">机器人</string>
+    <string name="detail_vehicle_486" formatted="false">车辆</string>
+    <string name="detail_doll_action_figure_487" formatted="false">玩偶/人偶</string>
+    <string name="detail_controller_488" formatted="false">控制器</string>
+    <string name="detail_game_489" formatted="false">游戏</string>
+    <string name="detail_toy_0x_02x_490" formatted="false">玩具 0x%02X</string>
+    <string name="detail_blood_pressure_monitor_491" formatted="false">血压计</string>
+    <string name="detail_weighing_scale_492" formatted="false">体重秤</string>
+    <string name="detail_glucose_meter_493" formatted="false">血糖仪</string>
+    <string name="detail_pulse_oximeter_494" formatted="false">血氧仪</string>
+    <string name="detail_heart_pulse_rate_monitor_495" formatted="false">心率/脉率监测仪</string>
+    <string name="detail_health_data_display_496" formatted="false">健康数据显示器</string>
+    <string name="detail_step_counter_497" formatted="false">计步器</string>
+    <string name="detail_body_composition_analyzer_498" formatted="false">身体成分分析仪</string>
+    <string name="detail_peak_flow_monitor_499" formatted="false">峰值流量监测仪</string>
+    <string name="detail_medication_monitor_500" formatted="false">用药监测仪</string>
+    <string name="detail_knee_prosthesis_501" formatted="false">膝关节假体</string>
+    <string name="detail_ankle_prosthesis_502" formatted="false">踝关节假体</string>
+    <string name="detail_generic_health_manager_503" formatted="false">通用健康管理设备</string>
+    <string name="detail_personal_mobility_device_504" formatted="false">个人助行设备</string>
+    <string name="detail_health_0x_02x_505" formatted="false">健康设备 0x%02X</string>
+    <string name="detail_limited_discoverable_506" formatted="false">有限可发现</string>
+    <string name="detail_positioning_507" formatted="false">定位</string>
+    <string name="detail_networking_508" formatted="false">联网</string>
+    <string name="detail_rendering_509" formatted="false">呈现</string>
+    <string name="detail_capturing_510" formatted="false">采集</string>
+    <string name="detail_audio_511" formatted="false">音频</string>
+    <string name="detail_telephony_512" formatted="false">电话服务</string>
+    <string name="detail_information_513" formatted="false">信息</string>
+    <string name="detail_not_available_514" formatted="false">不可用</string>
+    <string name="detail_1_s_to_2_s_dbm_515" formatted="false">%1$s 至 %2$s dBm</string>
+    <string name="detail_format_1_s_516" formatted="false">格式 %1$s</string>
+    <string name="detail_already_tagged_517" formatted="false">已标记</string>
+    <string name="detail_this_radio_only_518" formatted="false">仅此无线设备</string>
+    <string name="detail_strong_family_519" formatted="false">明确的设备家族</string>
+    <string name="detail_possible_family_520" formatted="false">可能的设备家族</string>
+    <string name="detail_a_catalog_signature_521" formatted="false">目录中的特征</string>
+    <string name="detail_matched_1_s_a_second_signature_can_still_dual_label_this_radio_store_uuid_p_522" formatted="false">已匹配 %1$s。另一个特征仍可同时标记此无线设备（商店 UUID、产品 OUI）。</string>
+    <string name="detail_no_unique_on_air_id_to_cluster_on_randomized_addresses_house_like_names_and_523" formatted="false">没有可用于归类的独特广播标识。已跳过随机地址、类似家庭网络的名称和通用芯片。</string>
+    <string name="detail_no_other_mac_in_the_log_or_on_the_air_shares_this_1_s_a_signature_from_here_524" formatted="false">日志中或当前广播的其他 MAC 没有共享此%1$s。由此创建的特征主要会标记这个地址。</string>
+    <string name="detail_same_1_s_on_2_s_that_is_a_catalog_pattern_not_this_mac_525" formatted="false">%2$s共享相同的%1$s。这是目录中的模式，而非单个 MAC。</string>
+    <string name="detail_same_1_s_on_2_s_thin_sample_a_possible_catalog_family_526" formatted="false">%2$s共享相同的%1$s。样本较少，可能属于一个设备家族。</string>
+    <string name="detail_name_glob_527" formatted="false">名称通配模式</string>
+    <string name="detail_vendor_ie_528" formatted="false">厂商信息元素</string>
+    <string name="detail_service_uuid_529" formatted="false">服务 UUID</string>
+    <string name="detail_manufacturer_data_prefix_530" formatted="false">厂商数据前缀</string>
+    <string name="detail_on_air_id_531" formatted="false">广播标识</string>
+    <string name="detail_ap_532" formatted="false">接入点</string>
+    <string name="detail_aps_533" formatted="false">接入点</string>
+    <string name="detail_advertiser_534" formatted="false">广播设备</string>
+    <string name="detail_advertisers_535" formatted="false">广播设备</string>
+    <string name="detail_1_s_2_s_in_the_log_3_s_on_the_air_now_536" formatted="false">日志中的 %1$s 个%2$s（目前有 %3$s 个在广播）</string>
+    <string name="detail_1_s_2_s_in_the_log_537" formatted="false">日志中的 %1$s 个%2$s</string>
+    <string name="detail_1_s_2_s_on_the_air_now_538" formatted="false">目前广播的 %1$s 个%2$s</string>
+    <string name="detail_1_s_2_s_539" formatted="false">%1$s 个%2$s</string>
+    <string name="detail_vendor_ie_1_s_540" formatted="false">厂商信息元素 %1$s</string>
+    <string name="detail_svc_contains_1_s_541" formatted="false">服务数据包含 %1$s</string>
+    <string name="detail_mfg_0x_04x_s_542" formatted="false">厂商 0x%04X %s</string>
+    <string name="detail_mfg_0x_04x_543" formatted="false">厂商 0x%04X</string>
+    <string name="detail_joystick_keyboard_544" formatted="false">操纵杆 + 键盘</string>
+    <string name="detail_joystick_pointing_545" formatted="false">操纵杆 + 指点设备</string>
+    <string name="detail_joystick_keyboard_pointing_546" formatted="false">操纵杆 + 键盘/指点设备</string>
+    <string name="detail_gamepad_keyboard_547" formatted="false">游戏手柄 + 键盘</string>
+    <string name="detail_gamepad_pointing_548" formatted="false">游戏手柄 + 指点设备</string>
+    <string name="detail_gamepad_keyboard_pointing_549" formatted="false">游戏手柄 + 键盘/指点设备</string>
+    <string name="detail_remote_control_keyboard_550" formatted="false">遥控器 + 键盘</string>
+    <string name="detail_remote_control_pointing_551" formatted="false">遥控器 + 指点设备</string>
+    <string name="detail_remote_control_keyboard_pointing_552" formatted="false">遥控器 + 键盘/指点设备</string>
+    <string name="detail_sensing_device_keyboard_553" formatted="false">感应设备 + 键盘</string>
+    <string name="detail_sensing_device_pointing_554" formatted="false">感应设备 + 指点设备</string>
+    <string name="detail_sensing_device_keyboard_pointing_555" formatted="false">感应设备 + 键盘/指点设备</string>
+    <string name="detail_digitizer_tablet_keyboard_556" formatted="false">数位板 + 键盘</string>
+    <string name="detail_digitizer_tablet_pointing_557" formatted="false">数位板 + 指点设备</string>
+    <string name="detail_digitizer_tablet_keyboard_pointing_558" formatted="false">数位板 + 键盘/指点设备</string>
+    <string name="detail_card_reader_keyboard_559" formatted="false">读卡器 + 键盘</string>
+    <string name="detail_card_reader_pointing_560" formatted="false">读卡器 + 指点设备</string>
+    <string name="detail_card_reader_keyboard_pointing_561" formatted="false">读卡器 + 键盘/指点设备</string>
+    <string name="detail_digital_pen_keyboard_562" formatted="false">数字笔 + 键盘</string>
+    <string name="detail_digital_pen_pointing_563" formatted="false">数字笔 + 指点设备</string>
+    <string name="detail_digital_pen_keyboard_pointing_564" formatted="false">数字笔 + 键盘/指点设备</string>
+    <string name="detail_handheld_scanner_keyboard_565" formatted="false">手持扫描器 + 键盘</string>
+    <string name="detail_handheld_scanner_pointing_566" formatted="false">手持扫描器 + 指点设备</string>
+    <string name="detail_handheld_scanner_keyboard_pointing_567" formatted="false">手持扫描器 + 键盘/指点设备</string>
+    <string name="detail_handheld_gestural_input_keyboard_568" formatted="false">手持手势输入设备 + 键盘</string>
+    <string name="detail_handheld_gestural_input_pointing_569" formatted="false">手持手势输入设备 + 指点设备</string>
+    <string name="detail_handheld_gestural_input_keyboard_pointing_570" formatted="false">手持手势输入设备 + 键盘/指点设备</string>
+    <string name="detail_display_camera_571" formatted="false">显示器 + 相机</string>
+    <string name="detail_display_scanner_572" formatted="false">显示器 + 扫描仪</string>
+    <string name="detail_display_printer_573" formatted="false">显示器 + 打印机</string>
+    <string name="detail_camera_scanner_574" formatted="false">相机 + 扫描仪</string>
+    <string name="detail_camera_printer_575" formatted="false">相机 + 打印机</string>
+    <string name="detail_scanner_printer_576" formatted="false">扫描仪 + 打印机</string>
+    <string name="detail_display_camera_scanner_577" formatted="false">显示器 + 相机 + 扫描仪</string>
+    <string name="detail_display_camera_printer_578" formatted="false">显示器 + 相机 + 打印机</string>
+    <string name="detail_display_scanner_printer_579" formatted="false">显示器 + 扫描仪 + 打印机</string>
+    <string name="detail_camera_scanner_printer_580" formatted="false">相机 + 扫描仪 + 打印机</string>
+    <string name="detail_display_camera_scanner_printer_581" formatted="false">显示器 + 相机 + 扫描仪 + 打印机</string>
+</resources>

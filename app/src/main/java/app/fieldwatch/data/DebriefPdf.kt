@@ -8,6 +8,7 @@ import android.graphics.Path
 import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Typeface
+import app.fieldwatch.UiText
 import android.graphics.pdf.PdfDocument
 import android.text.Layout
 import android.text.StaticLayout
@@ -126,7 +127,7 @@ object DebriefPdf {
         val out = ArrayList<Block>()
         out += titleBlock(doc.pdfTitle)
         out += spacer(6f)
-        out += sectionHead("", "Disclaimer", alert = false)
+        out += sectionHead("", UiText.report("Disclaimer"), alert = false)
         doc.disclaimer.split("\n\n").forEach { para ->
             chunkText(para.trim().ifBlank { " " }, CONTENT_W, 9f, muted = true).forEach { sl ->
                 out += textBlock(sl)
@@ -151,7 +152,7 @@ object DebriefPdf {
             out += spacer(10f)
         }
         for (section in doc.sections) {
-            if (section.title == "Extra attention" && doc.extraAttention.isNotEmpty()) {
+            if (section.title == UiText.report("Extra attention") && doc.extraAttention.isNotEmpty()) {
                 out += sectionHead(section.number, section.title, alert = true)
                 out += spacer(4f)
                 doc.extraAttention.forEach { hit ->
@@ -278,27 +279,27 @@ object DebriefPdf {
             canvas.drawRoundRect(panel, 7f, 7f, fill)
             canvas.drawRoundRect(panel, 7f, 7f, stroke)
             val kicker = Paint().apply {
-                color = if (fig.kicker == "AIRCRAFT") AIRCRAFT else PHOS
+                color = if (fig.kicker == "AIRCRAFT" || fig.kicker == UiText.report("AIRCRAFT")) AIRCRAFT else PHOS
                 textSize = 8f
                 typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
                 isAntiAlias = true
                 letterSpacing = 0.12f
             }
-            canvas.drawText(fig.kicker, MARGIN + 8f, y + 15f, kicker)
+            canvas.drawText(UiText.report(fig.kicker), MARGIN + 8f, y + 15f, kicker)
             val stats = Paint().apply { color = MUTED; textSize = 8f; isAntiAlias = true }
             val span = if (fig.spanM >= 1000) {
-                "${"%.1f".format(Locale.US, fig.spanM / 1000)} km span"
+                UiText.report("%1\$s km span").format("%.1f".format(Locale.US, fig.spanM / 1000))
             } else {
-                "${fig.spanM.toInt()} m span"
+                UiText.report("%1\$s m span").format(fig.spanM.toInt())
             }
             val len = if (fig.lengthM >= 1000) {
-                "${"%.1f".format(Locale.US, fig.lengthM / 1000)} km path"
+                UiText.report("%1\$s km path").format("%.1f".format(Locale.US, fig.lengthM / 1000))
             } else {
-                "${fig.lengthM.toInt()} m path"
+                UiText.report("%1\$s m path").format(fig.lengthM.toInt())
             }
             val fixes = fig.tracks.filter { it.aircraft }.sumOf { it.samples.size }
             val right = if (fig.tracks.all { it.aircraft } && fixes == 1) {
-                "1 advertised fix"
+                UiText.report("1 advertised fix")
             } else {
                 "$len  ·  $span"
             }
@@ -551,8 +552,8 @@ object DebriefPdf {
                 textSize = 7.5f
                 isAntiAlias = true
             }
-            canvas.drawText("Start", ox(pts.first().x) + 6f, oy(pts.first().y) - 4f, lab)
-            canvas.drawText("End", ox(pts.last().x) + 6f, oy(pts.last().y) - 4f, lab)
+            canvas.drawText(UiText.report("Start"), ox(pts.first().x) + 6f, oy(pts.first().y) - 4f, lab)
+            canvas.drawText(UiText.report("End"), ox(pts.last().x) + 6f, oy(pts.last().y) - 4f, lab)
         }
     }
 
@@ -563,20 +564,20 @@ object DebriefPdf {
         val out = ArrayList<LegendSwatch>()
         when {
             phone.size >= 2 -> {
-                out += LegendSwatch("This sit", MARK_STAY)
-                out += LegendSwatch("Second sit", MARK_SLATE)
+                out += LegendSwatch(UiText.report("This sit"), MARK_STAY)
+                out += LegendSwatch(UiText.report("Second sit"), MARK_SLATE)
             }
-            phone.any { it.samples.size >= 2 } -> out += LegendSwatch("Stay", MARK_STAY)
+            phone.any { it.samples.size >= 2 } -> out += LegendSwatch(UiText.report("Stay"), MARK_STAY)
         }
         val craft = fig.tracks.filter { it.aircraft }
         if (craft.isNotEmpty()) {
-            out += LegendSwatch("Advertised", MARK_AMBER)
-            if (craft.any { it.secondary }) out += LegendSwatch("Second advertised", MARK_AMBER_DASH)
+            out += LegendSwatch(UiText.report("Advertised"), MARK_AMBER)
+            if (craft.any { it.secondary }) out += LegendSwatch(UiText.report("Second advertised"), MARK_AMBER_DASH)
         }
-        if (fig.dots.any { it.extraAttention }) out += LegendSwatch("Extra attention", MARK_RED)
-        if (fig.dots.any { it.named }) out += LegendSwatch("MAC alert", MARK_BLUE)
-        if (fig.dots.any { !it.extraAttention && !it.named }) out += LegendSwatch("Signature alert", MARK_ALERT)
-        if (fig.pilots.isNotEmpty()) out += LegendSwatch("Pilot", MARK_PILOT)
+        if (fig.dots.any { it.extraAttention }) out += LegendSwatch(UiText.report("Extra attention"), MARK_RED)
+        if (fig.dots.any { it.named }) out += LegendSwatch(UiText.report("MAC alert"), MARK_BLUE)
+        if (fig.dots.any { !it.extraAttention && !it.named }) out += LegendSwatch(UiText.report("Signature alert"), MARK_ALERT)
+        if (fig.pilots.isNotEmpty()) out += LegendSwatch(UiText.report("Pilot"), MARK_PILOT)
         return out
     }
 
@@ -821,7 +822,7 @@ object DebriefPdf {
         val craft = fig.craftKeys.filter { it.isNotBlank() }
         if (piles.isEmpty() && craft.isEmpty()) return emptyList()
         val out = ArrayList<Block>()
-        out += sectionHead("", "Path key", alert = false)
+        out += sectionHead("", UiText.report("Path key"), alert = false)
         out += spacer(4f)
         piles.forEachIndexed { i, pile ->
             out += pathKeyRow(i + 1, pile)
@@ -838,16 +839,16 @@ object DebriefPdf {
         val radios = pile.members.joinToString("  ·  ") { m ->
             val d = m.dot
             val kind = if (d.kind.name == "WIFI") "WIFI" else "BLE"
-            val tag = if (d.extraAttention) "Extra attention" else null
+            val tag = if (d.extraAttention) UiText.report("Extra attention") else null
             val fleets = d.fleetNames.filter { it.isNotBlank() }.joinToString(", ")
-            val obs = d.observerNotes.trim().takeIf { it.isNotEmpty() }?.let { "Observer: $it" }
+            val obs = d.observerNotes.trim().takeIf { it.isNotEmpty() }?.let { UiText.report("Observer: %1\$s").format(it) }
             val who = listOfNotNull(kind, d.label.ifBlank { d.mac }, fleets.ifBlank { null }, tag, obs)
                 .joinToString(" ")
             val advertised = d.advertisedNote.trim()
             if (advertised.isEmpty()) who else "$who — $advertised"
         }
         return if (pile.stacked) {
-            "$n  ${pile.members.size} radios at this stop — $radios"
+            "$n  ${UiText.report("%1\$s radios at this stop — %2\$s").format(pile.members.size, radios)}"
         } else {
             "$n  $radios"
         }
@@ -862,15 +863,17 @@ object DebriefPdf {
 
     private fun isStayHead(line: String): Boolean {
         val t = line.trim()
-        return t.matches(Regex("""^\d+\.\s+(Stay|Transit)\b.*""")) ||
+        val names = listOf("Stay", "Transit", UiText.report("Stay"), UiText.report("Transit"))
+            .distinct().joinToString("|") { Regex.escape(it) }
+        return t.matches(Regex("""^\d+\.\s+($names).*""")) ||
             t.startsWith("• ")
     }
 
     private fun isKickerLine(line: String): Boolean {
         val t = line.trim()
-        if (t.startsWith("Phone GPS")) return true
+        if (t.startsWith("Phone GPS") || t.startsWith(UiText.report("Phone GPS"))) return true
         if (t.contains(". ")) return false
-        return t.matches(Regex("""^[A-Z][A-Za-z0-9 +/'()&.,-]{0,48}:(\s.*)?$"""))
+        return t.matches(Regex("""^[\p{L}][\p{L}0-9 +/'()&.,-]{0,48}[:：](\s.*)?$"""))
     }
 
     private fun isBullet(line: String): Boolean {
@@ -994,7 +997,7 @@ object DebriefPdf {
         val innerW = CONTENT_W - 24
         val radio = layout(hit.radioLabel, innerW, 9f, muted = false, bold = true)
         val note = layout(hit.note, innerW, 9.5f, muted = false)
-        val foot = layout("Pattern match, not identity. Not a safety finding.", innerW, 8f, muted = true)
+        val foot = layout(UiText.report("Pattern match, not identity. Not a safety finding."), innerW, 8f, muted = true)
         val h = 22f + radio.height + 6f + note.height + 8f + foot.height + 12f
         return Block(h) { canvas, y ->
             val box = RectF(MARGIN - 6f, y, PAGE_W - MARGIN + 6f, y + h - 4f)
@@ -1009,7 +1012,7 @@ object DebriefPdf {
                 isAntiAlias = true
                 letterSpacing = 0.06f
             }
-            val label = "EXTRA ATTENTION  ·  ${hit.signature}".uppercase()
+            val label = UiText.report("EXTRA ATTENTION  ·  %1\$s").format(hit.signature).uppercase()
             canvas.drawText(label, MARGIN + 10f, y + 14f, kicker)
             var ty = y + 20f
             canvas.save()
@@ -1044,7 +1047,7 @@ object DebriefPdf {
                 typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
                 isAntiAlias = true
             }
-            canvas.drawText("TAKEAWAY", MARGIN + 10f, y + 14f, k)
+            canvas.drawText(UiText.report("TAKEAWAY"), MARGIN + 10f, y + 14f, k)
             canvas.save()
             canvas.translate(MARGIN + 10f, y + 20f)
             body.draw(canvas)
@@ -1082,7 +1085,7 @@ object DebriefPdf {
             textSize = 8f
             isAntiAlias = true
         }
-        canvas.drawText("Off Grid Pete LLC  ·  operationally sensitive", MARGIN, PAGE_H - 18f, f)
+        canvas.drawText(UiText.report("Off Grid Pete LLC  ·  operationally sensitive"), MARGIN, PAGE_H - 18f, f)
         val pn = "$page / $total"
         canvas.drawText(pn, PAGE_W - MARGIN - f.measureText(pn), PAGE_H - 18f, f)
     }

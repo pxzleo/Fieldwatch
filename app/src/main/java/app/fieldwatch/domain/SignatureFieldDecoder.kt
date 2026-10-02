@@ -28,6 +28,8 @@ data class LiveDecodeChip(
     val text: String,
     val emphasis: Boolean,
     val note: String = "",
+    val fleetId: String = "",
+    val fieldId: String = "",
 ) {
     /** Title-case for reports and the live chip. Catalog text is stored lowercase. */
     fun reportLabel(): String {
@@ -49,7 +51,8 @@ fun List<LiveDecodeChip>.reportLabels(): List<String> =
  * Not a matcher — [SignatureEngine.match] still decides the label.
  */
 object SignatureFieldDecoder {
-    private val cache = ConcurrentHashMap<String, List<DecodedFieldValue>>()
+    private data class CacheKey(val fleetId: String, val fleetName: String, val decode: FleetDecode, val hex: String)
+    private val cache = ConcurrentHashMap<CacheKey, List<DecodedFieldValue>>()
 
     fun decodeSighting(device: Sighting, fleets: List<Fleet>): List<DecodedFieldValue> {
         if (device.fleetIds.isEmpty()) return emptyList()
@@ -74,7 +77,7 @@ object SignatureFieldDecoder {
             if (!row.live) continue
             val text = row.display.trim()
             if (text.isEmpty() || !seen.add(text.lowercase())) continue
-            out += LiveDecodeChip(text, row.emphasis, row.note.trim())
+            out += LiveDecodeChip(text, row.emphasis, row.note.trim(), row.fleetId, row.id)
         }
         return out
     }
@@ -87,20 +90,13 @@ object SignatureFieldDecoder {
         val out = ArrayList<DecodedFieldValue>()
         val seen = HashSet<String>()
         for ((bytes, hex) in candidates) {
-            val key = cacheKey(fleet.id, decode, hex)
+            val key = CacheKey(fleet.id, fleet.name, decode, hex)
             val parsed = cache[key] ?: parse(fleet, decode, bytes).also { cache[key] = it }
             for (row in parsed) {
                 if (seen.add(row.id)) out += row
             }
         }
         return out
-    }
-
-    private fun cacheKey(fleetId: String, decode: FleetDecode, hex: String): String {
-        val fp = decode.fields.joinToString(",") {
-            "${it.id}:${it.offset}:${it.type}:${it.resolvedLength()}:${it.live}:${it.liveEmphasis}:${it.enumNotes}"
-        }
-        return "$fleetId|${decode.source}|$hex|$fp"
     }
 
     private fun payloads(decode: FleetDecode, device: Sighting): List<Pair<ByteArray, String>> {

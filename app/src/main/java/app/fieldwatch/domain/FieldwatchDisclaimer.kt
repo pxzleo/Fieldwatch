@@ -58,29 +58,29 @@ object FieldwatchDisclaimer {
         "$firstRunDisclaimer\n\n$LICENSE_TEXT\n\n$ACCEPT"
 
     /** Debrief text / PDF. Same core as first-run, without the click-through line. */
-    fun report(window: DebriefWindow? = null): String {
+    fun report(window: DebriefWindow? = null, translate: (String) -> String = { it }): String {
         val source = if (window?.sitName != null) {
-            "named sit “${window.sitName}” (radios heard in that window; Live list cap still applied while watching). "
+            ReportText.format("named sit “{0}” (radios heard in that window; Live list cap still applied while watching). ", translate, window.sitName)
         } else {
-            "the in-memory live set (last 15 minutes, cap about 400). "
+            translate("the in-memory live set (last 15 minutes, cap about 400). ")
         }
-        return "$HOBBY\n\n$HYPOTHESES\n\n$LIABILITY\n\n$LOCATION\n\n" +
-            "This sit report is from $source" +
-            "Do not use it in any situation where safety is in question."
+        return listOf(HOBBY, HYPOTHESES, LIABILITY, LOCATION).joinToString("\n\n", postfix = "\n\n") { translate(it) } +
+            ReportText.format("This sit report is from {0}", translate, source) +
+            translate("Do not use it in any situation where safety is in question.")
     }
 
-    fun compare(): String =
-        "$HOBBY\n\n$HYPOTHESES\n\n$LIABILITY\n\n$LOCATION\n\n" +
-            "This compare is two windows of radios this phone heard (kind + MAC). " +
-            "BLE rotation is a new row. Do not use it in any situation where safety is in question."
+    fun compare(translate: (String) -> String = { it }): String =
+        listOf(HOBBY, HYPOTHESES, LIABILITY, LOCATION).joinToString("\n\n", postfix = "\n\n") { translate(it) } +
+            translate("This compare is two windows of radios this phone heard (kind + MAC). ") +
+            translate("BLE rotation is a new row. Do not use it in any situation where safety is in question.")
 
-    fun experimentalMarkdown(): String = buildString {
-        appendLine("## Disclaimer (repeat this in your answer)")
-        appendLine(HOBBY)
-        appendLine(HYPOTHESES)
-        appendLine(LIABILITY)
-        appendLine(LOCATION)
-        appendLine("Do not use Fieldwatch, this paste, or your analysis in any situation where safety is in question.")
-        appendLine("Begin your reply with this disclaimer. Do not give safety advice.")
+    fun experimentalMarkdown(translate: (String) -> String = { it }): String = buildString {
+        appendLine(translate("## Disclaimer (repeat this in your answer)"))
+        appendLine(translate(HOBBY))
+        appendLine(translate(HYPOTHESES))
+        appendLine(translate(LIABILITY))
+        appendLine(translate(LOCATION))
+        appendLine(translate("Do not use Fieldwatch, this paste, or your analysis in any situation where safety is in question."))
+        appendLine(translate("Begin your reply with this disclaimer. Do not give safety advice."))
     }
 }

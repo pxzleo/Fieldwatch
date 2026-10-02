@@ -405,7 +405,7 @@ private fun ClassOutlineView(
                     subtitle = when {
                         slice.radios.isEmpty() -> null
                         slice.kind == null -> UiText.text(R.string.ui_no_signature)
-                        slice.signatures.size == 1 -> vm.fleetName(slice.signatures.first().fleetId)
+                        slice.signatures.size == 1 -> vm.fleetUiName(slice.signatures.first().fleetId)
                         else -> UiText.text(R.string.ui_value_signatures, (slice.signatures.size).toString())
                     },
                     accent = slice.accent(vm).nightIf(LocalNightMode.current),
@@ -432,7 +432,7 @@ private fun ClassOutlineView(
                     val sigKey = "${slice.id}/${sig.fleetId}"
                     item(key = "sig-$sigKey") {
                         OutlineGroupRow(
-                            title = vm.fleetName(sig.fleetId),
+                            title = vm.fleetUiName(sig.fleetId),
                             count = sig.radios.size,
                             subtitle = null,
                             accent = Color(Palette.color(vm.fleetColor(sig.fleetId)))
@@ -863,7 +863,7 @@ private fun RadarView(
                 }
                 val rad = if (named) 11f else 7f
                 val label = when {
-                    showFleet && named -> device.fleetIds.firstOrNull()?.let { vm.fleetName(it) }?.take(14)
+                    showFleet && named -> device.fleetIds.firstOrNull()?.let { vm.fleetUiName(it) }?.take(14)
                         ?: MacUtil.redactMacIn(device.rowTitle(vm), device.mac, demoMode).take(14)
                     named -> MacUtil.redactMacIn(device.rowTitle(vm), device.mac, demoMode).take(14)
                     devices.size <= 24 -> MacUtil.redactMacIn(device.rowTitle(vm), device.mac, demoMode).take(12)
@@ -1323,8 +1323,8 @@ private fun FleetNameChips(
                     horizontalArrangement = Arrangement.spacedBy(3.dp),
                 ) {
                     Text(
-                        if (id == FastPair.FLEET_ID) FastPair.liveLabel(device.fastPairPairing)
-                        else vm.fleetName(id),
+                        if (id == FastPair.FLEET_ID && device.fastPairPairing) UiText.text(R.string.detail_fast_pair_pairing)
+                        else vm.fleetUiName(id),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         style = TextStyle(
@@ -1354,7 +1354,7 @@ private fun FleetNameChips(
                 color = color.copy(alpha = if (chip.emphasis) 0.42f else 0.18f),
             ) {
                 Text(
-                    chip.reportLabel(),
+                    vm.liveDecodeUiLabel(device, chip),
                     modifier = Modifier.padding(horizontal = 5.dp, vertical = 0.dp),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

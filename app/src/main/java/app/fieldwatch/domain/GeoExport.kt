@@ -55,11 +55,12 @@ object GeoExport {
         customNames: Map<String, String> = emptyMap(),
         observerNotes: Map<String, String> = emptyMap(),
         track: List<GpsSample> = emptyList(),
+        translate: (String) -> String = { it },
     ): String {
         val pins = radios.filter { it.hasPosition }.sortedBy { it.firstSeen }
         return when (format) {
-            Format.GPX -> gpx(pins, names, appVersion, onProgress, customNames, observerNotes, track)
-            Format.KML -> kml(pins, names, appVersion, onProgress, customNames, observerNotes, track)
+            Format.GPX -> gpx(pins, names, appVersion, onProgress, customNames, observerNotes, track, translate)
+            Format.KML -> kml(pins, names, appVersion, onProgress, customNames, observerNotes, track, translate)
             Format.WIGLE -> wigleCsv(pins, appVersion, deviceInfo, onProgress)
         }
     }
@@ -75,6 +76,7 @@ object GeoExport {
         customNames: Map<String, String>,
         observerNotes: Map<String, String>,
         track: List<GpsSample>,
+        translate: (String) -> String,
     ): String = buildString {
         append("""<?xml version="1.0" encoding="UTF-8"?>""").append('\n')
         append("""<gpx version="1.1" creator="Fieldwatch ${xml(appVersion)}"""")
@@ -83,8 +85,8 @@ object GeoExport {
         radios.forEachIndexed { i, r ->
             append("""  <wpt lat="${coord(r.latitude!!)}" lon="${coord(r.longitude!!)}">""").append('\n')
             append("    <time>${iso(r.lastSeen)}</time>\n")
-            append("    <name>${xml(pinName(r, customNames))}</name>\n")
-            append("    <desc>${xml(pinDesc(r, names, observerNotes))}</desc>\n")
+            append("    <name>${xml(pinName(r, customNames, translate))}</name>\n")
+            append("    <desc>${xml(pinDesc(r, names, observerNotes, translate))}</desc>\n")
             append("    <type>${r.kind.name}</type>\n")
             append("  </wpt>\n")
             val done = i + 1
@@ -92,7 +94,7 @@ object GeoExport {
         }
         if (n == 0) onProgress(0, 0)
         if (track.size >= 2) {
-            append("  <trk>\n    <name>Operator path</name>\n    <trkseg>\n")
+            append("  <trk>\n    <name>${xml(translate("Operator path"))}</name>\n    <trkseg>\n")
             track.forEach { s ->
                 append("""      <trkpt lat="${coord(s.lat)}" lon="${coord(s.lon)}">""")
                 append("<time>${iso(s.at)}</time></trkpt>\n")
@@ -110,15 +112,16 @@ object GeoExport {
         customNames: Map<String, String>,
         observerNotes: Map<String, String>,
         track: List<GpsSample>,
+        translate: (String) -> String,
     ): String = buildString {
         append("""<?xml version="1.0" encoding="UTF-8"?>""").append('\n')
         append("""<kml xmlns="http://www.opengis.net/kml/2.2"><Document>""").append('\n')
-        append("  <name>Fieldwatch ${xml(appVersion)} export</name>\n")
+        append("  <name>${xml(translate("Fieldwatch %1\$s export").format(appVersion))}</name>\n")
         val n = radios.size
         radios.forEachIndexed { i, r ->
             append("  <Placemark>\n")
-            append("    <name>${xml(pinName(r, customNames))}</name>\n")
-            append("    <description>${xml(pinDesc(r, names, observerNotes))}</description>\n")
+            append("    <name>${xml(pinName(r, customNames, translate))}</name>\n")
+            append("    <description>${xml(pinDesc(r, names, observerNotes, translate))}</description>\n")
             append("    <TimeStamp><when>${iso(r.lastSeen)}</when></TimeStamp>\n")
             append("    <Point><coordinates>${coord(r.longitude!!)},${coord(r.latitude!!)}</coordinates></Point>\n")
             append("  </Placemark>\n")
@@ -127,7 +130,7 @@ object GeoExport {
         }
         if (n == 0) onProgress(0, 0)
         if (track.size >= 2) {
-            append("  <Placemark>\n    <name>Operator path</name>\n    <LineString><coordinates>")
+            append("  <Placemark>\n    <name>${xml(translate("Operator path"))}</name>\n    <LineString><coordinates>")
             append(track.joinToString(" ") { "${coord(it.lon)},${coord(it.lat)}" })
             append("</coordinates></LineString>\n  </Placemark>\n")
         }
@@ -169,11 +172,11 @@ object GeoExport {
         if (n == 0) onProgress(0, 0)
     }
 
-    private fun pinName(r: LogRadio, customNames: Map<String, String> = emptyMap()): String {
+    private fun pinName(r: LogRadio, customNames: Map<String, String> = emptyMap(), translate: (String) -> String = { it }): String {
         val custom = customNames[r.key]?.trim()
         if (!custom.isNullOrEmpty()) return custom
         return when {
-            r.hiddenSsid -> "<hidden>"
+            r.hiddenSsid -> translate("<hidden>")
             r.name.isBlank() || r.name.equals(r.mac, ignoreCase = true) -> r.mac
             else -> r.name
         }
@@ -183,15 +186,16 @@ object GeoExport {
         r: LogRadio,
         names: Map<String, List<String>>,
         observerNotes: Map<String, String> = emptyMap(),
+        translate: (String) -> String = { it },
     ): String =
         buildList {
             add("${r.kind.name} ${r.mac}")
             r.vendor?.takeIf { it.isNotBlank() }?.let { add(it) }
             names[r.key]?.takeIf { it.isNotEmpty() }?.let { add(it.joinToString(", ")) }
             add("${r.rssi} dBm")
-            if (r.channel != 0) add("ch ${r.channel}")
-            observerNotes[r.key]?.trim()?.takeIf { it.isNotEmpty() }?.let { add("Observer: $it") }
-            add("Heard at this phone. Not a radio fix.")
+            if (r.channel != 0) add(translate("ch %1\$s").format(r.channel))
+            observerNotes[r.key]?.trim()?.takeIf { it.isNotEmpty() }?.let { add(translate("Observer: %1\$s").format(it)) }
+            add(translate("Heard at this phone. Not a radio fix."))
         }.joinToString(" · ")
 
     private fun xml(s: String): String = buildString(s.length) {

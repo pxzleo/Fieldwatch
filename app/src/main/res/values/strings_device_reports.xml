@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_report_intensity_saver">saver</string>
+    <string name="device_report_intensity_balanced">balanced</string>
+    <string name="device_report_intensity_performance">performance</string>
+    <string name="device_report_1" formatted="false">&quot;Fieldwatch device detail\n&quot;</string>
+    <string name="device_report_2" formatted="false">&quot;Experimental. Not a legal identity. Stock Android radios — this is what the OS exposed, not a guarantee a tracker or camera is present.\n&quot;</string>
+    <string name="device_report_3" formatted="false">&quot;Advertised name&quot;</string>
+    <string name="device_report_4" formatted="false">&quot;What this looks like: &quot;</string>
+    <string name="device_report_5" formatted="false">&quot;EXTRA ATTENTION (%1$s): &quot;</string>
+    <string name="device_report_6" formatted="false">&quot;Pattern match, not identity. Not a safety finding.\n&quot;</string>
+    <string name="device_report_7" formatted="false">&quot;Extra attention&quot;</string>
+    <string name="device_report_8" formatted="false">&quot;Notes&quot;</string>
+    <string name="device_report_9" formatted="false">&quot;Identity&quot;</string>
+    <string name="device_report_10" formatted="false">&quot;Radio&quot;</string>
+    <string name="device_report_11" formatted="false">&quot;Wi-Fi access point (beaconing a network)&quot;</string>
+    <string name="device_report_12" formatted="false">&quot;Bluetooth Low Energy advertiser&quot;</string>
+    <string name="device_report_13" formatted="false">&quot;Address&quot;</string>
+    <string name="device_report_14" formatted="false">&quot;Who made it&quot;</string>
+    <string name="device_report_15" formatted="false">&quot;OUI (vendor prefix)&quot;</string>
+    <string name="device_report_16" formatted="false">&quot;%1$s — no IEEE match; randomized addresses usually have none&quot;</string>
+    <string name="device_report_17" formatted="false">&quot;Network name (SSID)&quot;</string>
+    <string name="device_report_18" formatted="false">&quot;Hidden — the AP is beaconing but not publishing a name&quot;</string>
+    <string name="device_report_19" formatted="false">&quot;Signal&quot;</string>
+    <string name="device_report_20" formatted="false">&quot;How loud here (RSSI)&quot;</string>
+    <string name="device_report_21" formatted="false">&quot;Last heard&quot;</string>
+    <string name="device_report_22" formatted="false">&quot;Closer to 0 dBm is louder here, not a distance.\n&quot;</string>
+    <string name="device_report_23" formatted="false">&quot;Heard range this session&quot;</string>
+    <string name="device_report_24" formatted="false">&quot;Claimed transmit power&quot;</string>
+    <string name="device_report_25" formatted="false">&quot;%1$s dBm — how loud it says it transmits, not a distance&quot;</string>
+    <string name="device_report_26" formatted="false">&quot;Channel / frequency&quot;</string>
+    <string name="device_report_27" formatted="false">&quot;channel %1$s&quot;</string>
+    <string name="device_report_28" formatted="false">&quot;  ·  %1$s wide&quot;</string>
+    <string name="device_report_29" formatted="false">&quot;Wi-Fi generation&quot;</string>
+    <string name="device_report_30" formatted="false">&quot;Center frequencies&quot;</string>
+    <string name="device_report_31" formatted="false">&quot;Recent RSSI (oldest → newest)&quot;</string>
+    <string name="device_report_32" formatted="false">&quot;Bluetooth advertisement&quot;</string>
+    <string name="device_report_33" formatted="false">&quot;Radio PHY&quot;</string>
+    <string name="device_report_34" formatted="false">&quot;Connectable&quot;</string>
+    <string name="device_report_35" formatted="false">&quot;Yes — a phone could open a BLE connection&quot;</string>
+    <string name="device_report_36" formatted="false">&quot;No — broadcast-only (you can hear it, not join it from this scan)&quot;</string>
+    <string name="device_report_37" formatted="false">&quot;How often it advertises&quot;</string>
+    <string name="device_report_38" formatted="false">&quot;%.0f ms between bursts (smaller = chattier on the air)&quot;</string>
+    <string name="device_report_39" formatted="false">&quot;Periodic advertising&quot;</string>
+    <string name="device_report_40" formatted="false">&quot;Discoverability&quot;</string>
+    <string name="device_report_41" formatted="false">&quot;Flags (raw)&quot;</string>
+    <string name="device_report_42" formatted="false">&quot;What it says it is (Appearance)&quot;</string>
+    <string name="device_report_43" formatted="false">&quot;Unlisted Appearance 0x%04X&quot;</string>
+    <string name="device_report_44" formatted="false">&quot;Appearance code&quot;</string>
+    <string name="device_report_45" formatted="false">&quot;Classic Bluetooth class&quot;</string>
+    <string name="device_report_46" formatted="false">&quot;. Also offers: &quot;</string>
+    <string name="device_report_47" formatted="false">&quot;Wi-Fi access point&quot;</string>
+    <string name="device_report_48" formatted="false">&quot;Encryption / login&quot;</string>
+    <string name="device_report_49" formatted="false">&quot;Security string&quot;</string>
+    <string name="device_report_50" formatted="false">&quot;Supported rates&quot;</string>
+    <string name="device_report_51" formatted="false">&quot;%1$s Mbps  (* = required basic rate)&quot;</string>
+    <string name="device_report_52" formatted="false">&quot;Capability string&quot;</string>
+    <string name="device_report_53" formatted="false">&quot;Decoded fields&quot;</string>
+    <string name="device_report_54" formatted="false">&quot;Note&quot;</string>
+    <string name="device_report_55" formatted="false">&quot;Services it offers&quot;</string>
+    <string name="device_report_56" formatted="false">&quot;Service IDs&quot;</string>
+    <string name="device_report_57" formatted="false">&quot;Service data %1$s%2$s&quot;</string>
+    <string name="device_report_58" formatted="false">&quot;(empty)&quot;</string>
+    <string name="device_report_59" formatted="false">&quot;Maker data inside the ad&quot;</string>
+    <string name="device_report_60" formatted="false">&quot;Not in the Bluetooth company list&quot;</string>
+    <string name="device_report_61" formatted="false">&quot;Bluetooth company 0x%04X&quot;</string>
+    <string name="device_report_62" formatted="false">&quot;Raw payload (%1$s bytes)&quot;</string>
+    <string name="device_report_63" formatted="false">&quot;Wi-Fi vendor tags&quot;</string>
+    <string name="device_report_64" formatted="false">&quot; type %d&quot;</string>
+    <string name="device_report_65" formatted="false">&quot;Vendor OUI %1$s%2$s&quot;</string>
+    <string name="device_report_66" formatted="false">&quot;Unknown IEEE OUI&quot;</string>
+    <string name="device_report_67" formatted="false">&quot; — extra AP information element, not the SSID.&quot;</string>
+    <string name="device_report_68" formatted="false">&quot;Session&quot;</string>
+    <string name="device_report_69" formatted="false">&quot;First seen&quot;</string>
+    <string name="device_report_70" formatted="false">&quot;Last seen&quot;</string>
+    <string name="device_report_71" formatted="false">&quot;Hits&quot;</string>
+    <string name="device_report_72" formatted="false">&quot;Last fix&quot;</string>
+    <string name="device_report_73" formatted="false">&quot;Last fix is the phone’s GPS at hear-time, not a fix on this radio.\n&quot;</string>
+    <string name="device_report_74" formatted="false">&quot;Matched signatures&quot;</string>
+    <string name="device_report_75" formatted="false">&quot;Raw advertisement&quot;</string>
+    <string name="device_report_76" formatted="false">&quot;Presence (15 min)&quot;</string>
+    <string name="device_report_77" formatted="false">&quot;IEEE board/chip vendor: %1$s (%2$s). This is who owns the MAC prefix, not always the product brand.&quot;</string>
+    <string name="device_report_78" formatted="false">&quot;Bluetooth company in the ad: %1$s (0x%2$04X).&quot;</string>
+    <string name="device_report_79" formatted="false">&quot;unlisted&quot;</string>
+    <string name="device_report_80" formatted="false">&quot;now&quot;</string>
+    <string name="device_report_81" formatted="false">&quot;Operator path&quot;</string>
+    <string name="device_report_82" formatted="false">&quot;Fieldwatch %1$s export&quot;</string>
+    <string name="device_report_83" formatted="false">&quot;ch %1$s&quot;</string>
+    <string name="device_report_84" formatted="false">&quot;Observer: %1$s&quot;</string>
+    <string name="device_report_85" formatted="false">&quot;Heard at this phone. Not a radio fix.&quot;</string>
+    <string name="device_report_86" formatted="false">&quot;You are a field RF / privacy analyst with deep knowledge of IEEE OUI, Bluetooth SIG assigned numbers, GAP Appearance, known advertisement formats (iBeacon, Eddystone, Apple Continuity / Find My, Google Fast Pair, Microsoft), and common consumer products.&quot;</string>
+    <string name="device_report_87" formatted="false">&quot;The user wants **as much information as possible** about **this one radio** from a Fieldwatch observation. Fieldwatch is a stock-Android, receive-only Wi-Fi + BLE listener. Use the dump below **and** your public knowledge of registries and formats. Cite which field or byte pattern supports each claim.&quot;</string>
+    <string name="device_report_88" formatted="false">&quot;Constraints you must respect:&quot;</string>
+    <string name="device_report_89" formatted="false">&quot;- This is **one** advertised radio, not a person, vehicle, or legal identity.&quot;</string>
+    <string name="device_report_90" formatted="false">&quot;- Wi-Fi rows are **access points only**. Associated clients are invisible. Stock Android cannot promiscuously capture stations or probe requests.&quot;</string>
+    <string name="device_report_91" formatted="false">&quot;- BLE rows are advertisers. Randomized MACs are not stable identities and will not stitch across rotations.&quot;</string>
+    <string name="device_report_92" formatted="false">&quot;- Signature / OUI / company / UUID matches are **hypotheses**, not proof of a serial, owner, or that a tracker is present.&quot;</string>
+    <string name="device_report_93" formatted="false">&quot;- GPS stamps (if present) are the **operator phone** at hear-time, not this radio’s location.&quot;</string>
+    <string name="device_report_94" formatted="false">&quot;- Place names (if present) are system reverse-geocode of those stamps. Approximate.&quot;</string>
+    <string name="device_report_95" formatted="false">&quot;- RSSI is loudness at the phone, not a measured distance.&quot;</string>
+    <string name="device_report_96" formatted="false">&quot;- Do not invent fields that are not in the dump. If data is thin, say so and say what would help.&quot;</string>
+    <string name="device_report_97" formatted="false">&quot;- Do not claim this radio is following anyone. Do not give safety advice.&quot;</string>
+    <string name="device_report_98" formatted="false">&quot;- Treat this paste as operationally sensitive (MAC, SSID, payload, GPS).&quot;</string>
+    <string name="device_report_99" formatted="false">&quot;## Collection context&quot;</string>
+    <string name="device_report_100" formatted="false">&quot;- Tool: Fieldwatch (app.fieldwatch), receive-only, no association / injection / cloud.&quot;</string>
+    <string name="device_report_101" formatted="false">&quot;## Places (operator GPS, optional)&quot;</string>
+    <string name="device_report_102" formatted="false">&quot;## Observation dump (verbatim from the detail page)&quot;</string>
+    <string name="device_report_103" formatted="false">&quot;## Your analysis (required sections)&quot;</string>
+    <string name="device_report_104" formatted="false">&quot;1. **What it likely is** — Product class, likely brand/family, possible model. Confidence 0–100. Hedge (Most likely / Probably / Could be). List the evidence (name, OUI, company ID, Appearance, services, payload). Competing hypotheses if the data fits more than one product.&quot;</string>
+    <string name="device_report_105" formatted="false">&quot;2. **Registry / format decode** — IEEE OUI or CID; Bluetooth SIG company; GAP Appearance; 16-bit UUIDs; iBeacon UUID/major/minor if present; Fast Pair model ID if present; Apple Continuity type if present. Quote the hex you used. If you recognize a well-known UUID or company from public lists, say so and say the list.&quot;</string>
+    <string name="device_report_106" formatted="false">&quot;3. **What that product typically does** — Phone, tag, speaker, car, AP, camera, mesh node, accessory, etc. Typical radio behavior (always-on beacon vs intermittent).&quot;</string>
+    <string name="device_report_107" formatted="false">&quot;4. **What Fieldwatch actually saw vs what it cannot see** — Stock Android limits (no station/probe capture, no cellular, no DF). Randomized address implications.&quot;</string>
+    <string name="device_report_108" formatted="false">&quot;5. **Signal and presence** — Loud/quiet here; RSSI range this session; on-air windows. Do not convert RSSI to meters.&quot;</string>
+    <string name="device_report_109" formatted="false">&quot;6. **Signature match** — If Fieldwatch matched a signature, treat it as a filter hit, not identity. Say whether the payload also supports that family. If Notes are in the dump, use them as catalog context for that family. If Extra attention is in the dump, quote it and treat it as an operator caution on a pattern, not proof — separate from Notes.&quot;</string>
+    <string name="device_report_110" formatted="false">&quot;7. **Open questions** — What extra observation (another packet, name, GPS path, a second radio) would raise or lower confidence.&quot;</string>
+    <string name="device_report_111" formatted="false">&quot;8. **Must not conclude** — One short list of claims the dump does **not** support (owner, following, legal ID, distance).&quot;</string>
+    <string name="device_report_112" formatted="false">&quot;End with a single one-line **takeaway** (what this radio most likely is, and one thing to check next). No safety advice.&quot;</string>
+    <string name="device_report_113" formatted="false">&quot;- Subject: %1$s titled “%2$s”.&quot;</string>
+    <string name="device_report_114" formatted="false">&quot;- Scan intensity: %1$s. Stale after %2$ss. Brief hold %3$ss.&quot;</string>
+    <string name="device_report_115" formatted="false">&quot;- Location tags: %1$s.&quot;</string>
+    <string name="device_report_116" formatted="false">&quot;- Online place names: %1$s.&quot;</string>
+    <string name="device_report_117" formatted="false">&quot;- Randomized MAC flag: %1$s.&quot;</string>
+    <string name="device_report_118" formatted="false">&quot;- Hits this session: %1$s. Gone: %2$s.&quot;</string>
+    <string name="device_report_119" formatted="false">&quot;- Operator GPS trail samples on this radio: %1$s (phone path while it was heard).&quot;</string>
+    <string name="device_report_120" formatted="false">&quot;on&quot;</string>
+    <string name="device_report_121" formatted="false">&quot;off&quot;</string>
+    <string name="device_report_122" formatted="false">&quot;yes&quot;</string>
+    <string name="device_report_123" formatted="false">&quot;no&quot;</string>
+    <string name="device_report_124" formatted="false">&quot;true&quot;</string>
+    <string name="device_report_125" formatted="false">&quot;false&quot;</string>
+    <string name="device_report_129" formatted="false">&quot;Not available&quot;</string>
+</resources>

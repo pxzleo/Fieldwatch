@@ -6,6 +6,7 @@ import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import app.fieldwatch.domain.ReportText
 import app.fieldwatch.domain.DebriefPlaces
 import app.fieldwatch.domain.GpsSample
 import app.fieldwatch.domain.Sighting
@@ -37,10 +38,11 @@ object PlaceLookup {
         path: List<GpsSample>,
         devices: List<Sighting>,
         now: Long = System.currentTimeMillis(),
+        translate: (String) -> String = { it },
         onProgress: ((String) -> Unit)? = null,
     ): DebriefPlaces = withContext(Dispatchers.IO) {
-        runCatching { lookupInner(context, path, devices, now, onProgress) }
-            .getOrElse { DebriefPlaces(attempted = true, available = false, note = "Online lookup failed silently. Coordinates only.") }
+        runCatching { lookupInner(context, path, devices, now, translate, onProgress) }
+            .getOrElse { DebriefPlaces(attempted = true, available = false, note = translate("Online lookup failed silently. Coordinates only.")) }
     }
 
     private suspend fun lookupInner(
@@ -48,40 +50,41 @@ object PlaceLookup {
         path: List<GpsSample>,
         devices: List<Sighting>,
         now: Long,
+        translate: (String) -> String,
         onProgress: ((String) -> Unit)?,
     ): DebriefPlaces {
         if (!online(context)) {
             return DebriefPlaces(
                 attempted = true,
                 available = false,
-                note = "Online lookup skipped: no working internet. Coordinates only.",
+                note = translate("Online lookup skipped: no working internet. Coordinates only."),
             )
         }
         if (!Geocoder.isPresent()) {
             return DebriefPlaces(
                 attempted = true,
                 available = false,
-                note = "Online lookup skipped: this phone has no system geocoder (needs Google Play / network location). Coordinates only.",
+                note = translate("Online lookup skipped: this phone has no system geocoder (needs Google Play / network location). Coordinates only."),
             )
         }
-        val fixes = collect(path, devices, now)
+        val fixes = collect(path, devices, now, translate = translate)
         if (fixes.isEmpty()) {
             return DebriefPlaces(
                 attempted = true,
                 available = true,
-                note = "Online lookup on, but this sit had no GPS stamps to name.",
+                note = translate("Online lookup on, but this sit had no GPS stamps to name."),
             )
         }
         val geocoder = Geocoder(context, Locale.getDefault())
         val cache = LinkedHashMap<String, String>()
         val lines = ArrayList<String>(fixes.size)
         for ((i, fix) in fixes.withIndex()) {
-            onProgress?.invoke("Looking up place names (${i + 1} of ${fixes.size})…")
+            onProgress?.invoke(translate("Looking up place names (%1\$s of %2\$s)…").format(i + 1, fixes.size))
             val key = app.fieldwatch.domain.Geo.cellKey(fix.lat, fix.lon)
             val name = cache[key] ?: reverse(geocoder, fix.lat, fix.lon)?.also { cache[key] = it }
             val coord = "%.5f, %.5f".format(Locale.US, fix.lat, fix.lon)
             lines += if (name.isNullOrBlank()) {
-                "  · ${fix.label}  $coord  (no name returned)"
+                ReportText.format("  · {0}  {1}  (no name returned)", translate, fix.label, coord)
             } else {
                 "  · ${fix.label}  $name  ($coord)"
             }
@@ -91,16 +94,16 @@ object PlaceLookup {
             attempted = true,
             available = named > 0,
             note = if (named > 0) {
-                "Online lookup: system geocoder named $named distinct GPS cell(s). Street names are from the phone’s network geocoder, not a Fieldwatch cloud. Approximate."
+                ReportText.format("Online lookup: system geocoder named {0} distinct GPS cell(s). Street names are from the phone’s network geocoder, not a Fieldwatch cloud. Approximate.", translate, named)
             } else {
-                "Online lookup ran, but the system geocoder returned no street names. Coordinates only."
+                translate("Online lookup ran, but the system geocoder returned no street names. Coordinates only.")
             },
             lines = lines,
             namesByCell = cache.toMap(),
         )
     }
 
-    fun collect(path: List<GpsSample>, devices: List<Sighting>, now: Long = System.currentTimeMillis()): List<Fix> {
+    fun collect(path: List<GpsSample>, devices: List<Sighting>, now: Long = System.currentTimeMillis(), translate: (String) -> String = { it }): List<Fix> {
         val out = ArrayList<Fix>(8)
         val seen = HashSet<String>()
         fun add(label: String, lat: Double, lon: Double) {
@@ -114,15 +117,15 @@ object PlaceLookup {
         legs.forEach { leg ->
             if (leg.stay) {
                 stayN++
-                add("Stay $stayN", leg.lat, leg.lon)
+                add(ReportText.format("Stay {0}", translate, stayN), leg.lat, leg.lon)
             } else {
-                add("Transit from", leg.lat, leg.lon)
-                add("Transit to", leg.endLat, leg.endLon)
+                add(translate("Transit from"), leg.lat, leg.lon)
+                add(translate("Transit to"), leg.endLat, leg.endLon)
             }
         }
         if (out.isEmpty() && path.isNotEmpty()) {
-            add("Path start", path.first().lat, path.first().lon)
-            if (path.size > 1) add("Path end", path.last().lat, path.last().lon)
+            add(translate("Path start"), path.first().lat, path.first().lon)
+            if (path.size > 1) add(translate("Path end"), path.last().lat, path.last().lon)
         }
         if (out.size < 8) {
             devices.filter { it.gpsTrail.isNotEmpty() && it.rssi >= -70 }

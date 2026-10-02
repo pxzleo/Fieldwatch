@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_disclaimer" formatted="false">"免责声明"</string>
+    <string name="report_takeaway_0" formatted="false">"要点：{0}"</string>
+    <string name="report_mac_tails_and_gps_coordinates_masked_logs_on_the_phone_are_unchan" formatted="false">"MAC 尾部（**:**:**）和 GPS 坐标已隐藏。手机上的日志保持原样。"</string>
+    <string name="report_privacy" formatted="false">"隐私"</string>
+    <string name="report_heard_0_ap_s_1_hidden_ssid_2_sat_most_of_the_window" formatted="false">"听到 {0} 个接入点；{1} 个隐藏 SSID；{2} 个在大部分观察时间内持续出现。"</string>
+    <string name="report_channel_occupancy" formatted="false">"信道占用："</string>
+    <string name="report_unknown" formatted="false">"未知"</string>
+    <string name="report_ch_0" formatted="false">"信道 {0}"</string>
+    <string name="report_0_1_ap_s_strongest_2_dbm" formatted="false">"  {0} — {1} 个接入点，最强信号 {2} dBm"</string>
+    <string name="report_loudest_aps" formatted="false">"信号最强的接入点："</string>
+    <string name="report_extra_attention_0_1" formatted="false">"    特别关注（{0}）：{1}"</string>
+    <string name="report_hidden_ssids" formatted="false">"隐藏 SSID："</string>
+    <string name="report_0_1_2_dbm_ch_3" formatted="false">"  · {0}  {1}  {2} dBm  信道 {3}"</string>
+    <string name="report_heard_0_advertiser_s_1_with_randomized_addresses_2_signature_matc" formatted="false">"听到 {0} 个广播设备；{1} 个使用随机地址；{2} 个匹配特征。"</string>
+    <string name="report_unmatched_rotating_ble_omitted_from_lists_0_counts_include_them_s" formatted="false">"列表省略了未匹配的轮换地址 BLE（{0} 个）。统计仍包含它们；监测记录导出包含所有无线设备。"</string>
+    <string name="report_notable_ble" formatted="false">"值得留意的 BLE："</string>
+    <string name="report_none_in_this_window" formatted="false">"本观察时段内没有。"</string>
+    <string name="report_0_1_2_dbm" formatted="false">"  · {0}  {1}  {2} dBm"</string>
+    <string name="report_extra_attention_0_1_18" formatted="false">"  特别关注（{0}）：{1}"</string>
+    <string name="report_sat_most_of_this_window_0" formatted="false">"在大部分观察时间内持续出现：{0}"</string>
+    <string name="report_0_1_dwell_2" formatted="false">"  · {0}  {1}  持续 {2}"</string>
+    <string name="report_none" formatted="false">"  · 无。"</string>
+    <string name="report_first_seen_in_this_window_0_loudest_8_below" formatted="false">"本观察时段内首次出现：{0}（下列为信号最强的 8 个）"</string>
+    <string name="report_no_extra_flags_signature_hits_extra_attention_and_tracking_callou" formatted="false">"没有额外标记。特征命中、特别关注和同行提示已涵盖已知的模式匹配。"</string>
+    <string name="report_gps_tagging_off_no_path" formatted="false">"GPS 标记关闭 — 没有路径"</string>
+    <string name="report_gps_tagging_on_fewer_than_2_fixes_in_this_window" formatted="false">"GPS 标记开启，本观察时段内定位少于 2 次"</string>
+    <string name="report_traveled_0_along_path_span_1_2_fixes" formatted="false">"沿路径移动 {0} · 跨度 {1} · {2} 次定位"</string>
+    <string name="report_off" formatted="false">"关闭"</string>
+    <string name="report_executive_summary" formatted="false">"监测概览"</string>
+    <string name="report_where_you_were" formatted="false">"你的位置"</string>
+    <string name="report_aircraft" formatted="false">"飞行器"</string>
+    <string name="report_observer_notes" formatted="false">"观察备注"</string>
+    <string name="report_tracking_assessment" formatted="false">"同行评估"</string>
+    <string name="report_possible_trackers_with_you" formatted="false">"可能全程同行的追踪设备"</string>
+    <string name="report_finder_tags_airtag_find_my_smarttag_tile_chipolo_pebblebee_and_lo" formatted="false">"查找标签（AirTag / Find My、SmartTag、Tile、Chipolo、Pebblebee）和信号强的随身 Apple BLE。"</string>
+    <string name="report_these_radios_stayed_with_your_gps_path_for_this_sit" formatted="false">"这些无线设备在本监测期间持续沿你的 GPS 路径出现。"</string>
+    <string name="report_fieldwatch_cannot_tell_your_own_tag_or_phone_from_a_tracker_plant" formatted="false">"Fieldwatch 无法区分自己的标签或手机，与开始监测前被放入车内、包中或身上的追踪设备。"</string>
+    <string name="report_account_for_each_mac_not_a_finding_and_not_identity" formatted="false">"逐一确认各 MAC 对应的设备。这不是调查结论，也不能确认身份。"</string>
+    <string name="report_possible_tail" formatted="false">"可能的尾随"</string>
+    <string name="report_finder_tags_that_were_not_heard_when_this_sit_started_then_stayed" formatted="false">"本监测开始时未听到、之后持续沿路径出现的查找标签。"</string>
+    <string name="report_that_can_mean_someone_started_following_you_their_phone_or_tag_or" formatted="false">"可能有人中途开始同行（携带手机或标签），也可能是途中新增了设备。"</string>
+    <string name="report_not_a_finding_and_not_identity" formatted="false">"这不是调查结论，也不能确认身份。"</string>
+    <string name="report_retail_beacons_with_you" formatted="false">"同行的零售信标"</string>
+    <string name="report_ibeacon_minew_estimote_kontakt_io_target_atrius_basket_radios_tha" formatted="false">"沿你的 GPS 路径持续出现的 iBeacon / Minew / Estimote / Kontakt.io / Target Atrius 购物篮无线设备。"</string>
+    <string name="report_location_beacons_are_usually_fixtures_in_a_store_or_venue_they_do" formatted="false">"定位信标通常固定在商店或场馆中，一般不会随你移动。"</string>
+    <string name="report_if_one_did_account_for_it_a_target_basket_you_pushed_your_own_tes" formatted="false">"如有同行信标，应确认是否为推行的 Target 购物篮、自有测试标签、工牌，或较短路径仍与固定设备的覆盖范围重叠。"</string>
+    <string name="report_not_the_same_as_a_find_my_tail_not_a_finding_and_not_identity" formatted="false">"这与 Find My 标签尾随不同。这不是调查结论，也不能确认身份。"</string>
+    <string name="report_wearables_with_you" formatted="false">"同行的可穿戴设备"</string>
+    <string name="report_garmin_fitbit_oura_radios_that_stayed_with_your_gps_path" formatted="false">"沿你的 GPS 路径持续出现的 Garmin / Fitbit / Oura 无线设备。"</string>
+    <string name="report_watches_and_rings_usually_move_with_the_person_wearing_them_often" formatted="false">"手表和戒指通常随佩戴者移动，往往是自己的装备或同行者的设备。"</string>
+    <string name="report_they_are_not_typically_planted_trackers_account_for_each_mac_not_" formatted="false">"它们通常不是被暗中放置的追踪设备。逐一确认各 MAC。这不是调查结论，也不能确认身份。"</string>
+    <string name="report_environment" formatted="false">"环境"</string>
+    <string name="report_networks_wi_fi_access_points" formatted="false">"网络（Wi-Fi 接入点）"</string>
+    <string name="report_bluetooth_le" formatted="false">"低功耗蓝牙"</string>
+    <string name="report_signature_hits" formatted="false">"特征命中"</string>
+    <string name="report_persistence" formatted="false">"持续出现情况"</string>
+    <string name="report_extra_attention" formatted="false">"特别关注"</string>
+    <string name="report_pattern_match_not_identity_not_a_skimmer_detector_not_a_safety_fi" formatted="false">"这是模式匹配，不能确认身份，不是盗刷设备检测，也不是安全结论。"</string>
+    <string name="report_0_1_2_dbm_3" formatted="false">"  · {0}  {1}  {2} dBm  [{3}]"</string>
+    <string name="report_anomalies" formatted="false">"异常提示"</string>
+    <string name="report_recommended_actions" formatted="false">"建议操作"</string>
+    <string name="report_sit_0_1_2_utc" formatted="false">"监测记录 {0}（{1} → {2} UTC）"</string>
+    <string name="report_last_15_minutes_0_1_utc" formatted="false">"最近 15 分钟（{0} → {1} UTC）"</string>
+    <string name="report_fieldwatch_sit_0" formatted="false">"FIELDWATCH 监测记录 — {0}"</string>
+    <string name="report_fieldwatch_field_debrief" formatted="false">"FIELDWATCH 监测简报"</string>
+    <string name="report_generated" formatted="false">"生成时间"</string>
+    <string name="report_0_utc" formatted="false">"{0} UTC"</string>
+    <string name="report_sit" formatted="false">"监测记录"</string>
+    <string name="report_window" formatted="false">"观察时段"</string>
+    <string name="report_radios" formatted="false">"无线设备数"</string>
+    <string name="report_tool" formatted="false">"工具"</string>
+    <string name="report_fieldwatch_app_fieldwatch_stock_android_receive_only_wi_fi_ap_ble" formatted="false">"Fieldwatch（app.fieldwatch）· 原生 Android · 仅接收 Wi-Fi 接入点和 BLE 广播"</string>
+    <string name="report_scan" formatted="false">"扫描"</string>
+    <string name="report_0_stale_1_s_brief_hold_2_s" formatted="false">"{0} · {1} 秒未出现后过期 · 短暂保留 {2} 秒"</string>
+    <string name="report_gps_tag" formatted="false">"GPS 标记"</string>
+    <string name="report_on" formatted="false">"开启"</string>
+    <string name="report_distance" formatted="false">"距离"</string>
+    <string name="report_places" formatted="false">"地点"</string>
+    <string name="report_classification" formatted="false">"敏感程度"</string>
+    <string name="report_operationally_sensitive_neighbor_ssids_macs_operator_gps_advertis" formatted="false">"含操作敏感信息 — 周边 SSID、MAC、操作者 GPS、广播的飞行器轨迹"</string>
+    <string name="report_operationally_sensitive_neighbor_ssids_macs_operator_gps" formatted="false">"含操作敏感信息 — 周边 SSID、MAC、操作者 GPS"</string>
+    <string name="report_0_1_2_dbm_81" formatted="false">"{0}  {1}  {2} dBm"</string>
+    <string name="report_sit_82" formatted="false">"监测记录"</string>
+    <string name="report_field_debrief" formatted="false">"监测简报"</string>
+    <string name="report_sit_0" formatted="false">"监测记录 — {0}"</string>
+    <string name="report_field_debrief_85" formatted="false">"监测简报"</string>
+    <string name="report_last_15_minutes" formatted="false">"最近 15 分钟"</string>
+    <string name="report_operator_path" formatted="false">"操作者路径"</string>
+    <string name="report_north_up_line_is_this_phone_0_a_mac_alert_or_a_signature_alert_is" formatted="false">"上方为北。线条表示本手机的路径（{0}）。MAC 提醒或特征提醒只绘制一次。解码的经纬度为最近广播的位置，其他点为听到最强信号的位置。编号对应路径图例中的地点。"</string>
+    <string name="report_where_you_were_operator_gps" formatted="false">"## 你的位置（操作者 GPS）"</string>
+    <string name="report_tag_detections_with_gps_0" formatted="false">"- 为检测添加 GPS 标记：{0}。"</string>
+    <string name="report_online_place_names" formatted="false">"- 在线地点名称："</string>
+    <string name="report_off_settings_online_place_names_in_debrief_no_reverse_geocode_thi" formatted="false">"关闭（设置 → 简报中的在线地点名称）。此次导出没有反向地理编码。"</string>
+    <string name="report_following_test_insufficient_movement_need_45_m_span_do_not_infer_" formatted="false">"- 同行测试：移动不足（需约 45 米跨度）。不要据此推断尾随。"</string>
+    <string name="report_gps_co_travel" formatted="false">"## GPS 同行"</string>
+    <string name="report_only_radios_that_stayed_with_the_operator_path_are_listed" formatted="false">"仅列出持续沿操作者路径出现的无线设备。"</string>
+    <string name="report_house_tags_and_other_radios_the_operator_only_passed_are_omitted_" formatted="false">"途经的住宅标签和其他设备已省略，它们不构成同行。"</string>
+    <string name="report_not_identity_find_my_mac_rotation_will_not_stitch_a_tail_that_cha" formatted="false">"不能确认身份。Find My 的 MAC 轮换无法拼接为更换地址后的连续尾随。"</string>
+    <string name="report_possible_tail_extra_gates_walks_trail_covers_half_the_operator_pa" formatted="false">"可能尾随的附加条件（步行）：设备轨迹覆盖操作者路径至少一半，"</string>
+    <string name="report_2_3_of_gps_stamps_at_75_dbm_or_louder_last_stamp_not_12_db_below_" formatted="false">"至少 2/3 的 GPS 采样信号为 −75 dBm 或更强，最后采样不能比最强信号低 12 dB。"</string>
+    <string name="report_fail_any_one_omit_pass_by_not_a_tail" formatted="false">"任一条件不满足 → 省略为途经设备，不算尾随。"</string>
+    <string name="report_finder_tags_airtag_smarttag_tile_chipolo_pebblebee_find_my_loud_p" formatted="false">"查找标签（AirTag / SmartTag / Tile / Chipolo / Pebblebee / Find My / 信号强的随身 Apple）"</string>
+    <string name="report_are_the_tracking_test_retail_beacons_and_wearables_that_co_travel" formatted="false">"是同行测试的对象。同路的零售信标和可穿戴设备单独列出："</string>
+    <string name="report_they_do_not_typically_move_with_you_beacons_or_are_usually_own_ki" formatted="false">"信标通常不会随你移动，可穿戴设备通常是自己的装备。"</string>
+    <string name="report_none_stayed_with_the_path" formatted="false">"- 没有设备持续沿路径出现。"</string>
+    <string name="report_0_1_2_rssi_3_dbm" formatted="false">"- {0}  {1}  {2}  RSSI {3} dBm"</string>
+    <string name="report_min_0_max_1_trail_2_fixes_span_3_m" formatted="false">"（最低 {0} / 最高 {1}）轨迹 {2} 次定位，跨度 {3} 米"</string>
+    <string name="report_possible_trackers_with_you_finder_tags_whole_sit_yours_or_planted" formatted="false">"可能全程同行的追踪设备（查找标签，全程 — 自有设备或开始前被放置）"</string>
+    <string name="report_possible_tail_finder_tags_first_heard_after_this_sit_started_then" formatted="false">"可能的尾随（查找标签，开始监测后首次听到，之后持续同行）"</string>
+    <string name="report_retail_beacons_with_you_ibeacon_minew_estimote_kontakt_io_target_" formatted="false">"同行的零售信标（iBeacon / Minew / Estimote / Kontakt.io / Target Atrius 购物篮 — 通常固定；推动购物车也会同行）"</string>
+    <string name="report_wearables_with_you_garmin_fitbit_oura_usually_own_kit_or_a_compan" formatted="false">"同行的可穿戴设备（Garmin / Fitbit / Oura — 通常是自有装备或同行者）"</string>
+    <string name="report_operator_gps_path_too_short_0_m_to_test_following" formatted="false">"操作者 GPS 路径过短（{0} 米），无法测试同行。"</string>
+    <string name="report_heard_but_not_at_two_gps_points_cannot_test_co_travel" formatted="false">"听到了设备，但没有两处 GPS 采样。无法测试同行。"</string>
+    <string name="report_heard_along_0_m_of_your_1_m_path_and_still_loud_2_dbm" formatted="false">"在你 {1} 米的路径中沿 {0} 米听到设备，且信号仍强（{2} dBm）。"</string>
+    <string name="report_heard_near_one_place_0_m_span_while_you_moved_1_m_looks_stationar" formatted="false">"你移动了 {1} 米，设备只在一处附近出现（跨度 {0} 米）。看似固定设备，你正在远离它。"</string>
+    <string name="report_moved_0_m_with_you_already_on_the_air_when_this_15_minute_window_" formatted="false">"随你移动 {0} 米，在这 15 分钟时段开始时已出现，信号强（{1} dBm）。"</string>
+    <string name="report_gps_samples_span_0_m_along_your_path_1_fixes_already_on_the_air_w" formatted="false">"GPS 采样沿你的路径跨度 {0} 米（{1} 次定位）。观察时段开始时已出现，目前仍在。"</string>
+    <string name="report_heard_along_0_m_1_gps_stamps_but_did_not_stay_loud_on_you_neighbo" formatted="false">"在 {0} 米内听到设备（{1} 次 GPS 标记），但信号未持续保持强度。看似途经街区，不算尾随。"</string>
+    <string name="report_stayed_loud_with_you_the_whole_sit_0_to_1_dbm_2_gps_stamps" formatted="false">"全程随你保持强信号（{0} 至 {1} dBm，{2} 次 GPS 标记）。"</string>
+    <string name="report_decoded_0" formatted="false">"解码结果：{0}。"</string>
+    <string name="report_with_you_the_whole_sit_yours_or_planted_before_you_started_accoun" formatted="false">"全程同行，可能是自有设备，也可能在开始前被放置。请确认来源。"</string>
+    <string name="report_location_beacons_do_not_typically_move_with_you_account_for_it_ow" formatted="false">"定位信标通常不随你移动。请确认是否为自有测试标签、工牌，或与固定设备短暂覆盖重叠。"</string>
+    <string name="report_typical_of_a_watch_or_ring_you_or_a_companion_are_wearing_not_typ" formatted="false">"通常是你或同行者佩戴的手表、戒指，一般不是被暗中放置的追踪设备。"</string>
+    <string name="report_0_find_my_iphone_addresses_rotate_this_mac_is_this_session" formatted="false">"{0} Find My / iPhone 地址会轮换；此 MAC 仅对应当前会话。"</string>
+    <string name="report_appeared_after_the_sit_started_but_last_gps_stamp_was_0_dbm_after" formatted="false">"开始监测后出现，但最强为 {1} dBm，最后 GPS 采样已降到 {0} dBm（−{2} dB）。像是在远离固定设备，不算尾随。"</string>
+    <string name="report_appeared_after_the_sit_started_and_gps_span_was_0_m_but_only_1_2_" formatted="false">"开始监测后出现，GPS 跨度 {0} 米，但仅 {1}/{2} 次采样信号强（≥ −75 dBm）。像是途经，不算尾随。"</string>
+    <string name="report_appeared_after_the_sit_started_but_was_only_heard_along_0_m_of_yo" formatted="false">"开始监测后出现，但你 {1} 米的路径中只沿 {0} 米听到设备（{2}%）。像是途经街区，不算尾随。"</string>
+    <string name="report_appeared_after_the_sit_started_then_stayed_loud_with_you_across_0" formatted="false">"开始监测后出现，随后在 {0} 米跨度内持续随你保持强信号"</string>
+    <string name="report_0_m_of_your_1_m_path_2" formatted="false">"（你 {1} 米路径中覆盖 {0} 米，占 {2}%；"</string>
+    <string name="report_0_1_gps_stamps_75_dbm" formatted="false">"{0}/{1} 次 GPS 标记 ≥ −75 dBm）。"</string>
+    <string name="report_treat_as_a_possible_tail_until_you_visually_account_for_it" formatted="false">"在实际确认设备来源前，作为可能尾随对待。"</string>
+    <string name="report_unusual_for_a_retail_location_beacon_they_do_not_typically_move_w" formatted="false">"零售或定位信标同行并不常见，它们通常固定。请确认来源；这与 Find My 标签尾随不同。"</string>
+    <string name="report_typical_of_a_watch_that_joined_the_sit_you_put_it_on_or_someone_w" formatted="false">"通常是中途加入监测的手表（你刚戴上，或同行者佩戴），一般不是被暗中放置的追踪设备。"</string>
+    <string name="report_in_sit_0" formatted="false">"在监测记录 {0} 中"</string>
+    <string name="report_in_the_last_15_minutes" formatted="false">"在最近 15 分钟内"</string>
+    <string name="report_0_fieldwatch_heard_1_wi_fi_access_points_and_2_ble_advertisers" formatted="false">"{0}，Fieldwatch 听到 {1} 个 Wi-Fi 接入点和 {2} 个 BLE 广播设备"</string>
+    <string name="report_0_signature_matched_1_hidden_ssids_2_randomized_ble" formatted="false">"（{0} 个特征匹配、{1} 个隐藏 SSID、{2} 个随机地址 BLE）。"</string>
+    <string name="report_overall_distance_traveled_0_along_the_gps_path_straight_line_span" formatted="false">"总移动距离：沿 GPS 路径 {0}（直线跨度 {1}）。"</string>
+    <string name="report_stops_area_0" formatted="false">"停留点 / 区域：{0}。"</string>
+    <string name="report_tracking_note" formatted="false">"同行提示。"</string>
+    <string name="report_0_finder_tag_s_with_you_the_whole_sit_your_kit_or_planted_before_" formatted="false">"{0} 个查找标签全程同行（自有装备或开始前被放置）："</string>
+    <string name="report_0_possible_tail_s_first_heard_after_this_sit_started" formatted="false">"{0} 个可能尾随在开始监测后首次出现："</string>
+    <string name="report_account_for_every_mac_fieldwatch_cannot_tell_yours_from_a_plant" formatted="false">"请确认每个 MAC 对应的设备，Fieldwatch 无法区分自有设备与被放置的设备。"</string>
+    <string name="report_gps_tagging_is_off_so_a_following_test_was_not_performed_enable_t" formatted="false">"GPS 标记关闭，未进行同行测试。开启“为检测添加 GPS 标记”，移动后测试。"</string>
+    <string name="report_gps_displacement_was_only_0_m_too_short_to_test_whether_a_tracker" formatted="false">"GPS 位移只有 {0} 米，过短而无法测试追踪设备是否同行。开启标记并移动更远。"</string>
+    <string name="report_no_finder_tag_clearly_stayed_with_the_gps_path_in_this_window" formatted="false">"本时段内没有查找标签明显持续沿 GPS 路径出现。"</string>
+    <string name="report_retail_beacon_s_also_stayed_with_the_path_unusual_fixtures_do_not" formatted="false">"零售信标也持续沿路径出现（并不常见，固定设备通常不会随你移动）："</string>
+    <string name="report_wearable_s_stayed_with_the_path_usually_your_watch_ring_or_a_comp" formatted="false">"可穿戴设备持续沿路径出现（通常是你的手表、戒指或同行者设备）："</string>
+    <string name="report_gps_tagging_is_off_fieldwatch_cannot_test_whether_a_radio_moved_w" formatted="false">"GPS 标记关闭。Fieldwatch 无法测试无线设备是否随你移动。"</string>
+    <string name="report_turn_on_settings_tag_detections_with_gps_walk_or_drive_50_m_then_" formatted="false">"在设置中开启“为检测添加 GPS 标记”，步行或乘车移动至少 50 米后重新生成简报。"</string>
+    <string name="report_overall_distance_traveled_0_along_the_gps_path_1_samples_straight" formatted="false">"总移动距离：沿 GPS 路径 {0}（{1} 个采样）。直线跨度 {2}。"</string>
+    <string name="report_co_travel_is_split_by_class_finder_tags_airtag_find_my_smarttag_t" formatted="false">"同行分为三类：查找标签（AirTag / Find My、SmartTag、Tile、Chipolo、Pebblebee、信号强的随身 Apple）、零售信标（iBeacon、Minew、Estimote、Kontakt.io、Target Atrius 购物篮）以及可穿戴设备（Garmin、Fitbit、Oura）。"</string>
+    <string name="report_insufficient_movement_to_distinguish_a_radio_that_stayed_with_you" formatted="false">"移动不足，无法区分持续同行与途经的设备。移动更远后重新测试。"</string>
+    <string name="report_no_finder_tag_retail_beacon_or_wearable_stayed_with_you_house_tag" formatted="false">"没有查找标签、零售信标或可穿戴设备持续同行。住宅标签和其他途经设备未列出。"</string>
+    <string name="report_callouts_below_are_only_radios_that_stayed_with_the_path_radios_y" formatted="false">"下列提示仅包括持续沿路径出现的设备。途经的商店固定设备、住宅标签已省略。"</string>
+    <string name="report_your_captions_on_radios_heard_in_this_window_same_kind_mac_as_nam" formatted="false">"你对本时段内设备的观察备注。与已命名设备使用相同的类型 + MAC；这些是个人备注，不是特征库备注。"</string>
+    <string name="report_0_1_2_3_dbm" formatted="false">"  · {0}  {1}  {2}  {3} dBm"</string>
+    <string name="report_0_1_rssi_2_dbm_min_3_max_4" formatted="false">"    {0}  {1}  RSSI {2} dBm（最低 {3} / 最高 {4}）"</string>
+    <string name="report_phone_gps_at_hear_time_not_the_other_radio_s_location_and_not_a_c" formatted="false">"GPS 是听到信号时本手机的位置，不是另一设备的位置，也不是摄像头杆的位置。停留点是约 40 米范围内的聚类；点间移动为行进。各 Wi-Fi/BLE 行不重复显示坐标。"</string>
+    <string name="report_gps_tagging_is_off_turn_on_settings_tag_detections_with_gps_to_re" formatted="false">"GPS 标记关闭。在设置中开启“为检测添加 GPS 标记”，记录听到设备时你所在的位置。"</string>
+    <string name="report_gps_tagging_is_on_but_this_window_has_no_fixes_yet" formatted="false">"GPS 标记已开启，但此时段尚无定位。"</string>
+    <string name="report_overall_0_along_track_span_1_2_fixes" formatted="false">"总体：沿路径 {0}，跨度 {1}，{2} 次定位。"</string>
+    <string name="report_street_names_are_approximate_do_not_treat_a_street_as_the_locatio" formatted="false">"街道名称为近似结果，不应视为匹配摄像头或标签的位置。"</string>
+    <string name="report_no_path_legs" formatted="false">"没有路径分段。"</string>
+    <string name="report_stops" formatted="false">"停留点："</string>
+    <string name="report_0_stay_1_2_utc_3" formatted="false">"{0}. 停留  {1}–{2} UTC（{3}）"</string>
+    <string name="report_heard_here_0_ap_s_1_ble" formatted="false">"   此处听到：{0} 个接入点，{1} 个 BLE"</string>
+    <string name="report_0_1_2_dbm_167" formatted="false">"   · {0}  {1}  {2} dBm"</string>
+    <string name="report_no_gps_stamped_radios_tied_to_this_stay_tagging_may_have_started_" formatted="false">"   · 没有 GPS 标记设备关联此停留点（可能在首次听到设备后才开启标记）。"</string>
+    <string name="report_0_transit_1_2_utc" formatted="false">"{0}. 行进  {1}–{2} UTC"</string>
+    <string name="report_0_along_track" formatted="false">"沿路径 {0}"</string>
+    <string name="report_one_stay_you_did_not_move_far_enough_in_this_window_to_split_loca" formatted="false">"只有一个停留点，本时段移动不足以分离地点。"</string>
+    <string name="report_in_motion_walk_vehicle_through_mixed_rf" formatted="false">"步行或乘车移动中，经过混合无线环境。"</string>
+    <string name="report_likely_a_dwelling_or_small_office_few_sitting_aps_limited_ble" formatted="false">"可能是住宅或小型办公室，持续出现的接入点较少，BLE 有限。"</string>
+    <string name="report_dense_public_retail_street_many_aps_and_phone_like_randomized_ble" formatted="false">"密集的公共区域、零售场所或街道：接入点较多，随机地址 BLE 类似手机。"</string>
+    <string name="report_likely_a_building_with_standing_infrastructure_aps_plus_patrons" formatted="false">"可能是配有固定接入点的建筑及其访客。"</string>
+    <string name="report_mixed_or_under_sampled_environment" formatted="false">"环境混合或采样不足。"</string>
+    <string name="report_0_1_aps_2_ble_3_persistent_aps_traveled_4_span_5" formatted="false">"{0}（{1} 个接入点、{2} 个 BLE、{3} 个持续出现的接入点，移动 {4}，跨度 {5}。）"</string>
+    <string name="report_ch" formatted="false">"  信道"</string>
+    <string name="report_hidden" formatted="false">"  隐藏"</string>
+    <string name="report_dwell" formatted="false">"  持续"</string>
+    <string name="report_google_fast_pair_in_pairing_mode" formatted="false">"处于配对模式的 Google Fast Pair："</string>
+    <string name="report_very_strong_unnamed_radios_50_dbm" formatted="false">"信号很强的未命名设备（≥ −50 dBm）："</string>
+    <string name="report_0_1_dbm" formatted="false">"{0} {1} dBm"</string>
+    <string name="report_high_randomized_ble_0_typical_of_phones_not_a_tracking_finding" formatted="false">"随机地址 BLE 较多（{0} 个），通常类似手机，不构成追踪结论。"</string>
+    <string name="report_a_passive_observer_with_the_same_radios_would_see_0_named_hidden_" formatted="false">"使用相同接收设备的被动观察者会看到 {0} 个已命名或隐藏接入点"</string>
+    <string name="report_and_0_ble_advertisers_1_randomized" formatted="false">"和 {0} 个 BLE 广播设备（{1} 个随机地址）。"</string>
+    <string name="report_hidden_ssids_still_beacon_and_identify_the_ap_by_bssid" formatted="false">"隐藏 SSID 仍会广播，并以 BSSID 标识接入点。"</string>
+    <string name="report_this_debrief_includes_operator_gps_samples_used_for_distance_and_" formatted="false">"本简报包含用于距离和同行测试的操作者 GPS 采样。"</string>
+    <string name="report_this_debrief_includes_advertised_aircraft_positions_from_radios_t" formatted="false">"本简报包含广播经纬度的设备所报告的飞行器位置。"</string>
+    <string name="report_street_names_came_from_the_phone_s_system_geocoder_while_online" formatted="false">"街道名称来自手机在线时的系统地理编码器。"</string>
+    <string name="report_do_not_share_this_file_off_device_without_redaction" formatted="false">"未经脱敏不要将此文件分享至设备之外。"</string>
+    <string name="report_possible_tail_appeared_after_this_sit_started_0_pause_live_open_d" formatted="false">"可能尾随（开始监测后出现）：{0}。暂停实时列表，打开详情，沿折线路径行走时观察 RSSI。不要停用他人的标签。"</string>
+    <string name="report_possible_trackers_with_you_0" formatted="false">"可能全程同行的追踪设备：{0}。"</string>
+    <string name="report_could_be_yours_or_planted_in_the_car_bag_on_you_before_you_starte" formatted="false">"可能是自有设备，也可能开始前被放入车内、包中或身上。请确认各 MAC 来源，不要直接认定为自己的设备。"</string>
+    <string name="report_retail_beacons_with_you_unusual_fixtures_do_not_typically_move_wi" formatted="false">"同行的零售信标（并不常见，固定设备通常不会移动）："</string>
+    <string name="report_account_for_a_test_tag_or_badge_before_treating_it_as_a_follower" formatted="false">"。先确认是否为测试标签或工牌，再判断是否同行。"</string>
+    <string name="report_wearables_with_you_usually_own_kit_or_a_companion" formatted="false">"同行的可穿戴设备（通常是自有装备或同行者）："</string>
+    <string name="report_enable_tag_detections_with_gps_and_walk_50_m_then_run_debrief_aga" formatted="false">"开启“为检测添加 GPS 标记”并移动至少 50 米，然后重新生成简报进行同行测试。"</string>
+    <string name="report_walk_farther_50_m_with_gps_tagging_on_then_re_run_debrief" formatted="false">"开启 GPS 标记并移动更远（至少 50 米），然后重新生成简报。"</string>
+    <string name="report_use_live_pause_to_inspect_a_busy_list_watch_tracker_signatures_if" formatted="false">"使用实时列表 → 暂停检查繁忙列表。设备较多时可关注查找标签特征。"</string>
+    <string name="report_station_side_wi_fi_probes_clients_still_needs_a_dedicated_sniffer" formatted="false">"Wi-Fi 终端侧的探测和客户端仍需专用嗅探器，Fieldwatch 无法看到它们。"</string>
+    <string name="report_retail_beacon_s_also_with_the_path_unusual" formatted="false">" 零售信标也沿路径同行（并不常见）："</string>
+    <string name="report_wearable_s_with_the_path_usually_own_kit" formatted="false">" 可穿戴设备沿路径同行（通常为自有装备）："</string>
+    <string name="report_possible_tail_appeared_after_sit_started_0" formatted="false">"可能尾随（开始监测后出现）：{0}。"</string>
+    <string name="report_also_finder_tags_with_you_yours_or_planted_before_0_account_for_e" formatted="false">"另有查找标签全程同行（自有或开始前被放置）：{0}。请确认每个 MAC 来源。"</string>
+    <string name="report_possible_tail_appeared_after_this_sit_started_0_account_for_it_on" formatted="false">"可能尾随（开始监测后出现）：{0}。请确认是哪个人或车辆携带的设备。"</string>
+    <string name="report_turn_on_gps_tagging_and_walk_before_you_can_test_whether_a_tracke" formatted="false">"开启 GPS 标记并移动后，才能测试追踪设备是否随你移动。"</string>
+    <string name="report_not_enough_gps_movement_0_m_to_test_following_walk_and_re_run_deb" formatted="false">"GPS 移动不足（{0} 米），无法测试同行；移动后重新生成简报。"</string>
+    <string name="report_finder_tags_with_you_yours_or_planted_before_you_started_0_no_new" formatted="false">"全程同行的查找标签（自有或开始前被放置）：{0}。本时段无新加入者。请确认各 MAC 来源，不要直接认定为自己的设备。"</string>
+    <string name="report_no_finder_tag_stayed_with_the_path" formatted="false">"没有查找标签持续沿路径出现。"</string>
+    <string name="report_no_signature_hits_and_no_gps_co_travel_of_trackers_in_this_15_min" formatted="false">"这 15 分钟内没有特征命中，也没有追踪设备通过 GPS 同行测试。"</string>
+    <string name="report_no_finder_tag_retail_beacon_or_wearable_clearly_stayed_with_your_" formatted="false">"本时段内没有查找标签、零售信标或可穿戴设备明显持续沿你的 GPS 路径出现。"</string>
+    <string name="report_and_0_more" formatted="false">"以及另外 {0} 个"</string>
+    <string name="report_advertised_position_0_1" formatted="false">" 广播的位置：{0}{1}。"</string>
+    <string name="report_0_h_1_m" formatted="false">"{0}小时{1}分钟"</string>
+    <string name="report_0_m_1_s" formatted="false">"{0}分钟{1}秒"</string>
+    <string name="report_you_are_a_field_rf_analyst_for_the_operator_who_collected_this_si" formatted="false">"你是为本次监测操作者服务的现场无线分析员。Fieldwatch 使用原生 Android，仅接收 Wi-Fi 接入点和 BLE 广播。"</string>
+    <string name="report_the_onboard_debrief_verbatim_below_already_tabulated_the_sit_coun" formatted="false">"下面原样附上的**设备内监测简报**已整理数量、位置、同行提示、设备清单、特别关注和要点。**不要重写该报告，不要重复设备或停留点清单。**你的任务是补充手机无法生成的分析：变化率、竞争性假设，并检验设备内同行提示是否合理。"</string>
+    <string name="report_constraints_you_must_respect" formatted="false">"必须遵守的限制："</string>
+    <string name="report_hear_only_wi_fi_rows_are_access_points_only_ble_rows_are_advertis" formatted="false">"- 仅接收。Wi-Fi 行仅为接入点；BLE 行为广播设备。以类型 + MAC 区分设备。BLE 地址轮换后是新行，不会拼接。"</string>
+    <string name="report_signature_oui_company_matches_are_hypotheses_not_identity_not_a_p" formatted="false">"- 特征、OUI、公司匹配是假设，不能确认身份，也不能确认某个人或车辆。"</string>
+    <string name="report_gps_stamps_if_present_are_this_phone_at_hear_time_not_the_other_r" formatted="false">"- GPS 标记（如有）是听到信号时本手机的位置，不是另一无线设备的位置。不要把摄像头或标签放在 GPS 标记点上。"</string>
+    <string name="report_place_names_if_present_are_system_reverse_geocode_of_those_stamps" formatted="false">"- 地点名称（如有）来自这些手机位置的系统反向地理编码。"</string>
+    <string name="report_rssi_is_loudness_at_the_phone_not_meters" formatted="false">"- RSSI 是手机接收到的信号强度，不是米数。"</string>
+    <string name="report_live_ram_cap_is_about_400_radios_unnamed_ble_evicts_after_3_min_a" formatted="false">"- 实时内存约容纳 400 个设备；未命名 BLE 约 3 分钟后移除。命名监测记录可保留更多。这不是完整抓取。"</string>
+    <string name="report_do_not_claim_a_tracker_is_following_unless_the_onboard_gps_co_tra" formatted="false">"- 除非设备内 GPS 同行评估支持，不要声称有追踪设备尾随。全程同行的设备未必是自己的，也可能被暗中放置，不要忽略。不要编造测试未标记的尾随，也不要把零售信标当作 Find My 尾随。"</string>
+    <string name="report_a_decoded_live_value_on_a_tracking_row_is_catalog_text_for_that_a" formatted="false">"- 同行行的实时解码值是本次广播的特征库文本。报告包含对应说明时应引用。不要把该值拼接到另一 MAC。"</string>
+    <string name="report_an_aircraft_block_and_an_amber_track_are_positions_the_radio_adve" formatted="false">"- 飞行器栏和琥珀色轨迹表示设备广播的位置。相同 UAS ID 的轨迹为同一飞行器。这不是本手机 GPS，也不能证明飞行器跟随操作者。"</string>
+    <string name="report_do_not_give_safety_advice_do_not_tell_the_operator_they_are_safe_" formatted="false">"- 不要提供安全建议，不要告诉操作者自己安全或处于危险。"</string>
+    <string name="report_treat_this_paste_as_operationally_sensitive" formatted="false">"- 将这份内容视为含操作敏感信息。"</string>
+    <string name="report_your_output_required_this_is_the_addendum_the_operator_reads" formatted="false">"## 你的输出（必需，操作者阅读的补充分析）"</string>
+    <string name="report_write_complete_sentences_headings_as_below_short_bullets_only_for" formatted="false">"使用完整句子及下列标题。仅对工作数据中的特别关注和同行行使用简短要点。不要使用 Markdown 表格或代码块，不要重复设备内清单。"</string>
+    <string name="report_1_disclaimer_repeat_the_experimental_use_disclaimer_first" formatted="false">"1. **免责声明** — 首先重复实验用途免责声明。"</string>
+    <string name="report_2_what_the_onboard_debrief_already_established_3_5_sentences_coun" formatted="false">"2. **设备内简报已确立的内容** — 3–5 句。概括数量、距离、同行提示、特别关注命中和观察备注（如有）。不要重复清单。"</string>
+    <string name="report_3_what_the_numbers_add_5_vs_15_minute_counts_rssi_bands_rand_ble_" formatted="false">"3. **数字带来的补充** — 比较 5 分钟和 15 分钟数量、RSSI 分布、随机地址 BLE 比例、每分钟新增、持续与消失情况及特征族构成。讨论街道、住宅、零售或车辆环境，以及近期是否更密集、更安静或稳定。给出置信度。如有 GPS，使用工作数据中的路径长度和跨度，不要将设备定位到停留点。"</string>
+    <string name="report_4_extra_attention_and_tracking_callouts_full_identifiers_from_the" formatted="false">"4. **特别关注和同行提示** — 使用工作数据的完整标识（完整 MAC、名称、RSSI 最低和最高值、特征、持续时间）。检验全程同行标签、可能尾随、零售信标和可穿戴设备的结论；认同、限定或说明数据不足。模式匹配不能确认身份。没有则说明没有。"</string>
+    <string name="report_5_what_another_sit_or_hunt_would_shrink_concrete_in_app_next_step" formatted="false">"5. **下一次监测或寻踪能缩小的疑问** — 仅给出应用内具体操作，如寻踪某个特别关注设备、更长 GPS 路径、比较监测记录、使用筛选。不要给安全建议，也不要建议报警。"</string>
+    <string name="report_takeaway_required_last_line_one_sentence_starting_with_takeaway_t" formatted="false">"**要点（必需，最后一行）。**以 `要点：` 开头写一句话，增加**设备内要点尚未提及的一项数字**，例如变化率、随机地址比例、5/15 分钟变化或路径跨度。不要作道德判断或威胁分级。"</string>
+    <string name="report_collection_context" formatted="false">"## 采集背景"</string>
+    <string name="report_tool_fieldwatch_app_fieldwatch_receive_only_no_association_inject" formatted="false">"- 工具：Fieldwatch（app.fieldwatch），仅接收，不关联、不注入、不使用云服务。"</string>
+    <string name="report_window_sit_0_1_2_utc_with_a_5_minute_recent_slice" formatted="false">"- 时段：监测记录 **{0}**（{1} → {2} UTC），另含最近 5 分钟切片。"</string>
+    <string name="report_window_last_15_minutes_0_1_utc_with_a_5_minute_recent_slice" formatted="false">"- 时段：最近 **15 分钟**（{0} → {1} UTC），另含最近 **5 分钟**切片。"</string>
+    <string name="report_scan_intensity_0_stale_after_1_s" formatted="false">"- 扫描强度：{0}。{1} 秒未出现后过期。"</string>
+    <string name="report_location_tags_0_online_place_names_1" formatted="false">"- 位置标记：{0}。在线地点名称：{1}。"</string>
+    <string name="report_onboard_debrief_verbatim_already_shown_to_the_operator_do_not_rew" formatted="false">"## 设备内简报（已向操作者显示，原样附上，不要重写）"</string>
+    <string name="report_working_data_for_the_addendum_do_not_copy_rosters_into_the_answer" formatted="false">"## 工作数据（用于补充分析，不要把名册复制到回答）"</string>
+    <string name="report_15_min_wi_fi_0_ble_1_signed_2_hidden_ssids_3" formatted="false">"15 分钟：Wi-Fi {0}  BLE {1}  特征匹配 {2}  隐藏 SSID {3}"</string>
+    <string name="report_rand_ble_0_1_2" formatted="false">"随机地址 BLE {0}/{1}（{2}%）"</string>
+    <string name="report_first_seen_0_1_min_persistent_2_gone_quiet_3" formatted="false">"首次出现 {0}（{1}/分钟）持续出现 {2}  消失/安静 {3}"</string>
+    <string name="report_5_min_wi_fi_0_ble_1" formatted="false">"5 分钟：Wi-Fi {0}  BLE {1}"</string>
+    <string name="report_signed_0_first_seen_1" formatted="false">"特征匹配 {0}  首次出现 {1}"</string>
+    <string name="report_ble_rssi_n_0_50_1_51_70_2" formatted="false">"BLE RSSI（数量={0}）：≥−50 {1}  −51..−70 {2}"</string>
+    <string name="report_wi_fi_rssi_n_0_50_1_51_70_2" formatted="false">"Wi-Fi RSSI（数量={0}）：≥−50 {1}  −51..−70 {2}"</string>
+    <string name="report_signature_families_none" formatted="false">"特征族：无。"</string>
+    <string name="report_signature_families_count" formatted="false">"特征族（数量）："</string>
+    <string name="report_gps_path_tagging_0" formatted="false">"GPS 路径：标记 {0}"</string>
+    <string name="report_fixes_0_length_1_m_span_2_m" formatted="false">"定位 {0} 次  长度 {1} 米  跨度 {2} 米"</string>
+    <string name="report_places_0" formatted="false">"地点 {0}"</string>
+    <string name="report_extra_attention_259" formatted="false">"特别关注："</string>
+    <string name="report_none_260" formatted="false">"- 无。"</string>
+    <string name="report_observer_notes_261" formatted="false">"观察备注："</string>
+    <string name="report_finder_tag_like_radios_for_stress_test_of_onboard_tracking_not_a_" formatted="false">"类似查找标签的设备（用于检验同行评估，不是尾随清单）："</string>
+    <string name="report_rssimin" formatted="false">" 最低RSSI="</string>
+    <string name="report_rssimax" formatted="false">" 最高RSSI="</string>
+    <string name="report_end_of_working_data" formatted="false">"## 工作数据结束"</string>
+    <string name="report_write_the_addendum_now_following_your_output_at_the_top_do_not_re" formatted="false">"现在按前文**你的输出**要求撰写补充分析，不要重写设备内简报。"</string>
+    <string name="report_truncated_for_share_sheet_size" formatted="false">"\n\n[为适应分享大小已截断]\n"</string>
+    <string name="report_observer" formatted="false">"  观察备注："</string>
+    <string name="report_rssi" formatted="false">" RSSI="</string>
+    <string name="report_rand" formatted="false">" 随机地址"</string>
+    <string name="report_sig" formatted="false">" 特征="</string>
+    <string name="report_decoded" formatted="false">" 解码="</string>
+    <string name="report_decodenote" formatted="false">" 解码说明="</string>
+    <string name="report_dwell_274" formatted="false">" 持续="</string>
+    <string name="report_last_15_minutes_is_the_live_ram_set_about_400_radios" formatted="false">"最近 15 分钟使用实时内存集合（约 400 个设备）。"</string>
+    <string name="report_a_named_sit_keeps_up_to_0_counts_are_not_the_same_net" formatted="false">"命名监测记录最多保留 {0} 个。两者采样集合不同。"</string>
+    <string name="report_windows" formatted="false">"观察时段"</string>
+    <string name="report_this_sit" formatted="false">"本次监测"</string>
+    <string name="report_second_sit" formatted="false">"第二次监测"</string>
+    <string name="report_radios_this_phone_heard_kind_mac_ble_rotation_is_a_new_row_not_a_" formatted="false">"本手机听到的无线设备，以类型 + MAC 区分。BLE 地址轮换后是新行。这不是设备位置定位。"</string>
+    <string name="report_only_in_this_sit_0" formatted="false">"仅在本次监测（{0}）"</string>
+    <string name="report_only_in_second_sit_0" formatted="false">"仅在第二次监测（{0}）"</string>
+    <string name="report_in_both_0" formatted="false">"两次都有（{0}）"</string>
+    <string name="report_this_radios" formatted="false">"本次设备数"</string>
+    <string name="report_second_radios" formatted="false">"第二次设备数"</string>
+    <string name="report_caps" formatted="false">"容量限制"</string>
+    <string name="report_ram_400_vs_sit_0" formatted="false">"实时内存约 400，监测记录最多 {0}"</string>
+    <string name="report_0_vs_1" formatted="false">"{0} 与 {1}"</string>
+    <string name="report_0_only_in_this_sit_1_only_in_the_second_2_in_both" formatted="false">"{0} 个仅在本次 · {1} 个仅在第二次 · {2} 个两次都有。"</string>
+    <string name="report_fieldwatch_sit_compare" formatted="false">"FIELDWATCH 监测对比"</string>
+    <string name="report_sit_compare" formatted="false">"监测对比"</string>
+    <string name="report_sit_compare_292" formatted="false">"监测对比"</string>
+    <string name="report_a_mac_alert_or_a_signature_alert_is_drawn_once_a_decoded_latitude" formatted="false">"MAC 提醒或特征提醒只绘制一次。解码的经纬度为最近广播的位置，其他点为听到最强信号的位置。编号对应路径图例中的地点。"</string>
+    <string name="report_two_walks_on_one_north_up_frame_green_this_sit_slate_second_sit_0" formatted="false">"两条路径共用朝北坐标。绿色为本次，灰蓝色为第二次。{0}"</string>
+    <string name="report_north_up_line_is_this_phone_0" formatted="false">"上方为北。线条表示本手机。{0}"</string>
+    <string name="report_operator_paths" formatted="false">"操作者路径"</string>
+    <string name="report_last_15_minutes_in_memory_about_400_radios" formatted="false">"内存中的最近 15 分钟（约 400 个设备）"</string>
+    <string name="report_named_window_up_to_0" formatted="false">"命名时段（最多 {0} 个）"</string>
+    <string name="report_0_1_2_radios_3" formatted="false">"{0}：{1}\n{2} 个设备 · {3}\n"</string>
+    <string name="report_only_in_this_sit" formatted="false">"仅在本次监测。"</string>
+    <string name="report_only_in_second_sit" formatted="false">"仅在第二次监测。"</string>
+    <string name="report_none_302" formatted="false">"（无）"</string>
+    <string name="report_decoded_value_changed" formatted="false">"  解码值变化："</string>
+    <string name="report_extra_attention_304" formatted="false">"  特别关注"</string>
+    <string name="report_both" formatted="false">"两次都有"</string>
+    <string name="report_this_sit_306" formatted="false">"本次监测"</string>
+    <string name="report_second_sit_307" formatted="false">"第二次监测"</string>
+    <string name="report_your_captions_on_radios_heard_in_either_window_same_kind_mac_as_n" formatted="false">"你对两次时段内设备的观察备注。与已命名设备使用相同的类型 + MAC；这些是个人备注，不是特征库备注。"</string>
+    <string name="report_only_in_this_sit_309" formatted="false">"仅在本次监测"</string>
+    <string name="report_only_in_second_sit_310" formatted="false">"仅在第二次监测"</string>
+    <string name="report_you_are_a_field_rf_analyst_for_the_operator_who_compared_two_fiel" formatted="false">"你是为对比两次 Fieldwatch 监测的操作者服务的现场无线分析员。Fieldwatch 使用原生 Android，仅接收 Wi-Fi 接入点和 BLE 广播。"</string>
+    <string name="report_the_onboard_compare_verbatim_below_already_split_presence_only_in" formatted="false">"下面原样附上的**设备内对比**已分为仅本次、仅第二次和两次都有。**不要重写报告，不要重复清单。**你的任务是补充手机无法生成的分析：变化属于哪一类，以及有多少变化是真实的。"</string>
+    <string name="report_hear_only_kind_mac_ble_rotation_is_a_new_row_and_will_not_stitch" formatted="false">"- 仅接收。以类型 + MAC 区分设备。BLE 地址轮换后是新行，不会拼接。"</string>
+    <string name="report_wi_fi_rows_are_access_points_only_associated_clients_are_invisibl" formatted="false">"- Wi-Fi 行仅为接入点，关联客户端不可见。"</string>
+    <string name="report_extra_attention_signature_matches_are_hypotheses_not_identity_not" formatted="false">"- 特别关注和特征匹配是假设，不能确认身份，也不能确认某个人或车辆。"</string>
+    <string name="report_gps_stamps_if_present_are_this_phone_at_hear_time_not_the_other_r_316" formatted="false">"- GPS 标记（如有）是听到信号时本手机的位置，不是另一无线设备的位置。"</string>
+    <string name="report_last_15_minutes_vs_a_named_sit_is_not_the_same_net_ram_about_400_" formatted="false">"- 最近 15 分钟与命名监测的采样集合不同（实时内存约 400，监测记录 {0}）。内存侧缺少 BLE 可能是被移除，而非设备离开。"</string>
+    <string name="report_presence_is_not_co_travel_do_not_invent_a_tail_a_follower_or_a_ca" formatted="false">"- 出现不等于同行。不要编造尾随、跟随者或摄像头位置。"</string>
+    <string name="report_a_decoded_live_value_on_a_row_is_catalog_text_for_that_kind_mac_i" formatted="false">"- 行中的实时解码值是该类型 + MAC 的特征库文本。如果设备内对比指出值变化，应说明变化。不要拼接到另一 MAC。"</string>
+    <string name="report_an_aircraft_block_is_positions_the_radio_advertised_joined_by_uas" formatted="false">"- 飞行器栏表示按 UAS ID 合并的广播位置。如果设备内对比指出状态变化，应说明变化。轨迹不是本手机 GPS。"</string>
+    <string name="report_write_complete_sentences_headings_as_below_short_bullets_only_for_321" formatted="false">"使用完整句子及下列标题。仅对单侧特别关注和已命名设备使用简短要点。不要使用 Markdown 表格或代码块，不要重复设备内清单。"</string>
+    <string name="report_2_what_the_onboard_compare_already_established_3_5_sentences_wind" formatted="false">"2. **设备内对比已确立的内容** — 3–5 句。概括时段名称、数量、单侧特别关注设备和观察备注（如有）。不要重复清单。"</string>
+    <string name="report_3_what_the_numbers_add_overlap_both_union_as_a_percent_wi_fi_vs_b" formatted="false">"3. **数字带来的补充** — 使用交集/并集百分比、各组 Wi-Fi 与 BLE 数量，以及单侧 BLE 的随机地址比例。讨论是否为固定设备、不同摊位/时间，或容量限制造成的差异。给出置信度，使用工作数据，不要编造变化率。"</string>
+    <string name="report_4_exclusive_extra_attention_and_named_radios_full_identifiers_fro" formatted="false">"4. **单侧特别关注和已命名设备** — 使用工作数据的完整标识（完整 MAC、名称、特征、所属时段）。模式匹配不能确认身份。没有则说明没有。"</string>
+    <string name="report_5_what_another_sit_or_hunt_would_shrink_concrete_in_app_next_step_325" formatted="false">"5. **下一次监测或寻踪能缩小的疑问** — 仅给出应用内具体操作，如同地点第三次监测、寻踪单侧特别关注设备、使用筛选。不要给安全建议，也不要建议报警。"</string>
+    <string name="report_takeaway_required_last_line_one_sentence_starting_with_takeaway_t_326" formatted="false">"**要点（必需，最后一行）。**以 `要点：` 开头写一句话，增加**设备内要点尚未提及的一项数字**，例如重叠比例、单侧特别关注数量，或单侧 BLE 的随机地址比例。不要作道德判断或威胁分级。"</string>
+    <string name="report_onboard_compare_verbatim_already_shown_to_the_operator_do_not_rew" formatted="false">"## 设备内对比（已向操作者显示，原样附上，不要重写）"</string>
+    <string name="report_this_sit_0_1_radios_2" formatted="false">"本次监测：{0}（{1} 个设备{2}）"</string>
+    <string name="report_second_sit_0_1_radios_2" formatted="false">"第二次监测：{0}（{1} 个设备{2}）"</string>
+    <string name="report_only_in_this_sit_0_only_in_second_1_in_both_2_union_3_overlap_4" formatted="false">"仅本次：{0}  仅第二次：{1}  两次都有：{2}  并集：{3}  重叠：{4}%"</string>
+    <string name="report_only_in_this_sit_by_radio_wi_fi_0_ble_1_rand_ble_2" formatted="false">"仅本次的类型：Wi-Fi {0}  BLE {1}  随机地址 BLE {2}"</string>
+    <string name="report_only_in_second_sit_by_radio_wi_fi_0_ble_1_rand_ble_2" formatted="false">"仅第二次的类型：Wi-Fi {0}  BLE {1}  随机地址 BLE {2}"</string>
+    <string name="report_in_both_by_radio_wi_fi_0_ble_1_rand_ble_2" formatted="false">"两次都有的类型：Wi-Fi {0}  BLE {1}  随机地址 BLE {2}"</string>
+    <string name="report_cap_note_last_15_minutes_is_live_ram_about_400_a_named_sit_keeps_" formatted="false">"容量提示：最近 15 分钟使用实时内存（约 400）；命名监测最多 {0} 个。两者采样集合不同。"</string>
+    <string name="report_exclusive_extra_attention" formatted="false">"单侧特别关注："</string>
+    <string name="report_exclusive_named_radios" formatted="false">"单侧已命名设备："</string>
+    <string name="report_in_both" formatted="false">"两次都有"</string>
+    <string name="report_write_the_addendum_now_following_your_output_at_the_top_do_not_re_338" formatted="false">"现在按前文**你的输出**要求撰写补充分析，不要重写设备内对比。"</string>
+    <string name="report_privacy_mode_mac_tails_are_gps_coordinates_are_masked_logs_on_the" formatted="false">"隐私模式：MAC 尾部为 **:**:**。GPS 坐标已隐藏。手机上的日志保持原样。\n\n{0}"</string>
+    <string name="report_last_0" formatted="false">"  最近位置 {0}"</string>
+    <string name="report_course_0" formatted="false">"航向 {0}°"</string>
+    <string name="report_1_advertised_fix" formatted="false">"1 次广播定位"</string>
+    <string name="report_0_advertised_fixes_1" formatted="false">"{0} 次广播定位，{1}"</string>
+    <string name="report_pilot_0" formatted="false">"  操控者 {0}"</string>
+    <string name="report_0_more_aircraft_tracks_are_listed_here_and_left_off_the_map" formatted="false">"另外 {0} 条飞行器轨迹仅列在此处，未绘制到地图。"</string>
+    <string name="report_these_positions_were_broadcast_by_the_radio_they_are_not_this_pho" formatted="false">"这些位置由无线设备广播，不是本手机 GPS。"</string>
+    <string name="report_status_changed_0_1" formatted="false">"  状态变化：{0} → {1}"</string>
+    <string name="report_0_no_uas_id_1_2" formatted="false">"{0}，无 UAS ID：{1}（{2}）"</string>
+    <string name="report_pilot" formatted="false">"操控者"</string>
+    <string name="report_second_sit_s_advertised_track" formatted="false">"第二次监测的广播轨迹"</string>
+    <string name="report_a_blue_dotted_line_is_the_second_sit_s_advertised_track_within_2_" formatted="false">" 蓝色点线为本路径 2 公里内第二次监测的广播轨迹。"</string>
+    <string name="report_black_dotted_line_is_an_advertised_track" formatted="false">"黑色点线为广播轨迹"</string>
+    <string name="report_a_black_dotted_line_is_an_advertised_track_within_2_km_of_this_pa" formatted="false">" 黑色点线为本路径 2 公里内的广播轨迹。"</string>
+    <string name="report_north_up_black_dots_are_this_sit_blue_dots_are_the_second_sit_the" formatted="false">"上方为北。黑点为本次监测，蓝点为第二次监测；标记为最近广播位置。"</string>
+    <string name="report_north_up_the_blue_dotted_line_is_the_advertised_track_for_0_the_m" formatted="false">"上方为北。蓝色点线为 {0} 广播的轨迹；标记为最近广播位置。"</string>
+    <string name="report_last_advertised_position_for_0_the_marker_is_that_position" formatted="false">"{0} 最近广播的位置，标记位于该处。"</string>
+    <string name="report_north_up_the_black_dotted_line_is_the_advertised_track_for_0_the_" formatted="false">"上方为北。黑色点线为 {0} 广播的轨迹；标记为最近广播位置。"</string>
+    <string name="report_uas_0" formatted="false">"UAS {0}"</string>
+    <string name="report_last_0_359" formatted="false">"最近位置 {0}"</string>
+    <string name="report_pilot_0_360" formatted="false">"操控者 {0}"</string>
+    <string name="report_advertised_position" formatted="false">"广播的位置"</string>
+    <string name="report_last_0_362" formatted="false">" 最近位置 {0}"</string>
+    <string name="report_1_fix" formatted="false">"1 次定位"</string>
+    <string name="report_0_fixes" formatted="false">"{0} 次定位"</string>
+    <string name="report_named_sit_0_radios_heard_in_that_window_live_list_cap_still_appli" formatted="false">"命名监测记录“{0}”（该时段听到的设备；观看实时列表时仍应用其容量限制）。"</string>
+    <string name="report_the_in_memory_live_set_last_15_minutes_cap_about_400" formatted="false">"内存中的实时集合（最近 15 分钟，约容纳 400 个设备）。"</string>
+    <string name="report_this_sit_report_is_from_0" formatted="false">"本监测报告来源于{0}"</string>
+    <string name="report_do_not_use_it_in_any_situation_where_safety_is_in_question" formatted="false">"不要在涉及安全判断的任何情形下使用本报告。"</string>
+    <string name="report_this_compare_is_two_windows_of_radios_this_phone_heard_kind_mac" formatted="false">"本对比是手机听到的两个时段的设备（类型 + MAC）。"</string>
+    <string name="report_ble_rotation_is_a_new_row_do_not_use_it_in_any_situation_where_sa" formatted="false">"BLE 地址轮换后是新行。不要在涉及安全判断的任何情形下使用本报告。"</string>
+    <string name="report_disclaimer_repeat_this_in_your_answer" formatted="false">"## 免责声明（在回答中重复）"</string>
+    <string name="report_do_not_use_fieldwatch_this_paste_or_your_analysis_in_any_situatio" formatted="false">"不要在涉及安全判断的任何情形下使用 Fieldwatch、这份内容或你的分析。"</string>
+    <string name="report_begin_your_reply_with_this_disclaimer_do_not_give_safety_advice" formatted="false">"以此免责声明开始回答，不要提供安全建议。"</string>
+    <string name="report_online_lookup_failed_silently_coordinates_only" formatted="false">"在线查询失败，仅提供坐标。"</string>
+    <string name="report_online_lookup_skipped_no_working_internet_coordinates_only" formatted="false">"在线查询已跳过：没有可用网络，仅提供坐标。"</string>
+    <string name="report_online_lookup_skipped_this_phone_has_no_system_geocoder_needs_goo" formatted="false">"在线查询已跳过：手机没有系统地理编码器（需要 Google Play 或网络定位），仅提供坐标。"</string>
+    <string name="report_online_lookup_on_but_this_sit_had_no_gps_stamps_to_name" formatted="false">"在线查询已开启，但本监测没有可查询的 GPS 标记。"</string>
+    <string name="report_looking_up_place_names_1_s_of_2_s" formatted="false">"正在查询地点名称（%1$s / %2$s）…"</string>
+    <string name="report_0_1_no_name_returned" formatted="false">"  · {0}  {1}（未返回名称）"</string>
+    <string name="report_online_lookup_system_geocoder_named_0_distinct_gps_cell_s_street_" formatted="false">"在线查询：系统地理编码器命名了 {0} 个不同 GPS 网格。街道名来自手机的网络地理编码器，而非 Fieldwatch 云服务，为近似结果。"</string>
+    <string name="report_online_lookup_ran_but_the_system_geocoder_returned_no_street_name" formatted="false">"在线查询已完成，但系统地理编码器没有返回街道名，仅提供坐标。"</string>
+    <string name="report_stay_0" formatted="false">"停留点 {0}"</string>
+    <string name="report_transit_from" formatted="false">"行进起点"</string>
+    <string name="report_transit_to" formatted="false">"行进终点"</string>
+    <string name="report_path_start" formatted="false">"路径起点"</string>
+    <string name="report_path_end" formatted="false">"路径终点"</string>
+    <string name="report_disclaimer_387" formatted="false">"免责声明"</string>
+    <string name="report_start" formatted="false">"起点"</string>
+    <string name="report_end" formatted="false">"终点"</string>
+    <string name="report_stay" formatted="false">"停留"</string>
+    <string name="report_phone_gps" formatted="false">"手机 GPS"</string>
+    <string name="report_transit" formatted="false">"行进"</string>
+    <string name="report_advertised" formatted="false">"广播的位置"</string>
+    <string name="report_second_advertised" formatted="false">"第二次广播的位置"</string>
+    <string name="report_mac_alert" formatted="false">"MAC 提醒"</string>
+    <string name="report_signature_alert" formatted="false">"特征提醒"</string>
+    <string name="report_path_key" formatted="false">"路径图例"</string>
+    <string name="report_observer_1_s" formatted="false">"观察备注：%1$s"</string>
+    <string name="report_1_s_radios_at_this_stop_2_s" formatted="false">"此停留点 %1$s 个设备 — %2$s"</string>
+    <string name="report_pattern_match_not_identity_not_a_safety_finding" formatted="false">"这是模式匹配，不能确认身份，也不是安全结论。"</string>
+    <string name="report_extra_attention_1_s" formatted="false">"特别关注  ·  %1$s"</string>
+    <string name="report_takeaway" formatted="false">"要点"</string>
+    <string name="report_off_grid_pete_llc_operationally_sensitive" formatted="false">"Off Grid Pete LLC  ·  含操作敏感信息"</string>
+    <string name="report_aircraft_404" formatted="false">"飞行器"</string>
+    <string name="report_1_s_km_span" formatted="false">"跨度 %1$s 公里"</string>
+    <string name="report_1_s_m_span" formatted="false">"跨度 %1$s 米"</string>
+    <string name="report_1_s_km_path" formatted="false">"路径 %1$s 公里"</string>
+    <string name="report_1_s_m_path" formatted="false">"路径 %1$s 米"</string>
+    <string name="report_balanced" formatted="false">"均衡"</string>
+    <string name="report_saver" formatted="false">"省电"</string>
+    <string name="report_performance" formatted="false">"性能"</string>
+    <string name="report_yes" formatted="false">"是"</string>
+    <string name="report_no" formatted="false">"否"</string>
+    <string name="report_true" formatted="false">"是"</string>
+    <string name="report_false" formatted="false">"否"</string>
+    <string name="report_ram_400" formatted="false">"，实时内存约 400"</string>
+    <string name="report_named_sit_up_to_0" formatted="false">"，命名监测最多 {0}"</string>
+    <string name="report_this_is_a_hobby_project_provided_as_is_under_the_mit_license_use_" formatted="false">"这是一个兴趣项目，按 MIT 许可证以现状提供。使用风险由你自行承担。"</string>
+    <string name="report_detections_pattern_matches_moving_with_you_possible_tail_debrief_" formatted="false">"检测、模式匹配、“随你移动”或“可能尾随”、监测简报和 AI 导出都是假设，不能确认身份，不是法律结论，也不是完整无线采集。关闭、休眠、随机地址、仅使用蜂窝网络或被系统隐藏的设备可能不会出现。"</string>
+    <string name="report_you_are_solely_responsible_for_how_you_use_this_app_and_for_follo" formatted="false">"你自行负责使用本应用的方式及遵守当地法律。在法律允许的最大范围内，Off Grid Pete LLC 不承担因使用而产生的间接、附带、特殊、后果性或惩罚性损害责任。"</string>
+    <string name="report_gps_stamps_are_this_phone_at_hear_time_not_the_other_radio_unless" formatted="false">"GPS 标记是听到信号时本手机的位置，不是另一无线设备的位置，除非解码字段包含设备自己广播的经纬度（Remote ID 位置）。分享监测简报、监测对比、AI 导出、设备详情文本或日志，可能将路径信息传出本设备。开启 TAK/CoT 数据流会把标记发送到局域网，由操作者自行负责。"</string>
+    <string name="report_distance_km" formatted="false">"{0} 公里"</string>
+    <string name="report_distance_m" formatted="false">"{0} 米"</string>
+    <string name="report_duration_seconds" formatted="false">"{0}秒"</string>
+    <string name="report_named_operator_phone" formatted="false">"{0}（{1}，操作者手机）"</string>
+    <string name="report_operator_phone_no_street" formatted="false">"{0}（操作者手机；此次导出没有街道名称）"</string>
+    <string name="report_operator_phone" formatted="false">"{0}（操作者手机）"</string>
+</resources>

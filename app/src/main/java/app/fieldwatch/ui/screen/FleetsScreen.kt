@@ -1,6 +1,7 @@
 package app.fieldwatch.ui.screen
 
 import app.fieldwatch.UiText
+import app.fieldwatch.UiCatalogText
 import app.fieldwatch.ui.uiLabel
 import app.fieldwatch.R
 
@@ -284,7 +285,7 @@ private fun SignatureRow(fleet: Fleet, state: FieldwatchUi, vm: FieldwatchViewMo
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                 ) {
                     Text(
-                        fleet.name,
+                        UiCatalogText.forFleet(fleet, fleet.name),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         style = compactLine(16.sp, 18.sp, FontWeight.SemiBold),
@@ -355,7 +356,7 @@ fun FleetEditor(
             SectionCard(UiText.text(R.string.ui_identity)) {
             FieldwatchOutlinedField(fleet.name, { fleet = fleet.copy(name = it) }, UiText.text(R.string.ui_name))
             FieldwatchOutlinedField(
-                fleet.notes,
+                UiCatalogText.forFleet(fleet, fleet.notes),
                 { fleet = fleet.copy(notes = it) },
                 UiText.text(R.string.ui_notes),
                 supportingText = UiText.text(R.string.ui_shows_on_radio_detail_for_matching_radios_and_in_share_ai_export_),
@@ -363,7 +364,7 @@ fun FleetEditor(
                 minLines = 2,
             )
             FieldwatchOutlinedField(
-                fleet.attentionNote,
+                UiCatalogText.forFleet(fleet, fleet.attentionNote),
                 { fleet = fleet.copy(attentionNote = it) },
                 UiText.text(R.string.ui_extra_attention),
                 supportingText = UiText.text(R.string.ui_optional_if_this_is_not_empty_matching_radios_get_a_on_live_this_),

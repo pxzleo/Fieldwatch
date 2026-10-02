@@ -1,0 +1,585 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="detail_mfg_word" formatted="false">"mfg"</string>
+    <string name="detail_unknown_1" formatted="false">"Unknown"</string>
+    <string name="detail_phone_2" formatted="false">"Phone"</string>
+    <string name="detail_computer_3" formatted="false">"Computer"</string>
+    <string name="detail_computer_desktop_workstation_4" formatted="false">"Computer / Desktop Workstation"</string>
+    <string name="detail_computer_server_class_computer_5" formatted="false">"Computer / Server-class Computer"</string>
+    <string name="detail_computer_laptop_6" formatted="false">"Computer / Laptop"</string>
+    <string name="detail_computer_handheld_pc_pda_clamshell_7" formatted="false">"Computer / Handheld PC/PDA (clamshell)"</string>
+    <string name="detail_computer_palm_size_pc_pda_8" formatted="false">"Computer / Palm-size PC/PDA"</string>
+    <string name="detail_computer_wearable_computer_watch_size_9" formatted="false">"Computer / Wearable computer (watch size)"</string>
+    <string name="detail_computer_tablet_10" formatted="false">"Computer / Tablet"</string>
+    <string name="detail_computer_docking_station_11" formatted="false">"Computer / Docking Station"</string>
+    <string name="detail_computer_all_in_one_12" formatted="false">"Computer / All in One"</string>
+    <string name="detail_computer_blade_server_13" formatted="false">"Computer / Blade Server"</string>
+    <string name="detail_computer_convertible_14" formatted="false">"Computer / Convertible"</string>
+    <string name="detail_computer_detachable_15" formatted="false">"Computer / Detachable"</string>
+    <string name="detail_computer_iot_gateway_16" formatted="false">"Computer / IoT Gateway"</string>
+    <string name="detail_computer_mini_pc_17" formatted="false">"Computer / Mini PC"</string>
+    <string name="detail_computer_stick_pc_18" formatted="false">"Computer / Stick PC"</string>
+    <string name="detail_watch_19" formatted="false">"Watch"</string>
+    <string name="detail_watch_sports_watch_20" formatted="false">"Watch / Sports Watch"</string>
+    <string name="detail_watch_smartwatch_21" formatted="false">"Watch / Smartwatch"</string>
+    <string name="detail_clock_22" formatted="false">"Clock"</string>
+    <string name="detail_display_23" formatted="false">"Display"</string>
+    <string name="detail_remote_control_24" formatted="false">"Remote Control"</string>
+    <string name="detail_eye_glasses_25" formatted="false">"Eye-glasses"</string>
+    <string name="detail_tag_26" formatted="false">"Tag"</string>
+    <string name="detail_keyring_27" formatted="false">"Keyring"</string>
+    <string name="detail_media_player_28" formatted="false">"Media Player"</string>
+    <string name="detail_barcode_scanner_29" formatted="false">"Barcode Scanner"</string>
+    <string name="detail_thermometer_30" formatted="false">"Thermometer"</string>
+    <string name="detail_thermometer_ear_thermometer_31" formatted="false">"Thermometer / Ear Thermometer"</string>
+    <string name="detail_heart_rate_sensor_32" formatted="false">"Heart Rate Sensor"</string>
+    <string name="detail_heart_rate_sensor_heart_rate_belt_33" formatted="false">"Heart Rate Sensor / Heart Rate Belt"</string>
+    <string name="detail_blood_pressure_34" formatted="false">"Blood Pressure"</string>
+    <string name="detail_blood_pressure_arm_blood_pressure_35" formatted="false">"Blood Pressure / Arm Blood Pressure"</string>
+    <string name="detail_blood_pressure_wrist_blood_pressure_36" formatted="false">"Blood Pressure / Wrist Blood Pressure"</string>
+    <string name="detail_human_interface_device_37" formatted="false">"Human Interface Device"</string>
+    <string name="detail_human_interface_device_keyboard_38" formatted="false">"Human Interface Device / Keyboard"</string>
+    <string name="detail_human_interface_device_mouse_39" formatted="false">"Human Interface Device / Mouse"</string>
+    <string name="detail_human_interface_device_joystick_40" formatted="false">"Human Interface Device / Joystick"</string>
+    <string name="detail_human_interface_device_gamepad_41" formatted="false">"Human Interface Device / Gamepad"</string>
+    <string name="detail_human_interface_device_digitizer_tablet_42" formatted="false">"Human Interface Device / Digitizer Tablet"</string>
+    <string name="detail_human_interface_device_card_reader_43" formatted="false">"Human Interface Device / Card Reader"</string>
+    <string name="detail_human_interface_device_digital_pen_44" formatted="false">"Human Interface Device / Digital Pen"</string>
+    <string name="detail_human_interface_device_barcode_scanner_45" formatted="false">"Human Interface Device / Barcode Scanner"</string>
+    <string name="detail_human_interface_device_touchpad_46" formatted="false">"Human Interface Device / Touchpad"</string>
+    <string name="detail_human_interface_device_presentation_remote_47" formatted="false">"Human Interface Device / Presentation Remote"</string>
+    <string name="detail_glucose_meter_48" formatted="false">"Glucose Meter"</string>
+    <string name="detail_running_walking_sensor_49" formatted="false">"Running Walking Sensor"</string>
+    <string name="detail_running_walking_sensor_in_shoe_running_walking_sensor_50" formatted="false">"Running Walking Sensor / In-Shoe Running Walking Sensor"</string>
+    <string name="detail_running_walking_sensor_on_shoe_running_walking_sensor_51" formatted="false">"Running Walking Sensor / On-Shoe Running Walking Sensor"</string>
+    <string name="detail_running_walking_sensor_on_hip_running_walking_sensor_52" formatted="false">"Running Walking Sensor / On-Hip Running Walking Sensor"</string>
+    <string name="detail_cycling_53" formatted="false">"Cycling"</string>
+    <string name="detail_cycling_cycling_computer_54" formatted="false">"Cycling / Cycling Computer"</string>
+    <string name="detail_cycling_speed_sensor_55" formatted="false">"Cycling / Speed Sensor"</string>
+    <string name="detail_cycling_cadence_sensor_56" formatted="false">"Cycling / Cadence Sensor"</string>
+    <string name="detail_cycling_power_sensor_57" formatted="false">"Cycling / Power Sensor"</string>
+    <string name="detail_cycling_speed_and_cadence_sensor_58" formatted="false">"Cycling / Speed and Cadence Sensor"</string>
+    <string name="detail_control_device_59" formatted="false">"Control Device"</string>
+    <string name="detail_control_device_switch_60" formatted="false">"Control Device / Switch"</string>
+    <string name="detail_control_device_multi_switch_61" formatted="false">"Control Device / Multi-switch"</string>
+    <string name="detail_control_device_button_62" formatted="false">"Control Device / Button"</string>
+    <string name="detail_control_device_slider_63" formatted="false">"Control Device / Slider"</string>
+    <string name="detail_control_device_rotary_switch_64" formatted="false">"Control Device / Rotary Switch"</string>
+    <string name="detail_control_device_touch_panel_65" formatted="false">"Control Device / Touch Panel"</string>
+    <string name="detail_control_device_single_switch_66" formatted="false">"Control Device / Single Switch"</string>
+    <string name="detail_control_device_double_switch_67" formatted="false">"Control Device / Double Switch"</string>
+    <string name="detail_control_device_triple_switch_68" formatted="false">"Control Device / Triple Switch"</string>
+    <string name="detail_control_device_battery_switch_69" formatted="false">"Control Device / Battery Switch"</string>
+    <string name="detail_control_device_energy_harvesting_switch_70" formatted="false">"Control Device / Energy Harvesting Switch"</string>
+    <string name="detail_control_device_push_button_71" formatted="false">"Control Device / Push Button"</string>
+    <string name="detail_control_device_dial_72" formatted="false">"Control Device / Dial"</string>
+    <string name="detail_network_device_73" formatted="false">"Network Device"</string>
+    <string name="detail_network_device_access_point_74" formatted="false">"Network Device / Access Point"</string>
+    <string name="detail_network_device_mesh_device_75" formatted="false">"Network Device / Mesh Device"</string>
+    <string name="detail_network_device_mesh_network_proxy_76" formatted="false">"Network Device / Mesh Network Proxy"</string>
+    <string name="detail_sensor_77" formatted="false">"Sensor"</string>
+    <string name="detail_sensor_motion_sensor_78" formatted="false">"Sensor / Motion Sensor"</string>
+    <string name="detail_sensor_air_quality_sensor_79" formatted="false">"Sensor / Air quality Sensor"</string>
+    <string name="detail_sensor_temperature_sensor_80" formatted="false">"Sensor / Temperature Sensor"</string>
+    <string name="detail_sensor_humidity_sensor_81" formatted="false">"Sensor / Humidity Sensor"</string>
+    <string name="detail_sensor_leak_sensor_82" formatted="false">"Sensor / Leak Sensor"</string>
+    <string name="detail_sensor_smoke_sensor_83" formatted="false">"Sensor / Smoke Sensor"</string>
+    <string name="detail_sensor_occupancy_sensor_84" formatted="false">"Sensor / Occupancy Sensor"</string>
+    <string name="detail_sensor_contact_sensor_85" formatted="false">"Sensor / Contact Sensor"</string>
+    <string name="detail_sensor_carbon_monoxide_sensor_86" formatted="false">"Sensor / Carbon Monoxide Sensor"</string>
+    <string name="detail_sensor_carbon_dioxide_sensor_87" formatted="false">"Sensor / Carbon Dioxide Sensor"</string>
+    <string name="detail_sensor_ambient_light_sensor_88" formatted="false">"Sensor / Ambient Light Sensor"</string>
+    <string name="detail_sensor_energy_sensor_89" formatted="false">"Sensor / Energy Sensor"</string>
+    <string name="detail_sensor_color_light_sensor_90" formatted="false">"Sensor / Color Light Sensor"</string>
+    <string name="detail_sensor_rain_sensor_91" formatted="false">"Sensor / Rain Sensor"</string>
+    <string name="detail_sensor_fire_sensor_92" formatted="false">"Sensor / Fire Sensor"</string>
+    <string name="detail_sensor_wind_sensor_93" formatted="false">"Sensor / Wind Sensor"</string>
+    <string name="detail_sensor_proximity_sensor_94" formatted="false">"Sensor / Proximity Sensor"</string>
+    <string name="detail_sensor_multi_sensor_95" formatted="false">"Sensor / Multi-Sensor"</string>
+    <string name="detail_sensor_flush_mounted_sensor_96" formatted="false">"Sensor / Flush Mounted Sensor"</string>
+    <string name="detail_sensor_ceiling_mounted_sensor_97" formatted="false">"Sensor / Ceiling Mounted Sensor"</string>
+    <string name="detail_sensor_wall_mounted_sensor_98" formatted="false">"Sensor / Wall Mounted Sensor"</string>
+    <string name="detail_sensor_multisensor_99" formatted="false">"Sensor / Multisensor"</string>
+    <string name="detail_sensor_energy_meter_100" formatted="false">"Sensor / Energy Meter"</string>
+    <string name="detail_sensor_flame_detector_101" formatted="false">"Sensor / Flame Detector"</string>
+    <string name="detail_sensor_vehicle_tire_pressure_sensor_102" formatted="false">"Sensor / Vehicle Tire Pressure Sensor"</string>
+    <string name="detail_light_fixtures_103" formatted="false">"Light Fixtures"</string>
+    <string name="detail_light_fixtures_wall_light_104" formatted="false">"Light Fixtures / Wall Light"</string>
+    <string name="detail_light_fixtures_ceiling_light_105" formatted="false">"Light Fixtures / Ceiling Light"</string>
+    <string name="detail_light_fixtures_floor_light_106" formatted="false">"Light Fixtures / Floor Light"</string>
+    <string name="detail_light_fixtures_cabinet_light_107" formatted="false">"Light Fixtures / Cabinet Light"</string>
+    <string name="detail_light_fixtures_desk_light_108" formatted="false">"Light Fixtures / Desk Light"</string>
+    <string name="detail_light_fixtures_troffer_light_109" formatted="false">"Light Fixtures / Troffer Light"</string>
+    <string name="detail_light_fixtures_pendant_light_110" formatted="false">"Light Fixtures / Pendant Light"</string>
+    <string name="detail_light_fixtures_in_ground_light_111" formatted="false">"Light Fixtures / In-ground Light"</string>
+    <string name="detail_light_fixtures_flood_light_112" formatted="false">"Light Fixtures / Flood Light"</string>
+    <string name="detail_light_fixtures_underwater_light_113" formatted="false">"Light Fixtures / Underwater Light"</string>
+    <string name="detail_light_fixtures_bollard_with_light_114" formatted="false">"Light Fixtures / Bollard with Light"</string>
+    <string name="detail_light_fixtures_pathway_light_115" formatted="false">"Light Fixtures / Pathway Light"</string>
+    <string name="detail_light_fixtures_garden_light_116" formatted="false">"Light Fixtures / Garden Light"</string>
+    <string name="detail_light_fixtures_pole_top_light_117" formatted="false">"Light Fixtures / Pole-top Light"</string>
+    <string name="detail_light_fixtures_spotlight_118" formatted="false">"Light Fixtures / Spotlight"</string>
+    <string name="detail_light_fixtures_linear_light_119" formatted="false">"Light Fixtures / Linear Light"</string>
+    <string name="detail_light_fixtures_street_light_120" formatted="false">"Light Fixtures / Street Light"</string>
+    <string name="detail_light_fixtures_shelves_light_121" formatted="false">"Light Fixtures / Shelves Light"</string>
+    <string name="detail_light_fixtures_bay_light_122" formatted="false">"Light Fixtures / Bay Light"</string>
+    <string name="detail_light_fixtures_emergency_exit_light_123" formatted="false">"Light Fixtures / Emergency Exit Light"</string>
+    <string name="detail_light_fixtures_light_controller_124" formatted="false">"Light Fixtures / Light Controller"</string>
+    <string name="detail_light_fixtures_light_driver_125" formatted="false">"Light Fixtures / Light Driver"</string>
+    <string name="detail_light_fixtures_bulb_126" formatted="false">"Light Fixtures / Bulb"</string>
+    <string name="detail_light_fixtures_low_bay_light_127" formatted="false">"Light Fixtures / Low-bay Light"</string>
+    <string name="detail_light_fixtures_high_bay_light_128" formatted="false">"Light Fixtures / High-bay Light"</string>
+    <string name="detail_fan_129" formatted="false">"Fan"</string>
+    <string name="detail_fan_ceiling_fan_130" formatted="false">"Fan / Ceiling Fan"</string>
+    <string name="detail_fan_axial_fan_131" formatted="false">"Fan / Axial Fan"</string>
+    <string name="detail_fan_exhaust_fan_132" formatted="false">"Fan / Exhaust Fan"</string>
+    <string name="detail_fan_pedestal_fan_133" formatted="false">"Fan / Pedestal Fan"</string>
+    <string name="detail_fan_desk_fan_134" formatted="false">"Fan / Desk Fan"</string>
+    <string name="detail_fan_wall_fan_135" formatted="false">"Fan / Wall Fan"</string>
+    <string name="detail_hvac_136" formatted="false">"HVAC"</string>
+    <string name="detail_hvac_thermostat_137" formatted="false">"HVAC / Thermostat"</string>
+    <string name="detail_hvac_humidifier_138" formatted="false">"HVAC / Humidifier"</string>
+    <string name="detail_hvac_de_humidifier_139" formatted="false">"HVAC / De-humidifier"</string>
+    <string name="detail_hvac_heater_140" formatted="false">"HVAC / Heater"</string>
+    <string name="detail_hvac_radiator_141" formatted="false">"HVAC / Radiator"</string>
+    <string name="detail_hvac_boiler_142" formatted="false">"HVAC / Boiler"</string>
+    <string name="detail_hvac_heat_pump_143" formatted="false">"HVAC / Heat Pump"</string>
+    <string name="detail_hvac_infrared_heater_144" formatted="false">"HVAC / Infrared Heater"</string>
+    <string name="detail_hvac_radiant_panel_heater_145" formatted="false">"HVAC / Radiant Panel Heater"</string>
+    <string name="detail_hvac_fan_heater_146" formatted="false">"HVAC / Fan Heater"</string>
+    <string name="detail_hvac_air_curtain_147" formatted="false">"HVAC / Air Curtain"</string>
+    <string name="detail_air_conditioning_148" formatted="false">"Air Conditioning"</string>
+    <string name="detail_humidifier_149" formatted="false">"Humidifier"</string>
+    <string name="detail_heating_150" formatted="false">"Heating"</string>
+    <string name="detail_heating_radiator_151" formatted="false">"Heating / Radiator"</string>
+    <string name="detail_heating_boiler_152" formatted="false">"Heating / Boiler"</string>
+    <string name="detail_heating_heat_pump_153" formatted="false">"Heating / Heat Pump"</string>
+    <string name="detail_heating_infrared_heater_154" formatted="false">"Heating / Infrared Heater"</string>
+    <string name="detail_heating_radiant_panel_heater_155" formatted="false">"Heating / Radiant Panel Heater"</string>
+    <string name="detail_heating_fan_heater_156" formatted="false">"Heating / Fan Heater"</string>
+    <string name="detail_heating_air_curtain_157" formatted="false">"Heating / Air Curtain"</string>
+    <string name="detail_access_control_158" formatted="false">"Access Control"</string>
+    <string name="detail_access_control_access_door_159" formatted="false">"Access Control / Access Door"</string>
+    <string name="detail_access_control_garage_door_160" formatted="false">"Access Control / Garage Door"</string>
+    <string name="detail_access_control_emergency_exit_door_161" formatted="false">"Access Control / Emergency Exit Door"</string>
+    <string name="detail_access_control_access_lock_162" formatted="false">"Access Control / Access Lock"</string>
+    <string name="detail_access_control_elevator_163" formatted="false">"Access Control / Elevator"</string>
+    <string name="detail_access_control_window_164" formatted="false">"Access Control / Window"</string>
+    <string name="detail_access_control_entrance_gate_165" formatted="false">"Access Control / Entrance Gate"</string>
+    <string name="detail_access_control_door_lock_166" formatted="false">"Access Control / Door Lock"</string>
+    <string name="detail_access_control_locker_167" formatted="false">"Access Control / Locker"</string>
+    <string name="detail_motorized_device_168" formatted="false">"Motorized Device"</string>
+    <string name="detail_motorized_device_motorized_gate_169" formatted="false">"Motorized Device / Motorized Gate"</string>
+    <string name="detail_motorized_device_awning_170" formatted="false">"Motorized Device / Awning"</string>
+    <string name="detail_motorized_device_blinds_or_shades_171" formatted="false">"Motorized Device / Blinds or Shades"</string>
+    <string name="detail_motorized_device_curtains_172" formatted="false">"Motorized Device / Curtains"</string>
+    <string name="detail_motorized_device_screen_173" formatted="false">"Motorized Device / Screen"</string>
+    <string name="detail_power_device_174" formatted="false">"Power Device"</string>
+    <string name="detail_power_device_power_outlet_175" formatted="false">"Power Device / Power Outlet"</string>
+    <string name="detail_power_device_power_strip_176" formatted="false">"Power Device / Power Strip"</string>
+    <string name="detail_power_device_plug_177" formatted="false">"Power Device / Plug"</string>
+    <string name="detail_power_device_power_supply_178" formatted="false">"Power Device / Power Supply"</string>
+    <string name="detail_power_device_led_driver_179" formatted="false">"Power Device / LED Driver"</string>
+    <string name="detail_power_device_fluorescent_lamp_gear_180" formatted="false">"Power Device / Fluorescent Lamp Gear"</string>
+    <string name="detail_power_device_hid_lamp_gear_181" formatted="false">"Power Device / HID Lamp Gear"</string>
+    <string name="detail_power_device_charge_case_182" formatted="false">"Power Device / Charge Case"</string>
+    <string name="detail_power_device_power_bank_183" formatted="false">"Power Device / Power Bank"</string>
+    <string name="detail_light_source_184" formatted="false">"Light Source"</string>
+    <string name="detail_light_source_incandescent_light_bulb_185" formatted="false">"Light Source / Incandescent Light Bulb"</string>
+    <string name="detail_light_source_led_lamp_186" formatted="false">"Light Source / LED Lamp"</string>
+    <string name="detail_light_source_hid_lamp_187" formatted="false">"Light Source / HID Lamp"</string>
+    <string name="detail_light_source_fluorescent_lamp_188" formatted="false">"Light Source / Fluorescent Lamp"</string>
+    <string name="detail_light_source_led_array_189" formatted="false">"Light Source / LED Array"</string>
+    <string name="detail_light_source_multi_color_led_array_190" formatted="false">"Light Source / Multi-Color LED Array"</string>
+    <string name="detail_light_source_low_voltage_halogen_191" formatted="false">"Light Source / Low voltage halogen"</string>
+    <string name="detail_light_source_organic_light_emitting_diode_oled_192" formatted="false">"Light Source / Organic light emitting diode (OLED)"</string>
+    <string name="detail_window_covering_193" formatted="false">"Window Covering"</string>
+    <string name="detail_window_covering_window_shades_194" formatted="false">"Window Covering / Window Shades"</string>
+    <string name="detail_window_covering_window_blinds_195" formatted="false">"Window Covering / Window Blinds"</string>
+    <string name="detail_window_covering_window_awning_196" formatted="false">"Window Covering / Window Awning"</string>
+    <string name="detail_window_covering_window_curtain_197" formatted="false">"Window Covering / Window Curtain"</string>
+    <string name="detail_window_covering_exterior_shutter_198" formatted="false">"Window Covering / Exterior Shutter"</string>
+    <string name="detail_window_covering_exterior_screen_199" formatted="false">"Window Covering / Exterior Screen"</string>
+    <string name="detail_audio_sink_200" formatted="false">"Audio Sink"</string>
+    <string name="detail_audio_sink_standalone_speaker_201" formatted="false">"Audio Sink / Standalone Speaker"</string>
+    <string name="detail_audio_sink_soundbar_202" formatted="false">"Audio Sink / Soundbar"</string>
+    <string name="detail_audio_sink_bookshelf_speaker_203" formatted="false">"Audio Sink / Bookshelf Speaker"</string>
+    <string name="detail_audio_sink_standmounted_speaker_204" formatted="false">"Audio Sink / Standmounted Speaker"</string>
+    <string name="detail_audio_sink_speakerphone_205" formatted="false">"Audio Sink / Speakerphone"</string>
+    <string name="detail_audio_source_206" formatted="false">"Audio Source"</string>
+    <string name="detail_audio_source_microphone_207" formatted="false">"Audio Source / Microphone"</string>
+    <string name="detail_audio_source_alarm_208" formatted="false">"Audio Source / Alarm"</string>
+    <string name="detail_audio_source_bell_209" formatted="false">"Audio Source / Bell"</string>
+    <string name="detail_audio_source_horn_210" formatted="false">"Audio Source / Horn"</string>
+    <string name="detail_audio_source_broadcasting_device_211" formatted="false">"Audio Source / Broadcasting Device"</string>
+    <string name="detail_audio_source_service_desk_212" formatted="false">"Audio Source / Service Desk"</string>
+    <string name="detail_audio_source_kiosk_213" formatted="false">"Audio Source / Kiosk"</string>
+    <string name="detail_audio_source_broadcasting_room_214" formatted="false">"Audio Source / Broadcasting Room"</string>
+    <string name="detail_audio_source_auditorium_215" formatted="false">"Audio Source / Auditorium"</string>
+    <string name="detail_motorized_vehicle_216" formatted="false">"Motorized Vehicle"</string>
+    <string name="detail_motorized_vehicle_car_217" formatted="false">"Motorized Vehicle / Car"</string>
+    <string name="detail_motorized_vehicle_large_goods_vehicle_218" formatted="false">"Motorized Vehicle / Large Goods Vehicle"</string>
+    <string name="detail_motorized_vehicle_2_wheeled_vehicle_219" formatted="false">"Motorized Vehicle / 2-Wheeled Vehicle"</string>
+    <string name="detail_motorized_vehicle_motorbike_220" formatted="false">"Motorized Vehicle / Motorbike"</string>
+    <string name="detail_motorized_vehicle_scooter_221" formatted="false">"Motorized Vehicle / Scooter"</string>
+    <string name="detail_motorized_vehicle_moped_222" formatted="false">"Motorized Vehicle / Moped"</string>
+    <string name="detail_motorized_vehicle_3_wheeled_vehicle_223" formatted="false">"Motorized Vehicle / 3-Wheeled Vehicle"</string>
+    <string name="detail_motorized_vehicle_light_vehicle_224" formatted="false">"Motorized Vehicle / Light Vehicle"</string>
+    <string name="detail_motorized_vehicle_quad_bike_225" formatted="false">"Motorized Vehicle / Quad Bike"</string>
+    <string name="detail_motorized_vehicle_minibus_226" formatted="false">"Motorized Vehicle / Minibus"</string>
+    <string name="detail_motorized_vehicle_bus_227" formatted="false">"Motorized Vehicle / Bus"</string>
+    <string name="detail_motorized_vehicle_trolley_228" formatted="false">"Motorized Vehicle / Trolley"</string>
+    <string name="detail_motorized_vehicle_agricultural_vehicle_229" formatted="false">"Motorized Vehicle / Agricultural Vehicle"</string>
+    <string name="detail_motorized_vehicle_camper_caravan_230" formatted="false">"Motorized Vehicle / Camper / Caravan"</string>
+    <string name="detail_motorized_vehicle_recreational_vehicle_motor_home_231" formatted="false">"Motorized Vehicle / Recreational Vehicle / Motor Home"</string>
+    <string name="detail_domestic_appliance_232" formatted="false">"Domestic Appliance"</string>
+    <string name="detail_domestic_appliance_refrigerator_233" formatted="false">"Domestic Appliance / Refrigerator"</string>
+    <string name="detail_domestic_appliance_freezer_234" formatted="false">"Domestic Appliance / Freezer"</string>
+    <string name="detail_domestic_appliance_oven_235" formatted="false">"Domestic Appliance / Oven"</string>
+    <string name="detail_domestic_appliance_microwave_236" formatted="false">"Domestic Appliance / Microwave"</string>
+    <string name="detail_domestic_appliance_toaster_237" formatted="false">"Domestic Appliance / Toaster"</string>
+    <string name="detail_domestic_appliance_washing_machine_238" formatted="false">"Domestic Appliance / Washing Machine"</string>
+    <string name="detail_domestic_appliance_dryer_239" formatted="false">"Domestic Appliance / Dryer"</string>
+    <string name="detail_domestic_appliance_coffee_maker_240" formatted="false">"Domestic Appliance / Coffee maker"</string>
+    <string name="detail_domestic_appliance_clothes_iron_241" formatted="false">"Domestic Appliance / Clothes iron"</string>
+    <string name="detail_domestic_appliance_curling_iron_242" formatted="false">"Domestic Appliance / Curling iron"</string>
+    <string name="detail_domestic_appliance_hair_dryer_243" formatted="false">"Domestic Appliance / Hair dryer"</string>
+    <string name="detail_domestic_appliance_vacuum_cleaner_244" formatted="false">"Domestic Appliance / Vacuum cleaner"</string>
+    <string name="detail_domestic_appliance_robotic_vacuum_cleaner_245" formatted="false">"Domestic Appliance / Robotic vacuum cleaner"</string>
+    <string name="detail_domestic_appliance_rice_cooker_246" formatted="false">"Domestic Appliance / Rice cooker"</string>
+    <string name="detail_domestic_appliance_clothes_steamer_247" formatted="false">"Domestic Appliance / Clothes steamer"</string>
+    <string name="detail_wearable_audio_device_248" formatted="false">"Wearable Audio Device"</string>
+    <string name="detail_wearable_audio_device_earbud_249" formatted="false">"Wearable Audio Device / Earbud"</string>
+    <string name="detail_wearable_audio_device_headset_250" formatted="false">"Wearable Audio Device / Headset"</string>
+    <string name="detail_wearable_audio_device_headphones_251" formatted="false">"Wearable Audio Device / Headphones"</string>
+    <string name="detail_wearable_audio_device_neck_band_252" formatted="false">"Wearable Audio Device / Neck Band"</string>
+    <string name="detail_wearable_audio_device_left_earbud_253" formatted="false">"Wearable Audio Device / Left Earbud"</string>
+    <string name="detail_wearable_audio_device_right_earbud_254" formatted="false">"Wearable Audio Device / Right Earbud"</string>
+    <string name="detail_aircraft_255" formatted="false">"Aircraft"</string>
+    <string name="detail_aircraft_light_aircraft_256" formatted="false">"Aircraft / Light Aircraft"</string>
+    <string name="detail_aircraft_microlight_257" formatted="false">"Aircraft / Microlight"</string>
+    <string name="detail_aircraft_paraglider_258" formatted="false">"Aircraft / Paraglider"</string>
+    <string name="detail_aircraft_large_passenger_aircraft_259" formatted="false">"Aircraft / Large Passenger Aircraft"</string>
+    <string name="detail_av_equipment_260" formatted="false">"AV Equipment"</string>
+    <string name="detail_av_equipment_amplifier_261" formatted="false">"AV Equipment / Amplifier"</string>
+    <string name="detail_av_equipment_receiver_262" formatted="false">"AV Equipment / Receiver"</string>
+    <string name="detail_av_equipment_radio_263" formatted="false">"AV Equipment / Radio"</string>
+    <string name="detail_av_equipment_tuner_264" formatted="false">"AV Equipment / Tuner"</string>
+    <string name="detail_av_equipment_turntable_265" formatted="false">"AV Equipment / Turntable"</string>
+    <string name="detail_av_equipment_cd_player_266" formatted="false">"AV Equipment / CD Player"</string>
+    <string name="detail_av_equipment_dvd_player_267" formatted="false">"AV Equipment / DVD Player"</string>
+    <string name="detail_av_equipment_bluray_player_268" formatted="false">"AV Equipment / Bluray Player"</string>
+    <string name="detail_av_equipment_optical_disc_player_269" formatted="false">"AV Equipment / Optical Disc Player"</string>
+    <string name="detail_av_equipment_set_top_box_270" formatted="false">"AV Equipment / Set-Top Box"</string>
+    <string name="detail_display_equipment_271" formatted="false">"Display Equipment"</string>
+    <string name="detail_display_equipment_television_272" formatted="false">"Display Equipment / Television"</string>
+    <string name="detail_display_equipment_monitor_273" formatted="false">"Display Equipment / Monitor"</string>
+    <string name="detail_display_equipment_projector_274" formatted="false">"Display Equipment / Projector"</string>
+    <string name="detail_hearing_aid_275" formatted="false">"Hearing aid"</string>
+    <string name="detail_hearing_aid_in_ear_hearing_aid_276" formatted="false">"Hearing aid / In-ear hearing aid"</string>
+    <string name="detail_hearing_aid_behind_ear_hearing_aid_277" formatted="false">"Hearing aid / Behind-ear hearing aid"</string>
+    <string name="detail_hearing_aid_cochlear_implant_278" formatted="false">"Hearing aid / Cochlear Implant"</string>
+    <string name="detail_gaming_279" formatted="false">"Gaming"</string>
+    <string name="detail_gaming_home_video_game_console_280" formatted="false">"Gaming / Home Video Game Console"</string>
+    <string name="detail_gaming_portable_handheld_console_281" formatted="false">"Gaming / Portable handheld console"</string>
+    <string name="detail_signage_282" formatted="false">"Signage"</string>
+    <string name="detail_signage_digital_signage_283" formatted="false">"Signage / Digital Signage"</string>
+    <string name="detail_signage_electronic_label_284" formatted="false">"Signage / Electronic Label"</string>
+    <string name="detail_pulse_oximeter_285" formatted="false">"Pulse Oximeter"</string>
+    <string name="detail_pulse_oximeter_fingertip_pulse_oximeter_286" formatted="false">"Pulse Oximeter / Fingertip Pulse Oximeter"</string>
+    <string name="detail_pulse_oximeter_wrist_worn_pulse_oximeter_287" formatted="false">"Pulse Oximeter / Wrist Worn Pulse Oximeter"</string>
+    <string name="detail_weight_scale_288" formatted="false">"Weight Scale"</string>
+    <string name="detail_personal_mobility_device_289" formatted="false">"Personal Mobility Device"</string>
+    <string name="detail_personal_mobility_device_powered_wheelchair_290" formatted="false">"Personal Mobility Device / Powered Wheelchair"</string>
+    <string name="detail_personal_mobility_device_mobility_scooter_291" formatted="false">"Personal Mobility Device / Mobility Scooter"</string>
+    <string name="detail_continuous_glucose_monitor_292" formatted="false">"Continuous Glucose Monitor"</string>
+    <string name="detail_insulin_pump_293" formatted="false">"Insulin Pump"</string>
+    <string name="detail_insulin_pump_insulin_pump_durable_pump_294" formatted="false">"Insulin Pump / Insulin Pump, durable pump"</string>
+    <string name="detail_insulin_pump_insulin_pump_patch_pump_295" formatted="false">"Insulin Pump / Insulin Pump, patch pump"</string>
+    <string name="detail_insulin_pump_insulin_pen_296" formatted="false">"Insulin Pump / Insulin Pen"</string>
+    <string name="detail_medication_delivery_297" formatted="false">"Medication Delivery"</string>
+    <string name="detail_spirometer_298" formatted="false">"Spirometer"</string>
+    <string name="detail_spirometer_handheld_spirometer_299" formatted="false">"Spirometer / Handheld Spirometer"</string>
+    <string name="detail_outdoor_sports_activity_300" formatted="false">"Outdoor Sports Activity"</string>
+    <string name="detail_outdoor_sports_activity_location_display_301" formatted="false">"Outdoor Sports Activity / Location Display"</string>
+    <string name="detail_outdoor_sports_activity_location_and_navigation_display_302" formatted="false">"Outdoor Sports Activity / Location and Navigation Display"</string>
+    <string name="detail_outdoor_sports_activity_location_pod_303" formatted="false">"Outdoor Sports Activity / Location Pod"</string>
+    <string name="detail_outdoor_sports_activity_location_and_navigation_pod_304" formatted="false">"Outdoor Sports Activity / Location and Navigation Pod"</string>
+    <string name="detail_industrial_measurement_device_305" formatted="false">"Industrial Measurement Device"</string>
+    <string name="detail_industrial_measurement_device_torque_testing_device_306" formatted="false">"Industrial Measurement Device / Torque Testing Device"</string>
+    <string name="detail_industrial_measurement_device_caliper_307" formatted="false">"Industrial Measurement Device / Caliper"</string>
+    <string name="detail_industrial_measurement_device_dial_indicator_308" formatted="false">"Industrial Measurement Device / Dial Indicator"</string>
+    <string name="detail_industrial_measurement_device_micrometer_309" formatted="false">"Industrial Measurement Device / Micrometer"</string>
+    <string name="detail_industrial_measurement_device_height_gauge_310" formatted="false">"Industrial Measurement Device / Height Gauge"</string>
+    <string name="detail_industrial_measurement_device_force_gauge_311" formatted="false">"Industrial Measurement Device / Force Gauge"</string>
+    <string name="detail_industrial_tools_312" formatted="false">"Industrial Tools"</string>
+    <string name="detail_industrial_tools_machine_tool_holder_313" formatted="false">"Industrial Tools / Machine Tool Holder"</string>
+    <string name="detail_industrial_tools_generic_clamping_device_314" formatted="false">"Industrial Tools / Generic Clamping Device"</string>
+    <string name="detail_industrial_tools_clamping_jaws_jaw_chuck_315" formatted="false">"Industrial Tools / Clamping Jaws/Jaw Chuck"</string>
+    <string name="detail_industrial_tools_clamping_collet_chuck_316" formatted="false">"Industrial Tools / Clamping (Collet) Chuck"</string>
+    <string name="detail_industrial_tools_clamping_mandrel_317" formatted="false">"Industrial Tools / Clamping Mandrel"</string>
+    <string name="detail_industrial_tools_vise_318" formatted="false">"Industrial Tools / Vise"</string>
+    <string name="detail_industrial_tools_zero_point_clamping_system_319" formatted="false">"Industrial Tools / Zero-Point Clamping System"</string>
+    <string name="detail_industrial_tools_torque_wrench_320" formatted="false">"Industrial Tools / Torque Wrench"</string>
+    <string name="detail_industrial_tools_torque_screwdriver_321" formatted="false">"Industrial Tools / Torque Screwdriver"</string>
+    <string name="detail_cookware_device_322" formatted="false">"Cookware Device"</string>
+    <string name="detail_cookware_device_pot_and_jugs_323" formatted="false">"Cookware Device / Pot and Jugs"</string>
+    <string name="detail_cookware_device_pressure_cooker_324" formatted="false">"Cookware Device / Pressure Cooker"</string>
+    <string name="detail_cookware_device_slow_cooker_325" formatted="false">"Cookware Device / Slow Cooker"</string>
+    <string name="detail_cookware_device_steam_cooker_326" formatted="false">"Cookware Device / Steam Cooker"</string>
+    <string name="detail_cookware_device_saucepan_327" formatted="false">"Cookware Device / Saucepan"</string>
+    <string name="detail_cookware_device_frying_pan_328" formatted="false">"Cookware Device / Frying Pan"</string>
+    <string name="detail_cookware_device_casserole_329" formatted="false">"Cookware Device / Casserole"</string>
+    <string name="detail_cookware_device_dutch_oven_330" formatted="false">"Cookware Device / Dutch Oven"</string>
+    <string name="detail_cookware_device_grill_pan_raclette_grill_griddle_pan_331" formatted="false">"Cookware Device / Grill Pan/Raclette Grill/Griddle Pan"</string>
+    <string name="detail_cookware_device_braising_pan_332" formatted="false">"Cookware Device / Braising Pan"</string>
+    <string name="detail_cookware_device_wok_pan_333" formatted="false">"Cookware Device / Wok Pan"</string>
+    <string name="detail_cookware_device_paella_pan_334" formatted="false">"Cookware Device / Paella Pan"</string>
+    <string name="detail_cookware_device_crepe_pan_335" formatted="false">"Cookware Device / Crepe Pan"</string>
+    <string name="detail_cookware_device_tagine_336" formatted="false">"Cookware Device / Tagine"</string>
+    <string name="detail_cookware_device_fondue_337" formatted="false">"Cookware Device / Fondue"</string>
+    <string name="detail_cookware_device_lid_338" formatted="false">"Cookware Device / Lid"</string>
+    <string name="detail_cookware_device_wired_probe_339" formatted="false">"Cookware Device / Wired Probe"</string>
+    <string name="detail_cookware_device_wireless_probe_340" formatted="false">"Cookware Device / Wireless Probe"</string>
+    <string name="detail_cookware_device_baking_molds_341" formatted="false">"Cookware Device / Baking Molds"</string>
+    <string name="detail_cookware_device_baking_tray_342" formatted="false">"Cookware Device / Baking Tray"</string>
+    <string name="detail_gap_343" formatted="false">"GAP"</string>
+    <string name="detail_gatt_344" formatted="false">"GATT"</string>
+    <string name="detail_immediate_alert_345" formatted="false">"Immediate Alert"</string>
+    <string name="detail_link_loss_346" formatted="false">"Link Loss"</string>
+    <string name="detail_tx_power_347" formatted="false">"Tx Power"</string>
+    <string name="detail_current_time_348" formatted="false">"Current Time"</string>
+    <string name="detail_reference_time_update_349" formatted="false">"Reference Time Update"</string>
+    <string name="detail_next_dst_change_350" formatted="false">"Next DST Change"</string>
+    <string name="detail_glucose_351" formatted="false">"Glucose"</string>
+    <string name="detail_health_thermometer_352" formatted="false">"Health Thermometer"</string>
+    <string name="detail_device_information_353" formatted="false">"Device Information"</string>
+    <string name="detail_heart_rate_354" formatted="false">"Heart Rate"</string>
+    <string name="detail_phone_alert_status_355" formatted="false">"Phone Alert Status"</string>
+    <string name="detail_battery_356" formatted="false">"Battery"</string>
+    <string name="detail_alert_notification_357" formatted="false">"Alert Notification"</string>
+    <string name="detail_scan_parameters_358" formatted="false">"Scan Parameters"</string>
+    <string name="detail_running_speed_and_cadence_359" formatted="false">"Running Speed and Cadence"</string>
+    <string name="detail_automation_io_360" formatted="false">"Automation IO"</string>
+    <string name="detail_cycling_speed_and_cadence_361" formatted="false">"Cycling Speed and Cadence"</string>
+    <string name="detail_cycling_power_362" formatted="false">"Cycling Power"</string>
+    <string name="detail_location_and_navigation_363" formatted="false">"Location and Navigation"</string>
+    <string name="detail_environmental_sensing_364" formatted="false">"Environmental Sensing"</string>
+    <string name="detail_body_composition_365" formatted="false">"Body Composition"</string>
+    <string name="detail_user_data_366" formatted="false">"User Data"</string>
+    <string name="detail_bond_management_367" formatted="false">"Bond Management"</string>
+    <string name="detail_continuous_glucose_monitoring_368" formatted="false">"Continuous Glucose Monitoring"</string>
+    <string name="detail_internet_protocol_support_369" formatted="false">"Internet Protocol Support"</string>
+    <string name="detail_indoor_positioning_370" formatted="false">"Indoor Positioning"</string>
+    <string name="detail_http_proxy_371" formatted="false">"HTTP Proxy"</string>
+    <string name="detail_transport_discovery_372" formatted="false">"Transport Discovery"</string>
+    <string name="detail_object_transfer_373" formatted="false">"Object Transfer"</string>
+    <string name="detail_fitness_machine_374" formatted="false">"Fitness Machine"</string>
+    <string name="detail_mesh_provisioning_375" formatted="false">"Mesh Provisioning"</string>
+    <string name="detail_mesh_proxy_376" formatted="false">"Mesh Proxy"</string>
+    <string name="detail_reconnection_configuration_377" formatted="false">"Reconnection Configuration"</string>
+    <string name="detail_insulin_delivery_378" formatted="false">"Insulin Delivery"</string>
+    <string name="detail_binary_sensor_379" formatted="false">"Binary Sensor"</string>
+    <string name="detail_emergency_configuration_380" formatted="false">"Emergency Configuration"</string>
+    <string name="detail_authorization_control_381" formatted="false">"Authorization Control"</string>
+    <string name="detail_physical_activity_monitor_382" formatted="false">"Physical Activity Monitor"</string>
+    <string name="detail_elapsed_time_383" formatted="false">"Elapsed Time"</string>
+    <string name="detail_generic_health_sensor_384" formatted="false">"Generic Health Sensor"</string>
+    <string name="detail_audio_input_control_385" formatted="false">"Audio Input Control"</string>
+    <string name="detail_volume_control_386" formatted="false">"Volume Control"</string>
+    <string name="detail_volume_offset_control_387" formatted="false">"Volume Offset Control"</string>
+    <string name="detail_coordinated_set_identification_388" formatted="false">"Coordinated Set Identification"</string>
+    <string name="detail_device_time_389" formatted="false">"Device Time"</string>
+    <string name="detail_media_control_390" formatted="false">"Media Control"</string>
+    <string name="detail_generic_media_control_391" formatted="false">"Generic Media Control"</string>
+    <string name="detail_constant_tone_extension_392" formatted="false">"Constant Tone Extension"</string>
+    <string name="detail_telephone_bearer_393" formatted="false">"Telephone Bearer"</string>
+    <string name="detail_generic_telephone_bearer_394" formatted="false">"Generic Telephone Bearer"</string>
+    <string name="detail_microphone_control_395" formatted="false">"Microphone Control"</string>
+    <string name="detail_audio_stream_control_396" formatted="false">"Audio Stream Control"</string>
+    <string name="detail_broadcast_audio_scan_397" formatted="false">"Broadcast Audio Scan"</string>
+    <string name="detail_published_audio_capabilities_398" formatted="false">"Published Audio Capabilities"</string>
+    <string name="detail_basic_audio_announcement_399" formatted="false">"Basic Audio Announcement"</string>
+    <string name="detail_broadcast_audio_announcement_400" formatted="false">"Broadcast Audio Announcement"</string>
+    <string name="detail_common_audio_401" formatted="false">"Common Audio"</string>
+    <string name="detail_hearing_access_402" formatted="false">"Hearing Access"</string>
+    <string name="detail_telephony_and_media_audio_403" formatted="false">"Telephony and Media Audio"</string>
+    <string name="detail_public_broadcast_announcement_404" formatted="false">"Public Broadcast Announcement"</string>
+    <string name="detail_electronic_shelf_label_405" formatted="false">"Electronic Shelf Label"</string>
+    <string name="detail_gaming_audio_406" formatted="false">"Gaming Audio"</string>
+    <string name="detail_mesh_proxy_solicitation_407" formatted="false">"Mesh Proxy Solicitation"</string>
+    <string name="detail_ranging_408" formatted="false">"Ranging"</string>
+    <string name="detail_hid_iso_409" formatted="false">"HID ISO"</string>
+    <string name="detail_cookware_410" formatted="false">"Cookware"</string>
+    <string name="detail_voice_assistant_411" formatted="false">"Voice Assistant"</string>
+    <string name="detail_generic_voice_assistant_412" formatted="false">"Generic Voice Assistant"</string>
+    <string name="detail_tire_pressure_monitoring_system_413" formatted="false">"Tire Pressure Monitoring System"</string>
+    <string name="detail_miscellaneous_414" formatted="false">"Miscellaneous"</string>
+    <string name="detail_lan_network_ap_415" formatted="false">"LAN / Network AP"</string>
+    <string name="detail_audio_video_416" formatted="false">"Audio / Video"</string>
+    <string name="detail_peripheral_417" formatted="false">"Peripheral"</string>
+    <string name="detail_imaging_418" formatted="false">"Imaging"</string>
+    <string name="detail_wearable_419" formatted="false">"Wearable"</string>
+    <string name="detail_toy_420" formatted="false">"Toy"</string>
+    <string name="detail_health_421" formatted="false">"Health"</string>
+    <string name="detail_uncategorized_422" formatted="false">"Uncategorized"</string>
+    <string name="detail_major_0x_02x_423" formatted="false">"Major 0x%02X"</string>
+    <string name="detail_desktop_424" formatted="false">"Desktop"</string>
+    <string name="detail_server_425" formatted="false">"Server"</string>
+    <string name="detail_laptop_426" formatted="false">"Laptop"</string>
+    <string name="detail_handheld_pc_pda_427" formatted="false">"Handheld PC/PDA"</string>
+    <string name="detail_palm_size_pda_428" formatted="false">"Palm-size PDA"</string>
+    <string name="detail_wearable_computer_429" formatted="false">"Wearable computer"</string>
+    <string name="detail_tablet_430" formatted="false">"Tablet"</string>
+    <string name="detail_computer_0x_02x_431" formatted="false">"Computer 0x%02X"</string>
+    <string name="detail_cellular_432" formatted="false">"Cellular"</string>
+    <string name="detail_cordless_433" formatted="false">"Cordless"</string>
+    <string name="detail_smartphone_434" formatted="false">"Smartphone"</string>
+    <string name="detail_wired_modem_voice_gateway_435" formatted="false">"Wired modem / voice gateway"</string>
+    <string name="detail_common_isdn_access_436" formatted="false">"Common ISDN access"</string>
+    <string name="detail_phone_0x_02x_437" formatted="false">"Phone 0x%02X"</string>
+    <string name="detail_fully_available_438" formatted="false">"Fully available"</string>
+    <string name="detail_1_17_utilized_439" formatted="false">"1–17% utilized"</string>
+    <string name="detail_17_33_utilized_440" formatted="false">"17–33% utilized"</string>
+    <string name="detail_33_50_utilized_441" formatted="false">"33–50% utilized"</string>
+    <string name="detail_50_67_utilized_442" formatted="false">"50–67% utilized"</string>
+    <string name="detail_67_83_utilized_443" formatted="false">"67–83% utilized"</string>
+    <string name="detail_83_99_utilized_444" formatted="false">"83–99% utilized"</string>
+    <string name="detail_no_service_available_445" formatted="false">"No service available"</string>
+    <string name="detail_wearable_headset_446" formatted="false">"Wearable headset"</string>
+    <string name="detail_hands_free_447" formatted="false">"Hands-free"</string>
+    <string name="detail_microphone_448" formatted="false">"Microphone"</string>
+    <string name="detail_loudspeaker_449" formatted="false">"Loudspeaker"</string>
+    <string name="detail_headphones_450" formatted="false">"Headphones"</string>
+    <string name="detail_portable_audio_451" formatted="false">"Portable audio"</string>
+    <string name="detail_car_audio_452" formatted="false">"Car audio"</string>
+    <string name="detail_set_top_box_453" formatted="false">"Set-top box"</string>
+    <string name="detail_hifi_audio_454" formatted="false">"HiFi audio"</string>
+    <string name="detail_vcr_455" formatted="false">"VCR"</string>
+    <string name="detail_video_camera_456" formatted="false">"Video camera"</string>
+    <string name="detail_camcorder_457" formatted="false">"Camcorder"</string>
+    <string name="detail_video_monitor_458" formatted="false">"Video monitor"</string>
+    <string name="detail_video_display_and_loudspeaker_459" formatted="false">"Video display and loudspeaker"</string>
+    <string name="detail_video_conferencing_460" formatted="false">"Video conferencing"</string>
+    <string name="detail_gaming_toy_461" formatted="false">"Gaming / toy"</string>
+    <string name="detail_a_v_0x_02x_462" formatted="false">"A/V 0x%02X"</string>
+    <string name="detail_joystick_463" formatted="false">"Joystick"</string>
+    <string name="detail_gamepad_464" formatted="false">"Gamepad"</string>
+    <string name="detail_remote_control_465" formatted="false">"Remote control"</string>
+    <string name="detail_sensing_device_466" formatted="false">"Sensing device"</string>
+    <string name="detail_digitizer_tablet_467" formatted="false">"Digitizer tablet"</string>
+    <string name="detail_card_reader_468" formatted="false">"Card reader"</string>
+    <string name="detail_digital_pen_469" formatted="false">"Digital pen"</string>
+    <string name="detail_handheld_scanner_470" formatted="false">"Handheld scanner"</string>
+    <string name="detail_handheld_gestural_input_471" formatted="false">"Handheld gestural input"</string>
+    <string name="detail_peripheral_0x_x_472" formatted="false">"Peripheral 0x%X"</string>
+    <string name="detail_keyboard_473" formatted="false">"keyboard"</string>
+    <string name="detail_pointing_474" formatted="false">"pointing"</string>
+    <string name="detail_keyboard_pointing_475" formatted="false">"keyboard/pointing"</string>
+    <string name="detail_camera_476" formatted="false">"Camera"</string>
+    <string name="detail_scanner_477" formatted="false">"Scanner"</string>
+    <string name="detail_printer_478" formatted="false">"Printer"</string>
+    <string name="detail_wristwatch_479" formatted="false">"Wristwatch"</string>
+    <string name="detail_pager_480" formatted="false">"Pager"</string>
+    <string name="detail_jacket_481" formatted="false">"Jacket"</string>
+    <string name="detail_helmet_482" formatted="false">"Helmet"</string>
+    <string name="detail_glasses_483" formatted="false">"Glasses"</string>
+    <string name="detail_wearable_0x_02x_484" formatted="false">"Wearable 0x%02X"</string>
+    <string name="detail_robot_485" formatted="false">"Robot"</string>
+    <string name="detail_vehicle_486" formatted="false">"Vehicle"</string>
+    <string name="detail_doll_action_figure_487" formatted="false">"Doll / action figure"</string>
+    <string name="detail_controller_488" formatted="false">"Controller"</string>
+    <string name="detail_game_489" formatted="false">"Game"</string>
+    <string name="detail_toy_0x_02x_490" formatted="false">"Toy 0x%02X"</string>
+    <string name="detail_blood_pressure_monitor_491" formatted="false">"Blood pressure monitor"</string>
+    <string name="detail_weighing_scale_492" formatted="false">"Weighing scale"</string>
+    <string name="detail_glucose_meter_493" formatted="false">"Glucose meter"</string>
+    <string name="detail_pulse_oximeter_494" formatted="false">"Pulse oximeter"</string>
+    <string name="detail_heart_pulse_rate_monitor_495" formatted="false">"Heart / pulse rate monitor"</string>
+    <string name="detail_health_data_display_496" formatted="false">"Health data display"</string>
+    <string name="detail_step_counter_497" formatted="false">"Step counter"</string>
+    <string name="detail_body_composition_analyzer_498" formatted="false">"Body composition analyzer"</string>
+    <string name="detail_peak_flow_monitor_499" formatted="false">"Peak flow monitor"</string>
+    <string name="detail_medication_monitor_500" formatted="false">"Medication monitor"</string>
+    <string name="detail_knee_prosthesis_501" formatted="false">"Knee prosthesis"</string>
+    <string name="detail_ankle_prosthesis_502" formatted="false">"Ankle prosthesis"</string>
+    <string name="detail_generic_health_manager_503" formatted="false">"Generic health manager"</string>
+    <string name="detail_personal_mobility_device_504" formatted="false">"Personal mobility device"</string>
+    <string name="detail_health_0x_02x_505" formatted="false">"Health 0x%02X"</string>
+    <string name="detail_limited_discoverable_506" formatted="false">"Limited Discoverable"</string>
+    <string name="detail_positioning_507" formatted="false">"Positioning"</string>
+    <string name="detail_networking_508" formatted="false">"Networking"</string>
+    <string name="detail_rendering_509" formatted="false">"Rendering"</string>
+    <string name="detail_capturing_510" formatted="false">"Capturing"</string>
+    <string name="detail_audio_511" formatted="false">"Audio"</string>
+    <string name="detail_telephony_512" formatted="false">"Telephony"</string>
+    <string name="detail_information_513" formatted="false">"Information"</string>
+    <string name="detail_not_available_514" formatted="false">"Not available"</string>
+    <string name="detail_1_s_to_2_s_dbm_515" formatted="false">"%1$s to %2$s dBm"</string>
+    <string name="detail_format_1_s_516" formatted="false">"format %1$s"</string>
+    <string name="detail_already_tagged_517" formatted="false">"Already tagged"</string>
+    <string name="detail_this_radio_only_518" formatted="false">"This radio only"</string>
+    <string name="detail_strong_family_519" formatted="false">"Strong family"</string>
+    <string name="detail_possible_family_520" formatted="false">"Possible family"</string>
+    <string name="detail_a_catalog_signature_521" formatted="false">"a catalog signature"</string>
+    <string name="detail_matched_1_s_a_second_signature_can_still_dual_label_this_radio_store_uuid_p_522" formatted="false">"Matched %1$s. A second signature can still dual-label this radio (store UUID, product OUI)."</string>
+    <string name="detail_no_unique_on_air_id_to_cluster_on_randomized_addresses_house_like_names_and_523" formatted="false">"No unique on-air ID to cluster on. Randomized addresses, house-like names, and generic chips are skipped."</string>
+    <string name="detail_no_other_mac_in_the_log_or_on_the_air_shares_this_1_s_a_signature_from_here_524" formatted="false">"No other MAC in the log or on the air shares this %1$s. A signature from here will mostly tag this address."</string>
+    <string name="detail_same_1_s_on_2_s_that_is_a_catalog_pattern_not_this_mac_525" formatted="false">"Same %1$s on %2$s. That is a catalog pattern, not this MAC."</string>
+    <string name="detail_same_1_s_on_2_s_thin_sample_a_possible_catalog_family_526" formatted="false">"Same %1$s on %2$s. Thin sample — a possible catalog family."</string>
+    <string name="detail_name_glob_527" formatted="false">"name glob"</string>
+    <string name="detail_vendor_ie_528" formatted="false">"vendor IE"</string>
+    <string name="detail_service_uuid_529" formatted="false">"service UUID"</string>
+    <string name="detail_manufacturer_data_prefix_530" formatted="false">"manufacturer data prefix"</string>
+    <string name="detail_on_air_id_531" formatted="false">"on-air ID"</string>
+    <string name="detail_ap_532" formatted="false">"AP"</string>
+    <string name="detail_aps_533" formatted="false">"APs"</string>
+    <string name="detail_advertiser_534" formatted="false">"advertiser"</string>
+    <string name="detail_advertisers_535" formatted="false">"advertisers"</string>
+    <string name="detail_1_s_2_s_in_the_log_3_s_on_the_air_now_536" formatted="false">"%1$s %2$s in the log (%3$s on the air now)"</string>
+    <string name="detail_1_s_2_s_in_the_log_537" formatted="false">"%1$s %2$s in the log"</string>
+    <string name="detail_1_s_2_s_on_the_air_now_538" formatted="false">"%1$s %2$s on the air now"</string>
+    <string name="detail_1_s_2_s_539" formatted="false">"%1$s %2$s"</string>
+    <string name="detail_vendor_ie_1_s_540" formatted="false">"vendor IE %1$s"</string>
+    <string name="detail_svc_contains_1_s_541" formatted="false">"svc contains %1$s"</string>
+    <string name="detail_mfg_0x_04x_s_542" formatted="false">"mfg 0x%04X %s"</string>
+    <string name="detail_mfg_0x_04x_543" formatted="false">"mfg 0x%04X"</string>
+    <string name="detail_joystick_keyboard_544" formatted="false">"Joystick + keyboard"</string>
+    <string name="detail_joystick_pointing_545" formatted="false">"Joystick + pointing"</string>
+    <string name="detail_joystick_keyboard_pointing_546" formatted="false">"Joystick + keyboard/pointing"</string>
+    <string name="detail_gamepad_keyboard_547" formatted="false">"Gamepad + keyboard"</string>
+    <string name="detail_gamepad_pointing_548" formatted="false">"Gamepad + pointing"</string>
+    <string name="detail_gamepad_keyboard_pointing_549" formatted="false">"Gamepad + keyboard/pointing"</string>
+    <string name="detail_remote_control_keyboard_550" formatted="false">"Remote control + keyboard"</string>
+    <string name="detail_remote_control_pointing_551" formatted="false">"Remote control + pointing"</string>
+    <string name="detail_remote_control_keyboard_pointing_552" formatted="false">"Remote control + keyboard/pointing"</string>
+    <string name="detail_sensing_device_keyboard_553" formatted="false">"Sensing device + keyboard"</string>
+    <string name="detail_sensing_device_pointing_554" formatted="false">"Sensing device + pointing"</string>
+    <string name="detail_sensing_device_keyboard_pointing_555" formatted="false">"Sensing device + keyboard/pointing"</string>
+    <string name="detail_digitizer_tablet_keyboard_556" formatted="false">"Digitizer tablet + keyboard"</string>
+    <string name="detail_digitizer_tablet_pointing_557" formatted="false">"Digitizer tablet + pointing"</string>
+    <string name="detail_digitizer_tablet_keyboard_pointing_558" formatted="false">"Digitizer tablet + keyboard/pointing"</string>
+    <string name="detail_card_reader_keyboard_559" formatted="false">"Card reader + keyboard"</string>
+    <string name="detail_card_reader_pointing_560" formatted="false">"Card reader + pointing"</string>
+    <string name="detail_card_reader_keyboard_pointing_561" formatted="false">"Card reader + keyboard/pointing"</string>
+    <string name="detail_digital_pen_keyboard_562" formatted="false">"Digital pen + keyboard"</string>
+    <string name="detail_digital_pen_pointing_563" formatted="false">"Digital pen + pointing"</string>
+    <string name="detail_digital_pen_keyboard_pointing_564" formatted="false">"Digital pen + keyboard/pointing"</string>
+    <string name="detail_handheld_scanner_keyboard_565" formatted="false">"Handheld scanner + keyboard"</string>
+    <string name="detail_handheld_scanner_pointing_566" formatted="false">"Handheld scanner + pointing"</string>
+    <string name="detail_handheld_scanner_keyboard_pointing_567" formatted="false">"Handheld scanner + keyboard/pointing"</string>
+    <string name="detail_handheld_gestural_input_keyboard_568" formatted="false">"Handheld gestural input + keyboard"</string>
+    <string name="detail_handheld_gestural_input_pointing_569" formatted="false">"Handheld gestural input + pointing"</string>
+    <string name="detail_handheld_gestural_input_keyboard_pointing_570" formatted="false">"Handheld gestural input + keyboard/pointing"</string>
+    <string name="detail_display_camera_571" formatted="false">"Display + Camera"</string>
+    <string name="detail_display_scanner_572" formatted="false">"Display + Scanner"</string>
+    <string name="detail_display_printer_573" formatted="false">"Display + Printer"</string>
+    <string name="detail_camera_scanner_574" formatted="false">"Camera + Scanner"</string>
+    <string name="detail_camera_printer_575" formatted="false">"Camera + Printer"</string>
+    <string name="detail_scanner_printer_576" formatted="false">"Scanner + Printer"</string>
+    <string name="detail_display_camera_scanner_577" formatted="false">"Display + Camera + Scanner"</string>
+    <string name="detail_display_camera_printer_578" formatted="false">"Display + Camera + Printer"</string>
+    <string name="detail_display_scanner_printer_579" formatted="false">"Display + Scanner + Printer"</string>
+    <string name="detail_camera_scanner_printer_580" formatted="false">"Camera + Scanner + Printer"</string>
+    <string name="detail_display_camera_scanner_printer_581" formatted="false">"Display + Camera + Scanner + Printer"</string>
+</resources>

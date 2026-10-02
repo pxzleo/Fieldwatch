@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_candidate_name_glob">%1$s 个%2$s 使用相同的名称通配模式，并非住宅 SSID。</string>
+    <string name="detail_candidate_vendor_ie">%1$s 个 BSSID 使用相同的厂商 IE，并非 WPS／P2P。</string>
+    <string name="detail_candidate_service_uuid">%1$s 个 BLE 广播设备使用相同的服务 UUID。</string>
+    <string name="detail_candidate_manufacturer_prefix">%1$s 个 BLE 广播设备使用相同的厂商数据前缀。</string>
+    <string name="detail_candidate_ieee_oui">%1$s 个稳定 BSSID 使用相同的 IEEE OUI，并非芯片模块前缀。</string>
+    <string name="detail_fast_pair_pairing">Fast Pair · 配对中</string>
+    <string name="lookup_place_progress">正在查询地名（%1$s / %2$s）…</string>
+    <string name="import_nothing">没有可导入的内容。</string>
+    <string name="import_already_present">没有新内容。此手机已存在 %1$d 项。</string>
+    <string name="import_added">新增 %1$d 项</string>
+    <string name="import_added_renamed">新增 %1$d 项（重命名 %2$d 项）</string>
+    <string name="import_merged">为 %1$d 项合并额外规则</string>
+    <string name="import_skipped">跳过已存在的 %1$d 项</string>
+    <string name="import_settings_summary">已恢复设置与当前筛选。预设 %1$d 项；命名设备 %2$d 个；特征关注 %3$d 项。</string>
+    <string name="detail_tak_host_unresolved">无法解析主机 %1$s</string>
+    <string name="detail_tak_no_eligible_radios">0 个符合条件的设备（需要额外关注、载荷经纬度或 GPS 定位时间）</string>
+    <string name="detail_custom_name_hint">显示在实时页面。右上角书签控制提醒；保存名称不会开启提醒。</string>
+    <string name="detail_custom_name_bssid_hint">名称绑定此 BSSID。车辆、Mesh 网络和访客接入点通常会保留本地管理地址。</string>
+</resources>

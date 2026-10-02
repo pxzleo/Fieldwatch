@@ -1,6 +1,7 @@
 package app.fieldwatch.ui.screen
 
 import app.fieldwatch.UiText
+import app.fieldwatch.UiCatalogText
 import app.fieldwatch.R
 
 import androidx.compose.foundation.layout.Arrangement
@@ -172,6 +173,7 @@ fun DecodeFieldsScreen(
             fields.forEachIndexed { index, field ->
                 FieldCard(
                     field = field,
+                    fleet = fleet.copy(decode = previewDecode),
                     onChange = { next ->
                         fields = fields.toMutableList().also { it[index] = next }
                     },
@@ -208,6 +210,7 @@ fun DecodeFieldsScreen(
 
             SectionCard(UiText.text(R.string.ui_preview)) {
             PreviewBlock(
+                fleet = fleet.copy(decode = previewDecode),
                 previewDevice = previewDevice,
                 previewHex = previewHex,
                 previewRows = previewRows,
@@ -239,6 +242,7 @@ fun DecodeFieldsScreen(
 
 @Composable
 private fun PreviewBlock(
+    fleet: Fleet,
     previewDevice: Sighting?,
     previewHex: String?,
     previewRows: List<DecodedFieldValue>,
@@ -278,12 +282,12 @@ private fun PreviewBlock(
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Text(
-                            row.label,
+                            UiCatalogText.forFleet(fleet, row.label),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(end = 12.dp),
                         )
-                        Text(row.display, style = MaterialTheme.typography.bodyMedium)
+                        Text(UiCatalogText.decoded(fleet, row), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
             }
@@ -295,6 +299,7 @@ private fun PreviewBlock(
 @Composable
 private fun FieldCard(
     field: DecodeField,
+    fleet: Fleet,
     onChange: (DecodeField) -> Unit,
     onDelete: () -> Unit,
 ) {
@@ -320,7 +325,7 @@ private fun FieldCard(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 CompactField(
-                    field.label,
+                    UiCatalogText.forFleet(fleet, field.label),
                     { next ->
                         val id = if (looksGeneratedId(field.id, field.label)) slugId(next) else field.id
                         onChange(field.copy(label = next, id = id))
@@ -410,7 +415,7 @@ private fun FieldCard(
                     onCheckedChange = { onChange(field.copy(live = it)) },
                 )
             }
-            NamedValuesBlock(field, onChange)
+            NamedValuesBlock(field, fleet, onChange)
             if (!more) {
                 TextButton(onClick = { more = true }) { Text(UiText.text(R.string.ui_more)) }
             } else {
@@ -495,6 +500,7 @@ private fun OnlyIfBlock(gate: DecodeWhen?, onChange: (DecodeWhen?) -> Unit) {
 @Composable
 private fun NamedValuesBlock(
     field: DecodeField,
+    fleet: Fleet,
     onChange: (DecodeField) -> Unit,
 ) {
     val fieldId = field.id
@@ -543,7 +549,7 @@ private fun NamedValuesBlock(
                     modifier = Modifier.width(88.dp),
                 )
                 CompactField(
-                    shown,
+                    UiCatalogText.forFleet(fleet, shown),
                     { next ->
                         val nextRows = rows.toMutableList().also { it[index] = raw to next }
                         rows = nextRows
@@ -586,7 +592,7 @@ private fun NamedValuesBlock(
                         label = { Text(UiText.text(R.string.ui_strong)) },
                     )
                     CompactField(
-                        field.enumNotes?.get(raw).orEmpty(),
+                        UiCatalogText.forFleet(fleet, field.enumNotes?.get(raw).orEmpty()),
                         { note ->
                             val notes = (field.enumNotes ?: emptyMap()).toMutableMap()
                             if (note.isBlank()) notes.remove(raw) else notes[raw] = note

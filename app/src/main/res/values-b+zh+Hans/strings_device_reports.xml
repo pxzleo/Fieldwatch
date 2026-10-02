@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_report_intensity_saver">省电</string>
+    <string name="device_report_intensity_balanced">均衡</string>
+    <string name="device_report_intensity_performance">高性能</string>
+    <string name="device_report_1" formatted="false">&quot;Fieldwatch 设备详情\n&quot;</string>
+    <string name="device_report_2" formatted="false">&quot;实验性功能，不代表法定身份。使用原生 Android 无线接口，仅显示系统提供的信息，不能保证存在追踪器或摄像机。\n&quot;</string>
+    <string name="device_report_3" formatted="false">&quot;广播名称&quot;</string>
+    <string name="device_report_4" formatted="false">&quot;可能是什么：&quot;</string>
+    <string name="device_report_5" formatted="false">&quot;额外关注（%1$s）：&quot;</string>
+    <string name="device_report_6" formatted="false">&quot;模式匹配，不代表身份，也不是安全结论。\n&quot;</string>
+    <string name="device_report_7" formatted="false">&quot;额外关注&quot;</string>
+    <string name="device_report_8" formatted="false">&quot;备注&quot;</string>
+    <string name="device_report_9" formatted="false">&quot;身份信息&quot;</string>
+    <string name="device_report_10" formatted="false">&quot;无线类型&quot;</string>
+    <string name="device_report_11" formatted="false">&quot;Wi-Fi 接入点（正在广播网络信标）&quot;</string>
+    <string name="device_report_12" formatted="false">&quot;蓝牙低功耗广播设备&quot;</string>
+    <string name="device_report_13" formatted="false">&quot;地址&quot;</string>
+    <string name="device_report_14" formatted="false">&quot;制造商信息&quot;</string>
+    <string name="device_report_15" formatted="false">&quot;OUI（厂商前缀）&quot;</string>
+    <string name="device_report_16" formatted="false">&quot;%1$s — 未匹配 IEEE 记录；随机地址通常没有厂商记录&quot;</string>
+    <string name="device_report_17" formatted="false">&quot;网络名称（SSID）&quot;</string>
+    <string name="device_report_18" formatted="false">&quot;隐藏网络：接入点正在广播信标，但未公布名称&quot;</string>
+    <string name="device_report_19" formatted="false">&quot;信号&quot;</string>
+    <string name="device_report_20" formatted="false">&quot;此处信号强度（RSSI）&quot;</string>
+    <string name="device_report_21" formatted="false">&quot;最近收到的信号&quot;</string>
+    <string name="device_report_22" formatted="false">&quot;越接近 0 dBm，手机收到的信号越强；这不是距离。\n&quot;</string>
+    <string name="device_report_23" formatted="false">&quot;本次会话接收强度范围&quot;</string>
+    <string name="device_report_24" formatted="false">&quot;声明的发射功率&quot;</string>
+    <string name="device_report_25" formatted="false">&quot;%1$s dBm — 设备声明的发射强度，不是距离&quot;</string>
+    <string name="device_report_26" formatted="false">&quot;信道/频率&quot;</string>
+    <string name="device_report_27" formatted="false">&quot;信道 %1$s&quot;</string>
+    <string name="device_report_28" formatted="false">&quot;  ·  带宽 %1$s&quot;</string>
+    <string name="device_report_29" formatted="false">&quot;Wi-Fi 代际&quot;</string>
+    <string name="device_report_30" formatted="false">&quot;中心频率&quot;</string>
+    <string name="device_report_31" formatted="false">&quot;最近 RSSI（从旧到新）&quot;</string>
+    <string name="device_report_32" formatted="false">&quot;蓝牙广播&quot;</string>
+    <string name="device_report_33" formatted="false">&quot;无线 PHY&quot;</string>
+    <string name="device_report_34" formatted="false">&quot;可连接&quot;</string>
+    <string name="device_report_35" formatted="false">&quot;是：手机可以建立 BLE 连接&quot;</string>
+    <string name="device_report_36" formatted="false">&quot;否：仅广播（本次扫描可接收，但不能连接）&quot;</string>
+    <string name="device_report_37" formatted="false">&quot;广播间隔&quot;</string>
+    <string name="device_report_38" formatted="false">&quot;每次广播间隔 %.0f 毫秒（越小，广播越频繁）&quot;</string>
+    <string name="device_report_39" formatted="false">&quot;周期广播&quot;</string>
+    <string name="device_report_40" formatted="false">&quot;可发现性&quot;</string>
+    <string name="device_report_41" formatted="false">&quot;标志（原始值）&quot;</string>
+    <string name="device_report_42" formatted="false">&quot;设备声明的类型（Appearance）&quot;</string>
+    <string name="device_report_43" formatted="false">&quot;未收录的 Appearance 0x%04X&quot;</string>
+    <string name="device_report_44" formatted="false">&quot;Appearance 代码&quot;</string>
+    <string name="device_report_45" formatted="false">&quot;经典蓝牙类别&quot;</string>
+    <string name="device_report_46" formatted="false">&quot;。还提供：&quot;</string>
+    <string name="device_report_47" formatted="false">&quot;Wi-Fi 接入点&quot;</string>
+    <string name="device_report_48" formatted="false">&quot;加密/登录方式&quot;</string>
+    <string name="device_report_49" formatted="false">&quot;安全配置原文&quot;</string>
+    <string name="device_report_50" formatted="false">&quot;支持的速率&quot;</string>
+    <string name="device_report_51" formatted="false">&quot;%1$s Mbps（* 表示必须支持的基本速率）&quot;</string>
+    <string name="device_report_52" formatted="false">&quot;能力配置原文&quot;</string>
+    <string name="device_report_53" formatted="false">&quot;解码字段&quot;</string>
+    <string name="device_report_54" formatted="false">&quot;备注&quot;</string>
+    <string name="device_report_55" formatted="false">&quot;提供的服务&quot;</string>
+    <string name="device_report_56" formatted="false">&quot;服务标识&quot;</string>
+    <string name="device_report_57" formatted="false">&quot;服务数据 %1$s%2$s&quot;</string>
+    <string name="device_report_58" formatted="false">&quot;（空）&quot;</string>
+    <string name="device_report_59" formatted="false">&quot;广播中的厂商数据&quot;</string>
+    <string name="device_report_60" formatted="false">&quot;未收录于蓝牙公司列表&quot;</string>
+    <string name="device_report_61" formatted="false">&quot;蓝牙公司 0x%04X&quot;</string>
+    <string name="device_report_62" formatted="false">&quot;原始载荷（%1$s 字节）&quot;</string>
+    <string name="device_report_63" formatted="false">&quot;Wi-Fi 厂商标签&quot;</string>
+    <string name="device_report_64" formatted="false">&quot; 类型 %d&quot;</string>
+    <string name="device_report_65" formatted="false">&quot;厂商 OUI %1$s%2$s&quot;</string>
+    <string name="device_report_66" formatted="false">&quot;未知 IEEE OUI&quot;</string>
+    <string name="device_report_67" formatted="false">&quot; — 接入点附加信息元素，不是 SSID。&quot;</string>
+    <string name="device_report_68" formatted="false">&quot;会话&quot;</string>
+    <string name="device_report_69" formatted="false">&quot;首次发现&quot;</string>
+    <string name="device_report_70" formatted="false">&quot;最近发现&quot;</string>
+    <string name="device_report_71" formatted="false">&quot;接收次数&quot;</string>
+    <string name="device_report_72" formatted="false">&quot;最近定位&quot;</string>
+    <string name="device_report_73" formatted="false">&quot;最近定位是接收到信号时手机的 GPS 位置，不是此无线设备的定位。\n&quot;</string>
+    <string name="device_report_74" formatted="false">&quot;匹配的特征&quot;</string>
+    <string name="device_report_75" formatted="false">&quot;原始广播&quot;</string>
+    <string name="device_report_76" formatted="false">&quot;出现时段（15 分钟）&quot;</string>
+    <string name="device_report_77" formatted="false">&quot;IEEE 主板/芯片厂商：%1$s（%2$s）。这是 MAC 前缀所有者，不一定是产品品牌。&quot;</string>
+    <string name="device_report_78" formatted="false">&quot;广播中的蓝牙公司：%1$s（0x%2$04X）。&quot;</string>
+    <string name="device_report_79" formatted="false">&quot;未收录&quot;</string>
+    <string name="device_report_80" formatted="false">&quot;现在&quot;</string>
+    <string name="device_report_81" formatted="false">&quot;观测者路径&quot;</string>
+    <string name="device_report_82" formatted="false">&quot;Fieldwatch %1$s 导出&quot;</string>
+    <string name="device_report_83" formatted="false">&quot;信道 %1$s&quot;</string>
+    <string name="device_report_84" formatted="false">&quot;观测备注：%1$s&quot;</string>
+    <string name="device_report_85" formatted="false">&quot;在此手机位置收到信号，并非无线设备定位。&quot;</string>
+    <string name="device_report_86" formatted="false">&quot;你是一位现场无线射频与隐私分析师，熟悉 IEEE OUI、蓝牙 SIG 分配编号、GAP Appearance、常见广播格式（iBeacon、Eddystone、Apple Continuity / Find My、Google Fast Pair、Microsoft）及消费类产品。&quot;</string>
+    <string name="device_report_87" formatted="false">&quot;用户希望尽可能了解 Fieldwatch 观测到的这一个无线设备。Fieldwatch 通过原生 Android 接口只接收 Wi-Fi 与 BLE 信号。请结合下面的观测记录及公开注册表、协议格式知识，指出每个判断依据的字段或字节模式。&quot;</string>
+    <string name="device_report_88" formatted="false">&quot;必须遵守以下限制：&quot;</string>
+    <string name="device_report_89" formatted="false">&quot;- 这是一个广播无线设备，不是某个人、车辆或法定身份。&quot;</string>
+    <string name="device_report_90" formatted="false">&quot;- Wi-Fi 行只包含接入点，看不到关联客户端。原生 Android 无法以混杂模式捕获终端或探测请求。&quot;</string>
+    <string name="device_report_91" formatted="false">&quot;- BLE 行是广播设备。随机 MAC 不是稳定身份，地址轮换后不能直接拼接。&quot;</string>
+    <string name="device_report_92" formatted="false">&quot;- 特征、OUI、公司或 UUID 匹配只是推测，不能证明序列号、所有者或存在追踪器。&quot;</string>
+    <string name="device_report_93" formatted="false">&quot;- GPS 记录（如果有）是收到信号时观测者手机的位置，不是此无线设备的位置。&quot;</string>
+    <string name="device_report_94" formatted="false">&quot;- 地名（如果有）是系统根据上述位置反向地理编码得到的近似名称。&quot;</string>
+    <string name="device_report_95" formatted="false">&quot;- RSSI 是手机收到的信号强度，不是实测距离。&quot;</string>
+    <string name="device_report_96" formatted="false">&quot;- 不要虚构记录中没有的字段。数据不足时请明确说明，并指出需要补充什么。&quot;</string>
+    <string name="device_report_97" formatted="false">&quot;- 不要声称此无线设备正在跟踪任何人，也不要给出安全建议。&quot;</string>
+    <string name="device_report_98" formatted="false">&quot;- 此内容包含 MAC、SSID、载荷和 GPS，属于敏感观测数据。&quot;</string>
+    <string name="device_report_99" formatted="false">&quot;## 采集背景&quot;</string>
+    <string name="device_report_100" formatted="false">&quot;- 工具：Fieldwatch（app.fieldwatch），仅接收，不关联、不注入、不使用云端。&quot;</string>
+    <string name="device_report_101" formatted="false">&quot;## 地点（观测者 GPS，可选）&quot;</string>
+    <string name="device_report_102" formatted="false">&quot;## 观测记录（来自设备详情页的原始内容）&quot;</string>
+    <string name="device_report_103" formatted="false">&quot;## 分析（必须包含以下部分）&quot;</string>
+    <string name="device_report_104" formatted="false">&quot;1. **可能是什么**：产品类型、可能的品牌或家族、可能的型号。给出 0–100 的置信度，并使用“很可能”“可能”“也许”等措辞。列出名称、OUI、公司 ID、Appearance、服务与载荷证据。如数据符合多种产品，请列出竞争解释。&quot;</string>
+    <string name="device_report_105" formatted="false">&quot;2. **注册表与格式解码**：IEEE OUI 或 CID、蓝牙 SIG 公司、GAP Appearance、16 位 UUID；如有则解码 iBeacon UUID/major/minor、Fast Pair 型号 ID、Apple Continuity 类型。引用使用的十六进制片段；如识别到公开列表中的 UUID 或公司，请说明来源列表。&quot;</string>
+    <string name="device_report_106" formatted="false">&quot;3. **这类产品通常做什么**：手机、标签、音箱、汽车、接入点、相机、Mesh 节点、配件等。说明典型无线行为，例如持续信标或间歇广播。&quot;</string>
+    <string name="device_report_107" formatted="false">&quot;4. **Fieldwatch 实际看到了什么、看不到什么**：原生 Android 的限制（无法捕获终端与探测请求，不支持蜂窝监听或测向），以及随机地址的影响。&quot;</string>
+    <string name="device_report_108" formatted="false">&quot;5. **信号与出现时段**：此处信号强弱、本次会话的 RSSI 范围与广播时段。不要把 RSSI 换算为米。&quot;</string>
+    <string name="device_report_109" formatted="false">&quot;6. **特征匹配**：匹配仅代表命中过滤规则，不代表身份。说明载荷是否也支持该家族；记录中的备注可作目录背景。“额外关注”应作为观测者对模式的提醒并加以引用，不能作为证明，且应与普通备注分开。&quot;</string>
+    <string name="device_report_110" formatted="false">&quot;7. **待确认问题**：哪些补充观测（另一数据包、名称、GPS 轨迹或第二个无线设备）会提高或降低置信度。&quot;</string>
+    <string name="device_report_111" formatted="false">&quot;8. **不能得出的结论**：简要列出记录不支持的判断，例如所有者、跟踪行为、法定身份或距离。&quot;</string>
+    <string name="device_report_112" formatted="false">&quot;最后用一行总结此无线设备最可能是什么，以及下一步应核实的一件事。不要提供安全建议。&quot;</string>
+    <string name="device_report_113" formatted="false">&quot;- 对象：%1$s，名称为“%2$s”。&quot;</string>
+    <string name="device_report_114" formatted="false">&quot;- 扫描强度：%1$s。%2$s 秒后视为过期，短暂保留 %3$s 秒。&quot;</string>
+    <string name="device_report_115" formatted="false">&quot;- 位置标签：%1$s。&quot;</string>
+    <string name="device_report_116" formatted="false">&quot;- 在线地名查询：%1$s。&quot;</string>
+    <string name="device_report_117" formatted="false">&quot;- 随机 MAC 标志：%1$s。&quot;</string>
+    <string name="device_report_118" formatted="false">&quot;- 本次会话接收次数：%1$s。已离开：%2$s。&quot;</string>
+    <string name="device_report_119" formatted="false">&quot;- 此无线设备的观测者 GPS 样本数：%1$s（接收信号期间的手机路径）。&quot;</string>
+    <string name="device_report_120" formatted="false">&quot;开启&quot;</string>
+    <string name="device_report_121" formatted="false">&quot;关闭&quot;</string>
+    <string name="device_report_122" formatted="false">&quot;是&quot;</string>
+    <string name="device_report_123" formatted="false">&quot;否&quot;</string>
+    <string name="device_report_124" formatted="false">&quot;是&quot;</string>
+    <string name="device_report_125" formatted="false">&quot;否&quot;</string>
+    <string name="device_report_129" formatted="false">&quot;不可用&quot;</string>
+</resources>

@@ -76,10 +76,10 @@ object RadioBookmarks {
         return !device.randomized
     }
 
-    fun customNameHint(device: Sighting): String {
-        val base = "Shows on Live. Bookmark (top-right) is the alert; this does not turn it on."
+    fun customNameHint(device: Sighting, translate: (String) -> String = { it }): String {
+        val base = translate("Shows on Live. Bookmark (top-right) is the alert; this does not turn it on.")
         return if (device.kind == RadioKind.WIFI && device.randomized) {
-            "$base Pinned to this BSSID. Vehicle, mesh, and guest APs often keep a locally administered address."
+            "$base ${translate("Pinned to this BSSID. Vehicle, mesh, and guest APs often keep a locally administered address.")}"
         } else {
             base
         }

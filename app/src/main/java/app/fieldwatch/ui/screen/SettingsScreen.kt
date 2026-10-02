@@ -883,7 +883,11 @@ private fun takStatusLine(status: TakFeedStatus): String {
     if (status.paused) return UiText.text(R.string.ui_feed_status_paused_privacy_mode)
     if (status.error != null) {
         val whenAt = takStatusWhen(status.at)
-        return UiText.text(R.string.ui_feed_status_error_value, (status.error).toString()) + if (whenAt.isNotEmpty()) "  ·  $whenAt" else ""
+        val error = if (status.error.startsWith("Host ") && status.error.endsWith(" did not resolve")) {
+            UiText.text(R.string.detail_tak_host_unresolved,
+                status.error.removePrefix("Host ").removeSuffix(" did not resolve"))
+        } else status.error
+        return UiText.text(R.string.ui_feed_status_error_value, error) + if (whenAt.isNotEmpty()) "  ·  $whenAt" else ""
     }
     if (status.at <= 0L) {
         return UiText.text(R.string.ui_feed_status_no_send_yet_this_session)
@@ -899,7 +903,7 @@ private fun takStatusLine(status: TakFeedStatus): String {
     if (whenAt.isNotEmpty()) bits += whenAt
     val head = UiText.text(R.string.ui_feed_status_value, (bits.joinToString("  ·  ")).toString())
     return if (status.detail.isNotBlank() && status.sent == 0 && status.gone == 0) {
-        "$head  ·  ${status.detail}"
+        "$head  ·  ${UiText.explanation(status.detail)}"
     } else {
         head
     }

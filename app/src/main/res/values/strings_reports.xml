@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_disclaimer" formatted="false">"DISCLAIMER"</string>
+    <string name="report_takeaway_0" formatted="false">"Takeaway: {0}"</string>
+    <string name="report_mac_tails_and_gps_coordinates_masked_logs_on_the_phone_are_unchan" formatted="false">"MAC tails (**:**:**) and GPS coordinates masked. Logs on the phone are unchanged."</string>
+    <string name="report_privacy" formatted="false">"Privacy"</string>
+    <string name="report_heard_0_ap_s_1_hidden_ssid_2_sat_most_of_the_window" formatted="false">"Heard {0} AP(s); {1} hidden SSID; {2} sat most of the window."</string>
+    <string name="report_channel_occupancy" formatted="false">"Channel occupancy:"</string>
+    <string name="report_unknown" formatted="false">"unknown"</string>
+    <string name="report_ch_0" formatted="false">"ch {0}"</string>
+    <string name="report_0_1_ap_s_strongest_2_dbm" formatted="false">"  {0} — {1} AP(s), strongest {2} dBm"</string>
+    <string name="report_loudest_aps" formatted="false">"Loudest APs:"</string>
+    <string name="report_extra_attention_0_1" formatted="false">"    extra attention ({0}): {1}"</string>
+    <string name="report_hidden_ssids" formatted="false">"Hidden SSIDs:"</string>
+    <string name="report_0_1_2_dbm_ch_3" formatted="false">"  · {0}  {1}  {2} dBm  ch {3}"</string>
+    <string name="report_heard_0_advertiser_s_1_with_randomized_addresses_2_signature_matc" formatted="false">"Heard {0} advertiser(s); {1} with randomized addresses; {2} signature-matched."</string>
+    <string name="report_unmatched_rotating_ble_omitted_from_lists_0_counts_include_them_s" formatted="false">"Unmatched rotating BLE omitted from lists ({0}). Counts include them. Sit export has every radio."</string>
+    <string name="report_notable_ble" formatted="false">"Notable BLE:"</string>
+    <string name="report_none_in_this_window" formatted="false">"None in this window."</string>
+    <string name="report_0_1_2_dbm" formatted="false">"  · {0}  {1}  {2} dBm"</string>
+    <string name="report_extra_attention_0_1_18" formatted="false">"  extra attention ({0}): {1}"</string>
+    <string name="report_sat_most_of_this_window_0" formatted="false">"Sat most of this window: {0}"</string>
+    <string name="report_0_1_dwell_2" formatted="false">"  · {0}  {1}  dwell {2}"</string>
+    <string name="report_none" formatted="false">"  · None."</string>
+    <string name="report_first_seen_in_this_window_0_loudest_8_below" formatted="false">"First seen in this window: {0} (loudest 8 below)"</string>
+    <string name="report_no_extra_flags_signature_hits_extra_attention_and_tracking_callou" formatted="false">"No extra flags. Signature hits, Extra attention, and tracking callouts already cover named pattern matches."</string>
+    <string name="report_gps_tagging_off_no_path" formatted="false">"GPS tagging off — no path"</string>
+    <string name="report_gps_tagging_on_fewer_than_2_fixes_in_this_window" formatted="false">"GPS tagging on, fewer than 2 fixes in this window"</string>
+    <string name="report_traveled_0_along_path_span_1_2_fixes" formatted="false">"traveled {0} along path · span {1} · {2} fixes"</string>
+    <string name="report_off" formatted="false">"off"</string>
+    <string name="report_executive_summary" formatted="false">"Executive summary"</string>
+    <string name="report_where_you_were" formatted="false">"Where you were"</string>
+    <string name="report_aircraft" formatted="false">"Aircraft"</string>
+    <string name="report_observer_notes" formatted="false">"Observer notes"</string>
+    <string name="report_tracking_assessment" formatted="false">"Tracking assessment"</string>
+    <string name="report_possible_trackers_with_you" formatted="false">"Possible trackers with you"</string>
+    <string name="report_finder_tags_airtag_find_my_smarttag_tile_chipolo_pebblebee_and_lo" formatted="false">"Finder tags (AirTag / Find My, SmartTag, Tile, Chipolo, Pebblebee) and loud pocket Apple BLE. "</string>
+    <string name="report_these_radios_stayed_with_your_gps_path_for_this_sit" formatted="false">"These radios stayed with your GPS path for this sit. "</string>
+    <string name="report_fieldwatch_cannot_tell_your_own_tag_or_phone_from_a_tracker_plant" formatted="false">"Fieldwatch cannot tell your own tag or phone from a tracker planted in the car, bag, or on you before you started. "</string>
+    <string name="report_account_for_each_mac_not_a_finding_and_not_identity" formatted="false">"Account for each MAC. Not a finding and not identity."</string>
+    <string name="report_possible_tail" formatted="false">"Possible tail"</string>
+    <string name="report_finder_tags_that_were_not_heard_when_this_sit_started_then_stayed" formatted="false">"Finder tags that were not heard when this sit started, then stayed with your path. "</string>
+    <string name="report_that_can_mean_someone_started_following_you_their_phone_or_tag_or" formatted="false">"That can mean someone started following you (their phone or tag), or a device was added during the trip. "</string>
+    <string name="report_not_a_finding_and_not_identity" formatted="false">"Not a finding and not identity."</string>
+    <string name="report_retail_beacons_with_you" formatted="false">"Retail beacons with you"</string>
+    <string name="report_ibeacon_minew_estimote_kontakt_io_target_atrius_basket_radios_tha" formatted="false">"iBeacon / Minew / Estimote / Kontakt.io / Target Atrius basket radios that stayed with your GPS path. "</string>
+    <string name="report_location_beacons_are_usually_fixtures_in_a_store_or_venue_they_do" formatted="false">"Location beacons are usually fixtures in a store or venue — they do not typically move with you. "</string>
+    <string name="report_if_one_did_account_for_it_a_target_basket_you_pushed_your_own_tes" formatted="false">"If one did, account for it (a Target basket you pushed, your own test tag, a badge, or a short path that still overlaps a fixture). "</string>
+    <string name="report_not_the_same_as_a_find_my_tail_not_a_finding_and_not_identity" formatted="false">"Not the same as a Find My tail. Not a finding and not identity."</string>
+    <string name="report_wearables_with_you" formatted="false">"Wearables with you"</string>
+    <string name="report_garmin_fitbit_oura_radios_that_stayed_with_your_gps_path" formatted="false">"Garmin / Fitbit / Oura radios that stayed with your GPS path. "</string>
+    <string name="report_watches_and_rings_usually_move_with_the_person_wearing_them_often" formatted="false">"Watches and rings usually move with the person wearing them — often your own kit or someone walking with you. "</string>
+    <string name="report_they_are_not_typically_planted_trackers_account_for_each_mac_not_" formatted="false">"They are not typically planted trackers. Account for each MAC. Not a finding and not identity."</string>
+    <string name="report_environment" formatted="false">"Environment"</string>
+    <string name="report_networks_wi_fi_access_points" formatted="false">"Networks (Wi-Fi access points)"</string>
+    <string name="report_bluetooth_le" formatted="false">"Bluetooth LE"</string>
+    <string name="report_signature_hits" formatted="false">"Signature hits"</string>
+    <string name="report_persistence" formatted="false">"Persistence"</string>
+    <string name="report_extra_attention" formatted="false">"Extra attention"</string>
+    <string name="report_pattern_match_not_identity_not_a_skimmer_detector_not_a_safety_fi" formatted="false">"Pattern match, not identity, not a skimmer detector, not a safety finding."</string>
+    <string name="report_0_1_2_dbm_3" formatted="false">"  · {0}  {1}  {2} dBm  [{3}]"</string>
+    <string name="report_anomalies" formatted="false">"Anomalies"</string>
+    <string name="report_recommended_actions" formatted="false">"Recommended actions"</string>
+    <string name="report_sit_0_1_2_utc" formatted="false">"sit {0} ({1} → {2} UTC)"</string>
+    <string name="report_last_15_minutes_0_1_utc" formatted="false">"last 15 minutes ({0} → {1} UTC)"</string>
+    <string name="report_fieldwatch_sit_0" formatted="false">"FIELDWATCH SIT — {0}"</string>
+    <string name="report_fieldwatch_field_debrief" formatted="false">"FIELDWATCH FIELD DEBRIEF"</string>
+    <string name="report_generated" formatted="false">"Generated"</string>
+    <string name="report_0_utc" formatted="false">"{0} UTC"</string>
+    <string name="report_sit" formatted="false">"Sit"</string>
+    <string name="report_window" formatted="false">"Window"</string>
+    <string name="report_radios" formatted="false">"Radios"</string>
+    <string name="report_tool" formatted="false">"Tool"</string>
+    <string name="report_fieldwatch_app_fieldwatch_stock_android_receive_only_wi_fi_ap_ble" formatted="false">"Fieldwatch (app.fieldwatch) · stock Android · receive-only Wi-Fi AP + BLE advertiser"</string>
+    <string name="report_scan" formatted="false">"Scan"</string>
+    <string name="report_0_stale_1_s_brief_hold_2_s" formatted="false">"{0} · stale {1}s · brief hold {2}s"</string>
+    <string name="report_gps_tag" formatted="false">"GPS tag"</string>
+    <string name="report_on" formatted="false">"on"</string>
+    <string name="report_distance" formatted="false">"Distance"</string>
+    <string name="report_places" formatted="false">"Places"</string>
+    <string name="report_classification" formatted="false">"Classification"</string>
+    <string name="report_operationally_sensitive_neighbor_ssids_macs_operator_gps_advertis" formatted="false">"Operationally sensitive — neighbor SSIDs, MACs, operator GPS, advertised aircraft track"</string>
+    <string name="report_operationally_sensitive_neighbor_ssids_macs_operator_gps" formatted="false">"Operationally sensitive — neighbor SSIDs, MACs, operator GPS"</string>
+    <string name="report_0_1_2_dbm_81" formatted="false">"{0}  {1}  {2} dBm"</string>
+    <string name="report_sit_82" formatted="false">"SIT"</string>
+    <string name="report_field_debrief" formatted="false">"FIELD DEBRIEF"</string>
+    <string name="report_sit_0" formatted="false">"Sit — {0}"</string>
+    <string name="report_field_debrief_85" formatted="false">"Field debrief"</string>
+    <string name="report_last_15_minutes" formatted="false">"Last 15 minutes"</string>
+    <string name="report_operator_path" formatted="false">"OPERATOR PATH"</string>
+    <string name="report_north_up_line_is_this_phone_0_a_mac_alert_or_a_signature_alert_is" formatted="false">"North-up. Line is this phone ({0}). A MAC alert or a signature alert is drawn once. A decoded latitude and longitude is the last advertised position. Anything else is the strongest hear. A number is that place (Path key)."</string>
+    <string name="report_where_you_were_operator_gps" formatted="false">"## Where you were (operator GPS)"</string>
+    <string name="report_tag_detections_with_gps_0" formatted="false">"- Tag detections with GPS: {0}."</string>
+    <string name="report_online_place_names" formatted="false">"- Online place names: "</string>
+    <string name="report_off_settings_online_place_names_in_debrief_no_reverse_geocode_thi" formatted="false">"off (Settings → Online place names in Debrief). No reverse-geocode this export."</string>
+    <string name="report_following_test_insufficient_movement_need_45_m_span_do_not_infer_" formatted="false">"- Following test: insufficient movement (need ~45 m span). Do not infer a tail."</string>
+    <string name="report_gps_co_travel" formatted="false">"## GPS co-travel"</string>
+    <string name="report_only_radios_that_stayed_with_the_operator_path_are_listed" formatted="false">"Only radios that stayed with the operator path are listed. "</string>
+    <string name="report_house_tags_and_other_radios_the_operator_only_passed_are_omitted_" formatted="false">"House tags and other radios the operator only passed are omitted — they are not tracking. "</string>
+    <string name="report_not_identity_find_my_mac_rotation_will_not_stitch_a_tail_that_cha" formatted="false">"Not identity. Find My MAC rotation will not stitch a tail that changes address. "</string>
+    <string name="report_possible_tail_extra_gates_walks_trail_covers_half_the_operator_pa" formatted="false">"Possible tail extra gates (walks): trail covers ≥ half the operator path, "</string>
+    <string name="report_2_3_of_gps_stamps_at_75_dbm_or_louder_last_stamp_not_12_db_below_" formatted="false">"≥ 2/3 of GPS stamps at −75 dBm or louder, last stamp not 12 dB below loudest. "</string>
+    <string name="report_fail_any_one_omit_pass_by_not_a_tail" formatted="false">"Fail any one → omit (pass-by), not a tail. "</string>
+    <string name="report_finder_tags_airtag_smarttag_tile_chipolo_pebblebee_find_my_loud_p" formatted="false">"Finder tags (AirTag / SmartTag / Tile / Chipolo / Pebblebee / Find My / loud pocket Apple) "</string>
+    <string name="report_are_the_tracking_test_retail_beacons_and_wearables_that_co_travel" formatted="false">"are the tracking test. Retail beacons and wearables that co-travel are listed separately — "</string>
+    <string name="report_they_do_not_typically_move_with_you_beacons_or_are_usually_own_ki" formatted="false">"they do not typically move with you (beacons) or are usually own kit (wearables)."</string>
+    <string name="report_none_stayed_with_the_path" formatted="false">"- None stayed with the path."</string>
+    <string name="report_0_1_2_rssi_3_dbm" formatted="false">"- {0}  {1}  {2}  RSSI {3} dBm "</string>
+    <string name="report_min_0_max_1_trail_2_fixes_span_3_m" formatted="false">"(min {0} / max {1})  trail {2} fixes, span {3} m"</string>
+    <string name="report_possible_trackers_with_you_finder_tags_whole_sit_yours_or_planted" formatted="false">"Possible trackers with you (finder tags, whole sit — yours or planted before you started)"</string>
+    <string name="report_possible_tail_finder_tags_first_heard_after_this_sit_started_then" formatted="false">"Possible tail (finder tags, first heard after this sit started, then stayed)"</string>
+    <string name="report_retail_beacons_with_you_ibeacon_minew_estimote_kontakt_io_target_" formatted="false">"Retail beacons with you (iBeacon / Minew / Estimote / Kontakt.io / Target Atrius basket — fixtures; a pushed cart will co-travel)"</string>
+    <string name="report_wearables_with_you_garmin_fitbit_oura_usually_own_kit_or_a_compan" formatted="false">"Wearables with you (Garmin / Fitbit / Oura — usually own kit or a companion)"</string>
+    <string name="report_operator_gps_path_too_short_0_m_to_test_following" formatted="false">"Operator GPS path too short ({0} m) to test following."</string>
+    <string name="report_heard_but_not_at_two_gps_points_cannot_test_co_travel" formatted="false">"Heard, but not at two GPS points. Cannot test co-travel."</string>
+    <string name="report_heard_along_0_m_of_your_1_m_path_and_still_loud_2_dbm" formatted="false">"Heard along {0} m of your {1} m path and still loud ({2} dBm). "</string>
+    <string name="report_heard_near_one_place_0_m_span_while_you_moved_1_m_looks_stationar" formatted="false">"Heard near one place ({0} m span) while you moved {1} m. Looks stationary — you walked away from it."</string>
+    <string name="report_moved_0_m_with_you_already_on_the_air_when_this_15_minute_window_" formatted="false">"Moved {0} m with you, already on the air when this 15-minute window opened, strong ({1} dBm). "</string>
+    <string name="report_gps_samples_span_0_m_along_your_path_1_fixes_already_on_the_air_w" formatted="false">"GPS samples span {0} m along your path ({1} fixes). Already on the air when this window opened and still here. "</string>
+    <string name="report_heard_along_0_m_1_gps_stamps_but_did_not_stay_loud_on_you_neighbo" formatted="false">"Heard along {0} m ({1} GPS stamps) but did not stay loud on you. Neighborhood arc / pass-by, not a tail."</string>
+    <string name="report_stayed_loud_with_you_the_whole_sit_0_to_1_dbm_2_gps_stamps" formatted="false">"Stayed loud with you the whole sit ({0} to {1} dBm, {2} GPS stamps). "</string>
+    <string name="report_decoded_0" formatted="false">"Decoded: {0}."</string>
+    <string name="report_with_you_the_whole_sit_yours_or_planted_before_you_started_accoun" formatted="false">"With you the whole sit — yours or planted before you started. Account for it."</string>
+    <string name="report_location_beacons_do_not_typically_move_with_you_account_for_it_ow" formatted="false">"Location beacons do not typically move with you. Account for it (own test tag, badge, or a short overlap with a fixture)."</string>
+    <string name="report_typical_of_a_watch_or_ring_you_or_a_companion_are_wearing_not_typ" formatted="false">"Typical of a watch or ring you or a companion are wearing. Not typically a planted tracker."</string>
+    <string name="report_0_find_my_iphone_addresses_rotate_this_mac_is_this_session" formatted="false">"{0} Find My / iPhone addresses rotate; this MAC is this session."</string>
+    <string name="report_appeared_after_the_sit_started_but_last_gps_stamp_was_0_dbm_after" formatted="false">"Appeared after the sit started, but last GPS stamp was {0} dBm after a loudest of {1} dBm (−{2} dB). Looks like you walked away from a fixture, not a tail."</string>
+    <string name="report_appeared_after_the_sit_started_and_gps_span_was_0_m_but_only_1_2_" formatted="false">"Appeared after the sit started and GPS span was {0} m, but only {1}/{2} stamps were loud (−75 dBm+). Looks like a pass-by, not a tail."</string>
+    <string name="report_appeared_after_the_sit_started_but_was_only_heard_along_0_m_of_yo" formatted="false">"Appeared after the sit started, but was only heard along {0} m of your {1} m path ({2}%). Neighborhood arc / pass-by, not a tail."</string>
+    <string name="report_appeared_after_the_sit_started_then_stayed_loud_with_you_across_0" formatted="false">"Appeared after the sit started, then stayed loud with you across {0} m "</string>
+    <string name="report_0_m_of_your_1_m_path_2" formatted="false">"({0} m of your {1} m path, {2}%; "</string>
+    <string name="report_0_1_gps_stamps_75_dbm" formatted="false">"{0}/{1} GPS stamps ≥ −75 dBm). "</string>
+    <string name="report_treat_as_a_possible_tail_until_you_visually_account_for_it" formatted="false">"Treat as a possible tail until you visually account for it."</string>
+    <string name="report_unusual_for_a_retail_location_beacon_they_do_not_typically_move_w" formatted="false">"Unusual for a retail/location beacon — they do not typically move with you. Account for it; not the same as a Find My tail."</string>
+    <string name="report_typical_of_a_watch_that_joined_the_sit_you_put_it_on_or_someone_w" formatted="false">"Typical of a watch that joined the sit (you put it on, or someone walking with you). Not typically a planted tracker."</string>
+    <string name="report_in_sit_0" formatted="false">"In sit {0}"</string>
+    <string name="report_in_the_last_15_minutes" formatted="false">"In the last 15 minutes"</string>
+    <string name="report_0_fieldwatch_heard_1_wi_fi_access_points_and_2_ble_advertisers" formatted="false">"{0} Fieldwatch heard {1} Wi-Fi access points and {2} BLE advertisers"</string>
+    <string name="report_0_signature_matched_1_hidden_ssids_2_randomized_ble" formatted="false">" ({0} signature-matched, {1} hidden SSIDs, {2} randomized BLE). "</string>
+    <string name="report_overall_distance_traveled_0_along_the_gps_path_straight_line_span" formatted="false">"Overall distance traveled: {0} along the GPS path (straight-line span {1}). "</string>
+    <string name="report_stops_area_0" formatted="false">"Stops / area: {0}. "</string>
+    <string name="report_tracking_note" formatted="false">"TRACKING NOTE. "</string>
+    <string name="report_0_finder_tag_s_with_you_the_whole_sit_your_kit_or_planted_before_" formatted="false">"{0} finder tag(s) with you the whole sit (your kit or planted before you started): "</string>
+    <string name="report_0_possible_tail_s_first_heard_after_this_sit_started" formatted="false">"{0} possible tail(s) first heard after this sit started: "</string>
+    <string name="report_account_for_every_mac_fieldwatch_cannot_tell_yours_from_a_plant" formatted="false">"Account for every MAC — Fieldwatch cannot tell yours from a plant. "</string>
+    <string name="report_gps_tagging_is_off_so_a_following_test_was_not_performed_enable_t" formatted="false">"GPS tagging is off, so a following test was not performed. Enable “Tag detections with GPS” and walk to test. "</string>
+    <string name="report_gps_displacement_was_only_0_m_too_short_to_test_whether_a_tracker" formatted="false">"GPS displacement was only {0} m — too short to test whether a tracker is following. Walk farther with tagging on. "</string>
+    <string name="report_no_finder_tag_clearly_stayed_with_the_gps_path_in_this_window" formatted="false">"No finder tag clearly stayed with the GPS path in this window. "</string>
+    <string name="report_retail_beacon_s_also_stayed_with_the_path_unusual_fixtures_do_not" formatted="false">"Retail beacon(s) also stayed with the path (unusual — fixtures do not typically move with you): "</string>
+    <string name="report_wearable_s_stayed_with_the_path_usually_your_watch_ring_or_a_comp" formatted="false">"Wearable(s) stayed with the path (usually your watch/ring or a companion): "</string>
+    <string name="report_gps_tagging_is_off_fieldwatch_cannot_test_whether_a_radio_moved_w" formatted="false">"GPS tagging is OFF. Fieldwatch cannot test whether a radio moved with you."</string>
+    <string name="report_turn_on_settings_tag_detections_with_gps_walk_or_drive_50_m_then_" formatted="false">"Turn on Settings → Tag detections with GPS, walk or drive 50+ m, then run Debrief again."</string>
+    <string name="report_overall_distance_traveled_0_along_the_gps_path_1_samples_straight" formatted="false">"Overall distance traveled: {0} along the GPS path ({1} samples). Straight-line span {2}."</string>
+    <string name="report_co_travel_is_split_by_class_finder_tags_airtag_find_my_smarttag_t" formatted="false">"Co-travel is split by class: finder tags (AirTag / Find My, SmartTag, Tile, Chipolo, Pebblebee, loud pocket Apple), retail beacons (iBeacon, Minew, Estimote, Kontakt.io, Target Atrius basket), and wearables (Garmin, Fitbit, Oura)."</string>
+    <string name="report_insufficient_movement_to_distinguish_a_radio_that_stayed_with_you" formatted="false">"Insufficient movement to distinguish a radio that stayed with you from one you passed. Walk or drive farther and re-run."</string>
+    <string name="report_no_finder_tag_retail_beacon_or_wearable_stayed_with_you_house_tag" formatted="false">"No finder tag, retail beacon, or wearable stayed with you. House tags and other radios you only passed are not listed."</string>
+    <string name="report_callouts_below_are_only_radios_that_stayed_with_the_path_radios_y" formatted="false">"Callouts below are only radios that stayed with the path. Radios you passed (store fixtures, house tags) are omitted."</string>
+    <string name="report_your_captions_on_radios_heard_in_this_window_same_kind_mac_as_nam" formatted="false">"Your captions on radios heard in this window. Same KIND+MAC as Named radios. Not catalog Notes."</string>
+    <string name="report_0_1_2_3_dbm" formatted="false">"  · {0}  {1}  {2}  {3} dBm"</string>
+    <string name="report_0_1_rssi_2_dbm_min_3_max_4" formatted="false">"    {0}  {1}  RSSI {2} dBm (min {3} / max {4})"</string>
+    <string name="report_phone_gps_at_hear_time_not_the_other_radio_s_location_and_not_a_c" formatted="false">"Phone GPS at hear-time, not the other radio’s location and not a camera pole. Stays are clusters within about 40 m; hops between them are transit. Coordinates are not repeated on every Wi-Fi/BLE line."</string>
+    <string name="report_gps_tagging_is_off_turn_on_settings_tag_detections_with_gps_to_re" formatted="false">"GPS tagging is OFF. Turn on Settings → Tag detections with GPS to record where you were when radios were heard."</string>
+    <string name="report_gps_tagging_is_on_but_this_window_has_no_fixes_yet" formatted="false">"GPS tagging is on, but this window has no fixes yet."</string>
+    <string name="report_overall_0_along_track_span_1_2_fixes" formatted="false">"Overall: {0} along-track, span {1}, {2} fixes."</string>
+    <string name="report_street_names_are_approximate_do_not_treat_a_street_as_the_locatio" formatted="false">"Street names are approximate. Do not treat a street as the location of a matched camera or tag."</string>
+    <string name="report_no_path_legs" formatted="false">"No path legs."</string>
+    <string name="report_stops" formatted="false">"Stops: "</string>
+    <string name="report_0_stay_1_2_utc_3" formatted="false">"{0}. Stay  {1}–{2} UTC  ({3})"</string>
+    <string name="report_heard_here_0_ap_s_1_ble" formatted="false">"   Heard here: {0} AP(s), {1} BLE"</string>
+    <string name="report_0_1_2_dbm_167" formatted="false">"   · {0}  {1}  {2} dBm"</string>
+    <string name="report_no_gps_stamped_radios_tied_to_this_stay_tagging_may_have_started_" formatted="false">"   · No GPS-stamped radios tied to this stay (tagging may have started after they were first heard)."</string>
+    <string name="report_0_transit_1_2_utc" formatted="false">"{0}. Transit  {1}–{2} UTC  "</string>
+    <string name="report_0_along_track" formatted="false">"{0} along track"</string>
+    <string name="report_one_stay_you_did_not_move_far_enough_in_this_window_to_split_loca" formatted="false">"One stay — you did not move far enough in this window to split locations."</string>
+    <string name="report_in_motion_walk_vehicle_through_mixed_rf" formatted="false">"In motion (walk/vehicle) through mixed RF."</string>
+    <string name="report_likely_a_dwelling_or_small_office_few_sitting_aps_limited_ble" formatted="false">"Likely a dwelling or small office — few sitting APs, limited BLE."</string>
+    <string name="report_dense_public_retail_street_many_aps_and_phone_like_randomized_ble" formatted="false">"Dense public / retail / street: many APs and phone-like randomized BLE."</string>
+    <string name="report_likely_a_building_with_standing_infrastructure_aps_plus_patrons" formatted="false">"Likely a building with standing infrastructure APs plus patrons."</string>
+    <string name="report_mixed_or_under_sampled_environment" formatted="false">"Mixed or under-sampled environment."</string>
+    <string name="report_0_1_aps_2_ble_3_persistent_aps_traveled_4_span_5" formatted="false">"{0}  ({1} APs, {2} BLE, {3} persistent APs, traveled {4}, span {5}.)"</string>
+    <string name="report_ch" formatted="false">"  ch "</string>
+    <string name="report_hidden" formatted="false">"  hidden"</string>
+    <string name="report_dwell" formatted="false">"  dwell "</string>
+    <string name="report_google_fast_pair_in_pairing_mode" formatted="false">"Google Fast Pair in pairing mode: "</string>
+    <string name="report_very_strong_unnamed_radios_50_dbm" formatted="false">"Very strong unnamed radios (≥ −50 dBm): "</string>
+    <string name="report_0_1_dbm" formatted="false">"{0} {1} dBm"</string>
+    <string name="report_high_randomized_ble_0_typical_of_phones_not_a_tracking_finding" formatted="false">"High randomized BLE ({0}) — typical of phones, not a tracking finding."</string>
+    <string name="report_a_passive_observer_with_the_same_radios_would_see_0_named_hidden_" formatted="false">"A passive observer with the same radios would see {0} named/hidden APs "</string>
+    <string name="report_and_0_ble_advertisers_1_randomized" formatted="false">"and {0} BLE advertisers ({1} randomized). "</string>
+    <string name="report_hidden_ssids_still_beacon_and_identify_the_ap_by_bssid" formatted="false">"Hidden SSIDs still beacon and identify the AP by BSSID. "</string>
+    <string name="report_this_debrief_includes_operator_gps_samples_used_for_distance_and_" formatted="false">"This debrief includes operator GPS samples used for distance and the following test. "</string>
+    <string name="report_this_debrief_includes_advertised_aircraft_positions_from_radios_t" formatted="false">"This debrief includes advertised aircraft positions from radios that broadcast a latitude and longitude. "</string>
+    <string name="report_street_names_came_from_the_phone_s_system_geocoder_while_online" formatted="false">"Street names came from the phone’s system geocoder while online. "</string>
+    <string name="report_do_not_share_this_file_off_device_without_redaction" formatted="false">"Do not share this file off-device without redaction."</string>
+    <string name="report_possible_tail_appeared_after_this_sit_started_0_pause_live_open_d" formatted="false">"Possible tail (appeared after this sit started): {0}. Pause Live, open detail, note RSSI while you walk a dog-leg. Do not disable someone else’s tag."</string>
+    <string name="report_possible_trackers_with_you_0" formatted="false">"Possible trackers with you: {0}. "</string>
+    <string name="report_could_be_yours_or_planted_in_the_car_bag_on_you_before_you_starte" formatted="false">"Could be yours or planted in the car/bag/on you before you started. Account for each MAC — do not dismiss as yours."</string>
+    <string name="report_retail_beacons_with_you_unusual_fixtures_do_not_typically_move_wi" formatted="false">"Retail beacons with you (unusual — fixtures do not typically move with you): "</string>
+    <string name="report_account_for_a_test_tag_or_badge_before_treating_it_as_a_follower" formatted="false">". Account for a test tag or badge before treating it as a follower."</string>
+    <string name="report_wearables_with_you_usually_own_kit_or_a_companion" formatted="false">"Wearables with you (usually own kit or a companion): "</string>
+    <string name="report_enable_tag_detections_with_gps_and_walk_50_m_then_run_debrief_aga" formatted="false">"Enable Tag detections with GPS and walk 50+ m, then run Debrief again for a following test."</string>
+    <string name="report_walk_farther_50_m_with_gps_tagging_on_then_re_run_debrief" formatted="false">"Walk farther (50+ m) with GPS tagging on, then re-run Debrief."</string>
+    <string name="report_use_live_pause_to_inspect_a_busy_list_watch_tracker_signatures_if" formatted="false">"Use Live → Pause to inspect a busy list. Watch tracker signatures if this sit was noisy."</string>
+    <string name="report_station_side_wi_fi_probes_clients_still_needs_a_dedicated_sniffer" formatted="false">"Station-side Wi-Fi (probes/clients) still needs a dedicated sniffer — Fieldwatch cannot see them."</string>
+    <string name="report_retail_beacon_s_also_with_the_path_unusual" formatted="false">" Retail beacon(s) also with the path (unusual): "</string>
+    <string name="report_wearable_s_with_the_path_usually_own_kit" formatted="false">" Wearable(s) with the path (usually own kit): "</string>
+    <string name="report_possible_tail_appeared_after_sit_started_0" formatted="false">"Possible tail (appeared after sit started): {0}. "</string>
+    <string name="report_also_finder_tags_with_you_yours_or_planted_before_0_account_for_e" formatted="false">"Also finder tags with you (yours or planted before): {0}. Account for every MAC."</string>
+    <string name="report_possible_tail_appeared_after_this_sit_started_0_account_for_it_on" formatted="false">"Possible tail (appeared after this sit started): {0}. Account for it on the person/vehicle."</string>
+    <string name="report_turn_on_gps_tagging_and_walk_before_you_can_test_whether_a_tracke" formatted="false">"Turn on GPS tagging and walk before you can test whether a tracker is following you."</string>
+    <string name="report_not_enough_gps_movement_0_m_to_test_following_walk_and_re_run_deb" formatted="false">"Not enough GPS movement ({0} m) to test following; walk and re-run Debrief."</string>
+    <string name="report_finder_tags_with_you_yours_or_planted_before_you_started_0_no_new" formatted="false">"Finder tags with you (yours or planted before you started): {0}. No new arrival this window. Account for each MAC — do not dismiss as yours."</string>
+    <string name="report_no_finder_tag_stayed_with_the_path" formatted="false">"No finder tag stayed with the path."</string>
+    <string name="report_no_signature_hits_and_no_gps_co_travel_of_trackers_in_this_15_min" formatted="false">"No signature hits and no GPS co-travel of trackers in this 15-minute window."</string>
+    <string name="report_no_finder_tag_retail_beacon_or_wearable_clearly_stayed_with_your_" formatted="false">"No finder tag, retail beacon, or wearable clearly stayed with your GPS path in this window."</string>
+    <string name="report_and_0_more" formatted="false">" and {0} more"</string>
+    <string name="report_advertised_position_0_1" formatted="false">" Advertised position: {0}{1}."</string>
+    <string name="report_0_h_1_m" formatted="false">"{0}h{1}m"</string>
+    <string name="report_0_m_1_s" formatted="false">"{0}m{1}s"</string>
+    <string name="report_you_are_a_field_rf_analyst_for_the_operator_who_collected_this_si" formatted="false">"You are a field RF analyst for the operator who collected this sit. Fieldwatch is a stock-Android, receive-only Wi-Fi access-point + BLE-advertiser listener."</string>
+    <string name="report_the_onboard_debrief_verbatim_below_already_tabulated_the_sit_coun" formatted="false">"The **onboard Debrief** (verbatim below) already tabulated the sit: counts, Where you were, tracking callouts, inventories, Extra attention, takeaway. **Do not rewrite that report. Do not reprint inventories or stay lists.** Your job is an addendum the phone cannot write: rates, competing hypotheses, and a stress-test of the onboard tracking callouts."</string>
+    <string name="report_constraints_you_must_respect" formatted="false">"Constraints you must respect:"</string>
+    <string name="report_hear_only_wi_fi_rows_are_access_points_only_ble_rows_are_advertis" formatted="false">"- Hear-only. Wi-Fi rows are access points only. BLE rows are advertisers. Kind + MAC. BLE rotation is a new row and will not stitch."</string>
+    <string name="report_signature_oui_company_matches_are_hypotheses_not_identity_not_a_p" formatted="false">"- Signature / OUI / company matches are hypotheses, not identity, not a person or vehicle."</string>
+    <string name="report_gps_stamps_if_present_are_this_phone_at_hear_time_not_the_other_r" formatted="false">"- GPS stamps (if present) are this phone at hear-time, not the other radio. Do not place a camera or tag at the GPS pin."</string>
+    <string name="report_place_names_if_present_are_system_reverse_geocode_of_those_stamps" formatted="false">"- Place names (if present) are system reverse-geocode of those stamps."</string>
+    <string name="report_rssi_is_loudness_at_the_phone_not_meters" formatted="false">"- RSSI is loudness at the phone, not meters."</string>
+    <string name="report_live_ram_cap_is_about_400_radios_unnamed_ble_evicts_after_3_min_a" formatted="false">"- Live RAM cap is about 400 radios; unnamed BLE evicts after ~3 min. A named sit keeps more. This is not a complete capture."</string>
+    <string name="report_do_not_claim_a_tracker_is_following_unless_the_onboard_gps_co_tra" formatted="false">"- Do not claim a tracker is following unless the onboard GPS co-travel section supports it. A radio with you the whole sit is not automatically yours — it may be planted. Do not dismiss it. Do not invent a tail the onboard test did not flag. Do not treat a retail beacon as a Find My tail."</string>
+    <string name="report_a_decoded_live_value_on_a_tracking_row_is_catalog_text_for_that_a" formatted="false">"- A decoded live value on a tracking row is catalog text for that advertisement. Quote the catalog sentence when the onboard report includes one. Do not stitch that value onto a different MAC."</string>
+    <string name="report_an_aircraft_block_and_an_amber_track_are_positions_the_radio_adve" formatted="false">"- An aircraft block and an amber track are positions the radio advertised. Trails with the same UAS id are one aircraft. They are not this phone\'s GPS and they are not a finding that the aircraft followed the operator."</string>
+    <string name="report_do_not_give_safety_advice_do_not_tell_the_operator_they_are_safe_" formatted="false">"- Do not give safety advice. Do not tell the operator they are safe or in danger."</string>
+    <string name="report_treat_this_paste_as_operationally_sensitive" formatted="false">"- Treat this paste as operationally sensitive."</string>
+    <string name="report_your_output_required_this_is_the_addendum_the_operator_reads" formatted="false">"## Your output (required — this is the addendum the operator reads)"</string>
+    <string name="report_write_complete_sentences_headings_as_below_short_bullets_only_for" formatted="false">"Write complete sentences. Headings as below. Short bullets only for Extra attention and tracking rows from the working table. No markdown tables. No code fences. No dump of the onboard inventories."</string>
+    <string name="report_1_disclaimer_repeat_the_experimental_use_disclaimer_first" formatted="false">"1. **Disclaimer** — Repeat the experimental-use disclaimer first."</string>
+    <string name="report_2_what_the_onboard_debrief_already_established_3_5_sentences_coun" formatted="false">"2. **What the onboard Debrief already established** — 3–5 sentences. Counts, distance, tracking callouts, Extra attention hits, Observer notes if any. Do not reprint inventories."</string>
+    <string name="report_3_what_the_numbers_add_5_vs_15_minute_counts_rssi_bands_rand_ble_" formatted="false">"3. **What the numbers add** — 5- vs 15-minute counts, RSSI bands, RAND BLE percent, arrivals per minute, persistent vs gone, signature-family mix. Say street vs dwelling vs retail vs vehicle, and 5-minute vs 15-minute change (denser, quieter, stable). Confidence. If GPS ran, path length/span from the working table — do not pin a radio to a stay."</string>
+    <string name="report_4_extra_attention_and_tracking_callouts_full_identifiers_from_the" formatted="false">"4. **Extra attention and tracking callouts** — Full identifiers from the working table (complete MAC, name, RSSI min/max, signatures, dwell). Stress-test onboard Possible trackers with you / Possible tail / Retail beacons / Wearables. Agree, qualify, or say the data are too thin. Pattern match, not identity. If none, say none."</string>
+    <string name="report_5_what_another_sit_or_hunt_would_shrink_concrete_in_app_next_step" formatted="false">"5. **What another sit or Hunt would shrink** — Concrete in-app next steps only (Hunt on one Extra attention row, a longer GPS path, Compare sits, Filters). No safety advice. No “call the police.”"</string>
+    <string name="report_takeaway_required_last_line_one_sentence_starting_with_takeaway_t" formatted="false">"**Takeaway (required, last line).** One sentence starting with `Takeaway:` that adds *one number the onboard takeaway does not already say* (a rate, RAND percent, 5- vs 15-minute change, path span). Not a moral. Not a threat level."</string>
+    <string name="report_collection_context" formatted="false">"## Collection context"</string>
+    <string name="report_tool_fieldwatch_app_fieldwatch_receive_only_no_association_inject" formatted="false">"- Tool: Fieldwatch (app.fieldwatch), receive-only, no association / injection / cloud."</string>
+    <string name="report_window_sit_0_1_2_utc_with_a_5_minute_recent_slice" formatted="false">"- Window: sit **{0}** ({1} → {2} UTC), with a 5-minute recent slice."</string>
+    <string name="report_window_last_15_minutes_0_1_utc_with_a_5_minute_recent_slice" formatted="false">"- Window: last **15 minutes** ({0} → {1} UTC), with a **5-minute** recent slice."</string>
+    <string name="report_scan_intensity_0_stale_after_1_s" formatted="false">"- Scan intensity: {0}. Stale after {1}s."</string>
+    <string name="report_location_tags_0_online_place_names_1" formatted="false">"- Location tags: {0}. Online place names: {1}."</string>
+    <string name="report_onboard_debrief_verbatim_already_shown_to_the_operator_do_not_rew" formatted="false">"## Onboard Debrief (verbatim — already shown to the operator; do not rewrite)"</string>
+    <string name="report_working_data_for_the_addendum_do_not_copy_rosters_into_the_answer" formatted="false">"## Working data (for the addendum — do not copy rosters into the answer)"</string>
+    <string name="report_15_min_wi_fi_0_ble_1_signed_2_hidden_ssids_3" formatted="false">"15 min: Wi-Fi {0}  BLE {1}  signed {2}  hidden SSIDs {3}  "</string>
+    <string name="report_rand_ble_0_1_2" formatted="false">"RAND BLE {0}/{1} ({2}%)  "</string>
+    <string name="report_first_seen_0_1_min_persistent_2_gone_quiet_3" formatted="false">"first-seen {0} ({1}/min)  persistent {2}  gone/quiet {3}"</string>
+    <string name="report_5_min_wi_fi_0_ble_1" formatted="false">"5 min: Wi-Fi {0}  BLE {1}  "</string>
+    <string name="report_signed_0_first_seen_1" formatted="false">"signed {0}  first-seen {1}"</string>
+    <string name="report_ble_rssi_n_0_50_1_51_70_2" formatted="false">"BLE RSSI (n={0}): ≥−50 {1}  −51..−70 {2}  "</string>
+    <string name="report_wi_fi_rssi_n_0_50_1_51_70_2" formatted="false">"Wi-Fi RSSI (n={0}): ≥−50 {1}  −51..−70 {2}  "</string>
+    <string name="report_signature_families_none" formatted="false">"Signature families: none."</string>
+    <string name="report_signature_families_count" formatted="false">"Signature families (count): "</string>
+    <string name="report_gps_path_tagging_0" formatted="false">"GPS path: tagging {0}  "</string>
+    <string name="report_fixes_0_length_1_m_span_2_m" formatted="false">"fixes {0}  length {1} m  span {2} m  "</string>
+    <string name="report_places_0" formatted="false">"places {0}"</string>
+    <string name="report_extra_attention_259" formatted="false">"Extra attention:"</string>
+    <string name="report_none_260" formatted="false">"- None."</string>
+    <string name="report_observer_notes_261" formatted="false">"Observer notes:"</string>
+    <string name="report_finder_tag_like_radios_for_stress_test_of_onboard_tracking_not_a_" formatted="false">"Finder-tag-like radios (for stress-test of onboard tracking; not a tail list):"</string>
+    <string name="report_rssimin" formatted="false">" rssiMin="</string>
+    <string name="report_rssimax" formatted="false">" rssiMax="</string>
+    <string name="report_end_of_working_data" formatted="false">"## End of working data"</string>
+    <string name="report_write_the_addendum_now_following_your_output_at_the_top_do_not_re" formatted="false">"Write the addendum now, following **Your output** at the top. Do not rewrite the onboard Debrief."</string>
+    <string name="report_truncated_for_share_sheet_size" formatted="false">"\n\n[truncated for share-sheet size]\n"</string>
+    <string name="report_observer" formatted="false">"  Observer: "</string>
+    <string name="report_rssi" formatted="false">" rssi="</string>
+    <string name="report_rand" formatted="false">" RAND"</string>
+    <string name="report_sig" formatted="false">" sig="</string>
+    <string name="report_decoded" formatted="false">" decoded="</string>
+    <string name="report_decodenote" formatted="false">" decodeNote="</string>
+    <string name="report_dwell_274" formatted="false">" dwell="</string>
+    <string name="report_last_15_minutes_is_the_live_ram_set_about_400_radios" formatted="false">"Last 15 minutes is the Live RAM set (about 400 radios). "</string>
+    <string name="report_a_named_sit_keeps_up_to_0_counts_are_not_the_same_net" formatted="false">"A named sit keeps up to {0}. Counts are not the same net."</string>
+    <string name="report_windows" formatted="false">"Windows"</string>
+    <string name="report_this_sit" formatted="false">"This sit"</string>
+    <string name="report_second_sit" formatted="false">"Second sit"</string>
+    <string name="report_radios_this_phone_heard_kind_mac_ble_rotation_is_a_new_row_not_a_" formatted="false">"Radios this phone heard. Kind + MAC. BLE rotation is a new row. Not a radio fix."</string>
+    <string name="report_only_in_this_sit_0" formatted="false">"Only in this sit ({0})"</string>
+    <string name="report_only_in_second_sit_0" formatted="false">"Only in second sit ({0})"</string>
+    <string name="report_in_both_0" formatted="false">"In both ({0})"</string>
+    <string name="report_this_radios" formatted="false">"This radios"</string>
+    <string name="report_second_radios" formatted="false">"Second radios"</string>
+    <string name="report_caps" formatted="false">"Caps"</string>
+    <string name="report_ram_400_vs_sit_0" formatted="false">"RAM ~400 vs sit {0}"</string>
+    <string name="report_0_vs_1" formatted="false">"{0} vs {1}"</string>
+    <string name="report_0_only_in_this_sit_1_only_in_the_second_2_in_both" formatted="false">"{0} only in this sit · {1} only in the second · {2} in both."</string>
+    <string name="report_fieldwatch_sit_compare" formatted="false">"FIELDWATCH SIT COMPARE"</string>
+    <string name="report_sit_compare" formatted="false">"SIT COMPARE"</string>
+    <string name="report_sit_compare_292" formatted="false">"Sit compare"</string>
+    <string name="report_a_mac_alert_or_a_signature_alert_is_drawn_once_a_decoded_latitude" formatted="false">"A MAC alert or a signature alert is drawn once. A decoded latitude and longitude is the last advertised position. Anything else is the strongest hear. A number is that place (Path key)."</string>
+    <string name="report_two_walks_on_one_north_up_frame_green_this_sit_slate_second_sit_0" formatted="false">"Two walks on one north-up frame. Green = this sit. Slate = second sit. {0}"</string>
+    <string name="report_north_up_line_is_this_phone_0" formatted="false">"North-up. Line is this phone. {0}"</string>
+    <string name="report_operator_paths" formatted="false">"OPERATOR PATHS"</string>
+    <string name="report_last_15_minutes_in_memory_about_400_radios" formatted="false">"last 15 minutes in memory (about 400 radios)"</string>
+    <string name="report_named_window_up_to_0" formatted="false">"named window (up to {0})"</string>
+    <string name="report_0_1_2_radios_3" formatted="false">"{0}: {1}\n{2} radios · {3}\n"</string>
+    <string name="report_only_in_this_sit" formatted="false">"Only in this sit."</string>
+    <string name="report_only_in_second_sit" formatted="false">"Only in second sit."</string>
+    <string name="report_none_302" formatted="false">"(none)"</string>
+    <string name="report_decoded_value_changed" formatted="false">"  decoded value changed: "</string>
+    <string name="report_extra_attention_304" formatted="false">"  Extra attention"</string>
+    <string name="report_both" formatted="false">"both"</string>
+    <string name="report_this_sit_306" formatted="false">"this sit"</string>
+    <string name="report_second_sit_307" formatted="false">"second sit"</string>
+    <string name="report_your_captions_on_radios_heard_in_either_window_same_kind_mac_as_n" formatted="false">"Your captions on radios heard in either window. Same KIND+MAC as Named radios. Not catalog Notes."</string>
+    <string name="report_only_in_this_sit_309" formatted="false">"Only in this sit"</string>
+    <string name="report_only_in_second_sit_310" formatted="false">"Only in second sit"</string>
+    <string name="report_you_are_a_field_rf_analyst_for_the_operator_who_compared_two_fiel" formatted="false">"You are a field RF analyst for the operator who compared two Fieldwatch sits. Fieldwatch is a stock-Android, receive-only Wi-Fi access-point + BLE-advertiser listener."</string>
+    <string name="report_the_onboard_compare_verbatim_below_already_split_presence_only_in" formatted="false">"The **onboard Compare** (verbatim below) already split presence: only in this sit, only in the second, in both. **Do not rewrite that report. Do not reprint those lists.** Your job is an addendum the phone cannot write: what kind of change this is, and how much of it is real."</string>
+    <string name="report_hear_only_kind_mac_ble_rotation_is_a_new_row_and_will_not_stitch" formatted="false">"- Hear-only. Kind + MAC. BLE rotation is a new row and will not stitch."</string>
+    <string name="report_wi_fi_rows_are_access_points_only_associated_clients_are_invisibl" formatted="false">"- Wi-Fi rows are access points only. Associated clients are invisible."</string>
+    <string name="report_extra_attention_signature_matches_are_hypotheses_not_identity_not" formatted="false">"- Extra attention / signature matches are hypotheses, not identity, not a person or vehicle."</string>
+    <string name="report_gps_stamps_if_present_are_this_phone_at_hear_time_not_the_other_r_316" formatted="false">"- GPS stamps (if present) are this phone at hear-time, not the other radio."</string>
+    <string name="report_last_15_minutes_vs_a_named_sit_is_not_the_same_net_ram_about_400_" formatted="false">"- Last 15 minutes vs a named sit is not the same net (RAM about 400 vs sit {0}). Missing BLE on the RAM side can be eviction, not gone."</string>
+    <string name="report_presence_is_not_co_travel_do_not_invent_a_tail_a_follower_or_a_ca" formatted="false">"- Presence is not co-travel. Do not invent a tail, a follower, or a camera location."</string>
+    <string name="report_a_decoded_live_value_on_a_row_is_catalog_text_for_that_kind_mac_i" formatted="false">"- A decoded live value on a row is catalog text for that kind + MAC. If the onboard compare says that value changed, state the change. Do not stitch that value onto a different MAC."</string>
+    <string name="report_an_aircraft_block_is_positions_the_radio_advertised_joined_by_uas" formatted="false">"- An aircraft block is positions the radio advertised, joined by UAS id. If the onboard compare says the status changed, state the change. That track is not this phone\'s GPS."</string>
+    <string name="report_write_complete_sentences_headings_as_below_short_bullets_only_for_321" formatted="false">"Write complete sentences. Headings as below. Short bullets only for exclusive Extra attention / Named radios. No markdown tables. No code fences. No dump of the onboard lists."</string>
+    <string name="report_2_what_the_onboard_compare_already_established_3_5_sentences_wind" formatted="false">"2. **What the onboard compare already established** — 3–5 sentences. Window names, counts, Extra attention exclusives, Observer notes if any. Do not reprint inventories."</string>
+    <string name="report_3_what_the_numbers_add_overlap_both_union_as_a_percent_wi_fi_vs_b" formatted="false">"3. **What the numbers add** — Overlap (both/union as a percent), Wi-Fi vs BLE in each bucket, how much exclusive BLE is RAND. Say whether this looks like fixtures, a different stall/hour, or a cap artifact. Confidence. Use the working table; do not invent rates."</string>
+    <string name="report_4_exclusive_extra_attention_and_named_radios_full_identifiers_fro" formatted="false">"4. **Exclusive Extra attention and Named radios** — Full identifiers from the working table (complete MAC, name, signatures, which window). Pattern match, not identity. If none, say none."</string>
+    <string name="report_5_what_another_sit_or_hunt_would_shrink_concrete_in_app_next_step_325" formatted="false">"5. **What another sit or Hunt would shrink** — Concrete in-app next steps only (a third sit at the same stall, Hunt on one exclusive Extra attention row, Filters). No safety advice. No “call the police.”"</string>
+    <string name="report_takeaway_required_last_line_one_sentence_starting_with_takeaway_t_326" formatted="false">"**Takeaway (required, last line).** One sentence starting with `Takeaway:` that adds *one number the onboard takeaway does not already say* (overlap percent, exclusive Extra attention count, or RAND fraction of exclusive BLE). Not a moral. Not a threat level."</string>
+    <string name="report_onboard_compare_verbatim_already_shown_to_the_operator_do_not_rew" formatted="false">"## Onboard Compare (verbatim — already shown to the operator; do not rewrite)"</string>
+    <string name="report_this_sit_0_1_radios_2" formatted="false">"This sit: {0} ({1} radios{2})"</string>
+    <string name="report_second_sit_0_1_radios_2" formatted="false">"Second sit: {0} ({1} radios{2})"</string>
+    <string name="report_only_in_this_sit_0_only_in_second_1_in_both_2_union_3_overlap_4" formatted="false">"Only in this sit: {0}  Only in second: {1}  In both: {2}  Union: {3}  Overlap: {4}%"</string>
+    <string name="report_only_in_this_sit_by_radio_wi_fi_0_ble_1_rand_ble_2" formatted="false">"Only in this sit by radio: Wi-Fi {0}  BLE {1}  RAND BLE {2}"</string>
+    <string name="report_only_in_second_sit_by_radio_wi_fi_0_ble_1_rand_ble_2" formatted="false">"Only in second sit by radio: Wi-Fi {0}  BLE {1}  RAND BLE {2}"</string>
+    <string name="report_in_both_by_radio_wi_fi_0_ble_1_rand_ble_2" formatted="false">"In both by radio: Wi-Fi {0}  BLE {1}  RAND BLE {2}"</string>
+    <string name="report_cap_note_last_15_minutes_is_live_ram_about_400_a_named_sit_keeps_" formatted="false">"Cap note: last 15 minutes is Live RAM (about 400). A named sit keeps up to {0}. Counts are not the same net."</string>
+    <string name="report_exclusive_extra_attention" formatted="false">"Exclusive Extra attention:"</string>
+    <string name="report_exclusive_named_radios" formatted="false">"Exclusive Named radios:"</string>
+    <string name="report_in_both" formatted="false">"In both"</string>
+    <string name="report_write_the_addendum_now_following_your_output_at_the_top_do_not_re_338" formatted="false">"Write the addendum now, following **Your output** at the top. Do not rewrite the onboard Compare."</string>
+    <string name="report_privacy_mode_mac_tails_are_gps_coordinates_are_masked_logs_on_the" formatted="false">"Privacy mode: MAC tails are **:**:**. GPS coordinates are masked. Logs on the phone are unchanged.\n\n{0}"</string>
+    <string name="report_last_0" formatted="false">"  Last {0}"</string>
+    <string name="report_course_0" formatted="false">"course {0}°"</string>
+    <string name="report_1_advertised_fix" formatted="false">"1 advertised fix"</string>
+    <string name="report_0_advertised_fixes_1" formatted="false">"{0} advertised fixes, {1}"</string>
+    <string name="report_pilot_0" formatted="false">"  Pilot {0}"</string>
+    <string name="report_0_more_aircraft_tracks_are_listed_here_and_left_off_the_map" formatted="false">"{0} more aircraft tracks are listed here and left off the map."</string>
+    <string name="report_these_positions_were_broadcast_by_the_radio_they_are_not_this_pho" formatted="false">"These positions were broadcast by the radio. They are not this phone\'s GPS."</string>
+    <string name="report_status_changed_0_1" formatted="false">"  Status changed: {0} → {1}"</string>
+    <string name="report_0_no_uas_id_1_2" formatted="false">"{0}, no UAS id: {1} ({2})"</string>
+    <string name="report_pilot" formatted="false">"Pilot"</string>
+    <string name="report_second_sit_s_advertised_track" formatted="false">"second sit’s advertised track"</string>
+    <string name="report_a_blue_dotted_line_is_the_second_sit_s_advertised_track_within_2_" formatted="false">" A blue dotted line is the second sit’s advertised track within 2 km of this path."</string>
+    <string name="report_black_dotted_line_is_an_advertised_track" formatted="false">"black dotted line is an advertised track"</string>
+    <string name="report_a_black_dotted_line_is_an_advertised_track_within_2_km_of_this_pa" formatted="false">" A black dotted line is an advertised track within 2 km of this path."</string>
+    <string name="report_north_up_black_dots_are_this_sit_blue_dots_are_the_second_sit_the" formatted="false">"North-up. Black dots are this sit. Blue dots are the second sit. The marker is the last advertised position."</string>
+    <string name="report_north_up_the_blue_dotted_line_is_the_advertised_track_for_0_the_m" formatted="false">"North-up. The blue dotted line is the advertised track for {0}. The marker is the last advertised position."</string>
+    <string name="report_last_advertised_position_for_0_the_marker_is_that_position" formatted="false">"Last advertised position for {0}. The marker is that position."</string>
+    <string name="report_north_up_the_black_dotted_line_is_the_advertised_track_for_0_the_" formatted="false">"North-up. The black dotted line is the advertised track for {0}. The marker is the last advertised position."</string>
+    <string name="report_uas_0" formatted="false">"UAS {0}"</string>
+    <string name="report_last_0_359" formatted="false">"last {0}"</string>
+    <string name="report_pilot_0_360" formatted="false">"pilot {0}"</string>
+    <string name="report_advertised_position" formatted="false">"Advertised position"</string>
+    <string name="report_last_0_362" formatted="false">" last {0}"</string>
+    <string name="report_1_fix" formatted="false">"1 fix"</string>
+    <string name="report_0_fixes" formatted="false">"{0} fixes"</string>
+    <string name="report_named_sit_0_radios_heard_in_that_window_live_list_cap_still_appli" formatted="false">"named sit “{0}” (radios heard in that window; Live list cap still applied while watching). "</string>
+    <string name="report_the_in_memory_live_set_last_15_minutes_cap_about_400" formatted="false">"the in-memory live set (last 15 minutes, cap about 400). "</string>
+    <string name="report_this_sit_report_is_from_0" formatted="false">"This sit report is from {0}"</string>
+    <string name="report_do_not_use_it_in_any_situation_where_safety_is_in_question" formatted="false">"Do not use it in any situation where safety is in question."</string>
+    <string name="report_this_compare_is_two_windows_of_radios_this_phone_heard_kind_mac" formatted="false">"This compare is two windows of radios this phone heard (kind + MAC). "</string>
+    <string name="report_ble_rotation_is_a_new_row_do_not_use_it_in_any_situation_where_sa" formatted="false">"BLE rotation is a new row. Do not use it in any situation where safety is in question."</string>
+    <string name="report_disclaimer_repeat_this_in_your_answer" formatted="false">"## Disclaimer (repeat this in your answer)"</string>
+    <string name="report_do_not_use_fieldwatch_this_paste_or_your_analysis_in_any_situatio" formatted="false">"Do not use Fieldwatch, this paste, or your analysis in any situation where safety is in question."</string>
+    <string name="report_begin_your_reply_with_this_disclaimer_do_not_give_safety_advice" formatted="false">"Begin your reply with this disclaimer. Do not give safety advice."</string>
+    <string name="report_online_lookup_failed_silently_coordinates_only" formatted="false">"Online lookup failed silently. Coordinates only."</string>
+    <string name="report_online_lookup_skipped_no_working_internet_coordinates_only" formatted="false">"Online lookup skipped: no working internet. Coordinates only."</string>
+    <string name="report_online_lookup_skipped_this_phone_has_no_system_geocoder_needs_goo" formatted="false">"Online lookup skipped: this phone has no system geocoder (needs Google Play / network location). Coordinates only."</string>
+    <string name="report_online_lookup_on_but_this_sit_had_no_gps_stamps_to_name" formatted="false">"Online lookup on, but this sit had no GPS stamps to name."</string>
+    <string name="report_looking_up_place_names_1_s_of_2_s" formatted="false">"Looking up place names (%1$s of %2$s)…"</string>
+    <string name="report_0_1_no_name_returned" formatted="false">"  · {0}  {1}  (no name returned)"</string>
+    <string name="report_online_lookup_system_geocoder_named_0_distinct_gps_cell_s_street_" formatted="false">"Online lookup: system geocoder named {0} distinct GPS cell(s). Street names are from the phone’s network geocoder, not a Fieldwatch cloud. Approximate."</string>
+    <string name="report_online_lookup_ran_but_the_system_geocoder_returned_no_street_name" formatted="false">"Online lookup ran, but the system geocoder returned no street names. Coordinates only."</string>
+    <string name="report_stay_0" formatted="false">"Stay {0}"</string>
+    <string name="report_transit_from" formatted="false">"Transit from"</string>
+    <string name="report_transit_to" formatted="false">"Transit to"</string>
+    <string name="report_path_start" formatted="false">"Path start"</string>
+    <string name="report_path_end" formatted="false">"Path end"</string>
+    <string name="report_disclaimer_387" formatted="false">"Disclaimer"</string>
+    <string name="report_start" formatted="false">"Start"</string>
+    <string name="report_end" formatted="false">"End"</string>
+    <string name="report_stay" formatted="false">"Stay"</string>
+    <string name="report_phone_gps" formatted="false">"Phone GPS"</string>
+    <string name="report_transit" formatted="false">"Transit"</string>
+    <string name="report_advertised" formatted="false">"Advertised"</string>
+    <string name="report_second_advertised" formatted="false">"Second advertised"</string>
+    <string name="report_mac_alert" formatted="false">"MAC alert"</string>
+    <string name="report_signature_alert" formatted="false">"Signature alert"</string>
+    <string name="report_path_key" formatted="false">"Path key"</string>
+    <string name="report_observer_1_s" formatted="false">"Observer: %1$s"</string>
+    <string name="report_1_s_radios_at_this_stop_2_s" formatted="false">"%1$s radios at this stop — %2$s"</string>
+    <string name="report_pattern_match_not_identity_not_a_safety_finding" formatted="false">"Pattern match, not identity. Not a safety finding."</string>
+    <string name="report_extra_attention_1_s" formatted="false">"EXTRA ATTENTION  ·  %1$s"</string>
+    <string name="report_takeaway" formatted="false">"TAKEAWAY"</string>
+    <string name="report_off_grid_pete_llc_operationally_sensitive" formatted="false">"Off Grid Pete LLC  ·  operationally sensitive"</string>
+    <string name="report_aircraft_404" formatted="false">"AIRCRAFT"</string>
+    <string name="report_1_s_km_span" formatted="false">"%1$s km span"</string>
+    <string name="report_1_s_m_span" formatted="false">"%1$s m span"</string>
+    <string name="report_1_s_km_path" formatted="false">"%1$s km path"</string>
+    <string name="report_1_s_m_path" formatted="false">"%1$s m path"</string>
+    <string name="report_balanced" formatted="false">"balanced"</string>
+    <string name="report_saver" formatted="false">"saver"</string>
+    <string name="report_performance" formatted="false">"performance"</string>
+    <string name="report_yes" formatted="false">"yes"</string>
+    <string name="report_no" formatted="false">"no"</string>
+    <string name="report_true" formatted="false">"true"</string>
+    <string name="report_false" formatted="false">"false"</string>
+    <string name="report_ram_400" formatted="false">", RAM ~400"</string>
+    <string name="report_named_sit_up_to_0" formatted="false">", named sit up to {0}"</string>
+    <string name="report_this_is_a_hobby_project_provided_as_is_under_the_mit_license_use_" formatted="false">"This is a hobby project, provided as-is under the MIT License. Use at your own risk."</string>
+    <string name="report_detections_pattern_matches_moving_with_you_possible_tail_debrief_" formatted="false">"Detections, pattern matches, “Moving with you” / “possible tail,” Debrief text, and AI Export are hypotheses — not identity, not a legal finding, and not a complete RF capture. Radios that are off, asleep, randomized, cellular-only, or hidden by the OS will not appear."</string>
+    <string name="report_you_are_solely_responsible_for_how_you_use_this_app_and_for_follo" formatted="false">"You are solely responsible for how you use this app and for following local law. To the maximum extent permitted by law, Off Grid Pete LLC is not liable for indirect, incidental, special, consequential, or punitive damages arising from its use."</string>
+    <string name="report_gps_stamps_are_this_phone_at_hear_time_not_the_other_radio_unless" formatted="false">"GPS stamps are this phone at hear-time, not the other radio, unless a decode map advertises its own latitude/longitude (Remote ID Location). Sharing a Debrief, sit compare, AI Export (sit or one radio), radio-detail Share as text, or log can take that path off the device. A TAK/CoT feed, when you turn it on, sends markers onto the LAN; that is on the operator."</string>
+    <string name="report_distance_km" formatted="false">"{0} km"</string>
+    <string name="report_distance_m" formatted="false">"{0} m"</string>
+    <string name="report_duration_seconds" formatted="false">"{0}s"</string>
+    <string name="report_named_operator_phone" formatted="false">"{0}  ({1}, operator phone)"</string>
+    <string name="report_operator_phone_no_street" formatted="false">"{0}  (operator phone; no street name this export)"</string>
+    <string name="report_operator_phone" formatted="false">"{0}  (operator phone)"</string>
+</resources>

@@ -70,6 +70,13 @@ object UiText {
 
     fun explanation(source: String): String = UiExplanations.text(source)
 
+    fun report(source: String): String {
+        val reportText = UiReportText.text(source)
+        if (reportText != source) return reportText
+        val deviceText = UiDeviceReportText.text(source)
+        return if (deviceText != source) deviceText else explanation(source)
+    }
+
     fun text(@StringRes id: Int, vararg args: Any): String =
         if (args.isEmpty()) context.getString(id) else context.getString(id, *args)
 }

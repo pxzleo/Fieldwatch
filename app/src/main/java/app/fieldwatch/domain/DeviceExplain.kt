@@ -177,7 +177,7 @@ object DeviceExplain {
 
     fun uuidGloss(uuid: String, translate: (String) -> String = { it }): String? {
         val name = RadioDb.serviceUuid(uuid)
-        val short = uuid16(uuid) ?: return name
+        val short = uuid16(uuid) ?: return name?.let(translate)
         val extra = when (short) {
             0x1800 -> "connection basics"
             0x1801 -> "attribute protocol"
@@ -205,8 +205,8 @@ object DeviceExplain {
             else -> null
         }
         return when {
-            name != null && extra != null -> "$name — ${translate(extra)}"
-            name != null -> name
+            name != null && extra != null -> "${translate(name)} — ${translate(extra)}"
+            name != null -> translate(name)
             extra != null -> translate(extra)
             else -> null
         }
@@ -243,9 +243,9 @@ object DeviceExplain {
             "display" in n || "monitor" in n -> Triple("display", "a display or TV stick", 4)
             "clock" in n -> Triple("clock", "a clock", 5)
             "glasses" in n -> Triple("glasses", "smart glasses", 6)
-            else -> Triple("other", name, 3)
+            else -> Triple("other", translate(name), 3)
         }
-        return Hint(bucket, label, translate("It advertises Appearance as %1\$s.").format(name), w)
+        return Hint(bucket, label, translate("It advertises Appearance as %1\$s.").format(translate(name)), w)
     }
 
     private fun codHint(cod: CodDecoder.Decoded, translate: (String) -> String = { it }): Hint? {
@@ -271,10 +271,11 @@ object DeviceExplain {
             "uncategorized" in major || "miscellaneous" in major -> return null
             else -> return null
         }
+        val localized = CodDecoder.decode(cod.raw, translate)
         val shown = if (cod.minor.isNotBlank() && cod.minor != "Uncategorized") {
-            "${cod.major} / ${cod.minor}"
+            "${localized.major} / ${localized.minor}"
         } else {
-            cod.major
+            localized.major
         }
         return Hint(bucket, label, translate("Class of Device says %1\$s.").format(shown), w)
     }

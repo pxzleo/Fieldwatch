@@ -374,11 +374,11 @@ object TrackerMatch {
         return finderTokens.any { it in n }
     }
 
-    private fun nameHits(device: Sighting, names: Map<String, String>, tokens: List<String>): List<String> =
+    private fun nameHits(device: Sighting, names: Map<String, String>, tokens: List<String>, displayNames: Map<String, String> = emptyMap()): List<String> =
         device.fleetIds.mapNotNull { id ->
             val n = names[id] ?: return@mapNotNull null
             val low = n.lowercase()
-            if (tokens.any { it in low }) n else null
+            if (tokens.any { it in low }) displayNames[id] ?: n else null
         }
 
     fun fleetHits(device: Sighting, names: Map<String, String>): List<String> =
@@ -434,15 +434,15 @@ object TrackerMatch {
         return null
     }
 
-    fun label(device: Sighting, names: Map<String, String>): String {
-        val finder = nameHits(device, names, finderTokens)
+    fun label(device: Sighting, names: Map<String, String>, displayNames: Map<String, String> = emptyMap(), translate: (String) -> String = { it }): String {
+        val finder = nameHits(device, names, finderTokens, displayNames)
         if (finder.isNotEmpty()) return finder.joinToString(" + ")
-        val beacon = nameHits(device, names, beaconTokens)
+        val beacon = nameHits(device, names, beaconTokens, displayNames)
         if (beacon.isNotEmpty()) return beacon.joinToString(" + ")
-        val wear = nameHits(device, names, wearableTokens)
+        val wear = nameHits(device, names, wearableTokens, displayNames)
         if (wear.isNotEmpty()) return wear.joinToString(" + ")
-        if (isFindMyPayload(device)) return "Apple Find My / Offline Finding"
-        if (isCarriedApple(device, names)) return "Apple BLE (phone / Continuity)"
-        return "tracker-like"
+        if (isFindMyPayload(device)) return translate("Apple Find My / Offline Finding")
+        if (isCarriedApple(device, names)) return translate("Apple BLE (phone / Continuity)")
+        return translate("tracker-like")
     }
 }

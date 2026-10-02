@@ -8,6 +8,26 @@ import java.util.Locale
 
 class SignatureFieldDecoderTest {
     @Test
+    fun editedDecoderAndFleetNameInvalidateCachedDisplay() {
+        val field = DecodeField(id = "mode", label = "Mode", offset = 0, type = DecodeType.U8,
+            enumLabels = mapOf("1" to "awake"))
+        val decode = FleetDecode(source = DecodeSource.MANUFACTURER_DATA,
+            companyId = 0x1234, fields = listOf(field))
+        val fleet = Fleet(id = "cache-language-test", name = "Original", decode = decode)
+        val device = ble(0x1234, "01", fleet.id)
+        val original = SignatureFieldDecoder.decodeSighting(device, listOf(fleet)).single()
+        assertEquals("awake", original.display)
+        val changed = fleet.copy(name = "自定义名称", decode = decode.copy(fields = listOf(
+            field.copy(label = "自定义模式", enumLabels = mapOf("1" to "自定义状态"), unit = "unit"),
+        )))
+        val refreshed = SignatureFieldDecoder.decodeSighting(device, listOf(changed)).single()
+        assertEquals("自定义名称", refreshed.fleetName)
+        assertEquals("自定义模式", refreshed.label)
+        assertEquals("自定义状态 unit", refreshed.display)
+        assertEquals(original.number, refreshed.number)
+    }
+
+    @Test
     fun ruuviRawV2TemperatureHumidity() {
         // Data Format 5 after company ID 0x0499. Example from Ruuvi docs.
         val payload = "0512FC5394C37C0004FFFC040CAC364200CDCBB8334C884F"

@@ -40,7 +40,42 @@ data class SignatureFamilyHint(
     val displayCount: Int,
     val ruleLabel: String?,
     val radioKind: RadioKind,
+    val genericCatalogMatch: Boolean = false,
 )
+
+/** Localize authored family copy while retaining catalog names and on-air identifiers. */
+fun SignatureFamilyHint.translated(translate: (String) -> String): SignatureFamilyHint {
+    val kindLabels = listOf("name glob", "vendor IE", "service UUID", "manufacturer data prefix", "IEEE OUI", "on-air ID")
+    val kind = kindLabels.firstOrNull { body.startsWith("Same $it on ") || body.contains("shares this $it.") }
+    fun word(n: Int) = if (radioKind == RadioKind.WIFI) { if (n == 1) "AP" else "APs" } else { if (n == 1) "advertiser" else "advertisers" }
+    val clause = when {
+        logCount > 0 && liveCount > 0 -> translate("%1\$s %2\$s in the log (%3\$s on the air now)").format(logCount, translate(word(logCount)), liveCount)
+        logCount > 0 -> translate("%1\$s %2\$s in the log").format(logCount, translate(word(logCount)))
+        liveCount > 0 -> translate("%1\$s %2\$s on the air now").format(liveCount, translate(word(liveCount)))
+        else -> translate("%1\$s %2\$s").format(1, translate(if (radioKind == RadioKind.WIFI) "AP" else "advertiser"))
+    }
+    val taggedSuffix = ". A second signature can still dual-label this radio (store UUID, product OUI)."
+    val localizedBody = when {
+        verdict == FamilyVerdict.TAGGED && body.startsWith("Matched ") && body.endsWith(taggedSuffix) -> {
+            val names = body.removePrefix("Matched ").removeSuffix(taggedSuffix)
+            translate("Matched %1\$s. A second signature can still dual-label this radio (store UUID, product OUI).")
+                .format(if (genericCatalogMatch) translate(names) else names)
+        }
+        kind != null && verdict == FamilyVerdict.SINGLE -> translate("No other MAC in the log or on the air shares this %1\$s. A signature from here will mostly tag this address.").format(translate(kind))
+        kind != null && verdict == FamilyVerdict.STRONG -> translate("Same %1\$s on %2\$s. That is a catalog pattern, not this MAC.").format(translate(kind), clause)
+        kind != null && verdict == FamilyVerdict.POSSIBLE -> translate("Same %1\$s on %2\$s. Thin sample — a possible catalog family.").format(translate(kind), clause)
+        else -> translate(body)
+    }
+    val localizedRule = ruleLabel?.let { label ->
+        when {
+            label.startsWith("vendor IE ") -> translate("vendor IE %1\$s").format(label.removePrefix("vendor IE "))
+            label.startsWith("svc contains ") -> translate("svc contains %1\$s").format(label.removePrefix("svc contains "))
+            label.startsWith("mfg ") -> translate("mfg").let { it + label.removePrefix("mfg") }
+            else -> label
+        }
+    }
+    return copy(title = translate(title), body = localizedBody, ruleLabel = localizedRule)
+}
 
 internal fun ruleShortLabel(rule: MatchRule): String = when (rule.kind) {
     RuleKind.NAME_GLOB, RuleKind.NAME_CONTAINS -> rule.text
@@ -120,6 +155,14 @@ object SignatureCandidates {
         live: List<Sighting>,
         log: List<LogRadio>,
         fleets: List<Fleet>,
+        translate: (String) -> String = { it },
+    ): SignatureFamilyHint = assessFamilyRaw(device, live, log, fleets).translated(translate)
+
+    private fun assessFamilyRaw(
+        device: Sighting,
+        live: List<Sighting>,
+        log: List<LogRadio>,
+        fleets: List<Fleet>,
     ): SignatureFamilyHint {
         val tagged = fleets.filter { it.id in device.fleetIds }.map { it.name.trim() }.filter { it.isNotEmpty() }
         if (device.fleetIds.isNotEmpty()) {
@@ -128,6 +171,7 @@ object SignatureCandidates {
                 verdict = FamilyVerdict.TAGGED,
                 title = "Already tagged",
                 body = "Matched ${names.joinToString(", ")}. A second signature can still dual-label this radio (store UUID, product OUI).",
+                genericCatalogMatch = tagged.isEmpty(),
                 logCount = 0,
                 liveCount = 0,
                 displayCount = 0,
