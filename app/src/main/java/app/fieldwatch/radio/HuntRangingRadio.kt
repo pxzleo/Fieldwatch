@@ -44,11 +44,12 @@ private class HuntRangingController(private val context: Context, private val ma
     private var attempted = false
     private var finishing = false
     private var technology: HuntRangeTechnology? = null
+    private var rasAvailable: Boolean? = null
     private val timeout = Runnable { fail(HuntRangeStatus.NO_DATA) }
     private fun publish(status: HuntRangeStatus, distance: Double? = null, at: Long = 0, reason: Int? = null) {
         if (!closed) emit(HuntRangeState(status, technology, distance, at,
             capabilities?.technologyAvailability?.get(RangingManager.BLE_CS),
-            capabilities?.technologyAvailability?.get(RangingManager.UWB), reason))
+            capabilities?.technologyAvailability?.get(RangingManager.UWB), reason, rasAvailable))
     }
     private fun deadline(ms: Long) { handler.removeCallbacks(timeout); handler.postDelayed(timeout, ms) }
     private val capabilityCallback = RangingManager.RangingCapabilitiesCallback { caps ->
@@ -130,7 +131,8 @@ private class HuntRangingController(private val context: Context, private val ma
                 guarded {
                     if (status != BluetoothGatt.GATT_SUCCESS) { fail(HuntRangeStatus.FAILED, status); return@guarded }
                     // RAS is an interoperability clue, not proof; only a successful CS result verifies ranging.
-                    if (connection.getService(UUID.fromString("0000185b-0000-1000-8000-00805f9b34fb")) == null) {
+                    rasAvailable = connection.getService(UUID.fromString("0000185b-0000-1000-8000-00805f9b34fb")) != null
+                    if (rasAvailable != true) {
                         fail(HuntRangeStatus.NO_SERVICE); return@guarded
                     }
                     if (connection.device.bondState == BluetoothDevice.BOND_BONDED) startCs()

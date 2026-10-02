@@ -48,6 +48,19 @@ class DeviceStore(
     fun keyOf(kind: app.fieldwatch.domain.RadioKind, mac: String) =
         "${kind.name}:${MacUtil.normalize(mac)}"
 
+    fun updateRanging(key: String, state: app.fieldwatch.domain.HuntRangeState, now: Long) = synchronized(lock) {
+        val device = live[key] ?: return@synchronized
+        if (device.kind != app.fieldwatch.domain.RadioKind.BLE) return@synchronized
+        val next = device.copy(
+            rangingServiceSeen = device.rangingServiceSeen || state.rasAvailable == true,
+            rangingVerified = state.technology?.takeIf { state.freshDistance(now) != null } ?: device.rangingVerified,
+        )
+        if (next != device) {
+            live[key] = next
+            _devices.value = live.values.toList()
+        }
+    }
+
     fun ingest(observation: Observation, fleets: List<Fleet>, staleSec: Int): Sighting =
         ingestBatch(listOf(observation), fleets, staleSec).first()
 

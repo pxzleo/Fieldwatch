@@ -1177,6 +1177,7 @@ fun DeviceRow(
                         val sub = listSubtitle(device, subtitleLine, names, demoMode, watch)
                         RadioKindSubtitle(device.kind, sub)
                     }
+                    app.fieldwatch.ui.component.RangingBadge(device)
                 }
                 Column(
                     horizontalAlignment = Alignment.End,

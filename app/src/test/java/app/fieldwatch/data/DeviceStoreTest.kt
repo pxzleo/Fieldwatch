@@ -10,6 +10,11 @@ import app.fieldwatch.domain.ServiceDataRecord
 import app.fieldwatch.domain.SitExport
 import app.fieldwatch.domain.VendorIeRecord
 import app.fieldwatch.domain.toHexUpper
+import app.fieldwatch.domain.HuntRangeBadge
+import app.fieldwatch.domain.HuntRangeState
+import app.fieldwatch.domain.HuntRangeStatus
+import app.fieldwatch.domain.HuntRangeTechnology
+import app.fieldwatch.domain.rangingBadge
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -18,6 +23,39 @@ import org.json.JSONObject
 
 class DeviceStoreTest {
     private val fleets = DefaultCatalog.fleets()
+
+    @Test fun rangingBadgeNeedsRasEvidenceOrAnActualValidReading() {
+        val store = DeviceStore()
+        val observation = ble("00:11:22:33:44:55", "UWB CS device", facts = RadioFacts(connectable = true))
+        val device = store.ingest(observation, fleets, 30)
+        assertEquals(null, device.rangingBadge())
+        assertEquals(null, device.copy(serviceUuids = listOf("1234185B-0000-1000-8000-00805F9B34FB")).rangingBadge())
+        for (uuid in listOf("185b", "0000185B-0000-1000-8000-00805F9B34FB"))
+            assertEquals(HuntRangeBadge.CS_SERVICE, device.copy(serviceUuids = listOf(uuid)).rangingBadge())
+        assertEquals(HuntRangeBadge.CS_SERVICE, device.copy(facts = RadioFacts(
+            serviceData = listOf(ServiceDataRecord("185B", "01")))).rangingBadge())
+        assertEquals(null, device.copy(kind = RadioKind.WIFI, rangingServiceSeen = true).rangingBadge())
+        store.refresh(fleets, 30)
+        for (state in listOf(HuntRangeState(HuntRangeStatus.STARTING, HuntRangeTechnology.CS),
+            HuntRangeState(HuntRangeStatus.ACTIVE, HuntRangeTechnology.CS, -1.0, 10_000),
+            HuntRangeState(HuntRangeStatus.ACTIVE, HuntRangeTechnology.CS, 2.0, 1_000),
+            HuntRangeState(HuntRangeStatus.LOW_QUALITY, HuntRangeTechnology.CS, 2.0, 10_000))) {
+            store.updateRanging(device.key, state, 10_000)
+            assertEquals(null, store.devices.value.single().rangingBadge())
+        }
+        store.updateRanging(device.key, HuntRangeState(HuntRangeStatus.PAIRING, rasAvailable = true), 10_000)
+        assertEquals(HuntRangeBadge.CS_SERVICE, store.devices.value.single().rangingBadge())
+        store.updateRanging(device.key, HuntRangeState(HuntRangeStatus.ACTIVE, HuntRangeTechnology.CS, 2.0, 10_000), 10_000)
+        assertEquals(HuntRangeBadge.CS_VERIFIED, store.devices.value.single().rangingBadge())
+        store.updateRanging(device.key, HuntRangeState(HuntRangeStatus.NO_DATA), 11_000)
+        val updated = store.ingest(observation.copy(at = observation.at + 1), fleets, 30)
+        assertEquals(HuntRangeBadge.CS_VERIFIED, updated.rangingBadge())
+        store.updateRanging(device.key, HuntRangeState(HuntRangeStatus.ACTIVE, HuntRangeTechnology.UWB, 1.0, 12_000), 12_000)
+        assertEquals(HuntRangeBadge.UWB_VERIFIED, store.devices.value.single().rangingBadge())
+        store.updateRanging("BLE:AA:BB:CC:DD:EE:FF", HuntRangeState(HuntRangeStatus.ACTIVE,
+            HuntRangeTechnology.CS, 1.0, 12_000), 12_000)
+        assertEquals(HuntRangeBadge.UWB_VERIFIED, store.devices.value.single().rangingBadge())
+    }
 
     @Test fun newestShortRawAndManufacturerFrameReplaceOldAndEmptyRetainsLatest() {
         val store = DeviceStore()

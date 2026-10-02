@@ -1,4 +1,7 @@
 <resources>
+    <string name="ranging_badge_cs_verified">✓ CS ranging verified</string>
+    <string name="ranging_badge_uwb_verified">✓ UWB ranging verified</string>
+    <string name="ranging_badge_cs_service">CS ranging service · Unverified</string>
     <string name="hunt_range_stale">Ranging reading expired; using passive tracking</string>
     <string name="hunt_range_checking">Checking ranging capabilities</string>
     <string name="hunt_range_old_android">System ranging unavailable; passive tracking continues</string>

@@ -1,4 +1,7 @@
 <resources>
+    <string name="ranging_badge_cs_verified">✓ 已验证 CS 测距</string>
+    <string name="ranging_badge_uwb_verified">✓ 已验证 UWB 测距</string>
+    <string name="ranging_badge_cs_service">CS 测距服务 · 待验证</string>
     <string name="hunt_range_stale">测距读数已过期，使用被动寻踪</string>
     <string name="hunt_range_checking">正在检查测距能力</string>
     <string name="hunt_range_old_android">系统不支持真实测距接口，继续被动寻踪</string>

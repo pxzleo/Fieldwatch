@@ -744,6 +744,9 @@ data class Sighting(
     val payloadTrail: List<PayloadFix> = emptyList(),
     /** Decoded labels a signature asked to show on the live row. Empty for every other radio. */
     val liveDecode: List<LiveDecodeChip> = emptyList(),
+    /** Live-session evidence from a selected peer; never inferred from name or connectability. */
+    val rangingVerified: HuntRangeTechnology? = null,
+    val rangingServiceSeen: Boolean = false,
 ) {
     val displayName: String
         get() = name.ifBlank { if (hiddenSsid) "<hidden>" else mac }

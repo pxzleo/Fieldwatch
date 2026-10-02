@@ -9,9 +9,22 @@ enum class HuntRangeStatus {
 enum class HuntRangeTechnology { CS, UWB }
 data class HuntRangeState(val status: HuntRangeStatus = HuntRangeStatus.CHECKING,
     val technology: HuntRangeTechnology? = null, val distance: Double? = null, val at: Long = 0,
-    val csAvailability: Int? = null, val uwbAvailability: Int? = null, val reason: Int? = null) {
+    val csAvailability: Int? = null, val uwbAvailability: Int? = null, val reason: Int? = null,
+    val rasAvailable: Boolean? = null) {
     fun freshDistance(now: Long): Double? = distance?.takeIf {
         status == HuntRangeStatus.ACTIVE && now - at in 0..3_000L && it.isFinite() && it >= 0 }
+}
+
+enum class HuntRangeBadge { CS_VERIFIED, UWB_VERIFIED, CS_SERVICE }
+
+fun Sighting.rangingBadge(): HuntRangeBadge? {
+    if (kind != RadioKind.BLE) return null
+    return when (rangingVerified) {
+        HuntRangeTechnology.CS -> HuntRangeBadge.CS_VERIFIED
+        HuntRangeTechnology.UWB -> HuntRangeBadge.UWB_VERIFIED
+        null -> if (rangingServiceSeen || (serviceUuids + facts.serviceData.map { it.uuid })
+            .any { "185B" in uuidAliases(it) }) HuntRangeBadge.CS_SERVICE else null
+    }
 }
 
 class UwbConfigException(message: String) : IllegalArgumentException(message)

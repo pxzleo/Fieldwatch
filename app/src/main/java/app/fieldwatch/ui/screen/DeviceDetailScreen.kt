@@ -136,6 +136,7 @@ fun DeviceDetailScreen(
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Text(MacUtil.screenMac(device.mac, demoMode), fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.titleMedium)
+            app.fieldwatch.ui.component.RangingBadge(device)
             if (device.gone) {
                 Text(
                     UiText.text(R.string.ui_not_on_the_air_this_is_the_last_detail_we_heard),

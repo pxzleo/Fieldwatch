@@ -41,9 +41,11 @@ class HuntSession {
     val state = mutable.asStateFlow()
     @Synchronized fun start(key: String, now: Long) { mutable.value = HuntSessionState(key, now) }
     @Synchronized fun stop() { mutable.value = HuntSessionState() }
-    @Synchronized fun updateRanging(key: String, startedAt: Long, state: app.fieldwatch.domain.HuntRangeState) {
+    @Synchronized fun updateRanging(key: String, startedAt: Long, state: app.fieldwatch.domain.HuntRangeState): Boolean {
         val current = mutable.value
-        if (current.key == key && current.startedAt == startedAt) mutable.value = current.copy(ranging = state)
+        if (current.key != key || current.startedAt != startedAt) return false
+        mutable.value = current.copy(ranging = state)
+        return true
     }
     @Synchronized fun updateLocation(fix: HuntFix?, status: HuntGpsState) {
         val current = mutable.value

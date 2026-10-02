@@ -517,7 +517,8 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     fun updateHuntHeading(heading: app.fieldwatch.domain.HuntHeading?) { app.huntSession.updateHeading(heading) }
     fun updateHuntRanging(key: String, startedAt: Long, state: app.fieldwatch.domain.HuntRangeState) {
-        app.huntSession.updateRanging(key, startedAt, state)
+        if (app.huntSession.updateRanging(key, startedAt, state))
+            app.devices.updateRanging(key, state, System.currentTimeMillis())
     }
     fun updateHuntLocation(update: app.fieldwatch.radio.HuntGpsUpdate) {
         app.huntSession.updateLocation(update.fix, update.status)
