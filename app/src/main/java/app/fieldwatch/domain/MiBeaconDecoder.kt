@@ -73,25 +73,50 @@ object MiBeaconDecoder {
             if (bytes.size - offset < 1) return error("Truncated MiBeacon header", pid)
             val capability = u8(bytes, offset++)
             field("MiBeacon capability", "0x%02X".format(capability))
+            if ((capability ushr 3) and 3 == 3) {
+                if (bytes.size - offset < 2) return error("Truncated MiBeacon header", pid)
+                field("MiBeacon Wi-Fi MAC suffix (raw)", bytes.copyOfRange(offset, offset + 2).toHexUpper())
+                offset += 2
+            }
             if (capability and 0x20 != 0) {
                 if (bytes.size - offset < 2) return error("Truncated MiBeacon header", pid)
                 field("MiBeacon I/O capability", "0x%04X".format(u16(bytes, offset)))
                 offset += 2
             }
+            if (version == 5) {
+                field("MiBeacon connectable capability (advertised)", translate(if (capability and 1 != 0) "yes" else "no"))
+                field("MiBeacon encryption capability (advertised)", translate(if (capability and 4 != 0) "yes" else "no"))
+            }
         }
         if (version != 5) return error("Unsupported MiBeacon version", pid)
+        field("MiBeacon registered flag (advertised)", translate(if (control and 0x100 != 0) "yes" else "no"))
+        field("MiBeacon binding confirmation flag (advertised)", translate(if (control and 0x200 != 0) "yes" else "no"))
+        val objectEnd = bytes.size - if (control and 0x80 != 0) 2 else 0
+        if (objectEnd < offset) return error("Truncated MiBeacon mesh information", pid)
+        if (control and 0x80 != 0) {
+            val mesh = u8(bytes, objectEnd)
+            field("MiBeacon mesh provisioning transports (advertised)", listOfNotNull(
+                "PB-ADV".takeIf { mesh and 1 != 0 }, "PB-GATT".takeIf { mesh and 2 != 0 },
+            ).joinToString(" / ").ifEmpty { translate("None advertised") })
+            field("MiBeacon mesh state (raw)", "0x%X".format((mesh ushr 2) and 3))
+            field("MiBeacon mesh version", (mesh ushr 4).toString())
+        }
         if (encrypted) {
-            if (bytes.size - offset < 7) return error("Truncated MiBeacon encrypted payload", pid)
+            if (objectEnd - offset < 7) return error("Truncated MiBeacon encrypted payload", pid)
+            field("MiBeacon readings status", translate("Encrypted measurement payload; bindkey required to read values."))
             return Decoded(pid, true, fields)
         }
-        if (control and 0x40 == 0) return Decoded(pid, true, fields)
-        if (offset == bytes.size) return error("Truncated MiBeacon object", pid)
-        while (offset < bytes.size) {
-            if (bytes.size - offset < 3) return error("Truncated MiBeacon object", pid)
+        if (control and 0x40 == 0) {
+            field("MiBeacon readings status", translate("This frame contains no measurement objects; not a zero reading."))
+            return Decoded(pid, true, fields)
+        }
+        if (offset == objectEnd) return error("Truncated MiBeacon object", pid)
+        while (offset < objectEnd) {
+            if (objectEnd - offset < 3) return error("Truncated MiBeacon object", pid)
             val type = u16(bytes, offset)
             val length = u8(bytes, offset + 2)
             offset += 3
-            if (bytes.size - offset < length) return error("Truncated MiBeacon object", pid)
+            if (objectEnd - offset < length) return error("Truncated MiBeacon object", pid)
             val expected = when (type) {
                 0x1004, 0x1006 -> 2
                 0x100D -> 4

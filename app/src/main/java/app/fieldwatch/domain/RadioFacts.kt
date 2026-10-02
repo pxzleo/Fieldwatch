@@ -79,7 +79,11 @@ data class RadioFacts(
 private fun mergeMfg(old: List<MfgRecord>, extra: List<MfgRecord>): List<MfgRecord> {
     if (extra.isEmpty()) return old
     fun source(record: MfgRecord) = record.companyId to
-        if (record.companyId == 0x038F) "" else record.dataHex.take(2).uppercase()
+        when {
+            record.companyId == 0x038F -> ""
+            record.companyId == 0x06A8 && MideaAdvertisementDecoder.decode(record).isNotEmpty() -> "SN"
+            else -> record.dataHex.take(2).uppercase()
+        }
     val currentSources = extra.map(::source).toSet()
     // Keep every distinct record in this frame; replace prior samples of those sources.
     return old.filterNot { source(it) in currentSources } + extra.distinct()

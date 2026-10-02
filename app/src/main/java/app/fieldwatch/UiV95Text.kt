@@ -51,6 +51,6 @@ internal object UiV95Text {
         "Gaming device" -> UiText.text(R.string.information_v95_46)
         "Telephone" -> UiText.text(R.string.information_v95_47)
         "Audio device" -> UiText.text(R.string.information_v95_48)
-        else -> source
+        else -> UiV96Text.text(source)
     }
 }

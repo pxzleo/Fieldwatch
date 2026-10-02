@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="information_v96_0">Midea advertised short serial</string>
+    <string name="information_v96_1">Midea SN8 product code</string>
+    <string name="information_v96_2">Midea readings status</string>
+    <string name="information_v96_3">Identity advertisement; no operating measurements decoded. SN8 does not confirm a unique retail model.</string>
+    <string name="information_v96_4">Midea advertised BLE address (matches scan)</string>
+    <string name="information_v96_5">MiBeacon Wi-Fi MAC suffix (raw)</string>
+    <string name="information_v96_6">MiBeacon connectable capability (advertised)</string>
+    <string name="information_v96_7">MiBeacon encryption capability (advertised)</string>
+    <string name="information_v96_8">MiBeacon registered flag (advertised)</string>
+    <string name="information_v96_9">MiBeacon binding confirmation flag (advertised)</string>
+    <string name="information_v96_10">MiBeacon mesh provisioning transports (advertised)</string>
+    <string name="information_v96_11">None advertised</string>
+    <string name="information_v96_12">MiBeacon mesh state (raw)</string>
+    <string name="information_v96_13">MiBeacon mesh version</string>
+    <string name="information_v96_14">Truncated MiBeacon mesh information</string>
+    <string name="information_v96_15">MiBeacon readings status</string>
+    <string name="information_v96_16">Encrypted measurement payload; bindkey required to read values.</string>
+    <string name="information_v96_17">This frame contains no measurement objects; not a zero reading.</string>
+</resources>

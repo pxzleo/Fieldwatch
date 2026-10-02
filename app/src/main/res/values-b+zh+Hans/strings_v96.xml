@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="information_v96_0">美的广播短序列号</string>
+    <string name="information_v96_1">美的 SN8 产品代码</string>
+    <string name="information_v96_2">美的测量解析状态</string>
+    <string name="information_v96_3">身份广播，未解析出运行测量值；SN8 不能确认唯一的零售型号。</string>
+    <string name="information_v96_4">美的广播蓝牙地址（与扫描地址一致）</string>
+    <string name="information_v96_5">米家广播 Wi-Fi MAC 后缀（原始值）</string>
+    <string name="information_v96_6">米家广播连接能力声明</string>
+    <string name="information_v96_7">米家广播加密能力声明</string>
+    <string name="information_v96_8">米家广播已注册标志</string>
+    <string name="information_v96_9">米家广播绑定确认标志</string>
+    <string name="information_v96_10">米家 Mesh 配网传输声明</string>
+    <string name="information_v96_11">未声明</string>
+    <string name="information_v96_12">米家 Mesh 状态（原始值）</string>
+    <string name="information_v96_13">米家 Mesh 版本</string>
+    <string name="information_v96_14">米家 Mesh 信息不完整</string>
+    <string name="information_v96_15">米家测量解析状态</string>
+    <string name="information_v96_16">测量数据已加密，需要绑定密钥才能读取数值。</string>
+    <string name="information_v96_17">本帧不含测量对象，不代表读数为零。</string>
+</resources>

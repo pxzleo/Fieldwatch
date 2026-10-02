@@ -23,7 +23,7 @@ object AdvPayloadDecoder {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
         }
         val decoded = device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
-            mfg.flatMap { decodeManufacturer(it, translate) } + decodeMesh(device.rawHex, translate)
+            mfg.flatMap { decodeManufacturer(it, translate) + MideaAdvertisementDecoder.decodeAddress(it, device.mac, translate) } + decodeMesh(device.rawHex, translate)
         if (decoded.isNotEmpty()) return decoded.distinct()
         val status = if (device.rawHex.isBlank() && mfg.none { it.dataHex.isNotBlank() } && device.facts.serviceData.none { it.dataHex.isNotBlank() })
             "No advertisement payload captured" else "Payload parser unsupported"
@@ -66,6 +66,7 @@ object AdvPayloadDecoder {
         }
 
     fun decodeManufacturer(record: MfgRecord, translate: (String) -> String = { it }): List<Field> {
+        if (record.companyId == 0x06A8) return MideaAdvertisementDecoder.decode(record, translate)
         if (record.companyId == 0x038F) return MiBeaconDecoder.decode(record.dataHex, translate).fields
         val bytes = hexToBytes(record.dataHex) ?: return emptyList()
         return when (record.companyId) {
