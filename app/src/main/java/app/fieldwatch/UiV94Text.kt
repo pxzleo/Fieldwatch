@@ -36,6 +36,6 @@ internal object UiV94Text {
         "Mesh Network ID" -> UiText.text(R.string.discovery_v94_31)
         "Mesh IV Index" -> UiText.text(R.string.discovery_v94_32)
         "Mesh authentication (raw, unverified)" -> UiText.text(R.string.discovery_v94_33)
-        else -> source
+        else -> UiV95Text.text(source)
     }
 }

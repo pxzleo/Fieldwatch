@@ -111,6 +111,8 @@ object WifiWpsDecoder {
                     else -> "0x%04X".format(u16(value, 0))
                 }
                 fields += AdvPayloadDecoder.Field(translate(fieldLabel), shown)
+                if (type == 0x1008) fields += AdvPayloadDecoder.Field(
+                    translate("WPS setup methods (advertised)"), configurationMethods(u16(value, 0), translate))
             } else if (type == 0x1054) {
                 if (length != 8) {
                     status = Status.MALFORMED
@@ -118,7 +120,7 @@ object WifiWpsDecoder {
                 }
                 primaryDeviceType = value.toHexUpper()
                 fields += AdvPayloadDecoder.Field(translate("WPS primary device type"),
-                    if (value.toHexUpper() == "00060050F2040001") translate("WPS access point") else value.toHexUpper())
+                    primaryType(value, translate))
             } else if (type == 0x1044) {
                 if (length != 1) {
                     status = Status.MALFORMED
@@ -146,6 +148,44 @@ object WifiWpsDecoder {
 
     private fun u16(bytes: ByteArray, offset: Int): Int =
         ((bytes[offset].toInt() and 0xFF) shl 8) or (bytes[offset + 1].toInt() and 0xFF)
+
+    private fun configurationMethods(mask: Int, translate: (String) -> String): String {
+        val names = buildList {
+            for ((bit, name) in listOf(1 to "USB", 2 to "Ethernet", 4 to "Printed PIN label",
+                8 to "Displayed PIN", 16 to "External NFC token", 32 to "Integrated NFC token",
+                64 to "NFC interface", 128 to "Push button", 256 to "PIN keypad", 4096 to "Wi-Fi Direct services")) {
+                if ((mask and bit) != 0) add(translate(name))
+            }
+            if ((mask and 0x0280) == 0x0280) add(translate("Virtual push button"))
+            if ((mask and 0x0480) == 0x0480) add(translate("Physical push button"))
+            if ((mask and 0x2008) == 0x2008) add(translate("Virtual PIN display"))
+            if ((mask and 0x4008) == 0x4008) add(translate("Physical PIN display"))
+        }
+        return (names.ifEmpty { listOf(translate("No known setup method")) }.joinToString(" / ") +
+            "; " + translate("Advertised capability only; not proof that setup is currently allowed."))
+    }
+
+    private fun primaryType(value: ByteArray, translate: (String) -> String): String {
+        if (!value.sliceArray(2..5).contentEquals(byteArrayOf(0, 0x50, 0xF2.toByte(), 4))) return value.toHexUpper()
+        val category = u16(value, 0)
+        val subcategory = u16(value, 6)
+        if (category == 6 && subcategory == 1) return translate("WPS access point")
+        val name = when (category) {
+            1 -> "Computer"
+            2 -> "Input device"
+            3 -> "Printer / scanner"
+            4 -> "Camera"
+            5 -> "Storage device"
+            6 -> "Network infrastructure"
+            7 -> "Display"
+            8 -> "Multimedia device"
+            9 -> "Gaming device"
+            10 -> "Telephone"
+            11 -> "Audio device"
+            else -> return value.toHexUpper()
+        }
+        return "${translate(name)} ($category/$subcategory; ${value.toHexUpper()})"
+    }
 
     private fun utf8(bytes: ByteArray): String? = try {
         Charsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)

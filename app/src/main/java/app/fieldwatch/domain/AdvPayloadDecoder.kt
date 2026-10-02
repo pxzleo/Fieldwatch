@@ -16,8 +16,9 @@ object AdvPayloadDecoder {
     )
 
     fun decodeDevice(device: Sighting, translate: (String) -> String = { it }): List<Field> {
-        if (device.kind == RadioKind.WIFI) return device.facts.vendorIes.mapNotNull { WifiWpsDecoder.decode(it, translate) }
-            .flatMap { it.fields }.distinct()
+        if (device.kind == RadioKind.WIFI) return device.facts.vendorIes.flatMap {
+            WifiWpsDecoder.decode(it, translate)?.fields.orEmpty() + WifiWmmDecoder.decode(it, translate)
+        }.distinct()
         val mfg = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
         }
@@ -54,6 +55,10 @@ object AdvPayloadDecoder {
             listOf(
                 Field(translate("Bluetooth Mesh secure network beacon"), translate("Protocol only; product and authentication are unverified.")),
                 Field(translate("Mesh flags (raw)"), "%02X".format(payload[1].toInt() and 0xFF)),
+                Field(translate("Mesh key refresh (advertised, unverified)"), translate(
+                    if ((payload[1].toInt() and 1) != 0) "Key refresh phase 2" else "Not in key refresh phase 2")),
+                Field(translate("Mesh IV update (advertised, unverified)"), translate(
+                    if ((payload[1].toInt() and 2) != 0) "IV update in progress" else "Normal IV operation")),
                 Field(translate("Mesh Network ID"), payload.sliceArray(2..9).toHexUpper()),
                 Field(translate("Mesh IV Index"), iv.toString()),
                 Field(translate("Mesh authentication (raw, unverified)"), payload.sliceArray(14..21).toHexUpper()),
@@ -645,7 +650,7 @@ object AdvPayloadDecoder {
                 )
             }
             0x10 -> listOf(Field("Eddystone-URL", eddystoneUrl(bytes) ?: translate("%1\$s bytes").format(bytes.size)))
-            0x20 -> listOf(Field("Eddystone-TLM", translate("telemetry (battery / temperature / advert count)")))
+            0x20 -> decodeEddystoneTlm(bytes, translate)
             0x30 -> listOf(Field("Eddystone-EID", translate("ephemeral ID (rotating)")))
             0x40, 0x41 -> {
                 val mode = if (bytes[0].toInt() and 0xFF == 0x41) translate("separated (unwanted-tracking mode)") else translate("nearby / with owner")
@@ -662,6 +667,25 @@ object AdvPayloadDecoder {
             }
             else -> listOf(Field("Eddystone", translate("frame 0x%02X").format(bytes[0])))
         }
+    }
+
+    private fun decodeEddystoneTlm(bytes: ByteArray, translate: (String) -> String): List<Field> {
+        if (bytes.size < 2 || bytes[1] != 0.toByte()) return listOf(
+            Field("Eddystone-TLM", translate("Encrypted or unsupported telemetry version; readings unavailable")))
+        if (bytes.size != 14) return listOf(
+            Field("Eddystone-TLM", translate("Malformed telemetry length; readings unavailable")))
+        val voltage = u16be(bytes, 2)
+        val temperature = u16be(bytes, 4)
+        fun counter(offset: Int) = bytes.sliceArray(offset until offset + 4)
+            .fold(0L) { value, byte -> (value shl 8) or (byte.toLong() and 255) }
+        return listOf(
+            Field(translate("Beacon battery voltage"), if (voltage == 0) translate("Not supported") else "$voltage mV"),
+            Field(translate("Beacon temperature"), if (temperature == 0x8000) translate("Not supported")
+                else java.lang.String.format(java.util.Locale.ROOT, "%.2f °C", temperature.toShort().toDouble() / 256)),
+            Field(translate("Beacon transmitted advertisement count"), counter(6).toString()),
+            Field(translate("Beacon time since power-on or reboot"),
+                java.lang.String.format(java.util.Locale.ROOT, "%.1f s", counter(10) / 10.0)),
+        )
     }
 
     private fun eddystoneUrl(bytes: ByteArray): String? {

@@ -162,3 +162,16 @@ Mesh 解码与规则匹配共用校验入口，设备详情、文本和 PDF 报�
 同批最近 15 分钟日志重放：未匹配 35 降至 7（均为 BLE），新增命中 28 条，原有命中无丢失。1 条具有厂商手柄说明书用途依据；4 条是可能的运营商接入点命名，1 条是可能的 Wi-Fi Direct 命名；其余 22 条为供应商、生态或协议级部分识别，仍不能确认精确产品。6 条 Mesh 记录新增网络标识、IV 索引及原始标记／认证字段，认证值未验证。部分记录命中多个供应商／协议线索，命中家族数不等于设备数。
 
 仍没有可靠用途依据的样本包括 MT-K3、eg_ac_hanging、XR、TL_GPSJLXW、BLE_DK 和未知 TI 服务。部分自定义厂商区装的是 MAC 地址或 ASCII 文字，不能把数值直接当 SIG 公司编号；含 EZVIZ 或 bl702l 的文字也不足以确认摄像头。MA-L、MA-M、MA-S 登记表未命中的地址不会猜测供应商。
+
+### 已识别设备的可用信息增强
+
+需求：对已识别设备继续解析有实际含义的广播信息，直接进入设备详情及文本／PDF 报告的字段或说明，并提供英语、简体中文。共用 `AdvPayloadDecoder.decodeDevice`，不修改用户填写的观察备注。本轮不改变匹配规则，特征库仍为 94。
+
+- 路由器／接入点：WPS 配网方法从原始位掩码补充为按钮、实体／软件按钮、标签／显示／输入 PIN、NFC 等可读声明，保留原始掩码。声明能力不证明当前允许配网。WFA 设备类型补充电脑、输入设备、打印机／扫描仪、摄像机、存储、显示及音频等类别；保留未知类别、子类别和非 WFA 类型原值，现有接入点显示不变。依据 [AOSP WPS 定义](https://android.googlesource.com/platform/external/wpa_supplicant_8/+/android-6.0.1_r59/src/wps/wps_defs.h)。
+- 接入点：新增 WMM 流量优先级及 U-APSD 客户端节能能力声明。完整验证信息／参数元素的子类型、版本、长度及参数保留字节；不以能力推断实测速度、延迟或客户端是否实际使用节能。依据 [AOSP WMM 定义](https://android.googlesource.com/platform/external/wpa_supplicant_8/+/master/src/common/ieee802_11_defs.h)。
+- Bluetooth Mesh：将标志解释为“是否处于密钥刷新第 2 阶段”和“是否正在 IV 更新”，保持未认证声明。第 2 阶段标志未置位不能推断整个密钥刷新流程未进行。依据 [Mesh 标准 §3.10.3](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/MshPRT_v1.1/out/en/index-en.html)。
+- Eddystone-TLM：完整的明文版本 0 遥测解析电池电压（mV）、信标自身温度（有符号 8.8）、已发送广播次数及开机／重启后的运行秒数。零电压和 `0x8000` 温度表示不支持测量；加密、未知版本或错误长度不生成测量值。依据 [Google 原始 TLM 格式](https://github.com/google/eddystone/blob/master/eddystone-tlm/tlm-plain.md)。
+
+既有可用字段继续保留：明文米家温湿度／电量、体重秤测量、耳机电量及充电状态、WPS 厂家型号／序列号、AirPlay 广播 IPv4／端口等。当前没有匹配布局或密钥的九号、BYD、爱玛、美的、海尔等私有数据不能据此生成车辆状态、空调温度或设备电量。
+
+同批 226 个类型／地址组合重放，103 条已识别记录获得新增字段：97 条接入点有 WMM／节能声明，22 条有可读配网方式，6 条有 Mesh 状态解释，数量存在重叠；原有分类无变化。Eddystone-TLM 明文解析已通过规范样例及边界测试，但这批样本没有 TLM 帧，未宣称获得实测遥测。
