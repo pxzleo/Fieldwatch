@@ -84,6 +84,27 @@ class WifiIeParserTest {
     }
 
     @Test
+    fun longVendorIePreservesPayloadPastTwoHundredBytes() {
+        val payload = ByteArray(251) { 0x11 }.also {
+            it[249] = 0xBE.toByte()
+            it[250] = 0xEF.toByte()
+        }
+        val bytes = byteArrayOf(0x00, 0x17, 0xF2.toByte(), 0x0A) + payload
+        val parsed = WifiIeParser.parseIes(listOf(WifiIeParser.Ie(221, bytes)), "")
+        assertEquals("00:17:F2", parsed.vendorIes.single().oui)
+        assertEquals(0x0A, parsed.vendorIes.single().type)
+        assertEquals("11".repeat(249) + "BEEF", parsed.vendorIes.single().dataHex)
+    }
+
+    @Test
+    fun sameFrameVendorIesKeepDifferentPayloadsAndMoreThanTwelveRecords() {
+        val ies = (0..13).map { payload -> ie(221, 0x00, 0x50, 0xF2, 4, payload) }
+        val parsed = WifiIeParser.parseIes(ies + ies.first(), "")
+        assertEquals(14, parsed.vendorIes.size)
+        assertEquals((0..13).map { "%02X".format(it) }, parsed.vendorIes.map { it.dataHex })
+    }
+
+    @Test
     fun ratesDecodeBasicFlagAndHalfMbps() {
         val p = WifiIeParser.parseIes(
             listOf(ie(1, 0x82, 0x84, 0x8B, 0x96, 0x0C, 0x12, 0x18, 0x24)),

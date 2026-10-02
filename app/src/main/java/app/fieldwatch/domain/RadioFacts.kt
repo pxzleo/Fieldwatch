@@ -1,21 +1,27 @@
 package app.fieldwatch.domain
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class MfgRecord(
     val companyId: Int,
     val dataHex: String,
 )
 
+@Serializable
 data class VendorIeRecord(
     val oui: String,
     val type: Int,
     val dataHex: String,
 )
 
+@Serializable
 data class ServiceDataRecord(
     val uuid: String,
     val dataHex: String,
 )
 
+@Serializable
 data class RadioFacts(
     val txPowerDbm: Int? = null,
     val advFlags: Int? = null,
@@ -72,26 +78,17 @@ data class RadioFacts(
 
 private fun mergeMfg(old: List<MfgRecord>, extra: List<MfgRecord>): List<MfgRecord> {
     if (extra.isEmpty()) return old
-    if (old.isEmpty()) return extra
-    val out = ArrayList<MfgRecord>(old.size + extra.size)
-    out += old
-    for (next in extra) {
-        val prefix = next.dataHex.take(2).uppercase()
-        val idx = out.indexOfFirst {
-            it.companyId == next.companyId && it.dataHex.take(2).uppercase() == prefix
-        }
-        if (idx < 0) {
-            out += next
-        } else if (next.dataHex.length >= out[idx].dataHex.length) {
-            out[idx] = next
-        }
-    }
-    return if (out.size <= 8) out else out.take(8)
+    fun source(record: MfgRecord) = record.companyId to
+        if (record.companyId == 0x038F) "" else record.dataHex.take(2).uppercase()
+    val currentSources = extra.map(::source).toSet()
+    // Keep every distinct record in this frame; replace prior samples of those sources.
+    return old.filterNot { source(it) in currentSources } + extra.distinct()
 }
 
 private fun mergeVendorIes(old: List<VendorIeRecord>, extra: List<VendorIeRecord>): List<VendorIeRecord> {
     if (extra.isEmpty()) return old
-    return (old + extra).distinctBy { it.oui to it.type to it.dataHex.take(16) }.take(12)
+    val currentSources = extra.map { it.oui to it.type }.toSet()
+    return old.filterNot { (it.oui to it.type) in currentSources } + extra.distinct()
 }
 
 private fun mergeServiceData(old: List<ServiceDataRecord>, extra: List<ServiceDataRecord>): List<ServiceDataRecord> {
@@ -99,9 +96,9 @@ private fun mergeServiceData(old: List<ServiceDataRecord>, extra: List<ServiceDa
     val by = LinkedHashMap<String, ServiceDataRecord>()
     old.forEach { by[serviceDataMergeKey(it)] = it }
     extra.forEach { rec ->
+        if (rec.dataHex.isBlank()) return@forEach
         val key = serviceDataMergeKey(rec)
-        val prev = by[key]
-        if (prev == null || rec.dataHex.length >= prev.dataHex.length) by[key] = rec
+        by[key] = rec
     }
     return by.values.toList()
 }
@@ -111,14 +108,14 @@ private fun serviceDataMergeKey(rec: ServiceDataRecord): String {
     val uuidHex = rec.uuid.filter { it.isLetterOrDigit() }.uppercase()
     val short = when {
         uuidHex.length == 4 -> uuidHex
-        uuidHex.length == 32 && uuidHex.startsWith("0000") -> uuidHex.substring(4, 8)
+        uuidHex.length == 32 && uuidHex.startsWith("0000") && uuidHex.endsWith("00001000800000805F9B34FB") -> uuidHex.substring(4, 8)
         else -> uuidHex
     }
     if (short == "FEAA") {
         val frame = rec.dataHex.filter { it.isLetterOrDigit() }.uppercase().take(2)
         if (frame.length == 2) return "FEAA:$frame"
     }
-    return uuidHex.ifBlank { rec.uuid }
+    return short.ifBlank { rec.uuid }
 }
 
 fun ByteArray.toHexUpper(): String = joinToString("") { "%02X".format(it) }

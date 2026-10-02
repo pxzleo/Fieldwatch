@@ -8,6 +8,21 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class SitTest {
+    @Test fun savedSitKeepsNewestShortRawFrameAndDoesNotClearItOnEmptyHear() {
+        val first = radio("BLE:00:11:22:33:44:55", lastSeen = 1_000L).copy(rawHex = "AABBCCDD",
+            facts = RadioFacts(serviceData = listOf(ServiceDataRecord("FE95", "40505B05300410020000"))))
+        val session = SitSession.start("sample", 1_000L, listOf(first), emptyList(), emptySet(), emptySet())
+        val short = first.copy(lastSeen = 2_000L, rawHex = "EEFF",
+            facts = RadioFacts(serviceData = listOf(ServiceDataRecord("0000FE95-0000-1000-8000-00805F9B34FB", "00505B0531"))))
+        session.ingest(short, emptyList(), emptySet(), emptySet())
+        val saved = session.snapshot().radios.single().toSighting()
+        assertEquals(short.rawHex, saved.rawHex)
+        assertEquals(short.facts.serviceData, saved.facts.serviceData)
+        session.ingest(short.copy(lastSeen = 3_000L, rawHex = "", facts = RadioFacts()), emptyList(), emptySet(), emptySet())
+        assertEquals(short.rawHex, session.snapshot().radios.single().toSighting().rawHex)
+        assertEquals(short.facts.serviceData, session.snapshot().radios.single().toSighting().facts.serviceData)
+    }
+
     private val axon = Fleet(
         id = "fleet-axon",
         name = "Axon",

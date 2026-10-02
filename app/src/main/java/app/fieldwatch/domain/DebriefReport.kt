@@ -245,6 +245,11 @@ object DebriefReport {
                             appendLine()
                         }
                     }
+                    val payloadFields = d.facts.serviceData.flatMap { AdvPayloadDecoder.decodeService(it, d, translate) } +
+                        d.facts.mfgRecords.ifEmpty {
+                            d.manufacturerId?.let { listOf(MfgRecord(it, d.manufacturerDataHex)) }.orEmpty()
+                        }.flatMap { AdvPayloadDecoder.decodeManufacturer(it, translate) }
+                    payloadFields.distinct().forEach { appendLine("    ${it.label}: ${it.value}") }
                 }
             }
         }
@@ -1023,6 +1028,11 @@ object DebriefReport {
         translate: (String) -> String = { it },
     ): String = buildString {
         append(d.reportName(customNames, translate)).append("  ").append(d.mac)
+        WifiWpsDecoder.identity(d.facts.vendorIes)?.let { wps ->
+            if (!d.reportName(customNames, translate).contains(wps.model!!, ignoreCase = true)) {
+                append("  WPS: ").append(wps.manufacturer).append(' ').append(wps.model)
+            }
+        }
         d.vendor?.let { append("  ").append(it) }
         append("  ").append(d.rssi).append(" dBm")
         if (d.channel != 0) append(translate("  ch ")).append(d.channel)

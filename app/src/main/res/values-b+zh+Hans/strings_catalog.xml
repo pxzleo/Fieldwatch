@@ -447,4 +447,32 @@
     <string name="catalog_445" formatted="false">GM 车载热点</string>
     <string name="catalog_446" formatted="false">WatchGuard 接入点</string>
     <string name="catalog_447" formatted="false">新识别规则</string>
+    <string name="catalog_domestic_1">H3C Wi-Fi</string>
+    <string name="catalog_domestic_2">Xiaomi Wi-Fi</string>
+    <string name="catalog_domestic_3">MiBeacon 生态设备</string>
+    <string name="catalog_domestic_4">LYWSD03MMC 温湿度计</string>
+    <string name="catalog_domestic_5">MI_SCALE 体重秤</string>
+    <string name="catalog_domestic_6">Lumi / Aqara 开关</string>
+    <string name="catalog_domestic_7">Midea 家电</string>
+    <string name="catalog_domestic_8">LuYuan-Smart 电动车</string>
+    <string name="catalog_domestic_9">AIMA 电动车</string>
+    <string name="catalog_domestic_10">hellobike 自行车</string>
+    <string name="catalog_domestic_11">EDIFIER BLE 音频设备</string>
+    <string name="catalog_domestic_12">Keep_CC 健身器材</string>
+    <string name="catalog_domestic_13">EZVIZ 设备</string>
+    <string name="catalog_domestic_14">Daikin Wi-Fi 家电</string>
+    <string name="catalog_domestic_15">H3C Wi-Fi 接入点或路由器家族。依据 H3C_* SSID 或 IEEE 04:D7:A5；不代表精确型号。</string>
+    <string name="catalog_domestic_16">小米 Wi-Fi 接入点或热点家族。依据 Xiaomi* SSID 或 IEEE EC:41:18；WPS 可能另行广播型号。</string>
+    <string name="catalog_domestic_17">MiBeacon / 小米生态 BLE 广播（FE95 或公司编号 038F）。合作伙伴产品也使用此生态，不能证明设备由小米制造。</string>
+    <string name="catalog_domestic_18">LYWSD03MMC 温湿度传感器名称。仅凭加密 MiBeacon 帧无法读出温度或湿度。</string>
+    <string name="catalog_domestic_19">MI_SCALE 广播名称指向小米生态体重秤家族。仅凭体重或身体成分服务无法识别品牌或个人。</string>
+    <string name="catalog_domestic_20">lumi.switch.acn* BLE 名称指向 Lumi / Aqara 开关家族。后缀是产品代码，并非开关状态。</string>
+    <string name="catalog_domestic_21">midea* Wi-Fi 或 BLE 名称指向美的家电家族。仅凭名称无法确定家电类型、精确型号或工作状态。</string>
+    <string name="catalog_domestic_22">LuYuan-Smart BLE 名称指向绿源电动两轮车无线模块。不能识别骑行者，也不能证明车辆正在移动。</string>
+    <string name="catalog_domestic_23">AIMA-* BLE 名称指向爱玛电动两轮车无线模块。名称后缀并非已核实的车牌或车主身份。</string>
+    <string name="catalog_domestic_24">hellobike BLE 名称指向哈啰自行车或车锁无线模块。不能显示锁状态或识别骑行者。</string>
+    <string name="catalog_domestic_25">EDIFIER BLE 广播名称指向漫步者音频无线模块。仅凭名称无法确定耳机或音箱型号。</string>
+    <string name="catalog_domestic_26">Keep_CC_* BLE 名称指向 Keep 健身器材。后缀不能透露训练内容、用户或工作状态。</string>
+    <string name="catalog_domestic_27">IEEE 94:EC:13 指向 Wi-Fi 或公共稳定 BLE 地址上的萤石设备家族。不能证明设备是摄像头。</string>
+    <string name="catalog_domestic_28">Daikin* Wi-Fi 名称指向大金家电或控制器家族。不能读出精确型号、室温或工作状态。</string>
 </resources>

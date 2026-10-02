@@ -16,6 +16,7 @@ object AdvPayloadDecoder {
     )
 
     fun decodeManufacturer(record: MfgRecord, translate: (String) -> String = { it }): List<Field> {
+        if (record.companyId == 0x038F) return MiBeaconDecoder.decode(record.dataHex, translate).fields
         val bytes = hexToBytes(record.dataHex) ?: return emptyList()
         return when (record.companyId) {
             0x004C -> decodeApple(bytes, translate)
@@ -27,8 +28,14 @@ object AdvPayloadDecoder {
     }
 
     fun decodeService(record: ServiceDataRecord, translate: (String) -> String = { it }): List<Field> {
-        val bytes = hexToBytes(record.dataHex) ?: return emptyList()
+        return decodeService(record, null, translate)
+    }
+
+    fun decodeService(record: ServiceDataRecord, device: Sighting?, translate: (String) -> String = { it }): List<Field> {
         val short = uuid16(record.uuid) ?: return emptyList()
+        if (short == 0xFE95) return MiBeaconDecoder.decode(record.dataHex, translate).fields
+        if (short in listOf(0x181D, 0x181B) && MiScaleDecoder.applies(device)) return MiScaleDecoder.decode(short, record.dataHex, translate)
+        val bytes = hexToBytes(record.dataHex) ?: return emptyList()
         return when (short) {
             0xFE2C -> decodeFastPair(bytes, translate)
             0xFEAA -> decodeEddystone(bytes, translate)
@@ -40,6 +47,12 @@ object AdvPayloadDecoder {
         val out = ArrayList<RoleHint>(4)
         val mfg = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) } ?: emptyList()
+        }
+        val miBeacons = device.facts.serviceData.filter { uuid16(it.uuid) == 0xFE95 }.map { it.dataHex } +
+            mfg.filter { it.companyId == 0x038F }.map { it.dataHex }
+        if (device.kind == RadioKind.BLE && miBeacons.any { MiBeaconDecoder.decode(it).let { decoded -> decoded.validHeader && decoded.productId == 0x055B } }) {
+            out += RoleHint("sensor", translate("an LYWSD03MMC temperature / humidity sensor"),
+                translate("MiBeacon product ID 0x055B identifies LYWSD03MMC; encrypted objects do not expose readings."), 8)
         }
         for (rec in mfg) {
             if (rec.companyId != 0x004C) continue
@@ -644,10 +657,6 @@ object AdvPayloadDecoder {
     }
 
     private fun hexToBytes(hex: String): ByteArray? {
-        val h = hex.filter { it.isLetterOrDigit() }
-        if (h.isEmpty() || h.length % 2 != 0) return null
-        return ByteArray(h.length / 2) { i ->
-            h.substring(i * 2, i * 2 + 2).toInt(16).toByte()
-        }
+        return strictHexBytes(hex)?.takeIf { it.isNotEmpty() }
     }
 }

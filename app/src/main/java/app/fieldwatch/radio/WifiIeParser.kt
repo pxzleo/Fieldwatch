@@ -52,7 +52,7 @@ object WifiIeParser {
                     )
                     val type = if (bytes.size > 3) bytes[3].toInt() and 0xFF else 0
                     val payload = if (bytes.size > 4) {
-                        bytes.copyOfRange(4, bytes.size.coerceAtMost(4 + 200))
+                        bytes.copyOfRange(4, bytes.size)
                     } else {
                         ByteArray(0)
                     }
@@ -68,7 +68,7 @@ object WifiIeParser {
         return Parsed(
             rates = rates.distinct().joinToString(" ").ifBlank { null },
             security = sec.distinct().joinToString(" · ").ifBlank { cap.ifBlank { null } },
-            vendorIes = vendor.distinctBy { it.oui to it.type }.take(12),
+            vendorIes = vendor.distinct(),
             channelFromDs = ds,
         )
     }

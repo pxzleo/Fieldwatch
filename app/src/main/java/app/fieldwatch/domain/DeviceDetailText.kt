@@ -199,7 +199,7 @@ object DeviceDetailText {
         if (facts.serviceData.isNotEmpty()) {
             facts.serviceData.forEach { sd ->
                 val named = RadioDb.serviceUuid(sd.uuid)?.let { " (${translate(it)})" } ?: ""
-                AdvPayloadDecoder.decodeService(sd, translate).forEach { field -> line(field.label, field.value) }
+                AdvPayloadDecoder.decodeService(sd, device, translate).forEach { field -> line(field.label, field.value) }
                 line(
                     translate("Service data %1\$s%2\$s").format(uuidShort(sd.uuid), named),
                     sd.dataHex.hexSpaced().ifBlank { translate("(empty)") },
@@ -230,19 +230,22 @@ object DeviceDetailText {
                 device.vendorIeOuis.map { VendorIeRecord(it, -1, "") }
             }
             rows.forEach { ie ->
-                val org = RadioDb.vendorForOui24(ie.oui)
+                val protocol = WifiWpsDecoder.protocolName(ie)
+                val org = protocol ?: RadioDb.vendorForOui24(ie.oui)
                 val type = if (ie.type >= 0) translate(" type %d").format(ie.type) else ""
                 line(
                     translate("Vendor OUI %1\$s%2\$s").format(ie.oui, type),
                     buildString {
                         append(org ?: translate("Unknown IEEE OUI"))
-                        append(translate(" — extra AP information element, not the SSID."))
+                        append(if (protocol != null) translate(" — Wi-Fi protocol tag, not the AP manufacturer.")
+                            else translate(" — extra AP information element, not the SSID."))
                         if (ie.dataHex.isNotBlank()) {
                             append(" ")
                             append(ie.dataHex.hexSpaced())
                         }
                     },
                 )
+                WifiWpsDecoder.decode(ie, translate)?.fields?.forEach { field -> line(field.label, field.value) }
             }
         }
 

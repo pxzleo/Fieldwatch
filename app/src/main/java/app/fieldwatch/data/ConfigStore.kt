@@ -163,19 +163,7 @@ class ConfigStore(context: Context) {
 
     private fun patchBuiltIn(cfg: PersistedConfig): PersistedConfig {
         val catalog = DefaultCatalog.fleets().associateBy { it.id }
-        val next = cfg.fleets.map { fleet ->
-            val stock = catalog[fleet.id] ?: return@map fleet
-            if (!fleet.builtIn) return@map fleet
-            val have = fleet.rules.map { ruleKey(it) }.toSet()
-            val missing = stock.rules.filter { ruleKey(it) !in have }
-            val renamed = when {
-                fleet.id == "fleet-unknown" && fleet.name == "Unknown Fleet" -> stock.name
-                fleet.id == "fleet-seos" && fleet.name == "Seos" -> stock.name
-                else -> fleet.name
-            }
-            if (missing.isEmpty() && renamed == fleet.name) fleet
-            else fleet.copy(name = renamed, rules = fleet.rules + missing)
-        }
+        val next = patchBuiltInRules(cfg.fleets, catalog)
         var presets = cfg.presets.map { preset ->
             if (preset.id == "named" && preset.name == "Named only") {
                 preset.copy(name = "Signatures only")
@@ -1032,6 +1020,10 @@ class ConfigStore(context: Context) {
             }
             version = CATALOG_V88
         }
+        if (version < CATALOG_V89) {
+            fleets = appendCatalogV89(fleets)
+            version = CATALOG_V89
+        }
         if (!settings.darkTheme) settings = settings.copy(darkTheme = true)
         if (settings.scanControlsExpanded) settings = settings.copy(scanControlsExpanded = false)
         presets = presets.filterNot { it.isBuiltIn() && it.id in hiddenPresetIds }
@@ -1058,10 +1050,6 @@ class ConfigStore(context: Context) {
         }
     }
 
-    private fun ruleKey(rule: MatchRule): String =
-        listOf(rule.kind.name, rule.text.uppercase(), rule.companyId, rule.dataPrefixHex.uppercase(), rule.radio?.name.orEmpty())
-            .joinToString("|")
-
     private fun seed(): PersistedConfig {
         val fleets = DefaultCatalog.fleets()
         return PersistedConfig(
@@ -1076,7 +1064,35 @@ class ConfigStore(context: Context) {
 
     companion object {
         /** Stock catalog generation. Settings footer and the GitHub pack use this. */
-        const val CATALOG_VERSION = 88
+        const val CATALOG_VERSION = 89
+
+        /** Historical stock patches remain in place; V89 families preserve every existing row. */
+        internal fun patchBuiltInRules(fleets: List<Fleet>, catalog: Map<String, Fleet>): List<Fleet> {
+            val domesticIds = DefaultCatalog.domesticFamilies().mapTo(HashSet()) { it.id }
+            return fleets.map { fleet ->
+                val stock = catalog[fleet.id] ?: return@map fleet
+                if (!fleet.builtIn || fleet.id in domesticIds) return@map fleet
+                val have = fleet.rules.map { ruleKey(it) }.toSet()
+                val missing = stock.rules.filter { ruleKey(it) !in have }
+                val renamed = when {
+                    fleet.id == "fleet-unknown" && fleet.name == "Unknown Fleet" -> stock.name
+                    fleet.id == "fleet-seos" && fleet.name == "Seos" -> stock.name
+                    else -> fleet.name
+                }
+                if (missing.isEmpty() && renamed == fleet.name) fleet
+                else fleet.copy(name = renamed, rules = fleet.rules + missing)
+            }
+        }
+
+        private fun ruleKey(rule: MatchRule): String =
+            listOf(rule.kind.name, rule.text.uppercase(), rule.companyId, rule.dataPrefixHex.uppercase(), rule.radio?.name.orEmpty())
+                .joinToString("|")
+
+        /** Add missing families only. Existing ids, disabled rows and operator edits remain intact. */
+        internal fun appendCatalogV89(fleets: List<Fleet>): List<Fleet> {
+            val existingIds = fleets.mapTo(HashSet()) { it.id }
+            return fleets + DefaultCatalog.domesticFamilies().filter { it.id !in existingIds }
+        }
         private const val CATALOG_V2 = 2
         private const val CATALOG_V3 = 3
         private const val CATALOG_V4 = 4
@@ -1163,7 +1179,8 @@ class ConfigStore(context: Context) {
         private const val CATALOG_V85 = 85
         private const val CATALOG_V86 = 86
         private const val CATALOG_V87 = 87
-        private const val CATALOG_V88 = CATALOG_VERSION
+        private const val CATALOG_V88 = 88
+        private const val CATALOG_V89 = CATALOG_VERSION
         private val GENERIC_GATT_UUIDS = setOf("180A", "180D", "180F")
         private val POLICY_FLEET_IDS = setOf(
             "fleet-flock-cameras",

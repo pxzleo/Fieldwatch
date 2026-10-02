@@ -8,6 +8,7 @@ import app.fieldwatch.domain.LogRadio
 import app.fieldwatch.domain.LogReplay
 import app.fieldwatch.domain.MacUtil
 import app.fieldwatch.domain.Sighting
+import app.fieldwatch.domain.RadioSampleJson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -59,7 +60,7 @@ class LogStore(context: Context) {
         if (!enabled || paused.get()) return lines
         val gen = generation.get()
         val names = fleets.filter { it.id in device.fleetIds }.joinToString("+") { it.name }
-        val row = jsonLine(device, names)
+        val row = jsonLine(device, names, iso)
         return mutex.withLock {
             if (paused.get() || generation.get() != gen) return@withLock lines
             withContext(Dispatchers.IO) {
@@ -301,31 +302,33 @@ class LogStore(context: Context) {
         ).joinToString(",") + "\n"
     }
 
-    private fun jsonLine(device: Sighting, names: String): String {
-        val obj = JSONObject()
-            .put("ts", device.lastSeen)
-            .put("iso", iso.format(Date(device.lastSeen)))
-            .put("kind", device.kind.name)
-            .put("mac", device.mac)
-            .put("name", device.name)
-            .put("rssi", device.rssi)
-            .put("channel", device.channel)
-            .put("freq", device.frequencyMhz)
-            .put("oui", device.oui)
-            .put("vendor", device.vendor)
-            .put("fleets", names)
-            .put("mfg", device.manufacturerId)
-            .put("uuids", device.serviceUuids.joinToString(","))
-            .put("raw", device.manufacturerDataHex.ifBlank { device.rawHex }.take(160))
-            .put("vendor_ie", device.vendorIeOuis.take(8).joinToString("|") { MacUtil.normalize(it) })
-            .put("rand", device.randomized)
-            .put("hidden", device.hiddenSsid)
-            .put("lat", device.latitude ?: JSONObject.NULL)
-            .put("lon", device.longitude ?: JSONObject.NULL)
-        return obj.toString() + "\n"
-    }
-
     companion object {
+        internal fun jsonLine(device: Sighting, names: String, iso: SimpleDateFormat): String {
+            val obj = JSONObject()
+                .put("ts", device.lastSeen)
+                .put("iso", iso.format(Date(device.lastSeen)))
+                .put("kind", device.kind.name)
+                .put("mac", device.mac)
+                .put("name", device.name)
+                .put("rssi", device.rssi)
+                .put("channel", device.channel)
+                .put("freq", device.frequencyMhz)
+                .put("oui", device.oui)
+                .put("vendor", device.vendor)
+                .put("fleets", names)
+                .put("mfg", device.manufacturerId)
+                .put("uuids", device.serviceUuids.joinToString(","))
+                .put("raw", device.manufacturerDataHex.ifBlank { device.rawHex }.take(160))
+                .put("vendor_ie", device.vendorIeOuis.take(8).joinToString("|") { MacUtil.normalize(it) })
+                .put("rand", device.randomized)
+                .put("hidden", device.hiddenSsid)
+                .put("lat", device.latitude ?: JSONObject.NULL)
+                .put("lon", device.longitude ?: JSONObject.NULL)
+            RadioSampleJson.appendTo(obj, device)
+            return obj.toString() + "\n"
+        }
+
+
         private const val CSV_HEADER =
             "timestamp,iso,kind,mac,name,rssi,channel,freq,oui,vendor,fleets,mfg,uuids,flags,raw,lat,lon,vendor_ie\n"
 

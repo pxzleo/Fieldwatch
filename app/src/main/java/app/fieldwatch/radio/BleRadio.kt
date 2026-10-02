@@ -250,7 +250,7 @@ class BleRadio(
             serviceUuids = uuids,
             manufacturerId = mfg?.companyId,
             manufacturerDataHex = mfg?.dataHex.orEmpty(),
-            rawHex = raw.take(1024),
+            rawHex = raw,
             extras = "",
             at = System.currentTimeMillis(),
             facts = facts,

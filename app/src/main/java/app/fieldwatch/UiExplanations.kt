@@ -493,6 +493,6 @@ internal object UiExplanations {
         "Looking up place names (%1\$s of %2\$s)…" -> UiText.text(R.string.lookup_place_progress)
         "0 eligible radios (need Extra attention / payload latlon / GPS stamp)" -> UiText.text(R.string.detail_tak_no_eligible_radios)
         "Pinned to this BSSID. Vehicle, mesh, and guest APs often keep a locally administered address." -> UiText.text(R.string.detail_custom_name_bssid_hint)
-        else -> UiDetailText.text(source)
+        else -> UiDiscoveryText.text(source).let { if (it != source) it else UiDetailText.text(source) }
     }
 }

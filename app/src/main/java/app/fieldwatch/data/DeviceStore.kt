@@ -103,8 +103,8 @@ class DeviceStore(
                 hiddenSsid = observation.hiddenSsid,
                 serviceUuids = observation.serviceUuids,
                 manufacturerId = observation.manufacturerId,
-                manufacturerDataHex = observation.manufacturerDataHex.take(512),
-                rawHex = observation.rawHex.take(1024),
+                manufacturerDataHex = observation.manufacturerDataHex,
+                rawHex = observation.rawHex,
                 extras = observation.extras.take(160),
                 firstSeen = now,
                 lastSeen = now,
@@ -157,14 +157,12 @@ class DeviceStore(
                 hiddenSsid = existing.hiddenSsid || observation.hiddenSsid,
                 serviceUuids = uuids,
                 manufacturerId = existing.manufacturerId ?: observation.manufacturerId,
-                manufacturerDataHex = mergeMfgHex(
+                manufacturerDataHex = if (observation.manufacturerId != null &&
+                    existing.manufacturerId != null && observation.manufacturerId != existing.manufacturerId) existing.manufacturerDataHex else mergeMfgHex(
                     existing.manufacturerDataHex,
                     observation.manufacturerDataHex,
                 ),
-                rawHex = when {
-                    observation.rawHex.length >= existing.rawHex.length -> observation.rawHex.take(1024)
-                    else -> existing.rawHex
-                },
+                rawHex = observation.rawHex.takeIf { it.isNotBlank() } ?: existing.rawHex,
                 lastSeen = now,
                 hitCount = existing.hitCount + 1,
                 rssiHistory = history,
@@ -387,11 +385,7 @@ class DeviceStore(
 
     private fun mergeMfgHex(old: String, extra: String): String {
         if (extra.isBlank()) return old
-        if (old.isBlank()) return extra.take(512)
-        if (extra.take(2).equals(old.take(2), ignoreCase = true) && extra.length >= old.length) {
-            return extra.take(512)
-        }
-        return old
+        return extra
     }
 
     private fun mergeIes(old: List<String>, extra: List<String>): List<String> {

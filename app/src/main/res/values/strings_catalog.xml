@@ -447,4 +447,32 @@
     <string name="catalog_445" formatted="false">GM hotspot</string>
     <string name="catalog_446" formatted="false">WatchGuard AP</string>
     <string name="catalog_447" formatted="false">New Signature</string>
+    <string name="catalog_domestic_1">H3C Wi-Fi</string>
+    <string name="catalog_domestic_2">Xiaomi Wi-Fi</string>
+    <string name="catalog_domestic_3">MiBeacon ecosystem</string>
+    <string name="catalog_domestic_4">LYWSD03MMC thermometer</string>
+    <string name="catalog_domestic_5">MI_SCALE scale</string>
+    <string name="catalog_domestic_6">Lumi / Aqara switch</string>
+    <string name="catalog_domestic_7">Midea appliance</string>
+    <string name="catalog_domestic_8">LuYuan-Smart vehicle</string>
+    <string name="catalog_domestic_9">AIMA vehicle</string>
+    <string name="catalog_domestic_10">hellobike bicycle</string>
+    <string name="catalog_domestic_11">EDIFIER BLE audio</string>
+    <string name="catalog_domestic_12">Keep_CC fitness equipment</string>
+    <string name="catalog_domestic_13">EZVIZ device</string>
+    <string name="catalog_domestic_14">Daikin Wi-Fi appliance</string>
+    <string name="catalog_domestic_15">H3C Wi-Fi access point or router family. H3C_* SSID or IEEE 04:D7:A5; not an exact model.</string>
+    <string name="catalog_domestic_16">Xiaomi Wi-Fi access point or hotspot family. Xiaomi* SSID or IEEE EC:41:18; WPS may advertise a model separately.</string>
+    <string name="catalog_domestic_17">MiBeacon / Xiaomi ecosystem BLE advertisement (FE95 or company 038F). Partner products also use this ecosystem; it does not prove Xiaomi manufactured the device.</string>
+    <string name="catalog_domestic_18">LYWSD03MMC temperature / humidity sensor name. Encrypted MiBeacon frames alone do not expose temperature or humidity.</string>
+    <string name="catalog_domestic_19">MI_SCALE advertised name identifies a Xiaomi ecosystem scale family. Weight / body-composition services alone do not identify a brand or a person.</string>
+    <string name="catalog_domestic_20">lumi.switch.acn* BLE name points to a Lumi / Aqara switch family. The suffix is a product code, not a switch state.</string>
+    <string name="catalog_domestic_21">midea* Wi-Fi or BLE name points to a Midea appliance family. The name alone does not identify appliance type, exact model, or operating state.</string>
+    <string name="catalog_domestic_22">LuYuan-Smart BLE name points to a Luyuan electric two-wheeler radio. It does not identify the rider or prove the vehicle is moving.</string>
+    <string name="catalog_domestic_23">AIMA-* BLE name points to an Aima electric two-wheeler radio. The name suffix is not a verified registration or owner identity.</string>
+    <string name="catalog_domestic_24">hellobike BLE name points to a Hello bicycle or lock radio. This does not show lock state or identify a rider.</string>
+    <string name="catalog_domestic_25">EDIFIER BLE advertised name points to an Edifier audio radio. The name alone does not identify headphone versus speaker model.</string>
+    <string name="catalog_domestic_26">Keep_CC_* BLE name points to Keep fitness equipment. The suffix does not reveal a workout, user, or operating state.</string>
+    <string name="catalog_domestic_27">IEEE 94:EC:13 identifies an EZVIZ device family on Wi-Fi or a public stable BLE address. It does not prove the device is a camera.</string>
+    <string name="catalog_domestic_28">Daikin* Wi-Fi name points to a Daikin appliance or controller family. It does not expose an exact model, room temperature, or operating state.</string>
 </resources>

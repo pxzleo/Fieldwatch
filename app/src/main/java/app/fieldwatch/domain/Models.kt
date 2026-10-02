@@ -778,7 +778,12 @@ data class Sighting(
         val custom = watchName?.trim()?.takeIf { it.isNotEmpty() }
         return when (line) {
             ListLine.ADVERTISED_NAME -> custom ?: advertisedName(translate)
-            ListLine.NAME_AND_TYPE -> custom ?: listTitle(signatureNames, translate)
+            ListLine.NAME_AND_TYPE -> custom ?: run {
+                val title = listTitle(signatureNames, translate)
+                val wps = if (kind == RadioKind.WIFI) WifiWpsDecoder.identity(facts.vendorIes) else null
+                if (wps == null || title.contains(wps.model!!, ignoreCase = true)) title
+                else "$title · ${DeviceExplain.listLabel(this, signatureNames, translate)}"
+            }
             ListLine.MAC -> mac
             ListLine.NONE -> ""
         }

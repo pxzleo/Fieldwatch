@@ -87,6 +87,7 @@ object SitExport {
             obj.put("extra_attention", d.key in extraKeys)
             obj.put("signatures", joinedNames(d, fleets))
             obj.put("extra_attention_families", joinedAttention(d, fleets))
+            RadioSampleJson.appendTo(obj, d)
             append(obj.toString()).append('\n')
         }
     }

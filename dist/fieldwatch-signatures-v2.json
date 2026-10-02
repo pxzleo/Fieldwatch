@@ -3,7 +3,7 @@
     "formatVersion": 1,
     "exportedAt": "",
     "appVersion": "stock",
-    "catalogVersion": 88,
+    "catalogVersion": 89,
     "fleets": [
         {
             "id": "fleet-actiontec",
@@ -652,6 +652,31 @@
                     }
                 ]
             }
+        },
+        {
+            "id": "fleet-aima-vehicle",
+            "name": "AIMA vehicle",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 7,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "AIMA-*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "AIMA-* BLE name points to an Aima electric two-wheeler radio. The name suffix is not a verified registration or owner identity.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "VEHICLE"
         },
         {
             "id": "fleet-airlink",
@@ -21327,6 +21352,31 @@
             "kind": "SURVEILLANCE"
         },
         {
+            "id": "fleet-daikin-wifi",
+            "name": "Daikin Wi-Fi appliance",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "Daikin*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Daikin* Wi-Fi name points to a Daikin appliance or controller family. It does not expose an exact model, room temperature, or operating state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
+        },
+        {
             "id": "fleet-dexcom",
             "name": "Dexcom",
             "enabled": true,
@@ -22101,6 +22151,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "ISP"
+        },
+        {
+            "id": "fleet-edifier-ble",
+            "name": "EDIFIER BLE audio",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 5,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "EDIFIER BLE",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "EDIFIER BLE advertised name points to an Edifier audio radio. The name alone does not identify headphone versus speaker model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "AUDIO"
         },
         {
             "id": "fleet-eero",
@@ -24145,6 +24220,31 @@
             "kind": "ISP"
         },
         {
+            "id": "fleet-ezviz-device",
+            "name": "EZVIZ device",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "OUI",
+                    "text": "94:EC:13",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": null,
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "IEEE 94:EC:13 identifies an EZVIZ device family on Wi-Fi or a public stable BLE address. It does not prove the device is a camera.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
+        },
+        {
             "id": "fleet-fast-pair",
             "name": "Fast Pair",
             "enabled": true,
@@ -26151,6 +26251,39 @@
             "kind": "ISP"
         },
         {
+            "id": "fleet-h3c-wifi",
+            "name": "H3C Wi-Fi",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "H3C_*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "04:D7:A5",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "H3C Wi-Fi access point or router family. H3C_* SSID or IEEE 04:D7:A5; not an exact model.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "ISP"
+        },
+        {
             "id": "fleet-haiku",
             "name": "Haiku Fan",
             "enabled": true,
@@ -26475,6 +26608,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "MESH"
+        },
+        {
+            "id": "fleet-hellobike",
+            "name": "hellobike bicycle",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 7,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "hellobike",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "hellobike BLE name points to a Hello bicycle or lock radio. This does not show lock state or identify a rider.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "VEHICLE"
         },
         {
             "id": "fleet-hikvision",
@@ -44759,6 +44917,31 @@
             "kind": "AUDIO"
         },
         {
+            "id": "fleet-keep-cc",
+            "name": "Keep_CC fitness equipment",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 8,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "Keep_CC_*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Keep_CC_* BLE name points to Keep fitness equipment. The suffix does not reveal a workout, user, or operating state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HEALTH"
+        },
+        {
             "id": "fleet-kevo",
             "name": "Kevo",
             "enabled": true,
@@ -45714,6 +45897,31 @@
             "kind": "HOME"
         },
         {
+            "id": "fleet-lumi-aqara-switch",
+            "name": "Lumi / Aqara switch",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "lumi.switch.acn*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "lumi.switch.acn* BLE name points to a Lumi / Aqara switch family. The suffix is a product code, not a switch state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
+        },
+        {
             "id": "fleet-luxul",
             "name": "Luxul",
             "enabled": true,
@@ -45753,6 +45961,31 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "ISP"
+        },
+        {
+            "id": "fleet-luyuan-smart",
+            "name": "LuYuan-Smart vehicle",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 7,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "LuYuan-Smart",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "LuYuan-Smart BLE name points to a Luyuan electric two-wheeler radio. It does not identify the rider or prove the vehicle is moving.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "VEHICLE"
         },
         {
             "id": "fleet-lvt",
@@ -45802,6 +46035,31 @@
             "attentionNote": "LVT / LiveView solar camera trailer — parking lots, construction, some city parks. Video and sometimes plates. Most units use cellular and stay quiet on Wi-Fi/BLE. A LiveView or LVT- name is a pattern, not that trailer. Look with your eyes.",
             "builtIn": true,
             "kind": "SURVEILLANCE"
+        },
+        {
+            "id": "fleet-lywsd03mmc",
+            "name": "LYWSD03MMC thermometer",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "LYWSD03MMC",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "LYWSD03MMC temperature / humidity sensor name. Encrypted MiBeacon frames alone do not expose temperature or humidity.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
         },
         {
             "id": "fleet-marauder",
@@ -46530,6 +46788,88 @@
             "kind": "MESH"
         },
         {
+            "id": "fleet-mi-scale",
+            "name": "MI_SCALE scale",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 8,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "MI_SCALE*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "MI SCALE*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "MIBCS*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "MIBFS*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "MI_SCALE advertised name identifies a Xiaomi ecosystem scale family. Weight / body-composition services alone do not identify a brand or a person.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HEALTH"
+        },
+        {
+            "id": "fleet-mibeacon-ecosystem",
+            "name": "MiBeacon ecosystem",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "SERVICE_UUID",
+                    "text": "FE95",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                },
+                {
+                    "kind": "MANUFACTURER_ID",
+                    "text": "",
+                    "companyId": 911,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "MiBeacon / Xiaomi ecosystem BLE advertisement (FE95 or company 038F). Partner products also use this ecosystem; it does not prove Xiaomi manufactured the device.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
+        },
+        {
             "id": "fleet-microsoft",
             "name": "Microsoft Device",
             "enabled": true,
@@ -46569,6 +46909,39 @@
             "attentionNote": "",
             "builtIn": true,
             "kind": "PHONE"
+        },
+        {
+            "id": "fleet-midea-appliance",
+            "name": "Midea appliance",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "midea*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "midea*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "BLE",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "midea* Wi-Fi or BLE name points to a Midea appliance family. The name alone does not identify appliance type, exact model, or operating state.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "HOME"
         },
         {
             "id": "fleet-mikrotik",
@@ -62808,6 +63181,39 @@
             "clusterByOui": false,
             "sequentialMac": false,
             "notes": "Comcast xfinitywifi hotspot or Xfinity / XFSETUP gateway name. Most boxes are Arris / Hitron / Technicolor OEM — those hit the OEM row.",
+            "attentionNote": "",
+            "builtIn": true,
+            "kind": "ISP"
+        },
+        {
+            "id": "fleet-xiaomi-wifi",
+            "name": "Xiaomi Wi-Fi",
+            "enabled": true,
+            "matchAny": true,
+            "colorIndex": 6,
+            "rules": [
+                {
+                    "kind": "NAME_GLOB",
+                    "text": "Xiaomi*",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                },
+                {
+                    "kind": "OUI",
+                    "text": "EC:41:18",
+                    "companyId": 0,
+                    "dataPrefixHex": "",
+                    "radio": "WIFI",
+                    "enabled": true
+                }
+            ],
+            "minPeers": 0,
+            "peerWindowSec": 60,
+            "clusterByOui": false,
+            "sequentialMac": false,
+            "notes": "Xiaomi Wi-Fi access point or hotspot family. Xiaomi* SSID or IEEE EC:41:18; WPS may advertise a model separately.",
             "attentionNote": "",
             "builtIn": true,
             "kind": "ISP"

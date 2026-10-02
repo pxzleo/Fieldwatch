@@ -1,19 +1,68 @@
 package app.fieldwatch.data
 
 import app.fieldwatch.domain.DefaultCatalog
+import app.fieldwatch.domain.LogExportRadios
+import app.fieldwatch.domain.MfgRecord
 import app.fieldwatch.domain.Observation
 import app.fieldwatch.domain.RadioFacts
 import app.fieldwatch.domain.RadioKind
 import app.fieldwatch.domain.ServiceDataRecord
+import app.fieldwatch.domain.SitExport
 import app.fieldwatch.domain.VendorIeRecord
 import app.fieldwatch.domain.toHexUpper
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.json.JSONObject
 
 class DeviceStoreTest {
     private val fleets = DefaultCatalog.fleets()
+
+    @Test fun newestShortRawAndManufacturerFrameReplaceOldAndEmptyRetainsLatest() {
+        val store = DeviceStore()
+        val first = ble("00:11:22:33:44:55", "LYWSD03MMC").copy(rawHex = "AABBCCDD", manufacturerId = 0x038F,
+            manufacturerDataHex = "58585B053055443322110011223344556677",
+            facts = RadioFacts(serviceData = listOf(ServiceDataRecord("FE95", "40505B05300410020000"))))
+        store.ingest(first, fleets, 30)
+        val next = first.copy(at = first.at + 1, rawHex = "EEFF", manufacturerDataHex = "00505B0531",
+            facts = RadioFacts(serviceData = listOf(ServiceDataRecord("0000FE95-0000-1000-8000-00805F9B34FB", "00505B0531"))))
+        val fresh = store.ingest(next, fleets, 30)
+        assertEquals(next.rawHex, fresh.rawHex)
+        assertEquals(next.manufacturerDataHex, fresh.manufacturerDataHex)
+        assertEquals(next.facts.serviceData, fresh.facts.serviceData)
+        val empty = store.ingest(next.copy(at = next.at + 1, rawHex = "", manufacturerDataHex = "", facts = RadioFacts()), fleets, 30)
+        assertEquals(next.rawHex, empty.rawHex)
+        assertEquals(next.manufacturerDataHex, empty.manufacturerDataHex)
+    }
+
+    @Test
+    fun ingestAndUpdatePreserveLongRawAndManufacturerBytesForExport() {
+        val store = DeviceStore()
+        val first = ble("AA:BB:CC:DD:EE:FE", "long sample").copy(
+            rawHex = "AABB".repeat(400),
+            manufacturerId = 76,
+            manufacturerDataHex = "11".repeat(350),
+            facts = RadioFacts(mfgRecords = listOf(MfgRecord(76, "11".repeat(350)))),
+        )
+        val next = first.copy(
+            at = first.at + 1,
+            rawHex = "CCDD".repeat(500),
+            manufacturerDataHex = "11".repeat(450),
+            facts = RadioFacts(mfgRecords = listOf(MfgRecord(76, "11".repeat(450)))),
+        )
+        for (observation in listOf(first, next)) {
+            val sighting = store.ingest(observation, emptyList(), 30)
+            assertEquals(observation.rawHex, sighting.rawHex)
+            assertEquals(observation.manufacturerDataHex, sighting.manufacturerDataHex)
+            val json = JSONObject(SitExport.jsonl(listOf(sighting), LogExportRadios.BOTH,
+                emptyMap(), emptyMap(), emptySet()))
+            assertEquals(observation.rawHex, json.getString("raw_hex"))
+            assertEquals(observation.manufacturerDataHex, json.getString("manufacturer_data_hex"))
+            assertEquals(observation.manufacturerDataHex,
+                json.getJSONObject("facts").getJSONArray("mfg_records").getJSONObject(0).getString("data_hex"))
+        }
+    }
 
     @Test
     fun ciscoOuiLabelsOnIngestAndSurvivesRssiOnly() {

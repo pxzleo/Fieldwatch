@@ -4,6 +4,15 @@ class SignatureEngine {
     companion object {
         /** 802.11 WPA (Microsoft) and RSN (IEEE) vendor IE OUIs — not a product brand. */
         private val WIFI_PROTOCOL_IE_OUIS = setOf("0050F2", "000FAC")
+
+        private fun bleOuiAllowed(device: Sighting): Boolean {
+            if (device.kind != RadioKind.BLE) return true
+            if (device.randomized || device.facts.addressType.equals("Random", true) ||
+                device.facts.addressType.equals("Anonymous", true)) return false
+            if (device.facts.addressType.equals("Public", true)) return true
+            val first = hexOnly(device.mac).take(2).toIntOrNull(16) ?: return false
+            return first and 0x03 == 0
+        }
     }
 
     /**
@@ -107,6 +116,7 @@ class SignatureEngine {
         val plans = ArrayList<FleetPlan>(fleets.size)
         val bssidWifi = HashMap<String, MutableList<Int>>(4096)
         val bssidBle = HashMap<String, MutableList<Int>>(256)
+        val ouiBle = HashMap<String, MutableList<Int>>(256)
         val vendorIe = HashMap<String, MutableList<Int>>(4096)
         val longOui = ArrayList<LongOui>(8)
         val wifiPlans = ArrayList<Int>(fleets.size)
@@ -117,7 +127,7 @@ class SignatureEngine {
             active.forEach { rule ->
                 when (rule.kind) {
                     RuleKind.OUI ->
-                        indexOui(rule.text, rule.radio, idx, bssid = true, vendor = true, bssidWifi, bssidBle, vendorIe, longOui)
+                        indexOui(rule.text, rule.radio, idx, bssid = true, vendor = true, bssidWifi, ouiBle, vendorIe, longOui)
                     RuleKind.MAC_PREFIX ->
                         indexOui(rule.text, rule.radio, idx, bssid = true, vendor = false, bssidWifi, bssidBle, vendorIe, longOui)
                     RuleKind.VENDOR_IE_OUI ->
@@ -148,6 +158,7 @@ class SignatureEngine {
             blePlans = blePlans.toIntArray(),
             bssidWifi = freeze(bssidWifi),
             bssidBle = freeze(bssidBle),
+            ouiBle = freeze(ouiBle),
             vendorIe = freeze(vendorIe),
             longOui = longOui,
         )
@@ -340,7 +351,7 @@ class SignatureEngine {
         }
         return when (rule.kind) {
             RuleKind.OUI, RuleKind.MAC_PREFIX ->
-                MacUtil.matchesPrefix(device.mac, rule.text) ||
+                ((rule.kind != RuleKind.OUI || bleOuiAllowed(device)) && MacUtil.matchesPrefix(device.mac, rule.text)) ||
                     (rule.kind == RuleKind.OUI && wifiVendorIeHitsOui(device, rule.text)) ||
                     (rule.kind == RuleKind.OUI && recoveredWifiOuiHits(device, rule.text))
             RuleKind.NAME_CONTAINS ->
@@ -460,6 +471,7 @@ class SignatureEngine {
         val blePlans: IntArray,
         val bssidWifi: Map<String, IntArray>,
         val bssidBle: Map<String, IntArray>,
+        val ouiBle: Map<String, IntArray>,
         val vendorIe: Map<String, IntArray>,
         val longOui: List<LongOui>,
     ) {
@@ -472,6 +484,7 @@ class SignatureEngine {
             val oui6 = if (macHex.length >= 6) macHex.substring(0, 6) else macHex
             val bssidMap = if (device.kind == RadioKind.WIFI) bssidWifi else bssidBle
             mark(hits, bssidMap[oui6])
+            if (device.kind == RadioKind.BLE && bleOuiAllowed(device)) mark(hits, ouiBle[oui6])
             if (device.kind == RadioKind.WIFI) {
                 MacUtil.wifiOui24Universal(device.mac)?.let { univ ->
                     mark(hits, bssidMap[univ])
@@ -487,7 +500,7 @@ class SignatureEngine {
             if (longOui.isNotEmpty() && macHex.isNotEmpty()) {
                 longOui.forEach { rule ->
                     if (rule.radio != null && rule.radio != device.kind) return@forEach
-                    if (rule.bssid && macHex.startsWith(rule.hex)) {
+                    if (rule.bssid && (!rule.vendor || bleOuiAllowed(device)) && macHex.startsWith(rule.hex)) {
                         hits[rule.fleetIdx] = true
                     }
                     if (rule.vendor && device.kind == RadioKind.WIFI) {

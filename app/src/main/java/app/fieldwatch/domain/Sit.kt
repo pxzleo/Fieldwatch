@@ -123,8 +123,16 @@ data class SitRadio(
     @EncodeDefault(EncodeDefault.Mode.NEVER)
     val payloadTrail: List<PayloadFix> = emptyList(),
     val gpsTrail: List<GpsSample> = emptyList(),
-    /** Live-row labels captured at hear-time. Saved sits do not keep the advertisement bytes. */
+    /** Live-row labels captured at hear-time. */
     val liveDecode: List<LiveDecodeChip> = emptyList(),
+    val vendor: String? = null,
+    val serviceUuids: List<String> = emptyList(),
+    val vendorIeOuis: List<String> = emptyList(),
+    val manufacturerId: Int? = null,
+    val manufacturerDataHex: String = "",
+    val rawHex: String = "",
+    val extras: String = "",
+    val facts: RadioFacts = RadioFacts.Empty,
 ) {
     fun toSighting(): Sighting = Sighting(
         key = key,
@@ -136,14 +144,16 @@ data class SitRadio(
         rssiMax = rssiMax,
         channel = channel,
         frequencyMhz = frequencyMhz,
-        vendor = null,
+        vendor = vendor,
         randomized = randomized,
         hiddenSsid = hiddenSsid,
-        serviceUuids = emptyList(),
-        manufacturerId = null,
-        manufacturerDataHex = "",
-        rawHex = "",
-        extras = "",
+        serviceUuids = serviceUuids,
+        vendorIeOuis = vendorIeOuis,
+        manufacturerId = manufacturerId,
+        manufacturerDataHex = manufacturerDataHex,
+        rawHex = rawHex,
+        extras = extras,
+        facts = facts,
         firstSeen = firstSeen,
         lastSeen = lastSeen,
         hitCount = hitCount,
@@ -194,6 +204,14 @@ data class SitRadio(
             payloadTrail = AircraftTrail.append(emptyList(), device),
             gpsTrail = trailSample(device),
             liveDecode = device.liveDecode,
+            vendor = device.vendor,
+            serviceUuids = device.serviceUuids,
+            vendorIeOuis = device.vendorIeOuis,
+            manufacturerId = device.manufacturerId,
+            manufacturerDataHex = device.manufacturerDataHex,
+            rawHex = device.rawHex,
+            extras = device.extras,
+            facts = device.facts,
         )
 
         fun trailSample(device: Sighting): List<GpsSample> {
@@ -443,6 +461,14 @@ class SitSession(
             payloadTrail = AircraftTrail.append(old.payloadTrail, next),
             gpsTrail = trail,
             liveDecode = next.liveDecode.ifEmpty { old.liveDecode },
+            vendor = next.vendor ?: old.vendor,
+            serviceUuids = (old.serviceUuids + next.serviceUuids).distinct(),
+            vendorIeOuis = (old.vendorIeOuis + next.vendorIeOuis).distinct(),
+            manufacturerId = next.manufacturerId ?: old.manufacturerId,
+            manufacturerDataHex = next.manufacturerDataHex.ifBlank { old.manufacturerDataHex },
+            rawHex = next.rawHex.ifBlank { old.rawHex },
+            extras = next.extras.ifBlank { old.extras },
+            facts = old.facts.merge(next.facts),
         )
     }
 

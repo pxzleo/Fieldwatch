@@ -436,7 +436,7 @@ fun DeviceDetailScreen(
                         )
                     }
                     facts.serviceData.forEach { sd ->
-                        val decoded = app.fieldwatch.domain.AdvPayloadDecoder.decodeService(sd, UiText::explanation)
+                        val decoded = app.fieldwatch.domain.AdvPayloadDecoder.decodeService(sd, device, UiText::explanation)
                         decoded.forEach { field -> Meta(field.label, field.value) }
                         Meta(
                             serviceDataHeading(sd),
@@ -514,10 +514,12 @@ fun DeviceDetailScreen(
                 StickyHeight(device.key to "mfg") {
                     Section(UiText.text(R.string.ui_maker_data_inside_the_ad))
                     mfg.forEach { rec ->
-                        val company = RadioDb.company(rec.companyId) ?: UiText.text(R.string.ui_not_in_the_bluetooth_company_list)
+                        val knownCompany = RadioDb.company(rec.companyId)
+                        val company = knownCompany ?: UiText.text(R.string.ui_not_in_the_bluetooth_company_list)
                         Meta(
                             UiText.text(R.string.ui_bluetooth_company_0x_04x).format(rec.companyId),
-                            UiText.text(R.string.ui_value_nthis_id_is_assigned_by_the_bluetooth_sig_and_is_carried_in, (company).toString()),
+                            if (knownCompany != null) UiText.text(R.string.ui_value_nthis_id_is_assigned_by_the_bluetooth_sig_and_is_carried_in, company)
+                            else "$company\n" + UiText.explanation("Company identifier carried in manufacturer-specific data; the current list cannot confirm the assigning organization."),
                         )
                         val decoded = app.fieldwatch.domain.AdvPayloadDecoder.decodeManufacturer(rec, UiText::explanation)
                         decoded.forEach { field -> Meta(field.label, field.value) }
@@ -535,19 +537,24 @@ fun DeviceDetailScreen(
                         device.vendorIeOuis.map { app.fieldwatch.domain.VendorIeRecord(it, -1, "") }
                     }
                     rows.forEach { ie ->
-                        val org = RadioDb.vendorForOui24(ie.oui)
+                        val protocol = app.fieldwatch.domain.WifiWpsDecoder.protocolName(ie)
+                        val org = protocol ?: RadioDb.vendorForOui24(ie.oui)
                         val type = if (ie.type >= 0) UiText.text(R.string.ui_type_d).format(ie.type) else ""
                         Meta(
                             UiText.text(R.string.ui_vendor_oui_valuevalue, (ie.oui).toString(), (type).toString()),
                             buildString {
                                 append(org ?: UiText.text(R.string.ui_unknown_ieee_oui))
-                                append(UiText.text(R.string.ui_extra_ap_information_element_not_the_ssid))
+                                append(if (protocol != null) UiText.explanation(" — Wi-Fi protocol tag, not the AP manufacturer.")
+                                    else UiText.text(R.string.ui_extra_ap_information_element_not_the_ssid))
                                 if (ie.dataHex.isNotBlank()) {
                                     append("\n")
                                     append(ie.dataHex.hexSpaced())
                                 }
                             },
                         )
+                        app.fieldwatch.domain.WifiWpsDecoder.decode(ie, UiText::explanation)?.fields?.forEach { field ->
+                            Meta(field.label, field.value)
+                        }
                     }
                 }
             }

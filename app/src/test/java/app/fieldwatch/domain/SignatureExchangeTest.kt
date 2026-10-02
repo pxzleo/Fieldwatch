@@ -975,11 +975,14 @@ class SignatureExchangeTest {
     @Test
     fun digitalAllyOuiAndFirstVuNameHit() {
         val engine = SignatureEngine()
-        val oui = sighting(RadioKind.BLE, "00:23:BD:11:22:33", "")
+        val oui = sighting(RadioKind.BLE, "00:23:BD:11:22:33", "").copy(randomized = false,
+            facts = RadioFacts(addressType = "Public"))
         val named = sighting(RadioKind.WIFI, "02:11:22:33:44:55", "FirstVu-PRO")
         val hits = engine.match(listOf(oui, named), stock)
         assertTrue("Digital Ally OUI", "fleet-digital-ally" in hits.getValue(oui.key))
         assertTrue("FirstVu name", "fleet-digital-ally" in hits.getValue(named.key))
+        assertFalse("Random BLE cannot identify Digital Ally by OUI",
+            "fleet-digital-ally" in engine.match(listOf(oui.copy(randomized = true)), stock).getValue(oui.key))
     }
 
     @Test

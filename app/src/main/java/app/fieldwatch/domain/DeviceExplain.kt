@@ -71,6 +71,9 @@ object DeviceExplain {
      * know it is an unnamed advertiser — caller may fall back to vendor.
      */
     fun listLabel(device: Sighting, signatureNames: List<String> = emptyList(), translate: (String) -> String = { it }): String? {
+        if (device.kind == RadioKind.WIFI) {
+            WifiWpsDecoder.identity(device.facts.vendorIes)?.let { return "${it.manufacturer} ${it.model}" }
+        }
         val guess = guess(device, signatureNames, translate)
         val generic = guess.headline.contains(translate("Bluetooth LE advertiser"), ignoreCase = true) ||
             guess.headline.contains(translate("Wi-Fi access point"), ignoreCase = true)
@@ -187,6 +190,9 @@ object DeviceExplain {
             0x180D -> "heart-rate sensor"
             0x1810 -> "blood-pressure sensor"
             0x181A -> "temperature / humidity style sensor"
+            0x181D -> "weight-scale measurements (brand not specified)"
+            0x181B -> "body-composition measurements (brand not specified)"
+            0xFCF1 -> "Google vendor service (not proof of a Find Hub tag)"
             0x1844, 0x1845, 0x1846 -> "LE cycling power/speed"
             0x1850, 0x184E, 0x184F -> "LE Audio"
             0xFE2C -> "Google Fast Pair (often buds/speakers)"
@@ -293,6 +299,8 @@ object DeviceExplain {
                 0x180D -> out += Hint("health", "a heart-rate monitor", "It offers the Heart Rate service.", 6)
                 0x1810 -> out += Hint("health", "a blood-pressure monitor", "It offers the Blood Pressure service.", 6)
                 0x181A -> out += Hint("sensor", "an environmental sensor", "It offers Environmental Sensing.", 4)
+                0x181D -> out += Hint("health", "a weight scale", "It offers the Weight Scale service; the service does not specify a brand or a person.", 6)
+                0x181B -> out += Hint("health", "a body-composition scale", "It offers the Body Composition service; the service does not specify a brand or a person.", 6)
                 0xFE2C -> out += Hint("audio-personal", "earbuds or a speaker", "Google Fast Pair is present (common on buds and speakers).", 4)
                 0xFD5A -> out += Hint("tag", "a Samsung SmartTag", "SmartTag service UUID.", 7)
                 0xFD44 -> out += Hint("tag", "an Apple Find My accessory", "Find My related UUID.", 6)
@@ -306,6 +314,25 @@ object DeviceExplain {
         return names.mapNotNull { raw ->
             if (isGenericSignatureName(raw)) return@mapNotNull null
             val n = raw.lowercase()
+            val domestic = when (n) {
+                "h3c wi-fi" -> Hint("ap", "an H3C Wi-Fi access point or router", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                "xiaomi wi-fi" -> Hint("ap", "a Xiaomi Wi-Fi access point or hotspot", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                "mibeacon ecosystem" -> Hint("home", "a MiBeacon ecosystem device", "MiBeacon is an ecosystem advertisement; partner manufacturers also use it.", 4)
+                "lywsd03mmc thermometer" -> Hint("sensor", "an LYWSD03MMC temperature / humidity sensor", "The advertised LYWSD03MMC name identifies a sensor family; encrypted frames do not expose readings.", 8)
+                "mi_scale scale" -> Hint("health", "a Xiaomi ecosystem scale", "The MI_SCALE name identifies a scale family; it does not identify a person.", 8)
+                "lumi / aqara switch" -> Hint("home", "a Lumi / Aqara switch", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                "midea appliance" -> Hint("home", "a Midea appliance", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                "luyuan-smart vehicle" -> Hint("vehicle", "a Luyuan electric two-wheeler radio", "Matched a vehicle-family name; this does not identify a rider or show motion.", 7)
+                "aima vehicle" -> Hint("vehicle", "an Aima electric two-wheeler radio", "Matched a vehicle-family name; this does not identify a rider or show motion.", 7)
+                "hellobike bicycle" -> Hint("vehicle", "a Hello bicycle or lock radio", "Matched a vehicle-family name; this does not identify a rider or show motion.", 7)
+                "edifier ble audio" -> Hint("audio-personal", "an Edifier audio radio", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                "keep_cc fitness equipment" -> Hint("health", "Keep fitness equipment", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                "ezviz device" -> Hint("home", "an EZVIZ device", "The address prefix identifies a device family; it does not prove the device is a camera.", 6)
+                "daikin wi-fi appliance" -> Hint("home", "a Daikin appliance or controller", "Matched a device-family fingerprint; the exact model and operating state are not established.", 7)
+                else -> null
+            }
+            if (domestic != null) return@mapNotNull domestic.copy(reason =
+                translate("Matched signature %1\$s.").format(raw) + " " + translate(domestic.reason))
             when {
                 "airtag" in n || n == "find my" || "find hub" in n || "dult" in n ->
                     Hint(
@@ -728,6 +755,13 @@ object DeviceExplain {
         val caps = (device.facts.capabilities ?: "").uppercase()
         val specific = signatureNames.any { !isGenericSignatureName(it) }
         val out = ArrayList<Hint>(2)
+        device.facts.vendorIes.mapNotNull { WifiWpsDecoder.decode(it) }.forEach { wps ->
+            if (!wps.manufacturer.isNullOrBlank() && !wps.model.isNullOrBlank()) {
+                out += Hint("named", "${wps.manufacturer} ${wps.model}",
+                    translate("WPS advertises manufacturer %1\$s and model %2\$s. These are broadcast fields, not a visual identification.")
+                        .format(wps.manufacturer, wps.model), 10)
+            }
+        }
         when {
             name.startsWith("DIRECT-", true) ->
                 out += if (specific) {
