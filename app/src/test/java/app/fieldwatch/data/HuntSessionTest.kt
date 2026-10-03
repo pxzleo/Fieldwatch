@@ -5,6 +5,16 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class HuntSessionTest {
+    @Test fun duplicatePacketDoesNotPublishAnotherSessionOrLocationReading() {
+        val session = HuntSession()
+        session.start(key, 10_000)
+        session.updateLocation(HuntFix(30.0, 120.0, 3.0, 10_100), HuntGpsState.READY)
+        session.observe(observation(10_100))
+        val before = session.state.value
+        assertEquals(1, before.geoPoints.single().readings.size)
+        session.observe(observation(10_100))
+        assertSame(before, session.state.value)
+    }
     private val key = "BLE:00:11:22:33:44:55"
     private fun observation(at: Long, rssi: Int = -70) = Observation(RadioKind.BLE,
         "00:11:22:33:44:55", "Sample", rssi, 0, 2402, false, emptyList(), null, "", "", "", at)

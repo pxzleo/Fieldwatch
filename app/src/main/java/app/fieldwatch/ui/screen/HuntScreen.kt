@@ -203,11 +203,11 @@ fun HuntScreen(vm: FieldwatchViewModel, onBack: () -> Unit, demoMode: Boolean = 
             var lastTick = 0L
             while (true) {
                 val live = vm.hunt.value
-                val freshSignal = live.signal?.takeIf { System.currentTimeMillis() - live.lastSeen <= live.windowMs }
-                val distance = live.session.ranging.freshDistance(System.currentTimeMillis())
+                val now = System.currentTimeMillis()
+                val freshSignal = live.signal?.takeIf { now - live.lastSeen in 0..Hunt.QUIET_MS }
+                val distance = live.session.ranging.freshDistance(now)
                 val interval = distance?.let { (90 + 1310 * (it / 20).coerceIn(0.0, 1.0)).toLong() }
                     ?: Hunt.tickIntervalMs(freshSignal?.roundToInt(), live.cue)
-                val now = System.currentTimeMillis()
                 if (interval != null && now - lastTick >= interval) {
                     vm.huntTick(huntBeep, huntVibrate)
                     lastTick = now

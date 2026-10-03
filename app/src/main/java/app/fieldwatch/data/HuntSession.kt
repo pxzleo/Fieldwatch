@@ -65,6 +65,7 @@ class HuntSession {
         if (current.key == null || current.key != "BLE:${MacUtil.normalize(mac)}" ||
             observedAt < current.startedAt || !Rssi.measured(rssi)) return
         val sample = RssiSample(observedAt, rssi)
+        if (sample in current.samples) return
         // Sorting also handles delayed/batched callbacks; ignore exact duplicate observations.
         val samples = (current.samples + sample).distinct().sortedBy { it.at }
             .filter { it.at >= maxOf(observedAt, current.samples.lastOrNull()?.at ?: 0) - 45_000 }.takeLast(600)

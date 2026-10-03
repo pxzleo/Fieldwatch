@@ -27,6 +27,9 @@ class BleRadio(
     private val onSignal: (String, Int, Long) -> Unit,
 ) {
     private val manager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    // A stable mapping keeps duplicate/delayed callbacks on the same measurement time.
+    private val clockWall = System.currentTimeMillis()
+    private val clockElapsedNanos = android.os.SystemClock.elapsedRealtimeNanos()
     private var scanner: BluetoothLeScanner? = null
     private val running = AtomicBoolean(false)
     private var lastIntensity = ScanIntensity.PERFORMANCE
@@ -227,8 +230,8 @@ class BleRadio(
         try {
             val mac = result.device?.address.orEmpty()
             if (targetMac != null && !mac.equals(targetMac, ignoreCase = true)) return
-            onSignal(mac, result.rssi, System.currentTimeMillis() -
-                ((android.os.SystemClock.elapsedRealtimeNanos() - result.timestampNanos) / 1_000_000L).coerceAtLeast(0L))
+            val observedAt = clockWall + (result.timestampNanos - clockElapsedNanos) / 1_000_000L
+            onSignal(mac, result.rssi, observedAt)
             onObservation(toObservation(result))
         } catch (t: Throwable) {
             Log.e("FieldwatchBle", "scan result failed", t)

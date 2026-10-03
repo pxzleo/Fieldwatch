@@ -4,7 +4,7 @@
     <string name="hunt_hold_phone">保持相同握持方式，停留后重新采样。</string>
     <string name="hunt_restart">重新开始</string>
     <string name="hunt_smoothed_signal">平滑信号 · dBm</string>
-    <string name="hunt_sample_quality">近 2 秒 %1$d 个样本 · 波动 %2$d dB · %3$s 秒前收到</string>
+    <string name="hunt_sample_quality">平滑使用 %1$d 个样本 · 波动 %2$d dB · %3$s 秒前收到</string>
     <string name="hunt_no_recent_packet">近 2 秒未收到目标广播。</string>
     <string name="hunt_no_signal">未收到目标信号</string>
     <string name="hunt_indoor_compare">比较位置</string>

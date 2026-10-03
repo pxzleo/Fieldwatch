@@ -383,7 +383,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
         val device = devices.firstOrNull { it.key == key } ?: heldSelected.value?.takeIf { it.key == key }
         val lastSeen = session.samples.lastOrNull()?.at ?: 0L
         val window = Hunt.recentWindowMs(session.samples)
-        val recent = session.samples.filter { it.at in (now - Hunt.RECENT_MS)..now }
+        val recent = Hunt.recentSignal(session.samples, now)
         HuntUi(
             active = true, device = device,
             title = device?.listTitle(translate = UiText::explanation) ?: UiText.text(R.string.ui_hunt),
@@ -392,7 +392,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             signal = Hunt.median(recent), noise = Hunt.spread(recent), count = recent.size,
             session = session, now = now, windowMs = window,
         )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), HuntUi())
+    }.flowOn(Dispatchers.Default).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), HuntUi())
 
     init {
         viewModelScope.launch {

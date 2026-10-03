@@ -4,7 +4,7 @@
     <string name="hunt_hold_phone">Keep the same grip. Pause and sample again.</string>
     <string name="hunt_restart">Restart</string>
     <string name="hunt_smoothed_signal">SMOOTHED · dBm</string>
-    <string name="hunt_sample_quality">Last 2s: %1$d samples · variation %2$d dB · heard %3$s s ago</string>
+    <string name="hunt_sample_quality">Smoothing: %1$d samples · variation %2$d dB · heard %3$s s ago</string>
     <string name="hunt_no_recent_packet">No target packet received in the last 2 seconds.</string>
     <string name="hunt_no_signal">No target signal received</string>
     <string name="hunt_indoor_compare">Compare positions</string>

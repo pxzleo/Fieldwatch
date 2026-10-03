@@ -5,6 +5,33 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class HuntTest {
+    @Test fun clockTicksCannotChangeSignalOrTrendWithoutNewPackets() {
+        val samples = (0..17).map { RssiSample(10_000L + it * 200, if (it < 6) -75 else -60) }
+        val last = samples.last().at
+        assertEquals(HuntCue.CLOSER, Hunt.cue(samples, last, last, false))
+        assertEquals(Hunt.cue(samples, last, last, false), Hunt.cue(samples, last + 1_500, last, false))
+        assertEquals(Hunt.recentSignal(samples, last), Hunt.recentSignal(samples, last + 1_500))
+        assertEquals(5, Hunt.recentSignal(samples, last).size)
+        assertTrue(Hunt.recentSignal(samples, last + Hunt.QUIET_MS + 1).isEmpty())
+        assertEquals(HuntCue.QUIET, Hunt.cue(samples, last + Hunt.QUIET_MS + 1, last, false))
+    }
+
+    @Test fun denseBroadcastsConfirmApproachOrRetreatWithinThreeSeconds() {
+        fun run(before: Int, after: Int): HuntCue {
+            val samples = (0..15).map { RssiSample(10_000L + it * 200, if (it < 6) before else after) }
+            return Hunt.cue(samples, 13_000, 13_000, false)
+        }
+        assertEquals(HuntCue.CLOSER, run(-75, -60))
+        assertEquals(HuntCue.FURTHER, run(-60, -75))
+    }
+
+    @Test fun smoothingRejectsOneSpikeAndExcludesFutureOrUnavailableReadings() {
+        val samples = listOf(RssiSample(10_000, -70), RssiSample(10_500, -71),
+            RssiSample(11_000, -20), RssiSample(11_100, 127), RssiSample(20_000, -30))
+        assertEquals(-70.0, Hunt.median(Hunt.recentSignal(samples, 11_200))!!, 0.01)
+        assertTrue(Hunt.recentSignal(samples, 14_000).isEmpty())
+    }
+
     private val now = 100_000L
 
     @Test

@@ -16,6 +16,12 @@ enum class HuntCue {
 }
 
 object Hunt {
+    /** Measurements stay tied to received packets; a UI clock tick is not a new sample. */
+    fun recentSignal(samples: List<RssiSample>, now: Long): List<RssiSample> {
+        val last = samples.lastOrNull { it.at <= now && Rssi.measured(it.rssi) } ?: return emptyList()
+        if (now - last.at > QUIET_MS) return emptyList()
+        return samples.filter { it.at in (last.at - RECENT_MS)..last.at && Rssi.measured(it.rssi) }.takeLast(5)
+    }
     fun accepts(targetKey: String?, observation: Observation): Boolean = targetKey == null ||
         (observation.kind == RadioKind.BLE && targetKey == "BLE:${MacUtil.normalize(observation.mac)}")
     const val RECENT_MS = 2_000L
@@ -37,17 +43,19 @@ object Hunt {
         if (missing) return HuntCue.GONE
         if (lastSeen == null) return HuntCue.WAITING
         if (now - lastSeen > QUIET_MS) return HuntCue.QUIET
-        val usable = samples.filter { Rssi.measured(it.rssi) }
+        val usable = samples.filter { it.at <= now && Rssi.measured(it.rssi) }
+        val anchor = usable.lastOrNull()?.at ?: return HuntCue.WAITING
         val window = recentWindowMs(usable)
-        val recent = usable.filter { it.at in (now - window)..now }
-        val earlier = usable.filter { it.at in (now - window - maxOf(6_000L, window + 1_500))..(now - window - 1_500) }
+        val gap = (window / 4).coerceIn(500L, 1_500L)
+        val recent = usable.filter { it.at > anchor - window }
+        val earlier = usable.filter { it.at in (anchor - window - maxOf(6_000L, window + gap))..(anchor - window - gap) }
         if (!enough(recent) || !enough(earlier)) return HuntCue.WAITING
         val noise = maxOf(spread(recent), spread(earlier))
         if (noise > 5.0) return HuntCue.UNSTABLE
         val delta = median(recent)!! - median(earlier)!!
         val threshold = maxOf(4.0, noise * 2)
         // Require both halves of the current window to support the same trend.
-        val halves = recent.partition { it.at < now - window / 2 }
+        val halves = recent.partition { it.at <= anchor - window / 2 }
         val changes = listOf(halves.first, halves.second).mapNotNull { median(it)?.minus(median(earlier)!!) }
         return when {
             changes.size < 2 -> HuntCue.WAITING
@@ -60,7 +68,7 @@ object Hunt {
     /** Sparse advertisers need a longer comparison window, not invented intermediate packets. */
     fun recentWindowMs(samples: List<RssiSample>): Long {
         val gaps = samples.takeLast(12).zipWithNext { a, b -> b.at - a.at }.filter { it > 0 }.sorted()
-        return if (gaps.isEmpty()) RECENT_MS else (gaps[gaps.size / 2] * 2 + 500).coerceIn(RECENT_MS, 6_000L)
+        return if (gaps.isEmpty()) RECENT_MS else (gaps[gaps.size / 2] * 2 + 500).coerceIn(1_200L, 6_000L)
     }
 
     fun median(samples: List<RssiSample>): Double? {
