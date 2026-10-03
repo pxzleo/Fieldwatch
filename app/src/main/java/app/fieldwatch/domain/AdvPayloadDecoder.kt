@@ -16,6 +16,13 @@ object AdvPayloadDecoder {
     )
 
     fun decodeDevice(device: Sighting, translate: (String) -> String = { it }): List<Field> {
+        val current = decodeCurrentDevice(device, translate)
+        if (device.kind != RadioKind.BLE || device.facts.bleHistory.isEmpty()) return current
+        val historicalLabels = device.facts.bleHistory.flatMap { it.labels }.map(translate).toSet()
+        return current.filterNot { it.label in historicalLabels } + BlePayloadHistory.fields(device, translate)
+    }
+
+    internal fun decodeCurrentDevice(device: Sighting, translate: (String) -> String = { it }): List<Field> {
         if (device.kind == RadioKind.WIFI) return (device.facts.vendorIes.flatMap {
             WifiWpsDecoder.decode(it, translate)?.fields.orEmpty().filterNot { field ->
                 device.facts.wpsIdentity != null && WifiWpsDecoder.identityLabels.any { field.label == translate(it) }
@@ -26,7 +33,7 @@ object AdvPayloadDecoder {
         }
         val identity = appleDeviceHint(device, translate)?.let { listOf(Field(translate("Apple device type"), it.label)) }.orEmpty() +
             BleServiceOwnership.fields(device, translate)
-        val decoded = identity + device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
+        val decoded = identity + device.facts.serviceData.flatMap { decodeService(it, device, translate) + BleServiceInspection.fields(it, translate) } +
             mfg.flatMap { decodeManufacturer(it, translate) + MideaAdvertisementDecoder.decodeAddress(it, device.mac, translate) } + decodeMesh(device.rawHex, translate)
         if (decoded.isNotEmpty()) return decoded.distinct()
         val status = if (device.rawHex.isBlank() && mfg.none { it.dataHex.isNotBlank() } && device.facts.serviceData.none { it.dataHex.isNotBlank() })
@@ -53,7 +60,7 @@ object AdvPayloadDecoder {
         return beacons
     }
 
-    private fun decodeMesh(rawHex: String, translate: (String) -> String): List<Field> =
+    internal fun decodeMesh(rawHex: String, translate: (String) -> String): List<Field> =
         meshSecureBeacons(rawHex).flatMap { payload ->
             val iv = payload.sliceArray(10..13).fold(0L) { value, byte -> (value shl 8) or (byte.toLong() and 0xFF) }
             listOf(
@@ -700,12 +707,10 @@ object AdvPayloadDecoder {
             0x20 -> decodeEddystoneTlm(bytes, translate)
             0x30 -> listOf(Field("Eddystone-EID", translate("ephemeral ID (rotating)")))
             0x40, 0x41 -> {
+                if (bytes.size !in listOf(21, 22, 33, 34)) return listOf(Field(translate("Find Hub parse status"),
+                    translate("Malformed Find Hub payload length")))
                 val mode = if (bytes[0].toInt() and 0xFF == 0x41) translate("separated (unwanted-tracking mode)") else translate("nearby / with owner")
-                val eidLen = when {
-                    bytes.size >= 33 -> 32
-                    bytes.size >= 21 -> 20
-                    else -> (bytes.size - 1).coerceAtLeast(0)
-                }
+                val eidLen = if (bytes.size >= 33) 32 else 20
                 val eid = if (eidLen > 0) bytes.copyOfRange(1, 1 + eidLen).toHexUpper() else ""
                 listOf(
                     Field("Find Hub", mode),

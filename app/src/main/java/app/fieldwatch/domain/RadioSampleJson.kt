@@ -43,6 +43,25 @@ object RadioSampleJson {
                 VendorIeRecord(it.optString("oui"), integer(it, "type", "facts.vendor_ies") ?: -1, it.optString("data_hex"))
             },
             serviceData = records("service_data").map { ServiceDataRecord(it.optString("uuid"), it.optString("data_hex")) },
+            bleHistory = records("ble_history").map { snapshot ->
+                val at = snapshot.get("observed_at").toString().toLongOrNull()?.takeIf { it > 0 }
+                    ?: throw org.json.JSONException("facts.ble_history.observed_at must be a positive timestamp")
+                val log = if (!snapshot.has("log_snapshot")) false else snapshot.get("log_snapshot") as? Boolean
+                    ?: throw org.json.JSONException("facts.ble_history.log_snapshot must be a boolean")
+                fun strings(key: String): List<String> = if (!snapshot.has(key)) emptyList() else snapshot.getJSONArray(key).let { array ->
+                    (0 until array.length()).map { array.getString(it) }
+                }
+                fun raws(key: String): List<JSONObject> = if (!snapshot.has(key)) emptyList() else snapshot.getJSONArray(key).let { array ->
+                    (0 until array.length()).map { array.getJSONObject(it) }
+                }
+                val labels = strings("labels")
+                BlePayloadSnapshot(at, log,
+                    raws("mfg_records").map { MfgRecord(it.getInt("company_id"), it.getString("data_hex")) },
+                    raws("service_data").map { ServiceDataRecord(it.getString("uuid"), it.getString("data_hex")) },
+                    snapshot.optString("raw_hex"), labels,
+                    if (snapshot.has("decoded_labels")) strings("decoded_labels") else labels,
+                    snapshot.optString("name"), snapshot.optString("mac"), strings("fleet_ids").toSet())
+            },
             wpsIdentity = if (!obj.has("wps_identity") || obj.isNull("wps_identity")) null else {
                 val snapshot = obj.getJSONObject("wps_identity")
                 val at = snapshot.get("observed_at").toString().toLongOrNull()?.takeIf { it > 0 }
@@ -88,6 +107,17 @@ object RadioSampleJson {
                 JSONObject().put("oui", it.oui).put("type", it.type).put("data_hex", it.dataHex)
             }))
             .apply {
+                if (facts.bleHistory.isNotEmpty()) put("ble_history", JSONArray(facts.bleHistory.map { snapshot ->
+                    JSONObject().put("observed_at", snapshot.observedAt).put("log_snapshot", snapshot.logSnapshot)
+                        .put("raw_hex", snapshot.rawHex).put("labels", JSONArray(snapshot.labels))
+                        .put("decoded_labels", JSONArray(snapshot.decodedLabels)).put("name", snapshot.name)
+                        .put("mac", snapshot.mac).put("fleet_ids", JSONArray(snapshot.fleetIds))
+                        .put("mfg_records", JSONArray(snapshot.mfgRecords.map {
+                            JSONObject().put("company_id", it.companyId).put("data_hex", it.dataHex)
+                        })).put("service_data", JSONArray(snapshot.serviceData.map {
+                            JSONObject().put("uuid", it.uuid).put("data_hex", it.dataHex)
+                        }))
+                }))
                 facts.wpsIdentity?.let {
                     put("wps_identity", JSONObject().put("observed_at", it.observedAt).put("log_snapshot", it.logSnapshot)
                         .put("record", JSONObject().put("oui", it.record.oui).put("type", it.record.type).put("data_hex", it.record.dataHex)))

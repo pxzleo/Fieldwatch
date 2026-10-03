@@ -43,6 +43,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,6 +51,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -85,6 +87,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,6 +107,16 @@ fun DeviceDetailScreen(
         ?: rssiColor(device.rssi))
         .nightIf(LocalNightMode.current)
     val facts = device.facts
+    val peerContext by vm.ui.collectAsStateWithLifecycle()
+    val locale = LocalConfiguration.current.locales[0]
+    val associationKey = Triple(device.key, demoMode, locale)
+    val associatedResult by produceState(associationKey to emptyList<app.fieldwatch.domain.AdvPayloadDecoder.Field>(), device, peerContext.devices, demoMode, locale) {
+        value = associationKey to withContext(Dispatchers.Default) {
+            app.fieldwatch.domain.WpsAssociation.fields(device, peerContext.devices, UiText::explanation, demoMode) +
+                app.fieldwatch.domain.BleServiceInspection.sharedFields(device, peerContext.devices, UiText::explanation)
+        }
+    }
+    val associatedFields = associatedResult.second.takeIf { associatedResult.first == associationKey }.orEmpty()
     val familyHint by vm.familyHint.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -427,6 +441,7 @@ fun DeviceDetailScreen(
             app.fieldwatch.domain.AdvPayloadDecoder.decodeDevice(device, UiText::explanation).forEach { field ->
                 Meta(field.label, field.value)
             }
+            associatedFields.forEach { field -> Meta(field.label, field.value) }
             if (device.fleetIds.isEmpty()) Meta(UiText.text(R.string.ui_matched_signatures),
                 UiText.explanation("No catalog signature matched; parsed identity fields may still be available."))
 

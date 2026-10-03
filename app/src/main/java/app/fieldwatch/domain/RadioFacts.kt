@@ -25,6 +25,21 @@ data class ServiceDataRecord(
 @Serializable
 data class WpsIdentitySnapshot(val record: VendorIeRecord, val observedAt: Long, val logSnapshot: Boolean = false)
 
+/** Raw source of the most recent successfully decoded BLE fields; labels are untranslated keys. */
+@Serializable
+data class BlePayloadSnapshot(
+    val observedAt: Long,
+    val logSnapshot: Boolean = false,
+    val mfgRecords: List<MfgRecord> = emptyList(),
+    val serviceData: List<ServiceDataRecord> = emptyList(),
+    val rawHex: String = "",
+    val labels: List<String> = emptyList(),
+    val decodedLabels: List<String> = labels,
+    val name: String = "",
+    val mac: String = "",
+    val fleetIds: Set<String> = emptySet(),
+)
+
 @Serializable
 data class RadioFacts(
     val txPowerDbm: Int? = null,
@@ -47,6 +62,7 @@ data class RadioFacts(
     val mfgRecords: List<MfgRecord> = emptyList(),
     val vendorIes: List<VendorIeRecord> = emptyList(),
     val serviceData: List<ServiceDataRecord> = emptyList(),
+    val bleHistory: List<BlePayloadSnapshot> = emptyList(),
     val wpsIdentity: WpsIdentitySnapshot? = null,
 ) {
     fun captureWpsIdentity(at: Long, logSnapshot: Boolean = false): RadioFacts {
@@ -80,6 +96,7 @@ data class RadioFacts(
         mfgRecords = mergeMfg(mfgRecords, newer.mfgRecords),
         vendorIes = mergeVendorIes(vendorIes, newer.vendorIes),
         serviceData = mergeServiceData(serviceData, newer.serviceData),
+        bleHistory = BlePayloadHistory.merge(bleHistory, newer.bleHistory),
         wpsIdentity = if (newer.wpsIdentity != null &&
             (wpsIdentity == null || newer.wpsIdentity.observedAt >= wpsIdentity.observedAt)) newer.wpsIdentity else wpsIdentity,
     )

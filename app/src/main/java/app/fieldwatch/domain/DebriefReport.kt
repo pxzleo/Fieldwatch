@@ -209,6 +209,14 @@ object DebriefReport {
                     appendLine(ReportText.format("    extra attention ({0}): {1}", translate, sig, note))
                 }
             }
+            val associations = WpsAssociation.groups(wifi)
+            if (associations.isNotEmpty()) {
+                appendLine(translate("WPS association candidates:"))
+                associations.forEach { group ->
+                    appendLine("  · ${group.first().mac}")
+                    WpsAssociation.fields(group.first(), group, translate, settings.demoMode).forEach { appendLine("    ${it.label}: ${it.value}") }
+                }
+            }
             if (hidden.isNotEmpty()) {
                 appendLine(translate("Hidden SSIDs:"))
                 hidden.forEach { appendLine(ReportText.format("  · {0}  {1}  {2} dBm  ch {3}", translate, it.mac, it.vendor ?: "", it.rssi, it.channel)) }
@@ -247,8 +255,15 @@ object DebriefReport {
                     }
                     val payloadFields = AdvPayloadDecoder.decodeDevice(d, translate)
                     payloadFields.distinct().forEach { appendLine("    ${it.label}: ${it.value}") }
+                    BleServiceInspection.sharedFields(d, ble, translate).forEach { appendLine("    ${it.label}: ${it.value}") }
                 }
             }
+        }
+        val serviceInspection = ble.flatMap { d -> d.facts.serviceData.flatMap { BleServiceInspection.fields(it, translate) } +
+            BleServiceInspection.sharedFields(d, ble, translate) }.distinct()
+        val serviceBody = if (serviceInspection.isEmpty()) "" else buildString {
+            appendLine(translate("Unknown BLE service payloads:"))
+            serviceInspection.forEach { appendLine("  ${it.label}: ${it.value}") }
         }
         val sigBody = buildString {
             if (named.isEmpty()) appendLine(translate("None in this window."))
@@ -393,7 +408,7 @@ object DebriefReport {
             }
             add(DebriefSection(next(), translate("Environment"), environment(wifi, ble, randomized, persistent, pathSpan, pathLen, translate = translate)))
             add(DebriefSection(next(), translate("Networks (Wi-Fi access points)"), networks.trimEnd()))
-            add(DebriefSection(next(), translate("Bluetooth LE"), bleBody.trimEnd()))
+            add(DebriefSection(next(), translate("Bluetooth LE"), (bleBody + serviceBody).trimEnd()))
             add(DebriefSection(next(), translate("Signature hits"), sigBody.trimEnd()))
             add(DebriefSection(next(), translate("Persistence"), persistBody.trimEnd()))
             if (attentionHits.isNotEmpty()) {

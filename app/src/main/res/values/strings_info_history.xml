@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ble_last_valid_field">Last valid BLE field: %1$s</string>
+    <string name="ble_last_valid_time">%1$s · observed at: %2$s</string>
+    <string name="ble_last_valid_log_time">%1$s · log snapshot: %2$s (not a new reception)</string>
+</resources>

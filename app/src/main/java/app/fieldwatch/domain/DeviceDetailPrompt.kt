@@ -16,6 +16,7 @@ object DeviceDetailPrompt {
         fleets: List<Fleet> = emptyList(),
         translate: (String) -> String = { it },
         displaySignatureNames: List<String> = signatureNames,
+        peerDevices: Collection<Sighting> = emptyList(),
     ): String {
         val title = device.listTitle(signatureNames, translate)
         val kind = translate(if (device.kind == RadioKind.WIFI) "Wi-Fi access point" else "Bluetooth LE advertiser")
@@ -58,7 +59,8 @@ object DeviceDetailPrompt {
             }
             appendLine(translate("## Observation dump (verbatim from the detail page)"))
             appendLine()
-            append(DeviceDetailText.build(device, signatureNames, now, attentionNotes, signatureNotes, fleets, translate, displaySignatureNames).trimEnd())
+            append(DeviceDetailText.build(device, signatureNames, now, attentionNotes, signatureNotes, fleets, translate,
+                displaySignatureNames, peerDevices, settings.demoMode).trimEnd())
             appendLine()
             appendLine()
             appendLine(translate("## Your analysis (required sections)"))

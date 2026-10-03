@@ -131,6 +131,11 @@ object LogReplay {
         }
         val ts = obj.optLong("ts", 0L)
         val rand = obj.optBoolean("rand", MacUtil.isRandomized(mac))
+        val savedFacts = RadioSampleJson.readFacts(obj).captureWpsIdentity(ts, logSnapshot = true)
+        val frame = Sighting("${kind.name}:$mac", kind, mac, str("name"), obj.optInt("rssi", -100), -100, -100,
+            0, 0, null, rand, false, uuids, mfg, str("manufacturer_data_hex").ifBlank { str("raw") },
+            str("raw_hex"), "", ts, ts, 1, emptySet(), emptyList(), emptyList(), facts = savedFacts)
+        val facts = BlePayloadHistory.capture(frame, logSnapshot = true)
         merge(
             acc,
             LogRadio(
@@ -153,7 +158,7 @@ object LogReplay {
                 frequencyMhz = obj.optInt("freq", 0),
                 latitude = obj.optDouble("lat").takeIf { obj.has("lat") && !obj.isNull("lat") },
                 longitude = obj.optDouble("lon").takeIf { obj.has("lon") && !obj.isNull("lon") },
-                facts = RadioSampleJson.readFacts(obj).captureWpsIdentity(ts, logSnapshot = true),
+                facts = facts,
             ),
         )
     }

@@ -14,6 +14,7 @@ object WifiWpsDecoder {
         val fields: List<AdvPayloadDecoder.Field>,
         val status: Status,
         val primaryDeviceType: String? = null,
+        val uuidE: String? = null,
     ) {
         val chipsetOnly: Boolean get() = manufacturer?.let { it.contains("Realtek", true) || it.contains("Ralink", true) } == true
         fun identityLabel(): String = listOfNotNull(manufacturer, model?.takeUnless { it.equals(manufacturer, true) }).joinToString(" ")
@@ -54,6 +55,7 @@ object WifiWpsDecoder {
         var manufacturer: String? = null
         var model: String? = null
         var primaryDeviceType: String? = null
+        var uuidE: String? = null
         val hex = record.dataHex
         if (hex.length % 2 != 0 || hex.any { it.digitToIntOrNull(16) == null }) {
             return Decoded(null, null, listOf(AdvPayloadDecoder.Field(translate("WPS parse status"),
@@ -94,6 +96,9 @@ object WifiWpsDecoder {
                 fields += AdvPayloadDecoder.Field(translate(label), text)
                 if (type == 0x1021) manufacturer = text
                 if (type == 0x1023) model = text
+            } else if (type == 0x1047) {
+                if (length != 16 || (uuidE != null && uuidE != value.toHexUpper())) status = Status.MALFORMED
+                else uuidE = value.toHexUpper()
             } else if (type in setOf(0x104A, 0x1057, 0x1041, 0x103C, 0x1008)) {
                 val expected = if (type == 0x1008) 2 else 1
                 if (length != expected) {
@@ -156,7 +161,8 @@ object WifiWpsDecoder {
             }
             fields += AdvPayloadDecoder.Field(translate("WPS parse status"), translate(message))
         }
-        return Decoded(manufacturer, model, fields, status, primaryDeviceType)
+        return Decoded(manufacturer, model, fields, status, primaryDeviceType,
+            uuidE.takeIf { status == Status.COMPLETE && it != "0".repeat(32) })
     }
 
     private fun u16(bytes: ByteArray, offset: Int): Int =

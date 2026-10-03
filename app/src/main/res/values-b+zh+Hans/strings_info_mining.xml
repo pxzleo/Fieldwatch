@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="find_hub_parse_status">Find Hub 解析状态</string>
+    <string name="find_hub_malformed_length">Find Hub 载荷长度错误</string>
+    <string name="wps_possible_shared">疑似同源 Wi-Fi 设备</string>
+    <string name="wps_association_evidence">WPS 关联依据</string>
+    <string name="wps_association_limits">WPS 关联限制</string>
+    <string name="wps_association_candidates">WPS 同源候选：</string>
+    <string name="wps_uuid_exact">非零 WPS UUID-E 完全相同</string>
+    <string name="wps_identity_agrees">厂家与型号一致</string>
+    <string name="wps_serial_agrees">广播序列号一致</string>
+    <string name="wps_periods_overlap">观测时间范围重叠</string>
+    <string name="wps_identity_conflicts">UUID 相同但身份字段冲突，关联未确认；记录保持独立。</string>
+    <string name="wps_candidate_limits">可能是同一设备的多个接口。UUID 可被复制，记录保持独立。</string>
+    <string name="info_private_hidden">隐私模式已隐藏</string>
+    <string name="service_payload_structure">服务 %1$s 的载荷结构</string>
+    <string name="service_payload_bytes">%1$d 字节；原始前缀 %2$s</string>
+    <string name="service_payload_interpretation">服务 %1$s 的载荷含义</string>
+    <string name="service_payload_unknown">设备类型、型号及私有状态字段未确认。</string>
+    <string name="fdee_layout_compatibility">FDEE 公开布局兼容性</string>
+    <string name="fdee_layout_mismatch">此帧头不适用公开的软总线 v4 布局。</string>
+    <string name="fdee_layout_unvalidated">帧头以 0x04 开始，其余软总线布局尚未验证。</string>
+    <string name="service_shared_payload">服务 %1$s 的相同载荷</string>
+    <string name="service_shared_count">%1$d 条地址记录具有相同的已捕获内容，物理设备数量未确认。</string>
+    <string name="service_unknown_summary">未知蓝牙服务载荷：</string>
+</resources>

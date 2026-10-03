@@ -1881,6 +1881,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                     val raw = DeviceDetailPrompt.build(
                         device, names, settings, places, attentionNotes = attention,
                         signatureNotes = notes,
+                        peerDevices = ui.value.devices,
                         fleets = reportFleets(),
                         translate = UiText::report,
                         displaySignatureNames = device.fleetIds.map(::fleetUiName),
@@ -1925,6 +1926,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
                 val text = withContext(Dispatchers.Default) {
                     val raw = DeviceDetailText.build(
                         device, names, attentionNotes = attention, signatureNotes = notes,
+                        peerDevices = ui.value.devices, demoMode = settings.demoMode,
                         fleets = reportFleets(),
                         translate = UiText::report,
                         displaySignatureNames = device.fleetIds.map(::fleetUiName),

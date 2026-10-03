@@ -97,6 +97,14 @@ class DeviceStore(
             live[key] = next
             return next
         }
+        val frameFacts = if (observation.kind == app.fieldwatch.domain.RadioKind.BLE && observation.fresh) {
+            val frame = Sighting(key, observation.kind, mac, observation.name.ifBlank { existing?.name.orEmpty() },
+                observation.rssi, observation.rssi, observation.rssi, observation.channel, observation.frequencyMhz,
+                null, false, observation.hiddenSsid, observation.serviceUuids, observation.manufacturerId,
+                observation.manufacturerDataHex, observation.rawHex, observation.extras, now, now, 1,
+                existing?.fleetIds.orEmpty(), emptyList(), emptyList(), facts = observation.facts)
+            app.fieldwatch.domain.BlePayloadHistory.capture(frame, existing?.facts?.bleHistory.orEmpty())
+        } else observation.facts
         val measured = Rssi.measured(observation.rssi)
         val sample = if (measured) RssiSample(now, observation.rssi) else null
         val merged = if (existing == null) {
@@ -128,7 +136,7 @@ class DeviceStore(
                 latitude = observation.latitude,
                 longitude = observation.longitude,
                 vendorIeOuis = observation.vendorIeOuis,
-                facts = if (observation.fresh) observation.facts.captureWpsIdentity(observation.at) else observation.facts,
+                facts = if (observation.fresh) frameFacts.captureWpsIdentity(observation.at) else frameFacts,
                 gpsTrail = gpsStart(observation),
                 fastPairPairing = FastPair.pairingAdvertised(observation.facts),
             )
@@ -185,7 +193,7 @@ class DeviceStore(
                 gpsTrail = gpsAppend(existing.gpsTrail, observation),
                 gone = false,
                 vendorIeOuis = mergeIes(existing.vendorIeOuis, observation.vendorIeOuis),
-                facts = existing.facts.merge(observation.facts.captureWpsIdentity(observation.at)),
+                facts = existing.facts.merge(frameFacts.captureWpsIdentity(observation.at)),
                 fastPairPairing = existing.fastPairPairing || FastPair.pairingAdvertised(observation.facts),
             )
         }

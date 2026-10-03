@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="find_hub_parse_status">Find Hub parse status</string>
+    <string name="find_hub_malformed_length">Malformed Find Hub payload length</string>
+    <string name="wps_possible_shared">Possible shared Wi-Fi device</string>
+    <string name="wps_association_evidence">WPS association evidence</string>
+    <string name="wps_association_limits">WPS association limits</string>
+    <string name="wps_association_candidates">WPS association candidates:</string>
+    <string name="wps_uuid_exact">Exact nonzero WPS UUID-E match</string>
+    <string name="wps_identity_agrees">Manufacturer and model agree</string>
+    <string name="wps_serial_agrees">Advertised serial numbers agree</string>
+    <string name="wps_periods_overlap">Observation periods overlap</string>
+    <string name="wps_identity_conflicts">Shared UUID with conflicting identity; relationship unconfirmed. Records remain separate.</string>
+    <string name="wps_candidate_limits">May be multiple interfaces of one device. UUIDs can be copied; records remain separate.</string>
+    <string name="info_private_hidden">Hidden in privacy mode</string>
+    <string name="service_payload_structure">Service %1$s payload structure</string>
+    <string name="service_payload_bytes">%1$d bytes; raw prefix %2$s</string>
+    <string name="service_payload_interpretation">Service %1$s payload interpretation</string>
+    <string name="service_payload_unknown">Device type, model and private state fields are unconfirmed.</string>
+    <string name="fdee_layout_compatibility">FDEE public-layout compatibility</string>
+    <string name="fdee_layout_mismatch">Public SoftBus v4 layout does not apply to this header.</string>
+    <string name="fdee_layout_unvalidated">Header starts with 0x04; the remaining SoftBus layout has not been validated.</string>
+    <string name="service_shared_payload">Service %1$s shared payload</string>
+    <string name="service_shared_count">%1$d address records share identical captured content; physical-device count is unconfirmed.</string>
+    <string name="service_unknown_summary">Unknown BLE service payloads:</string>
+</resources>

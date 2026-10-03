@@ -16,7 +16,7 @@ class BleServiceOwnershipTest {
     @Test fun aliasesAndServiceDataIdentifyAssignmentsOnceWithoutProductGuess() {
         val sample = device(listOf("fdee", "0000FDEE-0000-1000-8000-00805F9B34FB", "FCC0"),
             listOf(ServiceDataRecord("FDEE", "0505"), ServiceDataRecord("FD2D", "")))
-        val fields = AdvPayloadDecoder.decodeDevice(sample)
+        val fields = AdvPayloadDecoder.decodeDevice(sample).filter { it.label.startsWith("BLE service assignment") }
         assertEquals(3, fields.size)
         assertEquals(1, fields.count { it.value.startsWith("Huawei") })
         assertEquals(2, fields.count { it.value.startsWith("Xiaomi") })

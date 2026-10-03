@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ble_last_valid_field">BLE 最后有效字段：%1$s</string>
+    <string name="ble_last_valid_time">%1$s · 接收时间：%2$s</string>
+    <string name="ble_last_valid_log_time">%1$s · 日志快照时间：%2$s（非重新接收）</string>
+</resources>

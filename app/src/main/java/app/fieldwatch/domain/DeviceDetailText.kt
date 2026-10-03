@@ -18,6 +18,8 @@ object DeviceDetailText {
         fleets: List<Fleet> = emptyList(),
         translate: (String) -> String = { it },
         displaySignatureNames: List<String> = signatureNames,
+        peerDevices: Collection<Sighting> = emptyList(),
+        demoMode: Boolean = false,
     ): String {
         val fmt = SimpleDateFormat("HH:mm:ss", Locale.US)
         val iso = SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z", Locale.US)
@@ -197,6 +199,8 @@ object DeviceDetailText {
             )
         }
         AdvPayloadDecoder.decodeDevice(device, translate).forEach { field -> line(field.label, field.value) }
+        WpsAssociation.fields(device, peerDevices, translate, demoMode).forEach { field -> line(field.label, field.value) }
+        BleServiceInspection.sharedFields(device, peerDevices, translate).forEach { field -> line(field.label, field.value) }
         if (facts.serviceData.isNotEmpty()) {
             facts.serviceData.forEach { sd ->
                 val named = RadioDb.serviceUuid(sd.uuid)?.let { " (${translate(it)})" } ?: ""
@@ -269,7 +273,15 @@ object DeviceDetailText {
             line(translate("Raw advertisement"), device.rawHex.hexSpaced())
         }
         presenceLine(device, now, fmt, translate)?.let { line(translate("Presence (15 min)"), it) }
-        return out.toString().trimEnd() + "\n"
+        var result = out.toString().trimEnd() + "\n"
+        if (demoMode) {
+            val ids = (peerDevices + device).mapNotNull(WpsAssociation::uuid).distinct()
+            ids.forEach { id ->
+                result = result.replace(id.hexSpaced(), translate("Hidden in privacy mode"), ignoreCase = true)
+                    .replace(id, translate("Hidden in privacy mode"), ignoreCase = true)
+            }
+        }
+        return result
     }
 
     private fun vendorLine(device: Sighting, translate: (String) -> String): String? {
