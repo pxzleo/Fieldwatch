@@ -1046,6 +1046,22 @@ class ConfigStore(context: Context) {
             fleets = appendCatalogV94(fleets)
             version = CATALOG_V94
         }
+        if (version < CATALOG_V95) {
+            fleets = appendCatalogV95(fleets)
+            version = CATALOG_V95
+        }
+        if (version < CATALOG_V96) {
+            fleets = appendCatalogV96(fleets)
+            version = CATALOG_V96
+        }
+        if (version < CATALOG_V97) {
+            fleets = appendCatalogV97(fleets)
+            version = CATALOG_V97
+        }
+        if (version < CATALOG_V98) {
+            fleets = appendCatalogV98(fleets)
+            version = CATALOG_V98
+        }
         // An older APK can import the V90 pack while retaining the generated custom candidate.
         fleets = repairMercuryCandidates(fleets)
         if (!settings.darkTheme) settings = settings.copy(darkTheme = true)
@@ -1088,7 +1104,7 @@ class ConfigStore(context: Context) {
 
     companion object {
         /** Stock catalog generation. Settings footer and the GitHub pack use this. */
-        const val CATALOG_VERSION = 94
+        const val CATALOG_VERSION = 98
 
         /** Historical stock patches remain in place; V89 families preserve every existing row. */
         internal fun patchBuiltInRules(fleets: List<Fleet>, catalog: Map<String, Fleet>): List<Fleet> {
@@ -1120,6 +1136,73 @@ class ConfigStore(context: Context) {
             }
             val have = updated.map { it.id }.toSet()
             return updated + DefaultCatalog.discoveryFamiliesV92().filter { it.id !in have }
+        }
+
+        /** Add the CN-observed vehicle / e-bike families; extend the domestic AIMA row. */
+        internal fun appendCatalogV95(fleets: List<Fleet>): List<Fleet> {
+            val stock = DefaultCatalog.fleets().associateBy { it.id }
+            val updated = fleets.map { fleet ->
+                if (fleet.id != "fleet-aima-vehicle") return@map fleet
+                val target = stock[fleet.id] ?: return@map fleet
+                if (!fleet.builtIn || !fleet.matchAny) return@map fleet
+                val have = fleet.rules.mapTo(HashSet()) { ruleKey(it) }
+                val missing = target.rules.filter { ruleKey(it) !in have }
+                if (missing.isEmpty()) fleet else fleet.copy(rules = fleet.rules + missing)
+            }
+            val have = updated.map { it.id }.toSet()
+            return updated + DefaultCatalog.discoveryFamiliesV95().filter { it.id !in have }
+        }
+
+        /** Add the live-log-verified families; sync stock rules onto rows the startup patcher skips
+         *  (domestic rows and the generated-MERCURY row), and onto the Haier / Mi-lock rows so every
+         *  install converges to the same stock ruleset. */
+        internal fun appendCatalogV96(fleets: List<Fleet>): List<Fleet> {
+            val stock = DefaultCatalog.fleets().associateBy { it.id }
+            val syncIds = setOf(
+                "fleet-mercury-wifi",
+                "fleet-ezviz-device",
+                "fleet-haier-radio",
+                "fleet-mi-lock",
+            )
+            val updated = fleets.map { fleet ->
+                if (fleet.id !in syncIds) return@map fleet
+                val target = stock[fleet.id] ?: return@map fleet
+                if (!fleet.builtIn || !fleet.matchAny) return@map fleet
+                val have = fleet.rules.mapTo(HashSet()) { ruleKey(it) }
+                val missing = target.rules.filter { ruleKey(it) !in have }
+                if (missing.isEmpty()) fleet else fleet.copy(rules = fleet.rules + missing)
+            }
+            val have = updated.map { it.id }.toSet()
+            return updated + DefaultCatalog.discoveryFamiliesV96().filter { it.id !in have }
+        }
+
+        /** Add the second live-log verification pass; repair the V96 EZVIZ company id
+         *  (the on-air marker block is little-endian 2B18, not 182B) onto rows the
+         *  startup patcher skips. */
+        internal fun appendCatalogV97(fleets: List<Fleet>): List<Fleet> {
+            val stock = DefaultCatalog.fleets().associateBy { it.id }
+            val updated = fleets.map { fleet ->
+                if (fleet.id != "fleet-ezviz-device") return@map fleet
+                val target = stock[fleet.id] ?: return@map fleet
+                if (!fleet.builtIn || !fleet.matchAny) return@map fleet
+                val have = fleet.rules.mapTo(HashSet()) { ruleKey(it) }
+                // Drop the superseded big-endian company id before adding the correct rules.
+                val rules = fleet.rules.filterNot { it.kind == RuleKind.MANUFACTURER_ID && it.companyId == 0x182B }
+                val have2 = rules.mapTo(HashSet()) { ruleKey(it) }
+                val missing = target.rules.filter { ruleKey(it) !in have2 }
+                if (missing.isEmpty() && rules == fleet.rules) fleet else fleet.copy(rules = rules + missing)
+            }
+            val have = updated.map { it.id }.toSet()
+            return updated + DefaultCatalog.discoveryFamiliesV97().filter { it.id !in have }
+        }
+
+        /** Old in-app V94 stock packs predate the built-in MERCURY Wi-Fi row; re-add it when
+         *  an upgraded phone is missing the row so the Shenzhen Mercury prefixes classify again. */
+        internal fun appendCatalogV98(fleets: List<Fleet>): List<Fleet> {
+            if (fleets.any { it.id == "fleet-mercury-wifi" }) return fleets
+            val stock = DefaultCatalog.fleets().associateBy { it.id }
+            val row = stock["fleet-mercury-wifi"] ?: return fleets
+            return fleets + row
         }
 
         internal fun appendCatalogV94(fleets: List<Fleet>): List<Fleet> {
@@ -1281,7 +1364,11 @@ class ConfigStore(context: Context) {
         private const val CATALOG_V91 = 91
         private const val CATALOG_V92 = 92
         private const val CATALOG_V93 = 93
-        private const val CATALOG_V94 = CATALOG_VERSION
+        private const val CATALOG_V94 = 94
+        private const val CATALOG_V95 = 95
+        private const val CATALOG_V96 = 96
+        private const val CATALOG_V97 = 97
+        private const val CATALOG_V98 = CATALOG_VERSION
         private val GENERIC_GATT_UUIDS = setOf("180A", "180D", "180F")
         private val POLICY_FLEET_IDS = setOf(
             "fleet-flock-cameras",

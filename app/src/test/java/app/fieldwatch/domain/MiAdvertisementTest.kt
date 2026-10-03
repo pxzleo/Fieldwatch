@@ -121,6 +121,32 @@ class MiAdvertisementTest {
         }
     }
 
+    @Test fun classicCompany4CV3DoorLockDecodesAndMatchesMiLockWhileAppleIbeaconDoesNot() {
+        // Captured 'Mi Automatic Smart Door Lock' frame: v3 header, product 1B01, company 004C.
+        val lockHex = "0631011BD242E6BC4A0600010001024C0DD969"
+        val decoded = MiBeaconDecoder.decode(lockHex)
+        assertTrue(decoded.validHeader)
+        assertEquals(0x1B01, decoded.productId)
+        assertEquals("3", decoded.fields.first { it.label == "MiBeacon version" }.value)
+        assertTrue(decoded.fields.any { it.label == "MiBeacon product ID" && it.value == "0x1B01 · Mi Automatic Smart Door Lock" })
+        val lock = radio("Mi Automatic Smart Door Lock").copy(manufacturerId = 0x004C, manufacturerDataHex = lockHex)
+        assertTrue(MiBeaconDecoder.identities(lock).any { it.productId == 0x1B01 && it.validHeader })
+        val catalog = DefaultCatalog.fleets().associateBy { it.id }
+        val miLock = catalog.getValue("fleet-mi-lock")
+        assertTrue(miLock.rules.any { it.kind == RuleKind.MIBEACON_PRODUCT_ID && it.text == "1B01" })
+        assertTrue(miLock.rules.any { it.kind == RuleKind.NAME_CONTAINS && it.text == "Mi Automatic Smart Door Lock" })
+        assertTrue("fleet-mi-lock" in SignatureEngine().match(listOf(lock), listOf(miLock)).values.single())
+        // Company 004C Apple iBeacon frame (version 1) must not be read as a MiBeacon product.
+        val apple = radio("").copy(manufacturerId = 0x004C, manufacturerDataHex = "121000AABBCCDDEEFF00112233445566778899" + "0001" + "0002")
+        assertTrue(MiBeaconDecoder.identities(apple).isEmpty())
+        val appleDecoded = MiBeaconDecoder.decode(apple.manufacturerDataHex)
+        assertFalse(appleDecoded.validHeader)
+        val appleMfg = apple.facts.mfgRecords.ifEmpty { listOf(MfgRecord(0x004C, apple.manufacturerDataHex)) }
+        val appleFields = AdvPayloadDecoder.decodeManufacturer(appleMfg.single())
+        assertTrue(appleFields.any { it.label.contains("Apple", true) })
+        assertFalse(appleFields.any { it.label == "MiBeacon version" })
+    }
+
     private fun scale(status: Int, raw: Int): String = ByteArray(10).apply {
         this[0] = status.toByte(); this[1] = raw.toByte(); this[2] = (raw ushr 8).toByte()
     }.toHexUpper()

@@ -81,7 +81,13 @@ object AdvPayloadDecoder {
         if (record.companyId == 0x038F) return MiBeaconDecoder.decode(record.dataHex, translate).fields
         val bytes = hexToBytes(record.dataHex) ?: return emptyList()
         return when (record.companyId) {
-            0x004C -> decodeApple(bytes, translate)
+            // Company 004C is shared with Apple iBeacon / Continuity; classic MiBeacon
+            // v3 / v4 (e.g. the Mi Automatic Smart Door Lock) sits on it too.
+            0x004C -> if (MiBeaconDecoder.classicMiBeaconVersion(record.dataHex) != null) {
+                MiBeaconDecoder.decode(record.dataHex, translate).fields
+            } else {
+                decodeApple(bytes, translate)
+            }
             0x0006 -> decodeMicrosoft(bytes, translate)
             0x0157 -> decodeAltBeacon(bytes, translate)
             0x00E0 -> listOf(Field(translate("Google manufacturer data"), translate("%1\$s bytes").format(bytes.size)))

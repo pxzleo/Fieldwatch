@@ -12,6 +12,7 @@ object MiBeaconDecoder {
         0x16E4 to "LYWSD02MMC", 0x30D9 to "S400 · MJTZC01YM", 0x3BD5 to "S400 · MJTZC01YM",
         0x48CF to "S400 · MJTZC01YM", 0x0863 to "SJWS01LM", 0x098C to "XMZNMST02YD",
         0x0784 to "XMZNMS04LM", 0x0E39 to "XMZNMS08LM", 0x0576 to "CGD1",
+        0x1B01 to "Mi Automatic Smart Door Lock",
     )
 
     data class Product(val model: String, val type: String, val fleetId: String)
@@ -25,7 +26,7 @@ object MiBeaconDecoder {
             0x0576 -> "temperature / humidity sensor" to "fleet-cgd1"
             0x30D9, 0x3BD5, 0x48CF -> "body composition scale" to "fleet-mijia-s400"
             0x0863 -> "water leak sensor" to "fleet-mi-water-leak"
-            0x098C, 0x0784, 0x0E39 -> "door lock" to "fleet-mi-lock"
+            0x098C, 0x0784, 0x0E39, 0x1B01 -> "door lock" to "fleet-mi-lock"
             else -> return null
         }
         return Product(model, typeAndFleet.first, typeAndFleet.second)
@@ -39,9 +40,22 @@ object MiBeaconDecoder {
         val manufacturer = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
         }
+        // Classic MiBeacon (v3) rides on company 004C, which is shared with Apple
+        // iBeacon / Continuity. Gate on the MiBeacon version nibble (3) so Apple
+        // payloads (version 0 / 1 / 2) and v4 frames are never mistaken for a MiBeacon product.
+        val classicApple = manufacturer.filter { it.companyId == 0x004C && classicMiBeaconVersion(it.dataHex) != null }
+            .map { it.dataHex }
         val records = device.facts.serviceData.filter { uuidAliases(it.uuid).any { alias -> alias in uuidAliases("FE95") } }.map { it.dataHex } +
-            manufacturer.filter { it.companyId == 0x038F }.map { it.dataHex }
+            manufacturer.filter { it.companyId == 0x038F }.map { it.dataHex } +
+            classicApple
         return records.distinct().map { decode(it) }.filter { it.validHeader }
+    }
+
+    /** MiBeacon v3 version nibble for a company-004C payload, or null when not a classic MiBeacon frame. */
+    fun classicMiBeaconVersion(hex: String): Int? {
+        val bytes = strictHexBytes(hex) ?: return null
+        if (bytes.size < 5) return null
+        return (u16(bytes, 0) ushr 12).takeIf { it == 3 }
     }
 
     data class Decoded(val productId: Int?, val validHeader: Boolean, val fields: List<AdvPayloadDecoder.Field>)
@@ -63,11 +77,18 @@ object MiBeaconDecoder {
         field("MiBeacon frame counter", u8(bytes, 4).toString())
         val encrypted = control and 0x08 != 0
         field("MiBeacon encryption", translate(if (encrypted) "Encrypted — readings unavailable" else "Plaintext"))
+        if (version != 3 && version != 5) return error("Unsupported MiBeacon version", pid)
         var offset = 5
         if (control and 0x10 != 0) {
             if (bytes.size - offset < 6) return error("Truncated MiBeacon header", pid)
             field("MiBeacon advertised MAC", bytes.copyOfRange(offset, offset + 6).reversedArray().toHexUpper().chunked(2).joinToString(":"))
             offset += 6
+        }
+        if (version == 3) {
+            // Classic v3 (company 004C) frames: header plus product id are the
+            // identity. Their object / capability layouts differ from v5 and are not parsed.
+            // v4 remains unsupported.
+            return Decoded(pid, true, fields)
         }
         if (control and 0x20 != 0) {
             if (bytes.size - offset < 1) return error("Truncated MiBeacon header", pid)
@@ -83,12 +104,9 @@ object MiBeaconDecoder {
                 field("MiBeacon I/O capability", "0x%04X".format(u16(bytes, offset)))
                 offset += 2
             }
-            if (version == 5) {
-                field("MiBeacon connectable capability (advertised)", translate(if (capability and 1 != 0) "yes" else "no"))
-                field("MiBeacon encryption capability (advertised)", translate(if (capability and 4 != 0) "yes" else "no"))
-            }
+            field("MiBeacon connectable capability (advertised)", translate(if (capability and 1 != 0) "yes" else "no"))
+            field("MiBeacon encryption capability (advertised)", translate(if (capability and 4 != 0) "yes" else "no"))
         }
-        if (version != 5) return error("Unsupported MiBeacon version", pid)
         field("MiBeacon registered flag (advertised)", translate(if (control and 0x100 != 0) "yes" else "no"))
         field("MiBeacon binding confirmation flag (advertised)", translate(if (control and 0x200 != 0) "yes" else "no"))
         val objectEnd = bytes.size - if (control and 0x80 != 0) 2 else 0

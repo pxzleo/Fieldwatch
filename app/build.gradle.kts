@@ -28,8 +28,8 @@ android {
         applicationId = "app.fieldwatch"
         minSdk = 29
         targetSdk = 35
-        versionCode = 38
-        versionName = "1.1.28"
+        versionCode = 41
+        versionName = "1.1.31"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -69,7 +69,7 @@ android {
         }
         debug {
             applicationIdSuffix = ""
-            isDebuggable = false
+            isDebuggable = true
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(

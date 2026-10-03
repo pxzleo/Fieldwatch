@@ -4,6 +4,24 @@ Newest first. This is Fieldwatch (`app.fieldwatch`). Each build below is what Se
 
 Fieldwatch continues the Spectre 1.2.14 field build under a new name, application id, and the MIT License. It does not replace Spectre on a phone.
 
+## 1.1.31 — 3 October 2026
+
+- Catalog 98 repairs one config gap found in the field: phones that updated to V94 through the in-app stock pack before the built-in MERCURY Wi-Fi row existed never received it, so Shenzhen Mercury prefixes (4C:77:66 / BC:54:FC, e.g. the 133411864452 phone-number SSID) stayed unlabeled. The upgrade re-adds the missing built-in row when, and only when, it is absent; existing rows, rules and custom fleets are untouched. Installed catalogs migrate on next launch; the stock pack for GitHub updates ships at version 98.
+
+## 1.1.30 — 3 October 2026
+
+- Catalog 97 second live-log verification pass: the EZVIZ row now carries the correct on-air company ids — the ASCII-EZVIZ marker block is little-endian 2B18 (V96 shipped the big-endian misreading 182B, which is repaired on upgrade) and 2B19 is the primary id both observed EZVIZ radios advertise (BD2260002 'bl702l'). Two new families from the evening scan: OPPO device beacons (SIG company 079A, service 686B, identical ten-byte payloads on two phones) and Alipay-ecosystem radios named BLE_DK_<serial> with a 128-bit service UUID carrying ASCII 'alipay' (tap / digital-key style; product line unconfirmed). Installed catalogs migrate on next launch; the stock pack for GitHub updates ships at version 97.
+
+## 1.1.29 — 3 October 2026
+
+- Catalog 96 closes the live-log unknowns verified on 3 October: NuoXc Wi-Fi (IEEE reassigned the former MERCURY pair 68:89:75 / 6A:89:75 to NuoXc, Shenzhen; older feeds labeled those hidden-SSID APs MERCURY), eg_ac_* wall-hung AC radios (Huizhou Gaoshengda module), Ziroom (自如) apartment in-unit APs (ziroom* / ZR_* SSIDs, Deqing Dusun prefixes), Huawei Super Device beacons on SIG-assigned service FDEE, and Xiaomi / Redmi phone beacons on SIG-assigned service FCC0 (device code plus plaintext model name). Also: CMCC* China Mobile CPEs, SmartTVAP cast hotspots, cellular IoT radios named by SIM ICCID (BT_ + 15 digits), jida_bike and XD / xcdc e-bike radios.
+- Existing rows extended: MERCURY Wi-Fi gains the second Shenzhen Mercury prefix BC:54:FC (renamed SSIDs such as a phone number now match); EZVIZ gains SIG company 182B whose BLE advertisements carry an ASCII EZVIZ marker (BD2260002 observed); Haier gains U-AC* air-conditioner names, U-GW* and prefix 04:39:CB; the Mi ecosystem door-lock row gains the advertised "Mi Automatic Smart Door Lock" name and MiBeacon product 1B01.
+- MiBeacon decoding now accepts classic v3 / v4 headers on company 004C (gated on the version nibble so Apple iBeacon / Continuity frames are untouched), which is how the Mijia door lock identifies itself. Installed catalogs migrate on next launch; the stock pack for GitHub updates ships at version 96.
+
+## 1.1.28 — 3 October 2026
+
+- Catalog 95 adds CN field-observed families: NIO / ONVO keys, the cross-brand D-platform digital key (Neta + multi-OEM, UUID 6E400001-… shared vendor suffix E0A9-E50E24DCCA9E with BYD AUTO and smart_ebike), XPeng, Xiaomi EV, GAC, GWM, Geely, Lynk & Co, SAIC, FPH / CZCC / CARKEY / MTC / 03HPB / F301 codes, Yadea (incl. Alipay fleet and the E7810BD2 / D20B81E7 / E7810B92 iBeacon generations), XiaoDao, ZEEHO, XSUN, QBIKE, TL_GPSJLXW fleet GPS, WTTB tag, PKE, ETC-JL, MIFOB, the CM / NetEase iBeacon device, and ChinaNet ONT SSID. Existing rows extended: BYD (汉 name + BYD AUTO platform UUID), NIU (plain NIU name + iBeacon geofence UUID), ZEEKR (short Zeekr5xx names), RoadBit (TBIT-*), AIMA (company 01A8 + B69E manufacturer data). Installed catalogs migrate on next launch.
+
 ## 1.1.17 — 1 October 2026
 
 - Privacy mode no longer hides the map on Reports → Path, or on the Debrief and Compare letter path figures. Those tiles follow Online place names and maps. Privacy mode still masks MAC tails and coordinates, omits street names, and pauses the TAK / CoT feed.

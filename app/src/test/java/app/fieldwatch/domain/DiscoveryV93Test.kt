@@ -172,6 +172,6 @@ class DiscoveryV93Test {
             assertEquals(deletedOuis.rules, migrated.rules.filterNot { it.kind == RuleKind.OUI })
             assertEquals(migrated, ConfigStore.appendCatalogV93(listOf(migrated)).first())
         }
-        assertEquals(94, ConfigStore.CATALOG_VERSION)
+        assertEquals(98, ConfigStore.CATALOG_VERSION)
     }
 }
