@@ -147,6 +147,24 @@ class MiAdvertisementTest {
         assertFalse(appleFields.any { it.label == "MiBeacon version" })
     }
 
+    @Test fun appleHomeKitAndIbeaconFramesOnCompany4CStayAppleNotMiBeacon() {
+        // Apple HomeKit pairing advertisement: 0504 0000 3309 00 + 8-byte pairing ID
+        // (control word 0x0405, version nibble 4) — never a MiBeacon classic v3 header.
+        val homekit = "05040000330900A1B2C3D4E5F60718"
+        // Apple iBeacon: 1210 00 + UUID16 + major + minor (version nibble 1).
+        val ibeacon = "121000E2C56DB5DFAE4826BBAB2F06C64534F700010000"
+        for (hex in listOf(homekit, ibeacon)) {
+            assertNull(hex, MiBeaconDecoder.classicMiBeaconVersion(hex))
+            assertFalse(hex, MiBeaconDecoder.decode(hex).validHeader)
+            val device = radio("").copy(manufacturerId = 0x004C, manufacturerDataHex = hex)
+            assertTrue(hex, MiBeaconDecoder.identities(device).isEmpty())
+            val fields = AdvPayloadDecoder.decodeManufacturer(MfgRecord(0x004C, hex))
+            assertFalse(hex, fields.any { it.label.contains("MiBeacon", true) })
+        }
+        // The captured Mi lock frame keeps its classic v3 version nibble.
+        assertEquals(3, MiBeaconDecoder.classicMiBeaconVersion("0631011BD242E6BC4A0600010001024C0DD969"))
+    }
+
     private fun scale(status: Int, raw: Int): String = ByteArray(10).apply {
         this[0] = status.toByte(); this[1] = raw.toByte(); this[2] = (raw ushr 8).toByte()
     }.toHexUpper()

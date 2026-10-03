@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_v99_0" formatted="false">蔚来车辆</string>
+    <string name="catalog_v99_1" formatted="false">蔚来 / ONVO 手机变车钥匙的数字钥匙：在蔚来车钥上观察到公司标识 432E / 4663 / 0B48 或固定的 Apple iBeacon UUID 9F0891D0-…。模式匹配，不代表车型、车主或钥匙状态。</string>
+    <string name="catalog_v99_2" formatted="false">D 平台数字钥匙（哪吒 / 多 OEM）</string>
+    <string name="catalog_v99_3" formatted="false">N9D* / OEM 码（06D / 0PD / 1RD / 2HD / 2PD / 36DB / 3QDB / 0KD / N4D / N7D / N8D 前缀；第 3 位恒为 D，结尾 J + 4 位数字）蓝牙名称标识共享数字钥匙平台的钥匙（实测哪吒 N9D）。该平台的 128 位 UUID 即标准 Nordic UART 服务，普通 nRF 开发板也会广播，故 UUID 不再作为独立判定条件；其 E0A9-E50E24DCCA9E 后缀与 BYD AUTO（42594420-…）、smart_ebike（86912001-…）平台 UUID 相同——一家钥匙供应商服务多个品牌。</string>
+    <string name="catalog_v99_4" formatted="false">小鹏车辆</string>
+    <string name="catalog_v99_5" formatted="false">XPED-* 蓝牙名称是小鹏数字钥匙码；广播的服务 UUID 内嵌同一码。钥匙硬件 OUI 00:60:37 与比亚迪 / 广汽车钥共用。</string>
+    <string name="catalog_v99_6" formatted="false">小米汽车</string>
+    <string name="catalog_v99_7" formatted="false">MiCar* 蓝牙名称，或每台采样小米汽车钥匙都出现的 E4:01 本地管理地址前缀。</string>
+    <string name="catalog_v99_8" formatted="false">广汽车辆</string>
+    <string name="catalog_v99_9" formatted="false">GAC 前缀蓝牙名称是广汽 / 盈合（InGeek）数字钥匙车码（GACAB34N5…、GAC1S59T1…、GACA020LG…）。钥匙硬件 OUI 00:60:37 与比亚迪 / 小鹏车钥共用。模式匹配，不代表车型或车主。</string>
+    <string name="catalog_v99_10" formatted="false">长城车辆</string>
+    <string name="catalog_v99_11" formatted="false">GWM 前缀蓝牙名称是长城汽车数字钥匙车码（实测 GWMVA73TH514551）。模式匹配，不代表车型或车主。</string>
+    <string name="catalog_v99_12" formatted="false">吉利车辆</string>
+    <string name="catalog_v99_13" formatted="false">GeelyVehicle* / GEL_Car 蓝牙名称标识吉利系数字钥匙无线电。公司标识 01FE（Radio Systems Corporation，SIG 注册）是集团平台标记，也出现在极氪钥匙和纯 Radio Systems 模块上，故仅凭公司号不归入；极氪条目按名称标注相应钥匙。</string>
+    <string name="catalog_v99_14" formatted="false">领克车辆</string>
+    <string name="catalog_v99_15" formatted="false">Lynk&amp;CoVehicle* 蓝牙名称；其 Apple iBeacon UUID 携带 ASCII 车码（实测 6T79XEZ4RE008849）。模式匹配，不代表车主。</string>
+    <string name="catalog_v99_16" formatted="false">上汽车辆</string>
+    <string name="catalog_v99_17" formatted="false">SGM 前缀蓝牙名称仅观察到一次（SGMd9eb6f）；与上汽（上海汽车）的关联未确认。</string>
+    <string name="catalog_v99_18" formatted="false">FPH 车码（品牌未确认）</string>
+    <string name="catalog_v99_19" formatted="false">FPH4 前缀车码（实测 FPH4APP1T1A12837）带公司标识 6748；与福田的关联未确认。</string>
+    <string name="catalog_v99_20" formatted="false">CZCC 车辆（品牌未确认）</string>
+    <string name="catalog_v99_21" formatted="false">CZCC-?????? 蓝牙码仅观察到一次（CZCC-CC4806）；品牌关联未确认。</string>
+    <string name="catalog_v99_22" formatted="false">CARKEY 数字钥匙（品牌未确认）</string>
+    <string name="catalog_v99_23" formatted="false">CARKEY + 3 位数字蓝牙名称见于通用数字钥匙；品牌未确认。</string>
+    <string name="catalog_v99_24" formatted="false">MTC 车载设备（用途未确认）</string>
+    <string name="catalog_v99_25" formatted="false">MTC + 12 位十六进制蓝牙码（实测 MTC71EFA72D8B1A）位于地址前缀 40:99:F6，亦见于广汽钥匙；用途未确认。</string>
+    <string name="catalog_v99_26" formatted="false">03HPB 车码（品牌未确认）</string>
+    <string name="catalog_v99_27" formatted="false">03HPB0LE0000ZTG… 风格工厂码（实测 03HPB0LE0000ZTG250000314）带公司标识 A279；品牌未确认。</string>
+    <string name="catalog_v99_28" formatted="false">F301 工厂码（品牌未确认）</string>
+    <string name="catalog_v99_29" formatted="false">F301… 蓝牙名称内嵌明文生产日期（F30141501001202509240031 = 2025-09-24 制造）。设备家族未确认。</string>
+    <string name="catalog_v99_30" formatted="false">雅迪车辆</string>
+    <string name="catalog_v99_31" formatted="false">雅迪电动车 / 电摩无线电：公司标识 5944（ASCII \'YD\'）、YD+8 位十六进制与 YD_+4 位十六进制（支付宝车队）名称，或载于公司 004C 厂商数据中的 E7810BD2 / D20B81E7 / E7810B92 Apple iBeacon UUID 固件世代（iBeacon UUID 不是服务 UUID）。原始厂商数据携带锁状态与电量。模式匹配，不代表骑手或锁状态。</string>
+    <string name="catalog_v99_32" formatted="false">小刀车辆</string>
+    <string name="catalog_v99_33" formatted="false">XiaoDao_* 蓝牙名称指向小刀电动车无线电。后缀不能识别骑手或锁状态。</string>
+    <string name="catalog_v99_34" formatted="false">smart_ebike（共享钥匙平台）</string>
+    <string name="catalog_v99_35" formatted="false">smart_ebike 蓝牙名称或平台 UUID 86912001-B5A3-F393-E0A9-E50E24DCCA9E。E0A9-E50E24DCCA9E 后缀与 D 平台车钥、BYD AUTO 使用同一钥匙供应商平台。</string>
+    <string name="catalog_v99_36" formatted="false">极核（ZEEHO）摩托车</string>
+    <string name="catalog_v99_37" formatted="false">ZEEHO-* 蓝牙名称指向极核电动摩托车无线电。后缀不是已确认的车型或车辆身份。</string>
+    <string name="catalog_v99_38" formatted="false">XSUN 摩托车</string>
+    <string name="catalog_v99_39" formatted="false">XSUN + 4 位十六进制蓝牙名称（实测 XSUN285B）指向 XSUN 电动摩托车无线电。</string>
+    <string name="catalog_v99_40" formatted="false">QBIKE 车辆</string>
+    <string name="catalog_v99_41" formatted="false">QBIKE_ + 16 位十六进制蓝牙名称见于共享电动车无线电；运营方未确认。</string>
+    <string name="catalog_v99_42" formatted="false">TL_GPSJLXW 车队 GPS</string>
+    <string name="catalog_v99_43" formatted="false">TL_GPSJLXW_ + 6 位数字的车队 GPS 追踪器名称。原始厂商数据内嵌 BCD 实时时钟日期（实测 20 26 04 28 = 2026-04-28）。模式匹配，不代表车辆或司机。</string>
+    <string name="catalog_v99_44" formatted="false">WTTB 物流标签（用途未确认）</string>
+    <string name="catalog_v99_45" formatted="false">WTTB + 数字蓝牙名称仅观察到一次（WTTB02230407379）；与物流 / 资产标签的关联未确认。</string>
+    <string name="catalog_v99_46" formatted="false">PKE 无钥匙进入</string>
+    <string name="catalog_v99_47" formatted="false">PKE-???? 蓝牙名称仅观察到一次（PKE-2580），来自被动无钥匙进入模块；车辆品牌未确认。</string>
+    <string name="catalog_v99_48" formatted="false">ETC-JL 车载单元</string>
+    <string name="catalog_v99_49" formatted="false">ETC-JL-???? 蓝牙名称仅观察到一次（ETC-JL-6981），来自车载 ETC 单元；运营方未确认。</string>
+    <string name="catalog_v99_50" formatted="false">MIFOB 钥匙扣（用途未确认）</string>
+    <string name="catalog_v99_51" formatted="false">MIFOB_PE 蓝牙名称仅观察到一次；疑似小米生态钥匙扣但未确认。</string>
+    <string name="catalog_v99_52" formatted="false">CM 设备（网易？）</string>
+    <string name="catalog_v99_53" formatted="false">CM-???? 蓝牙名称（实测 CM-8E09），其 Apple iBeacon UUID 为 ASCII NETEASE…easefm 字符串（网易云音乐）。设备类型未确认；不是车辆。</string>
+    <string name="catalog_v99_54" formatted="false">ChinaNet（联通光猫）</string>
+    <string name="catalog_v99_55" formatted="false">ChinaNet-* 是中国联通光猫 / ONT 的默认 SSID。SSID 由运营商设置、可被改名；未确定光猫型号。</string>
+    <string name="catalog_v99_56" formatted="false">NuoXc Wi-Fi</string>
+    <string name="catalog_v99_57" formatted="false">IEEE 前缀 68:89:75 注册于 NuoXc（深圳龙岗）；6A:89:75 在 2026-08 IEEE feed 中有相同注册，现已被移除。两个前缀构成同一套双无线家用 AP（实测隐藏 SSID）。旧版 OUI feed 曾把这对前缀注册给 MERCURY，故旧日志那样标注；未确定具体型号。</string>
+    <string name="catalog_v99_58" formatted="false">eg 空调（挂式）无线电</string>
+    <string name="catalog_v99_59" formatted="false">eg_ac_* 蓝牙名称广播一台壁挂（挂机）空调；\'eg\' 品牌前缀未验证。公司 3838 带 2D-11… 单元码；无线电为惠州高盛大模块。不透露温度或运行状态。</string>
+    <string name="catalog_v99_60" formatted="false">自如智慧公寓 AP</string>
+    <string name="catalog_v99_61" formatted="false">ziroom* / ZR_* SSID 与德清杜尚 IEEE 前缀（公网 30:AE:7B 与本地管理 32:AE:7B）标识自如精装公寓的室内无线电。SSID 后缀是房间 / 单元码，不是人。</string>
+    <string name="catalog_v99_62" formatted="false">华为超级终端信标</string>
+    <string name="catalog_v99_63" formatted="false">FDEE 是 SIG 分配给华为的 16 位服务。华为手机与穿戴设备以空名称、随机 MAC 和公司 027D 广播；负载是超级终端 / 华为分享发现信标，不是产品或人。</string>
+    <string name="catalog_v99_64" formatted="false">小米 / 红米手机信标</string>
+    <string name="catalog_v99_65" formatted="false">FCC0 是 SIG 分配给小米的 16 位服务。见于小米 17 / REDMI K80 / Redmi Note 13 Pro 手机：随机 MAC、无本地名称，服务数据含设备码与明文型号（查找设备式广播）。不透露用户或位置。</string>
+    <string name="catalog_v99_66" formatted="false">中国移动 CPE（CMCC）</string>
+    <string name="catalog_v99_67" formatted="false">CMCC* SSID 是中国移动宽带 CPE / 5G CPE 的运营商默认名称；后缀（如 CMCC-Xiao-Apple）由用户自选。部分 CPE 搭载乐鑫 2.4 GHz 无线电。未确定具体型号。</string>
+    <string name="catalog_v99_68" formatted="false">智能电视内置 AP</string>
+    <string name="catalog_v99_69" formatted="false">SmartTVAP SSID 是智能电视为投屏 / 伴侣手机配对准开放的内置接入点（实测重庆青嘉 ODM 前缀）。不是路由器；不透露观看状态。</string>
+    <string name="catalog_v99_70" formatted="false">蜂窝物联网无线电（ICCID 名称）</string>
+    <string name="catalog_v99_71" formatted="false">BT_ + 15 位数字名称是 SIM 卡 ICCID：以 SIM 命名的蜂窝（4G）物联网设备，如追踪器 / DTU。8663 前缀提示中国联通物联网卡（未验证）。不推断位置、运营商账户或车辆。</string>
+    <string name="catalog_v99_72" formatted="false">jida_bike 单车无线电</string>
+    <string name="catalog_v99_73" formatted="false">jida_bike 蓝牙名称，公司 1010，同步字节成帧（锁 / 控制器风格）。与共享运营方的关联未验证；不推断骑手或锁状态。</string>
+    <string name="catalog_v99_74" formatted="false">XD 电动车无线电</string>
+    <string name="catalog_v99_75" formatted="false">公司 4458 是 ASCII \'XD\'（雅迪 \'YD\' 5944 同型），xcdc* 名称携带 J28… 序列号（实测 xcdcJ28000032190）。与共享电动车 / 电摩的关联很可能但未验证；不推断骑手或锁状态。</string>
+    <string name="catalog_v99_76" formatted="false">OPPO 设备信标</string>
+    <string name="catalog_v99_77" formatted="false">公司 079A 由 SIG 分配给 OPPO。OPPO 手机与穿戴设备广播该标识（实测两台设备载有相同 10 字节负载），伴随服务 686B（本地未见厂商注册）。负载是发现信标，不是产品或人。</string>
+    <string name="catalog_v99_78" formatted="false">支付宝 BLE 无线电（BLE_DK）</string>
+    <string name="catalog_v99_79" formatted="false">BLE_DK_&lt;序列号&gt; 广播名称，加上携带 ASCII \'alipay\' 的 128 位服务 UUID，标识支付宝生态无线电（碰一下 / 数字钥匙风格）。产品线未确认；不透露账户或支付状态。</string>
+    <string name="catalog_v99_80" formatted="false">MERCURY Wi-Fi</string>
+    <string name="catalog_v99_81" formatted="false">MERCURY* Wi-Fi 名称标识水星网络家族。IEEE 前缀 4C:77:66 / BC:54:FC 均注册于深圳市水星通信；SSID 由用户设置（实测为手机号）。原 68:89:75 / 6A:89:75 一对前缀现已 IEEE 注册给 NuoXc，归入 NuoXc 条目，不在本条目。</string>
+    <string name="catalog_v99_82" formatted="false">萤石设备</string>
+    <string name="catalog_v99_83" formatted="false">IEEE 94:EC:13 标识萤石设备家族（Wi-Fi 或公网稳定 BLE 地址）。萤石 BLE 无线电还携带公司 2B19（主标识）及带 ASCII EZVIZ 标记的 2B18 数据块（实测 BD2260002 \'bl702l\' 固件）；两个公司号均无 SIG 注册，由标记确认厂商。不能证明设备是摄像头。</string>
+    <string name="catalog_v99_84" formatted="false">海尔家电无线电</string>
+    <string name="catalog_v99_85" formatted="false">注册于青岛海尔科技的 IEEE 前缀标识海尔无线电家族（Wi-Fi 或稳定的公网 BLE 地址）。这些前缀上观察到的 U-AC / U-GW 风格蓝牙名称是海尔家电单元（空调与网关）；未注册地址上的名称单独不归入。家电类型与具体型号未确定。</string>
+    <string name="catalog_v99_86" formatted="false">米家生态门锁</string>
+    <string name="catalog_v99_87" formatted="false">小米生态门锁家族。MiBeacon 产品头区分已知合作型号（1B01 = \'Mi Automatic Smart Door Lock\'，经典公司 004C v3 帧头）；广播的型号名称同样能标识门锁。不能识别所有者，也不证明已锁 / 解锁状态。</string>
+</resources>

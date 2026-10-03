@@ -1062,6 +1062,10 @@ class ConfigStore(context: Context) {
             fleets = appendCatalogV98(fleets)
             version = CATALOG_V98
         }
+        if (version < CATALOG_V99) {
+            fleets = appendCatalogV99(fleets)
+            version = CATALOG_V99
+        }
         // An older APK can import the V90 pack while retaining the generated custom candidate.
         fleets = repairMercuryCandidates(fleets)
         if (!settings.darkTheme) settings = settings.copy(darkTheme = true)
@@ -1104,7 +1108,7 @@ class ConfigStore(context: Context) {
 
     companion object {
         /** Stock catalog generation. Settings footer and the GitHub pack use this. */
-        const val CATALOG_VERSION = 98
+        const val CATALOG_VERSION = 99
 
         /** Historical stock patches remain in place; V89 families preserve every existing row. */
         internal fun patchBuiltInRules(fleets: List<Fleet>, catalog: Map<String, Fleet>): List<Fleet> {
@@ -1203,6 +1207,54 @@ class ConfigStore(context: Context) {
             val stock = DefaultCatalog.fleets().associateBy { it.id }
             val row = stock["fleet-mercury-wifi"] ?: return fleets
             return fleets + row
+        }
+
+        /** Tighten over-broad / invalid rules found in review:
+         *  - dplatform key: the D-platform 128-bit UUID is the standard Nordic UART service,
+         *    which plain nRF dev boards advertise too; names only.
+         *  - Yadea: iBeacon UUIDs live in company-004C manufacturer data, not in the
+         *    service UUID list; one 17-byte "UUID" was malformed and could never match.
+         *  - AIMA: bare company 01A8 (SIG: Taobao) is not an Aima identifier; the
+         *    B69E-prefixed payload or the AIMA-* name is.
+         *  - Geely: bare company 01FE (SIG: Radio Systems) is a group-platform marker
+         *    shared by ZEEKR keys and plain Radio Systems modules; names only.
+         *  - MTC: the name glob was one character short of the observed MTC + 12-hex code. */
+        internal fun appendCatalogV99(fleets: List<Fleet>): List<Fleet> {
+            val stock = DefaultCatalog.fleets().associateBy { it.id }
+            val nusUuid = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+            val yadeaDeadUuids = setOf(
+                "E7810BD2-0000-1000-8000-00805F9B34FB",
+                "D20B81E7-0000-1000-8000-00805F9B34FB",
+                "E7810B92-0000-1000-8000-00805F9B34FB",
+                "616C6970-6179-626F-7869-656C65626F706F6C",
+            )
+            // V96 / V97 rewrote the stock notes of these rows after the last note sync;
+            // re-sync so installed rows carry the translated stock text.
+            val noteSyncIds = setOf("fleet-ezviz-device", "fleet-mercury-wifi", "fleet-haier-radio", "fleet-mi-lock")
+            val updated = fleets.map { fleet ->
+                if (!fleet.builtIn) return@map fleet
+                val target = stock[fleet.id] ?: return@map fleet
+                var rules = fleet.rules
+                when (fleet.id) {
+                    "fleet-dplatform-key" ->
+                        rules = rules.filterNot { it.kind == RuleKind.SERVICE_UUID && it.text == nusUuid }
+                    "fleet-yadea-vehicle" ->
+                        rules = rules.filterNot { it.kind == RuleKind.SERVICE_UUID && it.text in yadeaDeadUuids }
+                    "fleet-aima-vehicle" ->
+                        rules = rules.filterNot { it.kind == RuleKind.MANUFACTURER_ID && it.companyId == 0x01A8 }
+                    "fleet-geely-vehicle" ->
+                        rules = rules.filterNot { it.kind == RuleKind.MANUFACTURER_ID && it.companyId == 0x01FE }
+                    "fleet-mtc-vehicle" ->
+                        rules = rules.filterNot { it.kind == RuleKind.NAME_GLOB && it.text == "MTC???????????" }
+                    else -> {}
+                }
+                val notes = if (fleet.id in noteSyncIds) target.notes else fleet.notes
+                val have = rules.mapTo(HashSet()) { ruleKey(it) }
+                val missing = target.rules.filter { ruleKey(it) !in have }
+                if (missing.isEmpty() && rules == fleet.rules && notes == fleet.notes) fleet
+                else fleet.copy(rules = rules + missing, notes = notes)
+            }
+            return updated
         }
 
         internal fun appendCatalogV94(fleets: List<Fleet>): List<Fleet> {
@@ -1368,7 +1420,8 @@ class ConfigStore(context: Context) {
         private const val CATALOG_V95 = 95
         private const val CATALOG_V96 = 96
         private const val CATALOG_V97 = 97
-        private const val CATALOG_V98 = CATALOG_VERSION
+        private const val CATALOG_V98 = 98
+        private const val CATALOG_V99 = CATALOG_VERSION
         private val GENERIC_GATT_UUIDS = setOf("180A", "180D", "180F")
         private val POLICY_FLEET_IDS = setOf(
             "fleet-flock-cameras",

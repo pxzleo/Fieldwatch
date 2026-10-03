@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_v99_0" formatted="false">NIO vehicle</string>
+    <string name="catalog_v99_1" formatted="false">NIO / ONVO phone-as-key digital key: company identifiers 432E / 4663 / 0B48 or the fixed Apple iBeacon UUID 9F0891D0-… observed on NIO keys. Pattern match, not a model, owner or key state.</string>
+    <string name="catalog_v99_2" formatted="false">D-platform digital key (Neta / multi-OEM)</string>
+    <string name="catalog_v99_3" formatted="false">N9D* / OEM-code (06D / 0PD / 1RD / 2HD / 2PD / 36DB / 3QDB / 0KD / N4D / N7D / N8D prefixes; 3rd char always D, J + 4 digits at the end) BLE names identify shared digital-key platform keys (Neta N9D observed). The platform\'s 128-bit UUID is the standard Nordic UART service that plain nRF dev boards also advertise, so the UUID is not used as a standalone condition; its E0A9-E50E24DCCA9E suffix is shared with the BYD AUTO (42594420-…) and smart_ebike (86912001-…) platform UUIDs — one key vendor serves many brands.</string>
+    <string name="catalog_v99_4" formatted="false">XPeng vehicle</string>
+    <string name="catalog_v99_5" formatted="false">XPED-* BLE name is an XPeng digital-key code; the advertised service UUID embeds the same code. Key hardware OUI 00:60:37 is shared with BYD / GAC keys.</string>
+    <string name="catalog_v99_6" formatted="false">Xiaomi EV</string>
+    <string name="catalog_v99_7" formatted="false">MiCar* BLE name or the E4:01 locally-administered address prefix observed on every sampled Xiaomi EV key.</string>
+    <string name="catalog_v99_8" formatted="false">GAC vehicle</string>
+    <string name="catalog_v99_9" formatted="false">GAC-prefixed BLE names are GAC / Yingjie (InGeek) digital-key vehicle codes (GACAB34N5…, GAC1S59T1…, GACA020LG…). Key hardware OUI 00:60:37 is shared with BYD / XPeng keys. Pattern match, not a model or owner.</string>
+    <string name="catalog_v99_10" formatted="false">GWM vehicle</string>
+    <string name="catalog_v99_11" formatted="false">GWM-prefixed BLE names are Great Wall Motor digital-key vehicle codes (GWMVA73TH514551 observed). Pattern match, not a model or owner.</string>
+    <string name="catalog_v99_12" formatted="false">Geely vehicle</string>
+    <string name="catalog_v99_13" formatted="false">GeelyVehicle* / GEL_Car BLE names identify Geely-group digital-key radios. Company identifier 01FE (Radio Systems Corporation, SIG-registered) is a group-platform marker also seen on ZEEKR keys and plain Radio Systems modules, so the company id alone is not assigned; the ZEEKR row labels those keys by name.</string>
+    <string name="catalog_v99_14" formatted="false">Lynk &amp; Co vehicle</string>
+    <string name="catalog_v99_15" formatted="false">Lynk&amp;CoVehicle* BLE name; its Apple iBeacon UUID carries the ASCII vehicle code (6T79XEZ4RE008849 observed). Pattern match, not an owner.</string>
+    <string name="catalog_v99_16" formatted="false">SAIC vehicle</string>
+    <string name="catalog_v99_17" formatted="false">SGM-prefixed BLE name observed once (SGMd9eb6f); the SAIC (Shanghai Automobile) association is unconfirmed.</string>
+    <string name="catalog_v99_18" formatted="false">FPH vehicle code (brand unconfirmed)</string>
+    <string name="catalog_v99_19" formatted="false">FPH4-prefixed vehicle code (FPH4APP1T1A12837 observed) with company identifier 6748; brand association (Foton) unconfirmed.</string>
+    <string name="catalog_v99_20" formatted="false">CZCC vehicle (brand unconfirmed)</string>
+    <string name="catalog_v99_21" formatted="false">CZCC-?????? BLE code observed once (CZCC-CC4806); brand association unconfirmed.</string>
+    <string name="catalog_v99_22" formatted="false">CARKEY digital key (brand unconfirmed)</string>
+    <string name="catalog_v99_23" formatted="false">CARKEY + 3-digit BLE name observed on generic digital keys; brand unconfirmed.</string>
+    <string name="catalog_v99_24" formatted="false">MTC vehicle device (purpose unconfirmed)</string>
+    <string name="catalog_v99_25" formatted="false">MTC + 12-hex BLE code (MTC71EFA72D8B1A observed) on address prefix 40:99:F6, also seen on GAC keys; purpose unconfirmed.</string>
+    <string name="catalog_v99_26" formatted="false">03HPB vehicle code (brand unconfirmed)</string>
+    <string name="catalog_v99_27" formatted="false">03HPB0LE0000ZTG… style factory code (03HPB0LE0000ZTG250000314 observed) with company identifier A279; brand unconfirmed.</string>
+    <string name="catalog_v99_28" formatted="false">F301 factory code (brand unconfirmed)</string>
+    <string name="catalog_v99_29" formatted="false">F301… BLE name embeds a plaintext production date (F30141501001202509240031 = made 2025-09-24). Device family unconfirmed.</string>
+    <string name="catalog_v99_30" formatted="false">Yadea vehicle</string>
+    <string name="catalog_v99_31" formatted="false">Yadea e-bike / e-scooter radio: company identifier 5944 (ASCII \'YD\'), YD+8-hex and YD_+4-hex (Alipay fleet) names, or the E7810BD2 / D20B81E7 / E7810B92 Apple iBeacon UUID firmware generations carried in company 004C manufacturer data (an iBeacon UUID is not a service UUID). Raw manufacturer data carries lock state and battery level. Pattern match, not a rider or a lock state.</string>
+    <string name="catalog_v99_32" formatted="false">XiaoDao vehicle</string>
+    <string name="catalog_v99_33" formatted="false">XiaoDao_* BLE name points to a Xiaodao e-bike radio. The suffix does not identify a rider or a lock state.</string>
+    <string name="catalog_v99_34" formatted="false">smart_ebike (shared key platform)</string>
+    <string name="catalog_v99_35" formatted="false">smart_ebike BLE name or platform UUID 86912001-B5A3-F393-E0A9-E50E24DCCA9E. The E0A9-E50E24DCCA9E suffix is the same key-vendor platform used by the D-platform vehicle keys and BYD AUTO.</string>
+    <string name="catalog_v99_36" formatted="false">ZEEHO motorcycle</string>
+    <string name="catalog_v99_37" formatted="false">ZEEHO-* BLE name points to a ZEEHO electric motorcycle radio. The suffix is not a verified model or vehicle identity.</string>
+    <string name="catalog_v99_38" formatted="false">XSUN motorcycle</string>
+    <string name="catalog_v99_39" formatted="false">XSUN + 4-hex BLE name (XSUN285B observed) points to an XSUN electric motorcycle radio.</string>
+    <string name="catalog_v99_40" formatted="false">QBIKE vehicle</string>
+    <string name="catalog_v99_41" formatted="false">QBIKE_ + 16-hex BLE name observed on a shared e-bike radio; operator unconfirmed.</string>
+    <string name="catalog_v99_42" formatted="false">TL_GPSJLXW fleet GPS</string>
+    <string name="catalog_v99_43" formatted="false">TL_GPSJLXW_ + 6-digit fleet GPS tracker name. Raw manufacturer data embeds a BCD real-time-clock date (20 26 04 28 = 2026-04-28 observed). Pattern match, not a vehicle or a driver.</string>
+    <string name="catalog_v99_44" formatted="false">WTTB logistics tag (purpose unconfirmed)</string>
+    <string name="catalog_v99_45" formatted="false">WTTB + digits BLE name observed once (WTTB02230407379); logistics / asset-tag association unconfirmed.</string>
+    <string name="catalog_v99_46" formatted="false">PKE keyless entry</string>
+    <string name="catalog_v99_47" formatted="false">PKE-???? BLE name observed once (PKE-2580) on a passive keyless-entry module; vehicle brand unconfirmed.</string>
+    <string name="catalog_v99_48" formatted="false">ETC-JL unit</string>
+    <string name="catalog_v99_49" formatted="false">ETC-JL-???? BLE name observed once (ETC-JL-6981) on an in-vehicle ETC unit; operator unconfirmed.</string>
+    <string name="catalog_v99_50" formatted="false">MIFOB key fob (purpose unconfirmed)</string>
+    <string name="catalog_v99_51" formatted="false">MIFOB_PE BLE name observed once; a Xiaomi-ecosystem key fob is suspected but unconfirmed.</string>
+    <string name="catalog_v99_52" formatted="false">CM device (NetEase?)</string>
+    <string name="catalog_v99_53" formatted="false">CM-???? BLE name (CM-8E09 observed) whose Apple iBeacon UUID is the ASCII NETEASE…easefm string (NetEase Cloud Music). Device type unconfirmed; not a vehicle.</string>
+    <string name="catalog_v99_54" formatted="false">ChinaNet (ChinaNetcom ONT)</string>
+    <string name="catalog_v99_55" formatted="false">ChinaNet-* default SSID of a ChinaNetcom (Unicom) optical modem / ONT. The SSID is operator-set and can be renamed; no router model is established.</string>
+    <string name="catalog_v99_56" formatted="false">NuoXc Wi-Fi</string>
+    <string name="catalog_v99_57" formatted="false">IEEE prefix 68:89:75 is registered to NuoXc (Shenzhen, Longgang); 6A:89:75 carried the same registration in the 2026-08 IEEE feed and was dropped from the current one. The two prefixes form one sequential dual-radio home AP (observed hidden-SSID). Older OUI feeds registered this pair to MERCURY, so legacy logs label it that way; no exact model is established.</string>
+    <string name="catalog_v99_58" formatted="false">eg AC (hanging) radio</string>
+    <string name="catalog_v99_59" formatted="false">eg_ac_* BLE names advertise a wall-hung (hanging) air-conditioner unit; the \'eg\' brand prefix is unverified. Company 3838 with a 2D-11… unit code; the radio is a Huizhou Gaoshengda module. No temperature or operating state is revealed.</string>
+    <string name="catalog_v99_60" formatted="false">Ziroom smart-home AP</string>
+    <string name="catalog_v99_61" formatted="false">ziroom* / ZR_* SSIDs and the Deqing Dusun IEEE prefix (public 30:AE:7B and locally-administered 32:AE:7B) identify Ziroom (自如) furnished-apartment in-unit radios. The SSID suffix is a room / unit code, not a person.</string>
+    <string name="catalog_v99_62" formatted="false">Huawei Super Device beacon</string>
+    <string name="catalog_v99_63" formatted="false">FDEE is the SIG-assigned Huawei 16-bit service. Huawei phones and wearables advertise it with an empty name, randomized MAC and company 027D; the payload is a Super Device / Huawei Share discovery beacon, not a product or a person.</string>
+    <string name="catalog_v99_64" formatted="false">Xiaomi / Redmi phone beacon</string>
+    <string name="catalog_v99_65" formatted="false">FCC0 is the SIG-assigned Xiaomi 16-bit service. Observed on Xiaomi 17 / REDMI K80 / Redmi Note 13 Pro phones: randomized MAC, no local name, and a device code plus the plaintext model name in the service data (Find-Device style broadcast). No user or location is revealed.</string>
+    <string name="catalog_v99_66" formatted="false">China Mobile CPE (CMCC)</string>
+    <string name="catalog_v99_67" formatted="false">CMCC* SSID is the operator-default name of a China Mobile broadband CPE / 5G CPE; the suffix (e.g. CMCC-Xiao-Apple) is user-chosen. Some CPEs carry an Espressif 2.4 GHz radio. No exact model is established.</string>
+    <string name="catalog_v99_68" formatted="false">Smart TV built-in AP</string>
+    <string name="catalog_v99_69" formatted="false">SmartTVAP SSID is the built-in access point a smart TV opens for casting / companion-phone pairing (Chongqing QingJia ODM prefix observed). Not a router; no viewing state is revealed.</string>
+    <string name="catalog_v99_70" formatted="false">Cellular IoT radio (ICCID name)</string>
+    <string name="catalog_v99_71" formatted="false">BT_ + 15-digit name is the SIM ICCID: a cellular (4G) IoT device such as a tracker / DTU named after its SIM. The 8663 prefix suggests a China Unicom IoT card (unverified). No location, operator account or vehicle is inferred.</string>
+    <string name="catalog_v99_72" formatted="false">jida_bike bike radio</string>
+    <string name="catalog_v99_73" formatted="false">jida_bike BLE name on company 1010 with sync-byte framed frames (lock / controller style). Shared-operator association is unverified; no rider or lock state is inferred.</string>
+    <string name="catalog_v99_74" formatted="false">XD e-bike radio</string>
+    <string name="catalog_v99_75" formatted="false">Company 4458 is ASCII \'XD\' (the Yadea \'YD\' 5944 pattern) and xcdc* names carry a J28… serial (xcdcJ28000032190 observed). Shared e-bike / scooter association is likely but unverified; no rider or lock state is inferred.</string>
+    <string name="catalog_v99_76" formatted="false">OPPO device beacon</string>
+    <string name="catalog_v99_77" formatted="false">Company 079A is SIG-assigned to OPPO. OPPO phones and wearables advertise it (two units with an identical ten-byte payload observed) together with service 686B, which is not locally vendor-registered. The payload is a discovery beacon, not a product or a person.</string>
+    <string name="catalog_v99_78" formatted="false">Alipay BLE radio (BLE_DK)</string>
+    <string name="catalog_v99_79" formatted="false">BLE_DK_&lt;serial&gt; advertised names plus a 128-bit service UUID carrying ASCII \'alipay\' identify Alipay-ecosystem radios (tap / digital-key style). The product line is not confirmed; no account or payment state is revealed.</string>
+    <string name="catalog_v99_80" formatted="false">MERCURY Wi-Fi</string>
+    <string name="catalog_v99_81" formatted="false">MERCURY* Wi-Fi name identifies a Mercury network family. IEEE prefixes 4C:77:66 / BC:54:FC are both registered to Shenzhen Mercury Communications; the SSID is user-set (a phone number observed). The former 68:89:75 / 6A:89:75 pair is now IEEE-registered to NuoXc and lives on the NuoXc row, not here.</string>
+    <string name="catalog_v99_82" formatted="false">EZVIZ device</string>
+    <string name="catalog_v99_83" formatted="false">IEEE 94:EC:13 identifies an EZVIZ device family on Wi-Fi or a public stable BLE address. EZVIZ BLE radios also carry company 2B19 (primary) plus a 2B18 block with an ASCII EZVIZ marker (BD2260002 \'bl702l\' build observed); neither company id is SIG-registered, so the marker confirms the vendor. It does not prove the device is a camera.</string>
+    <string name="catalog_v99_84" formatted="false">Haier appliance radio</string>
+    <string name="catalog_v99_85" formatted="false">IEEE prefixes registered to Qingdao Haier Technology identify a Haier radio family on Wi-Fi or a stable public BLE address. U-AC / U-GW style BLE names observed on these prefixes are Haier appliance units (air conditioners and gateways); the name alone on an unregistered address is not assigned. Appliance type and exact model are not established.</string>
+    <string name="catalog_v99_86" formatted="false">Mi ecosystem door lock</string>
+    <string name="catalog_v99_87" formatted="false">Xiaomi ecosystem door-lock family. MiBeacon product headers distinguish known partner models (1B01 = \'Mi Automatic Smart Door Lock\', classic company 004C v3 header); the advertised model name also identifies the lock. They do not identify an owner or prove a locked or unlocked state.</string>
+</resources>

@@ -23,7 +23,7 @@ class DiscoveryV96Test {
     )
 
     @Test fun catalogVersionIsCurrent() {
-        assertEquals(98, ConfigStore.CATALOG_VERSION)
+        assertEquals(99, ConfigStore.CATALOG_VERSION)
         assertTrue(families.isNotEmpty())
         families.forEach { fleet -> assertTrue(fleet.builtIn) }
     }

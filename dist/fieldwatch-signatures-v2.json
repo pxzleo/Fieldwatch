@@ -3,7 +3,7 @@
     "formatVersion": 1,
     "exportedAt": "",
     "appVersion": "stock",
-    "catalogVersion": 98,
+    "catalogVersion": 99,
     "fleets": [
         {
             "id": "fleet-03hpb-vehicle",
@@ -743,14 +743,6 @@
                     "enabled": true
                 },
                 {
-                    "kind": "MANUFACTURER_ID",
-                    "text": "",
-                    "companyId": 424,
-                    "dataPrefixHex": "",
-                    "radio": null,
-                    "enabled": true
-                },
-                {
                     "kind": "MANUFACTURER_DATA",
                     "text": "",
                     "companyId": 424,
@@ -763,7 +755,7 @@
             "peerWindowSec": 60,
             "clusterByOui": false,
             "sequentialMac": false,
-            "notes": "AIMA-* BLE name points to an Aima electric two-wheeler radio. The name suffix is not a verified registration or owner identity.",
+            "notes": "AIMA-* BLE name or the B69E-prefixed company 01A8 payload (01A8 is SIG-registered to Taobao) identifies an Aima electric two-wheeler radio; the bare company id alone is not assigned. The name suffix is not a verified registration or owner identity.",
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
@@ -21848,14 +21840,6 @@
             "colorIndex": 7,
             "rules": [
                 {
-                    "kind": "SERVICE_UUID",
-                    "text": "6E400001-B5A3-F393-E0A9-E50E24DCCA9E",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "BLE",
-                    "enabled": true
-                },
-                {
                     "kind": "NAME_GLOB",
                     "text": "N9D*",
                     "companyId": 0,
@@ -21876,7 +21860,7 @@
             "peerWindowSec": 60,
             "clusterByOui": false,
             "sequentialMac": false,
-            "notes": "Shared digital-key platform UUID 6E400001-B5A3-F393-E0A9-E50E24DCCA9E observed on Neta N9D* keys and OEM codes (06D / 0PD / 1RD / 2HD / 2PD / 36DB / 3QDB / 0KD / N4D / N7D / N8D prefixes; 3rd char always D, J + 4 digits at the end). The E0A9-E50E24DCCA9E suffix also appears in the BYD AUTO (42594420-…) and smart_ebike (86912001-…) platform UUIDs — one key vendor serves many brands.",
+            "notes": "N9D* / OEM-code (06D / 0PD / 1RD / 2HD / 2PD / 36DB / 3QDB / 0KD / N4D / N7D / N8D prefixes; 3rd char always D, J + 4 digits at the end) BLE names identify shared digital-key platform keys (Neta N9D observed). The platform's 128-bit UUID is the standard Nordic UART service that plain nRF dev boards also advertise, so the UUID is not used as a standalone condition; its E0A9-E50E24DCCA9E suffix is shared with the BYD AUTO (42594420-…) and smart_ebike (86912001-…) platform UUIDs — one key vendor serves many brands.",
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
@@ -25816,21 +25800,13 @@
                     "dataPrefixHex": "",
                     "radio": "BLE",
                     "enabled": true
-                },
-                {
-                    "kind": "MANUFACTURER_ID",
-                    "text": "",
-                    "companyId": 510,
-                    "dataPrefixHex": "",
-                    "radio": null,
-                    "enabled": true
                 }
             ],
             "minPeers": 0,
             "peerWindowSec": 60,
             "clusterByOui": false,
             "sequentialMac": false,
-            "notes": "GeelyVehicle* / GEL_Car BLE names and company identifier 01FE identify a Geely-group digital-key radio. 01FE is also seen on ZEEKR keys (group platform); the ZEEKR row labels those by name.",
+            "notes": "GeelyVehicle* / GEL_Car BLE names identify Geely-group digital-key radios. Company identifier 01FE (Radio Systems Corporation, SIG-registered) is a group-platform marker also seen on ZEEKR keys and plain Radio Systems modules, so the company id alone is not assigned; the ZEEKR row labels those keys by name.",
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"
@@ -49392,7 +49368,7 @@
             "rules": [
                 {
                     "kind": "NAME_GLOB",
-                    "text": "MTC???????????",
+                    "text": "MTC????????????",
                     "companyId": 0,
                     "dataPrefixHex": "",
                     "radio": "BLE",
@@ -66908,35 +66884,27 @@
                     "enabled": true
                 },
                 {
-                    "kind": "SERVICE_UUID",
-                    "text": "E7810BD2-0000-1000-8000-00805F9B34FB",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "BLE",
+                    "kind": "MANUFACTURER_DATA",
+                    "text": "",
+                    "companyId": 76,
+                    "dataPrefixHex": "0215E7810BD200001000800000805F9B34FB",
+                    "radio": null,
                     "enabled": true
                 },
                 {
-                    "kind": "SERVICE_UUID",
-                    "text": "D20B81E7-0000-1000-8000-00805F9B34FB",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "BLE",
+                    "kind": "MANUFACTURER_DATA",
+                    "text": "",
+                    "companyId": 76,
+                    "dataPrefixHex": "0215D20B81E700001000800000805F9B34FB",
+                    "radio": null,
                     "enabled": true
                 },
                 {
-                    "kind": "SERVICE_UUID",
-                    "text": "E7810B92-0000-1000-8000-00805F9B34FB",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "BLE",
-                    "enabled": true
-                },
-                {
-                    "kind": "SERVICE_UUID",
-                    "text": "616C6970-6179-626F-7869-656C65626F706F6C",
-                    "companyId": 0,
-                    "dataPrefixHex": "",
-                    "radio": "BLE",
+                    "kind": "MANUFACTURER_DATA",
+                    "text": "",
+                    "companyId": 76,
+                    "dataPrefixHex": "0215E7810B9200001000800000805F9B34FB",
+                    "radio": null,
                     "enabled": true
                 }
             ],
@@ -66944,7 +66912,7 @@
             "peerWindowSec": 60,
             "clusterByOui": false,
             "sequentialMac": false,
-            "notes": "Yadea e-bike / e-scooter radio: company identifier 5944 (ASCII 'YD'), YD+8-hex and YD_+4-hex (Alipay fleet) names, or the E7810BD2 / D20B81E7 / E7810B92 iBeacon UUID firmware generations. Raw manufacturer data carries lock state and battery level. Pattern match, not a rider or a lock state.",
+            "notes": "Yadea e-bike / e-scooter radio: company identifier 5944 (ASCII 'YD'), YD+8-hex and YD_+4-hex (Alipay fleet) names, or the E7810BD2 / D20B81E7 / E7810B92 Apple iBeacon UUID firmware generations carried in company 004C manufacturer data (an iBeacon UUID is not a service UUID). Raw manufacturer data carries lock state and battery level. Pattern match, not a rider or a lock state.",
             "attentionNote": "",
             "builtIn": true,
             "kind": "VEHICLE"

@@ -20,6 +20,6 @@ internal object UiV96Text {
         "MiBeacon readings status" -> UiText.text(R.string.information_v96_15)
         "Encrypted measurement payload; bindkey required to read values." -> UiText.text(R.string.information_v96_16)
         "This frame contains no measurement objects; not a zero reading." -> UiText.text(R.string.information_v96_17)
-        else -> source
+        else -> UiV99Text.text(source)
     }
 }
