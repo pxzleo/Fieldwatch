@@ -4,6 +4,10 @@ Newest first. This is Fieldwatch (`app.fieldwatch`). Each build below is what Se
 
 Fieldwatch continues the Spectre 1.2.14 field build under a new name, application id, and the MIT License. It does not replace Spectre on a phone.
 
+## 1.1.33 — 3 October 2026
+
+- Catalog 100 adds six new-location families: DESSMANN door-lock radio, GREE air-conditioner BLE, BOLOLO feeding appliances, UTRAO KH Ultra aquarium testers, possible TAPE LIGHTS controllers and JD JoyLink ecosystem radios. Door-lock, GREE and JoyLink rules require combined evidence. English and Simplified Chinese names and notes explain unknown models and unavailable readings. Upgrades add missing rows while preserving existing edits and enabled states.
+
 ## 1.1.32 — 3 October 2026
 
 - Catalog 99 rule-hygiene pass from a stock-catalog review: the D-platform digital-key row no longer uses the shared 128-bit platform UUID as a standalone condition — it is the standard Nordic UART service that plain nRF dev boards advertise too, so N9D* / OEM-code names are the matchers; Yadea's three iBeacon UUID firmware generations now match in company-004C manufacturer data where an iBeacon UUID actually lives (they were written as service UUIDs and could never hit), and a malformed 17-byte "UUID" was dropped; AIMA no longer classifies on bare company 01A8 (SIG-registered to Taobao) — the AIMA-* name or the B69E-prefixed payload is required; Geely no longer classifies on bare company 01FE (SIG-registered to Radio Systems, also seen on ZEEKR keys and plain Radio Systems modules); the MTC name glob was one character short of the observed MTC + 12-hex code and now matches its own notes sample. HomeKit / Apple iBeacon frames are not MiBeacon (version-nibble gate) — covered by new regression tests. All V95–V97 fleet names and notes, plus the V96/V97-modified MERCURY / EZVIZ / Haier / Mi-lock notes, now have Simplified-Chinese translations in the UI. Installed catalogs migrate on next launch; the stock pack for GitHub updates ships at version 99.

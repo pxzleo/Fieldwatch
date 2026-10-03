@@ -336,6 +336,7 @@ object DefaultCatalog {
         *discoveryFamiliesV95().toTypedArray(),
         *discoveryFamiliesV96().toTypedArray(),
         *discoveryFamiliesV97().toTypedArray(),
+        *discoveryFamiliesV100().toTypedArray(),
     ).map(::withPassiveIdentityRules).sortedBy { it.name.lowercase() }
 
     /** Family fingerprints from advertised names/services; these do not identify an owner or exact model. */
@@ -755,6 +756,34 @@ object DefaultCatalog {
             notes = "BLE_DK_<serial> advertised names plus a 128-bit service UUID carrying ASCII 'alipay' identify Alipay-ecosystem radios (tap / digital-key style). The product line is not confirmed; no account or payment state is revealed.",
             rules = listOf(bleGlob("BLE_DK_*"),
                 MatchRule(RuleKind.SERVICE_UUID, text = "616C6970-6179-626F-7869-62656F706F6C", radio = RadioKind.BLE))),
+    )
+
+    /** New-location samples: specific advertised families, not generic chipset IDs. */
+    fun discoveryFamiliesV100(): List<Fleet> = listOf(
+        Fleet(id = "fleet-dessmann-lock", name = "DESSMANN door lock", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.LOCK, matchAny = false,
+            notes = "LOCK_* name together with the DESSMANN registered address prefix F8:AA:B3 identifies a door-lock radio. The address-like manufacturer block is not a registered company identifier. Model and lock state are unknown.",
+            rules = listOf(bleGlob("LOCK_*"), MatchRule(RuleKind.OUI, text = "F8:AA:B3", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-gree-ac-ble", name = "GREE air conditioner radio", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.THERMOSTAT, matchAny = false,
+            notes = "GR-AC_* name and SIG company identifier 0D23 identify a Gree air-conditioner radio. The name suffix is not a verified retail model. No temperature or operating state is decoded.",
+            rules = listOf(bleGlob("GR-AC_*"), MatchRule(RuleKind.MANUFACTURER_ID, companyId = 0x0D23, radio = RadioKind.BLE))),
+        Fleet(id = "fleet-bololo-appliance", name = "BOLOLO feeding appliance", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.HOME, matchAny = true,
+            notes = "BOLOLO-* advertised name points to the Bololo smart feeding appliance family. The advertisement does not distinguish a sterilizer, formula maker or another feeding appliance, or expose its operating state.",
+            rules = listOf(bleGlob("BOLOLO-*"))),
+        Fleet(id = "fleet-utrao-kh-ultra", name = "UTRAO KH Ultra aquarium tester", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.HOME, matchAny = true,
+            notes = "UTRAO_KH_Ultra_* advertised name claims the KH Ultra aquarium alkalinity tester family. The suffix is a device code, not a KH reading. No water-quality measurement is decoded.",
+            rules = listOf(bleGlob("UTRAO_KH_Ultra_*"))),
+        Fleet(id = "fleet-tape-lights", name = "Possible Bluetooth tape-light controller", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.HOME, matchAny = true,
+            notes = "The exact TAPE LIGHTS advertised name suggests a Bluetooth tape-light controller. Brand, model, brightness, color and power state remain unknown. The address prefix does not prove a Xerox product.",
+            rules = listOf(bleGlob("TAPE LIGHTS"))),
+        Fleet(id = "fleet-jd-joylink", name = "JD JoyLink ecosystem radio", builtIn = true, colorIndex = Hue.HOME_CAM,
+            kind = SignatureClass.OTHER, matchAny = false,
+            notes = "JoyLink name together with JD-assigned service FE70 identifies a JoyLink ecosystem radio. This platform is shared by different appliances; the advertisement does not identify an exact product or operating state.",
+            rules = listOf(bleGlob("JoyLink"), MatchRule(RuleKind.SERVICE_UUID, text = "FE70", radio = RadioKind.BLE))),
     )
 
     private fun registeredWifiV93(id: String, name: String, notes: String, prefixes: List<String>) = Fleet(

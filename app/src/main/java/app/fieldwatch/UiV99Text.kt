@@ -90,6 +90,6 @@ internal object UiV99Text {
         "IEEE prefixes registered to Qingdao Haier Technology identify a Haier radio family on Wi-Fi or a stable public BLE address. U-AC / U-GW style BLE names observed on these prefixes are Haier appliance units (air conditioners and gateways); the name alone on an unregistered address is not assigned. Appliance type and exact model are not established." -> UiText.text(R.string.catalog_v99_85)
         "Mi ecosystem door lock" -> UiText.text(R.string.catalog_v99_86)
         "Xiaomi ecosystem door-lock family. MiBeacon product headers distinguish known partner models (1B01 = 'Mi Automatic Smart Door Lock', classic company 004C v3 header); the advertised model name also identifies the lock. They do not identify an owner or prove a locked or unlocked state." -> UiText.text(R.string.catalog_v99_87)
-        else -> source
+        else -> UiV100Text.text(source)
     }
 }

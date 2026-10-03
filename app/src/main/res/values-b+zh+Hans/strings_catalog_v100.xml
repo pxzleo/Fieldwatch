@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_v100_0" formatted="false">"德施曼门锁"</string>
+    <string name="catalog_v100_1" formatted="false">"LOCK_* 名称与德施曼注册地址前缀 F8:AA:B3 相互支持，可识别门锁广播。形似地址的厂家数据不是注册公司号，具体型号和开锁状态未知。"</string>
+    <string name="catalog_v100_2" formatted="false">"格力空调蓝牙广播"</string>
+    <string name="catalog_v100_3" formatted="false">"GR-AC_* 名称与格力 SIG 公司号 0D23 相互支持，可识别空调广播。名称后缀不是已验证的零售型号，尚未解析温度或运行状态。"</string>
+    <string name="catalog_v100_4" formatted="false">"波咯咯智能喂养设备"</string>
+    <string name="catalog_v100_5" formatted="false">"BOLOLO-* 广播名称对应波咯咯智能喂养设备家族。当前广播无法区分消毒柜、调奶器或其他喂养设备，也不提供运行状态。"</string>
+    <string name="catalog_v100_6" formatted="false">"UTRAO KH Ultra 水族检测设备"</string>
+    <string name="catalog_v100_7" formatted="false">"UTRAO_KH_Ultra_* 广播名称自报 KH Ultra 水族碱度检测设备。后缀为设备代码，不是 KH 读数，尚未解析水质测量值。"</string>
+    <string name="catalog_v100_8" formatted="false">"疑似蓝牙灯带控制器"</string>
+    <string name="catalog_v100_9" formatted="false">"TAPE LIGHTS 广播名称提示蓝牙灯带控制器。品牌、型号、亮度、颜色和开关状态未知；地址前缀不代表该产品由施乐制造。"</string>
+    <string name="catalog_v100_10" formatted="false">"京东 JoyLink 生态广播"</string>
+    <string name="catalog_v100_11" formatted="false">"JoyLink 名称与京东注册服务 FE70 相互支持，可识别 JoyLink 生态广播。该平台供多种设备使用，当前广播无法确认具体产品或运行状态。"</string>
+</resources>

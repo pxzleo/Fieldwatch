@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_v100_0" formatted="false">"DESSMANN door lock"</string>
+    <string name="catalog_v100_1" formatted="false">"LOCK_* name together with the DESSMANN registered address prefix F8:AA:B3 identifies a door-lock radio. The address-like manufacturer block is not a registered company identifier. Model and lock state are unknown."</string>
+    <string name="catalog_v100_2" formatted="false">"GREE air conditioner radio"</string>
+    <string name="catalog_v100_3" formatted="false">"GR-AC_* name and SIG company identifier 0D23 identify a Gree air-conditioner radio. The name suffix is not a verified retail model. No temperature or operating state is decoded."</string>
+    <string name="catalog_v100_4" formatted="false">"BOLOLO feeding appliance"</string>
+    <string name="catalog_v100_5" formatted="false">"BOLOLO-* advertised name points to the Bololo smart feeding appliance family. The advertisement does not distinguish a sterilizer, formula maker or another feeding appliance, or expose its operating state."</string>
+    <string name="catalog_v100_6" formatted="false">"UTRAO KH Ultra aquarium tester"</string>
+    <string name="catalog_v100_7" formatted="false">"UTRAO_KH_Ultra_* advertised name claims the KH Ultra aquarium alkalinity tester family. The suffix is a device code, not a KH reading. No water-quality measurement is decoded."</string>
+    <string name="catalog_v100_8" formatted="false">"Possible Bluetooth tape-light controller"</string>
+    <string name="catalog_v100_9" formatted="false">"The exact TAPE LIGHTS advertised name suggests a Bluetooth tape-light controller. Brand, model, brightness, color and power state remain unknown. The address prefix does not prove a Xerox product."</string>
+    <string name="catalog_v100_10" formatted="false">"JD JoyLink ecosystem radio"</string>
+    <string name="catalog_v100_11" formatted="false">"JoyLink name together with JD-assigned service FE70 identifies a JoyLink ecosystem radio. This platform is shared by different appliances; the advertisement does not identify an exact product or operating state."</string>
+</resources>
