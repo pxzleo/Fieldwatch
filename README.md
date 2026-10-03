@@ -358,3 +358,15 @@ Mesh 解码与规则匹配共用校验入口，设备详情、文本和 PDF 报�
 - 目录100升级仅补齐缺失内置行，保留同ID已有自定义行、原规则及启用状态；APK内置库和发布JSON同步。
 
 验证：594项单元测试通过，覆盖六类实际广播样本、随机地址及弱证据误匹配负例、升级保留与重复升级；Debug APK编译及差异检查通过。德施曼的注册地址证据使用OUI规则，排除随机地址。
+
+### 华为与苹果漏匹配补齐（1.1.34／目录101）
+
+需求：对未知列表中已有华为、苹果厂家信息的广播查找特征并匹配，区分已确认厂家与已确认设备类型。
+
+- 新增004C完整13型、8字节载荷的苹果Continuity格式广播及完整03型AirPrint打印服务匹配；拒绝截断或尾随无效数据。AirPrint可来自第三方打印机或打印服务器，不推断苹果硬件型号。
+- 华为蓝牙使用SIG公司号027D，或复用IEEE华为OUI表匹配公开地址；随机地址不作为OUI证据。显示“华为蓝牙设备（类型未确认）”，不将共享厂家身份推断成路由器或手机。现有华为Wi-Fi、FDEE生态识别继续保留。
+- 名称和备注同步英语、简体中文；目录101仅补齐缺失行，保留已有规则、备注及禁用状态，发布JSON同步。
+
+依据：[Bluetooth SIG公司号](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/index-en.html)、[AirPrint广播研究原文](https://github.com/furiousMAC/continuity/blob/master/messages/airprint.md)、[华为默认路由器SSID说明](https://consumer.huawei.com/ae-en/support/content/en-us15806375/)。13型沿用现有解析器类型标记及实测完整帧，只确认协议格式，不解释未公开的活动字节。
+
+验证：598项单元测试通过，中英文6个资源键一致，目录发布包一致性和Debug APK编译通过。覆盖苹果完整报文、截断与尾随负例、华为公开与随机地址、跨无线类型及已有修改保留。

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_v101_0">Apple Continuity radio (type 13)</string>
+    <string name="catalog_v101_1">A complete company 004C type 13 message with eight payload bytes identifies an Apple Continuity-format radio. The extended message does not establish an iPhone, iPad, Mac or Watch model, battery, or activity. Advertisements can be imitated.</string>
+    <string name="catalog_v101_2">AirPrint printing service</string>
+    <string name="catalog_v101_3">A complete company 004C type 03 AirPrint message advertises a printing endpoint. AirPrint-compatible printers and print servers can use this Apple protocol; it does not prove Apple-manufactured hardware or an exact printer model. No print-job state is decoded.</string>
+    <string name="catalog_v101_4">Huawei BLE device (type unconfirmed)</string>
+    <string name="catalog_v101_5">SIG company identifier 027D or a public IEEE-registered Huawei address identifies the advertised Huawei vendor. Phones, wearables, routers and other products share this vendor. Device type, model and operating state remain unconfirmed; randomized addresses are excluded from OUI evidence.</string>
+</resources>
+

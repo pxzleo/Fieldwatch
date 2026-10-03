@@ -1070,6 +1070,10 @@ class ConfigStore(context: Context) {
             fleets = appendCatalogV100(fleets)
             version = CATALOG_V100
         }
+        if (version < CATALOG_V101) {
+            fleets = appendCatalogV101(fleets)
+            version = CATALOG_V101
+        }
         // An older APK can import the V90 pack while retaining the generated custom candidate.
         fleets = repairMercuryCandidates(fleets)
         if (!settings.darkTheme) settings = settings.copy(darkTheme = true)
@@ -1112,7 +1116,7 @@ class ConfigStore(context: Context) {
 
     companion object {
         /** Stock catalog generation. Settings footer and the GitHub pack use this. */
-        const val CATALOG_VERSION = 100
+        const val CATALOG_VERSION = 101
 
         /** Historical stock patches remain in place; V89 families preserve every existing row. */
         internal fun patchBuiltInRules(fleets: List<Fleet>, catalog: Map<String, Fleet>): List<Fleet> {
@@ -1202,6 +1206,11 @@ class ConfigStore(context: Context) {
             }
             val have = updated.map { it.id }.toSet()
             return updated + DefaultCatalog.discoveryFamiliesV97().filter { it.id !in have }
+        }
+
+        internal fun appendCatalogV101(fleets: List<Fleet>): List<Fleet> {
+            val have = fleets.mapTo(HashSet()) { it.id }
+            return fleets + DefaultCatalog.discoveryFamiliesV101().filter { it.id !in have }
         }
 
         /** Append new-location families without changing existing rows. */
@@ -1432,7 +1441,8 @@ class ConfigStore(context: Context) {
         private const val CATALOG_V97 = 97
         private const val CATALOG_V98 = 98
         private const val CATALOG_V99 = 99
-        private const val CATALOG_V100 = CATALOG_VERSION
+        private const val CATALOG_V100 = 100
+        private const val CATALOG_V101 = CATALOG_VERSION
         private val GENERIC_GATT_UUIDS = setOf("180A", "180D", "180F")
         private val POLICY_FLEET_IDS = setOf(
             "fleet-flock-cameras",

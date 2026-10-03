@@ -4,6 +4,10 @@ Newest first. This is Fieldwatch (`app.fieldwatch`). Each build below is what Se
 
 Fieldwatch continues the Spectre 1.2.14 field build under a new name, application id, and the MIT License. It does not replace Spectre on a phone.
 
+## 1.1.34 — 3 October 2026
+
+- Catalog 101 fills Apple company-004C type-13 and AirPrint type-03 gaps using complete TLV validation. AirPrint identifies a printing service, including third-party hardware. Huawei BLE vendor identity now matches company 027D or public registered Huawei OUIs, excluding randomized OUI evidence; device type remains unconfirmed. Names and notes are available in English and Simplified Chinese. Migration preserves existing edits and enabled states.
+
 ## 1.1.33 — 3 October 2026
 
 - Catalog 100 adds six new-location families: DESSMANN door-lock radio, GREE air-conditioner BLE, BOLOLO feeding appliances, UTRAO KH Ultra aquarium testers, possible TAPE LIGHTS controllers and JD JoyLink ecosystem radios. Door-lock, GREE and JoyLink rules require combined evidence. English and Simplified Chinese names and notes explain unknown models and unavailable readings. Upgrades add missing rows while preserving existing edits and enabled states.

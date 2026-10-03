@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="catalog_v101_0">苹果 Continuity 广播（13型）</string>
+    <string name="catalog_v101_1">公司号004C、载荷为8字节的完整13型消息，可识别为苹果Continuity格式广播。该扩展消息无法确认iPhone、iPad、Mac或Watch的具体型号、电量或活动；广播也可能被仿造。</string>
+    <string name="catalog_v101_2">AirPrint 打印服务</string>
+    <string name="catalog_v101_3">公司号004C的完整03型AirPrint消息表示一个打印服务端点。兼容AirPrint的打印机或打印服务器也会使用苹果协议，不能据此认定硬件由苹果制造或确定打印机型号。未解析打印任务状态。</string>
+    <string name="catalog_v101_4">华为蓝牙设备（类型未确认）</string>
+    <string name="catalog_v101_5">SIG公司号027D或公开的IEEE注册华为地址，可确认广播的华为厂家身份。手机、穿戴设备、路由器及其他产品均可能使用，具体类型、型号和运行状态未确认；随机地址不作为OUI厂家证据。</string>
+</resources>
+

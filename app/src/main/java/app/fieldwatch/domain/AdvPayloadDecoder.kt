@@ -318,7 +318,9 @@ object AdvPayloadDecoder {
         val tlvs = appleTlvs(bytes)
         if (tlvs.sumOf { it.data.size + 2 } != bytes.size) return false
         return tlvs.any { it.type == type && when (type) {
+            0x03 -> it.data.size in 21..22
             0x09 -> validAirPlayTarget(it.data)
+            0x13 -> it.data.size == 8
             0x16 -> it.data.size == 8
             else -> false
         } }

@@ -105,7 +105,7 @@ class DiscoveryV94Test {
     }
 
     @Test fun migrationAddsOnlyV94AndPreservesDisabledCustomAndDeletedOldRules() {
-        assertEquals(100, ConfigStore.CATALOG_VERSION)
+        assertEquals(101, ConfigStore.CATALOG_VERSION)
         val stock = DefaultCatalog.fleets().single { it.id == "fleet-mercury-wifi" }
         val disabled = stock.copy(enabled = false, rules = stock.rules.map { it.copy(enabled = false) })
         val and = stock.copy(id = "and", matchAny = false, rules = emptyList())

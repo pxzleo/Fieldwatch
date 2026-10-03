@@ -9,7 +9,7 @@ import org.junit.Test
 
 class DiscoveryV98Test {
     @Test fun catalogVersionIs98() {
-        assertEquals(100, ConfigStore.CATALOG_VERSION)
+        assertEquals(101, ConfigStore.CATALOG_VERSION)
     }
 
     @Test fun v98ReAddsTheMissingBuiltInMercuryRowOnly() {

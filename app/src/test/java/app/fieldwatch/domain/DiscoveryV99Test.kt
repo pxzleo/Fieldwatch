@@ -24,7 +24,7 @@ class DiscoveryV99Test {
         SignatureEngine().match(listOf(device), DefaultCatalog.fleets()).values.single()
 
     @Test fun catalogVersionIs99() {
-        assertEquals(100, ConfigStore.CATALOG_VERSION)
+        assertEquals(101, ConfigStore.CATALOG_VERSION)
     }
 
     @Test fun v99DropsOverBroadCompanyIdsAndDeadUuidsOnInstalledRows() {

@@ -337,6 +337,7 @@ object DefaultCatalog {
         *discoveryFamiliesV96().toTypedArray(),
         *discoveryFamiliesV97().toTypedArray(),
         *discoveryFamiliesV100().toTypedArray(),
+        *discoveryFamiliesV101().toTypedArray(),
     ).map(::withPassiveIdentityRules).sortedBy { it.name.lowercase() }
 
     /** Family fingerprints from advertised names/services; these do not identify an owner or exact model. */
@@ -756,6 +757,23 @@ object DefaultCatalog {
             notes = "BLE_DK_<serial> advertised names plus a 128-bit service UUID carrying ASCII 'alipay' identify Alipay-ecosystem radios (tap / digital-key style). The product line is not confirmed; no account or payment state is revealed.",
             rules = listOf(bleGlob("BLE_DK_*"),
                 MatchRule(RuleKind.SERVICE_UUID, text = "616C6970-6179-626F-7869-62656F706F6C", radio = RadioKind.BLE))),
+    )
+
+    /** Protocol evidence and vendor-only BLE identification; neither implies an exact product. */
+    fun discoveryFamiliesV101(): List<Fleet> = listOf(
+        Fleet(id = "fleet-apple-continuity-13", name = "Apple Continuity radio (type 13)", builtIn = true,
+            colorIndex = Hue.FIND_MY, kind = SignatureClass.OTHER,
+            notes = "A complete company 004C type 13 message with eight payload bytes identifies an Apple Continuity-format radio. The extended message does not establish an iPhone, iPad, Mac or Watch model, battery, or activity. Advertisements can be imitated.",
+            rules = listOf(MatchRule(RuleKind.APPLE_CONTINUITY_TYPE, text = "13", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-airprint-radio", name = "AirPrint printing service", builtIn = true,
+            colorIndex = Hue.HOME_CAM, kind = SignatureClass.OTHER,
+            notes = "A complete company 004C type 03 AirPrint message advertises a printing endpoint. AirPrint-compatible printers and print servers can use this Apple protocol; it does not prove Apple-manufactured hardware or an exact printer model. No print-job state is decoded.",
+            rules = listOf(MatchRule(RuleKind.APPLE_CONTINUITY_TYPE, text = "03", radio = RadioKind.BLE))),
+        Fleet(id = "fleet-huawei-ble-vendor", name = "Huawei BLE device (type unconfirmed)", builtIn = true,
+            colorIndex = Hue.FIND_MY, kind = SignatureClass.OTHER,
+            notes = "SIG company identifier 027D or a public IEEE-registered Huawei address identifies the advertised Huawei vendor. Phones, wearables, routers and other products share this vendor. Device type, model and operating state remain unconfirmed; randomized addresses are excluded from OUI evidence.",
+            rules = listOf(MatchRule(RuleKind.MANUFACTURER_ID, companyId = 0x027D, radio = RadioKind.BLE)) +
+                ApVendorOuis.HUAWEI.map { MatchRule(RuleKind.OUI, text = it, radio = RadioKind.BLE) }),
     )
 
     /** New-location samples: specific advertised families, not generic chipset IDs. */

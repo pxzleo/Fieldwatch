@@ -14,6 +14,6 @@ internal object UiV100Text {
         "The exact TAPE LIGHTS advertised name suggests a Bluetooth tape-light controller. Brand, model, brightness, color and power state remain unknown. The address prefix does not prove a Xerox product." -> UiText.text(R.string.catalog_v100_9)
         "JD JoyLink ecosystem radio" -> UiText.text(R.string.catalog_v100_10)
         "JoyLink name together with JD-assigned service FE70 identifies a JoyLink ecosystem radio. This platform is shared by different appliances; the advertisement does not identify an exact product or operating state." -> UiText.text(R.string.catalog_v100_11)
-        else -> source
+        else -> UiV101Text.text(source)
     }
 }
