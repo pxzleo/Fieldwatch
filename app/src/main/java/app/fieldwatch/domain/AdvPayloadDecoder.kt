@@ -16,13 +16,16 @@ object AdvPayloadDecoder {
     )
 
     fun decodeDevice(device: Sighting, translate: (String) -> String = { it }): List<Field> {
-        if (device.kind == RadioKind.WIFI) return device.facts.vendorIes.flatMap {
-            WifiWpsDecoder.decode(it, translate)?.fields.orEmpty() + WifiWmmDecoder.decode(it, translate)
-        }.distinct()
+        if (device.kind == RadioKind.WIFI) return (device.facts.vendorIes.flatMap {
+            WifiWpsDecoder.decode(it, translate)?.fields.orEmpty().filterNot { field ->
+                device.facts.wpsIdentity != null && WifiWpsDecoder.identityLabels.any { field.label == translate(it) }
+            } + WifiWmmDecoder.decode(it, translate)
+        } + WifiWpsDecoder.historicalFields(device.facts, translate)).distinct()
         val mfg = device.facts.mfgRecords.ifEmpty {
             device.manufacturerId?.let { listOf(MfgRecord(it, device.manufacturerDataHex)) }.orEmpty()
         }
-        val identity = appleDeviceHint(device, translate)?.let { listOf(Field(translate("Apple device type"), it.label)) }.orEmpty()
+        val identity = appleDeviceHint(device, translate)?.let { listOf(Field(translate("Apple device type"), it.label)) }.orEmpty() +
+            BleServiceOwnership.fields(device, translate)
         val decoded = identity + device.facts.serviceData.flatMap { decodeService(it, device, translate) } +
             mfg.flatMap { decodeManufacturer(it, translate) + MideaAdvertisementDecoder.decodeAddress(it, device.mac, translate) } + decodeMesh(device.rawHex, translate)
         if (decoded.isNotEmpty()) return decoded.distinct()

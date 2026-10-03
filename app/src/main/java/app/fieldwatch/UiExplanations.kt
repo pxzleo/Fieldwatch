@@ -3,6 +3,13 @@ package app.fieldwatch
 /** Resolves fixed authored explanation tokens; radio and user values pass through. */
 internal object UiExplanations {
     fun text(source: String): String = when (source) {
+        "Last valid WPS identity: %1\$s" -> UiText.text(R.string.wps_last_identity_field)
+        "Last valid WPS identity observed at" -> UiText.text(R.string.wps_last_identity_time)
+        "WPS identity log snapshot time (not a new reception)" -> UiText.text(R.string.wps_identity_log_time)
+        "BLE service assignment" -> UiText.text(R.string.ble_service_assignment)
+        "Huawei" -> UiText.text(R.string.service_owner_huawei)
+        "Xiaomi" -> UiText.text(R.string.service_owner_xiaomi)
+        "%1\$s-assigned service; device type and model unconfirmed." -> UiText.text(R.string.ble_service_owner_unknown)
         "Apple device type" -> UiText.text(R.string.apple_device_type)
         "Apple device (type unconfirmed)" -> UiText.text(R.string.apple_type_unknown)
         "Apple audio (model unconfirmed)" -> UiText.text(R.string.apple_audio_unknown)

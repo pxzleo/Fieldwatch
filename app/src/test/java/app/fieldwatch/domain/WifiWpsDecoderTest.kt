@@ -8,6 +8,91 @@ class WifiWpsDecoderTest {
         "1042000831323334353637381011000C5869616F4D69526F75746572"
     private fun wps(hex: String = sample) = VendorIeRecord("00:50:F2", 4, hex)
 
+    @Test fun historySurvivesIncompleteFramesAndKeepsOnlyIdentityFields() {
+        val full = RadioFacts(vendorIes = listOf(wps(sample + "1044000102"))).captureWpsIdentity(1_000L)
+        val partial = RadioFacts(vendorIes = listOf(wps("104A000110"))).captureWpsIdentity(2_000L)
+        val facts = full.merge(partial)
+        assertEquals(1_000L, facts.wpsIdentity!!.observedAt)
+        assertEquals(partial.vendorIes, facts.vendorIes)
+        val fields = AdvPayloadDecoder.decodeDevice(wifi().copy(facts = facts))
+        assertTrue(fields.any { it.label == "Last valid WPS identity: WPS model" && it.value == "R3P" })
+        assertTrue(fields.any { it.label == "Last valid WPS identity: WPS advertised serial number" && it.value == "12345678" })
+        assertFalse(fields.any { it.label.contains("configuration state") })
+        assertTrue(fields.any { it.label == "Last valid WPS identity observed at" && it.value == "1970-01-01T00:00:01Z" })
+        assertEquals(null, WifiWpsDecoder.identity(facts.vendorIes))
+    }
+
+    @Test fun completeNewIdentityReplacesOldSnapshotButOlderTimestampsDoNot() {
+        val first = RadioFacts(vendorIes = listOf(wps())).captureWpsIdentity(1_000L)
+        val changed = RadioFacts(vendorIes = listOf(wps(sample.replace("523350", "523358")))).captureWpsIdentity(2_000L)
+        val latest = first.merge(changed).merge(first)
+        assertEquals(changed.wpsIdentity, latest.wpsIdentity)
+        val fields = WifiWpsDecoder.historicalFields(latest)
+        assertTrue(fields.any { it.value == "R3X" })
+        assertFalse(fields.any { it.value == "R3P" })
+        assertEquals(6, WifiWpsDecoder.historicalFields(changed).size)
+        val currentFields = AdvPayloadDecoder.decodeDevice(wifi().copy(facts = changed))
+        assertEquals(1, currentFields.count { it.value == "R3X" })
+        assertFalse(currentFields.any { it.label == "WPS model" })
+    }
+
+    @Test fun malformedAndUntimedIdentityCannotCreateOrRefreshHistory() {
+        val valid = RadioFacts(vendorIes = listOf(wps())).captureWpsIdentity(1_000L)
+        for (record in listOf(wps(sample + "FF"), wps("102100067869"), wps(sample).copy(type = 2))) {
+            val invalid = RadioFacts(vendorIes = listOf(record)).captureWpsIdentity(2_000L)
+            assertEquals(null, invalid.wpsIdentity)
+            assertEquals(valid.wpsIdentity, valid.merge(invalid).wpsIdentity)
+        }
+        assertEquals(null, RadioFacts(vendorIes = listOf(wps())).captureWpsIdentity(0L).wpsIdentity)
+    }
+
+    @Test fun historyRoundTripsJsonlAndOldLogsRecoverIt() {
+        val first = wifi().copy(facts = wifi().facts.captureWpsIdentity(1_000L))
+        val latest = first.copy(lastSeen = 2_000L, facts = first.facts.merge(RadioFacts(vendorIes = listOf(wps("104A000110")))))
+        fun json(device: Sighting, at: Long) = RadioSampleJson.appendTo(org.json.JSONObject()
+            .put("kind", "WIFI").put("mac", device.mac).put("ts", at), device)
+        val encoded = json(latest, 2_000L)
+        assertEquals(latest.facts.wpsIdentity, RadioSampleJson.readFacts(encoded).wpsIdentity)
+        val persisted = kotlinx.serialization.json.Json.encodeToString(RadioFacts.serializer(), latest.facts)
+        assertEquals(latest.facts.wpsIdentity,
+            kotlinx.serialization.json.Json.decodeFromString(RadioFacts.serializer(), persisted).wpsIdentity)
+        assertEquals(null, kotlinx.serialization.json.Json.decodeFromString(RadioFacts.serializer(), "{}").wpsIdentity)
+        assertEquals(latest.facts.wpsIdentity, LogReplay.parse(encoded.toString()).single().facts.wpsIdentity)
+        val oldFirst = json(first, 1_000L).also { it.getJSONObject("facts").remove("wps_identity") }
+        val oldLast = json(latest, 2_000L).also { it.getJSONObject("facts").remove("wps_identity") }
+        val recovered = LogReplay.parse("$oldFirst\n$oldLast").single().facts
+        assertEquals(first.facts.wpsIdentity!!.copy(logSnapshot = true), recovered.wpsIdentity)
+        assertEquals(latest.facts.vendorIes, recovered.vendorIes)
+        val bad = json(latest, 2_000L).also { it.getJSONObject("facts").getJSONObject("wps_identity").put("observed_at", -1) }
+        assertThrows(org.json.JSONException::class.java) { RadioSampleJson.readFacts(bad) }
+    }
+
+    @Test fun historicalIdentityAndTimestampReachDetailsAndDebriefWithTranslation() {
+        val facts = wifi().facts.captureWpsIdentity(1_000L).merge(RadioFacts(vendorIes = listOf(wps("104A000110"))))
+        val device = wifi().copy(facts = facts)
+        val translated: (String) -> String = { "译:$it" }
+        val detail = DeviceDetailText.build(device, emptyList(), now = 2_000L, translate = translated)
+        val report = DebriefReport.document(listOf(device), emptyList(), AppSettings(), emptyList(), now = 2_000L, translate = translated).toPlainText(translated)
+        for (text in listOf(detail, report)) {
+            assertTrue(text.contains("译:Last valid WPS identity: 译:WPS model: R3P"))
+            assertTrue(text.contains("1970-01-01T00:00:01Z"))
+        }
+    }
+
+    @Test fun oldCumulativeLogsClearlyLabelSnapshotTimeInsteadOfClaimingFreshReception() {
+        val device = wifi()
+        fun row(at: Long) = RadioSampleJson.appendTo(org.json.JSONObject()
+            .put("kind", "WIFI").put("mac", device.mac).put("ts", at), device)
+        val replayed = LogReplay.parse("${row(1_000L)}\n${row(2_000L)}").single()
+        assertTrue(replayed.facts.wpsIdentity!!.logSnapshot)
+        val fields = AdvPayloadDecoder.decodeDevice(device.copy(facts = replayed.facts))
+        assertTrue(fields.any { it.label == "WPS identity log snapshot time (not a new reception)" &&
+            it.value == "1970-01-01T00:00:02Z" })
+        assertFalse(fields.any { it.label == "Last valid WPS identity observed at" })
+        val saved = RadioSampleJson.appendTo(org.json.JSONObject(), device.copy(facts = replayed.facts))
+        assertTrue(RadioSampleJson.readFacts(saved).wpsIdentity!!.logSnapshot)
+    }
+
     @Test fun r3pBigEndianAttributesPreserveBroadcastText() {
         val decoded = WifiWpsDecoder.decode(wps())!!
         assertEquals(WifiWpsDecoder.Status.COMPLETE, decoded.status)

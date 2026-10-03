@@ -128,7 +128,7 @@ class DeviceStore(
                 latitude = observation.latitude,
                 longitude = observation.longitude,
                 vendorIeOuis = observation.vendorIeOuis,
-                facts = observation.facts,
+                facts = if (observation.fresh) observation.facts.captureWpsIdentity(observation.at) else observation.facts,
                 gpsTrail = gpsStart(observation),
                 fastPairPairing = FastPair.pairingAdvertised(observation.facts),
             )
@@ -185,7 +185,7 @@ class DeviceStore(
                 gpsTrail = gpsAppend(existing.gpsTrail, observation),
                 gone = false,
                 vendorIeOuis = mergeIes(existing.vendorIeOuis, observation.vendorIeOuis),
-                facts = existing.facts.merge(observation.facts),
+                facts = existing.facts.merge(observation.facts.captureWpsIdentity(observation.at)),
                 fastPairPairing = existing.fastPairPairing || FastPair.pairingAdvertised(observation.facts),
             )
         }

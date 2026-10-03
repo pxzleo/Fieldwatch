@@ -24,6 +24,22 @@ import org.json.JSONObject
 class DeviceStoreTest {
     private val fleets = DefaultCatalog.fleets()
 
+    @Test fun wifiHistoryUsesFreshFramesAndKeepsOriginalTimestampThroughCachedResults() {
+        val store = DeviceStore()
+        val record = VendorIeRecord("0050F2", 4, "102100074E455447454152102300055237303030")
+        val original = wifi("00:11:22:33:44:55").copy(at = 1_000L, facts = RadioFacts(vendorIes = listOf(record)))
+        val first = store.ingest(original, emptyList(), 30)
+        assertEquals(1_000L, first.facts.wpsIdentity!!.observedAt)
+        val cached = store.ingest(original.copy(at = 2_000L, fresh = false), emptyList(), 30)
+        assertEquals(first.facts.wpsIdentity, cached.facts.wpsIdentity)
+        val partial = store.ingest(original.copy(at = 3_000L,
+            facts = RadioFacts(vendorIes = listOf(record.copy(dataHex = "104A000110")))), emptyList(), 30)
+        assertEquals(first.facts.wpsIdentity, partial.facts.wpsIdentity)
+        val updated = store.ingest(original.copy(at = 4_000L), emptyList(), 30)
+        assertEquals(4_000L, updated.facts.wpsIdentity!!.observedAt)
+        assertEquals(3, updated.hitCount)
+    }
+
     @Test fun catalogRefreshReclassifiesStoppedScanWithoutNewObservations() {
         val store = DeviceStore()
         store.ingest(ble("00:11:22:33:44:55", "Performance test device"), emptyList(), 30)

@@ -1462,4 +1462,11 @@
     <string name="purpose_unknown" formatted="false">"Purpose undetermined"</string>
     <string name="sort_within_groups" formatted="false">"Sort within groups"</string>
     <string name="sort_weakest_average">"Weakest first · %1$s s average"</string>
+    <string name="wps_last_identity_field">"Last valid WPS identity: %1$s"</string>
+    <string name="wps_last_identity_time" formatted="false">"Last valid WPS identity observed at"</string>
+    <string name="ble_service_assignment" formatted="false">"BLE service assignment"</string>
+    <string name="ble_service_owner_unknown">"%1$s-assigned service; device type and model unconfirmed."</string>
+    <string name="service_owner_huawei" formatted="false">"Huawei"</string>
+    <string name="service_owner_xiaomi" formatted="false">"Xiaomi"</string>
+    <string name="wps_identity_log_time" formatted="false">"WPS identity log snapshot time (not a new reception)"</string>
 </resources>

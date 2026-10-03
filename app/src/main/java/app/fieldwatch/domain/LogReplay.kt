@@ -153,7 +153,7 @@ object LogReplay {
                 frequencyMhz = obj.optInt("freq", 0),
                 latitude = obj.optDouble("lat").takeIf { obj.has("lat") && !obj.isNull("lat") },
                 longitude = obj.optDouble("lon").takeIf { obj.has("lon") && !obj.isNull("lon") },
-                facts = RadioSampleJson.readFacts(obj),
+                facts = RadioSampleJson.readFacts(obj).captureWpsIdentity(ts, logSnapshot = true),
             ),
         )
     }

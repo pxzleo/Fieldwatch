@@ -25,6 +25,19 @@ object WifiWpsDecoder {
 
     fun identity(records: List<VendorIeRecord>): Decoded? = identities(records).firstOrNull()
 
+    fun historicalFields(facts: RadioFacts, translate: (String) -> String = { it }): List<AdvPayloadDecoder.Field> {
+        val snapshot = facts.wpsIdentity ?: return emptyList()
+        val identity = identity(listOf(snapshot.record)) ?: return emptyList()
+        val fields = identity.fields.filter { it.label in identityLabels }.map {
+            AdvPayloadDecoder.Field(translate("Last valid WPS identity: %1\$s").format(translate(it.label)), it.value)
+        }
+        return fields + AdvPayloadDecoder.Field(translate(if (snapshot.logSnapshot)
+            "WPS identity log snapshot time (not a new reception)" else "Last valid WPS identity observed at"),
+            java.time.Instant.ofEpochMilli(snapshot.observedAt).toString())
+    }
+
+    internal val identityLabels = setOf("WPS manufacturer", "WPS model", "WPS model number", "WPS device name", "WPS advertised serial number")
+
     fun protocolName(record: VendorIeRecord): String? {
         if (!record.oui.replace(":", "").replace("-", "").equals("0050F2", true)) return null
         return when (record.type) {

@@ -43,6 +43,18 @@ object RadioSampleJson {
                 VendorIeRecord(it.optString("oui"), integer(it, "type", "facts.vendor_ies") ?: -1, it.optString("data_hex"))
             },
             serviceData = records("service_data").map { ServiceDataRecord(it.optString("uuid"), it.optString("data_hex")) },
+            wpsIdentity = if (!obj.has("wps_identity") || obj.isNull("wps_identity")) null else {
+                val snapshot = obj.getJSONObject("wps_identity")
+                val at = snapshot.get("observed_at").toString().toLongOrNull()?.takeIf { it > 0 }
+                    ?: throw org.json.JSONException("facts.wps_identity.observed_at must be a positive timestamp")
+                val raw = snapshot.getJSONObject("record")
+                val record = VendorIeRecord(raw.getString("oui"), raw.getInt("type"), raw.getString("data_hex"))
+                if (WifiWpsDecoder.identity(listOf(record)) == null)
+                    throw org.json.JSONException("facts.wps_identity.record must contain a complete WPS identity")
+                val logSnapshot = if (!snapshot.has("log_snapshot")) false else snapshot.get("log_snapshot") as? Boolean
+                    ?: throw org.json.JSONException("facts.wps_identity.log_snapshot must be a boolean")
+                WpsIdentitySnapshot(record, at, logSnapshot)
+            },
         )
     }
 
@@ -75,6 +87,12 @@ object RadioSampleJson {
             .put("vendor_ies", JSONArray(facts.vendorIes.map {
                 JSONObject().put("oui", it.oui).put("type", it.type).put("data_hex", it.dataHex)
             }))
+            .apply {
+                facts.wpsIdentity?.let {
+                    put("wps_identity", JSONObject().put("observed_at", it.observedAt).put("log_snapshot", it.logSnapshot)
+                        .put("record", JSONObject().put("oui", it.record.oui).put("type", it.record.type).put("data_hex", it.record.dataHex)))
+                }
+            }
         return target
             .put("raw_hex", device.rawHex)
             .put("manufacturer_id", device.manufacturerId ?: JSONObject.NULL)

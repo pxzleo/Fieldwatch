@@ -21,6 +21,10 @@ data class ServiceDataRecord(
     val dataHex: String,
 )
 
+/** Last complete, self-declared WPS identity, separate from current protocol/status bytes. */
+@Serializable
+data class WpsIdentitySnapshot(val record: VendorIeRecord, val observedAt: Long, val logSnapshot: Boolean = false)
+
 @Serializable
 data class RadioFacts(
     val txPowerDbm: Int? = null,
@@ -43,7 +47,14 @@ data class RadioFacts(
     val mfgRecords: List<MfgRecord> = emptyList(),
     val vendorIes: List<VendorIeRecord> = emptyList(),
     val serviceData: List<ServiceDataRecord> = emptyList(),
+    val wpsIdentity: WpsIdentitySnapshot? = null,
 ) {
+    fun captureWpsIdentity(at: Long, logSnapshot: Boolean = false): RadioFacts {
+        if (wpsIdentity != null || at <= 0) return this
+        val record = vendorIes.firstOrNull { WifiWpsDecoder.identity(listOf(it)) != null } ?: return this
+        return copy(wpsIdentity = WpsIdentitySnapshot(record, at, logSnapshot))
+    }
+
     fun merge(newer: RadioFacts): RadioFacts = copy(
         txPowerDbm = newer.txPowerDbm ?: txPowerDbm,
         advFlags = newer.advFlags ?: advFlags,
@@ -69,6 +80,8 @@ data class RadioFacts(
         mfgRecords = mergeMfg(mfgRecords, newer.mfgRecords),
         vendorIes = mergeVendorIes(vendorIes, newer.vendorIes),
         serviceData = mergeServiceData(serviceData, newer.serviceData),
+        wpsIdentity = if (newer.wpsIdentity != null &&
+            (wpsIdentity == null || newer.wpsIdentity.observedAt >= wpsIdentity.observedAt)) newer.wpsIdentity else wpsIdentity,
     )
 
     companion object {

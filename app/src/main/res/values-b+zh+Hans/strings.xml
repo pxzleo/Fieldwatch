@@ -1462,4 +1462,11 @@
     <string name="purpose_unknown" formatted="false">"用途未确定"</string>
     <string name="sort_within_groups" formatted="false">"组内排序"</string>
     <string name="sort_weakest_average">"信号弱 → 强 · %1$s 秒平均"</string>
+    <string name="wps_last_identity_field">"上次有效 WPS 身份：%1$s"</string>
+    <string name="wps_last_identity_time" formatted="false">"上次有效 WPS 身份记录时间"</string>
+    <string name="ble_service_assignment" formatted="false">"蓝牙服务归属"</string>
+    <string name="ble_service_owner_unknown">"%1$s 分配的服务；设备类型与型号未确认。"</string>
+    <string name="service_owner_huawei" formatted="false">"华为"</string>
+    <string name="service_owner_xiaomi" formatted="false">"小米"</string>
+    <string name="wps_identity_log_time" formatted="false">"WPS 身份日志快照时间（非重新接收时间）"</string>
 </resources>
