@@ -34,10 +34,10 @@ fun LiveSortBar(settings: AppSettings, onSort: (ListSort, StrengthSort?) -> Unit
             }
             DropdownMenu(expanded, onDismissRequest = { expanded = false }) {
                 DropdownMenuItem(text = { Text(UiText.text(R.string.sort_strongest_short)) },
-                    onClick = { onSort(ListSort.STRENGTH, StrengthSort.INSTANT); expanded = false })
+                    onClick = { onSort(ListSort.STRENGTH, StrengthSort.AVERAGE); expanded = false })
                 listOf(ListSort.WIFI_FIRST, ListSort.BLE_FIRST).forEach { sort ->
                     DropdownMenuItem(text = { Text(sort.uiLabel(settings.strengthSort, settings.averageWindowSec)) },
-                        onClick = { onSort(sort, StrengthSort.INSTANT); expanded = false })
+                        onClick = { onSort(sort, StrengthSort.AVERAGE); expanded = false })
                 }
                 DropdownMenuItem(text = { Text(UiText.text(R.string.sort_restore_initial)) },
                     onClick = { onReset(); expanded = false })

@@ -575,7 +575,7 @@ data class AppSettings(
     val onlineLookup: Boolean = true,
     val viewMode: ViewMode = ViewMode.BY_CLASS,
     val strengthSort: StrengthSort = StrengthSort.AVERAGE,
-    val averageWindowSec: Int = 30,
+    val averageWindowSec: Int = 5,
     val listSort: ListSort = ListSort.STRENGTH,
     val showRssiBar: Boolean = true,
     val showFleetName: Boolean = true,

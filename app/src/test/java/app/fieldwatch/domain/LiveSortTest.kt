@@ -16,6 +16,26 @@ class LiveSortTest {
     )
 
     @Test
+    fun liveSortNormalizesOldPreferencesAndUsesFiveSecondSlidingWindow() {
+        for (sort in listOf(ListSort.STRENGTH, ListSort.WIFI_FIRST, ListSort.BLE_FIRST)) {
+            val settings = AppSettings(listSort = sort, strengthSort = StrengthSort.INSTANT,
+                averageWindowSec = 30).withLiveStrengthAverage()
+            assertEquals(StrengthSort.AVERAGE, settings.strengthSort)
+            assertEquals(5, settings.averageWindowSec)
+            val changing = radio("changing", rssi = -20).copy(rssiHistory = listOf(
+                RssiSample(94_999L, -20), RssiSample(95_000L, -90), RssiSample(99_000L, -50)))
+            val steady = radio("steady", rssi = -60).copy(rssiHistory = listOf(RssiSample(99_000L, -60)))
+            val devices = listOf(changing, steady)
+            assertEquals(listOf("steady", "changing"), devices.sortedWith(
+                (if (sort == ListSort.STRENGTH) LiveSort.strength(settings, 100_000L)
+                else LiveSort.types(devices, settings, 100_000L, emptyMap()))).map { it.key })
+            assertEquals(listOf("changing", "steady"), devices.sortedWith(
+                (if (sort == ListSort.STRENGTH) LiveSort.strength(settings, 101_000L)
+                else LiveSort.types(devices, settings, 101_000L, emptyMap()))).map { it.key })
+        }
+    }
+
+    @Test
     fun resetRestoresInitialOrderingWithoutChangingOtherPreferences() {
         val old = AppSettings(viewMode = ViewMode.HYBRID, listSort = ListSort.BLE_FIRST,
             strengthSort = StrengthSort.INSTANT, averageWindowSec = 90, showFrequency = false, decaySec = 10)
@@ -147,6 +167,6 @@ class LiveSortTest {
         assertEquals(ViewMode.LIST, global.viewMode)
         assertEquals(ListSort.BLE_FIRST, Json.decodeFromString<AppSettings>(Json.encodeToString(global)).listSort)
         assertEquals(ViewMode.HYBRID, old.copy(viewMode = ViewMode.HYBRID).withLiveSort(ListSort.DEVICE_TYPE).viewMode)
-        assertEquals(StrengthSort.INSTANT, old.withLiveSort(ListSort.STRENGTH, StrengthSort.INSTANT).strengthSort)
+        assertEquals(StrengthSort.AVERAGE, old.withLiveSort(ListSort.STRENGTH, StrengthSort.INSTANT).strengthSort)
     }
 }

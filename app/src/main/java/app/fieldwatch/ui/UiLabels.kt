@@ -5,7 +5,7 @@ import app.fieldwatch.UiText
 import app.fieldwatch.domain.*
 
 fun ListSort.uiLabel(strength: StrengthSort, windowSec: Int): String = UiText.text(when (this) {
-    ListSort.STRENGTH -> if (strength == StrengthSort.INSTANT) R.string.sort_strongest_short else R.string.ui_strongest_avg_values
+    ListSort.STRENGTH -> R.string.sort_strongest_short
     ListSort.NEWEST -> R.string.ui_newest_heard
     ListSort.NEWEST_ALERT -> R.string.ui_newest_alert
     ListSort.FIRST_SEEN -> R.string.ui_newest_arrival
@@ -17,7 +17,7 @@ fun ListSort.uiLabel(strength: StrengthSort, windowSec: Int): String = UiText.te
     ListSort.BLE_FIRST -> R.string.sort_ble_first
     ListSort.SIGNAL_TYPE -> R.string.sort_signal_type
     ListSort.DEVICE_TYPE -> R.string.sort_device_type
-}, *if ((this == ListSort.STRENGTH || this == ListSort.WEAKEST) && strength == StrengthSort.AVERAGE) arrayOf(windowSec.coerceIn(10, 180).toString()) else emptyArray())
+}, *if (this == ListSort.WEAKEST && strength == StrengthSort.AVERAGE) arrayOf(windowSec.coerceIn(5, 180).toString()) else emptyArray())
 
 fun SignalType.uiLabel(): String = UiText.text(when (this) {
     SignalType.WIFI_24 -> R.string.signal_wifi_24

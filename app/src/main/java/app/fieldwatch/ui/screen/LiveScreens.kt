@@ -121,7 +121,7 @@ fun LivePane(
     val live = state.filtered
     val sort = state.settings.strengthSort
     val pinEnd = state.settings.listSort == ListSort.ARRIVAL
-    val windowMs = state.settings.averageWindowSec.coerceIn(10, 180) * 1000L
+    val windowMs = state.settings.averageWindowSec.coerceIn(5, 180) * 1000L
     val showBar = state.settings.showRssiBar
     val showFleet = state.settings.showFleetName
     val showFrequency = state.settings.showFrequency

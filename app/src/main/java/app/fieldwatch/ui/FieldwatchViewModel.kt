@@ -73,6 +73,7 @@ import app.fieldwatch.domain.MacUtil
 import app.fieldwatch.domain.ListSort
 import app.fieldwatch.domain.LiveSort
 import app.fieldwatch.domain.withInitialLiveSort
+import app.fieldwatch.domain.withLiveStrengthAverage
 import app.fieldwatch.domain.withLiveSort
 import app.fieldwatch.domain.StrengthSort
 import app.fieldwatch.domain.ViewMode
@@ -221,7 +222,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
 
     private val liveUi: StateFlow<FieldwatchUi> = combine(
         combine(app.devices.devices, app.devices.stats, app.config.config) { devices, stats, config ->
-            Triple(devices, stats, config)
+            Triple(devices, stats, config.copy(settings = config.settings.withLiveStrengthAverage()))
         },
         combine(selectedKey, draft, app.arrivals, clock) { sel, fleetDraft, arr, now ->
             arrayOf(sel, fleetDraft, arr, now)
@@ -241,7 +242,7 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             val label = row.label.trim().takeIf { it.isNotEmpty() } ?: return@mapNotNull null
             key to label
         }.toMap()
-        val windowMs = config.settings.averageWindowSec.coerceIn(10, 180) * 1000L
+        val windowMs = config.settings.averageWindowSec.coerceIn(5, 180) * 1000L
         val persistMs = maxOf(
             config.settings.staleSec.coerceAtLeast(15) * 1000L,
             config.settings.decaySec.coerceAtLeast(0) * 1000L,

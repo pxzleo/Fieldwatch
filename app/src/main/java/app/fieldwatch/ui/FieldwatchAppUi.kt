@@ -606,7 +606,7 @@ private fun FieldwatchShell(state: FieldwatchUi, vm: FieldwatchViewModel) {
                             subtitleLine = state.settings.listSubtitleLine,
                             onChangeView = vm::setViewMode,
                             onChangeSort = { strength, _ -> vm.setLiveSort(ListSort.STRENGTH, strength) },
-                            onChangeListSort = { vm.setLiveSort(it, StrengthSort.INSTANT) },
+                            onChangeListSort = { vm.setLiveSort(it, StrengthSort.AVERAGE) },
                             onResetSort = vm::resetLiveSort,
                             onChangeDecay = vm::setDecaySec,
                             onToggleBar = vm::toggleRssiBar,
@@ -880,7 +880,7 @@ private fun ViewPicker(
                 ExposedDropdownMenu(openSort, { openSort = false }) {
                     DropdownMenuItem(
                         text = { Text(UiText.text(R.string.sort_strongest_short)) },
-                        onClick = { onChangeSort(StrengthSort.INSTANT, null); openSort = false },
+                        onClick = { onChangeSort(StrengthSort.AVERAGE, 5); openSort = false },
                     )
                     listOf(ListSort.WIFI_FIRST, ListSort.BLE_FIRST).forEach { item ->
                         DropdownMenuItem(text = { Text(item.uiLabel(sort, windowSec)) },

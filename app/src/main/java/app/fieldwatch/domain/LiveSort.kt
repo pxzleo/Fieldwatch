@@ -14,7 +14,15 @@ fun AppSettings.withLiveSort(sort: ListSort, strength: StrengthSort? = null): Ap
     listSort = sort,
     strengthSort = strength ?: strengthSort,
     viewMode = if (viewMode == ViewMode.LIST || viewMode == ViewMode.HYBRID) viewMode else ViewMode.LIST,
-)
+).withLiveStrengthAverage()
+
+/** The three live sorting choices share a five-second rolling strength average. */
+fun AppSettings.withLiveStrengthAverage(): AppSettings = when (listSort) {
+    ListSort.STRENGTH, ListSort.WIFI_FIRST, ListSort.BLE_FIRST ->
+        if (strengthSort == StrengthSort.AVERAGE && averageWindowSec == 5) this
+        else copy(strengthSort = StrengthSort.AVERAGE, averageWindowSec = 5)
+    else -> this
+}
 
 /** Restore only the initial ordering and layout; preserve scan and display preferences. */
 fun AppSettings.withInitialLiveSort(): AppSettings {
@@ -64,7 +72,7 @@ fun Sighting.devicePurpose(signatureNames: List<String> = emptyList()): DevicePu
 object LiveSort {
     /** Missing strength sorts last in either direction, never as +127 dBm. */
     fun strength(settings: AppSettings, now: Long, weakestFirst: Boolean = false): Comparator<Sighting> {
-        val windowMs = settings.averageWindowSec.coerceIn(10, 180) * 1000L
+        val windowMs = settings.averageWindowSec.coerceIn(5, 180) * 1000L
         // A comparator belongs to one snapshot/sort. Compute each history average once.
         val averages = java.util.IdentityHashMap<Sighting, Double?>()
         fun value(device: Sighting): Double? = when (settings.strengthSort) {
