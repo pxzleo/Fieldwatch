@@ -5,7 +5,7 @@ import app.fieldwatch.UiText
 import app.fieldwatch.domain.*
 
 fun ListSort.uiLabel(strength: StrengthSort, windowSec: Int): String = UiText.text(when (this) {
-    ListSort.STRENGTH -> if (strength == StrengthSort.INSTANT) R.string.ui_strongest_signal else R.string.ui_strongest_avg_values
+    ListSort.STRENGTH -> if (strength == StrengthSort.INSTANT) R.string.sort_strongest_short else R.string.ui_strongest_avg_values
     ListSort.NEWEST -> R.string.ui_newest_heard
     ListSort.NEWEST_ALERT -> R.string.ui_newest_alert
     ListSort.FIRST_SEEN -> R.string.ui_newest_arrival

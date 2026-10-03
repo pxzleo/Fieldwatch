@@ -605,8 +605,9 @@ private fun FieldwatchShell(state: FieldwatchUi, vm: FieldwatchViewModel) {
                             titleLine = state.settings.listTitleLine,
                             subtitleLine = state.settings.listSubtitleLine,
                             onChangeView = vm::setViewMode,
-                            onChangeSort = vm::setStrengthSort,
-                            onChangeListSort = vm::setListSort,
+                            onChangeSort = { strength, _ -> vm.setLiveSort(ListSort.STRENGTH, strength) },
+                            onChangeListSort = { vm.setLiveSort(it, StrengthSort.INSTANT) },
+                            onResetSort = vm::resetLiveSort,
                             onChangeDecay = vm::setDecaySec,
                             onToggleBar = vm::toggleRssiBar,
                             onToggleFleet = vm::toggleFleetName,
@@ -819,6 +820,7 @@ private fun ViewPicker(
     onChangeView: (ViewMode) -> Unit,
     onChangeSort: (StrengthSort, Int?) -> Unit,
     onChangeListSort: (ListSort) -> Unit,
+    onResetSort: () -> Unit,
     onChangeDecay: (Int) -> Unit,
     onToggleBar: () -> Unit,
     onToggleFleet: () -> Unit,
@@ -874,44 +876,18 @@ private fun ViewPicker(
                 }
             }
             ExposedDropdownMenuBox(openSort, { openSort = it }, dropdownPad) {
-                FieldwatchDropdownField(UiText.text(if (mode == ViewMode.BY_CLASS) R.string.sort_within_groups else R.string.ui_sort), sortLabel, openSort)
+                FieldwatchDropdownField(UiText.text(R.string.ui_sort), sortLabel, openSort)
                 ExposedDropdownMenu(openSort, { openSort = false }) {
                     DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_strongest_signal)) },
+                        text = { Text(UiText.text(R.string.sort_strongest_short)) },
                         onClick = { onChangeSort(StrengthSort.INSTANT, null); openSort = false },
                     )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_strongest_avg_30s)) },
-                        onClick = { onChangeSort(StrengthSort.AVERAGE, 30); openSort = false },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_newest_heard)) },
-                        onClick = { onChangeListSort(ListSort.NEWEST); openSort = false },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_newest_alert)) },
-                        onClick = { onChangeListSort(ListSort.NEWEST_ALERT); openSort = false },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_newest_arrival)) },
-                        onClick = { onChangeListSort(ListSort.FIRST_SEEN); openSort = false },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_new_at_bottom)) },
-                        onClick = { onChangeListSort(ListSort.ARRIVAL); openSort = false },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_name_a_z)) },
-                        onClick = { onChangeListSort(ListSort.NAME); openSort = false },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(UiText.text(R.string.ui_signatures_first)) },
-                        onClick = { onChangeListSort(ListSort.SIGNATURES); openSort = false },
-                    )
-                    listOf(ListSort.WEAKEST, ListSort.WIFI_FIRST, ListSort.BLE_FIRST, ListSort.SIGNAL_TYPE, ListSort.DEVICE_TYPE).forEach { item ->
+                    listOf(ListSort.WIFI_FIRST, ListSort.BLE_FIRST).forEach { item ->
                         DropdownMenuItem(text = { Text(item.uiLabel(sort, windowSec)) },
                             onClick = { onChangeListSort(item); openSort = false })
                     }
+                    DropdownMenuItem(text = { Text(UiText.text(R.string.sort_restore_initial)) },
+                        onClick = { onResetSort(); openSort = false })
                 }
             }
             ExposedDropdownMenuBox(openDecay, { openDecay = it }, dropdownPad) {

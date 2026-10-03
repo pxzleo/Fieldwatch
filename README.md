@@ -330,3 +330,12 @@ Mesh 解码与规则匹配共用校验入口，设备详情、文本和 PDF 报�
 研究依据：[Bluetooth SIG Assigned Numbers](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/index-en.html)、[OpenHarmony 软总线 BLE 版本与解析检查](https://github.com/openharmony/communication_dsoftbus/blob/master/core/discovery/ble/softbus_ble/src/disc_ble.c)、[软总线 BLE 字段位置](https://github.com/openharmony/communication_dsoftbus/blob/master/interfaces/kits/disc/disc_ble_constant_struct.h)、[InGeek PSA 产品资料](https://products.psacertified.org/products/ingeek-digital-lock-s1)、[Google Find Hub 广播结构表 15／16](https://developers.google.com/nearby/fast-pair/specifications/extensions/fmdn)。厂商提供数字钥匙平台不证明本次广播的用途或锁状态。原始地址、载荷及研究输出保留于忽略的本地验证目录，不提交至仓库。
 
 验证：566 项正式单元测试全部通过，APK 构建、差异检查、需求符合性审查与独立代码质量审查通过。覆盖历史字段归属／时间顺序、相同来源快路、新旧日志与序列化、损坏 Find Hub 帧、中英文详情及报告、WPS 零值／短帧／冲突／跨元素身份负例、同伴地址及原始 UUID 隐私、未知服务精确 UUID 与重复记录计数。9595 行旧日志重放得到 605 条地址记录：304 条 BLE 记录保存有效历史字段，找回 1 条末帧已缺失的 Mesh 记录；29 条补充未知服务结构，21 条存在相同服务内容线索；WPS 有 13 组候选、涉及 26 地址，无已知身份冲突。此为字段保存及候选关联，不是新增确认了这些设备型号。临时重放测试已移出产品测试源；无线调试当前未连接，尚未安装 1.1.26 或完成真机界面验收。
+
+### 实时排序精简（1.1.27）
+
+需求：排序仅保留最强、Wi-Fi、蓝牙，并提供恢复初始状态入口。
+
+- 实时页顶部与“显示”面板同步精简为三个排序选项及“恢复初始状态”。最强使用当前信号强度；Wi-Fi、蓝牙优先后，同类设备按当前强度由强到弱排列。选择排序进入全局列表，原列表／带曲线列表保留布局。
+- 恢复初始状态恢复分类视图、默认的平均强度排序及 30 秒窗口；保留其他显示偏好、筛选条件和扫描数据。旧排序枚举继续兼容保存的配置。
+
+验证：567 项单元测试通过，包括恢复排序只修改所需设置的回归测试；差异检查与独立代码审查通过。

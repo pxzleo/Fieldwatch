@@ -1432,8 +1432,8 @@
     <string name="apple_airpods_pro2" formatted="false">"AirPods Pro (2nd generation)"</string>
     <string name="apple_airpods_anc" formatted="false">"AirPods 4 (ANC)"</string>
     <string name="sort_weakest" formatted="false">"Weakest first"</string>
-    <string name="sort_wifi_first" formatted="false">"Wi-Fi first"</string>
-    <string name="sort_ble_first" formatted="false">"Bluetooth first"</string>
+    <string name="sort_wifi_first" formatted="false">"Wi-Fi"</string>
+    <string name="sort_ble_first" formatted="false">"Bluetooth"</string>
     <string name="sort_signal_type" formatted="false">"By signal subtype"</string>
     <string name="sort_device_type" formatted="false">"By inferred device purpose"</string>
     <string name="signal_wifi_24" formatted="false">"Wi-Fi 2.4 GHz"</string>
@@ -1469,4 +1469,6 @@
     <string name="service_owner_huawei" formatted="false">"Huawei"</string>
     <string name="service_owner_xiaomi" formatted="false">"Xiaomi"</string>
     <string name="wps_identity_log_time" formatted="false">"WPS identity log snapshot time (not a new reception)"</string>
+    <string name="sort_strongest_short">Strongest</string>
+    <string name="sort_restore_initial">Restore initial view</string>
 </resources>

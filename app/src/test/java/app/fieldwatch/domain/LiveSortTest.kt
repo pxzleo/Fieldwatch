@@ -16,6 +16,20 @@ class LiveSortTest {
     )
 
     @Test
+    fun resetRestoresInitialOrderingWithoutChangingOtherPreferences() {
+        val old = AppSettings(viewMode = ViewMode.HYBRID, listSort = ListSort.BLE_FIRST,
+            strengthSort = StrengthSort.INSTANT, averageWindowSec = 90, showFrequency = false, decaySec = 10)
+        val reset = old.withInitialLiveSort()
+        val initial = AppSettings()
+        assertEquals(initial.viewMode, reset.viewMode)
+        assertEquals(initial.listSort, reset.listSort)
+        assertEquals(initial.strengthSort, reset.strengthSort)
+        assertEquals(initial.averageWindowSec, reset.averageWindowSec)
+        assertEquals(old.copy(viewMode = initial.viewMode, listSort = initial.listSort,
+            strengthSort = initial.strengthSort, averageWindowSec = initial.averageWindowSec), reset)
+    }
+
+    @Test
     fun averageKeepsWindowBoundaryAndMissingFallback() {
         val device = radio("a", rssi = 127).copy(rssiHistory = listOf(
             RssiSample(69_999L, -20), RssiSample(70_000L, -90),

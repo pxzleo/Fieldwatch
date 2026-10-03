@@ -134,7 +134,7 @@ fun LivePane(
     var renameSit by remember { mutableStateOf(false) }
     var renameDraft by remember { mutableStateOf("") }
     Column(Modifier.fillMaxSize()) {
-        app.fieldwatch.ui.component.LiveSortBar(state.settings, vm::setLiveSort)
+        app.fieldwatch.ui.component.LiveSortBar(state.settings, vm::setLiveSort, vm::resetLiveSort)
         if (state.displayPaused) {
             Text(
                 UiText.text(R.string.ui_display_paused_radios_still_scanning_and_logging_filters_still_ap),

@@ -72,6 +72,7 @@ import app.fieldwatch.domain.ListLine
 import app.fieldwatch.domain.MacUtil
 import app.fieldwatch.domain.ListSort
 import app.fieldwatch.domain.LiveSort
+import app.fieldwatch.domain.withInitialLiveSort
 import app.fieldwatch.domain.withLiveSort
 import app.fieldwatch.domain.StrengthSort
 import app.fieldwatch.domain.ViewMode
@@ -601,6 +602,12 @@ class FieldwatchViewModel(application: Application) : AndroidViewModel(applicati
             app.config.update { config ->
                 config.copy(settings = config.settings.withLiveSort(sort, strength))
             }
+        }
+    }
+
+    fun resetLiveSort() {
+        viewModelScope.launch {
+            app.config.update { it.copy(settings = it.settings.withInitialLiveSort()) }
         }
     }
 

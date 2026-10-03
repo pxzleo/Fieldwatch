@@ -21,29 +21,26 @@ import app.fieldwatch.UiText
 import app.fieldwatch.domain.AppSettings
 import app.fieldwatch.domain.ListSort
 import app.fieldwatch.domain.StrengthSort
-import app.fieldwatch.domain.ViewMode
 import app.fieldwatch.ui.uiLabel
 
 @Composable
-fun LiveSortBar(settings: AppSettings, onSort: (ListSort, StrengthSort?) -> Unit) {
+fun LiveSortBar(settings: AppSettings, onSort: (ListSort, StrengthSort?) -> Unit, onReset: () -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
         Box {
             TextButton(onClick = { expanded = true }) {
-                val scope = if (settings.viewMode == ViewMode.BY_CLASS) R.string.sort_within_groups else R.string.ui_sort
-                Text("${UiText.text(scope)} · ${settings.listSort.uiLabel(settings.strengthSort, settings.averageWindowSec)} ▾",
+                Text("${UiText.text(R.string.ui_sort)} · ${settings.listSort.uiLabel(settings.strengthSort, settings.averageWindowSec)} ▾",
                     style = MaterialTheme.typography.labelLarge)
             }
             DropdownMenu(expanded, onDismissRequest = { expanded = false }) {
-                listOf(StrengthSort.INSTANT, StrengthSort.AVERAGE).forEach { strength ->
-                    DropdownMenuItem(text = { Text(ListSort.STRENGTH.uiLabel(strength, settings.averageWindowSec)) },
-                        onClick = { onSort(ListSort.STRENGTH, strength); expanded = false })
-                }
-                listOf(ListSort.WEAKEST, ListSort.WIFI_FIRST, ListSort.BLE_FIRST, ListSort.SIGNAL_TYPE, ListSort.DEVICE_TYPE,
-                    ListSort.NEWEST, ListSort.NAME, ListSort.SIGNATURES).forEach { sort ->
+                DropdownMenuItem(text = { Text(UiText.text(R.string.sort_strongest_short)) },
+                    onClick = { onSort(ListSort.STRENGTH, StrengthSort.INSTANT); expanded = false })
+                listOf(ListSort.WIFI_FIRST, ListSort.BLE_FIRST).forEach { sort ->
                     DropdownMenuItem(text = { Text(sort.uiLabel(settings.strengthSort, settings.averageWindowSec)) },
-                        onClick = { onSort(sort, null); expanded = false })
+                        onClick = { onSort(sort, StrengthSort.INSTANT); expanded = false })
                 }
+                DropdownMenuItem(text = { Text(UiText.text(R.string.sort_restore_initial)) },
+                    onClick = { onReset(); expanded = false })
             }
         }
     }

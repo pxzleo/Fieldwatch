@@ -16,6 +16,13 @@ fun AppSettings.withLiveSort(sort: ListSort, strength: StrengthSort? = null): Ap
     viewMode = if (viewMode == ViewMode.LIST || viewMode == ViewMode.HYBRID) viewMode else ViewMode.LIST,
 )
 
+/** Restore only the initial ordering and layout; preserve scan and display preferences. */
+fun AppSettings.withInitialLiveSort(): AppSettings {
+    val initial = AppSettings()
+    return copy(viewMode = initial.viewMode, listSort = initial.listSort,
+        strengthSort = initial.strengthSort, averageWindowSec = initial.averageWindowSec)
+}
+
 fun Sighting.signalType(): SignalType = when (kind) {
     RadioKind.WIFI -> when (frequencyMhz) {
         in 2401..2499 -> SignalType.WIFI_24
